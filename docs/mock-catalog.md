@@ -7,7 +7,7 @@ The first group of products exercises edge cases of the theme itself (long title
 ## Products for the card and quantity features
 
 - `mock-card-video`: a hosted two second video, for the preview on cards ([decision 017](decisions/017-card-video-previews-play-on-hover-or-focus-only.md)). The clip is made with ffmpeg when the mock content is applied; without ffmpeg the product is created with no video and says so.
-- `mock-limited-stock`: tracked inventory of three with overselling denied, for the quantity cap ([decision 015](decisions/015-quantity-limits-follow-the-rule-and-never-name-the-stock.md)). On the development store the storefront served it as sold out although the admin reports it available, so `npm run test:quantity` skips that part there; quantity rules themselves need a B2B catalog and are tested on the component library page instead.
+- `mock-limited-stock`: tracked inventory of three with overselling denied and no shipping required, for the quantity cap ([decision 015](decisions/015-quantity-limits-follow-the-rule-and-never-name-the-stock.md)). It needs no shipping because a store whose only location does not ship inventory serves a physical product with stock there as sold out. Quantity rules themselves need a B2B catalog and are tested on the component library page instead.
 
 ## Color siblings
 

@@ -42,7 +42,7 @@ The rule's minimum is assumed to be a multiple of its increment when 0 is also a
 
 Quantity rules need a B2B catalog and cannot be created on a plain development store. The control is therefore tested with explicit values on the component library page, and the stock cap on `mock-limited-stock` (tracked, 3 in stock, overselling denied). Swapping the quantity block between variants whose rules differ, and the cart with a rule, are not exercised by a test.
 
-The stock cap itself was not seen working on a live variant in the session that built it: the admin reports `mock-limited-stock` as available for sale (3 at a location that fulfills online orders), yet the storefront of that development store served the variant as sold out, so `npm run test:quantity` reported that part as SKIPPED. The cap is five lines of Liquid in `blocks/_buy-buttons.liquid`; run the test on a store where the variant is sellable to prove it.
+The stock cap is tested on `mock-limited-stock` (tracked, 3 in stock, overselling denied, no shipping required). That last property matters: a development store's only location may not ship inventory (`shipsInventory: false`), and the storefront then serves a physical product with stock there as sold out, so the cap was invisible until the mock was made a no-shipping product. If the stock part of `npm run test:quantity` is reported as SKIPPED, check that first.
 
 ## Trade-offs we accept
 

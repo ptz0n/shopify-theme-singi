@@ -171,7 +171,8 @@ const variantInput = (p, options, optionValues, index, locationId) => {
     ...(p.compareAt ? { compareAtPrice: p.compareAt } : {}),
     sku: `${p.handle}-${index + 1}`,
     inventoryPolicy: unavailable || p.stock ? 'DENY' : 'CONTINUE',
-    ...(unavailable || p.stock ? { inventoryItem: { tracked: true } } : {}),
+    /* A stocked mock product does not require shipping: a store whose only location does not ship inventory (a new development store) would otherwise serve it as sold out whatever its stock. */
+    ...(unavailable || p.stock ? { inventoryItem: { tracked: true, ...(p.stock ? { requiresShipping: false } : {}) } } : {}),
     /* p.stock: tracked and in stock, so the product page caps the quantity at it (decision 015) */
     ...(p.stock && !unavailable ? { inventoryQuantities: [{ locationId, name: 'available', quantity: p.stock }] } : {}),
     ...(unit ? { unitPriceMeasurement: unit, showUnitPrice: true } : {}),

@@ -103,7 +103,7 @@ export const PRODUCTS = [
     type: 'Prints',
     vendor: 'Singi Editions',
     price: '45.00',
-    description: '<p>Tracked inventory of three, oversell denied, to exercise the quantity cap on the product page.</p>',
+    description: '<p>Tracked inventory of three, oversell denied, no shipping required, to exercise the quantity cap on the product page.</p>',
     options: [],
     stock: 3,
     images: ['poster-1'],
