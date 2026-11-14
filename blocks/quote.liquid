@@ -1,0 +1,44 @@
+{% doc %}
+  A pull quote or customer testimonial: the quote, who said it, and optionally their role or
+  source. Semantic figure, blockquote and figcaption, so assistive technology announces it as a
+  quotation with an attribution. Renders nothing without the quote text.
+
+  @example
+  {% content_for 'block', type: 'quote', id: 'quote' %}
+{% enddoc %}
+
+{%- assign s = block.settings -%}
+
+{%- if s.quote != blank -%}
+  <figure class="quote" {{ block.shopify_attributes }}>
+    <blockquote><p>{{ s.quote | escape | newline_to_br }}</p></blockquote>
+    {%- if s.author != blank -%}
+      <figcaption>
+        <span>{{ s.author }}</span>
+        {% if s.source != blank %}<span class="muted">{{ s.source }}</span>{% endif %}
+      </figcaption>
+    {%- endif -%}
+  </figure>
+{%- else -%}
+  {%- render 'placeholder', label: 'Quote: add the quote in the block settings' -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .quote { margin: 0; }
+  .quote blockquote { margin: 0; padding-inline-start: 1.25rem; border-inline-start: 2px solid var(--color-fg); font-size: clamp(1.25rem, 1.05rem + 1vw, 1.75rem); line-height: 1.35; text-wrap: balance; }
+  .quote p { margin: 0; }
+  .quote figcaption { display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; margin-block-start: 0.75rem; padding-inline-start: 1.25rem; font-size: 0.875rem; }
+  .quote figcaption span:first-child { font-weight: var(--font-weight-strong); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Quote",
+  "settings": [
+    { "type": "textarea", "id": "quote", "label": "Quote", "info": "Without quotation marks: the quote is marked up as one." },
+    { "type": "text", "id": "author", "label": "Who said it" },
+    { "type": "text", "id": "source", "label": "Role or source", "info": "For example a customer's city or a publication." }
+  ],
+  "presets": [{ "name": "Quote" }]
+}
+{% endschema %}

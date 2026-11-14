@@ -23,21 +23,8 @@
       <a class="featured__all mono" href="{{ collection.url }}">{{ 'sections.featured.view_all' | t }}</a>
     </div>
 
-    <ul class="product-grid" role="list">
-      {%- for product in collection.products limit: section.settings.limit -%}
-        {%- liquid
-          assign card_eager = false
-          if eager_cards and forloop.index <= 4
-            assign card_eager = true
-          endif
-        -%}
-        {% render 'product-card', product: product, eager: card_eager %}
-      {%- endfor -%}
-    </ul>
-    {%- if settings.tracking_enabled -%}
-      {%- assign list_name = section.settings.heading | default: collection.title -%}
-      {%- render 'tracking-list', products: collection.products, limit: section.settings.limit, list_id: collection.handle, list_name: list_name -%}
-    {%- endif -%}
+    {%- assign list_name = section.settings.heading | default: collection.title -%}
+    {%- render 'product-grid', collection: collection, limit: section.settings.limit, eager: eager_cards, list_name: list_name -%}
   </section>
 {%- else -%}
   {%- render 'placeholder', label: 'Featured collection: choose a collection', wide: true -%}

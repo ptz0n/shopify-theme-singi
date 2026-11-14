@@ -332,6 +332,13 @@ PAGES.push({
   body: '',
 });
 
+PAGES.push({
+  handle: 'mock-blocks',
+  title: 'Content blocks',
+  template: 'blocks',
+  body: '',
+});
+
 export const BLOG = {
   handle: 'mock-journal',
   title: 'Journal',

@@ -316,6 +316,26 @@ Wishlist theme settings allow it. Its behavior lives in assets/wishlist.js.
 </ul>
 ```
 
+## product-grid
+
+File: `snippets/product-grid.liquid`
+
+A grid of product cards from one collection, plus the list-view tracking event when tracking
+is on. Shared by sections/featured-collection.liquid and blocks/product-grid.liquid so a grid
+looks and measures the same wherever it appears.
+
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `collection` | `collection` | yes | The collection to list |
+| `limit` | `number` | yes | Products to show |
+| `eager` | `boolean` | no | Load the first row of images eagerly (only when the grid is near the top of the page) |
+| `list_name` | `string` | no | Name for the tracking event. Default: the collection title |
+| `heading` | `string` | no | Heading element of each card title: h2 under a page h1, h3 under an h2 section. Default: h3 |
+
+```liquid
+{% render 'product-grid', collection: collection, limit: 8, eager: true %}
+```
+
 ## quantity-input
 
 File: `snippets/quantity-input.liquid`

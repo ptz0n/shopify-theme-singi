@@ -23,6 +23,8 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 | `image` | Merchant image with aspect ratio. Always lazy; use `hero` for above-the-fold images. | image, ratio |
 | `spacer` | Vertical whitespace. | height |
 | `accordion` | Native `<details name="accordion">` disclosure. | title, content, open |
+| `quote` | A pull quote or testimonial as a figure with a blockquote and a caption (who said it, role or source). Nothing renders without the quote text. | quote, who said it, role or source |
+| `product-grid` | A heading, a "view all" link and a grid of products from one collection. Put it in a full-width Custom content section. Same cards, image loading and tracking as the Featured collection section, through `snippets/product-grid.liquid`. | heading, collection, products to show (2 to 12) |
 | `newsletter` | Signup form with the email input and Subscribe button joined as one control (a Shopify customer form that tags the subscriber `newsletter`; no JavaScript). The footer uses the same `newsletter` snippet. | label, supporting text |
 | `related-products` | Cards for the product's related products (Search & Discovery), filled up from its first collection, rendered on the server with no JavaScript. Hidden when there is neither. See [decision 008](decisions/008-related-products-render-on-the-server.md). | heading, products to show (2 to 8) |
 | `recently-viewed` | Cards for the products this visitor opened, newest first. Private to the visitor (localStorage), hidden until there is history, skeletons hold the space. See [media.md](media.md) for cards and `assets/recently-viewed.js` for the flow. | heading, products to show (2 to 8) |

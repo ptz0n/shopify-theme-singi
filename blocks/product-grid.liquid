@@ -1,0 +1,44 @@
+{% doc %}
+  A grid of products from one collection, with a heading and a "view all" link. Use it inside a
+  Custom content section set to full width (the narrow setting squeezes the grid). Same cards,
+  loading and tracking as the Featured collection section, through snippets/product-grid.liquid.
+
+  The heading is always rendered (the collection title when none is set) so the card titles never
+  follow a heading of the wrong level.
+
+  @example
+  {% content_for 'block', type: 'product-grid', id: 'grid' %}
+{% enddoc %}
+
+{%- assign s = block.settings -%}
+{%- assign collection = s.collection -%}
+
+{%- if collection != blank -%}
+  <div class="product-grid-block" {{ block.shopify_attributes }}>
+    <div class="product-grid-block__head">
+      <h2>{{ s.heading | default: collection.title }}</h2>
+      <a class="mono" href="{{ collection.url }}">{{ 'sections.featured.view_all' | t }}</a>
+    </div>
+    {%- assign list_name = s.heading | default: collection.title -%}
+    {%- render 'product-grid', collection: collection, limit: s.limit, list_name: list_name -%}
+  </div>
+{%- else -%}
+  {%- render 'placeholder', label: 'Product grid: choose a collection' -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .product-grid-block__head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-block-end: 1.5rem; }
+  .product-grid-block__head a { display: inline-flex; align-items: center; min-height: 2.75rem; margin-inline-start: auto; font-size: 0.8125rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product grid",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave empty to use the collection title." },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "limit", "label": "Products to show", "min": 2, "max": 12, "step": 2, "default": 4 }
+  ],
+  "presets": [{ "name": "Product grid" }]
+}
+{% endschema %}

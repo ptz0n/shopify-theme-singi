@@ -234,6 +234,37 @@ JavaScript. Fires the generate_lead tracking event on success when tracking is o
 | `label` | text | Label |  |
 | `text` | text | Supporting text |  |
 
+## product-grid
+
+File: `blocks/product-grid.liquid` · Editor name: **Product grid** · public · has preset
+
+A grid of products from one collection, with a heading and a "view all" link. Use it inside a
+Custom content section set to full width (the narrow setting squeezes the grid). Same cards,
+loading and tracking as the Featured collection section, through snippets/product-grid.liquid.
+
+The heading is always rendered (the collection title when none is set) so the card titles never
+follow a heading of the wrong level.
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `heading` | text | Heading |  |
+| `collection` | collection | Collection |  |
+| `limit` | range | Products to show | `4` |
+
+## quote
+
+File: `blocks/quote.liquid` · Editor name: **Quote** · public · has preset
+
+A pull quote or customer testimonial: the quote, who said it, and optionally their role or
+source. Semantic figure, blockquote and figcaption, so assistive technology announces it as a
+quotation with an attribution. Renders nothing without the quote text.
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `quote` | textarea | Quote |  |
+| `author` | text | Who said it |  |
+| `source` | text | Role or source |  |
+
 ## recently-viewed
 
 File: `blocks/recently-viewed.liquid` · Editor name: **Recently viewed** · public · has preset

@@ -180,8 +180,8 @@ for (const file of liquidFiles.filter((f) => f.startsWith('sections/') || f.star
   for (const preset of schema.presets ?? []) walkPreset(preset.blocks);
 }
 
-// templates/page.styleguide.json (the component library) and templates/product.demo.json (labels bound to the mock catalog's metafields, see docs/mock-catalog.md) are developer-only
-const DEVELOPER_TEMPLATES = new Set(['templates/page.styleguide.json', 'templates/product.demo.json']);
+// templates/page.styleguide.json (the component library), templates/page.blocks.json (content blocks on one page, for tests) and templates/product.demo.json (labels bound to the mock catalog's metafields, see docs/mock-catalog.md) are developer-only
+const DEVELOPER_TEMPLATES = new Set(['templates/page.styleguide.json', 'templates/page.blocks.json', 'templates/product.demo.json']);
 for (const file of walk('templates').filter((f) => f.endsWith('.json') && !DEVELOPER_TEMPLATES.has(f))) {
   const visit = (node, path) => {
     if (Array.isArray(node)) return node.forEach((child, i) => visit(child, `${path}[${i}]`));

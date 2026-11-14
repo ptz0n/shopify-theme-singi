@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "main": {
+      "type": "content",
+      "blocks": {
+        "intro": {
+          "type": "heading",
+          "settings": { "text": "Content blocks", "tag": "h1", "size": "lg" }
+        },
+        "quote": {
+          "type": "quote",
+          "settings": {
+            "quote": "Arrived in two days and fits better than anything I have owned.\nWorth every krona.",
+            "author": "A customer",
+            "source": "Umeå"
+          }
+        },
+        "grid": {
+          "type": "product-grid",
+          "settings": { "collection": "mock-new-arrivals", "limit": 4 }
+        },
+        "signup": {
+          "type": "newsletter",
+          "settings": { "text": "One email a month. No noise." }
+        }
+      },
+      "block_order": ["intro", "quote", "grid", "signup"],
+      "settings": { "width": "wide", "align": "left", "padding": 64 }
+    }
+  },
+  "order": ["main"]
+}

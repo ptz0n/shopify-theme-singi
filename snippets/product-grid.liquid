@@ -1,0 +1,30 @@
+{% doc %}
+  A grid of product cards from one collection, plus the list-view tracking event when tracking
+  is on. Shared by sections/featured-collection.liquid and blocks/product-grid.liquid so a grid
+  looks and measures the same wherever it appears.
+
+  @param {collection} collection - The collection to list
+  @param {number} limit - Products to show
+  @param {boolean} [eager] - Load the first row of images eagerly (only when the grid is near the top of the page)
+  @param {string} [list_name] - Name for the tracking event. Default: the collection title
+  @param {string} [heading] - Heading element of each card title: h2 under a page h1, h3 under an h2 section. Default: h3
+
+  @example
+  {% render 'product-grid', collection: collection, limit: 8, eager: true %}
+{% enddoc %}
+
+<ul class="product-grid" role="list">
+  {%- for product in collection.products limit: limit -%}
+    {%- liquid
+      assign card_eager = false
+      if eager and forloop.index <= 4
+        assign card_eager = true
+      endif
+    -%}
+    {% render 'product-card', product: product, eager: card_eager, heading: heading %}
+  {%- endfor -%}
+</ul>
+{%- if settings.tracking_enabled -%}
+  {%- assign tracked_name = list_name | default: collection.title -%}
+  {%- render 'tracking-list', products: collection.products, limit: limit, list_id: collection.handle, list_name: tracked_name -%}
+{%- endif -%}
