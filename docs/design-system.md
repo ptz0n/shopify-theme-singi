@@ -26,6 +26,8 @@ Use these tokens in CSS. Do not hardcode colors, radii or fonts.
 
 ## Light and dark scheme
 
+<img src="images/collection-light.webp" alt="Collection page, light mode" width="420"> <img src="images/collection-dark.webp" alt="Collection page, dark mode" width="420">
+
 Colors are defined twice in settings (Colors: light, Colors: dark) and combined in `tokens.liquid`:
 
 ```css

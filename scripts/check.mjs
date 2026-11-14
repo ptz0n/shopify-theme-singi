@@ -276,6 +276,16 @@ for (const file of liquidFiles.concat(assets)) {
   }
 }
 
+/* ---------- Screenshot freshness ---------- */
+
+try {
+  const shots = JSON.parse(read('docs/images/manifest.json'));
+  const current = JSON.parse(read('package.json')).version;
+  if (shots.version !== current) warn('docs/images/manifest.json', `screenshots are for ${shots.version}, the version is ${current}: run npm run screenshots (see docs/releasing.md)`);
+} catch {
+  warn('docs/images/manifest.json', 'no screenshots yet: run npm run screenshots (see docs/releasing.md)');
+}
+
 /* ---------- Report ---------- */
 
 console.log('Budgets');

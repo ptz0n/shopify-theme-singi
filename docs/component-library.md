@@ -14,6 +14,8 @@ Without the mock content, create a page in the admin and set its template to `pa
 
 ## What it shows
 
+<img src="images/component-library.webp" alt="The component library: color tokens with contrast ratios, then buttons" width="640">
+
 - Typography, spacing and the color tokens for light and dark, with live contrast ratios.
 - Buttons, form controls, accordions, popovers and other interactive elements.
 - Product cards, prices, icons and loading skeletons.

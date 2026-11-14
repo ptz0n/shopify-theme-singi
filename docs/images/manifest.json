@@ -1,0 +1,43 @@
+{
+  "version": "0.1.0",
+  "commit": "1396681",
+  "generated": "2026-11-14",
+  "images": [
+    {
+      "file": "collection-light.webp",
+      "path": "/collections/mock-new-arrivals",
+      "viewport": "desktop",
+      "scheme": "light"
+    },
+    {
+      "file": "collection-dark.webp",
+      "path": "/collections/mock-new-arrivals",
+      "viewport": "desktop",
+      "scheme": "dark"
+    },
+    {
+      "file": "product-light.webp",
+      "path": "/products/mock-everyday-hoodie",
+      "viewport": "desktop",
+      "scheme": "light"
+    },
+    {
+      "file": "product-mobile-light.webp",
+      "path": "/products/mock-everyday-hoodie",
+      "viewport": "mobile",
+      "scheme": "light"
+    },
+    {
+      "file": "product-mobile-dark.webp",
+      "path": "/products/mock-everyday-hoodie",
+      "viewport": "mobile",
+      "scheme": "dark"
+    },
+    {
+      "file": "component-library.webp",
+      "path": "/pages/mock-styleguide",
+      "viewport": "desktop",
+      "scheme": "light"
+    }
+  ]
+}

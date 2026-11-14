@@ -18,5 +18,6 @@ Index of all documentation. Agents: read [../AGENTS.md](../AGENTS.md) first, the
 | [component-library.md](component-library.md) | The developer-only page that shows every component, how to turn it on, and what it checks. |
 | [media.md](media.md) | Images, focal points, product gallery, video, card heart tone, placeholder image, media tests. |
 | [extending.md](extending.md) | Recipes for adding things, integration rules, planned features. |
+| [releasing.md](releasing.md) | Cutting a release: version, changelog, regenerating the screenshots, tagging. |
 | [testing.md](testing.md) | Verification checklists, Lighthouse targets, results template. |
 | [reference/](reference/) | Generated reference for snippets, blocks and sections. Do not edit by hand; run `npm run docs`. |
