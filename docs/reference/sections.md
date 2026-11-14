@@ -12,7 +12,7 @@ Generic container for composing content from theme blocks (heading, text,
 image, button, group, accordion, spacer). Use it for any page that does not
 need a dedicated section.
 
-Accepts blocks: `@theme`
+Accepts blocks: `@theme`, `@app`
 
 | Setting | Type | Label | Default |
 | --- | --- | --- | --- |
@@ -191,7 +191,7 @@ merchant-orderable blocks.
 The first image is the LCP candidate: eager, fetchpriority=high, preloaded.
 Every other image lazy loads.
 
-Accepts blocks: `_product-title`, `_product-price`, `_color-siblings`, `_size-guide`, `_product-policies`, `_product-specs`, `_variant-picker`, `_buy-buttons`, `_product-description`, `_product-meta`, `@theme`
+Accepts blocks: `@app`, `_product-title`, `_product-price`, `_color-siblings`, `_size-guide`, `_product-policies`, `_product-specs`, `_variant-picker`, `_buy-buttons`, `_product-description`, `_product-meta`, `@theme`
 
 _No settings._
 

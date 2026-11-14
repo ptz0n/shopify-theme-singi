@@ -31,3 +31,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [006](006-product-details-connect-through-dynamic-sources.md) | Product details connect to metafields through dynamic sources, not hardcoded keys or mapping settings | product page, data model, settings |
 | [007](007-favorites-rows-have-three-states.md) | A favorite on the cart page has exactly one of three controls | cart page, favorites |
 | [008](008-related-products-render-on-the-server.md) | Related products render on the server, from merchant picks first, then the first collection | product page, performance |
+| [009](009-popovers-swallow-the-dismissing-click.md) | A panel's dismissing click is swallowed, and keyboard focus never hides behind an open panel | navigation, accessibility, search |

@@ -31,10 +31,10 @@ const BUDGETS = {
   'assets/wishlist.js': { raw: 7500 },
   'assets/image-tone.js': { raw: 3500 },
   'assets/product-form.js': { raw: 6600 },
-  'assets/predictive-search.js': { raw: 8500 },
+  'assets/predictive-search.js': { raw: 9200 },
 };
 const DEFAULT_JS_BUDGET = 6000;
-const TOTAL_JS_BROTLI_BUDGET = 17000; // sum of every module as downloaded (brotli); no page loads them all, each is a separate, lazily loaded file. Raw size counts the documentation comments, so it is capped per file instead.
+const TOTAL_JS_BROTLI_BUDGET = 17200; // sum of every module as downloaded (brotli); no page loads them all, each is a separate, lazily loaded file. Raw size counts the documentation comments, so it is capped per file instead.
 
 const assets = walk('assets');
 let totalJs = 0;
