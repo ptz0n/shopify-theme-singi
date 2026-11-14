@@ -7,7 +7,8 @@
  *  - Escape closes the panel and returns focus to its toggle;
  *  - Tab out of the open panel closes it (focus never rests behind the dimmed page; the panel's own toggle is a valid stop);
  *  - the toggle reports its expanded state to assistive technology and keeps a stable name;
- *  - no horizontal scroll while a panel is open.
+ *  - no horizontal scroll while a panel is open;
+ *  - the size guide (a popover that does not dim the page) opens and closes from the keyboard, returns focus, and the click that dismisses it still works.
  *
  *   npm run dev              (in one terminal)
  *   npm run test:popovers    (in another)
@@ -124,6 +125,40 @@ try {
     const afterTab = await page.evaluate((selector) => ({ open: document.querySelector(selector).matches(':popover-open'), inside: document.querySelector(selector).contains(document.activeElement) }), panel);
     ok(!afterTab.open || afterTab.inside, `${label}: Tab moved focus outside the open panel and left it open`);
     console.log(`  ${label}: ok`);
+    await page.close();
+  }
+
+  /* A popover that does NOT dim the page (the size guide) keeps normal behavior: the click that dismisses it also does what it was aimed at. */
+  {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1200, height: 900 });
+    await page.goto(`${base}/products/mock-merino-sweater`, { waitUntil: 'load', timeout: 60000 });
+    await page.bringToFront();
+    const guide = await page.evaluate(() => {
+      const button = document.querySelector('.size-guide__button');
+      return { has: Boolean(button), panel: button?.getAttribute('popovertarget') };
+    });
+    ok(guide.has, 'size guide: no size guide button on mock-merino-sweater');
+    if (guide.has) {
+      await page.focus('.size-guide__button');
+      await page.keyboard.press('Enter');
+      await sleep(300);
+      ok(await page.evaluate((id) => document.getElementById(id).matches(':popover-open'), guide.panel), 'size guide: Enter on the button did not open it');
+      const dialog = await page.evaluate((id) => { const el = document.getElementById(id); return { role: el.getAttribute('role'), name: document.getElementById(el.getAttribute('aria-labelledby'))?.textContent.trim() }; }, guide.panel);
+      ok(dialog.role === 'dialog' && Boolean(dialog.name), `size guide: expected a dialog with a name, got ${JSON.stringify(dialog)}`);
+      await page.keyboard.press('Escape');
+      await sleep(300);
+      ok(!(await page.evaluate((id) => document.getElementById(id).matches(':popover-open'), guide.panel)), 'size guide: Escape did not close it');
+      ok(await page.evaluate(() => document.activeElement === document.querySelector('.size-guide__button')), 'size guide: focus did not return to the button after Escape');
+      await page.keyboard.press('Enter');
+      await sleep(300);
+      const [navigated] = await Promise.all([
+        page.waitForNavigation({ timeout: 8000 }).then(() => true).catch(() => false),
+        page.click('.header__logo'),
+      ]);
+      ok(navigated, 'size guide: the click that dismissed it was swallowed (the first click on the logo did not navigate)');
+    }
+    console.log('  size guide: ok');
     await page.close();
   }
 } finally {

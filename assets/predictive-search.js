@@ -198,10 +198,10 @@ class PredictiveSearch extends HTMLElement {
 
 customElements.define('predictive-search', PredictiveSearch);
 
-/* Popover guards (docs/decisions/009-popovers-swallow-the-dismissing-click.md): cancel the real click right after a close; close a panel when focus leaves it. */
+/* data-overlay panels (decision 009): swallow the click after a close; close when focus leaves. */
 let closed = 0;
 document.addEventListener('beforetoggle', (event) => {
-  if (event.newState === 'closed') closed = event.timeStamp;
+  if (event.newState === 'closed' && event.target.hasAttribute('data-overlay')) closed = event.timeStamp;
 }, true);
 document.addEventListener('click', (event) => {
   if (event.isTrusted && event.timeStamp - closed < 250) {
@@ -210,7 +210,7 @@ document.addEventListener('click', (event) => {
   }
 }, true);
 document.addEventListener('focusin', ({ target }) => {
-  for (const panel of document.querySelectorAll('[popover]:popover-open')) {
+  for (const panel of document.querySelectorAll('[data-overlay]:popover-open')) {
     if (!panel.contains(target) && !target.closest?.(`[popovertarget="${panel.id}"]`)) panel.hidePopover();
   }
 });
