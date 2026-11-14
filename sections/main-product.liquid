@@ -19,6 +19,10 @@
   <div class="product__layout">
     <div class="product__gallery"{% if product.media.size > 1 %} role="group" aria-label="{{ product.title | escape }}" tabindex="0"{% endif %}>
       {%- assign first_image = true -%}
+      {%- if settings.product_zoom -%}
+        {%- assign zoom_total = product.media | where: 'media_type', 'image' | size | at_most: 30 -%}
+        {%- assign zoom_position = 0 -%}
+      {%- endif -%}
       {%- for media in product.media limit: 30 -%}
         <div class="product__media" id="media-{{ media.id }}">
           {%- case media.media_type -%}
@@ -32,6 +36,13 @@
                 alt: media.alt
               -%}
               {%- render 'ai-label', alt: media.alt -%}
+              {%- if settings.product_zoom -%}
+                {%- assign zoom_position = zoom_position | plus: 1 -%}
+                {%- capture zoom_variants -%}{%- if product.variants.size > 1 -%}{%- for v in product.variants -%}{%- if v.featured_media.id == media.id -%}{{ v.title }}||{%- endif -%}{%- endfor -%}{%- endif -%}{%- endcapture -%}
+                {%- assign zoom_variants = zoom_variants | split: '||' | join: ', ' -%}
+                <button class="product__zoom" type="button" data-zoom aria-label="{{ 'products.zoom_open' | t: position: zoom_position, total: zoom_total }}"
+                  {%- if zoom_variants != blank %} data-zoom-shown="{{ 'products.zoom_shown_for' | t: variants: zoom_variants | escape }}"{% endif %}></button>
+              {%- endif -%}
               {%- assign first_image = false -%}
             {%- when 'video' -%}
               {{- media | video_tag: image_size: '1200x', controls: true, preload: 'none', playsinline: true, aria-label: media.alt -}}
@@ -54,6 +65,8 @@
         {%- endif -%}
       {%- endfor -%}
     </div>
+
+    {%- if settings.product_zoom -%}{%- render 'product-zoom' -%}{%- endif -%}
 
     <product-form
       data-handle="{{ product.handle }}"
@@ -90,6 +103,10 @@
   .product__layout { display: grid; gap: 2rem; }
   .product__gallery { display: grid; gap: 0.75rem; }
   .product__media { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--color-surface); }
+  .product__zoom { position: absolute; inset: 0; z-index: 1; padding: 0; border: 0; background: none; color: var(--color-fg); cursor: zoom-in; }
+  .product__zoom::before { content: ''; position: absolute; inset-block-start: 0.75rem; inset-inline-end: 0.75rem; width: 2rem; height: 2rem; border-radius: var(--radius); background: var(--color-bg); opacity: 0.85; }
+  .product__zoom::after { content: ''; position: absolute; inset-block-start: 1.0625rem; inset-inline-end: 1.0625rem; width: 1.25rem; height: 1.25rem; background: currentcolor; -webkit-mask: var(--zoom-icon) center / contain no-repeat; mask: var(--zoom-icon) center / contain no-repeat; --zoom-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5M11 8v6M8 11h6'/%3E%3C/svg%3E"); }
+  .product__zoom:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -4px; }
   .product__media :is(img, video) { display: block; width: 100%; height: auto; }
   .product__media iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
   /* The card image the visitor just clicked (snippets/theme-init.liquid), behind the real image until it arrives. */

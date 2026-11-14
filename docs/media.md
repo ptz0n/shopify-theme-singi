@@ -31,6 +31,10 @@ The gallery is HTML with CSS scroll-snap on mobile and a two column grid on desk
 
 **No media.** A product without media shows `settings.placeholder_image` when the merchant set one (Theme settings > Brand > Product placeholder image), otherwise nothing on the product page and a neutral block of the card's shape on cards. The same fallback is used in the cart and favorites.
 
+## Zoom
+
+With the setting "Let shoppers zoom product images" on (the default), every image in the gallery has one button over it, named "Zoom image 2 of 6", and pressing it opens the image full screen in one native dialog (`snippets/product-zoom.liquid`, `assets/zoom.js`, [decision 014](decisions/014-product-image-zoom-is-a-native-dialog.md)). The dialog shows the large version (the same URL with `width=2400`), the image's alt text and, when the image is assigned to variants, "Shown for: Moss / M". Videos have no button. Arrow keys, Previous and Next move through the images; a click or the Zoom button shows the image twice as wide. `npm run test:zoom` covers it.
+
 ## Favorites heart on cards: black or white
 
 Liquid cannot know how dark an image is. `assets/image-tone.js` measures it in the browser, once per card, when the card nears the viewport:

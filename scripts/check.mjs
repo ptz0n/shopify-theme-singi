@@ -34,7 +34,7 @@ const BUDGETS = {
   'assets/predictive-search.js': { raw: 9500 },
 };
 const DEFAULT_JS_BUDGET = 6000;
-const TOTAL_JS_BROTLI_BUDGET = 18000; // sum of every module's SOURCE compressed with brotli: an upper bound, because Shopify's CDN minifies what it serves (see npm run perf:sizes for the delivered sizes); no page loads them all, each is a separate, lazily loaded file. Raw size counts the documentation comments, so it is capped per file instead.
+const TOTAL_JS_BROTLI_BUDGET = 19000; // sum of every module's SOURCE compressed with brotli: an upper bound, because Shopify's CDN minifies what it serves (see npm run perf:sizes for the delivered sizes); no page loads them all, each is a separate, lazily loaded file. Raw size counts the documentation comments, so it is capped per file instead.
 
 const assets = walk('assets');
 let totalJs = 0;
@@ -135,7 +135,8 @@ for (const file of liquidFiles) {
   if ((file.startsWith('snippets/') || file.startsWith('blocks/')) && !hasDoc) fail(file, 'missing {% doc %} header');
   if (file.startsWith('sections/') && hasDoc) fail(file, '{% doc %} is not supported in sections: use {% comment %}');
 
-  if (!['snippets/image.liquid', 'sections/footer.liquid', 'templates/gift_card.liquid'].includes(file) && /<img\b/.test(text)) warn(file, 'raw <img>: prefer the image snippet or image_tag');
+  /* snippets/product-zoom.liquid: its image is filled by script from an image that already went through the image snippet, and it is shown with object-fit: contain, so the focal point (which only matters for cover crops) is not needed. */
+  if (!['snippets/image.liquid', 'sections/footer.liquid', 'templates/gift_card.liquid', 'snippets/product-zoom.liquid'].includes(file) && /<img\b/.test(text)) warn(file, 'raw <img>: prefer the image snippet or image_tag');
 
   checkCss(file, text);
 }

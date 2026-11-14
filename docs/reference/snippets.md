@@ -337,6 +337,28 @@ looks and measures the same wherever it appears.
 {% render 'product-grid', collection: collection, limit: 8, eager: true %}
 ```
 
+## product-zoom
+
+File: `snippets/product-zoom.liquid`
+
+The full screen image viewer of the product page: one native <dialog>, opened by the zoom buttons that
+sections/main-product.liquid puts over each gallery image. assets/zoom.js fills it. Decision record:
+docs/decisions/014-product-image-zoom-is-a-native-dialog.md.
+
+It shows the image the shopper chose, at the largest size the store has, fitted to the screen (a click
+or the Zoom button shows it twice as wide, and the stage scrolls), the image's own description, and, when
+the image belongs to variants, "Shown for: Moss / M". Previous and next buttons and the arrow keys move
+through the images; Escape or the close button return to the gallery with focus on the button that opened it.
+
+The image's width and height attributes are only there for the markup rules: CSS sizes the image and the loaded file brings its own ratio.
+
+Rendered once per page, only when the setting "Let shoppers zoom product images" is on. The dialog is
+modal, so the page behind it is inert. Focus starts on the Close button (autofocus), not on the scrolling stage, so no ring is drawn around the picture on open.
+
+```liquid
+{% render 'product-zoom' %}
+```
+
 ## quantity-input
 
 File: `snippets/quantity-input.liquid`

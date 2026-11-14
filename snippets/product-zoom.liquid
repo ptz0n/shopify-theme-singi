@@ -1,0 +1,53 @@
+{% doc %}
+  The full screen image viewer of the product page: one native <dialog>, opened by the zoom buttons that
+  sections/main-product.liquid puts over each gallery image. assets/zoom.js fills it. Decision record:
+  docs/decisions/014-product-image-zoom-is-a-native-dialog.md.
+
+  It shows the image the shopper chose, at the largest size the store has, fitted to the screen (a click
+  or the Zoom button shows it twice as wide, and the stage scrolls), the image's own description, and, when
+  the image belongs to variants, "Shown for: Moss / M". Previous and next buttons and the arrow keys move
+  through the images; Escape or the close button return to the gallery with focus on the button that opened it.
+
+  The image's width and height attributes are only there for the markup rules: CSS sizes the image and the loaded file brings its own ratio.
+
+  Rendered once per page, only when the setting "Let shoppers zoom product images" is on. The dialog is
+  modal, so the page behind it is inert. Focus starts on the Close button (autofocus), not on the scrolling stage, so no ring is drawn around the picture on open.
+
+  @example
+  {% render 'product-zoom' %}
+{% enddoc %}
+
+<dialog class="zoom" aria-label="{{ product.title | escape }}">
+  <div class="zoom__stage" tabindex="0"><img alt="" width="1600" height="1600" decoding="async"></div>
+  <p class="zoom__caption mono"></p>
+  <button class="icon-button zoom__close" type="button" autofocus data-zoom-close aria-label="{{ 'general.close' | t }}">{%- render 'icon', name: 'close' -%}</button>
+  <button class="icon-button zoom__toggle" type="button" data-zoom-toggle aria-pressed="false" aria-label="{{ 'products.zoom_toggle' | t }}">{%- render 'icon', name: 'plus' -%}</button>
+  <button class="icon-button zoom__step zoom__prev" type="button" data-zoom-step="-1" aria-label="{{ 'general.previous' | t }}">{%- render 'icon', name: 'arrow-right' -%}</button>
+  <button class="icon-button zoom__step zoom__next" type="button" data-zoom-step="1" aria-label="{{ 'general.next' | t }}">{%- render 'icon', name: 'arrow-right' -%}</button>
+</dialog>
+
+<script src="{{ 'zoom.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  html:has(dialog.zoom[open]) { overflow: hidden; }
+  .zoom { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: var(--color-bg); color: var(--color-fg); }
+  .zoom[open] { display: grid; grid-template-rows: 1fr auto; }
+  .zoom__stage { display: flex; min-height: 0; overflow: auto; touch-action: pan-x pan-y pinch-zoom; }
+  .zoom__stage:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -4px; }
+  .zoom__stage img { width: 100%; height: 100%; margin: auto; object-fit: contain; cursor: zoom-in; }
+  .zoom[data-zoomed] .zoom__stage img { flex: none; width: 200%; height: auto; max-width: none; margin: auto; object-fit: initial; cursor: zoom-out; }
+  .zoom__caption { display: grid; gap: 0.25rem; min-height: 3rem; margin: 0; padding: 0.75rem 4rem; text-align: center; font-size: 0.8125rem; color: var(--color-muted); }
+  .zoom__caption span:last-child { color: var(--color-fg); }
+  .zoom__close, .zoom__toggle, .zoom__step { position: absolute; z-index: 1; background: var(--color-bg); border: 1px solid var(--color-control); }
+  .zoom__close { inset-block-start: 0.75rem; inset-inline-end: 0.75rem; }
+  .zoom__toggle { inset-block-start: 0.75rem; inset-inline-end: 4.25rem; }
+  .zoom__toggle[aria-pressed='true'] { border-color: var(--color-fg); box-shadow: inset 0 0 0 1px var(--color-fg); }
+  .zoom[data-zoomed] .zoom__toggle .icon { transform: rotate(45deg); }
+  .zoom__step { inset-block-start: 50%; translate: 0 -50%; }
+  .zoom__prev { inset-inline-start: 0.75rem; }
+  .zoom__next { inset-inline-end: 0.75rem; }
+  .zoom__prev .icon { transform: scaleX(-1); }
+  [dir='rtl'] .zoom__prev .icon { transform: none; }
+  .zoom[data-single] .zoom__step { display: none; }
+  .zoom[data-zoomed] .zoom__step { display: none; }
+{% endstylesheet %}

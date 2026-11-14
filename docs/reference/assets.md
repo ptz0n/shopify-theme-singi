@@ -22,3 +22,4 @@ Size in bytes (before Shopify's CDN compression) and where each asset is referen
 | `assets/tracking.js` | 6431 | `layout/theme.liquid` |
 | `assets/utils.js` | 1135 | `layout/theme.liquid` |
 | `assets/wishlist.js` | 7541 | `layout/theme.liquid` |
+| `assets/zoom.js` | 2835 | `snippets/product-zoom.liquid` |
