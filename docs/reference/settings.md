@@ -65,6 +65,7 @@ Defined in `config/settings_schema.json`, read in Liquid as `settings.<id>`.
 | --- | --- | --- | --- |
 | `header_menu` | link_list | Header menu | `"main-menu"` |
 | `footer_menu` | link_list | Footer menu | `"footer"` |
+| `contextual_links` | checkbox | Link products from a collection with the collection in the URL | `false` |
 | `breadcrumb_menu` | link_list | Breadcrumb menu | `"main-menu"` |
 
 ## Performance

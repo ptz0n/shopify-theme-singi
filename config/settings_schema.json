@@ -91,6 +91,7 @@
     "settings": [
       { "type": "link_list", "id": "header_menu", "label": "Header menu", "default": "main-menu" },
       { "type": "link_list", "id": "footer_menu", "label": "Footer menu", "default": "footer" },
+      { "type": "checkbox", "id": "contextual_links", "label": "Link products from a collection with the collection in the URL", "info": "A product opened from a collection page gets /collections/<collection>/products/<product>, so its breadcrumb shows the collection the shopper came from, even when the product is in several. Search engines are pointed to the plain /products/ address (the canonical), so nothing is duplicated for them. Off: every product link is the same everywhere.", "default": false },
       { "type": "link_list", "id": "breadcrumb_menu", "label": "Breadcrumb menu", "default": "main-menu", "info": "A collection nested under another item in this menu gets that item as its parent in breadcrumbs (up to three levels). Collection metafields override it. Leave empty to use the metafields only." }
     ]
   },

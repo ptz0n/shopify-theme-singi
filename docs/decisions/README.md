@@ -38,3 +38,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [013](013-recently-viewed-in-the-empty-search-panel.md) | The empty search panel shows recently viewed products, loaded when it first opens | search, navigation, performance |
 | [014](014-product-image-zoom-is-a-native-dialog.md) | Product image zoom is one native dialog, opened by one button per image | product page, accessibility, performance |
 | [015](015-quantity-limits-follow-the-rule-and-never-name-the-stock.md) | Quantity limits follow the variant's rule, and the stock number is never shown | product page, cart, accessibility |
+| [016](016-contextual-product-links-keep-the-canonical.md) | Product links from a collection can carry the collection, and the canonical stays plain | SEO, navigation, product page |

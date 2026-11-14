@@ -29,6 +29,13 @@
   assign card_sizes = sizes | default: '(min-width: 56em) 25vw, (min-width: 40em) 33vw, 50vw'
   assign card_alt = product.featured_image.alt | default: product.title
   assign card_heading = heading | default: 'h3'
+  assign card_url = product.url
+  comment
+    Contextual links (decision 016): on a collection page the link carries the collection, so the product page can show it in its breadcrumb. The canonical stays /products/<handle>.
+  endcomment
+  if settings.contextual_links and template.name == 'collection' and collection.handle != 'all' and collection.handle != 'frontpage'
+    assign card_url = product.url | within: collection
+  endif
   if settings.wishlist_enabled and settings.wishlist_cards
     assign card_crossorigin = 'anonymous'
   endif
@@ -72,7 +79,7 @@
     <span class="product-card__badge mono">{{ 'products.sold_out' | t }}</span>
   {%- endunless -%}
   {%- if settings.card_show_type and product.type != blank -%}<p class="eyebrow product-card__type">{{ product.type }}</p>{%- endif -%}
-  <{{ card_heading }} class="product-card__title"><a class="product-card__link" href="{{ product.url }}">{{ product.title }}</a></{{ card_heading }}>
+  <{{ card_heading }} class="product-card__title"><a class="product-card__link" href="{{ card_url }}">{{ product.title }}</a></{{ card_heading }}>
   {%- render 'price', price: product.price, compare_at_price: product.compare_at_price -%}
 </li>
 
