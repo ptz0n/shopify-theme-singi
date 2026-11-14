@@ -82,6 +82,10 @@
       <script src="{{ 'quick-add.js' | asset_url }}" type="module"></script>
     {%- endif -%}
 
+    {%- if settings.card_video -%}
+      <script src="{{ 'card-video.js' | asset_url }}" type="module"></script>
+    {%- endif -%}
+
     {%- if settings.tracking_enabled -%}
       {%- render 'tracking-config' -%}
       <script src="{{ 'tracking.js' | asset_url }}" type="module"></script>
