@@ -51,14 +51,15 @@ Many stores sell one design in several colors as separate products (own title, i
 - Merchants must give every product in a group the same list (the tooling and the app do it; the admin does not enforce it).
 - No visible color name next to the swatches.
 - The size choice resets when the color changes.
-- A Liquid cost per sibling that is small but not zero. Rough check on the dev store: the `Server-Timing` processing time of a grouped product (about 115 ms, 8 samples) and an ungrouped one (about 110 ms) overlap within noise (both 100 to 130 ms). That is not a controlled measurement (the products differ in variants and images), and `npm run perf:liquid` could not be used because `shopify theme profile` rejects the Theme Access token and needs an interactive login.
+- A Liquid cost per sibling that is small but not zero. Measured with `npm run perf:liquid` on the dev store (live theme, median of 5 runs): the block takes about 2.4 ms for a four-color group against 0.18 ms for a product with no group (about 0.5 ms per member), in a page whose whole Liquid render is about 26 ms. Cold runs spiked to 9 ms and 46 ms. A group at the 12-member limit would be roughly 6 ms if the cost stays linear (extrapolated, not measured).
 
 ## How to verify
 
 - `npm run mock:apply` creates four "Studio Shirt" products (the last sold out) and links them.
 - `npm run test:siblings` (needs `npm install --no-save puppeteer-core` and `npm run dev`): checks that all four pages show the same swatches in the same order, that exactly one is `aria-current` and it is the page's own, that each accessible name is the title (plus "Sold out"), that targets are at least 44x44px, that the colors are right, that nothing scrolls horizontally at 1440 and 390px, that the swatches exist with JavaScript off, that Tab and Enter work, and that a product with no group shows no block. Last run: 108 of 108 passed.
+- `npm run perf:liquid -- --url /products/mock-shirt-moss` for the Liquid cost of the block.
 - `npm run siblings -- check` after any bulk edit. Verified to catch a deliberately broken group (one member's list missing two products).
 
 ## Revisit when
 
-Shopify offers native product linking outside Plus, the standard Color metaobjects become practical to provision from a theme or app, or the Liquid cost shows up in a profile on a real catalog (run `shopify theme profile` interactively).
+Shopify offers native product linking outside Plus, the standard Color metaobjects become practical to provision from a theme or app, or `npm run perf:liquid` shows the block costing noticeably more on a real catalog.

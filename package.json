@@ -37,7 +37,7 @@
     "docs": "node scripts/gen-reference.mjs",
     "docs:check": "node scripts/gen-reference.mjs --check",
     "perf:lighthouse": "node scripts/lighthouse.mjs",
-    "perf:liquid": "node scripts/shopify.mjs theme profile -e DEV",
+    "perf:liquid": "node scripts/profile.mjs",
     "test:media": "node scripts/test-media.mjs",
     "test:siblings": "node scripts/test-siblings.mjs",
     "screenshots": "node scripts/screenshots.mjs",

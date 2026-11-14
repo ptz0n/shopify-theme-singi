@@ -19,7 +19,7 @@ All npm scripts, what they do, the environment variables they read, and the dev-
 | `npm run docs` | `node scripts/gen-reference.mjs`. Generates `docs/reference/*.md` from LiquidDoc headers and `{% schema %}` blocks. Do not edit generated files by hand. |
 | `npm run docs:check` | Fails if `docs/reference/` is out of date. |
 | `npm run perf:lighthouse` | `node scripts/lighthouse.mjs`. Lighthouse CI, mobile, throttled. See below. |
-| `npm run perf:liquid` | Passthrough to `shopify theme profile`. Pass flags after `--`, for example `npm run perf:liquid -- --url /products/example`. |
+| `npm run perf:liquid` | Liquid render time per file (median of several `shopify theme profile` runs), for example `npm run perf:liquid -- --url /products/example --runs 5`. Needs `shopify auth login` once (the profile command refuses Theme Access passwords). Read only. |
 | `npm run checkout:plan` | Dry run of the checkout branding sync. Changes nothing. See [checkout-branding.md](checkout-branding.md). |
 | `npm run checkout:apply` | Applies the plan to the store. Changes a checkout profile. Only run when asked. |
 

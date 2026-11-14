@@ -78,7 +78,7 @@ Brotli and gzip, HTTP/3, TLS 1.3, global CDN with versioned asset URLs, Early Hi
 Always measure on the dev store and, for scores that matter, on a published theme (preview themes are not streamed).
 
 1. **Lighthouse CI.** `npm run perf:lighthouse` with `SINGI_URL`, `SINGI_PRODUCT`, `SINGI_COLLECTION` set, plus `SINGI_PASSWORD` for password-protected stores. Mobile preset with throttling. Run several times and take the median. See [tooling.md](tooling.md#perf-lighthouse).
-2. **Liquid profile.** `npm run perf:liquid -- --url /products/<handle>` runs `shopify theme profile`, which produces a flame graph of Liquid render time. Use it for TTFB.
+2. **Liquid profile.** `npm run perf:liquid -- --url /products/<handle>` runs `shopify theme profile` several times and prints the median render time per file (whole render, then the most expensive files and blocks). Use it for TTFB, and compare medians: the first run is often slower. It needs `shopify auth login` once, because the profile command refuses Theme Access passwords. For the full flame graph run `shopify theme profile --store <store> --url <path>` yourself.
 3. **Theme Inspector for Chrome.** Shows per-line Liquid cost on the live page.
 4. **DevTools.** Performance panel with 4x CPU and slow 4G; Network panel for waterfall order; Application > Speculative loads for prefetch results; Lighthouse Treemap for script weight.
 5. **Field data.** Lab scores are not field data. Use the Shopify Web Performance dashboard or RUM once live.
