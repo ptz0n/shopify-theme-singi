@@ -51,6 +51,7 @@ Defined in `config/settings_schema.json`, read in Liquid as `settings.<id>`.
 | --- | --- | --- | --- |
 | `color_mode` | select | Default color mode | `"system"` |
 | `show_theme_toggle` | checkbox | Show light/dark toggle in header | `true` |
+| `price_trim_zeros` | checkbox | Hide .00 on whole prices | `false` |
 | `show_percent_off` | checkbox | Show percentage off on discounted prices | `true` |
 | `page_width` | select | Page width | `"84rem"` |
 | `radius` | range | Corner radius | `6` |

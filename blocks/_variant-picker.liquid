@@ -28,7 +28,7 @@
               data-option-url="{{ target }}"
               data-variant-id="{{ value.variant.id }}"
               data-available="{{ value.variant.available }}"
-              data-price="{{ value.variant.price | money | escape }}"
+              data-price="{% if settings.price_trim_zeros %}{{ value.variant.price | money_without_trailing_zeros | escape }}{% else %}{{ value.variant.price | money | escape }}{% endif %}"
               {%- if value.variant.unit_price_measurement and value.variant.unit_price != current.unit_price -%}
                 {%- capture unit_visible -%}{%- render 'unit-price', variant: value.variant, part: 'visible' -%}{%- endcapture -%}
                 {%- capture unit_label -%}{%- render 'unit-price', variant: value.variant, part: 'label' -%}{%- endcapture -%}

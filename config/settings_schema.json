@@ -67,6 +67,7 @@
         "default": "system"
       },
       { "type": "checkbox", "id": "show_theme_toggle", "label": "Show light/dark toggle in header", "default": true },
+      { "type": "checkbox", "id": "price_trim_zeros", "label": "Hide .00 on whole prices", "info": "Shows $79 instead of $79.00. Prices with cents, like $79.50, keep them. Structured data for search engines always keeps the decimals.", "default": false },
       { "type": "checkbox", "id": "show_percent_off", "label": "Show percentage off on discounted prices", "default": true },
       {
         "type": "select",

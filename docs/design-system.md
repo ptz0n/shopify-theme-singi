@@ -100,6 +100,12 @@ The heading block (`blocks/heading.liquid`) offers `sm`, `md`, `lg`, `xl` sizes 
 | Skeleton | `.skeleton` in `base.css`, shapes in `snippets/skeletons.liquid` | Shimmer disabled under `prefers-reduced-motion`. |
 | Icons | `snippets/icon.liquid` | Inline SVG, stroke icons, `icon--flip` mirrors in RTL. |
 
+## Price formatting
+
+Prices are formatted with Shopify's money filters, so the currency, symbol, separators and position follow the store's currency format and the visitor's market. The setting **Hide .00 on whole prices** (Theme settings > Appearance, `price_trim_zeros`, off by default) switches every displayed price to `money_without_trailing_zeros`: $79.00 becomes $79, while $79.50 stays $79.50. It never rounds. It covers cards, the product page (including the price that updates when an option is chosen), the unit price, the cart and favorites.
+
+Two rules keep it consistent. Every displayed price that uses `| money` must sit beside a `settings.price_trim_zeros` test; `npm run check` fails otherwise. Structured data (`snippets/meta-tags.liquid`, `schema-*`) and the gift card page are exempt: search engines get the exact amount. `npm run test:price-format` checks both modes (`SINGI_TRIM=1` for the trimmed one).
+
 ## Changing the look safely
 
 1. Prefer changing a setting or a token over editing component CSS.

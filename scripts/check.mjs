@@ -180,6 +180,16 @@ for (const file of liquidFiles.filter((f) => f.startsWith('sections/') || f.star
   for (const preset of schema.presets ?? []) walkPreset(preset.blocks);
 }
 
+// Every displayed price honors the setting "Hide .00 on whole prices" (docs/design-system.md): a `| money` must sit beside a settings.price_trim_zeros test.
+// Structured data keeps its decimals (meta-tags, schema-*) and the gift card page is a customer-facing exception.
+for (const file of liquidFiles) {
+  if (/^snippets\/(meta-tags|schema-[a-z]+)\.liquid$/.test(file) || file === 'templates/gift_card.liquid') continue;
+  const lines = read(file).split('\n');
+  lines.forEach((line, i) => {
+    if (/\|\s*money\b(?!_)/.test(line) && !lines.slice(Math.max(0, i - 4), i + 1).some((near) => near.includes('price_trim_zeros'))) fail(file, 'a price is formatted with | money without honoring settings.price_trim_zeros', i + 1);
+  });
+}
+
 // templates/page.styleguide.json (the component library), templates/page.blocks.json (content blocks on one page, for tests) and templates/product.demo.json (labels bound to the mock catalog's metafields, see docs/mock-catalog.md) are developer-only
 const DEVELOPER_TEMPLATES = new Set(['templates/page.styleguide.json', 'templates/page.blocks.json', 'templates/product.demo.json']);
 for (const file of walk('templates').filter((f) => f.endsWith('.json') && !DEVELOPER_TEMPLATES.has(f))) {

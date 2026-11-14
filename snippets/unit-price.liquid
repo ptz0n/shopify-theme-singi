@@ -20,7 +20,11 @@
 {%- liquid
   assign measurement = variant.unit_price_measurement
   if measurement
-    assign amount = variant.unit_price | money
+    if settings.price_trim_zeros
+      assign amount = variant.unit_price | money_without_trailing_zeros
+    else
+      assign amount = variant.unit_price | money
+    endif
     assign unit = measurement.reference_unit
     case unit
       when 'l'

@@ -53,7 +53,7 @@
                 {%- assign qty_id = 'qty-' | append: item.index -%}
                 {%- render 'quantity-input', id: qty_id, name: 'updates[]', value: item.quantity, min: 0, line: forloop.index -%}
               </div>
-              <p class="cart__total mono">{{ item.final_line_price | money }}</p>
+              <p class="cart__total mono">{% if settings.price_trim_zeros %}{{ item.final_line_price | money_without_trailing_zeros }}{% else %}{{ item.final_line_price | money }}{% endif %}</p>
               <a class="icon-button cart__remove" href="{{ item.url_to_remove }}" data-remove data-line="{{ forloop.index }}" aria-label="{{ 'cart.remove_item' | t: title: item.product.title }}">
                 {%- render 'icon', name: 'close' -%}
               </a>
@@ -62,7 +62,7 @@
         </ul>
 
         <div class="cart__summary stack">
-          <p class="cart__subtotal"><span>{{ 'cart.subtotal' | t }}</span> <span class="mono">{{ cart.total_price | money }}</span></p>
+          <p class="cart__subtotal"><span>{{ 'cart.subtotal' | t }}</span> <span class="mono">{% if settings.price_trim_zeros %}{{ cart.total_price | money_without_trailing_zeros }}{% else %}{{ cart.total_price | money }}{% endif %}</span></p>
           <p class="muted cart__note">{{ 'cart.taxes_note' | t }}</p>
           <noscript><button class="button button--secondary button--block" type="submit" name="update">{{ 'cart.update' | t }}</button></noscript>
           <button class="button button--block" type="submit" name="checkout">{{ 'cart.checkout' | t }}</button>

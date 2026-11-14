@@ -24,15 +24,15 @@
 <div class="price mono {{ class }}">
   {%- if compare_at_price > price -%}
     <span class="visually-hidden">{{ 'products.sale_price' | t }}</span>
-    <span class="price__now">{{ price | money }}</span>
+    <span class="price__now">{% if settings.price_trim_zeros %}{{ price | money_without_trailing_zeros }}{% else %}{{ price | money }}{% endif %}</span>
     <span class="visually-hidden">{{ 'products.regular_price' | t }}</span>
-    <s class="price__was">{{ compare_at_price | money }}</s>
+    <s class="price__was">{% if settings.price_trim_zeros %}{{ compare_at_price | money_without_trailing_zeros }}{% else %}{{ compare_at_price | money }}{% endif %}</s>
     {%- if percent_off > 0 -%}
       <span class="price__off" aria-hidden="true">-{{ percent_off }}%</span>
       <span class="visually-hidden">{{ 'products.percent_off' | t: percent: percent_off }}</span>
     {%- endif -%}
   {%- else -%}
-    {{- price | money -}}
+    {%- if settings.price_trim_zeros %}{{- price | money_without_trailing_zeros -}}{% else %}{{- price | money -}}{%- endif -%}
   {%- endif -%}
 </div>
 
