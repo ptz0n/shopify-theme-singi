@@ -8,6 +8,7 @@
  *   npm run mock:apply                     create it
  *   npm run mock:clean                     delete only the mock content (apply to run)
  *   node scripts/mock-content.mjs --apply --only products,collections,pages,blog,menus
+ *   (menus link to the collections, pages and blog, so list those parts with `menus`, or the menus fall back to a flat list)
  *
  * Everything uses the `mock-` handle prefix and the `singi-mock` tag (see
  * scripts/mock-data.mjs). Cleaning deletes by those handles and never touches
@@ -345,10 +346,13 @@ if (wants('menus')) {
           ? [item('Shop', 'COLLECTION', col('mock-new-arrivals'), [
               ...(col('mock-sale') ? [item('Sale', 'COLLECTION', col('mock-sale'))] : []),
               ...(col('mock-edge-cases') ? [item('Edge cases', 'COLLECTION', col('mock-edge-cases'))] : []),
+              /* The blog and a page sit nested on purpose: it is what the breadcrumb lookup for blogs, articles and pages needs (npm run test:breadcrumbs). */
+              ...(blogId ? [item('Journal', 'BLOG', blogId, pageIds.get('mock-about') ? [item('About', 'PAGE', pageIds.get('mock-about'))] : undefined)] : []),
             ])]
-          : []),
-        ...(blogId ? [item('Journal', 'BLOG', blogId)] : []),
-        ...(pageIds.get('mock-about') ? [item('About', 'PAGE', pageIds.get('mock-about'))] : []),
+          : [
+              ...(blogId ? [item('Journal', 'BLOG', blogId)] : []),
+              ...(pageIds.get('mock-about') ? [item('About', 'PAGE', pageIds.get('mock-about'))] : []),
+            ]),
       ],
       footer: [
         ...(pageIds.get('mock-about') ? [item('About', 'PAGE', pageIds.get('mock-about'))] : []),
