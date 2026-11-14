@@ -3,7 +3,7 @@
  * The contract (docs/decisions/003-color-siblings-product-list.md):
  *
  *   product metafield singi.color_siblings   list.product_reference   the whole group, this product included, same list on every member
- *   product metafield singi.color            color (hex)             this product's swatch
+ *   product metafield singi.color            list.color (hex)        this product's swatch: 1 to 3 colors, split on the diagonal
  *
  * The GraphQL below is validated against the Admin API 2026-07 schema. Used by
  * scripts/siblings.mjs and scripts/mock-content.mjs.
@@ -33,9 +33,9 @@ export const DEFINITIONS = [
   },
   {
     key: COLOR_KEY,
-    name: 'Swatch color',
-    type: 'color',
-    description: 'The color shown as this product\'s swatch when it is linked as a color sibling.',
+    name: 'Swatch colors',
+    type: 'list.color',
+    description: 'The colors shown as this product\'s swatch when it is linked as a color sibling: one color, or up to three for a multi-color product (split on the diagonal).',
   },
 ];
 
@@ -78,6 +78,14 @@ export const readProducts = async () => {
 };
 
 const isHex = (value) => /^#[0-9a-f]{6}$/i.test(value ?? '');
+const colorsOf = (metafield) => {
+  try {
+    const value = JSON.parse(metafield?.value ?? '[]');
+    return Array.isArray(value) ? value : [value];
+  } catch {
+    return [];
+  }
+};
 
 /**
  * Checks what the data model cannot prevent. Returns { handle, level, message } findings.
@@ -112,8 +120,10 @@ export const checkSiblings = (products) => {
         add(product, 'error', `group differs from ${sibling.handle}: ${parts.join('; ')}. The swatches differ between the two pages`);
       }
     }
-    if (!product.color?.value) add(product, 'warn', 'has no singi.color (no swatch color)');
-    else if (!isHex(product.color.value)) add(product, 'error', `singi.color "${product.color.value}" is not a hex color`);
+    const colors = colorsOf(product.color);
+    if (!colors.length) add(product, 'warn', 'has no singi.color (no swatch color)');
+    else if (colors.length > 3) add(product, 'warn', `singi.color has ${colors.length} colors, only the first 3 are shown`);
+    for (const color of colors) if (!isHex(color)) add(product, 'error', `singi.color "${color}" is not a hex color`);
   }
   return findings;
 };
@@ -121,14 +131,17 @@ export const checkSiblings = (products) => {
 /**
  * Links products as a group: every product stores the same list, itself included, in the
  * order the entries are given (the order the swatches show on every page of the group).
- * entries: [{ handle, color? }]. Existing lists on these products are replaced.
+ * entries: [{ handle, color? }], color being one hex or an array of up to three. Existing lists on
+ * these products are replaced.
  */
 export const linkGroup = async (entries, { apply }) => {
   const resolved = [];
   for (const entry of entries) {
     const { productByIdentifier: product } = await admin(OPS.productByHandle, { handle: entry.handle });
     if (!product) throw new Error(`No product with handle "${entry.handle}".`);
-    if (entry.color && !isHex(entry.color)) throw new Error(`"${entry.color}" is not a #rrggbb color.`);
+    const colors = [entry.color].flat().filter(Boolean);
+    if (colors.length > 3) throw new Error(`${entry.handle}: a swatch has at most 3 colors.`);
+    for (const color of colors) if (!isHex(color)) throw new Error(`"${color}" is not a #rrggbb color.`);
     resolved.push({ ...entry, id: product.id });
   }
   if (resolved.length < 2) throw new Error('A group needs at least two products.');
@@ -140,8 +153,8 @@ export const linkGroup = async (entries, { apply }) => {
       type: 'list.product_reference',
       value: JSON.stringify(resolved.map((other) => other.id)),
     },
-    ...(entry.color ? [{ ownerId: entry.id, namespace: NAMESPACE, key: COLOR_KEY, type: 'color', value: entry.color }] : []),
+    ...(entry.color ? [{ ownerId: entry.id, namespace: NAMESPACE, key: COLOR_KEY, type: 'list.color', value: JSON.stringify([entry.color].flat()) }] : []),
   ]);
   if (apply) fail(await admin(SET, { metafields }), 'link');
-  return resolved.map((entry) => ({ handle: entry.handle, siblings: resolved.length - 1, color: entry.color }));
+  return resolved.map((entry) => ({ handle: entry.handle, siblings: resolved.length - 1, color: [entry.color].flat().join(' + ') }));
 };

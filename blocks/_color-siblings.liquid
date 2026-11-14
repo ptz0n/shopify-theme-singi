@@ -4,7 +4,8 @@
 
   Reads the product metafield singi.color_siblings (list of products, the whole group,
   this product included, the same list on every member) and each member's singi.color
-  (hex). Renders nothing for a product with no group. The list order is the swatch order,
+  (a list of one to three hex colors: one fills the swatch, two or three split it on the
+  diagonal, see snippets/swatch-background.liquid). Renders nothing for a product with no group. The list order is the swatch order,
   so it is the same on every page of the group; a list that omits this product shows it
   first. A member without a color shows its title as a text chip instead. A visible
   "Color" label sits above, styled like the other option labels, and names the navigation.
@@ -22,7 +23,9 @@
     <p class="label" id="color-siblings-{{ block.id }}">{{ 'products.color' | t }}</p>
     <ul role="list">
       {%- if lists_itself == 0 -%}
-        {%- assign color = product.metafields.singi.color.value -%}
+        {%- assign colors = product.metafields.singi.color.value -%}
+        {%- assign color = colors[0] -%}
+        {%- if colors.size > 1 -%}{%- capture color -%}{%- render 'swatch-background', colors: colors -%}{%- endcapture -%}{%- endif -%}
         <li>
           <a class="chip color-swatch{% unless color %} color-swatch--text{% endunless %}" href="{{ product.url }}" aria-current="true"{% if color %} style="--swatch: {{ color | escape }}"{% endif %}>
             <span{% if color %} class="visually-hidden"{% endif %}>{{ product.title }}</span>
@@ -30,7 +33,9 @@
         </li>
       {%- endif -%}
       {%- for member in group limit: 12 -%}
-        {%- assign color = member.metafields.singi.color.value -%}
+        {%- assign colors = member.metafields.singi.color.value -%}
+        {%- assign color = colors[0] -%}
+        {%- if colors.size > 1 -%}{%- capture color -%}{%- render 'swatch-background', colors: colors -%}{%- endcapture -%}{%- endif -%}
         <li>
           <a
             class="chip color-swatch{% unless member.available %} chip--unavailable{% endunless %}{% unless color %} color-swatch--text{% endunless %}"

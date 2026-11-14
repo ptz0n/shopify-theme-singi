@@ -27,7 +27,8 @@ as chip-shaped swatch links, the same chip as the size options. Server-rendered,
 
 Reads the product metafield singi.color_siblings (list of products, the whole group,
 this product included, the same list on every member) and each member's singi.color
-(hex). Renders nothing for a product with no group. The list order is the swatch order,
+(a list of one to three hex colors: one fills the swatch, two or three split it on the
+diagonal, see snippets/swatch-background.liquid). Renders nothing for a product with no group. The list order is the swatch order,
 so it is the same on every page of the group; a list that omits this product shows it
 first. A member without a color shows its title as a text chip instead. A visible
 "Color" label sits above, styled like the other option labels, and names the navigation.

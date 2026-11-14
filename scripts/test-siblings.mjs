@@ -30,6 +30,8 @@ const GROUP = [
   { handle: 'mock-shirt-sand', title: 'Studio Shirt, Sand', color: 'rgb(216, 199, 165)', soldOut: false },
   { handle: 'mock-shirt-moss', title: 'Studio Shirt, Moss', color: 'rgb(107, 122, 79)', soldOut: false },
   { handle: 'mock-shirt-clay', title: 'Studio Shirt, Clay', color: 'rgb(181, 101, 74)', soldOut: true },
+  { handle: 'mock-shirt-stripe', title: 'Studio Shirt, Striped', multi: ['rgb(29, 29, 31)', 'rgb(242, 239, 232)'], soldOut: false },
+  { handle: 'mock-shirt-harbor', title: 'Studio Shirt, Harbor', multi: ['rgb(29, 59, 92)', 'rgb(242, 239, 232)', 'rgb(181, 101, 74)'], soldOut: false },
 ];
 
 const url = (path) => `${base}${path}${preview ? `${path.includes('?') ? '&' : '?'}${preview}` : ''}`;
@@ -118,6 +120,7 @@ const read = (page) =>
           left: rect.left,
           height: rect.height,
           color: getComputedStyle(a).backgroundColor,
+          image: getComputedStyle(a).backgroundImage,
         };
       }),
     };
@@ -148,7 +151,8 @@ for (const member of GROUP) {
       ok(data.size.singles.every((w) => Math.abs(w - link.width) < 0.5), `${member.handle}: single-letter size options are ${data.size.singles.map((w) => Math.round(w * 10) / 10).join(', ')}px wide, the swatch is ${link.width}px (they should all be the same square)`);
       ok(Math.abs(link.height - data.size.height) < 0.5, `${member.handle}: swatch ${index + 1} is ${link.height}px tall, the size options are ${data.size.height}px`);
       ok(!expected.soldOut || /sold out/i.test(link.name), `${member.handle}: sold out swatch name does not say sold out ("${link.name}")`);
-      ok(link.color === expected.color, `${member.handle}: swatch ${index + 1} color is ${link.color}, expected ${expected.color}`);
+      if (expected.multi) ok(link.image.includes('linear-gradient(135deg') && expected.multi.every((rgb) => link.image.includes(rgb)), `${member.handle}: swatch ${index + 1} background is ${link.image}, expected a diagonal split of ${expected.multi.join(', ')}`);
+      else ok(link.color === expected.color, `${member.handle}: swatch ${index + 1} color is ${link.color}, expected ${expected.color}`);
     });
     ok(data.size && data.swatchBox && data.swatchBox.radius === data.size.radius && data.swatchBox.radius === data.buttonRadius, `${member.handle}: swatch corner radius ${data.swatchBox?.radius} differs from the size options (${data.size?.radius}) or buttons (${data.buttonRadius})`);
     ok(data.swatchBox && data.swatchBox.border === data.size.border, `${member.handle}: swatch border ${data.swatchBox?.border} differs from the size options (${data.size?.border})`);

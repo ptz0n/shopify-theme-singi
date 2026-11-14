@@ -35,6 +35,8 @@ export const PRODUCTS = [
     ['sand', 'Sand', '#d8c7a5'],
     ['moss', 'Moss', '#6b7a4f'],
     ['clay', 'Clay', '#b5654a'],
+    ['stripe', 'Striped', '#1d1d1f'],
+    ['harbor', 'Harbor', '#1d3b5c'],
   ].map(([slug, name]) => ({
     handle: `mock-shirt-${slug}`,
     title: `Studio Shirt, ${name}`,
@@ -243,6 +245,8 @@ export const SIBLING_GROUPS = [
     { handle: 'mock-shirt-sand', color: '#d8c7a5' },
     { handle: 'mock-shirt-moss', color: '#6b7a4f' },
     { handle: 'mock-shirt-clay', color: '#b5654a' },
+    { handle: 'mock-shirt-stripe', color: ['#1d1d1f', '#f2efe8'] },
+    { handle: 'mock-shirt-harbor', color: ['#1d3b5c', '#f2efe8', '#b5654a'] },
   ],
 ];
 

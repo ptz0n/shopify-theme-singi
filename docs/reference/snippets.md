@@ -416,6 +416,23 @@ real page so the swap does not shift layout.
 {% render 'skeletons' %}
 ```
 
+## swatch-background
+
+File: `snippets/swatch-background.liquid`
+
+CSS background for a multi-color swatch: two colors split in halves, three in thirds, on a
+45 degree diagonal (top start to bottom end). Outputs nothing for fewer than two colors; a
+single color is used as it is by the caller. Plain text with no stray whitespace, so it can be
+captured into a style attribute. Used by blocks/_color-siblings.liquid.
+
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `colors` | `object` | yes | A list of hex colors (a list.color metafield value); only the first three count |
+
+```liquid
+{% render 'swatch-background', colors: product.metafields.singi.color.value %}
+```
+
 ## theme-init
 
 File: `snippets/theme-init.liquid`

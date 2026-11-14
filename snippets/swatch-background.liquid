@@ -1,0 +1,19 @@
+{% doc %}
+  CSS background for a multi-color swatch: two colors split in halves, three in thirds, on a
+  45 degree diagonal (top start to bottom end). Outputs nothing for fewer than two colors; a
+  single color is used as it is by the caller. Plain text with no stray whitespace, so it can be
+  captured into a style attribute. Used by blocks/_color-siblings.liquid.
+
+  @param {object} colors - A list of hex colors (a list.color metafield value); only the first three count
+
+  @example
+  {% render 'swatch-background', colors: product.metafields.singi.color.value %}
+{% enddoc %}
+
+{%- liquid
+  if colors.size == 2
+    echo 'linear-gradient(135deg, ' | append: colors[0] | append: ' 50%, ' | append: colors[1] | append: ' 50%)'
+  elsif colors.size > 2
+    echo 'linear-gradient(135deg, ' | append: colors[0] | append: ' 33.34%, ' | append: colors[1] | append: ' 33.34% 66.67%, ' | append: colors[2] | append: ' 66.67%)'
+  endif
+-%}

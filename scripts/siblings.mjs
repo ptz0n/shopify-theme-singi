@@ -6,9 +6,9 @@
  *   npm run siblings -- define              show the metafield definitions that are missing
  *   npm run siblings -- define --apply      create them
  *   npm run siblings -- check               report what the data model cannot prevent (read only)
- *   npm run siblings -- link black:#1d1d1f sand:#d8c7a5 moss --apply
+ *   npm run siblings -- link black:#1d1d1f sand:#d8c7a5 stripe:#1d1d1f,#f2efe8 --apply
  *                                           link products (by handle) as a group, same list everywhere,
- *                                           and optionally set each swatch color
+ *                                           and optionally set each swatch color (up to three, comma separated)
  *
  * `check` exits 1 when it finds an error (for example two products whose groups differ).
  * `link` replaces the lists on the products it names: every product gets the same list, itself
@@ -42,8 +42,8 @@ try {
     process.exit(errors ? 1 : 0);
   } else if (command === 'link') {
     const entries = args.map((arg) => {
-      const [handle, color] = arg.split(/:(?=#)/);
-      return { handle, color };
+      const [handle, colors] = arg.split(/:(?=#)/);
+      return { handle, color: colors?.split(',') };
     });
     console.log(`${apply ? 'Linking' : 'Plan for linking'} ${entries.length} products on ${domain}${apply ? '' : ' (add --apply to write)'}:`);
     for (const row of await linkGroup(entries, { apply })) console.log(`  ${row.handle}  lists the group of ${row.siblings + 1}${row.color ? `  swatch ${row.color}` : ''}`);
