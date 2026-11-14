@@ -1,4 +1,4 @@
-# Extending singi
+# Extending Singi
 
 Step-by-step recipes for adding sections, blocks, templates, settings, languages, skeletons and integrations without breaking performance, RTL or dark mode, followed by features that are planned but not built. Read it when you are adding something. Follow the conventions in [../AGENTS.md](../AGENTS.md); finish every change with `npm run check` and `npm run docs`.
 

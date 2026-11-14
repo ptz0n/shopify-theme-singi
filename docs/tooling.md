@@ -84,7 +84,7 @@ Without a token the wrapper warns and falls back to the normal CLI login. The lo
 
 ### The password page on a development store
 
-Shopify always shows its own password page to visitors of a development store; a theme's `layout/password.liquid` and `sections/main-password.liquid` cannot replace it (see the [password template docs](https://shopify.dev/docs/storefronts/themes/architecture/templates/password)). On `your-store` the singi page is therefore only visible to the signed-in owner at `/password`, inside the normal theme layout, and a clean browser sees Shopify's page. To see the real standalone layout, use a store that is not a development store.
+Shopify always shows its own password page to visitors of a development store; a theme's `layout/password.liquid` and `sections/main-password.liquid` cannot replace it (see the [password template docs](https://shopify.dev/docs/storefronts/themes/architecture/templates/password)). On `your-store` the Singi page is therefore only visible to the signed-in owner at `/password`, inside the normal theme layout, and a clean browser sees Shopify's page. To see the real standalone layout, use a store that is not a development store.
 
 ## Other useful CLI commands
 

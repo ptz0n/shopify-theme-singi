@@ -1,6 +1,6 @@
-# Contributing to singi
+# Contributing to Singi
 
-Thanks for helping. singi is a performance-first Shopify theme, so the bar is "does it earn its bytes?". Small, measured, accessible changes merge fast.
+Thanks for helping. Singi is a performance-first Shopify theme, so the bar is "does it earn its bytes?". Small, measured, accessible changes merge fast.
 
 By contributing you agree that your work is licensed under the [MIT license](LICENSE) and that you wrote it or have the right to submit it. Do not paste code from other themes or any code you cannot license under MIT.
 
@@ -53,7 +53,7 @@ New strings go in `locales/en.default.json` and every other locale file. Machine
 
 ## Name
 
-Code is MIT. The name "singi" and any logo identify the official project. Forks are welcome; please give a forked or commercial theme its own name, and do not imply it is the official singi.
+Code is MIT. The name "Singi" and any logo identify the official project. Forks are welcome; please give a forked or commercial theme its own name, and do not imply it is the official Singi.
 
 ## Conduct
 

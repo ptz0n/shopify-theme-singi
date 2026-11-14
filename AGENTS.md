@@ -1,4 +1,4 @@
-# singi: agent guide
+# Singi: agent guide
 
 Operating manual for coding agents (Claude Code, Codex) working in this repo. Read it fully before editing. The code is the source of truth; this file lists the rules that are not obvious from a single file.
 
@@ -99,7 +99,7 @@ Detailed recipes are in [docs/extending.md](docs/extending.md). Short forms:
 
 - Do not publish a theme from a script, and do not point the scripts at any store but the configured dev store (`SINGI_STORE`). `scripts/shopify.mjs` refuses live operations on every store not listed in `SINGI_LIVE_STORES`.
 - Do not run `npm run checkout:apply` unless the user asked for it. `checkout:plan` is the safe default.
-- Do not paste code from other themes or repositories. singi is MIT: only add code you wrote or whose license allows it.
+- Do not paste code from other themes or repositories. Singi is MIT: only add code you wrote or whose license allows it.
 - Do not add sections-based features to `layout/theme.liquid` outside `header-group` and `footer-group`.
 - Do not add configuration exceptions to `.theme-check.yml`. Fix the Liquid.
 - Do not claim a performance number you have not measured.

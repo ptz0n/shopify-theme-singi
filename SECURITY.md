@@ -8,7 +8,7 @@ You will get a reply within a few days.
 
 ## Scope
 
-singi is a Shopify theme: Liquid, CSS and small ES modules served from Shopify's CDN. In scope:
+Singi is a Shopify theme: Liquid, CSS and small ES modules served from Shopify's CDN. In scope:
 
 - XSS or injection through theme output (for example unescaped Liquid output, `innerHTML` use in `assets/*.js`).
 - Leaking customer or cart data to third parties.

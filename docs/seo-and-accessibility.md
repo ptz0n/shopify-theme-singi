@@ -1,6 +1,6 @@
 # SEO and accessibility
 
-What singi emits for search engines and social previews, and the accessibility rules its markup follows. Read it before changing `snippets/meta-tags.liquid`, headings, landmarks, focus handling or colors. Rendered output has not been verified on a live store yet; validate with the checks in [testing.md](testing.md).
+What Singi emits for search engines and social previews, and the accessibility rules its markup follows. Read it before changing `snippets/meta-tags.liquid`, headings, landmarks, focus handling or colors. Rendered output has not been verified on a live store yet; validate with the checks in [testing.md](testing.md).
 
 ## Meta tags
 

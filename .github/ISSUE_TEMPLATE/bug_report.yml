@@ -18,7 +18,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: singi version or commit
+      label: Singi version or commit
   - type: input
     id: browser
     attributes:

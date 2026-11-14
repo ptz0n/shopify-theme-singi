@@ -47,7 +47,7 @@ Not mapped:
 
 ## Fonts
 
-Checkout takes fonts from Shopify's font library by handle (for example `inter_n4`). singi only allows `font_picker` fonts, so the theme's handles are valid for checkout. If `font_body` is not a handle with a weight suffix (for example a system font), the script skips typography and prints a warning. Custom or hosted fonts are not supported.
+Checkout takes fonts from Shopify's font library by handle (for example `inter_n4`). Singi only allows `font_picker` fonts, so the theme's handles are valid for checkout. If `font_body` is not a handle with a weight suffix (for example a system font), the script skips typography and prints a warning. Custom or hosted fonts are not supported.
 
 ## Running it
 

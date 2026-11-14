@@ -1,6 +1,6 @@
 # Design system
 
-Tokens, color schemes, fonts, spacing and component styling in singi, and how to change the look without breaking performance, dark mode or RTL. Read it before touching colors, typography or base styles.
+Tokens, color schemes, fonts, spacing and component styling in Singi, and how to change the look without breaking performance, dark mode or RTL. Read it before touching colors, typography or base styles.
 
 Style direction: bespoke, minimal, restrained. Hairline borders, small radius, generous space, Inter for text, monospace for prices, labels and metadata.
 

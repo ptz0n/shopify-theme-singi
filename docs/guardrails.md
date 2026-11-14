@@ -1,6 +1,6 @@
 # Placeholder guard rails
 
-How singi guarantees that unfinished or sample content never reaches customers on the production storefront, and how to keep it that way. Read it before adding any block, section, preset, template default or setting that contains text or images.
+How Singi guarantees that unfinished or sample content never reaches customers on the production storefront, and how to keep it that way. Read it before adding any block, section, preset, template default or setting that contains text or images.
 
 ## The rule
 

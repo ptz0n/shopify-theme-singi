@@ -1,6 +1,6 @@
 # Performance
 
-Every performance technique singi uses and where it lives, the budgets, what is deliberately not built, how to measure, and a debugging playbook per metric. Read it before any change that touches loading, images, fonts, scripts or Liquid cost. Nothing here has been measured on a live store yet: the techniques are in place, the scores are a target, not a result.
+Every performance technique Singi uses and where it lives, the budgets, what is deliberately not built, how to measure, and a debugging playbook per metric. Read it before any change that touches loading, images, fonts, scripts or Liquid cost. Nothing here has been measured on a live store yet: the techniques are in place, the scores are a target, not a result.
 
 ## Techniques and where they live
 
@@ -87,7 +87,7 @@ Streaming caveat: on streamed pages the reported TTFB is the time to the first c
 
 ## Debugging playbook
 
-| Metric | Check first | Likely fix in singi |
+| Metric | Check first | Likely fix in Singi |
 | --- | --- | --- |
 | TTFB (document duration) | `perf:liquid` flame graph. Loops over products or variants, metafield access in loops, nested renders. | Add `limit:`, assign before loops, remove nested `render`. Keep one level in `product-card`. |
 | FCP | Waterfall: what blocks before first paint. Is anything between the head and `content_for_header` slow? Is `base.css` over budget? | Keep critical CSS in `base.css` small; no new `<link rel=stylesheet>` in head; no extra preload. |

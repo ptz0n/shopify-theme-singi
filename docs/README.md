@@ -1,4 +1,4 @@
-# singi documentation
+# Singi documentation
 
 Index of all documentation. Agents: read [../AGENTS.md](../AGENTS.md) first, then only the docs relevant to your task.
 

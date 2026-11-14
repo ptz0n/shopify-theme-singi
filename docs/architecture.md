@@ -1,6 +1,6 @@
 # Architecture
 
-How a storefront request becomes a page in singi: the layer model, what is in `<head>` and why it is ordered that way, where CSS and JavaScript come from, and how dynamic updates flow through the Section Rendering API. Read this before changing `layout/theme.liquid`, adding a stylesheet or adding a module.
+How a storefront request becomes a page in Singi: the layer model, what is in `<head>` and why it is ordered that way, where CSS and JavaScript come from, and how dynamic updates flow through the Section Rendering API. Read this before changing `layout/theme.liquid`, adding a stylesheet or adding a module.
 
 ## Layers
 
@@ -19,7 +19,7 @@ layout/theme.liquid
 
 ### Why JSON templates
 
-Shopify streams storefront HTML in two parts when a page renders from a JSON template and the layout keeps `{{ content_for_header }}` as a plain tag in `<head>`: everything above that tag reaches the browser while the sections are still rendering. According to Shopify's platform documentation, pages rendered from `.liquid` templates are not streamed yet. JSON templates also keep the theme editor useful. This is why singi does not use Liquid templates for pages (the one exception is `gift_card.liquid`, which Shopify requires to be Liquid).
+Shopify streams storefront HTML in two parts when a page renders from a JSON template and the layout keeps `{{ content_for_header }}` as a plain tag in `<head>`: everything above that tag reaches the browser while the sections are still rendering. According to Shopify's platform documentation, pages rendered from `.liquid` templates are not streamed yet. JSON templates also keep the theme editor useful. This is why Singi does not use Liquid templates for pages (the one exception is `gift_card.liquid`, which Shopify requires to be Liquid).
 
 ## Head order
 

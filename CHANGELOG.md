@@ -6,4 +6,4 @@ and the project uses [Semantic Versioning](https://semver.org/) once it reaches 
 ## [Unreleased]
 
 ### Added
-- First public version of singi: a fast, minimal, block-based Shopify theme.
+- First public version of Singi: a fast, minimal, block-based Shopify theme.

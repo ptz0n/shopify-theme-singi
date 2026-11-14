@@ -1,6 +1,6 @@
 # Decision log
 
-Why singi is built the way it is. Each record explains one non-obvious decision: the best practice it follows, the alternatives we rejected, and the edge cases and dead ends a developer or coding agent will meet. Everything in the code is intentional; these records keep the reasoning so it is not lost when the people who made the choice are not around.
+Why Singi is built the way it is. Each record explains one non-obvious decision: the best practice it follows, the alternatives we rejected, and the edge cases and dead ends a developer or coding agent will meet. Everything in the code is intentional; these records keep the reasoning so it is not lost when the people who made the choice are not around.
 
 Read the record before changing the code it names. If the behavior changes, add a new record that supersedes the old one, or edit the record in the same pull request.
 

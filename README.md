@@ -1,4 +1,4 @@
-# singi
+# Singi
 
 A Shopify Online Store 2.0 theme built for storefront rendering speed, clear structure and easy extension by people and coding agents. Read this file for the overview and quickstart, then follow the links in the docs index.
 
@@ -80,8 +80,8 @@ docs/         this documentation; docs/reference/ is generated
 
 ## License
 
-[MIT](LICENSE) © Erik Eng and singi contributors. Use it on client builds, fork it, sell stores built with it.
+[MIT](LICENSE) © Erik Eng and Singi contributors. Use it on client builds, fork it, sell stores built with it.
 
 The architecture (JSON templates, thin sections, nestable theme blocks) follows the latest approach of Shopify's themes. Write new code from scratch, and only submit code you can license under MIT.
 
-The name "singi" and its logo are not covered by the MIT license; see [CONTRIBUTING.md](CONTRIBUTING.md#name).
+The name "Singi" and its logo are not covered by the MIT license; see [CONTRIBUTING.md](CONTRIBUTING.md#name).

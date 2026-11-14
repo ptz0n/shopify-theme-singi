@@ -1,6 +1,6 @@
 # Blocks, sections and snippets
 
-Catalogue of every block, section and snippet in singi, how pages are composed in the theme editor, and the conventions each file type follows. Read it to find the right building block or to add a new one consistently. API-level detail (parameters, settings) is generated into [reference/](reference/) by `npm run docs`.
+Catalogue of every block, section and snippet in Singi, how pages are composed in the theme editor, and the conventions each file type follows. Read it to find the right building block or to add a new one consistently. API-level detail (parameters, settings) is generated into [reference/](reference/) by `npm run docs`.
 
 ## Conventions
 
