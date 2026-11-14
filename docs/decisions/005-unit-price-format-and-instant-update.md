@@ -42,13 +42,13 @@ A unit price ("$78.00 per 100 ml") lets shoppers compare sizes, and is required 
 - **Units not in the list** print as Shopify returns them. Add a case to `snippets/unit-price.liquid` when a unit looks wrong.
 - **The unit system is the store's:** Shopify keeps one unit type across markets, and the theme does not convert between metric and imperial.
 - **JavaScript size:** this needed about 60 bytes in `assets/product-form.js` (6,463 raw, 1,818 brotli); its raw budget in `scripts/check.mjs` was raised from 6,400 to 6,600 for it.
-- **Reuse on other surfaces:** `snippets/unit-price.liquid` takes a variant, so a card (`product.selected_or_first_available_variant`) or a cart line (`item.variant`) can render it unchanged. Neither does yet.
+- **Reuse on other surfaces:** `snippets/unit-price.liquid` takes a variant, so a card (`product.selected_or_first_available_variant`), a cart line (`item.variant`) or a bulk-order row can render it unchanged. None does yet.
 
 ## Trade-offs we accept
 
 - The theme owns the formatting, so a new Shopify unit needs a one-line addition.
 - One more translated string in every locale (machine-translated, like the rest, and flagged for native review).
-- Cards and the cart do not show the unit price yet.
+- **The unit price shows on the product page only, by decision.** Cards and the cart do not show it: the product page is where sizes are compared, and cards stay minimal. A B2B bulk-order view, where buyers compare many variants in a table, is the likely next place for it (a column, using `snippets/unit-price.liquid` with `part: 'visible'`). Shopify's own themes show it on cards and in the cart, and some markets expect it there; revisit if a merchant needs that.
 
 ## How to verify
 
@@ -58,4 +58,4 @@ Optimization pass (median of 7 `npm run perf:liquid` runs on the coffee product)
 
 ## Revisit when
 
-Shopify offers a filter or object that formats and labels unit prices accessibly, cards and the cart get the same component, or markets need per-market units.
+Shopify offers a filter or object that formats and labels unit prices accessibly, a bulk-order view or another surface needs it, or markets need per-market units or unit price on cards.
