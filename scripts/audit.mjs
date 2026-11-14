@@ -60,6 +60,7 @@ const PAGES = [
   ['search, none', '/search?q=zzzzqqq'],
   ['page', '/pages/mock-about'],
   ['component library', '/pages/mock-styleguide'],
+  ['content blocks', '/pages/mock-blocks'],
   ['blog', '/blogs/mock-journal'],
   ['article', '/blogs/mock-journal/mock-first-post'],
   ['article, no image', '/blogs/mock-journal/mock-third-post'],

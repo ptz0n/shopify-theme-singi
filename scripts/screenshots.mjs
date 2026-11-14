@@ -90,7 +90,8 @@ let failed = false;
 for (const [name, path, viewport, scheme, selector, options = {}] of SHOTS) {
   const page = await browser.newPage();
   try {
-    await page.setViewport(VIEWPORTS[viewport]);
+    /* clipTop cuts the sticky header off the top, so the viewport is that much taller: every desktop image ends up the same size, which keeps the README table even. */
+    await page.setViewport({ ...VIEWPORTS[viewport], height: VIEWPORTS[viewport].height + (options.clipTop || 0) });
     await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: scheme }]);
     await page.goto(url(path), { waitUntil: 'load', timeout: 60000 });
     if (page.url().includes('/password')) await signIn(page, path);
@@ -118,7 +119,7 @@ for (const [name, path, viewport, scheme, selector, options = {}] of SHOTS) {
 
     const file = `${name}.webp`;
     const view = VIEWPORTS[viewport];
-    const clip = options.clipTop ? { x: 0, y: options.clipTop, width: view.width, height: view.height - options.clipTop } : undefined;
+    const clip = options.clipTop ? { x: 0, y: options.clipTop, width: view.width, height: view.height } : undefined;
     await page.screenshot({ path: `${outDir}/${file}`, type: 'webp', quality: 82, clip });
     written.push({ file, path, viewport, scheme });
     console.log(`ok    ${file}`);

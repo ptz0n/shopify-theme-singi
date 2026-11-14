@@ -117,4 +117,32 @@ Notes (LCP element, largest scripts, regressions, fixes):
 
 ## Results
 
-No measurements have been recorded yet.
+### 2026-11-14, version 0.1.0, commit 9823777: through the dev server
+
+```
+Date: 2026-11-14
+Commit: 9823777 (plus the unpublished README and screenshot changes)
+Store / theme id: a Plus dev store, theme singi-dev, mock content (npm run mock:apply)
+Published or preview: development theme served by `npm run dev` at http://127.0.0.1:9292 (the dev server signs in to the store password for the run)
+Settings: soft navigation off (default), dynamic checkout on, no apps installed
+Device profile / throttling: Lighthouse 12.6.1, mobile, simulated throttling (default), headless Chrome
+Runs per page / aggregation: 3 runs, median (Liquid time: 7 runs, median)
+
+| Page | A11y | SEO | CLS | TBT (upper bound) | DOM nodes | Theme JS (brotli) | Liquid render |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Home | 100 | 100 | 0.000 | 8 ms | 201 | 6.7 KB | 45.7 ms |
+| Collection | 100 | 100 | 0.000 | 10 ms | 275 | 7.7 KB | 37.7 ms |
+| Product | 100 | 100 | 0.000 | 10 ms | 276 | 9.8 KB | 35.3 ms |
+```
+
+All three runs of every page scored 100 for accessibility and SEO.
+
+**Not recorded: Performance, Best practices, LCP, FCP.** They are not valid through the dev server, so this run does not publish them. The dev server serves the page over plain `http` (fails "uses HTTPS"), adds a hot reload client, and the page loads 250 to 270 requests and about 4 MB, most of it Shopify's own platform code and not the theme. Observed Performance scores (66 to 88) and Best practices (57) describe that setup, not the theme. Run `SINGI_URL=https://<store>.myshopify.com SINGI_PASSWORD=... npm run perf:lighthouse` against the storefront and record it here.
+
+How to read the columns:
+
+- **TBT** is an upper bound: it includes Shopify's platform scripts and the hot reload client, which the theme does not control.
+- **Theme JS** is the sum of the brotli size of the theme's own modules the page requested (home: predictive-search, wishlist, image-tone, utils; collection adds facets; product adds quantity-input, product-form and recently-viewed). Not included: Shopify's scripts.
+- **Liquid render** is `npm run perf:liquid` (the server's time to render the page, from `shopify theme profile`).
+- **Theme CSS** is 3.1 KB (brotli) inline in `<head>` (`base.css`) plus one stylesheet of 10.0 KB (brotli; 47.7 KB raw) that Shopify compiles from every component's `{% stylesheet %}`, on every page. Splitting it per page is not possible with `{% stylesheet %}`; it is the cost of keeping each component's CSS next to its markup.
+- **HTML**: the home page is 102 KB raw, of which 68 KB is scripts Shopify injects through `content_for_header` (web pixels, exit interstitial, captcha, analytics). The theme's own HTML is about 34 KB (header 3.8 KB, footer 4.0 KB, eight product cards 8.4 KB, inline CSS 13.5 KB).
