@@ -91,7 +91,8 @@ const read = (page) =>
       const checked = document.querySelector('.chip-input:checked + .chip');
       if (!chip || !checked) return null;
       const s = getComputedStyle(chip);
-      return { height: chip.getBoundingClientRect().height, radius: s.borderTopLeftRadius, border: s.borderTopWidth, borderColor: getComputedStyle(checked).borderTopColor, shadow: getComputedStyle(checked).boxShadow };
+      const singles = [...document.querySelectorAll('.variant-option .chip')].filter((c) => [...c.textContent.trim()].length === 1).map((c) => c.getBoundingClientRect().width);
+      return { singles, height: chip.getBoundingClientRect().height, radius: s.borderTopLeftRadius, border: s.borderTopWidth, borderColor: getComputedStyle(checked).borderTopColor, shadow: getComputedStyle(checked).boxShadow };
     })(),
     current: (() => {
       const a = document.querySelector('[data-color-siblings] [aria-current]');
@@ -143,6 +144,7 @@ for (const member of GROUP) {
       ok(link.unavailable === expected.soldOut, `${member.handle}: swatch ${index + 1} sold out state is ${link.unavailable}, expected ${expected.soldOut}`);
       if (index === 0) ok(Math.abs(link.left - data.labelStyle.left) <= 1, `${member.handle}: the first swatch is not aligned with the label's left edge`);
       ok(Math.abs(link.width - link.height) < 0.5, `${member.handle}: swatch ${index + 1} is not square (${link.width}x${link.height})`);
+      ok(data.size.singles.every((w) => Math.abs(w - link.width) < 0.5), `${member.handle}: single-letter size options are ${data.size.singles.map((w) => Math.round(w * 10) / 10).join(', ')}px wide, the swatch is ${link.width}px (they should all be the same square)`);
       ok(Math.abs(link.height - data.size.height) < 0.5, `${member.handle}: swatch ${index + 1} is ${link.height}px tall, the size options are ${data.size.height}px`);
       ok(!expected.soldOut || /sold out/i.test(link.name), `${member.handle}: sold out swatch name does not say sold out ("${link.name}")`);
       ok(link.color === expected.color, `${member.handle}: swatch ${index + 1} color is ${link.color}, expected ${expected.color}`);
