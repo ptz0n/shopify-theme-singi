@@ -93,8 +93,12 @@ const inPage = () => {
   out.small = [...document.querySelectorAll('a[href],button,input:not([type=hidden]),select,textarea,summary,[role=button]')]
     .filter(visible)
     .filter((el) => !el.closest('p, li > a:only-child, .prose') || el.matches('button,input,select,summary'))
-    .filter((el) => !el.matches('.product-card__link')) /* a stretched link: its ::after covers the whole card */
-    .map((el) => ({ el, r: el.getBoundingClientRect() }))
+    /* A stretched link (decision 001: product cards, linked meta rows): its ::after is absolutely positioned over its container, so the tap target is the container, not the link text. */
+    .map((el) => {
+      const after = getComputedStyle(el, '::after');
+      const stretched = el.matches('a') && after.position === 'absolute' && after.content !== 'none' && after.insetBlockStart === '0px' && after.insetInlineStart === '0px' && el.offsetParent;
+      return { el, r: (stretched ? el.offsetParent : el).getBoundingClientRect() };
+    })
     .filter(({ el, r }) => (r.width < 24 || r.height < 24) && !el.matches('input[type=radio],input[type=checkbox]') && !el.closest('.visually-hidden'))
     .map(({ el, r }) => `${el.tagName.toLowerCase()}${el.className ? '.' + String(el.className).split(' ')[0] : ''} ${Math.round(r.width)}x${Math.round(r.height)}`)
     .slice(0, 6);

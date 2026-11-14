@@ -56,7 +56,7 @@
     <section class="sg__section" id="measure" aria-labelledby="measure-title">
       <h2 id="measure-title">Measurements</h2>
       <p class="muted">Live values for this page load. Interact with the page, then re-run. Transfer sizes are 0 for cross-origin resources.</p>
-      <div class="sg__table-wrap" tabindex="0" role="region" aria-labelledby="measure-title">
+      <div class="sg__table-wrap" tabindex="0" role="region" aria-label="Measurement values">
         <table class="sg__table">
           <thead><tr><th scope="col">Metric</th><th scope="col">Value</th><th scope="col">Target</th><th scope="col">Status</th></tr></thead>
           <tbody data-sg-vitals></tbody>
@@ -136,8 +136,9 @@
       </div>
       <div class="sg__row">
         <button class="icon-button" type="button" aria-label="Icon button">{%- render 'icon', name: 'search' -%}</button>
-        <button class="icon-button" type="button" aria-label="Icon button with count">
+        <button class="icon-button" type="button">
           {%- render 'icon', name: 'cart' -%}
+          <span class="visually-hidden">Icon button with count</span>
           <span class="cart-count" data-count="3">3</span>
         </button>
       </div>
