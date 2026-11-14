@@ -85,6 +85,27 @@ Always measure on the dev store and, for scores that matter, on a published them
 
 Streaming caveat: on streamed pages the reported TTFB is the time to the first chunk (the head), not the end of Liquid rendering. Look at the document request's total duration for server cost.
 
+## Cost log: what each feature added
+
+The four checks asked of every finished feature: **reuse** (is there one implementation), **standard** (tokens, strings, a rule or a record), **performance** (measured, not assumed) and **iteration** (a test that fails when it breaks). Numbers are medians from `npm run perf:liquid` (server render of a page that has the feature), `npm run perf:sizes` (what the CDN delivers) and the tests named in [tooling.md](tooling.md). Liquid timings vary by a few milliseconds between runs, so read differences under about 3 ms as noise. Dated 2026-11-14, version 0.1.0.
+
+| Feature | Reuse | Standard | Performance | Iteration |
+| --- | --- | --- | --- | --- |
+| Search loading skeleton | CSS only on the existing results box, no markup | `--radius`, `--part` tokens, reduced motion honored | 0 JS, 0 new nodes | `test:search`, 27 checks |
+| Recently viewed on the empty cart | the existing block, via `@theme` blocks in `main-cart` | same block settings and heading string | 0 JS added; one wrapper only when the cart is empty and a block is set | `test:recent`, 8 checks |
+| Related products block | `product-card`, `placeholder`, `.product-grid` | `products.related` in 62 locales, [decision 008](decisions/008-related-products-render-on-the-server.md) | block 21 ms down to 6 ms after fetching only the products that show; 0 JS, cached with the page | `test:related`, 20 checks |
+| Newsletter signup | one snippet for the footer and the block, unique ids | `newsletter.*` strings in 62 locales, logical properties | 0.48 ms (snippet), 0.95 ms with its block; 0 JS | `test:newsletter`, 28 checks |
+| Quote block | any content section | figure, blockquote, figcaption | 0.38 ms; 0 JS | `test:blocks`, 24 checks (caught the missing caption whitespace) |
+| Product grid block | `snippets/product-grid` shared with Featured collection | same cards, loading and tracking | home featured collection 32.1 ms before, 32.7 ms after the refactor | `test:blocks` |
+| Hide .00 on whole prices | one setting for 7 places, table in [design-system.md](design-system.md#price-formatting) | `check.mjs` rule fails any unguarded `\| money` | product page 32.5 ms against 35.3 ms before; 0 JS | `test:price-format`, both modes |
+| Popover guards (menu, search) | one attribute, `data-overlay`, any panel that dims the page | [decision 009](decisions/009-popovers-swallow-the-dismissing-click.md), WCAG 2.4.3, 2.4.11, 2.5.2, 3.2.1 | 1 microsecond per focus change; search module 1,913 B delivered | `test:popovers`, 39 checks |
+| Split hero layout | one section, one setting; overlay colors scoped to `.hero--overlay` | text on page colors, 18:1 or better in light and dark | +78 B delivered CSS; 0 JS | `test:hero`, 66 checks |
+| Visible Sort by label | the shared filter bar, existing `collection.sort_by` string | muted token, 44px select | +20 B delivered CSS; 0 JS | `test:facets`, 48 checks |
+| Product type on cards (off by default) | one setting; `.eyebrow` class | Type from the admin, nothing when blank | no cost with it off: collection render 31.8 to 35.4 ms against 33.8 to 36.8 ms before, card snippet 10.0 to 11.6 ms against 11.8 to 12.3 ms | `test:card-type`, both modes |
+| App blocks (`@app`) in content and product sections | one schema entry per section | accepted by `shopify theme check` and the theme push | 0 | not testable here: needs an app on the store |
+
+Delivered totals after all of the above (CDN, brotli): CSS 6.4 KB; JavaScript 5.5 KB (home), 6.5 KB (collection), 8.4 KB (product). Not yet measured: Lighthouse Performance, Best practices and LCP, which need a run against the real storefront ([testing.md](testing.md#results)).
+
 ## Debugging playbook
 
 | Metric | Check first | Likely fix in Singi |
