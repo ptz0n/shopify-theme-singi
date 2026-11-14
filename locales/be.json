@@ -14,6 +14,7 @@
     "toggle_theme": "Пераключыць светлы і цёмны рэжым",
     "light_mode": "Светлы рэжым",
     "dark_mode": "Цёмны рэжым",
+    "close": "Закрыць",
     "open_menu": "Меню",
     "home": "Галоўная",
     "breadcrumbs": "Навігацыйны шлях",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Прададзена",
+    "size_guide": "Табліца памераў",
     "unit_price_per": "{{ price }} за {{ reference }}",
     "color": "Колер",
     "recently_viewed": "Нядаўна прагледжанае",

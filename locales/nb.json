@@ -14,6 +14,7 @@
     "toggle_theme": "Bytt mellom lys og mørk modus",
     "light_mode": "Lys modus",
     "dark_mode": "Mørk modus",
+    "close": "Lukk",
     "open_menu": "Meny",
     "home": "Hjem",
     "breadcrumbs": "Brødsmulesti",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Utsolgt",
+    "size_guide": "Størrelsesguide",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Farge",
     "recently_viewed": "Nylig vist",

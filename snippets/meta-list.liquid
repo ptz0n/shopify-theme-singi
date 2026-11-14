@@ -1,0 +1,21 @@
+{% doc %}
+  Styles for the monospace attribute table (.meta): one row per attribute, the name at the
+  start and the value at the end, with line dividers. Outputs nothing. Render it once in every
+  block that uses .meta (the product meta and the specs blocks), so Shopify includes the CSS
+  on pages that have either one.
+
+  @example
+  {% render 'meta-list' %}
+{% enddoc %}
+
+{% stylesheet %}
+  .meta { display: grid; margin: 0; font-size: 0.8125rem; color: var(--color-muted); }
+  .meta div { position: relative; display: flex; justify-content: space-between; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid var(--color-border); }
+  .meta dt { text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  .meta dd { margin: 0; color: var(--color-fg); text-align: end; }
+  /* A linked value stretches over its whole row, like a product card, so the tap area is the full width. */
+  .meta a::after { content: ''; position: absolute; inset: 0; }
+  .meta div:has(a):hover { background: var(--color-surface); }
+  .meta a:focus-visible { outline: none; }
+  .meta a:focus-visible::after { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+{% endstylesheet %}

@@ -14,6 +14,7 @@
     "toggle_theme": "Açık ve koyu modu değiştir",
     "light_mode": "Açık mod",
     "dark_mode": "Koyu mod",
+    "close": "Kapat",
     "open_menu": "Menü",
     "home": "Ana sayfa",
     "breadcrumbs": "Gezinti yolu",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Tükendi",
+    "size_guide": "Beden tablosu",
     "unit_price_per": "{{ reference }} başına {{ price }}",
     "color": "Renk",
     "recently_viewed": "Son görüntülenenler",

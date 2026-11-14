@@ -1,0 +1,114 @@
+{% doc %}
+  Specifications as a table: up to eight rows, each a label and a value. Connect each value to a
+  product metafield in the theme editor (dynamic source), for example weight, power or waterproof
+  rating; a measurement metafield arrives already formatted with its unit. A row without a value is
+  left out, and the block renders nothing when no row has one, so one template serves products
+  with different data. Same table as the product meta block (snippets/meta-list.liquid).
+  Private to product sections.
+{% enddoc %}
+
+{%- capture rows -%}
+  {%- for i in (1..8) -%}
+    {%- assign label_key = 'label_' | append: i -%}
+    {%- assign value_key = 'value_' | append: i -%}
+    {%- assign value = block.settings[value_key] -%}
+    {%- if value != blank -%}
+      <div><dt>{{ block.settings[label_key] }}</dt><dd>{{ value }}</dd></div>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- assign rows = rows | strip -%}
+{%- if rows != blank -%}
+  {%- render 'meta-list' -%}
+  <dl class="meta mono" {{ block.shopify_attributes }}>{{ rows }}</dl>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Specifications",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label_1",
+      "label": "Label 1"
+    },
+    {
+      "type": "text",
+      "id": "value_1",
+      "label": "Value 1",
+      "info": "Connect each value to a product metafield with the dynamic source button. A row with no value is not shown, and the block shows nothing when every value is empty."
+    },
+    {
+      "type": "text",
+      "id": "label_2",
+      "label": "Label 2"
+    },
+    {
+      "type": "text",
+      "id": "value_2",
+      "label": "Value 2"
+    },
+    {
+      "type": "text",
+      "id": "label_3",
+      "label": "Label 3"
+    },
+    {
+      "type": "text",
+      "id": "value_3",
+      "label": "Value 3"
+    },
+    {
+      "type": "text",
+      "id": "label_4",
+      "label": "Label 4"
+    },
+    {
+      "type": "text",
+      "id": "value_4",
+      "label": "Value 4"
+    },
+    {
+      "type": "text",
+      "id": "label_5",
+      "label": "Label 5"
+    },
+    {
+      "type": "text",
+      "id": "value_5",
+      "label": "Value 5"
+    },
+    {
+      "type": "text",
+      "id": "label_6",
+      "label": "Label 6"
+    },
+    {
+      "type": "text",
+      "id": "value_6",
+      "label": "Value 6"
+    },
+    {
+      "type": "text",
+      "id": "label_7",
+      "label": "Label 7"
+    },
+    {
+      "type": "text",
+      "id": "value_7",
+      "label": "Value 7"
+    },
+    {
+      "type": "text",
+      "id": "label_8",
+      "label": "Label 8"
+    },
+    {
+      "type": "text",
+      "id": "value_8",
+      "label": "Value 8"
+    }
+  ]
+}
+{% endschema %}

@@ -14,6 +14,7 @@
     "toggle_theme": "Vaihda vaalean ja tumman tilan välillä",
     "light_mode": "Vaalea tila",
     "dark_mode": "Tumma tila",
+    "close": "Sulje",
     "open_menu": "Valikko",
     "home": "Etusivu",
     "breadcrumbs": "Navigointipolku",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Loppuunmyyty",
+    "size_guide": "Kokotaulukko",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Väri",
     "recently_viewed": "Äskettäin katsotut",

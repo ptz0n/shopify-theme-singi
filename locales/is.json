@@ -14,6 +14,7 @@
     "toggle_theme": "Skipta á milli ljóss og dökks ham",
     "light_mode": "Ljós stilling",
     "dark_mode": "Dökk stilling",
+    "close": "Loka",
     "open_menu": "Valmynd",
     "home": "Forsíða",
     "breadcrumbs": "Brauðmolar",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Uppselt",
+    "size_guide": "Stærðartafla",
     "unit_price_per": "{{ price }} á {{ reference }}",
     "color": "Litur",
     "recently_viewed": "Nýlega skoðað",

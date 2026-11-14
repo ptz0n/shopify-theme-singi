@@ -180,8 +180,9 @@ for (const file of liquidFiles.filter((f) => f.startsWith('sections/') || f.star
   for (const preset of schema.presets ?? []) walkPreset(preset.blocks);
 }
 
-// templates/page.styleguide.json is the developer-only component library (gated by a theme setting and noindex)
-for (const file of walk('templates').filter((f) => f.endsWith('.json') && f !== 'templates/page.styleguide.json')) {
+// templates/page.styleguide.json (the component library) and templates/product.demo.json (labels bound to the mock catalog's metafields, see docs/mock-catalog.md) are developer-only
+const DEVELOPER_TEMPLATES = new Set(['templates/page.styleguide.json', 'templates/product.demo.json']);
+for (const file of walk('templates').filter((f) => f.endsWith('.json') && !DEVELOPER_TEMPLATES.has(f))) {
   const visit = (node, path) => {
     if (Array.isArray(node)) return node.forEach((child, i) => visit(child, `${path}[${i}]`));
     if (node && typeof node === 'object') {

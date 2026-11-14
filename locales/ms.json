@@ -14,6 +14,7 @@
     "toggle_theme": "Tukar mod cerah dan gelap",
     "light_mode": "Mod cerah",
     "dark_mode": "Mod gelap",
+    "close": "Tutup",
     "open_menu": "Menu",
     "home": "Laman utama",
     "breadcrumbs": "Jejak navigasi",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Habis dijual",
+    "size_guide": "Panduan saiz",
     "unit_price_per": "{{ price }} setiap {{ reference }}",
     "color": "Warna",
     "recently_viewed": "Dilihat baru-baru ini",

@@ -14,6 +14,7 @@
     "toggle_theme": "สลับโหมดสว่างและโหมดมืด",
     "light_mode": "โหมดสว่าง",
     "dark_mode": "โหมดมืด",
+    "close": "ปิด",
     "open_menu": "เมนู",
     "home": "หน้าแรก",
     "breadcrumbs": "เส้นทางการนำทาง",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "สินค้าหมด",
+    "size_guide": "ตารางไซส์",
     "unit_price_per": "{{ price }} ต่อ {{ reference }}",
     "color": "สี",
     "recently_viewed": "ดูล่าสุด",

@@ -14,6 +14,7 @@
     "toggle_theme": "ღია და მუქი რეჟიმის გადართვა",
     "light_mode": "ღია რეჟიმი",
     "dark_mode": "ბნელი რეჟიმი",
+    "close": "დახურვა",
     "open_menu": "მენიუ",
     "home": "მთავარი",
     "breadcrumbs": "ნავიგაციის ბილიკი",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "გაყიდულია",
+    "size_guide": "ზომების გზამკვლევი",
     "unit_price_per": "{{ price }} {{ reference }}-ზე",
     "color": "ფერი",
     "recently_viewed": "ახლახან ნანახი",

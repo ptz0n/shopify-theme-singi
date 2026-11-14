@@ -14,6 +14,7 @@
     "toggle_theme": "Փոխել բաց և մութ ռեժիմը",
     "light_mode": "Լուսավոր ռեժիմ",
     "dark_mode": "Մուգ ռեժիմ",
+    "close": "Փակել",
     "open_menu": "Մենյու",
     "home": "Գլխավոր",
     "breadcrumbs": "Նավիգացիայի ուղի",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Սպառված է",
+    "size_guide": "Չափսերի ուղեցույց",
     "unit_price_per": "{{ reference }}-ի համար {{ price }}",
     "color": "Գույն",
     "recently_viewed": "Վերջերս դիտված",

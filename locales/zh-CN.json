@@ -14,6 +14,7 @@
     "toggle_theme": "切换浅色/深色模式",
     "light_mode": "浅色模式",
     "dark_mode": "深色模式",
+    "close": "关闭",
     "open_menu": "菜单",
     "home": "首页",
     "breadcrumbs": "面包屑导航",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "已售罄",
+    "size_guide": "尺码指南",
     "unit_price_per": "每{{ reference }}{{ price }}",
     "color": "颜色",
     "recently_viewed": "最近浏览",

@@ -14,6 +14,7 @@
     "toggle_theme": "Palitan ang light at dark mode",
     "light_mode": "Light mode",
     "dark_mode": "Dark mode",
+    "close": "Isara",
     "open_menu": "Menu",
     "home": "Home",
     "breadcrumbs": "Breadcrumbs",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Sold out",
+    "size_guide": "Gabay sa laki",
     "unit_price_per": "{{ price }} bawat {{ reference }}",
     "color": "Kulay",
     "recently_viewed": "Kamakailang tiningnan",

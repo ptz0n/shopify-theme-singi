@@ -14,6 +14,7 @@
     "toggle_theme": "લાઇટ અને ડાર્ક મોડ બદલો",
     "light_mode": "લાઇટ મોડ",
     "dark_mode": "ડાર્ક મોડ",
+    "close": "બંધ કરો",
     "open_menu": "મેનૂ",
     "home": "હોમ",
     "breadcrumbs": "બ્રેડક્રમ્બ્સ",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "વેચાઈ ગયું",
+    "size_guide": "સાઈઝ માર્ગદર્શિકા",
     "unit_price_per": "{{ reference }} દીઠ {{ price }}",
     "color": "રંગ",
     "recently_viewed": "તાજેતરમાં જોયેલ",

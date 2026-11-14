@@ -14,6 +14,7 @@
     "toggle_theme": "החלפה בין מצב בהיר למצב כהה",
     "light_mode": "מצב בהיר",
     "dark_mode": "מצב כהה",
+    "close": "סגור",
     "open_menu": "תפריט",
     "home": "דף הבית",
     "breadcrumbs": "נתיב ניווט",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "אזל במלאי",
+    "size_guide": "מדריך מידות",
     "unit_price_per": "{{ price }} לכל {{ reference }}",
     "color": "צבע",
     "recently_viewed": "נצפו לאחרונה",

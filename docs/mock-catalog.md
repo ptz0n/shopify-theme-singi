@@ -29,9 +29,13 @@ Collections: Fashion, Jewelry and watches, Beauty, Food and drink, Electronics, 
 
 ## Metafield definitions
 
-`mock:apply` creates these merchant-owned definitions (namespace `custom`) before the products, so they appear as dynamic sources in the theme editor. Product: `fit_notes`, `size_chart`, `material`, `care`, `ingredients`, `allergens` (list), `compatible_with` (list), `weight`, `packed_length`, `power`, `battery_hours`, `waterproof_mm`, `warranty`, `case_diameter`, `production_days`, `edition`, `personalization_label`, `personalization_max_length`. Variant: `width`, `depth`, `height`, `area`. Color siblings use their own `singi.*` definitions, see [decision 003](decisions/003-color-siblings-product-list.md).
+`mock:apply` creates these merchant-owned definitions (namespace `custom`) before the products, so they appear as dynamic sources in the theme editor. Product: `fit_notes`, `size_chart`, `material`, `care`, `ingredients`, `allergens`, `compatible_with`, `weight`, `packed_length`, `power_watts`, `battery_hours`, `waterproof_mm`, `warranty`, `case_diameter`, `production_days`, `returns_note`, `edition`, `personalization_label`, `personalization_max_length`. Variant: `width`, `depth`, `height`, `area`. Color siblings use their own `singi.*` definitions, see [decision 003](decisions/003-color-siblings-product-list.md).
 
-Values are written with Shopify's measurement format, for example `{"value": 160, "unit": "cm"}`. Units differ by type and the API rejects the wrong spelling: dimension `cm` or `mm`, weight `kg` or `g`, power `watts`, area `square_meters`. Shopify reads them back normalized (`CENTIMETERS`, `KILOGRAMS`).
+Values are written with Shopify's measurement format, for example `{"value": 160, "unit": "cm"}`. Units differ by type and the API rejects the wrong spelling: dimension `cm` or `mm`, weight `kg` or `g`, area `square_meters`. Shopify reads them back normalized (`CENTIMETERS`, `KILOGRAMS`). Lists are multi-line text, one item per line, and power is a plain number: block settings only connect to weight, volume and dimension measurements, and a list metafield arrives with its items run together ([metafields](metafields.md)).
+
+## Demo template
+
+The niche products use `templates/product.demo.json` (assigned with `templateSuffix: 'demo'`), which connects the blocks to the `custom.*` metafields with English labels: accordions for fit, material, care, ingredients, allergens, works with and warranty, a specifications table, a size guide popover and a returns note. A block with no data for a product renders nothing, so one template serves all sixteen products. The default `product.json` has the same blocks with nothing connected. The demo template is developer-only: `npm run check` does not apply the no-shipped-copy rule to it, like the component library page.
 
 ## Unit prices
 

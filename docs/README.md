@@ -19,6 +19,7 @@ Index of all documentation. Agents: read [../AGENTS.md](../AGENTS.md) first, the
 | [media.md](media.md) | Images, focal points, product gallery, video, card heart tone, placeholder image, media tests. |
 | [extending.md](extending.md) | Recipes for adding things, integration rules, planned features. |
 | [releasing.md](releasing.md) | Cutting a release: version, changelog, regenerating the screenshots, tagging. |
+| [metafields.md](metafields.md) | How product data reaches the page: connecting block settings to metafields, which types connect, suggested keys, what it costs. |
 | [mock-catalog.md](mock-catalog.md) | The sample products: edge cases and a two-per-niche catalog (fashion, jewelry, beauty, food, electronics, home, outdoor, made to order), the data each exercises, and what it cannot show yet. |
 | [testing.md](testing.md) | Verification checklists, Lighthouse targets, results template. |
 | [reference/](reference/) | Generated reference for snippets, blocks and sections. Do not edit by hand; run `npm run docs`. |

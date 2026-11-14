@@ -14,6 +14,7 @@
     "toggle_theme": "Skift mellem lys og mørk tilstand",
     "light_mode": "Lys tilstand",
     "dark_mode": "Mørk tilstand",
+    "close": "Luk",
     "open_menu": "Menu",
     "home": "Forside",
     "breadcrumbs": "Brødkrummesti",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Udsolgt",
+    "size_guide": "Størrelsesguide",
     "unit_price_per": "{{ price }} pr. {{ reference }}",
     "color": "Farve",
     "recently_viewed": "Senest set",

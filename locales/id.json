@@ -14,6 +14,7 @@
     "toggle_theme": "Ganti mode terang dan gelap",
     "light_mode": "Mode terang",
     "dark_mode": "Mode gelap",
+    "close": "Tutup",
     "open_menu": "Menu",
     "home": "Beranda",
     "breadcrumbs": "Breadcrumb",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Habis terjual",
+    "size_guide": "Panduan ukuran",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Warna",
     "recently_viewed": "Baru dilihat",

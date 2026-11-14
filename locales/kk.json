@@ -14,6 +14,7 @@
     "toggle_theme": "Жарық және қараңғы режимді ауыстыру",
     "light_mode": "Ашық режим",
     "dark_mode": "Қараңғы режим",
+    "close": "Жабу",
     "open_menu": "Мәзір",
     "home": "Басты бет",
     "breadcrumbs": "Навигация жолы",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Сатылып кетті",
+    "size_guide": "Өлшем кестесі",
     "unit_price_per": "{{ reference }} үшін {{ price }}",
     "color": "Түс",
     "recently_viewed": "Жуырда қаралған",

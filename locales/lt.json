@@ -14,6 +14,7 @@
     "toggle_theme": "Perjungti šviesų ir tamsų režimą",
     "light_mode": "Šviesus režimas",
     "dark_mode": "Tamsus režimas",
+    "close": "Uždaryti",
     "open_menu": "Meniu",
     "home": "Pradžia",
     "breadcrumbs": "Naršymo kelias",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Išparduota",
+    "size_guide": "Dydžių lentelė",
     "unit_price_per": "{{ price }} už {{ reference }}",
     "color": "Spalva",
     "recently_viewed": "Neseniai peržiūrėta",

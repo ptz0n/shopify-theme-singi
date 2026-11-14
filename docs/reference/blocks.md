@@ -60,6 +60,20 @@ tappable across its full width. Private to product sections.
 
 _No settings._
 
+## _product-policies
+
+File: `blocks/_product-policies.liquid` · Editor name: **Returns and shipping** · private
+
+Returns and shipping near the buy button: links to the store's refund and shipping policies
+(only the ones the merchant has written), and an optional short summary, for example "Free
+returns within 30 days". Connect the summary to a product metafield for product-specific
+terms (custom or made-to-order items). Renders nothing when there is nothing to show.
+Private to product sections.
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `summary` | richtext | Summary |  |
+
 ## _product-price
 
 File: `blocks/_product-price.liquid` · Editor name: **Product price** · private
@@ -68,6 +82,36 @@ Price of the selected variant, with its unit price (snippets/unit-price.liquid) 
 merchant set one. Private to product sections.
 
 _No settings._
+
+## _product-specs
+
+File: `blocks/_product-specs.liquid` · Editor name: **Specifications** · private
+
+Specifications as a table: up to eight rows, each a label and a value. Connect each value to a
+product metafield in the theme editor (dynamic source), for example weight, power or waterproof
+rating; a measurement metafield arrives already formatted with its unit. A row without a value is
+left out, and the block renders nothing when no row has one, so one template serves products
+with different data. Same table as the product meta block (snippets/meta-list.liquid).
+Private to product sections.
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `label_1` | text | Label 1 |  |
+| `value_1` | text | Value 1 |  |
+| `label_2` | text | Label 2 |  |
+| `value_2` | text | Value 2 |  |
+| `label_3` | text | Label 3 |  |
+| `value_3` | text | Value 3 |  |
+| `label_4` | text | Label 4 |  |
+| `value_4` | text | Value 4 |  |
+| `label_5` | text | Label 5 |  |
+| `value_5` | text | Value 5 |  |
+| `label_6` | text | Label 6 |  |
+| `value_6` | text | Value 6 |  |
+| `label_7` | text | Label 7 |  |
+| `value_7` | text | Value 7 |  |
+| `label_8` | text | Label 8 |  |
+| `value_8` | text | Value 8 |  |
 
 ## _product-title
 
@@ -81,6 +125,19 @@ Private: only available in sections that list it, like main-product.
 | Setting | Type | Label | Default |
 | --- | --- | --- | --- |
 | `show_vendor` | checkbox | Show vendor | `true` |
+
+## _size-guide
+
+File: `blocks/_size-guide.liquid` · Editor name: **Size guide** · private
+
+Size guide: a link under the size options that opens the guide in a native popover (no
+JavaScript; Escape and a click outside close it, and focus returns to the link). Connect the
+content to a product metafield in the theme editor (dynamic source), for example a text size
+chart. Renders nothing when the content is empty. Private to product sections.
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `content` | richtext | Content |  |
 
 ## _variant-picker
 
@@ -101,7 +158,10 @@ _No settings._
 File: `blocks/accordion.liquid` · Editor name: **Accordion** · public · has preset
 
 Disclosure built on native <details>. The `name` attribute makes sibling
-accordions exclusive without JavaScript.
+accordions exclusive without JavaScript. A block with a title but no content renders nothing, even
+in the editor, so its content can be connected to a product metafield (dynamic source) and
+the accordion disappears for products without that data. Only a block with no title is
+treated as unfinished and shows the editor hint.
 
 | Setting | Type | Label | Default |
 | --- | --- | --- | --- |

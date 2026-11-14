@@ -9,6 +9,7 @@ All npm scripts, what they do, the environment variables they read, and the dev-
 | `npm run dev` | `shopify theme dev` against the store in `SINGI_STORE` through `scripts/shopify.mjs`. Hot-reloads a development theme and prints the preview and editor URLs. |
 | `npm run ship` | The end of an iteration in one command (about 5 seconds): theme check, repo rules, regenerate `docs/reference`, then push the live `singi` theme and `singi-dev` in parallel. Stops before pushing if a check fails. While `npm run dev` runs you do not need it to see a change. |
 | `npm run test:media` | Gallery, variant image, video and card heart assertions on the mock pages, in headless Chrome. Defaults to the local `npm run dev` server at `127.0.0.1:9292`, which signs in to a password protected store for you. Needs `npm install --no-save puppeteer-core`. See [media.md](media.md#tests). |
+| `npm run test:details` | The data-driven product blocks on the niche catalog: accordions, specifications, size guide popover (focus, Escape, 44px link), returns note, and that blocks only render for products with the data. Same setup as `test:media`. |
 | `npm run test:unit-price` | Unit price on the niche products: the text shown and the screen reader sentence, no "1" before a reference unit, instant update to the same text the server returns. Same setup as `test:media`. |
 | `npm run test:siblings` | Color siblings assertions on the mock "Studio Shirt" group in headless Chrome: same swatches and order on every page, `aria-current`, accessible names, 44px targets, keyboard, no JS, no horizontal scroll. Same setup as `test:media`. |
 | `npm run siblings -- <define\|check\|link>` | Maintains color siblings on the dev store: create the two metafield definitions, check the data for drift, or link products as a group. Needs `read_products` and `write_products`. See [decision 003](decisions/003-color-siblings-product-list.md). |
@@ -80,6 +81,10 @@ Without a token the wrapper warns and falls back to the normal CLI login. The lo
 - Because the dev store theme is live, every `npm run push` changes what the dev storefront shows immediately. Do not point `.env` or `shopify.theme.toml` at a production store.
 - Do not push over a theme you did not create.
 - `config/settings_data.json` is written by the theme editor. Pushing local settings can overwrite merchant changes: `shopify theme pull` first if the editor was used.
+
+### Dev server shows "Failed to Upload Theme Files"
+
+When a section and a template that depends on it change together (a new block type and the template that uses it), `npm run dev` can upload the template first, get "Block type ... is not allowed", and keep showing that error page even though the theme is fine. `npm run ship` (or `npm run dev:push`) puts the theme right; then touch one of the files (`touch templates/product.json`) so the dev server uploads again, or restart it.
 
 ### Testing against the dev server
 

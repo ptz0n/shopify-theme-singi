@@ -1,0 +1,151 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "_product-title"
+        },
+        "price": {
+          "type": "_product-price"
+        },
+        "colors": {
+          "type": "_color-siblings"
+        },
+        "picker": {
+          "type": "_variant-picker"
+        },
+        "size-guide": {
+          "type": "_size-guide",
+          "settings": {
+            "content": "<p>{{ product.metafields.custom.size_chart.value }}</p>"
+          }
+        },
+        "buy": {
+          "type": "_buy-buttons"
+        },
+        "policies": {
+          "type": "_product-policies",
+          "settings": {
+            "summary": "<p>{{ product.metafields.custom.returns_note.value }}</p>"
+          }
+        },
+        "description": {
+          "type": "_product-description"
+        },
+        "specs": {
+          "type": "_product-specs",
+          "settings": {
+            "label_1": "Weight",
+            "value_1": "{{ product.metafields.custom.weight.value }}",
+            "label_2": "Packed length",
+            "value_2": "{{ product.metafields.custom.packed_length.value }}",
+            "label_3": "Case diameter",
+            "value_3": "{{ product.metafields.custom.case_diameter.value }}",
+            "label_4": "Power (W)",
+            "value_4": "{{ product.metafields.custom.power_watts.value }}",
+            "label_5": "Battery life (hours)",
+            "value_5": "{{ product.metafields.custom.battery_hours.value }}",
+            "label_6": "Waterproof rating (mm)",
+            "value_6": "{{ product.metafields.custom.waterproof_mm.value }}",
+            "label_7": "Production time (days)",
+            "value_7": "{{ product.metafields.custom.production_days.value }}",
+            "label_8": "Edition",
+            "value_8": "{{ product.metafields.custom.edition.value }}"
+          }
+        },
+        "meta": {
+          "type": "_product-meta"
+        },
+        "detail-fit": {
+          "type": "accordion",
+          "settings": {
+            "title": "Fit",
+            "content": "<p>{{ product.metafields.custom.fit_notes.value }}</p>"
+          }
+        },
+        "detail-material": {
+          "type": "accordion",
+          "settings": {
+            "title": "Material",
+            "content": "<p>{{ product.metafields.custom.material.value }}</p>"
+          }
+        },
+        "detail-care": {
+          "type": "accordion",
+          "settings": {
+            "title": "Care",
+            "content": "<p>{{ product.metafields.custom.care.value }}</p>"
+          }
+        },
+        "detail-ingredients": {
+          "type": "accordion",
+          "settings": {
+            "title": "Ingredients",
+            "content": "<p>{{ product.metafields.custom.ingredients.value }}</p>"
+          }
+        },
+        "detail-allergens": {
+          "type": "accordion",
+          "settings": {
+            "title": "Allergens",
+            "content": "<p>{{ product.metafields.custom.allergens.value }}</p>"
+          }
+        },
+        "detail-compat": {
+          "type": "accordion",
+          "settings": {
+            "title": "Works with",
+            "content": "<p>{{ product.metafields.custom.compatible_with.value }}</p>"
+          }
+        },
+        "detail-warranty": {
+          "type": "accordion",
+          "settings": {
+            "title": "Warranty",
+            "content": "<p>{{ product.metafields.custom.warranty.value }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "colors",
+        "picker",
+        "size-guide",
+        "buy",
+        "policies",
+        "description",
+        "detail-fit",
+        "detail-material",
+        "detail-care",
+        "detail-ingredients",
+        "detail-allergens",
+        "detail-compat",
+        "detail-warranty",
+        "specs",
+        "meta"
+      ],
+      "settings": {}
+    },
+    "recent": {
+      "type": "content",
+      "blocks": {
+        "recently-viewed": {
+          "type": "recently-viewed"
+        }
+      },
+      "block_order": [
+        "recently-viewed"
+      ],
+      "settings": {
+        "width": "wide",
+        "padding": 64
+      }
+    }
+  },
+  "order": [
+    "main",
+    "recent"
+  ]
+}

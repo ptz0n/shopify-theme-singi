@@ -14,6 +14,7 @@
     "toggle_theme": "Cambiar entre modo claro e escuro",
     "light_mode": "Modo claro",
     "dark_mode": "Modo escuro",
+    "close": "Pechar",
     "open_menu": "Menú",
     "home": "Inicio",
     "breadcrumbs": "Ruta de navegación",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Esgotado",
+    "size_guide": "Guía de tallas",
     "unit_price_per": "{{ price }} por {{ reference }}",
     "color": "Cor",
     "recently_viewed": "Vistos recentemente",

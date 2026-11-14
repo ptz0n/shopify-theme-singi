@@ -14,6 +14,7 @@
     "toggle_theme": "Перемкнути світлий і темний режим",
     "light_mode": "Світлий режим",
     "dark_mode": "Темний режим",
+    "close": "Закрити",
     "open_menu": "Меню",
     "home": "Головна",
     "breadcrumbs": "Навігаційний ланцюжок",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Немає в наявності",
+    "size_guide": "Таблиця розмірів",
     "unit_price_per": "{{ price }} за {{ reference }}",
     "color": "Колір",
     "recently_viewed": "Нещодавно переглянуті",

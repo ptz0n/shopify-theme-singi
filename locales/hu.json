@@ -14,6 +14,7 @@
     "toggle_theme": "Váltás világos és sötét mód között",
     "light_mode": "Világos mód",
     "dark_mode": "Sötét mód",
+    "close": "Bezárás",
     "open_menu": "Menü",
     "home": "Kezdőlap",
     "breadcrumbs": "Navigációs útvonal",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Elfogyott",
+    "size_guide": "Mérettáblázat",
     "unit_price_per": "{{ reference }} egységára: {{ price }}",
     "color": "Szín",
     "recently_viewed": "Legutóbb megtekintett",

@@ -14,6 +14,7 @@
     "toggle_theme": "Ndërro mes modalitetit të çelët dhe të errët",
     "light_mode": "Modaliteti i çelët",
     "dark_mode": "Modaliteti i errët",
+    "close": "Mbyll",
     "open_menu": "Menuja",
     "home": "Kryefaqja",
     "breadcrumbs": "Rruga e navigimit",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Shitur",
+    "size_guide": "Udhëzuesi i masave",
     "unit_price_per": "{{ price }} për {{ reference }}",
     "color": "Ngjyra",
     "recently_viewed": "Të shikuara së fundmi",

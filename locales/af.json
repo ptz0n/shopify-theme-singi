@@ -14,6 +14,7 @@
     "toggle_theme": "Wissel tussen lig- en donkermodus",
     "light_mode": "Ligte modus",
     "dark_mode": "Donker modus",
+    "close": "Maak toe",
     "open_menu": "Kieslys",
     "home": "Tuis",
     "breadcrumbs": "Broodkrummels",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Uitverkoop",
+    "size_guide": "Grootgids",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Kleur",
     "recently_viewed": "Onlangs besigtig",

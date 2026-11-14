@@ -14,6 +14,7 @@
     "toggle_theme": "Badilisha kati ya hali ya mwanga na giza",
     "light_mode": "Hali ya mwanga",
     "dark_mode": "Hali ya giza",
+    "close": "Funga",
     "open_menu": "Menyu",
     "home": "Mwanzo",
     "breadcrumbs": "Njia ya urambazaji",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Imeisha",
+    "size_guide": "Mwongozo wa saizi",
     "unit_price_per": "{{ price }} kwa {{ reference }}",
     "color": "Rangi",
     "recently_viewed": "Zilizotazamwa hivi karibuni",

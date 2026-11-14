@@ -15,11 +15,20 @@
         "picker": {
           "type": "_variant-picker"
         },
+        "size-guide": {
+          "type": "_size-guide"
+        },
         "buy": {
           "type": "_buy-buttons"
         },
+        "policies": {
+          "type": "_product-policies"
+        },
         "description": {
           "type": "_product-description"
+        },
+        "specs": {
+          "type": "_product-specs"
         },
         "meta": {
           "type": "_product-meta"
@@ -30,8 +39,11 @@
         "price",
         "colors",
         "picker",
+        "size-guide",
         "buy",
+        "policies",
         "description",
+        "specs",
         "meta"
       ],
       "settings": {}

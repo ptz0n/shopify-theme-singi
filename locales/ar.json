@@ -14,6 +14,7 @@
     "toggle_theme": "التبديل بين الوضع الفاتح والداكن",
     "light_mode": "الوضع الفاتح",
     "dark_mode": "الوضع الداكن",
+    "close": "إغلاق",
     "open_menu": "القائمة",
     "home": "الرئيسية",
     "breadcrumbs": "مسار التنقل",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "نفدت الكمية",
+    "size_guide": "دليل المقاسات",
     "unit_price_per": "{{ price }} لكل {{ reference }}",
     "color": "اللون",
     "recently_viewed": "شوهدت مؤخرًا",

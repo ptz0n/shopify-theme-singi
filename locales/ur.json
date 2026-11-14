@@ -14,6 +14,7 @@
     "toggle_theme": "لائٹ اور ڈارک موڈ تبدیل کریں",
     "light_mode": "لائٹ موڈ",
     "dark_mode": "ڈارک موڈ",
+    "close": "بند کریں",
     "open_menu": "مینو",
     "home": "ہوم",
     "breadcrumbs": "بریڈ کرمبز",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "فروخت ہو چکا",
+    "size_guide": "سائز گائیڈ",
     "unit_price_per": "{{ price }} فی {{ reference }}",
     "color": "رنگ",
     "recently_viewed": "حال ہی میں دیکھے گئے",

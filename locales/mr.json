@@ -14,6 +14,7 @@
     "toggle_theme": "लाइट आणि डार्क मोड बदला",
     "light_mode": "लाइट मोड",
     "dark_mode": "डार्क मोड",
+    "close": "बंद करा",
     "open_menu": "मेनू",
     "home": "मुख्यपृष्ठ",
     "breadcrumbs": "ब्रेडक्रंब",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "विकले गेले",
+    "size_guide": "साईज गाइड",
     "unit_price_per": "प्रति {{ reference }} {{ price }}",
     "color": "रंग",
     "recently_viewed": "अलीकडे पाहिलेले",

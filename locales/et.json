@@ -14,6 +14,7 @@
     "toggle_theme": "Vaheta hele ja tume režiim",
     "light_mode": "Hele režiim",
     "dark_mode": "Tume režiim",
+    "close": "Sulge",
     "open_menu": "Menüü",
     "home": "Avaleht",
     "breadcrumbs": "Navigeerimisrada",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Välja müüdud",
+    "size_guide": "Suuruste tabel",
     "unit_price_per": "{{ price }} {{ reference }} kohta",
     "color": "Värv",
     "recently_viewed": "Hiljuti vaadatud",

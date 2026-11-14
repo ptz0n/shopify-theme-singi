@@ -14,6 +14,7 @@
     "toggle_theme": "Промени помеѓу светол и темен режим",
     "light_mode": "Светол режим",
     "dark_mode": "Темен режим",
+    "close": "Затвори",
     "open_menu": "Мени",
     "home": "Почетна",
     "breadcrumbs": "Навигациска патека",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Распродадено",
+    "size_guide": "Водич за големини",
     "unit_price_per": "{{ price }} за {{ reference }}",
     "color": "Боја",
     "recently_viewed": "Неодамна прегледани",

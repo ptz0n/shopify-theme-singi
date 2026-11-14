@@ -376,9 +376,10 @@ export const imageSize = (seed) => {
    variantMetafields { value: [metafield] }. Product extras: soldOutValues { option: [values] },
    metafields [{ key, type, value }]. */
 
-/* Measurement metafield value. Units: dimension cm, mm; weight kg, g; power watts; area square_meters (Shopify rejects W and m2). */
+/* Measurement metafield value. Units: dimension cm, mm; weight kg, g; area square_meters (Shopify rejects m2). Block settings can only be connected to weight, volume, dimension, rating and money measurements, so power is a plain number. */
 const measure = (value, unit) => JSON.stringify({ value, unit });
-const list = (...values) => JSON.stringify(values);
+/* One item per line: a list metafield arrives joined without separators when connected to a block setting, a multi-line text keeps its lines. */
+const lines = (...values) => values.join('\n');
 
 export const NICHE_DEFINITIONS = [
   { ownerType: 'PRODUCT', key: 'fit_notes', name: 'Fit notes', type: 'single_line_text_field', description: 'How the product fits, for example "Regular fit. Model is 185 cm and wears size M."' },
@@ -386,16 +387,17 @@ export const NICHE_DEFINITIONS = [
   { ownerType: 'PRODUCT', key: 'material', name: 'Material', type: 'single_line_text_field', description: 'Main material or composition.' },
   { ownerType: 'PRODUCT', key: 'care', name: 'Care', type: 'multi_line_text_field', description: 'Care instructions.' },
   { ownerType: 'PRODUCT', key: 'ingredients', name: 'Ingredients', type: 'multi_line_text_field', description: 'Full ingredient list (INCI for cosmetics).' },
-  { ownerType: 'PRODUCT', key: 'allergens', name: 'Allergens', type: 'list.single_line_text_field', description: 'Allergens the product contains or may contain.' },
-  { ownerType: 'PRODUCT', key: 'compatible_with', name: 'Compatible with', type: 'list.single_line_text_field', description: 'Devices or systems the product works with.' },
+  { ownerType: 'PRODUCT', key: 'allergens', name: 'Allergens', type: 'multi_line_text_field', description: 'Allergens the product contains or may contain, one per line.' },
+  { ownerType: 'PRODUCT', key: 'compatible_with', name: 'Compatible with', type: 'multi_line_text_field', description: 'Devices or systems the product works with, one per line.' },
   { ownerType: 'PRODUCT', key: 'weight', name: 'Weight', type: 'weight', description: 'Product weight.' },
   { ownerType: 'PRODUCT', key: 'packed_length', name: 'Packed length', type: 'dimension', description: 'Packed length.' },
-  { ownerType: 'PRODUCT', key: 'power', name: 'Power', type: 'power', description: 'Rated power.' },
+  { ownerType: 'PRODUCT', key: 'power_watts', name: 'Power (W)', type: 'number_integer', description: 'Rated power in watts.' },
   { ownerType: 'PRODUCT', key: 'battery_hours', name: 'Battery life (hours)', type: 'number_integer', description: 'Battery life in hours.' },
   { ownerType: 'PRODUCT', key: 'waterproof_mm', name: 'Waterproof rating (mm)', type: 'number_integer', description: 'Hydrostatic head in millimetres.' },
   { ownerType: 'PRODUCT', key: 'warranty', name: 'Warranty', type: 'single_line_text_field', description: 'Warranty terms in one line.' },
   { ownerType: 'PRODUCT', key: 'case_diameter', name: 'Case diameter', type: 'dimension', description: 'Watch case diameter.' },
   { ownerType: 'PRODUCT', key: 'production_days', name: 'Production time (days)', type: 'number_integer', description: 'Working days to make a made-to-order product, before shipping.' },
+  { ownerType: 'PRODUCT', key: 'returns_note', name: 'Returns note', type: 'multi_line_text_field', description: 'Product-specific return terms, shown near the buy button, for example for personalized items.' },
   { ownerType: 'PRODUCT', key: 'edition', name: 'Edition', type: 'single_line_text_field', description: 'Edition information for prints and art.' },
   { ownerType: 'PRODUCT', key: 'personalization_label', name: 'Personalization label', type: 'single_line_text_field', description: 'Label of the personalization field, for example "Engraving".' },
   { ownerType: 'PRODUCT', key: 'personalization_max_length', name: 'Personalization max length', type: 'number_integer', description: 'Maximum characters in the personalization text.' },
@@ -412,7 +414,7 @@ const dimsFor = (w, d, h) => [
   { key: 'depth', type: 'dimension', value: measure(d, 'cm') },
   { key: 'height', type: 'dimension', value: measure(h, 'cm') },
 ];
-const niche = (slug, fields) => ({ handle: `mock-${slug}`, vendor: 'Singi', images: [`niche-${slug}-1`, `niche-${slug}-2`], ...fields });
+const niche = (slug, fields) => ({ handle: `mock-${slug}`, vendor: 'Singi', template: 'demo', images: [`niche-${slug}-1`, `niche-${slug}-2`], ...fields });
 
 PRODUCTS.push(
   /* Fashion */
@@ -428,6 +430,7 @@ PRODUCTS.push(
     soldOutValues: { Size: ['XL'] },
     collections: ['mock-fashion', 'mock-new-arrivals'],
     metafields: [
+      { key: 'returns_note', type: 'multi_line_text_field', value: 'Free returns within 30 days.' },
       { key: 'fit_notes', type: 'single_line_text_field', value: 'Regular fit. Model is 185 cm and wears size M.' },
       { key: 'material', type: 'single_line_text_field', value: '100% extra-fine merino wool' },
       { key: 'care', type: 'multi_line_text_field', value: 'Machine wash at 30 degrees, wool cycle.\nReshape and dry flat.\nDo not tumble dry.' },
@@ -446,6 +449,7 @@ PRODUCTS.push(
     soldOutValues: { Size: ['EU 40', 'EU 41'] },
     collections: ['mock-fashion'],
     metafields: [
+      { key: 'returns_note', type: 'multi_line_text_field', value: 'Free returns within 30 days.' },
       { key: 'fit_notes', type: 'single_line_text_field', value: 'Runs half a size large. Order your usual size or half a size down.' },
       { key: 'material', type: 'single_line_text_field', value: 'Full-grain calf leather, leather lining, rubber sole' },
     ],
@@ -464,6 +468,7 @@ PRODUCTS.push(
     images: ['square-signet-ring-1', 'square-signet-ring-2'],
     collections: ['mock-jewelry'],
     metafields: [
+      { key: 'returns_note', type: 'multi_line_text_field', value: 'Personalized items are made for you and cannot be returned unless faulty.' },
       { key: 'material', type: 'single_line_text_field', value: '9 carat solid gold, or sterling silver 925' },
       { key: 'warranty', type: 'single_line_text_field', value: 'Lifetime warranty on materials and workmanship' },
       { key: 'production_days', type: 'number_integer', value: '4' },
@@ -519,7 +524,7 @@ PRODUCTS.push(
     collections: ['mock-beauty'],
     metafields: [
       { key: 'ingredients', type: 'multi_line_text_field', value: 'Aqua, Glycerin, Niacinamide, Panthenol, Ceramide NP, Ceramide AP, Ceramide EOP, Phytosphingosine, Cholesterol, Sodium Hyaluronate, Allantoin, Xanthan Gum, Phenoxyethanol.' },
-      { key: 'allergens', type: 'list.single_line_text_field', value: list('Fragrance-free') },
+      { key: 'allergens', type: 'multi_line_text_field', value: lines('Fragrance-free') },
     ],
   }),
   /* Food and drink */
@@ -544,7 +549,7 @@ PRODUCTS.push(
     collections: ['mock-food'],
     metafields: [
       { key: 'ingredients', type: 'multi_line_text_field', value: '100% Arabica coffee beans.' },
-      { key: 'allergens', type: 'list.single_line_text_field', value: list('Packed in a facility that also handles nuts and milk') },
+      { key: 'allergens', type: 'multi_line_text_field', value: lines('Packed in a facility that also handles nuts and milk') },
       { key: 'care', type: 'multi_line_text_field', value: 'Store airtight, away from light and heat. Best within 6 weeks of the roast date.' },
     ],
   }),
@@ -569,7 +574,7 @@ PRODUCTS.push(
     collections: ['mock-food'],
     metafields: [
       { key: 'ingredients', type: 'multi_line_text_field', value: 'Extra virgin olive oil, early harvest.' },
-      { key: 'allergens', type: 'list.single_line_text_field', value: list('No allergens') },
+      { key: 'allergens', type: 'multi_line_text_field', value: lines('No allergens') },
     ],
   }),
   /* Electronics */
@@ -584,7 +589,7 @@ PRODUCTS.push(
       { key: 'weight', type: 'weight', value: measure(254, 'g') },
       { key: 'battery_hours', type: 'number_integer', value: '40' },
       { key: 'warranty', type: 'single_line_text_field', value: '2 years' },
-      { key: 'compatible_with', type: 'list.single_line_text_field', value: list('iPhone and iPad', 'Android 8 and newer', 'Mac and Windows', 'Bluetooth 5.3 and multipoint') },
+      { key: 'compatible_with', type: 'multi_line_text_field', value: lines('iPhone and iPad', 'Android 8 and newer', 'Mac and Windows', 'Bluetooth 5.3 and multipoint') },
     ],
   }),
   niche('usb-charger', {
@@ -595,10 +600,10 @@ PRODUCTS.push(
     options: [],
     collections: ['mock-electronics'],
     metafields: [
-      { key: 'power', type: 'power', value: measure(65, 'watts') },
+      { key: 'power_watts', type: 'number_integer', value: '65' },
       { key: 'weight', type: 'weight', value: measure(112, 'g') },
       { key: 'warranty', type: 'single_line_text_field', value: '2 years' },
-      { key: 'compatible_with', type: 'list.single_line_text_field', value: list('MacBook Air and Pro (USB-C)', 'iPhone 15 and newer', 'Pixel 8 and newer', 'Nintendo Switch and Steam Deck') },
+      { key: 'compatible_with', type: 'multi_line_text_field', value: lines('MacBook Air and Pro (USB-C)', 'iPhone 15 and newer', 'Pixel 8 and newer', 'Nintendo Switch and Steam Deck') },
     ],
   }),
   /* Home and furniture */
@@ -695,6 +700,7 @@ PRODUCTS.push(
     images: ['niche-framed-print-1', 'niche-framed-print-2'],
     collections: ['mock-made-to-order'],
     metafields: [
+      { key: 'returns_note', type: 'multi_line_text_field', value: 'Personalized items are made for you and cannot be returned unless faulty.' },
       { key: 'production_days', type: 'number_integer', value: '5' },
       { key: 'personalization_label', type: 'single_line_text_field', value: 'Place and date, printed under the map' },
       { key: 'personalization_max_length', type: 'number_integer', value: '40' },
@@ -710,6 +716,7 @@ PRODUCTS.push(
     images: ['niche-cutting-board-1', 'niche-cutting-board-2'],
     collections: ['mock-made-to-order', 'mock-home'],
     metafields: [
+      { key: 'returns_note', type: 'multi_line_text_field', value: 'Personalized items are made for you and cannot be returned unless faulty.' },
       { key: 'material', type: 'single_line_text_field', value: 'Solid walnut, food-safe oil finish' },
       { key: 'production_days', type: 'number_integer', value: '3' },
       { key: 'personalization_label', type: 'single_line_text_field', value: 'Engraving' },

@@ -1,0 +1,42 @@
+{% doc %}
+  Size guide: a link under the size options that opens the guide in a native popover (no
+  JavaScript; Escape and a click outside close it, and focus returns to the link). Connect the
+  content to a product metafield in the theme editor (dynamic source), for example a text size
+  chart. Renders nothing when the content is empty. Private to product sections.
+{% enddoc %}
+
+{%- if block.settings.content != blank -%}
+  {%- assign panel_id = 'size-guide-' | append: block.id -%}
+  <div class="size-guide" {{ block.shopify_attributes }}>
+    <button class="size-guide__button" type="button" popovertarget="{{ panel_id }}">{{ 'products.size_guide' | t }}</button>
+    <div class="size-guide__panel" id="{{ panel_id }}" popover role="dialog" aria-labelledby="{{ panel_id }}-title">
+      <div class="size-guide__head">
+        <h2 id="{{ panel_id }}-title">{{ 'products.size_guide' | t }}</h2>
+        <button class="icon-button" type="button" popovertarget="{{ panel_id }}" popovertargetaction="hide" aria-label="{{ 'general.close' | t }}" autofocus>
+          {%- render 'icon', name: 'close' -%}
+        </button>
+      </div>
+      <div class="prose">{{ block.settings.content }}</div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  /* Sits under the size options, close enough to read as part of them (the 44px target is taller than the text). */
+  .size-guide { margin-block-start: -0.75rem; }
+  .size-guide__button { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0; border: 0; background: none; color: var(--color-accent); font: inherit; font-size: 0.875rem; text-decoration: underline; cursor: pointer; }
+  .size-guide__panel { inset: 0; margin: auto; width: min(36rem, calc(100vw - 2rem)); max-height: min(40rem, calc(100svh - 2rem)); overflow: auto; padding: 1.25rem; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); color: var(--color-fg); }
+  .size-guide__panel::backdrop { background: color-mix(in srgb, var(--color-fg) 45%, transparent); }
+  .size-guide__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-block-end: 1rem; }
+  .size-guide__head h2 { font-size: 1.125rem; }
+  .size-guide__panel p { white-space: pre-line; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Size guide",
+  "settings": [
+    { "type": "richtext", "id": "content", "label": "Content", "info": "Connect to a product metafield with the dynamic source button. Nothing is shown when it is empty." }
+  ]
+}
+{% endschema %}

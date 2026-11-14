@@ -14,6 +14,7 @@
     "toggle_theme": "Comută între modul luminos și întunecat",
     "light_mode": "Mod luminos",
     "dark_mode": "Mod întunecat",
+    "close": "Închide",
     "open_menu": "Meniu",
     "home": "Acasă",
     "breadcrumbs": "Navigare",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Stoc epuizat",
+    "size_guide": "Ghid de mărimi",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Culoare",
     "recently_viewed": "Vizualizate recent",

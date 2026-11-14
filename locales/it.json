@@ -14,6 +14,7 @@
     "toggle_theme": "Passa dalla modalità chiara a quella scura",
     "light_mode": "Modalità chiara",
     "dark_mode": "Modalità scura",
+    "close": "Chiudi",
     "open_menu": "Menu",
     "home": "Home",
     "breadcrumbs": "Percorso di navigazione",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Esaurito",
+    "size_guide": "Guida alle taglie",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Colore",
     "recently_viewed": "Visti di recente",

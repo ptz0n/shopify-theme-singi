@@ -14,6 +14,7 @@
     "toggle_theme": "ஒளி மற்றும் இருண்ட பயன்முறையை மாற்றவும்",
     "light_mode": "ஒளி பயன்முறை",
     "dark_mode": "இருண்ட பயன்முறை",
+    "close": "மூடு",
     "open_menu": "மெனு",
     "home": "முகப்பு",
     "breadcrumbs": "வழிசெலுத்தல் பாதை",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "விற்றுத் தீர்ந்தது",
+    "size_guide": "அளவு வழிகாட்டி",
     "unit_price_per": "{{ reference }}க்கு {{ price }}",
     "color": "நிறம்",
     "recently_viewed": "சமீபத்தில் பார்த்தவை",

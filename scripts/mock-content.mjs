@@ -179,6 +179,7 @@ const productInput = async (p) => {
     title: p.title,
     handle: p.handle,
     descriptionHtml: p.description,
+    ...(p.template ? { templateSuffix: p.template } : {}),
     vendor: p.vendor,
     productType: p.type,
     tags: [TAG],
@@ -226,6 +227,8 @@ if (wants('products') || wants('collections')) {
       const { productByIdentifier: existing } = await admin(OPS.productByHandle, { handle: p.handle });
       if (existing) {
         productIds.set(p.handle, existing.id);
+        if (p.metafields?.length && wants('products')) check(await admin(OPS.metafieldsSet, { metafields: p.metafields.map((m) => ({ ownerId: existing.id, namespace: 'custom', ...m })) }), `${p.handle} metafields`);
+        if (p.template && wants('products')) check(await admin(OPS.productTemplate, { product: { id: existing.id, templateSuffix: p.template } }), `${p.handle} template`);
         if (p.variantImages && wants('products')) await assignVariantImages(existing.id, p);
         if (wants('products')) await publish(existing.id);
         return log('exists', 'product', p.handle);

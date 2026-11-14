@@ -14,6 +14,7 @@
     "toggle_theme": "Preklopi med svetlim in temnim načinom",
     "light_mode": "Svetli način",
     "dark_mode": "Temni način",
+    "close": "Zapri",
     "open_menu": "Meni",
     "home": "Domov",
     "breadcrumbs": "Drobtinice",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Razprodano",
+    "size_guide": "Tabela velikosti",
     "unit_price_per": "{{ price }} za {{ reference }}",
     "color": "Barva",
     "recently_viewed": "Nedavno ogledano",

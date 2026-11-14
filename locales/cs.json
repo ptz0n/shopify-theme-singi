@@ -14,6 +14,7 @@
     "toggle_theme": "Přepnout světlý a tmavý režim",
     "light_mode": "Světlý režim",
     "dark_mode": "Tmavý režim",
+    "close": "Zavřít",
     "open_menu": "Menu",
     "home": "Domů",
     "breadcrumbs": "Drobečková navigace",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Vyprodáno",
+    "size_guide": "Tabulka velikostí",
     "unit_price_per": "{{ price }} za {{ reference }}",
     "color": "Barva",
     "recently_viewed": "Nedávno zobrazené",

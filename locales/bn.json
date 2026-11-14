@@ -14,6 +14,7 @@
     "toggle_theme": "লাইট ও ডার্ক মোড পরিবর্তন করুন",
     "light_mode": "লাইট মোড",
     "dark_mode": "ডার্ক মোড",
+    "close": "বন্ধ করুন",
     "open_menu": "মেনু",
     "home": "হোম",
     "breadcrumbs": "ব্রেডক্রাম্ব",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "স্টক শেষ",
+    "size_guide": "সাইজ গাইড",
     "unit_price_per": "প্রতি {{ reference }} {{ price }}",
     "color": "রং",
     "recently_viewed": "সম্প্রতি দেখা",

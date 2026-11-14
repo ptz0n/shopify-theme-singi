@@ -14,6 +14,7 @@
     "toggle_theme": "Превключване между светъл и тъмен режим",
     "light_mode": "Светъл режим",
     "dark_mode": "Тъмен режим",
+    "close": "Затвори",
     "open_menu": "Меню",
     "home": "Начало",
     "breadcrumbs": "Навигационна пътека",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Изчерпано",
+    "size_guide": "Таблица с размери",
     "unit_price_per": "{{ price }} за {{ reference }}",
     "color": "Цвят",
     "recently_viewed": "Наскоро разгледани",

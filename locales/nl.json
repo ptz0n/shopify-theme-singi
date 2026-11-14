@@ -14,6 +14,7 @@
     "toggle_theme": "Wisselen tussen lichte en donkere modus",
     "light_mode": "Lichte modus",
     "dark_mode": "Donkere modus",
+    "close": "Sluiten",
     "open_menu": "Menu",
     "home": "Home",
     "breadcrumbs": "Kruimelpad",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Uitverkocht",
+    "size_guide": "Maattabel",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Kleur",
     "recently_viewed": "Onlangs bekeken",

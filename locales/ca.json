@@ -14,6 +14,7 @@
     "toggle_theme": "Canvia entre mode clar i fosc",
     "light_mode": "Mode clar",
     "dark_mode": "Mode fosc",
+    "close": "Tanca",
     "open_menu": "Menú",
     "home": "Inici",
     "breadcrumbs": "Camí de navegació",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Esgotat",
+    "size_guide": "Guia de talles",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Color",
     "recently_viewed": "Vistos recentment",

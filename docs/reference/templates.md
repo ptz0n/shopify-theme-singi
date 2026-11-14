@@ -16,7 +16,8 @@ JSON templates compose sections. JSON templates are eligible for Shopify's strea
 | `page.json` | `main-page` |  |
 | `page.styleguide.json` | `main-styleguide` | `accordion`, `accordion`, `heading`, `text`, `button` |
 | `password.json` | `main-password` |  |
-| `product.json` | `main-product`, `content` | `_product-title`, `_product-price`, `_color-siblings`, `_variant-picker`, `_buy-buttons`, `_product-description`, `_product-meta`, `recently-viewed` |
+| `product.demo.json` | `main-product`, `content` | `_product-title`, `_product-price`, `_color-siblings`, `_variant-picker`, `_size-guide`, `_buy-buttons`, `_product-policies`, `_product-description`, `accordion`, `accordion`, `accordion`, `accordion`, `accordion`, `accordion`, `accordion`, `_product-specs`, `_product-meta`, `recently-viewed` |
+| `product.json` | `main-product`, `content` | `_product-title`, `_product-price`, `_color-siblings`, `_variant-picker`, `_size-guide`, `_buy-buttons`, `_product-policies`, `_product-description`, `_product-specs`, `_product-meta`, `recently-viewed` |
 | `search.json` | `main-search` |  |
 | `gift_card.liquid` | _liquid template_ | |
 | `product.recent.liquid` | _liquid template_ | |

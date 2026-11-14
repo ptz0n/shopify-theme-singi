@@ -47,6 +47,10 @@ Step-by-step recipes for adding sections, blocks, templates, settings, languages
 
 Follow [i18n.md](i18n.md#add-a-language): copy `locales/en.default.json` to `locales/<code>.json`, translate, keep keys and `{{ variables }}`, set the plural categories, run `npm run check`.
 
+## Show merchant data in a block
+
+See [metafields.md](metafields.md#adding-a-block-that-shows-merchant-data): take the content as a setting so the merchant connects it to a metafield, render nothing when it is empty, and test a product that lacks the data.
+
 ## Add a skeleton
 
 Follow [soft-navigation.md](soft-navigation.md#add-a-skeleton): add a `<template id="skeleton-<name>">` in `snippets/skeletons.liquid` and map the route in `skeletonFor()` in `assets/soft-nav.js`.

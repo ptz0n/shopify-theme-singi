@@ -14,6 +14,7 @@
     "toggle_theme": "Chuyển chế độ sáng/tối",
     "light_mode": "Chế độ sáng",
     "dark_mode": "Chế độ tối",
+    "close": "Đóng",
     "open_menu": "Menu",
     "home": "Trang chủ",
     "breadcrumbs": "Đường dẫn điều hướng",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Hết hàng",
+    "size_guide": "Hướng dẫn chọn size",
     "unit_price_per": "{{ price }} mỗi {{ reference }}",
     "color": "Màu sắc",
     "recently_viewed": "Đã xem gần đây",

@@ -14,6 +14,7 @@
     "toggle_theme": "Basculer entre le mode clair et le mode sombre",
     "light_mode": "Mode clair",
     "dark_mode": "Mode sombre",
+    "close": "Fermer",
     "open_menu": "Menu",
     "home": "Accueil",
     "breadcrumbs": "Fil d’Ariane",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Épuisé",
+    "size_guide": "Guide des tailles",
     "unit_price_per": "{{ price }} par {{ reference }}",
     "color": "Couleur",
     "recently_viewed": "Récemment consultés",

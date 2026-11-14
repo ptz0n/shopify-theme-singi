@@ -14,6 +14,7 @@
     "toggle_theme": "切換淺色/深色模式",
     "light_mode": "淺色模式",
     "dark_mode": "深色模式",
+    "close": "關閉",
     "open_menu": "選單",
     "home": "首頁",
     "breadcrumbs": "導覽路徑",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "已售完",
+    "size_guide": "尺寸指南",
     "unit_price_per": "每{{ reference }}{{ price }}",
     "color": "顏色",
     "recently_viewed": "最近瀏覽",

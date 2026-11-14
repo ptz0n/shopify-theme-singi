@@ -14,6 +14,7 @@
     "toggle_theme": "ライトモードとダークモードを切り替える",
     "light_mode": "ライトモード",
     "dark_mode": "ダークモード",
+    "close": "閉じる",
     "open_menu": "メニュー",
     "home": "ホーム",
     "breadcrumbs": "パンくずリスト",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "完売",
+    "size_guide": "サイズガイド",
     "unit_price_per": "{{ reference }}あたり{{ price }}",
     "color": "カラー",
     "recently_viewed": "最近見た商品",

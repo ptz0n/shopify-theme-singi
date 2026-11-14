@@ -14,6 +14,7 @@
     "toggle_theme": "Εναλλαγή φωτεινής και σκοτεινής λειτουργίας",
     "light_mode": "Φωτεινή λειτουργία",
     "dark_mode": "Σκοτεινή λειτουργία",
+    "close": "Κλείσιμο",
     "open_menu": "Μενού",
     "home": "Αρχική",
     "breadcrumbs": "Διαδρομή πλοήγησης",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Εξαντλήθηκε",
+    "size_guide": "Οδηγός μεγεθών",
     "unit_price_per": "{{ price }} ανά {{ reference }}",
     "color": "Χρώμα",
     "recently_viewed": "Προβλήθηκαν πρόσφατα",

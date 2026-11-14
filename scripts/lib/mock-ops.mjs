@@ -13,6 +13,12 @@ export const OPS = {
   variantAppendMedia:
     'mutation SingiVariantAppendMedia($productId: ID!, $variantMedia: [ProductVariantAppendMediaInput!]!) { productVariantAppendMedia(productId: $productId, variantMedia: $variantMedia) { userErrors { field message } } }',
 
+  metafieldsSet:
+    'mutation SingiSetMetafields($metafields: [MetafieldsSetInput!]!) { metafieldsSet(metafields: $metafields) { metafields { namespace key } userErrors { field message code } } }',
+
+  productTemplate:
+    'mutation SingiProductTemplate($product: ProductUpdateInput!) { productUpdate(product: $product) { product { id templateSuffix } userErrors { field message } } }',
+
   publish: 'mutation SingiPublish($id: ID!, $input: [PublicationInput!]!) { publishablePublish(id: $id, input: $input) { userErrors { field message } } }',
 
   stagedUploads:

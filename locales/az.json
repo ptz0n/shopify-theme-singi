@@ -14,6 +14,7 @@
     "toggle_theme": "İşıqlı və qaranlıq rejimi dəyiş",
     "light_mode": "İşıqlı rejim",
     "dark_mode": "Qaranlıq rejim",
+    "close": "Bağla",
     "open_menu": "Menyu",
     "home": "Ana səhifə",
     "breadcrumbs": "Naviqasiya yolu",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Satılıb",
+    "size_guide": "Ölçü bələdçisi",
     "unit_price_per": "{{ reference }} üçün {{ price }}",
     "color": "Rəng",
     "recently_viewed": "Son baxılanlar",

@@ -14,6 +14,7 @@
     "toggle_theme": "Aldatu modu argia eta iluna",
     "light_mode": "Modu argia",
     "dark_mode": "Modu iluna",
+    "close": "Itxi",
     "open_menu": "Menua",
     "home": "Hasiera",
     "breadcrumbs": "Nabigazio-bidea",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Agortuta",
+    "size_guide": "Neurri gida",
     "unit_price_per": "{{ price }} {{ reference }} bakoitzeko",
     "color": "Kolorea",
     "recently_viewed": "Duela gutxi ikusiak",

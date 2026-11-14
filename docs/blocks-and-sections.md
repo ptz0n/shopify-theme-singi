@@ -32,6 +32,9 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 | `_product-title` | Page h1 with optional vendor eyebrow. |
 | `_product-price` | Price (and unit price) for the selected variant, via `snippets/price.liquid`. |
 | `_color-siblings` | Swatch links between separate products that are the same product in another color. Server-rendered, no JS. Data and upkeep: [decision 003](decisions/003-color-siblings-product-list.md), `npm run siblings`. |
+| `_size-guide` | A "Size guide" link under the size options that opens its content in a native popover (no JS). Content connects to a metafield; renders nothing when empty. See [metafields](metafields.md). |
+| `_product-specs` | Up to eight label and value rows as a table. Each value connects to a metafield; empty rows and an empty table are left out. See [metafields](metafields.md). |
+| `_product-policies` | Returns and shipping near the buy button: the store's refund and shipping policy links (when written) and an optional connected summary, for example terms for personalized items. |
 | `_variant-picker` | Radio chips from `product.options_with_values`. Fires `change`; handled by `<product-form>`. |
 | `_buy-buttons` | Quantity, add to cart, optional dynamic checkout button, status region. Works without JS. |
 | `_product-description` | Product description in `.prose`. |

@@ -14,6 +14,7 @@
     "toggle_theme": "Zwischen hellem und dunklem Modus wechseln",
     "light_mode": "Heller Modus",
     "dark_mode": "Dunkler Modus",
+    "close": "Schließen",
     "open_menu": "Menü",
     "home": "Startseite",
     "breadcrumbs": "Brotkrumennavigation",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Ausverkauft",
+    "size_guide": "Größentabelle",
     "unit_price_per": "{{ price }} pro {{ reference }}",
     "color": "Farbe",
     "recently_viewed": "Zuletzt angesehen",

@@ -14,6 +14,7 @@
     "toggle_theme": "Przełącz tryb jasny i ciemny",
     "light_mode": "Tryb jasny",
     "dark_mode": "Tryb ciemny",
+    "close": "Zamknij",
     "open_menu": "Menu",
     "home": "Strona główna",
     "breadcrumbs": "Ścieżka nawigacji",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Wyprzedane",
+    "size_guide": "Tabela rozmiarów",
     "unit_price_per": "{{ price }} za {{ reference }}",
     "color": "Kolor",
     "recently_viewed": "Ostatnio oglądane",

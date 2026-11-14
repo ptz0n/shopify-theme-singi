@@ -1,0 +1,50 @@
+{% doc %}
+  Returns and shipping near the buy button: links to the store's refund and shipping policies
+  (only the ones the merchant has written), and an optional short summary, for example "Free
+  returns within 30 days". Connect the summary to a product metafield for product-specific
+  terms (custom or made-to-order items). Renders nothing when there is nothing to show.
+  Private to product sections.
+{% enddoc %}
+
+{%- liquid
+  assign summary = block.settings.summary
+  assign refund = shop.refund_policy
+  assign shipping = shop.shipping_policy
+  assign show_refund = false
+  assign show_shipping = false
+  if refund.body != blank
+    assign show_refund = true
+  endif
+  if shipping.body != blank
+    assign show_shipping = true
+  endif
+-%}
+
+{%- if summary != blank or show_refund or show_shipping -%}
+  <div class="policies stack" style="--stack: 0.25rem" {{ block.shopify_attributes }}>
+    {%- if summary != blank -%}
+      <div class="policies__summary prose">{{ summary }}</div>
+    {%- endif -%}
+    {%- if show_refund or show_shipping -%}
+      <ul class="policies__links" role="list">
+        {%- if show_refund -%}<li><a href="{{ refund.url }}">{{ refund.title }}</a></li>{%- endif -%}
+        {%- if show_shipping -%}<li><a href="{{ shipping.url }}">{{ shipping.title }}</a></li>{%- endif -%}
+      </ul>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .policies { font-size: 0.875rem; color: var(--color-muted); }
+  .policies__links { display: flex; flex-wrap: wrap; gap: 0 1rem; padding: 0; margin: 0; list-style: none; }
+  .policies__links a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Returns and shipping",
+  "settings": [
+    { "type": "richtext", "id": "summary", "label": "Summary", "info": "Optional. Connect to a product metafield for product-specific terms. The store's refund and shipping policy links appear automatically when written." }
+  ]
+}
+{% endschema %}

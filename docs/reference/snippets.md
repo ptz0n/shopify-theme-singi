@@ -157,6 +157,19 @@ Must be rendered inside a section (it reads `section.id` and `section.index`).
 {% render 'localization-selector' %}
 ```
 
+## meta-list
+
+File: `snippets/meta-list.liquid`
+
+Styles for the monospace attribute table (.meta): one row per attribute, the name at the
+start and the value at the end, with line dividers. Outputs nothing. Render it once in every
+block that uses .meta (the product meta and the specs blocks), so Shopify includes the CSS
+on pages that have either one.
+
+```liquid
+{% render 'meta-list' %}
+```
+
 ## meta-tags
 
 File: `snippets/meta-tags.liquid`

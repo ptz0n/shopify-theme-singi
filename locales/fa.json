@@ -14,6 +14,7 @@
     "toggle_theme": "تغییر حالت روشن و تیره",
     "light_mode": "حالت روشن",
     "dark_mode": "حالت تاریک",
+    "close": "بستن",
     "open_menu": "منو",
     "home": "صفحه اصلی",
     "breadcrumbs": "مسیر صفحه",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "ناموجود",
+    "size_guide": "راهنمای سایز",
     "unit_price_per": "{{ price }} به ازای هر {{ reference }}",
     "color": "رنگ",
     "recently_viewed": "بازدیدهای اخیر",

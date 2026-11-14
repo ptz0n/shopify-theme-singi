@@ -14,6 +14,7 @@
     "toggle_theme": "Prebaci između svijetlog i tamnog načina",
     "light_mode": "Svijetli način",
     "dark_mode": "Tamni način",
+    "close": "Zatvori",
     "open_menu": "Meni",
     "home": "Početna",
     "breadcrumbs": "Putanja navigacije",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "Rasprodano",
+    "size_guide": "Vodič za veličine",
     "unit_price_per": "{{ price }} po {{ reference }}",
     "color": "Boja",
     "recently_viewed": "Nedavno pregledano",

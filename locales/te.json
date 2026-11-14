@@ -14,6 +14,7 @@
     "toggle_theme": "లైట్ మరియు డార్క్ మోడ్ మార్చండి",
     "light_mode": "లైట్ మోడ్",
     "dark_mode": "డార్క్ మోడ్",
+    "close": "మూసివేయి",
     "open_menu": "మెనూ",
     "home": "హోమ్",
     "breadcrumbs": "నావిగేషన్ మార్గం",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "అమ్ముడైపోయింది",
+    "size_guide": "సైజ్ గైడ్",
     "unit_price_per": "{{ reference }}కి {{ price }}",
     "color": "రంగు",
     "recently_viewed": "ఇటీవల చూసినవి",

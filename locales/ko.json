@@ -14,6 +14,7 @@
     "toggle_theme": "라이트 모드/다크 모드 전환",
     "light_mode": "라이트 모드",
     "dark_mode": "다크 모드",
+    "close": "닫기",
     "open_menu": "메뉴",
     "home": "홈",
     "breadcrumbs": "탐색 경로",
@@ -25,6 +26,7 @@
   },
   "products": {
     "sold_out": "품절",
+    "size_guide": "사이즈 가이드",
     "unit_price_per": "{{ reference }}당 {{ price }}",
     "color": "색상",
     "recently_viewed": "최근 본 상품",
