@@ -1,0 +1,16 @@
+{% comment %}
+  The results under the header search field as you type. Never placed on a page:
+  assets/predictive-search.js fetches it from /search/suggest with section_id=predictive-search
+  (Section Rendering API) and puts the markup under the field.
+
+  Suggestions (search terms and collections) are the lower part of the search box; matching products,
+  pages and articles and the "Show all" button sit below it. The markup is in snippets/search-results.liquid.
+{% endcomment %}
+
+{%- render 'search-results', results: predictive_search -%}
+{% schema %}
+{
+  "name": "Predictive search",
+  "settings": []
+}
+{% endschema %}

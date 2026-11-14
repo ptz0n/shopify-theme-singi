@@ -1,0 +1,14 @@
+{% doc %}
+  Product description. Private to product sections.
+{% enddoc %}
+
+{%- if product.description != blank -%}
+  <div class="prose" {{ block.shopify_attributes }}>{{ product.description }}</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product description",
+  "settings": []
+}
+{% endschema %}

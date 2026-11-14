@@ -1,0 +1,82 @@
+{% doc %}
+  Quantity, add to cart with the wishlist toggle beside it (an icon button, named
+  for screen readers with aria-label and aria-pressed), and dynamic checkout buttons. Works with no JavaScript
+  (a normal form post); assets/product-form.js upgrades it to add without a
+  page load. Private to product sections.
+{% enddoc %}
+
+{%- assign variant = product.selected_or_first_available_variant -%}
+
+<div class="buy stack" {{ block.shopify_attributes }}>
+  {%- form 'product', product, data-add-to-cart: '', class: 'buy__form stack' -%}
+    <input type="hidden" name="id" value="{{ variant.id }}">
+
+    {%- if block.settings.show_quantity -%}
+      <div>
+        {%- assign quantity_id = 'quantity-' | append: section.id -%}
+        <label for="{{ quantity_id }}">{{ 'products.quantity' | t }}</label>
+        {%- render 'quantity-input', id: quantity_id, name: 'quantity', value: 1, min: 1 -%}
+      </div>
+    {%- endif -%}
+
+    <div class="buy__actions">
+      <button class="button" type="submit"{% unless variant.available %} disabled{% endunless %}>
+        {%- render 'icon', name: 'cart' -%}
+        <span>
+          {%- if variant.available -%}
+            {{ 'products.add_to_cart' | t }}
+          {%- else -%}
+            {{ 'products.sold_out' | t }}
+          {%- endif -%}
+        </span>
+      </button>
+      {%- if settings.wishlist_enabled -%}
+        <button class="button button--secondary buy__wishlist" type="button" data-wishlist="{{ product.handle }}" data-variant="{{ variant.id }}" aria-pressed="false" aria-label="{{ 'wishlist.toggle' | t: title: product.title }}">
+          {%- render 'icon', name: 'heart' -%}
+        </button>
+      {%- endif -%}
+    </div>
+
+    {%- if block.settings.show_dynamic_checkout -%}
+      <div data-payment{% unless variant.available %} hidden{% endunless %}>{{ form | payment_button }}</div>
+    {%- endif -%}
+  {%- endform -%}
+
+  <p class="buy__status" data-status role="status" hidden>
+    <span data-message></span>
+    <a href="{{ routes.cart_url }}" hidden>{{ 'products.view_cart' | t }}</a>
+  </p>
+</div>
+
+{% stylesheet %}
+  .buy {
+    --stack: 0.75rem;
+    --shopify-accelerated-checkout-button-border-radius: var(--radius);
+    --shopify-accelerated-checkout-button-block-size: 3rem;
+    --shopify-accelerated-checkout-row-gap: 0.75rem;
+  }
+  .buy .shopify-payment-button { min-height: 3rem; }
+  /* Same box as .button: Shopify's own padding and display leave the label overflowing a 3rem box. Three classes beat its stylesheet without !important. */
+  .buy .shopify-payment-button .shopify-payment-button__button { display: flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 3rem; padding: 0.6875rem 1.5rem; border-radius: var(--radius); font: inherit; font-weight: var(--font-weight-strong); line-height: 1.5; }
+  .buy .shopify-payment-button .shopify-payment-button__button--unbranded { border: 1px solid var(--color-control); background: transparent; color: var(--color-fg); box-shadow: none; }
+  .buy .shopify-payment-button .shopify-payment-button__button--unbranded:hover:not([disabled]) { background: var(--color-surface); }
+  .buy .shopify-payment-button__more-options { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--color-muted); font: inherit; font-size: 0.875rem; }
+  .buy__form { --stack: 0.75rem; }
+  .buy__actions { display: flex; gap: 0.75rem; }
+  .buy__actions [type='submit'] { flex: 1; min-width: 0; }
+  .buy__actions [type='submit'][disabled] .icon { display: none; }
+  .buy__wishlist { flex: none; width: 3rem; padding: 0; }
+  .buy__wishlist[aria-pressed='true'] .icon { fill: currentcolor; }
+  .buy__status { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; font-size: 0.9375rem; }
+  .button[aria-disabled='true'] { opacity: 0.6; pointer-events: none; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Buy buttons",
+  "settings": [
+    { "type": "checkbox", "id": "show_quantity", "label": "Show quantity selector", "default": true, "info": "When hidden, the button adds one item." },
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout buttons", "default": true, "info": "Loads Shopify's payment button script. Turn off for the best performance score." }
+  ]
+}
+{% endschema %}

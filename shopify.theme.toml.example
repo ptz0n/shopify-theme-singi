@@ -1,0 +1,6 @@
+# Copy to shopify.theme.toml (git-ignored) and fill in. Never commit real values.
+# Theme Access password: Shopify admin > Apps > Theme Access > Create password.
+[environments.DEV]
+store = "your-store.myshopify.com"
+password = "shptka_xxxxxxxxxxxxxxxxxxxxxxxx"
+theme = "<unpublished theme id from: npm run theme:list>"

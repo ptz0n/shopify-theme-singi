@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "صفحہ نہیں ملا",
+    "body": "آپ جو صفحہ تلاش کر رہے ہیں وہ موجود نہیں ہے یا منتقل ہو چکا ہے۔",
+    "cta": "خریداری جاری رکھیں"
+  },
+  "general": {
+    "skip_to_content": "مواد پر جائیں",
+    "main_menu": "مرکزی مینو",
+    "footer_menu": "فوٹر مینو",
+    "search": "تلاش",
+    "account": "اکاؤنٹ",
+    "cart": "کارٹ",
+    "toggle_theme": "لائٹ اور ڈارک موڈ تبدیل کریں",
+    "light_mode": "لائٹ موڈ",
+    "dark_mode": "ڈارک موڈ",
+    "open_menu": "مینو",
+    "home": "ہوم",
+    "breadcrumbs": "بریڈ کرمبز",
+    "pagination": "صفحہ بندی",
+    "previous": "پچھلا",
+    "next": "اگلا",
+    "tagged": "ٹیگ شدہ {{ tags }}",
+    "page_number": "صفحہ {{ number }}"
+  },
+  "products": {
+    "sold_out": "فروخت ہو چکا",
+    "recently_viewed": "حال ہی میں دیکھے گئے",
+    "add_to_cart": "کارٹ میں شامل کریں",
+    "added": "کارٹ میں شامل کر دیا گیا۔",
+    "add_error": "کارٹ میں شامل نہیں کیا جا سکا۔ براہ کرم دوبارہ کوشش کریں۔",
+    "view_cart": "کارٹ دیکھیں",
+    "sale_price": "سیل کی قیمت",
+    "regular_price": "عام قیمت",
+    "quantity": "مقدار",
+    "sku": "SKU",
+    "type": "قسم",
+    "availability": "دستیابی",
+    "in_stock": "اسٹاک میں موجود",
+    "percent_off": "{{ percent }}% رعایت",
+    "quantity_decrease": "مقدار کم کریں",
+    "quantity_increase": "مقدار بڑھائیں"
+  },
+  "collection": {
+    "price_from": "از",
+    "price_to": "تک",
+    "sort_by": "ترتیب دیں",
+    "apply": "فلٹر لاگو کریں",
+    "clear_all": "فلٹر صاف کریں",
+    "product_count": {
+      "one": "{{ count }} پروڈکٹ",
+      "other": "{{ count }} پروڈکٹس"
+    },
+    "empty": "ان فلٹرز سے کوئی پروڈکٹ مطابقت نہیں رکھتی۔",
+    "show_more": "مزید دکھائیں",
+    "showing": "{{ total }} میں سے {{ shown }} دکھائے جا رہے ہیں"
+  },
+  "collections": {
+    "title": "کلیکشنز"
+  },
+  "cart": {
+    "title": "کارٹ",
+    "empty": "آپ کا کارٹ خالی ہے۔",
+    "continue": "خریداری جاری رکھیں",
+    "remove": "ہٹائیں",
+    "subtotal": "ذیلی کل",
+    "taxes_note": "ٹیکس اور شپنگ چیک آؤٹ پر شمار کیے جاتے ہیں۔",
+    "update": "کارٹ اپ ڈیٹ کریں",
+    "checkout": "چیک آؤٹ",
+    "error": "آپ کا کارٹ اپ ڈیٹ نہیں ہو سکا۔ براہ کرم دوبارہ کوشش کریں۔",
+    "remove_item": "{{ title }} کو کارٹ سے ہٹائیں"
+  },
+  "search": {
+    "title": "تلاش",
+    "heading": "“{{ terms }}”",
+    "label": "اسٹور میں تلاش کریں",
+    "placeholder": "تلاش",
+    "submit": "تلاش",
+    "results_count": {
+      "one": "“{{ terms }}” کے لیے {{ count }} نتیجہ",
+      "other": "“{{ terms }}” کے لیے {{ count }} نتائج"
+    },
+    "suggestions": "تجاویز",
+    "results_status": "نتائج: {{ count }}",
+    "products": "مصنوعات",
+    "pages": "صفحات اور مضامین",
+    "type_all": "سب",
+    "type_article": "مضامین",
+    "type_page": "صفحات",
+    "show_all": "“{{ terms }}” کے لیے سب دکھائیں",
+    "no_results": "کوئی نتیجہ نہیں ملا۔ کوئی اور لفظ آزما کر دیکھیں۔"
+  },
+  "password": {
+    "title": "یہ اسٹور نجی ہے",
+    "label": "پاس ورڈ",
+    "enter": "داخل ہوں",
+    "owner": "اسٹور کے مالک؟ لاگ اِن کریں"
+  },
+  "footer": {
+    "newsletter_label": "ہماری فہرست میں شامل ہوں",
+    "newsletter_placeholder": "ای میل ایڈریس",
+    "newsletter_submit": "سبسکرائب کریں",
+    "newsletter_success": "سبسکرائب کرنے کا شکریہ۔"
+  },
+  "sections": {
+    "featured": {
+      "view_all": "سب دیکھیں"
+    }
+  },
+  "gift_card": {
+    "expired": "اس گفٹ کارڈ کی میعاد ختم ہو چکی ہے۔",
+    "expires_on": "میعاد ختم ہونے کی تاریخ: {{ date }}",
+    "use_at_checkout": "یہ کوڈ چیک آؤٹ پر استعمال کریں۔",
+    "add_to_apple_wallet": "Apple Wallet میں شامل کریں"
+  },
+  "localization": {
+    "label": "ملک اور زبان",
+    "country": "ملک/علاقہ",
+    "language": "زبان",
+    "error": "فہرست لوڈ نہیں ہو سکی۔ براہ کرم دوبارہ کوشش کریں۔"
+  },
+  "wishlist": {
+    "title": "پسندیدہ",
+    "toggle": "{{ title }} کو پسندیدہ میں محفوظ کریں",
+    "saved": "پسندیدہ میں محفوظ ہو گیا",
+    "removed": "پسندیدہ سے ہٹا دیا گیا",
+    "add_to_cart": "{{ title }} کو کارٹ میں شامل کریں",
+    "choose_options": "{{ title }} کے لیے اختیارات منتخب کریں",
+    "remove": "{{ title }} کو پسندیدہ سے ہٹائیں"
+  }
+}

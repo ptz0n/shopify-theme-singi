@@ -1,0 +1,41 @@
+{% doc %}
+  Disclosure built on native <details>. The `name` attribute makes sibling
+  accordions exclusive without JavaScript.
+
+  @example
+  {% content_for 'block', type: 'accordion', id: 'shipping' %}
+{% enddoc %}
+
+{%- assign s = block.settings -%}
+
+{%- if s.title != blank -%}
+<details class="accordion" name="accordion"{% if s.open %} open{% endif %} {{ block.shopify_attributes }}>
+  <summary>
+    <span>{{ s.title }}</span>
+    {%- render 'icon', name: 'chevron-down' -%}
+  </summary>
+  <div class="accordion__body prose">{{ s.content }}</div>
+</details>
+{%- else -%}
+  {%- render 'placeholder', label: 'Accordion: add a title and content' -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .accordion { border-block-end: 1px solid var(--color-border); }
+  .accordion summary { display: flex; align-items: center; justify-content: space-between; min-height: 3.5rem; font-weight: var(--font-weight-strong); cursor: pointer; list-style: none; }
+  .accordion summary::-webkit-details-marker { display: none; }
+  .accordion[open] summary .icon { transform: rotate(180deg); }
+  .accordion__body { padding-block-end: 1.25rem; color: var(--color-muted); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Accordion",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title" },
+    { "type": "richtext", "id": "content", "label": "Content" },
+    { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+  ],
+  "presets": [{ "name": "Accordion" }]
+}
+{% endschema %}

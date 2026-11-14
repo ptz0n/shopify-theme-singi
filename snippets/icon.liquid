@@ -1,0 +1,42 @@
+{% doc %}
+  Inline SVG icon. Decorative by default: pair with visible text or an
+  aria-label on the parent control.
+
+  @param {string} name - sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, chevron-down
+  @param {string} [class] - Extra class on the svg
+
+  The menu icon is two separate paths on purpose: the header turns them into an X
+  with CSS while the menu is open (base.css, .nav-toggle path).
+
+  @example
+  {% render 'icon', name: 'cart' %}
+{% enddoc %}
+
+<svg class="icon{% if name == 'arrow-right' %} icon--flip{% endif %} {{ class }}" viewBox="0 0 24 24" aria-hidden="true">
+  {%- case name -%}
+    {%- when 'sun' -%}
+      <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+    {%- when 'moon' -%}
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+    {%- when 'cart' -%}
+      <path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/>
+    {%- when 'search' -%}
+      <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+    {%- when 'account' -%}
+      <circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>
+    {%- when 'menu' -%}
+      <path d="M3 8h18"/><path d="M3 16h18"/>
+    {%- when 'heart' -%}
+      <path d="M12 20.5s-8-4.9-8-11A4.5 4.5 0 0 1 12 6.8 4.5 4.5 0 0 1 20 9.5c0 6.1-8 11-8 11z"/>
+    {%- when 'plus' -%}
+      <path d="M12 5v14M5 12h14"/>
+    {%- when 'minus' -%}
+      <path d="M5 12h14"/>
+    {%- when 'close' -%}
+      <path d="M6 6l12 12M18 6 6 18"/>
+    {%- when 'arrow-right' -%}
+      <path d="M5 12h14m-6-6 6 6-6 6"/>
+    {%- when 'chevron-down' -%}
+      <path d="m6 9 6 6 6-6"/>
+  {%- endcase -%}
+</svg>{%- comment -%}Whitespace control: no trailing newline, so an inline icon never gains a stray space before the text next to it.{%- endcomment -%}

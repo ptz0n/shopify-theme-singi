@@ -1,0 +1,26 @@
+{% doc %}
+  Product title (the page h1) with the vendor as a monospace eyebrow. The vendor
+  links to Shopify's built-in vendor collection (url_for_vendor), a filtered list of
+  every product from that vendor, with no setup in the admin.
+  Private: only available in sections that list it, like main-product.
+{% enddoc %}
+
+<div class="stack" style="--stack: 0.5rem" {{ block.shopify_attributes }}>
+  {%- if block.settings.show_vendor and product.vendor != blank -%}
+    <p class="eyebrow"><a class="vendor-link" href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a></p>
+  {%- endif -%}
+  <h1>{{ product.title }}</h1>
+</div>
+
+{% stylesheet %}
+  .vendor-link { display: inline-flex; align-items: center; min-height: 1.5rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product title",
+  "settings": [
+    { "type": "checkbox", "id": "show_vendor", "label": "Show vendor", "default": true }
+  ]
+}
+{% endschema %}

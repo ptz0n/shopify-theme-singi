@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "صفحه پیدا نشد",
+    "body": "صفحه‌ای که به دنبال آن هستید وجود ندارد یا منتقل شده است.",
+    "cta": "ادامه خرید"
+  },
+  "general": {
+    "skip_to_content": "رفتن به محتوا",
+    "main_menu": "منوی اصلی",
+    "footer_menu": "منوی پایین صفحه",
+    "search": "جستجو",
+    "account": "حساب کاربری",
+    "cart": "سبد خرید",
+    "toggle_theme": "تغییر حالت روشن و تیره",
+    "light_mode": "حالت روشن",
+    "dark_mode": "حالت تاریک",
+    "open_menu": "منو",
+    "home": "صفحه اصلی",
+    "breadcrumbs": "مسیر صفحه",
+    "pagination": "صفحه‌بندی",
+    "previous": "قبلی",
+    "next": "بعدی",
+    "tagged": "برچسب‌خورده: {{ tags }}",
+    "page_number": "صفحه {{ number }}"
+  },
+  "products": {
+    "sold_out": "ناموجود",
+    "recently_viewed": "بازدیدهای اخیر",
+    "add_to_cart": "افزودن به سبد خرید",
+    "added": "به سبد خرید اضافه شد.",
+    "add_error": "افزودن به سبد خرید انجام نشد. لطفاً دوباره تلاش کنید.",
+    "view_cart": "مشاهده سبد خرید",
+    "sale_price": "قیمت فروش ویژه",
+    "regular_price": "قیمت عادی",
+    "quantity": "تعداد",
+    "sku": "کد محصول (SKU)",
+    "type": "نوع",
+    "availability": "وضعیت موجودی",
+    "in_stock": "موجود",
+    "percent_off": "{{ percent }}٪ تخفیف",
+    "quantity_decrease": "کاهش تعداد",
+    "quantity_increase": "افزایش تعداد"
+  },
+  "collection": {
+    "price_from": "از",
+    "price_to": "تا",
+    "sort_by": "مرتب‌سازی بر اساس",
+    "apply": "اعمال فیلترها",
+    "clear_all": "پاک کردن فیلترها",
+    "product_count": {
+      "one": "{{ count }} محصول",
+      "other": "{{ count }} محصول"
+    },
+    "empty": "محصولی با این فیلترها مطابقت ندارد.",
+    "show_more": "نمایش بیشتر",
+    "showing": "نمایش {{ shown }} از {{ total }}"
+  },
+  "collections": {
+    "title": "مجموعه‌ها"
+  },
+  "cart": {
+    "title": "سبد خرید",
+    "empty": "سبد خرید شما خالی است.",
+    "continue": "ادامه خرید",
+    "remove": "حذف",
+    "subtotal": "جمع جزء",
+    "taxes_note": "مالیات و هزینه ارسال هنگام پرداخت محاسبه می‌شود.",
+    "update": "به‌روزرسانی سبد خرید",
+    "checkout": "پرداخت",
+    "error": "به‌روزرسانی سبد خرید شما انجام نشد. لطفاً دوباره تلاش کنید.",
+    "remove_item": "حذف {{ title }} از سبد خرید"
+  },
+  "search": {
+    "title": "جستجو",
+    "heading": "«{{ terms }}»",
+    "label": "جستجو در فروشگاه",
+    "placeholder": "جستجو",
+    "submit": "جستجو",
+    "results_count": {
+      "one": "{{ count }} نتیجه برای «{{ terms }}»",
+      "other": "{{ count }} نتیجه برای «{{ terms }}»"
+    },
+    "suggestions": "پیشنهادها",
+    "results_status": "نتایج: {{ count }}",
+    "products": "محصولات",
+    "pages": "صفحات و مقاله‌ها",
+    "type_all": "همه",
+    "type_article": "مقاله‌ها",
+    "type_page": "صفحه‌ها",
+    "show_all": "نمایش همه برای «{{ terms }}»",
+    "no_results": "نتیجه‌ای یافت نشد. عبارت دیگری را جستجو کنید."
+  },
+  "password": {
+    "title": "این فروشگاه خصوصی است",
+    "label": "گذرواژه",
+    "enter": "ورود",
+    "owner": "مالک فروشگاه هستید؟ وارد شوید"
+  },
+  "footer": {
+    "newsletter_label": "عضو خبرنامه شوید",
+    "newsletter_placeholder": "نشانی ایمیل",
+    "newsletter_submit": "عضویت",
+    "newsletter_success": "از عضویت شما سپاسگزاریم."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "مشاهده همه"
+    }
+  },
+  "gift_card": {
+    "expired": "اعتبار این کارت هدیه به پایان رسیده است.",
+    "expires_on": "تاریخ انقضا: {{ date }}",
+    "use_at_checkout": "این کد را هنگام پرداخت استفاده کنید.",
+    "add_to_apple_wallet": "افزودن به Apple Wallet"
+  },
+  "localization": {
+    "label": "کشور و زبان",
+    "country": "کشور/منطقه",
+    "language": "زبان",
+    "error": "بارگذاری فهرست ممکن نشد. دوباره تلاش کنید."
+  },
+  "wishlist": {
+    "title": "علاقه‌مندی‌ها",
+    "toggle": "ذخیرهٔ {{ title }} در علاقه‌مندی‌ها",
+    "saved": "در علاقه‌مندی‌ها ذخیره شد",
+    "removed": "از علاقه‌مندی‌ها حذف شد",
+    "add_to_cart": "افزودن {{ title }} به سبد خرید",
+    "choose_options": "انتخاب گزینه‌های {{ title }}",
+    "remove": "حذف {{ title }} از علاقه‌مندی‌ها"
+  }
+}

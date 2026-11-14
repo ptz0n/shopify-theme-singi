@@ -1,0 +1,129 @@
+{
+  "404": {
+    "title": "找不到頁面",
+    "body": "您要找的頁面不存在或已移動。",
+    "cta": "繼續購物"
+  },
+  "general": {
+    "skip_to_content": "跳至內容",
+    "main_menu": "主選單",
+    "footer_menu": "頁尾選單",
+    "search": "搜尋",
+    "account": "帳戶",
+    "cart": "購物車",
+    "toggle_theme": "切換淺色/深色模式",
+    "light_mode": "淺色模式",
+    "dark_mode": "深色模式",
+    "open_menu": "選單",
+    "home": "首頁",
+    "breadcrumbs": "導覽路徑",
+    "pagination": "分頁",
+    "previous": "上一頁",
+    "next": "下一頁",
+    "tagged": "標籤：{{ tags }}",
+    "page_number": "第 {{ number }} 頁"
+  },
+  "products": {
+    "sold_out": "已售完",
+    "recently_viewed": "最近瀏覽",
+    "add_to_cart": "加入購物車",
+    "added": "已加入購物車。",
+    "add_error": "無法加入購物車，請再試一次。",
+    "view_cart": "查看購物車",
+    "sale_price": "特價",
+    "regular_price": "原價",
+    "quantity": "數量",
+    "sku": "SKU",
+    "type": "類型",
+    "availability": "供貨狀況",
+    "in_stock": "有現貨",
+    "percent_off": "省 {{ percent }}%",
+    "quantity_decrease": "減少數量",
+    "quantity_increase": "增加數量"
+  },
+  "collection": {
+    "price_from": "最低價",
+    "price_to": "最高價",
+    "sort_by": "排序方式",
+    "apply": "套用篩選條件",
+    "clear_all": "清除篩選",
+    "product_count": {
+      "other": "{{ count }} 件商品"
+    },
+    "empty": "沒有符合這些篩選條件的商品。",
+    "show_more": "顯示更多",
+    "showing": "顯示 {{ shown }} / {{ total }}"
+  },
+  "collections": {
+    "title": "系列"
+  },
+  "cart": {
+    "title": "購物車",
+    "empty": "您的購物車是空的。",
+    "continue": "繼續購物",
+    "remove": "移除",
+    "subtotal": "小計",
+    "taxes_note": "稅金和運費將於結帳時計算。",
+    "update": "更新購物車",
+    "checkout": "結帳",
+    "error": "無法更新您的購物車，請再試一次。",
+    "remove_item": "從購物車移除{{ title }}"
+  },
+  "search": {
+    "title": "搜尋",
+    "heading": "「{{ terms }}」",
+    "label": "搜尋商店",
+    "placeholder": "搜尋",
+    "submit": "搜尋",
+    "results_count": {
+      "other": "「{{ terms }}」的搜尋結果：{{ count }} 筆"
+    },
+    "suggestions": "搜尋建議",
+    "results_status": "結果：{{ count }}",
+    "products": "商品",
+    "pages": "頁面和文章",
+    "type_all": "全部",
+    "type_article": "文章",
+    "type_page": "頁面",
+    "show_all": "顯示「{{ terms }}」的全部結果",
+    "no_results": "找不到結果，請嘗試其他關鍵字。"
+  },
+  "password": {
+    "title": "此商店為私人商店",
+    "label": "密碼",
+    "enter": "進入",
+    "owner": "店主？請登入"
+  },
+  "footer": {
+    "newsletter_label": "訂閱我們的電子報",
+    "newsletter_placeholder": "電子郵件地址",
+    "newsletter_submit": "訂閱",
+    "newsletter_success": "感謝您的訂閱。"
+  },
+  "sections": {
+    "featured": {
+      "view_all": "查看全部"
+    }
+  },
+  "gift_card": {
+    "expired": "此禮物卡已過期。",
+    "expires_on": "到期日：{{ date }}",
+    "use_at_checkout": "請於結帳時使用此代碼。",
+    "add_to_apple_wallet": "加入 Apple Wallet"
+  },
+  "localization": {
+    "label": "國家與語言",
+    "country": "國家/地區",
+    "language": "語言",
+    "error": "無法載入清單，請再試一次。"
+  },
+  "wishlist": {
+    "title": "收藏",
+    "toggle": "將{{ title }}加入收藏",
+    "saved": "已加入收藏",
+    "removed": "已從收藏中移除",
+    "add_to_cart": "將{{ title }}加入購物車",
+    "choose_options": "選擇{{ title }}的選項",
+    "remove": "將{{ title }}從收藏中移除"
+  }
+}

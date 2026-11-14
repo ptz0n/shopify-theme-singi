@@ -1,0 +1,35 @@
+{% doc %}
+  view_cart payload as inert JSON. Rendered inside <cart-items> so it is
+  re-rendered with every cart update; assets/cart-items.js diffs the old and
+  new payload and assets/tracking.js turns the difference into
+  add_to_cart and remove_from_cart events.
+
+  @example
+  {% render 'tracking-cart' %}
+{% enddoc %}
+
+<script type="application/json" data-track="view_cart">
+  {
+    "currency": {{ cart.currency.iso_code | json }},
+    "value": {{ cart.total_price | divided_by: 100.0 }},
+    "items": [
+      {%- for item in cart.items -%}
+        {
+          "item_id": {{ item.product_id | append: '' | json }},
+          "item_name": {{ item.product.title | json }},
+          "item_brand": {{ item.vendor | json }},
+          "item_category": {{ item.product.type | json }},
+          {%- unless item.product.has_only_default_variant %}
+          "item_variant": {{ item.variant.title | json }},
+          {%- endunless %}
+          "price": {{ item.original_price | divided_by: 100.0 }},
+          "discount": {{ item.original_price | minus: item.final_price | divided_by: 100.0 }},
+          "quantity": {{ item.quantity }},
+          "variant_id": {{ item.variant_id | append: '' | json }},
+          "sku": {{ item.sku | json }},
+          "index": {{ forloop.index }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+</script>

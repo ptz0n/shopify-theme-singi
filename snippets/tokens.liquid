@@ -1,0 +1,70 @@
+{% doc %}
+  Design tokens. Emits @font-face rules and CSS custom properties from theme
+  settings as one inline <style>. Rendered once in layout/theme.liquid, above
+  content_for_header, so it ships in the first streamed chunk.
+
+  Fonts come only from Shopify's font library (font_picker settings). Never add
+  a literal font-family or @font-face with a remote URL anywhere else; run
+  `npm run check` to enforce this.
+
+  @example
+  {% render 'tokens' %}
+{% enddoc %}
+
+{%- liquid
+  assign font_body = settings.font_body
+  assign font_strong = font_body | font_modify: 'weight', '600'
+  assign font_mono = settings.font_mono
+
+  assign sans_stack = font_body.family | prepend: '"' | append: '"'
+  if font_body.family == 'Inter'
+    assign sans_stack = sans_stack | append: ', "Inter Fallback"'
+  endif
+  if font_body.fallback_families contains 'sans-serif'
+    assign sans_stack = sans_stack | append: ', system-ui'
+  endif
+  assign sans_stack = sans_stack | append: ', ' | append: font_body.fallback_families
+
+  assign mono_stack = font_mono.family | append: ', ' | append: font_mono.fallback_families
+-%}
+
+{% style %}
+  {{ font_body | font_face: font_display: 'swap' }}
+  {{ font_strong | font_face: font_display: 'swap' }}
+  {%- unless font_mono.system? -%}
+    {{ font_mono | font_face: font_display: 'swap' }}
+  {%- endunless -%}
+
+  {%- if font_body.family == 'Inter' -%}
+    @font-face {
+      font-family: 'Inter Fallback';
+      src: local('Arial');
+      size-adjust: 107.4%;
+      ascent-override: 90.2%;
+      descent-override: 22.48%;
+      line-gap-override: 0%;
+    }
+  {%- endif -%}
+
+  :root {
+    --font-sans: {{ sans_stack }};
+    --font-mono: {{ mono_stack }};
+    --font-weight-body: {{ font_body.weight }};
+    --font-weight-strong: {{ font_strong.weight }};
+    --page-width: {{ settings.page_width }};
+    --radius: {{ settings.radius }}px;
+    --logo-width: {{ settings.logo_width }}px;
+    --color-bg: light-dark({{ settings.light_background }}, {{ settings.dark_background }});
+    --color-surface: light-dark({{ settings.light_surface }}, {{ settings.dark_surface }});
+    --color-fg: light-dark({{ settings.light_foreground }}, {{ settings.dark_foreground }});
+    --color-muted: light-dark({{ settings.light_muted }}, {{ settings.dark_muted }});
+    --color-border: light-dark({{ settings.light_border }}, {{ settings.dark_border }});
+    --color-control: light-dark({{ settings.light_control }}, {{ settings.dark_control }});
+    --color-accent: light-dark({{ settings.light_accent }}, {{ settings.dark_accent }});
+  }
+
+  {%- if settings.view_transitions -%}
+    @view-transition { navigation: auto; }
+    ::view-transition-group(root) { animation-duration: 120ms; }
+  {%- endif -%}
+{% endstyle %}

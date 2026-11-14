@@ -1,0 +1,52 @@
+{% doc %}
+  Responsive image with the loading strategy decided in one place.
+
+  - priority: the LCP candidate. Eager, fetchpriority=high and a preload hint.
+    Use for at most one image per page.
+  - eager: visible in the first viewport but not the LCP candidate. Eager only.
+  - neither: lazy and async decoded.
+
+  Width and height attributes come from image_tag, so layout never shifts.
+
+  @param {image} image - The image to render
+  @param {string} [sizes] - The sizes attribute. Default: 100vw
+  @param {string} [widths] - Comma separated srcset widths
+  @param {number} [width] - Largest width to request. Default: 1600
+  @param {string} [alt] - Alt text. Default: the image's own alt text
+  @param {boolean} [decorative] - Empty alt text, for a thumbnail whose product name is right next to it
+  @param {string} [class] - Class for the img element
+  @param {boolean} [priority] - Mark as the LCP image
+  @param {boolean} [eager] - Load eagerly without a preload
+  @param {string} [crossorigin] - Set to anonymous when scripts must read the pixels (assets/image-tone.js)
+
+  @example
+  {% render 'image', image: section.settings.image, priority: true, sizes: '100vw' %}
+  {% render 'image', image: product.featured_image, sizes: '(min-width: 56em) 25vw, 50vw' %}
+{% enddoc %}
+
+{%- liquid
+  assign max_width = width | default: 1600
+  assign srcset_widths = widths | default: '320, 480, 640, 800, 1000, 1200, 1600'
+  assign image_sizes = sizes | default: '100vw'
+  assign image_alt = alt | default: image.alt
+  if decorative
+    assign image_alt = ''
+  endif
+
+  comment
+    Loading strategy, decided once. Attributes left unset are not printed by image_tag.
+  endcomment
+  assign loading = 'lazy'
+  assign decoding = 'async'
+  if priority
+    assign loading = 'eager'
+    assign decoding = nil
+    assign fetchpriority = 'high'
+    assign preload = true
+  elsif eager
+    assign loading = 'eager'
+    assign decoding = nil
+  endif
+-%}
+
+{{- image | image_url: width: max_width | image_tag: widths: srcset_widths, sizes: image_sizes, alt: image_alt, class: class, crossorigin: crossorigin, loading: loading, fetchpriority: fetchpriority, decoding: decoding, preload: preload -}}

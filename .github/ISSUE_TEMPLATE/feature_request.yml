@@ -1,0 +1,21 @@
+name: Feature request
+description: Propose a section, block, setting or improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Mind the budget. Say what it costs in bytes, DOM nodes and JavaScript.
+  - type: checkboxes
+    id: pr
+    attributes:
+      label: Contribution
+      options:
+        - label: I would like to send a pull request for this

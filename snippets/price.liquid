@@ -1,0 +1,38 @@
+{% doc %}
+  Price with optional compare-at price and the percentage off, rendered as
+  "$226.50 $283.00 -20%": the current price, the compare-at price in muted grey
+  with a strikethrough, and the percentage in the danger color. The percentage is
+  hidden from screen readers (a bare symbol); a visually hidden "20% off" in the
+  visitor's language is read instead. Rendered in the monospace font. The percentage is rounded to a whole number, at least 1, and
+  is hidden when the Show percentage off theme setting is off.
+
+  @param {number} price - Price in cents
+  @param {number} [compare_at_price] - Compare-at price in cents
+  @param {string} [class] - Extra class
+
+  @example
+  {% render 'price', price: product.price, compare_at_price: product.compare_at_price %}
+{% enddoc %}
+
+{%- liquid
+  assign percent_off = 0
+  if compare_at_price > price and settings.show_percent_off
+    assign percent_off = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round | at_least: 1
+  endif
+-%}
+
+<div class="price mono {{ class }}">
+  {%- if compare_at_price > price -%}
+    <span class="visually-hidden">{{ 'products.sale_price' | t }}</span>
+    <span class="price__now">{{ price | money }}</span>
+    <span class="visually-hidden">{{ 'products.regular_price' | t }}</span>
+    <s class="price__was">{{ compare_at_price | money }}</s>
+    {%- if percent_off > 0 -%}
+      <span class="price__off" aria-hidden="true">-{{ percent_off }}%</span>
+      <span class="visually-hidden">{{ 'products.percent_off' | t: percent: percent_off }}</span>
+    {%- endif -%}
+  {%- else -%}
+    {{- price | money -}}
+  {%- endif -%}
+</div>
+

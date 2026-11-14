@@ -1,0 +1,39 @@
+{% comment %}
+  Blog index: paginated article list.
+{% endcomment %}
+
+<div class="container section">
+  {%- render 'breadcrumbs', kind: 'blog' -%}
+  <h1>{{ blog.title }}</h1>
+
+  {%- paginate blog.articles by 12 -%}
+    <ul class="product-grid blog-grid" role="list">
+      {%- for article in blog.articles -%}
+        <li class="product-card">
+          {%- if article.image -%}
+            {%- render 'image', image: article.image, sizes: '(min-width: 56em) 33vw, 100vw', widths: '360, 540, 720, 960', width: 960, eager: forloop.first, alt: article.title -%}
+          {%- endif -%}
+          <p class="eyebrow">{{ article.published_at | time_tag: format: 'date' }}</p>
+          <h2 class="product-card__title"><a class="product-card__link" href="{{ article.url }}">{{ article.title }}</a></h2>
+          {%- if article.excerpt_or_content != blank -%}
+            <p class="muted">{{ article.excerpt_or_content | strip_html | truncatewords: 24 }}</p>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- render 'pagination', paginate: paginate -%}
+  {%- endpaginate -%}
+</div>
+
+{% stylesheet %}
+  .blog-grid { margin-block-start: 2rem; }
+  @media (min-width: 56em) { .blog-grid { grid-template-columns: repeat(3, 1fr); } }
+  .blog-grid .product-card > img { aspect-ratio: 16 / 10; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Blog",
+  "settings": []
+}
+{% endschema %}

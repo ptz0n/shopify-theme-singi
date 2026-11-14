@@ -1,0 +1,26 @@
+# Files that must never be uploaded by Shopify CLI (theme push, theme dev).
+docs/
+scripts/
+node_modules/
+package.json
+package-lock.json
+lighthouserc.cjs
+.env
+.env.example
+README.md
+AGENTS.md
+CLAUDE.md
+.lighthouseci/
+.env
+.env.example
+shopify.theme.toml
+shopify.theme.toml.example
+LICENSE
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+CHANGELOG.md
+.github/
+.gitattributes
+.editorconfig
+.TODO.local.md

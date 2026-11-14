@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Pagina niet gevonden",
+    "body": "De pagina die je zoekt bestaat niet of is verplaatst.",
+    "cta": "Verder winkelen"
+  },
+  "general": {
+    "skip_to_content": "Naar inhoud gaan",
+    "main_menu": "Hoofdmenu",
+    "footer_menu": "Footermenu",
+    "search": "Zoeken",
+    "account": "Account",
+    "cart": "Winkelwagen",
+    "toggle_theme": "Wisselen tussen lichte en donkere modus",
+    "light_mode": "Lichte modus",
+    "dark_mode": "Donkere modus",
+    "open_menu": "Menu",
+    "home": "Home",
+    "breadcrumbs": "Kruimelpad",
+    "pagination": "Paginering",
+    "previous": "Vorige",
+    "next": "Volgende",
+    "tagged": "Getagd {{ tags }}",
+    "page_number": "Pagina {{ number }}"
+  },
+  "products": {
+    "sold_out": "Uitverkocht",
+    "recently_viewed": "Onlangs bekeken",
+    "add_to_cart": "In winkelwagen",
+    "added": "Toegevoegd aan winkelwagen.",
+    "add_error": "Kan niet aan winkelwagen toevoegen. Probeer het opnieuw.",
+    "view_cart": "Winkelwagen bekijken",
+    "sale_price": "Aanbiedingsprijs",
+    "regular_price": "Normale prijs",
+    "quantity": "Aantal",
+    "sku": "SKU",
+    "type": "Type",
+    "availability": "Beschikbaarheid",
+    "in_stock": "Op voorraad",
+    "percent_off": "{{ percent }}% korting",
+    "quantity_decrease": "Aantal verlagen",
+    "quantity_increase": "Aantal verhogen"
+  },
+  "collection": {
+    "price_from": "Van",
+    "price_to": "Tot",
+    "sort_by": "Sorteren op",
+    "apply": "Filters toepassen",
+    "clear_all": "Filters wissen",
+    "product_count": {
+      "one": "{{ count }} product",
+      "other": "{{ count }} producten"
+    },
+    "empty": "Geen producten gevonden voor deze filters.",
+    "show_more": "Meer tonen",
+    "showing": "{{ shown }} van {{ total }} getoond"
+  },
+  "collections": {
+    "title": "Collecties"
+  },
+  "cart": {
+    "title": "Winkelwagen",
+    "empty": "Je winkelwagen is leeg.",
+    "continue": "Verder winkelen",
+    "remove": "Verwijderen",
+    "subtotal": "Subtotaal",
+    "taxes_note": "Belastingen en verzendkosten worden berekend bij het afrekenen.",
+    "update": "Winkelwagen bijwerken",
+    "checkout": "Afrekenen",
+    "error": "Kan je winkelwagen niet bijwerken. Probeer het opnieuw.",
+    "remove_item": "{{ title }} uit winkelwagen verwijderen"
+  },
+  "search": {
+    "title": "Zoeken",
+    "heading": "“{{ terms }}”",
+    "label": "Zoeken in de winkel",
+    "placeholder": "Zoeken",
+    "submit": "Zoeken",
+    "results_count": {
+      "one": "{{ count }} resultaat voor “{{ terms }}”",
+      "other": "{{ count }} resultaten voor “{{ terms }}”"
+    },
+    "suggestions": "Suggesties",
+    "results_status": "Resultaten: {{ count }}",
+    "products": "Producten",
+    "pages": "Pagina's en artikelen",
+    "type_all": "Alles",
+    "type_article": "Artikelen",
+    "type_page": "Pagina's",
+    "show_all": "Alles tonen voor “{{ terms }}”",
+    "no_results": "Geen resultaten gevonden. Probeer een andere zoekopdracht."
+  },
+  "password": {
+    "title": "Deze winkel is privé",
+    "label": "Wachtwoord",
+    "enter": "Openen",
+    "owner": "Winkeleigenaar? Log in"
+  },
+  "footer": {
+    "newsletter_label": "Schrijf je in",
+    "newsletter_placeholder": "E-mailadres",
+    "newsletter_submit": "Inschrijven",
+    "newsletter_success": "Bedankt voor je inschrijving."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Alles bekijken"
+    }
+  },
+  "gift_card": {
+    "expired": "Deze cadeaubon is verlopen.",
+    "expires_on": "Verloopt op {{ date }}",
+    "use_at_checkout": "Gebruik deze code bij het afrekenen.",
+    "add_to_apple_wallet": "Toevoegen aan Apple Wallet"
+  },
+  "localization": {
+    "label": "Land en taal",
+    "country": "Land/regio",
+    "language": "Taal",
+    "error": "De lijst kon niet worden geladen. Probeer het opnieuw."
+  },
+  "wishlist": {
+    "title": "Favorieten",
+    "toggle": "{{ title }} opslaan in favorieten",
+    "saved": "Opgeslagen in favorieten",
+    "removed": "Verwijderd uit favorieten",
+    "add_to_cart": "{{ title }} in winkelwagen",
+    "choose_options": "Opties kiezen voor {{ title }}",
+    "remove": "{{ title }} verwijderen uit favorieten"
+  }
+}

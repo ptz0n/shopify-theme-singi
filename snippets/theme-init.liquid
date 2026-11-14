@@ -1,0 +1,73 @@
+{% doc %}
+  The theme's one inline script, rendered in the head of both layouts
+  (`npm run check:rules` allows no other). It does two small things that must
+  happen before first paint, plus one tiny handler that is not about paint:
+
+  1. Color mode. Sets it before paint (no flash) and handles the light/dark toggle.
+     A saved choice in localStorage wins over the device setting and the theme's
+     default color mode. The toggle button is any element with data-theme-toggle.
+
+  2. Product image placeholder. Clicking a link to a product remembers the card
+     image the browser has already loaded (its exact URL, so it is in the HTTP
+     cache). On the product page that URL is exposed as --placeholder, and the
+     first gallery image sits on it (see sections/main-product.liquid) until the
+     full-size image arrives, so the hero never flashes empty. It is only used when
+     the saved path matches the page and is under 30 seconds old. window.singiPlaceholder()
+     re-applies it after a soft navigation.
+
+  3. Search focus. When the header's search panel (a popover) opens, focus moves to its
+     input. The HTML autofocus attribute is not used: it would fire on page load instead.
+     (assets/predictive-search.js also focuses it inside the tap, which iOS needs for the
+     keyboard; this handler covers the moment before that module has loaded.)
+
+  @example
+  {% render 'theme-init' %}
+{% enddoc %}
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const key = 'singi-theme';
+  try {
+    const saved = localStorage.getItem(key);
+    if (saved) root.dataset.theme = saved;
+  } catch (e) {}
+  addEventListener('toggle', (event) => {
+    if (event.newState === 'open' && event.target.id === 'site-search') event.target.querySelector('input').focus();
+  }, true);
+  addEventListener('click', (event) => {
+    const button = event.target.closest('[data-theme-toggle]');
+    if (!button) return;
+    const dark = root.dataset.theme
+      ? root.dataset.theme === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    const next = dark ? 'light' : 'dark';
+    root.dataset.theme = next;
+    button.setAttribute('aria-pressed', String(next === 'dark'));
+    try {
+      localStorage.setItem(key, next);
+    } catch (e) {}
+  });
+
+  const PH = 'singi-ph';
+  const placeholder = () => {
+    let src;
+    try {
+      const saved = JSON.parse(sessionStorage.getItem(PH));
+      if (saved && saved.p === location.pathname && Date.now() - saved.t < 3e4) src = saved.s;
+    } catch (e) {}
+    if (src) root.style.setProperty('--placeholder', 'url("' + src.replace(/"/g, '%22').replace(/\)/g, '%29').replace(/\\/g, '%5C') + '")');
+    else root.style.removeProperty('--placeholder');
+  };
+  window.singiPlaceholder = placeholder;
+  placeholder();
+  addEventListener('click', (event) => {
+    const link = event.target.closest('a[href*="/products/"]');
+    const img = link && (link.querySelector('img') || link.closest('li, article')?.querySelector('img'));
+    if (!img || !img.currentSrc) return;
+    try {
+      sessionStorage.setItem(PH, JSON.stringify({ p: new URL(link.href).pathname, s: img.currentSrc, t: Date.now() }));
+    } catch (e) {}
+  });
+})();
+</script>

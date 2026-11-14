@@ -1,0 +1,129 @@
+{
+  "404": {
+    "title": "Halaman tidak ditemui",
+    "body": "Halaman yang anda cari tidak wujud atau telah dialihkan.",
+    "cta": "Teruskan membeli-belah"
+  },
+  "general": {
+    "skip_to_content": "Langkau ke kandungan",
+    "main_menu": "Menu utama",
+    "footer_menu": "Menu pengaki",
+    "search": "Cari",
+    "account": "Akaun",
+    "cart": "Troli",
+    "toggle_theme": "Tukar mod cerah dan gelap",
+    "light_mode": "Mod cerah",
+    "dark_mode": "Mod gelap",
+    "open_menu": "Menu",
+    "home": "Laman utama",
+    "breadcrumbs": "Jejak navigasi",
+    "pagination": "Penomboran halaman",
+    "previous": "Sebelumnya",
+    "next": "Seterusnya",
+    "tagged": "Ditandai {{ tags }}",
+    "page_number": "Halaman {{ number }}"
+  },
+  "products": {
+    "sold_out": "Habis dijual",
+    "recently_viewed": "Dilihat baru-baru ini",
+    "add_to_cart": "Tambah ke troli",
+    "added": "Ditambah ke troli.",
+    "add_error": "Tidak dapat menambah ke troli. Sila cuba lagi.",
+    "view_cart": "Lihat troli",
+    "sale_price": "Harga jualan",
+    "regular_price": "Harga biasa",
+    "quantity": "Kuantiti",
+    "sku": "SKU",
+    "type": "Jenis",
+    "availability": "Ketersediaan",
+    "in_stock": "Ada stok",
+    "percent_off": "diskaun {{ percent }}%",
+    "quantity_decrease": "Kurangkan kuantiti",
+    "quantity_increase": "Tambah kuantiti"
+  },
+  "collection": {
+    "price_from": "Dari",
+    "price_to": "Hingga",
+    "sort_by": "Isih mengikut",
+    "apply": "Gunakan penapis",
+    "clear_all": "Kosongkan penapis",
+    "product_count": {
+      "other": "{{ count }} produk"
+    },
+    "empty": "Tiada produk yang sepadan dengan penapis ini.",
+    "show_more": "Tunjukkan lagi",
+    "showing": "Menunjukkan {{ shown }} daripada {{ total }}"
+  },
+  "collections": {
+    "title": "Koleksi"
+  },
+  "cart": {
+    "title": "Troli",
+    "empty": "Troli anda kosong.",
+    "continue": "Teruskan membeli-belah",
+    "remove": "Buang",
+    "subtotal": "Jumlah kecil",
+    "taxes_note": "Cukai dan penghantaran dikira semasa pembayaran.",
+    "update": "Kemas kini troli",
+    "checkout": "Bayar sekarang",
+    "error": "Tidak dapat mengemas kini troli anda. Sila cuba lagi.",
+    "remove_item": "Alih keluar {{ title }} daripada troli"
+  },
+  "search": {
+    "title": "Cari",
+    "heading": "“{{ terms }}”",
+    "label": "Cari di kedai",
+    "placeholder": "Cari",
+    "submit": "Cari",
+    "results_count": {
+      "other": "{{ count }} hasil untuk “{{ terms }}”"
+    },
+    "suggestions": "Cadangan",
+    "results_status": "Hasil: {{ count }}",
+    "products": "Produk",
+    "pages": "Halaman dan artikel",
+    "type_all": "Semua",
+    "type_article": "Artikel",
+    "type_page": "Halaman",
+    "show_all": "Tunjuk semua untuk “{{ terms }}”",
+    "no_results": "Tiada hasil ditemui. Cuba carian yang lain."
+  },
+  "password": {
+    "title": "Kedai ini bersifat peribadi",
+    "label": "Kata laluan",
+    "enter": "Masuk",
+    "owner": "Pemilik kedai? Log masuk"
+  },
+  "footer": {
+    "newsletter_label": "Sertai senarai kami",
+    "newsletter_placeholder": "Alamat e-mel",
+    "newsletter_submit": "Langgan",
+    "newsletter_success": "Terima kasih kerana melanggan."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Lihat semua"
+    }
+  },
+  "gift_card": {
+    "expired": "Kad hadiah ini telah tamat tempoh.",
+    "expires_on": "Tamat tempoh pada {{ date }}",
+    "use_at_checkout": "Gunakan kod ini semasa pembayaran.",
+    "add_to_apple_wallet": "Tambah ke Apple Wallet"
+  },
+  "localization": {
+    "label": "Negara dan bahasa",
+    "country": "Negara/rantau",
+    "language": "Bahasa",
+    "error": "Senarai tidak dapat dimuatkan. Sila cuba lagi."
+  },
+  "wishlist": {
+    "title": "Kegemaran",
+    "toggle": "Simpan {{ title }} ke kegemaran",
+    "saved": "Disimpan ke kegemaran",
+    "removed": "Dialih keluar daripada kegemaran",
+    "add_to_cart": "Tambah {{ title }} ke troli",
+    "choose_options": "Pilih pilihan untuk {{ title }}",
+    "remove": "Alih keluar {{ title }} daripada kegemaran"
+  }
+}

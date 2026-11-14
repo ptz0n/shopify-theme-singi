@@ -1,0 +1,26 @@
+{% doc %}
+  A small "AI" label for the bottom right corner of an image, shown when the
+  image's own alt text says it is AI made: the lowercased alt contains
+  "ai generated" or "ai altered" (a hyphen counts as a space, so "AI-generated"
+  matches too). Merchants control it by writing that in the image's alt text in
+  Shopify; there is nothing else to configure.
+
+  Renders nothing otherwise. The label is decorative (aria-hidden): the alt text
+  already tells screen reader users the same thing. It is not translated: "AI"
+  is the same in every language the theme ships.
+
+  The parent must be position: relative (the gallery frame, .media and .hero__media
+  are; product cards are positioned by the .product-card rule in base.css). Colors are
+  fixed black and white, not tokens, because the label sits on a photo and must read
+  on it in both color schemes. Styles are in base.css because several pages use it.
+
+  @param {string} alt - The image's alt text
+
+  @example
+  {% render 'ai-label', alt: media.alt %}
+{% enddoc %}
+
+{%- assign ai_alt = alt | downcase | replace: '-', ' ' -%}
+{%- if ai_alt contains 'ai generated' or ai_alt contains 'ai altered' -%}
+  <span class="ai-label" aria-hidden="true">AI</span>
+{%- endif -%}

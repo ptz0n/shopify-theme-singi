@@ -1,0 +1,129 @@
+{
+  "404": {
+    "title": "Halaman tidak ditemukan",
+    "body": "Halaman yang Anda cari tidak ada atau telah dipindahkan.",
+    "cta": "Lanjut belanja"
+  },
+  "general": {
+    "skip_to_content": "Langsung ke konten",
+    "main_menu": "Menu utama",
+    "footer_menu": "Menu footer",
+    "search": "Cari",
+    "account": "Akun",
+    "cart": "Keranjang",
+    "toggle_theme": "Ganti mode terang dan gelap",
+    "light_mode": "Mode terang",
+    "dark_mode": "Mode gelap",
+    "open_menu": "Menu",
+    "home": "Beranda",
+    "breadcrumbs": "Breadcrumb",
+    "pagination": "Navigasi halaman",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "tagged": "Ditandai {{ tags }}",
+    "page_number": "Halaman {{ number }}"
+  },
+  "products": {
+    "sold_out": "Habis terjual",
+    "recently_viewed": "Baru dilihat",
+    "add_to_cart": "Tambah ke keranjang",
+    "added": "Ditambahkan ke keranjang.",
+    "add_error": "Tidak dapat menambahkan ke keranjang. Silakan coba lagi.",
+    "view_cart": "Lihat keranjang",
+    "sale_price": "Harga diskon",
+    "regular_price": "Harga normal",
+    "quantity": "Jumlah",
+    "sku": "SKU",
+    "type": "Tipe",
+    "availability": "Ketersediaan",
+    "in_stock": "Tersedia",
+    "percent_off": "diskon {{ percent }}%",
+    "quantity_decrease": "Kurangi jumlah",
+    "quantity_increase": "Tambah jumlah"
+  },
+  "collection": {
+    "price_from": "Dari",
+    "price_to": "Hingga",
+    "sort_by": "Urutkan",
+    "apply": "Terapkan filter",
+    "clear_all": "Hapus filter",
+    "product_count": {
+      "other": "{{ count }} produk"
+    },
+    "empty": "Tidak ada produk yang cocok dengan filter ini.",
+    "show_more": "Tampilkan lebih banyak",
+    "showing": "Menampilkan {{ shown }} dari {{ total }}"
+  },
+  "collections": {
+    "title": "Koleksi"
+  },
+  "cart": {
+    "title": "Keranjang",
+    "empty": "Keranjang Anda kosong.",
+    "continue": "Lanjut belanja",
+    "remove": "Hapus",
+    "subtotal": "Subtotal",
+    "taxes_note": "Pajak dan ongkos kirim dihitung saat checkout.",
+    "update": "Perbarui keranjang",
+    "checkout": "Checkout",
+    "error": "Tidak dapat memperbarui keranjang Anda. Silakan coba lagi.",
+    "remove_item": "Hapus {{ title }} dari keranjang"
+  },
+  "search": {
+    "title": "Cari",
+    "heading": "“{{ terms }}”",
+    "label": "Cari di toko",
+    "placeholder": "Cari",
+    "submit": "Cari",
+    "results_count": {
+      "other": "{{ count }} hasil untuk “{{ terms }}”"
+    },
+    "suggestions": "Saran",
+    "results_status": "Hasil: {{ count }}",
+    "products": "Produk",
+    "pages": "Halaman dan artikel",
+    "type_all": "Semua",
+    "type_article": "Artikel",
+    "type_page": "Halaman",
+    "show_all": "Tampilkan semua untuk “{{ terms }}”",
+    "no_results": "Tidak ada hasil. Coba pencarian lain."
+  },
+  "password": {
+    "title": "Toko ini bersifat pribadi",
+    "label": "Kata sandi",
+    "enter": "Masuk",
+    "owner": "Pemilik toko? Masuk"
+  },
+  "footer": {
+    "newsletter_label": "Bergabung dengan daftar kami",
+    "newsletter_placeholder": "Alamat email",
+    "newsletter_submit": "Berlangganan",
+    "newsletter_success": "Terima kasih telah berlangganan."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Lihat semua"
+    }
+  },
+  "gift_card": {
+    "expired": "Kartu hadiah ini telah kedaluwarsa.",
+    "expires_on": "Berlaku hingga {{ date }}",
+    "use_at_checkout": "Gunakan kode ini saat checkout.",
+    "add_to_apple_wallet": "Tambahkan ke Apple Wallet"
+  },
+  "localization": {
+    "label": "Negara dan bahasa",
+    "country": "Negara/wilayah",
+    "language": "Bahasa",
+    "error": "Daftar tidak dapat dimuat. Silakan coba lagi."
+  },
+  "wishlist": {
+    "title": "Favorit",
+    "toggle": "Simpan {{ title }} ke favorit",
+    "saved": "Disimpan ke favorit",
+    "removed": "Dihapus dari favorit",
+    "add_to_cart": "Tambahkan {{ title }} ke keranjang",
+    "choose_options": "Pilih opsi untuk {{ title }}",
+    "remove": "Hapus {{ title }} dari favorit"
+  }
+}

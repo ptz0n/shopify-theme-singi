@@ -1,0 +1,135 @@
+{
+  "404": {
+    "title": "Strani ni bilo mogoče najti",
+    "body": "Stran, ki jo iščete, ne obstaja ali je bila premaknjena.",
+    "cta": "Nadaljuj z nakupovanjem"
+  },
+  "general": {
+    "skip_to_content": "Preskoči na vsebino",
+    "main_menu": "Glavni meni",
+    "footer_menu": "Meni v nogi",
+    "search": "Iskanje",
+    "account": "Račun",
+    "cart": "Košarica",
+    "toggle_theme": "Preklopi med svetlim in temnim načinom",
+    "light_mode": "Svetli način",
+    "dark_mode": "Temni način",
+    "open_menu": "Meni",
+    "home": "Domov",
+    "breadcrumbs": "Drobtinice",
+    "pagination": "Oštevilčenje strani",
+    "previous": "Prejšnja",
+    "next": "Naslednja",
+    "tagged": "Oznaka: {{ tags }}",
+    "page_number": "Stran {{ number }}"
+  },
+  "products": {
+    "sold_out": "Razprodano",
+    "recently_viewed": "Nedavno ogledano",
+    "add_to_cart": "Dodaj v košarico",
+    "added": "Dodano v košarico.",
+    "add_error": "Dodajanje v košarico ni uspelo. Poskusite znova.",
+    "view_cart": "Ogled košarice",
+    "sale_price": "Akcijska cena",
+    "regular_price": "Redna cena",
+    "quantity": "Količina",
+    "sku": "SKU",
+    "type": "Vrsta",
+    "availability": "Razpoložljivost",
+    "in_stock": "Na zalogi",
+    "percent_off": "{{ percent }} % popusta",
+    "quantity_decrease": "Zmanjšaj količino",
+    "quantity_increase": "Povečaj količino"
+  },
+  "collection": {
+    "price_from": "Od",
+    "price_to": "Do",
+    "sort_by": "Razvrsti po",
+    "apply": "Uporabi filtre",
+    "clear_all": "Počisti filtre",
+    "product_count": {
+      "one": "{{ count }} izdelek",
+      "two": "{{ count }} izdelka",
+      "few": "{{ count }} izdelki",
+      "other": "{{ count }} izdelkov"
+    },
+    "empty": "Nobenemu izdelku ne ustrezajo ti filtri.",
+    "show_more": "Prikaži več",
+    "showing": "Prikazanih {{ shown }} od {{ total }}"
+  },
+  "collections": {
+    "title": "Kolekcije"
+  },
+  "cart": {
+    "title": "Košarica",
+    "empty": "Vaša košarica je prazna.",
+    "continue": "Nadaljuj z nakupovanjem",
+    "remove": "Odstrani",
+    "subtotal": "Vmesni seštevek",
+    "taxes_note": "Davki in dostava se izračunajo ob zaključku nakupa.",
+    "update": "Posodobi košarico",
+    "checkout": "Zaključi nakup",
+    "error": "Košarice ni bilo mogoče posodobiti. Poskusite znova.",
+    "remove_item": "Odstrani {{ title }} iz košarice"
+  },
+  "search": {
+    "title": "Iskanje",
+    "heading": "„{{ terms }}“",
+    "label": "Iskanje po trgovini",
+    "placeholder": "Iskanje",
+    "submit": "Išči",
+    "results_count": {
+      "one": "{{ count }} rezultat za „{{ terms }}“",
+      "two": "{{ count }} rezultata za „{{ terms }}“",
+      "few": "{{ count }} rezultati za „{{ terms }}“",
+      "other": "{{ count }} rezultatov za „{{ terms }}“"
+    },
+    "suggestions": "Predlogi",
+    "results_status": "Rezultati: {{ count }}",
+    "products": "Izdelki",
+    "pages": "Strani in članki",
+    "type_all": "Vse",
+    "type_article": "Članki",
+    "type_page": "Strani",
+    "show_all": "Prikaži vse za „{{ terms }}“",
+    "no_results": "Ni rezultatov. Poskusite z drugim iskanjem."
+  },
+  "password": {
+    "title": "Ta trgovina je zasebna",
+    "label": "Geslo",
+    "enter": "Vstopi",
+    "owner": "Lastnik trgovine? Prijavite se"
+  },
+  "footer": {
+    "newsletter_label": "Pridružite se seznamu",
+    "newsletter_placeholder": "E-poštni naslov",
+    "newsletter_submit": "Naroči se",
+    "newsletter_success": "Hvala za prijavo."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Prikaži vse"
+    }
+  },
+  "gift_card": {
+    "expired": "Ta darilna kartica je potekla.",
+    "expires_on": "Poteče {{ date }}",
+    "use_at_checkout": "To kodo uporabite ob zaključku nakupa.",
+    "add_to_apple_wallet": "Dodaj v Apple Wallet"
+  },
+  "localization": {
+    "label": "Država in jezik",
+    "country": "Država/regija",
+    "language": "Jezik",
+    "error": "Seznama ni bilo mogoče naložiti. Poskusite znova."
+  },
+  "wishlist": {
+    "title": "Priljubljene",
+    "toggle": "Shrani {{ title }} med priljubljene",
+    "saved": "Shranjeno med priljubljene",
+    "removed": "Odstranjeno iz priljubljenih",
+    "add_to_cart": "Dodaj {{ title }} v košarico",
+    "choose_options": "Izberi možnosti za {{ title }}",
+    "remove": "Odstrani {{ title }} iz priljubljenih"
+  }
+}

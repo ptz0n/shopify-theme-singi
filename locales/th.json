@@ -1,0 +1,129 @@
+{
+  "404": {
+    "title": "ไม่พบหน้าที่ต้องการ",
+    "body": "ไม่พบหน้าที่คุณกำลังมองหา หรือหน้านี้ถูกย้ายไปแล้ว",
+    "cta": "เลือกซื้อสินค้าต่อ"
+  },
+  "general": {
+    "skip_to_content": "ข้ามไปยังเนื้อหา",
+    "main_menu": "เมนูหลัก",
+    "footer_menu": "เมนูส่วนท้าย",
+    "search": "ค้นหา",
+    "account": "บัญชี",
+    "cart": "ตะกร้าสินค้า",
+    "toggle_theme": "สลับโหมดสว่างและโหมดมืด",
+    "light_mode": "โหมดสว่าง",
+    "dark_mode": "โหมดมืด",
+    "open_menu": "เมนู",
+    "home": "หน้าแรก",
+    "breadcrumbs": "เส้นทางการนำทาง",
+    "pagination": "การแบ่งหน้า",
+    "previous": "ก่อนหน้า",
+    "next": "ถัดไป",
+    "tagged": "แท็ก {{ tags }}",
+    "page_number": "หน้า {{ number }}"
+  },
+  "products": {
+    "sold_out": "สินค้าหมด",
+    "recently_viewed": "ดูล่าสุด",
+    "add_to_cart": "เพิ่มลงตะกร้า",
+    "added": "เพิ่มลงตะกร้าแล้ว",
+    "add_error": "ไม่สามารถเพิ่มลงตะกร้าได้ กรุณาลองอีกครั้ง",
+    "view_cart": "ดูตะกร้าสินค้า",
+    "sale_price": "ราคาลด",
+    "regular_price": "ราคาปกติ",
+    "quantity": "จำนวน",
+    "sku": "SKU",
+    "type": "ประเภท",
+    "availability": "สถานะสินค้า",
+    "in_stock": "มีสินค้า",
+    "percent_off": "ลด {{ percent }}%",
+    "quantity_decrease": "ลดจำนวน",
+    "quantity_increase": "เพิ่มจำนวน"
+  },
+  "collection": {
+    "price_from": "ตั้งแต่",
+    "price_to": "ถึง",
+    "sort_by": "เรียงตาม",
+    "apply": "ใช้ตัวกรอง",
+    "clear_all": "ล้างตัวกรอง",
+    "product_count": {
+      "other": "{{ count }} สินค้า"
+    },
+    "empty": "ไม่พบสินค้าที่ตรงกับตัวกรองเหล่านี้",
+    "show_more": "แสดงเพิ่มเติม",
+    "showing": "แสดง {{ shown }} จาก {{ total }}"
+  },
+  "collections": {
+    "title": "คอลเลกชัน"
+  },
+  "cart": {
+    "title": "ตะกร้าสินค้า",
+    "empty": "ตะกร้าสินค้าของคุณว่างเปล่า",
+    "continue": "เลือกซื้อสินค้าต่อ",
+    "remove": "ลบ",
+    "subtotal": "ยอดรวมย่อย",
+    "taxes_note": "ภาษีและค่าจัดส่งจะคำนวณเมื่อชำระเงิน",
+    "update": "อัปเดตตะกร้า",
+    "checkout": "ชำระเงิน",
+    "error": "ไม่สามารถอัปเดตตะกร้าสินค้าของคุณได้ กรุณาลองอีกครั้ง",
+    "remove_item": "นำ {{ title }} ออกจากตะกร้า"
+  },
+  "search": {
+    "title": "ค้นหา",
+    "heading": "“{{ terms }}”",
+    "label": "ค้นหาในร้านค้า",
+    "placeholder": "ค้นหา",
+    "submit": "ค้นหา",
+    "results_count": {
+      "other": "{{ count }} ผลลัพธ์สำหรับ “{{ terms }}”"
+    },
+    "suggestions": "คำแนะนำ",
+    "results_status": "ผลลัพธ์: {{ count }}",
+    "products": "สินค้า",
+    "pages": "หน้าและบทความ",
+    "type_all": "ทั้งหมด",
+    "type_article": "บทความ",
+    "type_page": "หน้า",
+    "show_all": "แสดงทั้งหมดสำหรับ “{{ terms }}”",
+    "no_results": "ไม่พบผลลัพธ์ ลองค้นหาด้วยคำอื่น"
+  },
+  "password": {
+    "title": "ร้านค้านี้เป็นส่วนตัว",
+    "label": "รหัสผ่าน",
+    "enter": "เข้าสู่ร้านค้า",
+    "owner": "เจ้าของร้าน? เข้าสู่ระบบ"
+  },
+  "footer": {
+    "newsletter_label": "เข้าร่วมรายชื่อผู้รับข่าวสาร",
+    "newsletter_placeholder": "ที่อยู่อีเมล",
+    "newsletter_submit": "สมัครรับข่าวสาร",
+    "newsletter_success": "ขอบคุณที่สมัครรับข่าวสาร"
+  },
+  "sections": {
+    "featured": {
+      "view_all": "ดูทั้งหมด"
+    }
+  },
+  "gift_card": {
+    "expired": "บัตรของขวัญนี้หมดอายุแล้ว",
+    "expires_on": "หมดอายุวันที่ {{ date }}",
+    "use_at_checkout": "ใช้รหัสนี้เมื่อชำระเงิน",
+    "add_to_apple_wallet": "เพิ่มลงใน Apple Wallet"
+  },
+  "localization": {
+    "label": "ประเทศและภาษา",
+    "country": "ประเทศ/ภูมิภาค",
+    "language": "ภาษา",
+    "error": "ไม่สามารถโหลดรายการได้ โปรดลองอีกครั้ง"
+  },
+  "wishlist": {
+    "title": "รายการโปรด",
+    "toggle": "บันทึก {{ title }} ลงรายการโปรด",
+    "saved": "บันทึกลงรายการโปรดแล้ว",
+    "removed": "นำออกจากรายการโปรดแล้ว",
+    "add_to_cart": "เพิ่ม {{ title }} ลงตะกร้า",
+    "choose_options": "เลือกตัวเลือกสำหรับ {{ title }}",
+    "remove": "นำ {{ title }} ออกจากรายการโปรด"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Lehte ei leitud",
+    "body": "Otsitud lehte ei eksisteeri või on see teisaldatud.",
+    "cta": "Jätka ostlemist"
+  },
+  "general": {
+    "skip_to_content": "Liigu sisu juurde",
+    "main_menu": "Peamenüü",
+    "footer_menu": "Jaluse menüü",
+    "search": "Otsing",
+    "account": "Konto",
+    "cart": "Ostukorv",
+    "toggle_theme": "Vaheta hele ja tume režiim",
+    "light_mode": "Hele režiim",
+    "dark_mode": "Tume režiim",
+    "open_menu": "Menüü",
+    "home": "Avaleht",
+    "breadcrumbs": "Navigeerimisrada",
+    "pagination": "Lehekülgede vahetus",
+    "previous": "Eelmine",
+    "next": "Järgmine",
+    "tagged": "Märgendiga {{ tags }}",
+    "page_number": "Leht {{ number }}"
+  },
+  "products": {
+    "sold_out": "Välja müüdud",
+    "recently_viewed": "Hiljuti vaadatud",
+    "add_to_cart": "Lisa ostukorvi",
+    "added": "Lisatud ostukorvi.",
+    "add_error": "Ostukorvi lisamine ebaõnnestus. Palun proovige uuesti.",
+    "view_cart": "Vaata ostukorvi",
+    "sale_price": "Soodushind",
+    "regular_price": "Tavahind",
+    "quantity": "Kogus",
+    "sku": "SKU",
+    "type": "Tüüp",
+    "availability": "Saadavus",
+    "in_stock": "Laos olemas",
+    "percent_off": "{{ percent }}% allahindlus",
+    "quantity_decrease": "Vähenda kogust",
+    "quantity_increase": "Suurenda kogust"
+  },
+  "collection": {
+    "price_from": "Alates",
+    "price_to": "Kuni",
+    "sort_by": "Sorteeri",
+    "apply": "Rakenda filtrid",
+    "clear_all": "Tühjenda filtrid",
+    "product_count": {
+      "one": "{{ count }} toode",
+      "other": "{{ count }} toodet"
+    },
+    "empty": "Nendele filtritele vastavaid tooteid ei leitud.",
+    "show_more": "Näita rohkem",
+    "showing": "Kuvatud {{ shown }} / {{ total }}"
+  },
+  "collections": {
+    "title": "Kollektsioonid"
+  },
+  "cart": {
+    "title": "Ostukorv",
+    "empty": "Teie ostukorv on tühi.",
+    "continue": "Jätka ostlemist",
+    "remove": "Eemalda",
+    "subtotal": "Vahesumma",
+    "taxes_note": "Maksud ja saatmiskulud arvutatakse kassas.",
+    "update": "Uuenda ostukorvi",
+    "checkout": "Kassasse",
+    "error": "Teie ostukorvi uuendamine ebaõnnestus. Palun proovige uuesti.",
+    "remove_item": "Eemalda {{ title }} ostukorvist"
+  },
+  "search": {
+    "title": "Otsing",
+    "heading": "„{{ terms }}“",
+    "label": "Otsi poest",
+    "placeholder": "Otsi",
+    "submit": "Otsi",
+    "results_count": {
+      "one": "{{ count }} tulemus otsingule „{{ terms }}“",
+      "other": "{{ count }} tulemust otsingule „{{ terms }}“"
+    },
+    "suggestions": "Soovitused",
+    "results_status": "Tulemused: {{ count }}",
+    "products": "Tooted",
+    "pages": "Lehed ja artiklid",
+    "type_all": "Kõik",
+    "type_article": "Artiklid",
+    "type_page": "Lehed",
+    "show_all": "Näita kõiki otsingule „{{ terms }}“",
+    "no_results": "Tulemusi ei leitud. Proovige muud otsingut."
+  },
+  "password": {
+    "title": "See pood on privaatne",
+    "label": "Parool",
+    "enter": "Sisene",
+    "owner": "Poeomanik? Logi sisse"
+  },
+  "footer": {
+    "newsletter_label": "Liitu meililistiga",
+    "newsletter_placeholder": "E-posti aadress",
+    "newsletter_submit": "Telli",
+    "newsletter_success": "Täname tellimuse eest."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Vaata kõiki"
+    }
+  },
+  "gift_card": {
+    "expired": "See kinkekaart on aegunud.",
+    "expires_on": "Aegub {{ date }}",
+    "use_at_checkout": "Kasutage seda koodi kassas.",
+    "add_to_apple_wallet": "Lisa Apple Walletisse"
+  },
+  "localization": {
+    "label": "Riik ja keel",
+    "country": "Riik/piirkond",
+    "language": "Keel",
+    "error": "Loendit ei õnnestunud laadida. Proovi uuesti."
+  },
+  "wishlist": {
+    "title": "Lemmikud",
+    "toggle": "Salvesta {{ title }} lemmikutesse",
+    "saved": "Lemmikutesse salvestatud",
+    "removed": "Lemmikutest eemaldatud",
+    "add_to_cart": "Lisa {{ title }} ostukorvi",
+    "choose_options": "Vali {{ title }} valikud",
+    "remove": "Eemalda {{ title }} lemmikutest"
+  }
+}

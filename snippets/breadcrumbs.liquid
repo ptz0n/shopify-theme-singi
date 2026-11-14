@@ -1,0 +1,242 @@
+{% doc %}
+  Breadcrumb trail and its BreadcrumbList JSON-LD, built once from the same
+  data so they can never disagree. This is the ONLY place a BreadcrumbList is
+  emitted; do not add another.
+
+  Rules (Google and WCAG):
+  - The trail reflects a stable site hierarchy, not the visitor's click path.
+  - Product: product metafield singi.primary_collection, else the collection the
+    visitor came from, else the product's first collection in Shopify's order (never
+    "all" or "frontpage"), else just Home > Product. So a direct visit to a product
+    still shows where it lives.
+  - Collection and product ancestors come from the collection metafield
+    singi.parent_collection, up to three levels, and, when a collection has none,
+    from where the collection sits in the breadcrumb menu (theme setting
+    Navigation > Breadcrumb menu, default main-menu). Metafields win over the menu.
+    Pages, blogs and the collections list use the menu the same way (they have no
+    metafield); an article uses its blog's place in the menu, then the blog, then itself.
+    Define both metafields with `npm run seo:metafields`.
+  - Absolute URLs in JSON-LD; the last JSON-LD item is the current page, which is not a link and
+    is not drawn in the visible trail (the heading already says it).
+  - The visible trail is drawn only when there is at least one ancestor besides the
+    current page. A lone current page adds nothing the heading does not, so the
+    nav is omitted (the JSON-LD still lists Home and the page). Sections then get
+    their normal top padding, because the breadcrumb spacing rule needs the nav.
+  - Home is in the JSON-LD but not in the visible trail (saves space).
+  - Semantic nav > ol > li, separators drawn by CSS.
+
+  @param {string} kind - product, collection, collections, article, blog or page
+
+  @example
+  {% render 'breadcrumbs', kind: 'product' %}
+{% enddoc %}
+
+{%- liquid
+  assign origin = request.origin
+  assign titles = ''
+  assign urls = ''
+  assign start = blank
+  assign current_title = ''
+  assign current_url = ''
+
+  case kind
+    when 'product'
+      assign current_title = product.title
+      assign current_url = product.url
+      assign start = product.metafields.singi.primary_collection.value
+      if start == blank and collection != blank and collection.handle != 'all' and collection.handle != 'frontpage'
+        assign start = collection
+      endif
+      if start == blank
+        for candidate in product.collections
+          if candidate.handle != 'all' and candidate.handle != 'frontpage'
+            assign start = candidate
+            break
+          endif
+        endfor
+      endif
+      if start != blank
+        assign titles = start.title | append: '||'
+        assign urls = start.url | append: '||'
+      endif
+    when 'collection'
+      assign current_title = collection.title
+      assign current_url = collection.url
+      assign start = collection
+    when 'collections'
+      assign current_title = 'collections.title' | t
+      assign current_url = routes.collections_url
+    when 'article'
+      assign current_title = article.title
+      assign current_url = article.url
+      assign titles = blog.title | append: '||'
+      assign urls = blog.url | append: '||'
+    when 'blog'
+      assign current_title = blog.title
+      assign current_url = blog.url
+    when 'page'
+      assign current_title = page.title
+      assign current_url = page.url
+  endcase
+
+  assign metafield_parents = 0
+  if start != blank
+    assign node = start
+    for step in (1..3)
+      assign parent = node.metafields.singi.parent_collection.value
+      if parent == blank
+        break
+      endif
+      assign metafield_parents = metafield_parents | plus: 1
+      assign titles = parent.title | append: '||' | append: titles
+      assign urls = parent.url | append: '||' | append: urls
+      assign node = parent
+    endfor
+  endif
+
+  comment
+    No metafield parents: look the page up in the breadcrumb menu. Its parents in the menu
+    (one or two levels, menus nest three deep) become its ancestors. Liquid cannot recurse, so the
+    levels are unrolled, and `found` stops the outer loops. Parents that point at "all", the
+    front page or nowhere are skipped, they are not useful steps.
+  endcomment
+  comment
+    The page whose place in the menu is looked up: a collection (also a product's), a page, a blog,
+    the collections list, or, for an article, its blog (the article itself is never in a menu).
+  endcomment
+  assign target = blank
+  case kind
+    when 'product', 'collection'
+      if start != blank
+        assign target = start.url
+      endif
+    when 'article'
+      assign target = blog.url
+    else
+      assign target = current_url
+  endcase
+
+  if target != blank and metafield_parents == 0 and settings.breadcrumb_menu != blank
+    assign menu = linklists[settings.breadcrumb_menu]
+    assign found = false
+    assign menu_titles = ''
+    assign menu_urls = ''
+    for first in menu.links
+      if found
+        break
+      endif
+      if first.url == target
+        break
+      endif
+      for second in first.links
+        if found
+          break
+        endif
+        if second.url == target
+          assign found = true
+          assign menu_titles = first.title | append: '||'
+          assign menu_urls = first.url | append: '||'
+          break
+        endif
+        for third in second.links
+          if third.url == target
+            assign found = true
+            assign menu_titles = first.title | append: '||' | append: second.title | append: '||'
+            assign menu_urls = first.url | append: '||' | append: second.url | append: '||'
+            break
+          endif
+        endfor
+      endfor
+    endfor
+    if found
+      assign menu_title_list = menu_titles | split: '||'
+      assign menu_url_list = menu_urls | split: '||'
+      assign kept_titles = ''
+      assign kept_urls = ''
+      for menu_title in menu_title_list
+        assign menu_url = menu_url_list[forloop.index0]
+        assign menu_handle = menu_url | split: '/' | last
+        if menu_url == blank or menu_url == '#' or menu_url == routes.root_url or menu_handle == 'all' or menu_handle == 'frontpage'
+          continue
+        endif
+        assign kept_titles = kept_titles | append: menu_title | append: '||'
+        assign kept_urls = kept_urls | append: menu_url | append: '||'
+      endfor
+      assign titles = kept_titles | append: titles
+      assign urls = kept_urls | append: urls
+    endif
+  endif
+
+  assign title_list = titles | split: '||'
+  assign url_list = urls | split: '||'
+  assign trail_id = canonical_url | default: origin | append: current_url
+-%}
+
+{%- comment -%} A trail of only the current page says nothing the heading does not, so it is not drawn. The JSON-LD below is still complete. {%- endcomment -%}
+{%- assign ancestors = titles | remove: '||' | strip -%}
+{%- if ancestors != blank -%}
+  <nav class="breadcrumbs eyebrow" aria-label="{{ 'general.breadcrumbs' | t }}">
+    <ol role="list">
+      {%- for title in title_list -%}
+        {%- if title != blank -%}
+          <li><a href="{{ url_list[forloop.index0] }}">{{ title | escape }}</a></li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ol>
+  </nav>
+{%- endif -%}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": {{ trail_id | append: '#breadcrumb' | json }},
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": {{ 'general.home' | t | json }},
+        "item": {{ origin | append: routes.root_url | json }}
+      }
+      {%- assign position = 1 -%}
+      {%- for title in title_list -%}
+        {%- if title != blank -%}
+          {%- assign position = position | plus: 1 -%}
+          ,
+          {
+            "@type": "ListItem",
+            "position": {{ position }},
+            "name": {{ title | json }},
+            "item": {{ origin | append: url_list[forloop.index0] | json }}
+          }
+        {%- endif -%}
+      {%- endfor -%}
+      {%- assign position = position | plus: 1 -%}
+      ,
+      {
+        "@type": "ListItem",
+        "position": {{ position }},
+        "name": {{ current_title | json }},
+        "item": {{ origin | append: current_url | json }}
+      }
+    ]
+  }
+</script>
+
+{% stylesheet %}
+  /* One line, never wraps. The last ancestor truncates; the others keep their full width and the trail clips rather than scrolls the page.
+     Truncation is visual: the full text stays in the DOM for screen readers and the h1 shows it in full. */
+  /* Spacing follows the 1rem base unit (docs/design-system.md). The trail's 2.75rem line box already puts
+     about 1rem of air above and below its 12px text, so it adds no padding or margin of its own: the header
+     is the space above, and whatever follows starts right after the line box. */
+  .section:has(> .breadcrumbs) { padding-block-start: 0; }
+  .section > .breadcrumbs + * { margin-block-start: 0; }
+  .breadcrumbs { overflow: hidden; }
+  .breadcrumbs ol { display: flex; flex-wrap: nowrap; align-items: center; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
+  .breadcrumbs li { display: flex; align-items: center; flex: none; }
+  .breadcrumbs li:last-child { flex: 0 1 auto; min-width: 0; }
+  .breadcrumbs li + li::before { content: '/'; flex: none; margin-inline-end: 0.5rem; color: var(--color-muted); }
+  .breadcrumbs a { display: block; min-width: 0; overflow: hidden; line-height: 2.75rem; text-overflow: ellipsis; white-space: nowrap; }
+  .breadcrumbs a { text-decoration: none; }
+  .breadcrumbs a:hover { text-decoration: underline; }
+{% endstylesheet %}

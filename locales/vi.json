@@ -1,0 +1,129 @@
+{
+  "404": {
+    "title": "Không tìm thấy trang",
+    "body": "Trang bạn đang tìm không tồn tại hoặc đã được di chuyển.",
+    "cta": "Tiếp tục mua sắm"
+  },
+  "general": {
+    "skip_to_content": "Chuyển đến nội dung",
+    "main_menu": "Menu chính",
+    "footer_menu": "Menu chân trang",
+    "search": "Tìm kiếm",
+    "account": "Tài khoản",
+    "cart": "Giỏ hàng",
+    "toggle_theme": "Chuyển chế độ sáng/tối",
+    "light_mode": "Chế độ sáng",
+    "dark_mode": "Chế độ tối",
+    "open_menu": "Menu",
+    "home": "Trang chủ",
+    "breadcrumbs": "Đường dẫn điều hướng",
+    "pagination": "Phân trang",
+    "previous": "Trước",
+    "next": "Sau",
+    "tagged": "Thẻ {{ tags }}",
+    "page_number": "Trang {{ number }}"
+  },
+  "products": {
+    "sold_out": "Hết hàng",
+    "recently_viewed": "Đã xem gần đây",
+    "add_to_cart": "Thêm vào giỏ hàng",
+    "added": "Đã thêm vào giỏ hàng.",
+    "add_error": "Không thể thêm vào giỏ hàng. Vui lòng thử lại.",
+    "view_cart": "Xem giỏ hàng",
+    "sale_price": "Giá khuyến mãi",
+    "regular_price": "Giá gốc",
+    "quantity": "Số lượng",
+    "sku": "SKU",
+    "type": "Loại",
+    "availability": "Tình trạng",
+    "in_stock": "Còn hàng",
+    "percent_off": "giảm {{ percent }}%",
+    "quantity_decrease": "Giảm số lượng",
+    "quantity_increase": "Tăng số lượng"
+  },
+  "collection": {
+    "price_from": "Từ",
+    "price_to": "Đến",
+    "sort_by": "Sắp xếp theo",
+    "apply": "Áp dụng bộ lọc",
+    "clear_all": "Xóa bộ lọc",
+    "product_count": {
+      "other": "{{ count }} sản phẩm"
+    },
+    "empty": "Không có sản phẩm nào phù hợp với bộ lọc này.",
+    "show_more": "Hiển thị thêm",
+    "showing": "Đang hiển thị {{ shown }} trên {{ total }}"
+  },
+  "collections": {
+    "title": "Bộ sưu tập"
+  },
+  "cart": {
+    "title": "Giỏ hàng",
+    "empty": "Giỏ hàng của bạn đang trống.",
+    "continue": "Tiếp tục mua sắm",
+    "remove": "Xóa",
+    "subtotal": "Tạm tính",
+    "taxes_note": "Thuế và phí vận chuyển được tính khi thanh toán.",
+    "update": "Cập nhật giỏ hàng",
+    "checkout": "Thanh toán",
+    "error": "Không thể cập nhật giỏ hàng của bạn. Vui lòng thử lại.",
+    "remove_item": "Xóa {{ title }} khỏi giỏ hàng"
+  },
+  "search": {
+    "title": "Tìm kiếm",
+    "heading": "“{{ terms }}”",
+    "label": "Tìm kiếm trong cửa hàng",
+    "placeholder": "Tìm kiếm",
+    "submit": "Tìm kiếm",
+    "results_count": {
+      "other": "{{ count }} kết quả cho “{{ terms }}”"
+    },
+    "suggestions": "Gợi ý",
+    "results_status": "Kết quả: {{ count }}",
+    "products": "Sản phẩm",
+    "pages": "Trang và bài viết",
+    "type_all": "Tất cả",
+    "type_article": "Bài viết",
+    "type_page": "Trang",
+    "show_all": "Hiện tất cả cho “{{ terms }}”",
+    "no_results": "Không tìm thấy kết quả. Hãy thử từ khóa khác."
+  },
+  "password": {
+    "title": "Cửa hàng này ở chế độ riêng tư",
+    "label": "Mật khẩu",
+    "enter": "Vào",
+    "owner": "Chủ cửa hàng? Đăng nhập"
+  },
+  "footer": {
+    "newsletter_label": "Đăng ký nhận tin",
+    "newsletter_placeholder": "Địa chỉ email",
+    "newsletter_submit": "Đăng ký",
+    "newsletter_success": "Cảm ơn bạn đã đăng ký."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Xem tất cả"
+    }
+  },
+  "gift_card": {
+    "expired": "Thẻ quà tặng này đã hết hạn.",
+    "expires_on": "Hết hạn vào {{ date }}",
+    "use_at_checkout": "Sử dụng mã này khi thanh toán.",
+    "add_to_apple_wallet": "Thêm vào Apple Wallet"
+  },
+  "localization": {
+    "label": "Quốc gia và ngôn ngữ",
+    "country": "Quốc gia/khu vực",
+    "language": "Ngôn ngữ",
+    "error": "Không thể tải danh sách. Vui lòng thử lại."
+  },
+  "wishlist": {
+    "title": "Yêu thích",
+    "toggle": "Lưu {{ title }} vào yêu thích",
+    "saved": "Đã lưu vào yêu thích",
+    "removed": "Đã xóa khỏi yêu thích",
+    "add_to_cart": "Thêm {{ title }} vào giỏ hàng",
+    "choose_options": "Chọn tùy chọn cho {{ title }}",
+    "remove": "Xóa {{ title }} khỏi yêu thích"
+  }
+}

@@ -1,0 +1,43 @@
+{% doc %}
+  Rich text paragraph block.
+
+  @example
+  {% content_for 'block', type: 'text', id: 'intro' %}
+{% enddoc %}
+
+{%- assign s = block.settings -%}
+
+{%- if s.text != blank -%}
+  <div class="text prose text--{{ s.size }}{% if s.muted %} muted{% endif %}" {{ block.shopify_attributes }}>
+    {{ s.text }}
+  </div>
+{%- else -%}
+  {%- render 'placeholder', label: 'Text: add content in the block settings' -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .text--large { font-size: 1.1875rem; max-width: 40rem; }
+  .text--small { font-size: 0.875rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Text",
+  "settings": [
+    { "type": "richtext", "id": "text", "label": "Text" },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Size",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "normal", "label": "Normal" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "normal"
+    },
+    { "type": "checkbox", "id": "muted", "label": "Muted color", "default": false }
+  ],
+  "presets": [{ "name": "Text" }]
+}
+{% endschema %}

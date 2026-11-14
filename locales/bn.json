@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "পৃষ্ঠাটি খুঁজে পাওয়া যায়নি",
+    "body": "আপনি যে পৃষ্ঠাটি খুঁজছেন তা নেই অথবা সরানো হয়েছে।",
+    "cta": "কেনাকাটা চালিয়ে যান"
+  },
+  "general": {
+    "skip_to_content": "কনটেন্টে যান",
+    "main_menu": "প্রধান মেনু",
+    "footer_menu": "ফুটার মেনু",
+    "search": "অনুসন্ধান",
+    "account": "অ্যাকাউন্ট",
+    "cart": "কার্ট",
+    "toggle_theme": "লাইট ও ডার্ক মোড পরিবর্তন করুন",
+    "light_mode": "লাইট মোড",
+    "dark_mode": "ডার্ক মোড",
+    "open_menu": "মেনু",
+    "home": "হোম",
+    "breadcrumbs": "ব্রেডক্রাম্ব",
+    "pagination": "পেজিনেশন",
+    "previous": "আগের",
+    "next": "পরের",
+    "tagged": "ট্যাগ: {{ tags }}",
+    "page_number": "পৃষ্ঠা {{ number }}"
+  },
+  "products": {
+    "sold_out": "স্টক শেষ",
+    "recently_viewed": "সম্প্রতি দেখা",
+    "add_to_cart": "কার্টে যোগ করুন",
+    "added": "কার্টে যোগ করা হয়েছে।",
+    "add_error": "কার্টে যোগ করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।",
+    "view_cart": "কার্ট দেখুন",
+    "sale_price": "ছাড়ের মূল্য",
+    "regular_price": "নিয়মিত মূল্য",
+    "quantity": "পরিমাণ",
+    "sku": "SKU",
+    "type": "ধরন",
+    "availability": "প্রাপ্যতা",
+    "in_stock": "স্টকে আছে",
+    "percent_off": "{{ percent }}% ছাড়",
+    "quantity_decrease": "পরিমাণ কমান",
+    "quantity_increase": "পরিমাণ বাড়ান"
+  },
+  "collection": {
+    "price_from": "থেকে",
+    "price_to": "পর্যন্ত",
+    "sort_by": "সাজানোর ক্রম",
+    "apply": "ফিল্টার প্রয়োগ করুন",
+    "clear_all": "ফিল্টার মুছুন",
+    "product_count": {
+      "one": "{{ count }}টি পণ্য",
+      "other": "{{ count }}টি পণ্য"
+    },
+    "empty": "এই ফিল্টারগুলির সাথে কোনো পণ্য মেলেনি।",
+    "show_more": "আরও দেখুন",
+    "showing": "{{ total }}টির মধ্যে {{ shown }}টি দেখানো হচ্ছে"
+  },
+  "collections": {
+    "title": "কালেকশন"
+  },
+  "cart": {
+    "title": "কার্ট",
+    "empty": "আপনার কার্ট খালি।",
+    "continue": "কেনাকাটা চালিয়ে যান",
+    "remove": "সরান",
+    "subtotal": "সাবটোটাল",
+    "taxes_note": "চেকআউটের সময় কর ও শিপিং খরচ হিসাব করা হবে।",
+    "update": "কার্ট আপডেট করুন",
+    "checkout": "চেকআউট",
+    "error": "আপনার কার্ট আপডেট করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।",
+    "remove_item": "কার্ট থেকে {{ title }} সরান"
+  },
+  "search": {
+    "title": "অনুসন্ধান",
+    "heading": "“{{ terms }}”",
+    "label": "স্টোরে অনুসন্ধান করুন",
+    "placeholder": "অনুসন্ধান",
+    "submit": "অনুসন্ধান",
+    "results_count": {
+      "one": "“{{ terms }}” এর জন্য {{ count }}টি ফলাফল",
+      "other": "“{{ terms }}” এর জন্য {{ count }}টি ফলাফল"
+    },
+    "suggestions": "পরামর্শ",
+    "results_status": "ফলাফল: {{ count }}",
+    "products": "পণ্য",
+    "pages": "পৃষ্ঠা ও নিবন্ধ",
+    "type_all": "সব",
+    "type_article": "নিবন্ধ",
+    "type_page": "পৃষ্ঠা",
+    "show_all": "“{{ terms }}” এর সব দেখান",
+    "no_results": "কোনো ফলাফল পাওয়া যায়নি। অন্য কিছু অনুসন্ধান করুন।"
+  },
+  "password": {
+    "title": "এই স্টোরটি ব্যক্তিগত",
+    "label": "পাসওয়ার্ড",
+    "enter": "প্রবেশ করুন",
+    "owner": "স্টোরের মালিক? লগ ইন করুন"
+  },
+  "footer": {
+    "newsletter_label": "তালিকায় যোগ দিন",
+    "newsletter_placeholder": "ইমেইল ঠিকানা",
+    "newsletter_submit": "সাবস্ক্রাইব করুন",
+    "newsletter_success": "সাবস্ক্রাইব করার জন্য ধন্যবাদ।"
+  },
+  "sections": {
+    "featured": {
+      "view_all": "সব দেখুন"
+    }
+  },
+  "gift_card": {
+    "expired": "এই গিফট কার্ডের মেয়াদ শেষ হয়ে গেছে।",
+    "expires_on": "মেয়াদ শেষ হবে {{ date }}",
+    "use_at_checkout": "চেকআউটের সময় এই কোডটি ব্যবহার করুন।",
+    "add_to_apple_wallet": "Apple Wallet-এ যোগ করুন"
+  },
+  "localization": {
+    "label": "দেশ ও ভাষা",
+    "country": "দেশ/অঞ্চল",
+    "language": "ভাষা",
+    "error": "তালিকা লোড করা যায়নি। আবার চেষ্টা করুন।"
+  },
+  "wishlist": {
+    "title": "পছন্দের তালিকা",
+    "toggle": "{{ title }} পছন্দের তালিকায় সংরক্ষণ করুন",
+    "saved": "পছন্দের তালিকায় সংরক্ষিত হয়েছে",
+    "removed": "পছন্দের তালিকা থেকে সরানো হয়েছে",
+    "add_to_cart": "{{ title }} কার্টে যোগ করুন",
+    "choose_options": "{{ title }}-এর বিকল্প বেছে নিন",
+    "remove": "পছন্দের তালিকা থেকে {{ title }} সরান"
+  }
+}

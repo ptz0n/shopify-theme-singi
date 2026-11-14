@@ -1,0 +1,327 @@
+{% comment %}
+  Component library. Developer tool for the page template page.styleguide.
+
+  Shows every component in one place so changes can be checked quickly:
+  typography, color tokens with live contrast ratios, buttons, forms,
+  interactive elements, cards, prices, icons and skeletons. assets/styleguide.js
+  adds controls (direction, zoom, color mode), an accessibility self-audit and
+  live performance measurements.
+
+  Guard rails: renders nothing unless the Developer theme setting
+  "Enable the component library page" is on (off by default), the page is
+  noindex (see snippets/meta-tags.liquid), and the copy is English and
+  developer-facing on purpose. Do not enable it on a production store.
+{% endcomment %}
+
+{%- unless settings.styleguide_enabled -%}
+  {%- render 'placeholder', label: 'Component library is off. Enable it in Theme settings, Developer.', wide: true -%}
+{%- else -%}
+  <div class="container section sg" data-styleguide>
+    {%- render 'breadcrumbs', kind: 'page' -%}
+
+    <header class="sg__head stack">
+      <p class="eyebrow">Developer tool</p>
+      <h1>Component library</h1>
+      <p class="muted">Every component, an accessibility self-audit and live measurements. Resize, switch color mode, flip direction and zoom to test.</p>
+
+      <div class="sg__controls" role="group" aria-label="Preview controls">
+        <button class="button button--secondary" type="button" data-sg-dir aria-pressed="false">Direction: LTR</button>
+        <button class="button button--secondary" type="button" data-sg-zoom aria-pressed="false">Zoom: 100%</button>
+        <button class="button button--secondary" type="button" data-theme-toggle>Toggle color mode</button>
+        <button class="button" type="button" data-sg-refresh>Re-run audit</button>
+      </div>
+    </header>
+
+    <nav class="sg__toc" aria-label="Component library sections">
+      <ul role="list">
+        <li><a href="#audit">Accessibility audit</a></li>
+        <li><a href="#measure">Measurements</a></li>
+        <li><a href="#typography">Typography</a></li>
+        <li><a href="#color">Color and contrast</a></li>
+        <li><a href="#buttons">Buttons</a></li>
+        <li><a href="#forms">Forms</a></li>
+        <li><a href="#interactive">Interactive</a></li>
+        <li><a href="#commerce">Commerce</a></li>
+        <li><a href="#icons">Icons and states</a></li>
+      </ul>
+    </nav>
+
+    <section class="sg__section" id="audit" aria-labelledby="audit-title">
+      <h2 id="audit-title">Accessibility audit</h2>
+      <p class="muted">Checks this page's DOM against common WCAG 2.2 failures. It complements, not replaces, an axe run and manual testing with a keyboard and a screen reader.</p>
+      <p class="sg__summary mono" data-sg-summary role="status">Running…</p>
+      <ul class="sg__audit" role="list" data-sg-audit></ul>
+    </section>
+
+    <section class="sg__section" id="measure" aria-labelledby="measure-title">
+      <h2 id="measure-title">Measurements</h2>
+      <p class="muted">Live values for this page load. Interact with the page, then re-run. Transfer sizes are 0 for cross-origin resources.</p>
+      <div class="sg__table-wrap" tabindex="0" role="region" aria-labelledby="measure-title">
+        <table class="sg__table">
+          <thead><tr><th scope="col">Metric</th><th scope="col">Value</th><th scope="col">Target</th><th scope="col">Status</th></tr></thead>
+          <tbody data-sg-vitals></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sg__section" id="typography" aria-labelledby="typography-title">
+      <h2 id="typography-title">Typography</h2>
+      <div class="sg__grid">
+        <div class="stack">
+          <p class="eyebrow">Headings</p>
+          <p class="h1">Heading one, the page title</p>
+          <p class="h2">Heading two for sections</p>
+          <p class="h3">Heading three for groups</p>
+          <p class="h4">Heading four for small groups</p>
+          <p class="muted">Samples use the .h1 to .h4 classes so this page keeps a single real h1.</p>
+        </div>
+        <div class="stack prose">
+          <p class="eyebrow">Body</p>
+          <p>The quick brown fox jumps over the lazy dog. Body text is Inter at the regular weight with a 1.5 line height, <strong>strong text uses the 600 weight</strong>, and <a href="#typography">links are underlined</a> so color is never the only cue.</p>
+          <p class="muted">Muted text carries secondary information and still meets 4.5:1 contrast.</p>
+          <p class="mono">Monospace for prices, SKUs and metadata: 1,299.00 / SKU-0042</p>
+          <p class="eyebrow">Eyebrow label</p>
+          <p><small>Small print for legal and helper text.</small></p>
+          <ul>
+            <li>An unordered list item</li>
+            <li>Another list item that is long enough to wrap onto a second line on narrow screens, which checks the line height</li>
+          </ul>
+          <ol>
+            <li>First ordered item</li>
+            <li>Second ordered item</li>
+          </ol>
+          <blockquote><p>Good design is as little design as possible.</p></blockquote>
+          <p>Inline <code>code</code> sits in the monospace font.</p>
+        </div>
+      </div>
+      <div class="stack">
+        <p class="eyebrow">Wrapping stress tests</p>
+        <p>Donaudampfschifffahrtsgesellschaftskapitänsmützenhersteller and https://example.com/a/very/long/path/that/has/no/natural/break/points/to/test/overflow-wrap</p>
+        <p lang="ar" dir="rtl">نص عربي للتحقق من الاتجاه من اليمين إلى اليسار وتباعد الأحرف والخط الاحتياطي.</p>
+        <p lang="ja">日本語の文章で、行の折り返しと禁則処理、フォントの代替を確認します。</p>
+      </div>
+    </section>
+
+    <section class="sg__section" id="color" aria-labelledby="color-title">
+      <h2 id="color-title">Color and contrast</h2>
+      <ul class="sg__swatches" role="list">
+        {%- assign color_tokens = 'bg,surface,fg,muted,border,control,accent,danger' | split: ',' -%}
+        {%- for token in color_tokens -%}
+          <li>
+            <span class="sg__swatch" style="background: var(--color-{{ token }})"></span>
+            <span class="mono">--color-{{ token }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <div class="sg__table-wrap" tabindex="0" role="region" aria-label="Contrast ratios">
+        <table class="sg__table">
+          <caption class="visually-hidden">Contrast ratios for the current color mode</caption>
+          <thead><tr><th scope="col">Pair</th><th scope="col">Ratio</th><th scope="col">Needs</th><th scope="col">Result</th></tr></thead>
+          <tbody data-sg-contrast></tbody>
+        </table>
+      </div>
+      <p class="muted">Toggle the color mode to measure both schemes. Text needs 4.5:1; borders of controls and focus rings need 3:1.</p>
+    </section>
+
+    <section class="sg__section" id="buttons" aria-labelledby="buttons-title">
+      <h2 id="buttons-title">Buttons</h2>
+      <div class="sg__row">
+        <button class="button" type="button">Primary</button>
+        <button class="button" type="button">{%- render 'icon', name: 'cart' -%}<span>Add to cart</span></button>
+        <button class="button button--secondary" type="button">Secondary</button>
+        <a class="button" href="#buttons">Link as button</a>
+        <button class="button" type="button" disabled>Disabled</button>
+        <button class="button" type="button" aria-disabled="true">Aria-disabled</button>
+        <button class="button" type="button" aria-busy="true">Busy</button>
+      </div>
+      <div class="sg__row">
+        <button class="icon-button" type="button" aria-label="Icon button">{%- render 'icon', name: 'search' -%}</button>
+        <button class="icon-button" type="button" aria-label="Icon button with count">
+          {%- render 'icon', name: 'cart' -%}
+          <span class="cart-count" data-count="3">3</span>
+        </button>
+      </div>
+      <div class="sg__block"><button class="button button--block" type="button">Full width button</button></div>
+      <p class="muted">Tab through the buttons to check the focus ring. Every control is at least 44px tall.</p>
+    </section>
+
+    <section class="sg__section" id="forms" aria-labelledby="forms-title">
+      <h2 id="forms-title">Forms</h2>
+      <div class="sg__grid">
+        <div class="stack">
+          <div class="field">
+            <label for="sg-text">Text input</label>
+            <input id="sg-text" type="text" autocomplete="off" placeholder="Example value">
+            <p class="field__help" id="sg-text-help">Helper text sits under the field.</p>
+          </div>
+          <div class="field">
+            <label for="sg-email">Email</label>
+            <input id="sg-email" type="email" autocomplete="email" value="name@example.com">
+          </div>
+          <div class="field">
+            <label for="sg-error">Field with an error</label>
+            <input id="sg-error" type="text" aria-invalid="true" aria-describedby="sg-error-msg" value="Invalid value">
+            <p class="field__error" id="sg-error-msg">Enter a valid value.</p>
+          </div>
+          <div class="field">
+            <label for="sg-disabled">Disabled</label>
+            <input id="sg-disabled" type="text" value="Not editable" disabled>
+          </div>
+          <div class="field">
+            <label for="sg-number">Number</label>
+            <input id="sg-number" type="number" min="1" value="1" inputmode="numeric">
+          </div>
+        </div>
+        <div class="stack">
+          <div class="field">
+            <label for="sg-select">Select</label>
+            <select id="sg-select">
+              <option>Option one</option>
+              <option>Option two</option>
+              <option>Option three</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="sg-textarea">Textarea</label>
+            <textarea id="sg-textarea" rows="4">Multi-line text.</textarea>
+          </div>
+          <fieldset class="field sg__fieldset">
+            <legend>Checkboxes</legend>
+            <label class="check"><input type="checkbox" checked> Checked</label>
+            <label class="check"><input type="checkbox"> Unchecked</label>
+            <label class="check"><input type="checkbox" disabled> Disabled</label>
+          </fieldset>
+          <fieldset class="field sg__fieldset">
+            <legend>Radio buttons</legend>
+            <label class="check"><input type="radio" name="sg-radio" checked> Option A</label>
+            <label class="check"><input type="radio" name="sg-radio"> Option B</label>
+          </fieldset>
+          <p class="form-error" role="note">A form-level error summary uses this style.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sg__section" id="interactive" aria-labelledby="interactive-title">
+      <h2 id="interactive-title">Interactive</h2>
+      <div class="stack">
+        <p class="eyebrow">Option chips (variant picker)</p>
+        <fieldset class="sg__fieldset">
+          <legend>Size</legend>
+          <div class="sg__row">
+            {%- assign sizes = 'S,M,L,XL' | split: ',' -%}
+            {%- for size in sizes -%}
+              <input class="chip-input visually-hidden" type="radio" name="sg-size" id="sg-size-{{ forloop.index }}"{% if forloop.first %} checked{% endif %}{% if size == 'XL' %} disabled{% endif %}>
+              <label class="chip" for="sg-size-{{ forloop.index }}">{{ size }}</label>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+
+        <p class="eyebrow">Quantity stepper</p>
+        <div class="sg__row">
+          <div>
+            <label for="sg-qty">Quantity</label>
+            {%- render 'quantity-input', id: 'sg-qty', name: 'sg-qty', value: 1, min: 1, max: 5 -%}
+          </div>
+        </div>
+
+        <p class="eyebrow">Accordion and other blocks (real theme blocks, from the template)</p>
+        <div class="stack">
+          {% content_for 'blocks' %}
+        </div>
+
+        <p class="eyebrow">Pagination</p>
+        {%- paginate collections.all.products by 2 -%}
+          {%- render 'pagination', paginate: paginate -%}
+        {%- endpaginate -%}
+      </div>
+    </section>
+
+    <section class="sg__section" id="commerce" aria-labelledby="commerce-title">
+      <h2 id="commerce-title">Commerce</h2>
+      <div class="sg__grid">
+        <div class="stack">
+          <p class="eyebrow">Prices</p>
+          {%- render 'price', price: 3900 -%}
+          {%- render 'price', price: 7900, compare_at_price: 9900 -%}
+          {%- render 'price', price: 129900 -%}
+          <p class="eyebrow">Badges</p>
+          <div class="sg__row"><span class="badge">New</span><span class="badge">Sold out</span></div>
+        </div>
+        <div class="stack">
+          <p class="eyebrow">Product card</p>
+          {%- assign sample = collections.all.products.first -%}
+          {%- if sample -%}
+            <ul class="sg__card" role="list">{% render 'product-card', product: sample, eager: false, heading: 'h3' %}</ul>
+          {%- else -%}
+            {%- render 'placeholder', label: 'Add a product to see the product card' -%}
+          {%- endif -%}
+        </div>
+      </div>
+    </section>
+
+    <section class="sg__section" id="icons" aria-labelledby="icons-title">
+      <h2 id="icons-title">Icons and states</h2>
+      <ul class="sg__icons" role="list">
+        {%- assign icon_names = 'sun,moon,cart,search,account,menu,close,plus,minus,arrow-right,chevron-down' | split: ',' -%}
+        {%- for name in icon_names -%}
+          <li>{%- render 'icon', name: name -%}<span class="mono">{{ name }}</span></li>
+        {%- endfor -%}
+      </ul>
+      <div class="sg__grid">
+        <div class="stack">
+          <p class="eyebrow">Skeleton</p>
+          <div class="skeleton" style="height: 1.25rem; width: 60%"></div>
+          <div class="skeleton" style="height: 6rem"></div>
+        </div>
+        <div class="stack">
+          <p class="eyebrow">Editor placeholder (hidden in production)</p>
+          {%- render 'placeholder', label: 'Visible only in the theme editor or an unpublished theme' -%}
+          <p class="muted">On the published theme this area is intentionally empty.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="{{ 'styleguide.js' | asset_url }}" type="module"></script>
+{%- endunless -%}
+
+{% stylesheet %}
+  .sg { --stack: 1rem; }
+  .sg__head { margin-block: 1rem 2rem; }
+  .sg__controls, .sg__row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+  .sg__toc ul { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin-block-end: 2rem; }
+  .sg__toc a { display: inline-flex; align-items: center; min-height: 2.75rem; padding-inline: 1rem; border: 1px solid var(--color-control); border-radius: var(--radius); text-decoration: none; }
+  .sg__toc a:hover { background: var(--color-surface); }
+  .sg__section { padding-block: 2rem; border-block-start: 1px solid var(--color-border); }
+  .sg__section > h2 { margin-block-end: 1rem; }
+  .sg__grid { display: grid; gap: 2rem; margin-block: 1rem; }
+  @media (min-width: 56em) { .sg__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .sg__fieldset { min-width: 0; padding: 0; border: 0; }
+  .sg__block { margin-block: 1rem; }
+  .sg__card { max-width: 18rem; padding: 0; list-style: none; }
+  .sg__swatches { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); padding: 0; margin-block: 1rem; }
+  .sg__swatch { display: block; height: 3.5rem; margin-block-end: 0.375rem; border: 1px solid var(--color-control); border-radius: var(--radius); }
+  .sg__swatches .mono { font-size: 0.75rem; }
+  .sg__table-wrap { overflow-x: auto; margin-block: 1rem; }
+  .sg__table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+  .sg__table :is(th, td) { padding: 0.5rem 0.75rem; border-block-end: 1px solid var(--color-border); text-align: start; }
+  .sg__table th { font-weight: var(--font-weight-strong); }
+  .sg__pass { color: light-dark(#166534, #86efac); }
+  .sg__fail { color: var(--color-danger); font-weight: var(--font-weight-strong); }
+  .sg__warn { color: light-dark(#92400e, #fcd34d); }
+  .sg__summary { font-size: 0.875rem; }
+  .sg__audit { display: grid; gap: 0.5rem; padding: 0; margin-block: 1rem; }
+  .sg__audit li { padding: 0.75rem 1rem; border: 1px solid var(--color-border); border-radius: var(--radius); }
+  .sg__audit details { margin-block-start: 0.5rem; font-size: 0.8125rem; }
+  .sg__icons { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr)); padding: 0; margin-block: 1rem; }
+  .sg__icons li { display: grid; justify-items: center; gap: 0.5rem; padding: 1rem; border: 1px solid var(--color-border); border-radius: var(--radius); }
+  .sg__icons .mono { font-size: 0.6875rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Component library",
+  "settings": [],
+  "blocks": [{ "type": "@theme" }]
+}
+{% endschema %}

@@ -1,0 +1,41 @@
+{% doc %}
+  BlogPosting structured data for an article page. Rendered in the head by
+  snippets/meta-tags.liquid. Follows Google's article guidance: headline,
+  absolute image URLs, ISO 8601 dates with a timezone, author as a Person and
+  publisher as the shared Organization.
+
+  Needs the global `article` and `blog` objects.
+
+  @example
+  {% render 'schema-article' %}
+{% enddoc %}
+
+{%- liquid
+  assign origin = request.origin
+  assign page_id = canonical_url | default: origin | append: article.url
+  assign summary = article.excerpt_or_content | strip_html | strip_newlines | strip | truncate: 200
+-%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": {{ page_id | append: '#article' | json }},
+    "mainEntityOfPage": { "@type": "WebPage", "@id": {{ page_id | json }} },
+    "headline": {{ article.title | truncate: 110, '' | json }},
+    "description": {{ summary | json }},
+    "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }},
+    "dateModified": {{ article.updated_at | default: article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }},
+    "inLanguage": {{ request.locale.iso_code | json }},
+    "author": { "@type": "Person", "name": {{ article.author | default: shop.name | json }} },
+    "publisher": { "@id": {{ origin | append: '/#organization' | json }} },
+    "isPartOf": { "@type": "Blog", "name": {{ blog.title | json }}, "url": {{ origin | append: blog.url | json }} }
+    {%- if article.image -%}
+      ,
+      "image": [{{ article.image | image_url: width: 1200 | prepend: 'https:' | json }}]
+    {%- endif -%}
+    {%- if article.tags.size > 0 -%}
+      ,
+      "keywords": {{ article.tags | join: ', ' | json }}
+    {%- endif -%}
+  }
+</script>

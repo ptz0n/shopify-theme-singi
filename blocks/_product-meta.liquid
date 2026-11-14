@@ -1,0 +1,42 @@
+{% doc %}
+  SKU, product type and availability in the monospace font, one row per
+  attribute across the full column: the name at the start, the value at the
+  end (logical, so it mirrors in right-to-left), with the same line dividers and
+  padding as a table in prose content (.prose th, td in base.css). The product type
+  links to Shopify's built-in type collection (url_for_type), and a linked row is
+  tappable across its full width. Private to product sections.
+{% enddoc %}
+
+{%- assign variant = product.selected_or_first_available_variant -%}
+
+<dl class="meta mono" data-swap="meta" {{ block.shopify_attributes }}>
+  {%- if variant.sku != blank -%}
+    <div><dt>{{ 'products.sku' | t }}</dt><dd>{{ variant.sku }}</dd></div>
+  {%- endif -%}
+  {%- if product.type != blank -%}
+    <div><dt>{{ 'products.type' | t }}</dt><dd><a href="{{ product.type | url_for_type }}">{{ product.type }}</a></dd></div>
+  {%- endif -%}
+  <div>
+    <dt>{{ 'products.availability' | t }}</dt>
+    <dd>{% if variant.available %}{{ 'products.in_stock' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}</dd>
+  </div>
+</dl>
+
+{% stylesheet %}
+  .meta { display: grid; margin: 0; font-size: 0.8125rem; color: var(--color-muted); }
+  .meta div { position: relative; display: flex; justify-content: space-between; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid var(--color-border); }
+  .meta dt { text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  .meta dd { margin: 0; color: var(--color-fg); text-align: end; }
+  /* A linked value stretches over its whole row, like a product card, so the tap area is the full width. */
+  .meta a::after { content: ''; position: absolute; inset: 0; }
+  .meta div:has(a):hover { background: var(--color-surface); }
+  .meta a:focus-visible { outline: none; }
+  .meta a:focus-visible::after { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product meta",
+  "settings": []
+}
+{% endschema %}

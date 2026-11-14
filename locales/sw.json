@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Ukurasa haujapatikana",
+    "body": "Ukurasa unaoutafuta haupo au umehamishwa.",
+    "cta": "Endelea kununua"
+  },
+  "general": {
+    "skip_to_content": "Ruka hadi yaliyomo",
+    "main_menu": "Menyu kuu",
+    "footer_menu": "Menyu ya chini",
+    "search": "Tafuta",
+    "account": "Akaunti",
+    "cart": "Kikapu",
+    "toggle_theme": "Badilisha kati ya hali ya mwanga na giza",
+    "light_mode": "Hali ya mwanga",
+    "dark_mode": "Hali ya giza",
+    "open_menu": "Menyu",
+    "home": "Mwanzo",
+    "breadcrumbs": "Njia ya urambazaji",
+    "pagination": "Kurasa",
+    "previous": "Iliyotangulia",
+    "next": "Inayofuata",
+    "tagged": "Lebo: {{ tags }}",
+    "page_number": "Ukurasa wa {{ number }}"
+  },
+  "products": {
+    "sold_out": "Imeisha",
+    "recently_viewed": "Zilizotazamwa hivi karibuni",
+    "add_to_cart": "Weka kwenye kikapu",
+    "added": "Imewekwa kwenye kikapu.",
+    "add_error": "Imeshindwa kuweka kwenye kikapu. Tafadhali jaribu tena.",
+    "view_cart": "Tazama kikapu",
+    "sale_price": "Bei ya punguzo",
+    "regular_price": "Bei ya kawaida",
+    "quantity": "Idadi",
+    "sku": "SKU",
+    "type": "Aina",
+    "availability": "Upatikanaji",
+    "in_stock": "Ipo dukani",
+    "percent_off": "punguzo la {{ percent }}%",
+    "quantity_decrease": "Punguza idadi",
+    "quantity_increase": "Ongeza idadi"
+  },
+  "collection": {
+    "price_from": "Kuanzia",
+    "price_to": "Hadi",
+    "sort_by": "Panga kwa",
+    "apply": "Tumia vichujio",
+    "clear_all": "Futa vichujio",
+    "product_count": {
+      "one": "Bidhaa {{ count }}",
+      "other": "Bidhaa {{ count }}"
+    },
+    "empty": "Hakuna bidhaa zinazolingana na vichujio hivi.",
+    "show_more": "Onyesha zaidi",
+    "showing": "Inaonyesha {{ shown }} kati ya {{ total }}"
+  },
+  "collections": {
+    "title": "Mikusanyiko"
+  },
+  "cart": {
+    "title": "Kikapu",
+    "empty": "Kikapu chako ni tupu.",
+    "continue": "Endelea kununua",
+    "remove": "Ondoa",
+    "subtotal": "Jumla ndogo",
+    "taxes_note": "Kodi na usafirishaji hukokotolewa wakati wa malipo.",
+    "update": "Sasisha kikapu",
+    "checkout": "Endelea na malipo",
+    "error": "Imeshindwa kusasisha kikapu chako. Tafadhali jaribu tena.",
+    "remove_item": "Ondoa {{ title }} kwenye kikapu"
+  },
+  "search": {
+    "title": "Tafuta",
+    "heading": "“{{ terms }}”",
+    "label": "Tafuta dukani",
+    "placeholder": "Tafuta",
+    "submit": "Tafuta",
+    "results_count": {
+      "one": "Tokeo {{ count }} la “{{ terms }}”",
+      "other": "Matokeo {{ count }} ya “{{ terms }}”"
+    },
+    "suggestions": "Mapendekezo",
+    "results_status": "Matokeo: {{ count }}",
+    "products": "Bidhaa",
+    "pages": "Kurasa na makala",
+    "type_all": "Zote",
+    "type_article": "Makala",
+    "type_page": "Kurasa",
+    "show_all": "Onyesha yote ya “{{ terms }}”",
+    "no_results": "Hakuna matokeo yaliyopatikana. Jaribu utafutaji tofauti."
+  },
+  "password": {
+    "title": "Duka hili ni la faragha",
+    "label": "Nenosiri",
+    "enter": "Ingia",
+    "owner": "Mmiliki wa duka? Ingia"
+  },
+  "footer": {
+    "newsletter_label": "Jiunge na orodha",
+    "newsletter_placeholder": "Barua pepe",
+    "newsletter_submit": "Jiandikishe",
+    "newsletter_success": "Asante kwa kujiandikisha."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Tazama zote"
+    }
+  },
+  "gift_card": {
+    "expired": "Kadi hii ya zawadi imeisha muda wake.",
+    "expires_on": "Inaisha tarehe {{ date }}",
+    "use_at_checkout": "Tumia msimbo huu wakati wa malipo.",
+    "add_to_apple_wallet": "Ongeza kwenye Apple Wallet"
+  },
+  "localization": {
+    "label": "Nchi na lugha",
+    "country": "Nchi/eneo",
+    "language": "Lugha",
+    "error": "Orodha haikuweza kupakiwa. Tafadhali jaribu tena."
+  },
+  "wishlist": {
+    "title": "Vipendwa",
+    "toggle": "Hifadhi {{ title }} kwenye vipendwa",
+    "saved": "Imehifadhiwa kwenye vipendwa",
+    "removed": "Imeondolewa kwenye vipendwa",
+    "add_to_cart": "Weka {{ title }} kwenye kikapu",
+    "choose_options": "Chagua chaguo za {{ title }}",
+    "remove": "Ondoa {{ title }} kwenye vipendwa"
+  }
+}

@@ -1,0 +1,61 @@
+{% comment %}
+  A heading and a grid of products from one collection. The heading is always
+  rendered (the collection's title when none is set) so the cards' h3 titles never
+  follow the page h1 directly.
+
+  Performance notes:
+  - `limit` on the for loop caps the database fetch for collection.products.
+  - Images in the first row load eagerly only when this section is near the top.
+{% endcomment %}
+
+{%- liquid
+  assign collection = section.settings.collection
+  assign eager_cards = false
+  unless section.index > 2
+    assign eager_cards = true
+  endunless
+-%}
+
+{%- if collection != blank -%}
+  <section class="container section featured">
+    <div class="featured__head">
+      <h2>{{ section.settings.heading | default: collection.title }}</h2>
+      <a class="featured__all mono" href="{{ collection.url }}">{{ 'sections.featured.view_all' | t }}</a>
+    </div>
+
+    <ul class="product-grid" role="list">
+      {%- for product in collection.products limit: section.settings.limit -%}
+        {%- liquid
+          assign card_eager = false
+          if eager_cards and forloop.index <= 4
+            assign card_eager = true
+          endif
+        -%}
+        {% render 'product-card', product: product, eager: card_eager %}
+      {%- endfor -%}
+    </ul>
+    {%- if settings.tracking_enabled -%}
+      {%- assign list_name = section.settings.heading | default: collection.title -%}
+      {%- render 'tracking-list', products: collection.products, limit: section.settings.limit, list_id: collection.handle, list_name: list_name -%}
+    {%- endif -%}
+  </section>
+{%- else -%}
+  {%- render 'placeholder', label: 'Featured collection: choose a collection', wide: true -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .featured__head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-block-end: 1.5rem; }
+  .featured__all { display: inline-flex; align-items: center; min-height: 2.75rem; margin-inline-start: auto; font-size: 0.8125rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "limit", "label": "Products to show", "min": 2, "max": 12, "step": 2, "default": 8 }
+  ],
+  "presets": [{ "name": "Featured collection" }]
+}
+{% endschema %}

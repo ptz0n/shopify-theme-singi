@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Sidan hittades inte",
+    "body": "Sidan du letar efter finns inte eller har flyttats.",
+    "cta": "Fortsätt handla"
+  },
+  "general": {
+    "skip_to_content": "Hoppa till innehåll",
+    "main_menu": "Huvudmeny",
+    "footer_menu": "Sidfotsmeny",
+    "search": "Sök",
+    "account": "Konto",
+    "cart": "Varukorg",
+    "toggle_theme": "Växla mellan ljust och mörkt läge",
+    "light_mode": "Ljust läge",
+    "dark_mode": "Mörkt läge",
+    "open_menu": "Meny",
+    "home": "Hem",
+    "breadcrumbs": "Sökväg",
+    "pagination": "Sidnavigering",
+    "previous": "Föregående",
+    "next": "Nästa",
+    "tagged": "Taggad {{ tags }}",
+    "page_number": "Sida {{ number }}"
+  },
+  "products": {
+    "sold_out": "Slutsåld",
+    "recently_viewed": "Nyligen visade",
+    "add_to_cart": "Lägg i varukorgen",
+    "added": "Tillagd i varukorgen.",
+    "add_error": "Det gick inte att lägga till i varukorgen. Försök igen.",
+    "view_cart": "Visa varukorg",
+    "sale_price": "Reapris",
+    "regular_price": "Ordinarie pris",
+    "quantity": "Antal",
+    "sku": "Artikelnummer",
+    "type": "Typ",
+    "availability": "Tillgänglighet",
+    "in_stock": "I lager",
+    "percent_off": "{{ percent }} % rabatt",
+    "quantity_decrease": "Minska antal",
+    "quantity_increase": "Öka antal"
+  },
+  "collection": {
+    "price_from": "Från",
+    "price_to": "Till",
+    "sort_by": "Sortera efter",
+    "apply": "Använd filter",
+    "clear_all": "Rensa filter",
+    "product_count": {
+      "one": "{{ count }} produkt",
+      "other": "{{ count }} produkter"
+    },
+    "empty": "Inga produkter matchar dessa filter.",
+    "show_more": "Visa fler",
+    "showing": "Visar {{ shown }} av {{ total }}"
+  },
+  "collections": {
+    "title": "Kollektioner"
+  },
+  "cart": {
+    "title": "Varukorg",
+    "empty": "Din varukorg är tom.",
+    "continue": "Fortsätt handla",
+    "remove": "Ta bort",
+    "subtotal": "Delsumma",
+    "taxes_note": "Skatter och frakt beräknas i kassan.",
+    "update": "Uppdatera varukorgen",
+    "checkout": "Gå till kassan",
+    "error": "Det gick inte att uppdatera din varukorg. Försök igen.",
+    "remove_item": "Ta bort {{ title }} från varukorgen"
+  },
+  "search": {
+    "title": "Sök",
+    "heading": "”{{ terms }}”",
+    "label": "Sök i butiken",
+    "placeholder": "Sök",
+    "submit": "Sök",
+    "results_count": {
+      "one": "{{ count }} resultat för ”{{ terms }}”",
+      "other": "{{ count }} resultat för ”{{ terms }}”"
+    },
+    "suggestions": "Förslag",
+    "results_status": "Resultat: {{ count }}",
+    "products": "Produkter",
+    "pages": "Sidor och artiklar",
+    "type_all": "Alla",
+    "type_article": "Artiklar",
+    "type_page": "Sidor",
+    "show_all": "Visa alla för ”{{ terms }}”",
+    "no_results": "Inga resultat hittades. Prova en annan sökning."
+  },
+  "password": {
+    "title": "Den här butiken är privat",
+    "label": "Lösenord",
+    "enter": "Gå in",
+    "owner": "Butiksägare? Logga in"
+  },
+  "footer": {
+    "newsletter_label": "Gå med i listan",
+    "newsletter_placeholder": "E-postadress",
+    "newsletter_submit": "Prenumerera",
+    "newsletter_success": "Tack för att du prenumererar."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Visa alla"
+    }
+  },
+  "gift_card": {
+    "expired": "Det här presentkortet har gått ut.",
+    "expires_on": "Går ut den {{ date }}",
+    "use_at_checkout": "Använd den här koden i kassan.",
+    "add_to_apple_wallet": "Lägg till i Apple Wallet"
+  },
+  "localization": {
+    "label": "Land och språk",
+    "country": "Land/region",
+    "language": "Språk",
+    "error": "Listan kunde inte laddas. Försök igen."
+  },
+  "wishlist": {
+    "title": "Favoriter",
+    "toggle": "Spara {{ title }} som favorit",
+    "saved": "Sparad som favorit",
+    "removed": "Borttagen från favoriter",
+    "add_to_cart": "Lägg {{ title }} i varukorgen",
+    "choose_options": "Välj alternativ för {{ title }}",
+    "remove": "Ta bort {{ title }} från favoriter"
+  }
+}

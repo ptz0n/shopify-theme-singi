@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "გვერდი ვერ მოიძებნა",
+    "body": "გვერდი, რომელსაც ეძებთ, არ არსებობს ან გადატანილია.",
+    "cta": "შოპინგის გაგრძელება"
+  },
+  "general": {
+    "skip_to_content": "კონტენტზე გადასვლა",
+    "main_menu": "მთავარი მენიუ",
+    "footer_menu": "ქვედა მენიუ",
+    "search": "ძიება",
+    "account": "ანგარიში",
+    "cart": "კალათა",
+    "toggle_theme": "ღია და მუქი რეჟიმის გადართვა",
+    "light_mode": "ღია რეჟიმი",
+    "dark_mode": "ბნელი რეჟიმი",
+    "open_menu": "მენიუ",
+    "home": "მთავარი",
+    "breadcrumbs": "ნავიგაციის ბილიკი",
+    "pagination": "გვერდები",
+    "previous": "წინა",
+    "next": "შემდეგი",
+    "tagged": "ტეგი: {{ tags }}",
+    "page_number": "გვერდი {{ number }}"
+  },
+  "products": {
+    "sold_out": "გაყიდულია",
+    "recently_viewed": "ახლახან ნანახი",
+    "add_to_cart": "კალათაში დამატება",
+    "added": "დაემატა კალათაში.",
+    "add_error": "კალათაში დამატება ვერ მოხერხდა. გთხოვთ, სცადოთ ხელახლა.",
+    "view_cart": "კალათის ნახვა",
+    "sale_price": "ფასდაკლებული ფასი",
+    "regular_price": "ჩვეულებრივი ფასი",
+    "quantity": "რაოდენობა",
+    "sku": "SKU",
+    "type": "ტიპი",
+    "availability": "ხელმისაწვდომობა",
+    "in_stock": "მარაგშია",
+    "percent_off": "ფასდაკლება {{ percent }}%",
+    "quantity_decrease": "რაოდენობის შემცირება",
+    "quantity_increase": "რაოდენობის გაზრდა"
+  },
+  "collection": {
+    "price_from": "დან",
+    "price_to": "მდე",
+    "sort_by": "დალაგება",
+    "apply": "ფილტრების გამოყენება",
+    "clear_all": "ფილტრების გასუფთავება",
+    "product_count": {
+      "one": "{{ count }} პროდუქტი",
+      "other": "{{ count }} პროდუქტი"
+    },
+    "empty": "ამ ფილტრებით პროდუქტი ვერ მოიძებნა.",
+    "show_more": "მეტის ჩვენება",
+    "showing": "ნაჩვენებია {{ shown }} {{ total }}-დან"
+  },
+  "collections": {
+    "title": "კოლექციები"
+  },
+  "cart": {
+    "title": "კალათა",
+    "empty": "თქვენი კალათა ცარიელია.",
+    "continue": "შოპინგის გაგრძელება",
+    "remove": "წაშლა",
+    "subtotal": "შუალედური ჯამი",
+    "taxes_note": "გადასახადები და მიწოდება გამოითვლება გადახდისას.",
+    "update": "კალათის განახლება",
+    "checkout": "გადახდა",
+    "error": "კალათის განახლება ვერ მოხერხდა. გთხოვთ, სცადოთ ხელახლა.",
+    "remove_item": "{{ title }}-ის კალათიდან ამოღება"
+  },
+  "search": {
+    "title": "ძიება",
+    "heading": "„{{ terms }}“",
+    "label": "მაღაზიაში ძიება",
+    "placeholder": "ძიება",
+    "submit": "ძიება",
+    "results_count": {
+      "one": "{{ count }} შედეგი მოთხოვნაზე „{{ terms }}“",
+      "other": "{{ count }} შედეგი მოთხოვნაზე „{{ terms }}“"
+    },
+    "suggestions": "შემოთავაზებები",
+    "results_status": "შედეგები: {{ count }}",
+    "products": "პროდუქტები",
+    "pages": "გვერდები და სტატიები",
+    "type_all": "ყველა",
+    "type_article": "სტატიები",
+    "type_page": "გვერდები",
+    "show_all": "ყველას ჩვენება „{{ terms }}“-ისთვის",
+    "no_results": "შედეგი ვერ მოიძებნა. სცადეთ სხვა საძიებო სიტყვა."
+  },
+  "password": {
+    "title": "ეს მაღაზია დახურულია",
+    "label": "პაროლი",
+    "enter": "შესვლა",
+    "owner": "მაღაზიის მფლობელი ხართ? შედით"
+  },
+  "footer": {
+    "newsletter_label": "გამოიწერეთ სიახლეები",
+    "newsletter_placeholder": "ელფოსტის მისამართი",
+    "newsletter_submit": "გამოწერა",
+    "newsletter_success": "გმადლობთ გამოწერისთვის."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "ყველას ნახვა"
+    }
+  },
+  "gift_card": {
+    "expired": "ამ სასაჩუქრე ბარათის ვადა ამოიწურა.",
+    "expires_on": "მოქმედია: {{ date }}-მდე",
+    "use_at_checkout": "გამოიყენეთ ეს კოდი გადახდისას.",
+    "add_to_apple_wallet": "Apple Wallet-ში დამატება"
+  },
+  "localization": {
+    "label": "ქვეყანა და ენა",
+    "country": "ქვეყანა/რეგიონი",
+    "language": "ენა",
+    "error": "სიის ჩატვირთვა ვერ მოხერხდა. სცადეთ ხელახლა."
+  },
+  "wishlist": {
+    "title": "რჩეულები",
+    "toggle": "{{ title }}-ის რჩეულებში შენახვა",
+    "saved": "შენახულია რჩეულებში",
+    "removed": "წაიშალა რჩეულებიდან",
+    "add_to_cart": "{{ title }}-ის კალათაში დამატება",
+    "choose_options": "აირჩიეთ პარამეტრები: {{ title }}",
+    "remove": "{{ title }}-ის წაშლა რჩეულებიდან"
+  }
+}

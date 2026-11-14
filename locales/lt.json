@@ -1,0 +1,135 @@
+{
+  "404": {
+    "title": "Puslapis nerastas",
+    "body": "Ieškomo puslapio nėra arba jis perkeltas.",
+    "cta": "Tęsti apsipirkimą"
+  },
+  "general": {
+    "skip_to_content": "Pereiti prie turinio",
+    "main_menu": "Pagrindinis meniu",
+    "footer_menu": "Apatinis meniu",
+    "search": "Paieška",
+    "account": "Paskyra",
+    "cart": "Krepšelis",
+    "toggle_theme": "Perjungti šviesų ir tamsų režimą",
+    "light_mode": "Šviesus režimas",
+    "dark_mode": "Tamsus režimas",
+    "open_menu": "Meniu",
+    "home": "Pradžia",
+    "breadcrumbs": "Naršymo kelias",
+    "pagination": "Puslapiavimas",
+    "previous": "Atgal",
+    "next": "Toliau",
+    "tagged": "Žymos: {{ tags }}",
+    "page_number": "{{ number }} puslapis"
+  },
+  "products": {
+    "sold_out": "Išparduota",
+    "recently_viewed": "Neseniai peržiūrėta",
+    "add_to_cart": "Į krepšelį",
+    "added": "Įdėta į krepšelį.",
+    "add_error": "Nepavyko įdėti į krepšelį. Bandykite dar kartą.",
+    "view_cart": "Peržiūrėti krepšelį",
+    "sale_price": "Akcijos kaina",
+    "regular_price": "Įprasta kaina",
+    "quantity": "Kiekis",
+    "sku": "SKU",
+    "type": "Tipas",
+    "availability": "Prieinamumas",
+    "in_stock": "Yra sandėlyje",
+    "percent_off": "{{ percent }}% nuolaida",
+    "quantity_decrease": "Sumažinti kiekį",
+    "quantity_increase": "Padidinti kiekį"
+  },
+  "collection": {
+    "price_from": "Nuo",
+    "price_to": "Iki",
+    "sort_by": "Rūšiuoti pagal",
+    "apply": "Taikyti filtrus",
+    "clear_all": "Išvalyti filtrus",
+    "product_count": {
+      "one": "{{ count }} produktas",
+      "few": "{{ count }} produktai",
+      "many": "{{ count }} produkto",
+      "other": "{{ count }} produktų"
+    },
+    "empty": "Pagal šiuos filtrus produktų nerasta.",
+    "show_more": "Rodyti daugiau",
+    "showing": "Rodoma {{ shown }} iš {{ total }}"
+  },
+  "collections": {
+    "title": "Kolekcijos"
+  },
+  "cart": {
+    "title": "Krepšelis",
+    "empty": "Jūsų krepšelis tuščias.",
+    "continue": "Tęsti apsipirkimą",
+    "remove": "Pašalinti",
+    "subtotal": "Tarpinė suma",
+    "taxes_note": "Mokesčiai ir pristatymas apskaičiuojami atsiskaitymo metu.",
+    "update": "Atnaujinti krepšelį",
+    "checkout": "Apmokėti",
+    "error": "Nepavyko atnaujinti krepšelio. Bandykite dar kartą.",
+    "remove_item": "Pašalinti {{ title }} iš krepšelio"
+  },
+  "search": {
+    "title": "Paieška",
+    "heading": "„{{ terms }}“",
+    "label": "Ieškoti parduotuvėje",
+    "placeholder": "Paieška",
+    "submit": "Ieškoti",
+    "results_count": {
+      "one": "{{ count }} rezultatas pagal „{{ terms }}“",
+      "few": "{{ count }} rezultatai pagal „{{ terms }}“",
+      "many": "{{ count }} rezultato pagal „{{ terms }}“",
+      "other": "{{ count }} rezultatų pagal „{{ terms }}“"
+    },
+    "suggestions": "Pasiūlymai",
+    "results_status": "Rezultatai: {{ count }}",
+    "products": "Produktai",
+    "pages": "Puslapiai ir straipsniai",
+    "type_all": "Visi",
+    "type_article": "Straipsniai",
+    "type_page": "Puslapiai",
+    "show_all": "Rodyti viską pagal „{{ terms }}“",
+    "no_results": "Rezultatų nerasta. Pabandykite kitą paieškos frazę."
+  },
+  "password": {
+    "title": "Ši parduotuvė privati",
+    "label": "Slaptažodis",
+    "enter": "Prisijungti",
+    "owner": "Parduotuvės savininkas? Prisijunkite"
+  },
+  "footer": {
+    "newsletter_label": "Prenumeruokite naujienas",
+    "newsletter_placeholder": "El. pašto adresas",
+    "newsletter_submit": "Prenumeruoti",
+    "newsletter_success": "Dėkojame, kad prenumeruojate."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Peržiūrėti viską"
+    }
+  },
+  "gift_card": {
+    "expired": "Šios dovanų kortelės galiojimas pasibaigė.",
+    "expires_on": "Galioja iki {{ date }}",
+    "use_at_checkout": "Naudokite šį kodą atsiskaitydami.",
+    "add_to_apple_wallet": "Pridėti prie Apple Wallet"
+  },
+  "localization": {
+    "label": "Šalis ir kalba",
+    "country": "Šalis/regionas",
+    "language": "Kalba",
+    "error": "Nepavyko įkelti sąrašo. Bandykite dar kartą."
+  },
+  "wishlist": {
+    "title": "Mėgstamiausi",
+    "toggle": "Išsaugoti {{ title }} mėgstamiausiuose",
+    "saved": "Išsaugota mėgstamiausiuose",
+    "removed": "Pašalinta iš mėgstamiausių",
+    "add_to_cart": "Įdėti {{ title }} į krepšelį",
+    "choose_options": "Pasirinkti {{ title }} parinktis",
+    "remove": "Pašalinti {{ title }} iš mėgstamiausių"
+  }
+}

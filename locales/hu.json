@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Az oldal nem található",
+    "body": "A keresett oldal nem létezik, vagy áthelyezték.",
+    "cta": "Vásárlás folytatása"
+  },
+  "general": {
+    "skip_to_content": "Ugrás a tartalomhoz",
+    "main_menu": "Főmenü",
+    "footer_menu": "Lábléc menü",
+    "search": "Keresés",
+    "account": "Fiók",
+    "cart": "Kosár",
+    "toggle_theme": "Váltás világos és sötét mód között",
+    "light_mode": "Világos mód",
+    "dark_mode": "Sötét mód",
+    "open_menu": "Menü",
+    "home": "Kezdőlap",
+    "breadcrumbs": "Navigációs útvonal",
+    "pagination": "Lapozás",
+    "previous": "Előző",
+    "next": "Következő",
+    "tagged": "Címke: {{ tags }}",
+    "page_number": "{{ number }}. oldal"
+  },
+  "products": {
+    "sold_out": "Elfogyott",
+    "recently_viewed": "Legutóbb megtekintett",
+    "add_to_cart": "Kosárba",
+    "added": "Kosárba helyezve.",
+    "add_error": "Nem sikerült a kosárba helyezés. Kérjük, próbálja újra.",
+    "view_cart": "Kosár megtekintése",
+    "sale_price": "Akciós ár",
+    "regular_price": "Normál ár",
+    "quantity": "Mennyiség",
+    "sku": "Cikkszám",
+    "type": "Típus",
+    "availability": "Elérhetőség",
+    "in_stock": "Raktáron",
+    "percent_off": "{{ percent }}% kedvezmény",
+    "quantity_decrease": "Mennyiség csökkentése",
+    "quantity_increase": "Mennyiség növelése"
+  },
+  "collection": {
+    "price_from": "Ettől",
+    "price_to": "Eddig",
+    "sort_by": "Rendezés",
+    "apply": "Szűrők alkalmazása",
+    "clear_all": "Szűrők törlése",
+    "product_count": {
+      "one": "{{ count }} termék",
+      "other": "{{ count }} termék"
+    },
+    "empty": "Nincs a szűrőknek megfelelő termék.",
+    "show_more": "Továbbiak megjelenítése",
+    "showing": "{{ shown }} megjelenítve {{ total }} közül"
+  },
+  "collections": {
+    "title": "Kollekciók"
+  },
+  "cart": {
+    "title": "Kosár",
+    "empty": "A kosara üres.",
+    "continue": "Vásárlás folytatása",
+    "remove": "Eltávolítás",
+    "subtotal": "Részösszeg",
+    "taxes_note": "Az adókat és a szállítási költséget a pénztárnál számítjuk ki.",
+    "update": "Kosár frissítése",
+    "checkout": "Pénztár",
+    "error": "Nem sikerült frissíteni a kosarat. Kérjük, próbálja újra.",
+    "remove_item": "{{ title }} eltávolítása a kosárból"
+  },
+  "search": {
+    "title": "Keresés",
+    "heading": "„{{ terms }}”",
+    "label": "Keresés az üzletben",
+    "placeholder": "Keresés",
+    "submit": "Keresés",
+    "results_count": {
+      "one": "{{ count }} találat a következőre: „{{ terms }}”",
+      "other": "{{ count }} találat a következőre: „{{ terms }}”"
+    },
+    "suggestions": "Javaslatok",
+    "results_status": "Találatok: {{ count }}",
+    "products": "Termékek",
+    "pages": "Oldalak és cikkek",
+    "type_all": "Mind",
+    "type_article": "Cikkek",
+    "type_page": "Oldalak",
+    "show_all": "Összes megjelenítése: „{{ terms }}”",
+    "no_results": "Nincs találat. Próbálkozzon másik kereséssel."
+  },
+  "password": {
+    "title": "Ez az üzlet privát",
+    "label": "Jelszó",
+    "enter": "Belépés",
+    "owner": "Áruházi tulajdonos? Jelentkezzen be"
+  },
+  "footer": {
+    "newsletter_label": "Csatlakozzon a listához",
+    "newsletter_placeholder": "E-mail-cím",
+    "newsletter_submit": "Feliratkozás",
+    "newsletter_success": "Köszönjük a feliratkozást."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Összes megtekintése"
+    }
+  },
+  "gift_card": {
+    "expired": "Ez az ajándékkártya lejárt.",
+    "expires_on": "Lejárat: {{ date }}",
+    "use_at_checkout": "Használja ezt a kódot a pénztárnál.",
+    "add_to_apple_wallet": "Hozzáadás az Apple Wallethez"
+  },
+  "localization": {
+    "label": "Ország és nyelv",
+    "country": "Ország/régió",
+    "language": "Nyelv",
+    "error": "A lista nem tölthető be. Kérjük, próbáld újra."
+  },
+  "wishlist": {
+    "title": "Kedvencek",
+    "toggle": "{{ title }} mentése a kedvencek közé",
+    "saved": "Mentve a kedvencek közé",
+    "removed": "Eltávolítva a kedvencek közül",
+    "add_to_cart": "{{ title }} kosárba helyezése",
+    "choose_options": "{{ title }} opcióinak kiválasztása",
+    "remove": "{{ title }} eltávolítása a kedvencek közül"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "404": {
+    "title": "Stránka nenalezena",
+    "body": "Stránka, kterou hledáte, neexistuje nebo byla přesunuta.",
+    "cta": "Pokračovat v nákupu"
+  },
+  "general": {
+    "skip_to_content": "Přeskočit na obsah",
+    "main_menu": "Hlavní menu",
+    "footer_menu": "Menu v patičce",
+    "search": "Hledat",
+    "account": "Účet",
+    "cart": "Košík",
+    "toggle_theme": "Přepnout světlý a tmavý režim",
+    "light_mode": "Světlý režim",
+    "dark_mode": "Tmavý režim",
+    "open_menu": "Menu",
+    "home": "Domů",
+    "breadcrumbs": "Drobečková navigace",
+    "pagination": "Stránkování",
+    "previous": "Předchozí",
+    "next": "Další",
+    "tagged": "Označeno {{ tags }}",
+    "page_number": "Stránka {{ number }}"
+  },
+  "products": {
+    "sold_out": "Vyprodáno",
+    "recently_viewed": "Nedávno zobrazené",
+    "add_to_cart": "Přidat do košíku",
+    "added": "Přidáno do košíku.",
+    "add_error": "Přidání do košíku se nezdařilo. Zkuste to prosím znovu.",
+    "view_cart": "Zobrazit košík",
+    "sale_price": "Akční cena",
+    "regular_price": "Běžná cena",
+    "quantity": "Množství",
+    "sku": "SKU",
+    "type": "Typ",
+    "availability": "Dostupnost",
+    "in_stock": "Skladem",
+    "percent_off": "sleva {{ percent }} %",
+    "quantity_decrease": "Snížit množství",
+    "quantity_increase": "Zvýšit množství"
+  },
+  "collection": {
+    "price_from": "Od",
+    "price_to": "Do",
+    "sort_by": "Seřadit podle",
+    "apply": "Použít filtry",
+    "clear_all": "Zrušit filtry",
+    "product_count": {
+      "one": "{{ count }} produkt",
+      "few": "{{ count }} produkty",
+      "many": "{{ count }} produktu",
+      "other": "{{ count }} produktů"
+    },
+    "empty": "Těmto filtrům neodpovídají žádné produkty.",
+    "show_more": "Zobrazit více",
+    "showing": "Zobrazeno {{ shown }} z {{ total }}"
+  },
+  "collections": {
+    "title": "Kolekce"
+  },
+  "cart": {
+    "title": "Košík",
+    "empty": "Váš košík je prázdný.",
+    "continue": "Pokračovat v nákupu",
+    "remove": "Odebrat",
+    "subtotal": "Mezisoučet",
+    "taxes_note": "Daně a doprava se vypočítají při pokladně.",
+    "update": "Aktualizovat košík",
+    "checkout": "Pokladna",
+    "error": "Košík se nepodařilo aktualizovat. Zkuste to prosím znovu.",
+    "remove_item": "Odebrat {{ title }} z košíku"
+  },
+  "search": {
+    "title": "Hledat",
+    "heading": "„{{ terms }}“",
+    "label": "Hledat v obchodě",
+    "placeholder": "Hledat",
+    "submit": "Hledat",
+    "results_count": {
+      "one": "{{ count }} výsledek pro „{{ terms }}“",
+      "few": "{{ count }} výsledky pro „{{ terms }}“",
+      "many": "{{ count }} výsledku pro „{{ terms }}“",
+      "other": "{{ count }} výsledků pro „{{ terms }}“"
+    },
+    "suggestions": "Návrhy",
+    "results_status": "Výsledky: {{ count }}",
+    "products": "Produkty",
+    "pages": "Stránky a články",
+    "type_all": "Vše",
+    "type_article": "Články",
+    "type_page": "Stránky",
+    "show_all": "Zobrazit vše pro „{{ terms }}“",
+    "no_results": "Nebyly nalezeny žádné výsledky. Zkuste jiné hledání."
+  },
+  "password": {
+    "title": "Tento obchod je soukromý",
+    "label": "Heslo",
+    "enter": "Vstoupit",
+    "owner": "Majitel obchodu? Přihlaste se"
+  },
+  "footer": {
+    "newsletter_label": "Přihlaste se k odběru",
+    "newsletter_placeholder": "E-mailová adresa",
+    "newsletter_submit": "Odebírat",
+    "newsletter_success": "Děkujeme za přihlášení k odběru."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Zobrazit vše"
+    }
+  },
+  "gift_card": {
+    "expired": "Platnost tohoto dárkového poukazu vypršela.",
+    "expires_on": "Platnost vyprší {{ date }}",
+    "use_at_checkout": "Použijte tento kód v pokladně.",
+    "add_to_apple_wallet": "Přidat do Apple Wallet"
+  },
+  "localization": {
+    "label": "Země a jazyk",
+    "country": "Země/oblast",
+    "language": "Jazyk",
+    "error": "Seznam se nepodařilo načíst. Zkuste to znovu."
+  },
+  "wishlist": {
+    "title": "Oblíbené",
+    "toggle": "Uložit {{ title }} do oblíbených",
+    "saved": "Uloženo do oblíbených",
+    "removed": "Odebráno z oblíbených",
+    "add_to_cart": "Přidat {{ title }} do košíku",
+    "choose_options": "Vybrat možnosti pro {{ title }}",
+    "remove": "Odebrat {{ title }} z oblíbených"
+  }
+}

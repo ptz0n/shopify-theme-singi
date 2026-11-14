@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Страницата не е намерена",
+    "body": "Страницата, която търсите, не съществува или е преместена.",
+    "cta": "Продължете пазаруването"
+  },
+  "general": {
+    "skip_to_content": "Към съдържанието",
+    "main_menu": "Главно меню",
+    "footer_menu": "Меню в долната част",
+    "search": "Търсене",
+    "account": "Профил",
+    "cart": "Количка",
+    "toggle_theme": "Превключване между светъл и тъмен режим",
+    "light_mode": "Светъл режим",
+    "dark_mode": "Тъмен режим",
+    "open_menu": "Меню",
+    "home": "Начало",
+    "breadcrumbs": "Навигационна пътека",
+    "pagination": "Странициране",
+    "previous": "Предишна",
+    "next": "Следваща",
+    "tagged": "С етикет {{ tags }}",
+    "page_number": "Страница {{ number }}"
+  },
+  "products": {
+    "sold_out": "Изчерпано",
+    "recently_viewed": "Наскоро разгледани",
+    "add_to_cart": "Добави в количката",
+    "added": "Добавено в количката.",
+    "add_error": "Неуспешно добавяне в количката. Моля, опитайте отново.",
+    "view_cart": "Виж количката",
+    "sale_price": "Промоционална цена",
+    "regular_price": "Обикновена цена",
+    "quantity": "Количество",
+    "sku": "Артикулен номер",
+    "type": "Тип",
+    "availability": "Наличност",
+    "in_stock": "В наличност",
+    "percent_off": "{{ percent }}% отстъпка",
+    "quantity_decrease": "Намали количеството",
+    "quantity_increase": "Увеличи количеството"
+  },
+  "collection": {
+    "price_from": "От",
+    "price_to": "До",
+    "sort_by": "Подреди по",
+    "apply": "Приложи филтрите",
+    "clear_all": "Изчисти филтрите",
+    "product_count": {
+      "one": "{{ count }} продукт",
+      "other": "{{ count }} продукта"
+    },
+    "empty": "Няма продукти, отговарящи на тези филтри.",
+    "show_more": "Покажи още",
+    "showing": "Показани {{ shown }} от {{ total }}"
+  },
+  "collections": {
+    "title": "Колекции"
+  },
+  "cart": {
+    "title": "Количка",
+    "empty": "Количката ви е празна.",
+    "continue": "Продължете пазаруването",
+    "remove": "Премахни",
+    "subtotal": "Междинна сума",
+    "taxes_note": "Данъците и доставката се изчисляват при плащането.",
+    "update": "Обнови количката",
+    "checkout": "Към плащане",
+    "error": "Количката ви не можа да бъде обновена. Моля, опитайте отново.",
+    "remove_item": "Премахни {{ title }} от количката"
+  },
+  "search": {
+    "title": "Търсене",
+    "heading": "„{{ terms }}“",
+    "label": "Търсене в магазина",
+    "placeholder": "Търсене",
+    "submit": "Търси",
+    "results_count": {
+      "one": "{{ count }} резултат за „{{ terms }}“",
+      "other": "{{ count }} резултата за „{{ terms }}“"
+    },
+    "suggestions": "Предложения",
+    "results_status": "Резултати: {{ count }}",
+    "products": "Продукти",
+    "pages": "Страници и статии",
+    "type_all": "Всички",
+    "type_article": "Статии",
+    "type_page": "Страници",
+    "show_all": "Покажи всички за „{{ terms }}“",
+    "no_results": "Няма намерени резултати. Опитайте с друго търсене."
+  },
+  "password": {
+    "title": "Този магазин е частен",
+    "label": "Парола",
+    "enter": "Вход",
+    "owner": "Собственик на магазина? Влезте"
+  },
+  "footer": {
+    "newsletter_label": "Абонирайте се",
+    "newsletter_placeholder": "Имейл адрес",
+    "newsletter_submit": "Абонирай се",
+    "newsletter_success": "Благодарим ви за абонамента."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Виж всички"
+    }
+  },
+  "gift_card": {
+    "expired": "Валидността на този подаръчен ваучер е изтекла.",
+    "expires_on": "Валиден до {{ date }}",
+    "use_at_checkout": "Използвайте този код при плащане.",
+    "add_to_apple_wallet": "Добави в Apple Wallet"
+  },
+  "localization": {
+    "label": "Държава и език",
+    "country": "Държава/регион",
+    "language": "Език",
+    "error": "Списъкът не може да се зареди. Опитайте отново."
+  },
+  "wishlist": {
+    "title": "Любими",
+    "toggle": "Запази {{ title }} в любими",
+    "saved": "Запазено в любими",
+    "removed": "Премахнато от любими",
+    "add_to_cart": "Добави {{ title }} в количката",
+    "choose_options": "Избери опции за {{ title }}",
+    "remove": "Премахни {{ title }} от любими"
+  }
+}

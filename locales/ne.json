@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "पृष्ठ फेला परेन",
+    "body": "तपाईंले खोजेको पृष्ठ अस्तित्वमा छैन वा सारिएको छ।",
+    "cta": "किनमेल जारी राख्नुहोस्"
+  },
+  "general": {
+    "skip_to_content": "सामग्रीमा जानुहोस्",
+    "main_menu": "मुख्य मेनु",
+    "footer_menu": "फुटर मेनु",
+    "search": "खोज्नुहोस्",
+    "account": "खाता",
+    "cart": "कार्ट",
+    "toggle_theme": "उज्यालो र अँध्यारो मोड बदल्नुहोस्",
+    "light_mode": "लाइट मोड",
+    "dark_mode": "डार्क मोड",
+    "open_menu": "मेनु",
+    "home": "गृहपृष्ठ",
+    "breadcrumbs": "ब्रेडक्रम्ब",
+    "pagination": "पृष्ठ क्रम",
+    "previous": "अघिल्लो",
+    "next": "अर्को",
+    "tagged": "ट्याग गरिएको {{ tags }}",
+    "page_number": "पृष्ठ {{ number }}"
+  },
+  "products": {
+    "sold_out": "बिक्री भइसक्यो",
+    "recently_viewed": "हालै हेरिएका",
+    "add_to_cart": "कार्टमा हाल्नुहोस्",
+    "added": "कार्टमा थपियो।",
+    "add_error": "कार्टमा थप्न सकिएन। कृपया फेरि प्रयास गर्नुहोस्।",
+    "view_cart": "कार्ट हेर्नुहोस्",
+    "sale_price": "छुट मूल्य",
+    "regular_price": "सामान्य मूल्य",
+    "quantity": "परिमाण",
+    "sku": "SKU",
+    "type": "प्रकार",
+    "availability": "उपलब्धता",
+    "in_stock": "स्टकमा छ",
+    "percent_off": "{{ percent }}% छुट",
+    "quantity_decrease": "मात्रा घटाउनुहोस्",
+    "quantity_increase": "मात्रा बढाउनुहोस्"
+  },
+  "collection": {
+    "price_from": "देखि",
+    "price_to": "सम्म",
+    "sort_by": "क्रमबद्ध गर्नुहोस्",
+    "apply": "फिल्टर लागू गर्नुहोस्",
+    "clear_all": "फिल्टरहरू हटाउनुहोस्",
+    "product_count": {
+      "one": "{{ count }} उत्पादन",
+      "other": "{{ count }} उत्पादनहरू"
+    },
+    "empty": "यी फिल्टरसँग मेल खाने कुनै उत्पादन छैन।",
+    "show_more": "थप देखाउनुहोस्",
+    "showing": "{{ total }} मध्ये {{ shown }} देखाइँदै"
+  },
+  "collections": {
+    "title": "कलेक्सनहरू"
+  },
+  "cart": {
+    "title": "कार्ट",
+    "empty": "तपाईंको कार्ट खाली छ।",
+    "continue": "किनमेल जारी राख्नुहोस्",
+    "remove": "हटाउनुहोस्",
+    "subtotal": "उप-जम्मा",
+    "taxes_note": "कर र ढुवानी चेकआउटमा गणना गरिन्छ।",
+    "update": "कार्ट अपडेट गर्नुहोस्",
+    "checkout": "चेकआउट गर्नुहोस्",
+    "error": "तपाईंको कार्ट अपडेट गर्न सकिएन। कृपया फेरि प्रयास गर्नुहोस्।",
+    "remove_item": "कार्टबाट {{ title }} हटाउनुहोस्"
+  },
+  "search": {
+    "title": "खोज",
+    "heading": "“{{ terms }}”",
+    "label": "स्टोरमा खोज्नुहोस्",
+    "placeholder": "खोज्नुहोस्",
+    "submit": "खोज्नुहोस्",
+    "results_count": {
+      "one": "“{{ terms }}” को लागि {{ count }} नतिजा",
+      "other": "“{{ terms }}” को लागि {{ count }} नतिजाहरू"
+    },
+    "suggestions": "सुझावहरू",
+    "results_status": "नतिजा: {{ count }}",
+    "products": "उत्पादनहरू",
+    "pages": "पृष्ठ र लेखहरू",
+    "type_all": "सबै",
+    "type_article": "लेखहरू",
+    "type_page": "पृष्ठहरू",
+    "show_all": "“{{ terms }}” का लागि सबै देखाउनुहोस्",
+    "no_results": "कुनै नतिजा फेला परेन। अर्को शब्दले खोजी गर्नुहोस्।"
+  },
+  "password": {
+    "title": "यो स्टोर निजी छ",
+    "label": "पासवर्ड",
+    "enter": "प्रवेश गर्नुहोस्",
+    "owner": "स्टोर मालिक? लग इन गर्नुहोस्"
+  },
+  "footer": {
+    "newsletter_label": "सूचीमा सामेल हुनुहोस्",
+    "newsletter_placeholder": "इमेल ठेगाना",
+    "newsletter_submit": "सदस्यता लिनुहोस्",
+    "newsletter_success": "सदस्यता लिनुभएकोमा धन्यवाद।"
+  },
+  "sections": {
+    "featured": {
+      "view_all": "सबै हेर्नुहोस्"
+    }
+  },
+  "gift_card": {
+    "expired": "यो उपहार कार्डको म्याद सकिएको छ।",
+    "expires_on": "म्याद सकिने मिति {{ date }}",
+    "use_at_checkout": "चेकआउटमा यो कोड प्रयोग गर्नुहोस्।",
+    "add_to_apple_wallet": "Apple Wallet मा थप्नुहोस्"
+  },
+  "localization": {
+    "label": "देश र भाषा",
+    "country": "देश/क्षेत्र",
+    "language": "भाषा",
+    "error": "सूची लोड गर्न सकिएन। कृपया फेरि प्रयास गर्नुहोस्।"
+  },
+  "wishlist": {
+    "title": "मनपर्ने",
+    "toggle": "{{ title }} मनपर्नेमा सुरक्षित गर्नुहोस्",
+    "saved": "मनपर्नेमा सुरक्षित गरियो",
+    "removed": "मनपर्नेबाट हटाइयो",
+    "add_to_cart": "{{ title }} कार्टमा थप्नुहोस्",
+    "choose_options": "{{ title }} का विकल्पहरू छान्नुहोस्",
+    "remove": "{{ title }} मनपर्नेबाट हटाउनुहोस्"
+  }
+}

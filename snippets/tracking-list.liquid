@@ -1,0 +1,45 @@
+{% doc %}
+  view_item_list payload for a product grid, as inert JSON that
+  assets/tracking.js forwards. One loop, no nested renders. Render it next to
+  the grid it describes, inside <main>, so soft navigation and filtering pick
+  up the new list.
+
+  @param {object} products - Array of products (a collection page slice, or search results)
+  @param {string} list_id - GA4 item_list_id
+  @param {string} list_name - GA4 item_list_name
+  @param {number} [limit] - Maximum items. Default: 50
+  @param {number} [offset] - Items before this page, for the GA4 index. Default: 0
+  @param {boolean} [only_products] - Skip non-product results (search)
+
+  @example
+  {% render 'tracking-list', products: collection.products, list_id: collection.handle, list_name: collection.title, offset: paginate.current_offset %}
+{% enddoc %}
+
+{%- liquid
+  assign max_items = limit | default: 50
+  assign start = offset | default: 0
+  assign first = true
+-%}
+<script type="application/json" data-track="view_item_list">
+  {
+    "item_list_id": {{ list_id | json }},
+    "item_list_name": {{ list_name | json }},
+    "items": [
+      {%- for product in products limit: max_items -%}
+        {%- if only_products and product.object_type != 'product' -%}
+          {%- continue -%}
+        {%- endif -%}
+        {%- unless first -%},{%- endunless -%}
+        {%- assign first = false -%}
+        {
+          "item_id": {{ product.id | append: '' | json }},
+          "item_name": {{ product.title | json }},
+          "item_brand": {{ product.vendor | json }},
+          "item_category": {{ product.type | json }},
+          "price": {{ product.price | divided_by: 100.0 }},
+          "index": {{ forloop.index | plus: start }}
+        }
+      {%- endfor -%}
+    ]
+  }
+</script>

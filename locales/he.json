@@ -1,0 +1,133 @@
+{
+  "404": {
+    "title": "הדף לא נמצא",
+    "body": "הדף שחיפשתם אינו קיים או שהועבר.",
+    "cta": "המשך בקניות"
+  },
+  "general": {
+    "skip_to_content": "דלג לתוכן",
+    "main_menu": "תפריט ראשי",
+    "footer_menu": "תפריט תחתון",
+    "search": "חיפוש",
+    "account": "חשבון",
+    "cart": "עגלה",
+    "toggle_theme": "החלפה בין מצב בהיר למצב כהה",
+    "light_mode": "מצב בהיר",
+    "dark_mode": "מצב כהה",
+    "open_menu": "תפריט",
+    "home": "דף הבית",
+    "breadcrumbs": "נתיב ניווט",
+    "pagination": "עימוד",
+    "previous": "הקודם",
+    "next": "הבא",
+    "tagged": "תוית: {{ tags }}",
+    "page_number": "עמוד {{ number }}"
+  },
+  "products": {
+    "sold_out": "אזל במלאי",
+    "recently_viewed": "נצפו לאחרונה",
+    "add_to_cart": "הוספה לעגלה",
+    "added": "נוסף לעגלה.",
+    "add_error": "לא ניתן היה להוסיף לעגלה. אנא נסו שוב.",
+    "view_cart": "צפייה בעגלה",
+    "sale_price": "מחיר מבצע",
+    "regular_price": "מחיר רגיל",
+    "quantity": "כמות",
+    "sku": "מק״ט",
+    "type": "סוג",
+    "availability": "זמינות",
+    "in_stock": "במלאי",
+    "percent_off": "{{ percent }}% הנחה",
+    "quantity_decrease": "הפחת כמות",
+    "quantity_increase": "הגדל כמות"
+  },
+  "collection": {
+    "price_from": "מ-",
+    "price_to": "עד",
+    "sort_by": "מיון לפי",
+    "apply": "החלת מסננים",
+    "clear_all": "נקה מסננים",
+    "product_count": {
+      "one": "מוצר {{ count }}",
+      "two": "{{ count }} מוצרים",
+      "other": "{{ count }} מוצרים"
+    },
+    "empty": "אין מוצרים התואמים למסננים אלה.",
+    "show_more": "הצג עוד",
+    "showing": "מוצגים {{ shown }} מתוך {{ total }}"
+  },
+  "collections": {
+    "title": "קולקציות"
+  },
+  "cart": {
+    "title": "עגלה",
+    "empty": "העגלה שלכם ריקה.",
+    "continue": "המשך בקניות",
+    "remove": "הסרה",
+    "subtotal": "סכום ביניים",
+    "taxes_note": "מיסים ומשלוח מחושבים בקופה.",
+    "update": "עדכון העגלה",
+    "checkout": "מעבר לקופה",
+    "error": "לא ניתן היה לעדכן את העגלה שלכם. אנא נסו שוב.",
+    "remove_item": "הסר את {{ title }} מהסל"
+  },
+  "search": {
+    "title": "חיפוש",
+    "heading": "“{{ terms }}”",
+    "label": "חיפוש בחנות",
+    "placeholder": "חיפוש",
+    "submit": "חיפוש",
+    "results_count": {
+      "one": "תוצאה {{ count }} עבור “{{ terms }}”",
+      "two": "{{ count }} תוצאות עבור “{{ terms }}”",
+      "other": "{{ count }} תוצאות עבור “{{ terms }}”"
+    },
+    "suggestions": "הצעות",
+    "results_status": "תוצאות: {{ count }}",
+    "products": "מוצרים",
+    "pages": "עמודים ומאמרים",
+    "type_all": "הכול",
+    "type_article": "מאמרים",
+    "type_page": "דפים",
+    "show_all": "הצג הכול עבור “{{ terms }}”",
+    "no_results": "לא נמצאו תוצאות. נסו חיפוש אחר."
+  },
+  "password": {
+    "title": "החנות הזו פרטית",
+    "label": "סיסמה",
+    "enter": "כניסה",
+    "owner": "בעלי החנות? התחברו"
+  },
+  "footer": {
+    "newsletter_label": "הצטרפו לרשימה",
+    "newsletter_placeholder": "כתובת אימייל",
+    "newsletter_submit": "הרשמה",
+    "newsletter_success": "תודה על ההרשמה."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "הצג הכול"
+    }
+  },
+  "gift_card": {
+    "expired": "תוקף כרטיס המתנה הזה פג.",
+    "expires_on": "בתוקף עד {{ date }}",
+    "use_at_checkout": "השתמשו בקוד זה בקופה.",
+    "add_to_apple_wallet": "הוספה ל-Apple Wallet"
+  },
+  "localization": {
+    "label": "מדינה ושפה",
+    "country": "מדינה/אזור",
+    "language": "שפה",
+    "error": "לא ניתן לטעון את הרשימה. נסו שוב."
+  },
+  "wishlist": {
+    "title": "מועדפים",
+    "toggle": "שמירת {{ title }} במועדפים",
+    "saved": "נשמר במועדפים",
+    "removed": "הוסר מהמועדפים",
+    "add_to_cart": "הוסף את {{ title }} לסל",
+    "choose_options": "בחר אפשרויות עבור {{ title }}",
+    "remove": "הסרת {{ title }} מהמועדפים"
+  }
+}

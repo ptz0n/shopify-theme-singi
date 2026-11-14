@@ -1,0 +1,66 @@
+{% doc %}
+  Skeleton placeholders for soft navigation. Inert <template> elements that
+  assets/soft-nav.js clones into <main> while the next page loads. Only
+  rendered when soft navigation is enabled. Keep the geometry close to the
+  real page so the swap does not shift layout.
+
+  @example
+  {% render 'skeletons' %}
+{% enddoc %}
+
+<template id="skeleton-product">
+  <div class="container section sk-product" aria-hidden="true">
+    <div class="skeleton sk-media"></div>
+    <div class="sk-info">
+      <div class="skeleton sk-line sk-line--sm"></div>
+      <div class="skeleton sk-line sk-line--lg"></div>
+      <div class="skeleton sk-line sk-line--md"></div>
+      <div class="skeleton sk-block"></div>
+      <div class="skeleton sk-button"></div>
+    </div>
+  </div>
+</template>
+
+<template id="skeleton-collection">
+  <div class="container section" aria-hidden="true">
+    <div class="skeleton sk-line sk-line--lg"></div>
+    <div class="sk-grid">
+      {%- for i in (1..8) -%}
+        <div class="sk-card">
+          <div class="skeleton sk-card__media"></div>
+          <div class="skeleton sk-line sk-line--md"></div>
+          <div class="skeleton sk-line sk-line--sm"></div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</template>
+
+<template id="skeleton-page">
+  <div class="container section sk-page" aria-hidden="true">
+    <div class="skeleton sk-line sk-line--lg"></div>
+    <div class="skeleton sk-line"></div>
+    <div class="skeleton sk-line"></div>
+    <div class="skeleton sk-line sk-line--md"></div>
+  </div>
+</template>
+
+{% stylesheet %}
+  .sk-product { display: grid; gap: 2rem; }
+  .sk-media { aspect-ratio: 4 / 5; }
+  .sk-info, .sk-page { display: grid; gap: 1rem; align-content: start; }
+  .sk-page { max-width: 48rem; }
+  .sk-line { height: 1rem; }
+  .sk-line--sm { width: 30%; }
+  .sk-line--md { width: 60%; }
+  .sk-line--lg { height: 2.25rem; width: 80%; margin-block-end: 0.5rem; }
+  .sk-block { height: 8rem; }
+  .sk-button { height: 3rem; }
+  .sk-grid { display: grid; gap: 2rem 1rem; grid-template-columns: repeat(2, 1fr); margin-block-start: 2rem; }
+  .sk-card { display: grid; gap: 0.5rem; align-content: start; }
+  .sk-card__media { aspect-ratio: 4 / 5; }
+  @media (min-width: 56em) {
+    .sk-product { grid-template-columns: 1.2fr 1fr; }
+    .sk-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+{% endstylesheet %}

@@ -1,0 +1,110 @@
+{% comment %}
+  Site footer: optional shop name (off by default) and tagline, menu, optional newsletter, then a legal row
+  (optional legal line, language and country, payment icons). The shop name is
+  shown in the header, and in the footer only when the merchant turns it on; there is
+  no default copyright line. Below the
+  fold, so its CSS lives in this file's {% stylesheet %}.
+{% endcomment %}
+
+{%- assign menu = settings.footer_menu -%}
+
+<footer class="footer">
+  <div class="container footer__inner">
+    {%- if section.settings.show_shop_name or section.settings.tagline != blank -%}
+      <div class="footer__brand stack">
+        {%- if section.settings.show_shop_name -%}
+          <p class="footer__name">{{ shop.name }}</p>
+        {%- endif -%}
+        {%- if section.settings.tagline != blank -%}
+          <p class="footer__tagline">{{ section.settings.tagline }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if menu.links.size > 0 -%}
+      <nav class="footer__nav" aria-label="{{ 'general.footer_menu' | t }}">
+        <ul role="list">
+          {%- for link in menu.links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+    {%- if section.settings.show_newsletter -%}
+      <div class="footer__newsletter">
+        {%- form 'customer', id: 'footer-newsletter' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <label for="footer-email">{{ 'footer.newsletter_label' | t }}</label>
+          <div class="footer__newsletter-row">
+            <input
+              id="footer-email"
+              type="email"
+              name="contact[email]"
+              autocomplete="email"
+              required
+              placeholder="{{ 'footer.newsletter_placeholder' | t }}"
+              value="{{ form.email }}"
+            >
+            <button class="button" type="submit">{{ 'footer.newsletter_submit' | t }}</button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <p role="status">{{ 'footer.newsletter_success' | t }}</p>
+            {%- if settings.tracking_enabled -%}
+              <script type="application/json" data-track="generate_lead">{ "lead_source": "footer_newsletter" }</script>
+            {%- endif -%}
+          {%- endif -%}
+          {%- if form.errors -%}
+            {{ form.errors | default_errors }}
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="container footer__legal mono">
+    {%- if section.settings.legal_text != blank -%}
+      {%- assign year = 'now' | date: '%Y' -%}
+      <span>{{ section.settings.legal_text | replace: '[year]', year }}</span>
+    {%- endif -%}
+    {%- render 'localization-selector' -%}
+    {%- if section.settings.show_payment_icons -%}
+      <ul class="footer__payment" role="list">
+        {%- for type in shop.enabled_payment_types -%}
+          <li><img class="footer__payment-icon" src="{{ type | payment_type_img_url }}" alt="{{ type | replace: '_', ' ' | capitalize }}" width="38" height="24" loading="lazy" decoding="async"></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</footer>
+
+{% stylesheet %}
+  .footer { margin-block-start: 4rem; padding-block: 3rem 1.5rem; border-block-start: 1px solid var(--color-border); background: var(--color-surface); }
+  .footer__inner { display: grid; gap: 2rem; }
+  .footer__name { font-weight: var(--font-weight-strong); font-size: 1.125rem; }
+  .footer__tagline { max-width: 32ch; color: var(--color-muted); }
+  .footer__nav ul { display: grid; gap: 0.25rem; padding: 0; }
+  .footer__nav a { display: inline-flex; align-items: center; min-height: 2.75rem; text-decoration: none; }
+  .footer__nav a:hover { text-decoration: underline; }
+  .footer__newsletter-row { display: flex; gap: 0.5rem; }
+  .footer__newsletter-row input { flex: 1; min-width: 0; }
+  .footer__legal { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin-block-start: 2.5rem; padding-block-start: 1.5rem; border-block-start: 1px solid var(--color-border); font-size: 0.75rem; color: var(--color-muted); }
+  .footer__payment { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; }
+  .footer__payment-icon { width: 2.375rem; height: 1.5rem; }
+  @media (min-width: 56em) {
+    .footer__inner { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "checkbox", "id": "show_shop_name", "label": "Show shop name", "info": "As text above the tagline. Useful when the header shows only a logo image.", "default": false },
+    { "type": "text", "id": "tagline", "label": "Tagline" },
+    { "type": "text", "id": "legal_text", "label": "Legal line", "info": "Optional, for example a copyright notice or company details. [year] becomes the current year." },
+    { "type": "checkbox", "id": "show_newsletter", "label": "Show newsletter signup", "default": true },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true }
+  ]
+}
+{% endschema %}

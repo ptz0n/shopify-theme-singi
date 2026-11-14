@@ -1,0 +1,21 @@
+{% comment %}
+  Standard content page.
+{% endcomment %}
+
+<article class="container section page">
+  {%- render 'breadcrumbs', kind: 'page' -%}
+  <h1 class="page__title">{{ page.title }}</h1>
+  <div class="prose page__body">{{ page.content }}</div>
+</article>
+
+{% stylesheet %}
+  .page__title { margin-block: 1rem 2rem; max-width: 48rem; }
+  .page__body { max-width: 48rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Page",
+  "settings": []
+}
+{% endschema %}

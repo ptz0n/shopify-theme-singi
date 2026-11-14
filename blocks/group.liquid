@@ -1,0 +1,63 @@
+{% doc %}
+  Flex container that nests any theme blocks. Use it to build rows and columns.
+
+  @example
+  {% content_for 'block', type: 'group', id: 'actions' %}
+{% enddoc %}
+
+{%- assign s = block.settings -%}
+
+<div
+  class="group"
+  style="--direction: {{ s.direction }}; --gap: {{ s.gap }}px; --align: {{ s.align }}; --justify: {{ s.justify }}"
+  {{ block.shopify_attributes }}
+>
+  {% content_for 'blocks' %}
+</div>
+
+{% stylesheet %}
+  .group { display: flex; flex-direction: var(--direction); flex-wrap: wrap; gap: var(--gap); align-items: var(--align); justify-content: var(--justify); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Group",
+  "settings": [
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Direction",
+      "options": [
+        { "value": "row", "label": "Row" },
+        { "value": "column", "label": "Column" }
+      ],
+      "default": "row"
+    },
+    { "type": "range", "id": "gap", "label": "Gap", "min": 0, "max": 64, "step": 4, "unit": "px", "default": 16 },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Align items",
+      "options": [
+        { "value": "flex-start", "label": "Start" },
+        { "value": "center", "label": "Center" },
+        { "value": "stretch", "label": "Stretch" }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "justify",
+      "label": "Justify content",
+      "options": [
+        { "value": "flex-start", "label": "Start" },
+        { "value": "center", "label": "Center" },
+        { "value": "space-between", "label": "Space between" }
+      ],
+      "default": "flex-start"
+    }
+  ],
+  "blocks": [{ "type": "@theme" }],
+  "presets": [{ "name": "Group" }]
+}
+{% endschema %}

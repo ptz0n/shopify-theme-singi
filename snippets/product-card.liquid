@@ -1,0 +1,82 @@
+{% doc %}
+  Product card. Renders its own <li>, so call it inside a <ul role="list"> and do
+  not wrap it. Minimal markup on purpose: this runs once per product, so every
+  node here is multiplied by the page size. The li is the card, the image is a
+  direct child (no media wrapper), the title link stretches over the card with
+  ::after, and the badge is positioned against the li.
+
+  A product with no image shows settings.placeholder_image when the merchant set one,
+  otherwise an empty neutral block of the same shape, so the grid never shifts.
+
+  Why one stretched link and not a wrapper link: docs/decisions/001-stretched-card-link.md.
+
+  Only image and price are rendered inside; do not nest further snippets here.
+  The wishlist heart is one button, drawn with a CSS mask (no SVG), shown when the
+  Wishlist theme settings allow it. Its behavior lives in assets/wishlist.js.
+
+  @param {product} product - The product to render
+  @param {boolean} [eager] - Load the image eagerly (first row only)
+  @param {string} [sizes] - Image sizes attribute
+  @param {string} [heading] - Heading element for the title: h2 under a page h1, h3 under an h2 section. Default: h3
+
+  @example
+  <ul class="product-grid" role="list">
+    {% render 'product-card', product: product, eager: true, heading: 'h2' %}
+  </ul>
+{% enddoc %}
+
+{%- liquid
+  assign card_sizes = sizes | default: '(min-width: 56em) 25vw, (min-width: 40em) 33vw, 50vw'
+  assign card_alt = product.featured_image.alt | default: product.title
+  assign card_heading = heading | default: 'h3'
+  if settings.wishlist_enabled and settings.wishlist_cards
+    assign card_crossorigin = 'anonymous'
+  endif
+-%}
+
+<li class="product-card"{% if settings.tracking_enabled %} data-product-id="{{ product.id }}"{% endif %}>
+  {%- if product.featured_image -%}
+    {%- render 'image',
+      image: product.featured_image,
+      sizes: card_sizes,
+      widths: '240, 360, 480, 640, 800',
+      width: 800,
+      eager: eager,
+      alt: card_alt,
+      crossorigin: card_crossorigin
+    -%}
+  {%- elsif settings.placeholder_image -%}
+    {%- render 'image',
+      image: settings.placeholder_image,
+      sizes: card_sizes,
+      widths: '240, 360, 480, 640, 800',
+      width: 800,
+      eager: eager,
+      alt: product.title
+    -%}
+  {%- else -%}
+    <div class="product-card__media"></div>
+  {%- endif -%}
+  {%- render 'ai-label', alt: product.featured_image.alt -%}
+  {%- if settings.wishlist_enabled and settings.wishlist_cards -%}
+    <button class="wishlist-heart" type="button" data-wishlist="{{ product.handle }}" aria-pressed="false" aria-label="{{ 'wishlist.toggle' | t: title: product.title }}"></button>
+  {%- endif -%}
+  {%- unless product.available -%}
+    <span class="product-card__badge mono">{{ 'products.sold_out' | t }}</span>
+  {%- endunless -%}
+  <{{ card_heading }} class="product-card__title"><a class="product-card__link" href="{{ product.url }}">{{ product.title }}</a></{{ card_heading }}>
+  {%- render 'price', price: product.price, compare_at_price: product.compare_at_price -%}
+</li>
+
+{% stylesheet %}
+  /* Elements in the card's top corners share one visible inset, 12px from the edges: the sold-out badge starts there (a fixed mid-grey with white text, 6.9:1 contrast, the same in both color schemes because it sits on a photo), and the
+     heart's 44px tap area sits in the corner so its 20px icon lands on the same 12px. The badge is 20px tall, so its center is the icon's. */
+  .product-card__badge { position: absolute; inset-block-start: 0.75rem; inset-inline-start: 0.75rem; display: inline-flex; align-items: center; min-height: 1.25rem; padding: 0 0.5rem; border-radius: var(--radius); background: #5a5a63; color: #fff; font-size: 0.6875rem; letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+  /* The wishlist heart: only product cards have it, so its styles ship with the card, not in the inlined base.css. */
+  .wishlist-heart{--heart:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20.5s-8-4.9-8-11A4.5 4.5 0 0 1 12 6.8 4.5 4.5 0 0 1 20 9.5c0 6.1-8 11-8 11z'/%3E%3C/svg%3E");--heart-fill:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000' stroke='%23000' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20.5s-8-4.9-8-11A4.5 4.5 0 0 1 12 6.8 4.5 4.5 0 0 1 20 9.5c0 6.1-8 11-8 11z'/%3E%3C/svg%3E");position:absolute;inset-block-start:0;inset-inline-end:0;z-index:1;display:grid;place-items:center;width:2.75rem;height:2.75rem;padding:0;border:0;background:none;color:var(--color-fg);opacity:.7;cursor:pointer;transition:opacity .15s}
+  .wishlist-heart:is(:hover,:focus-visible,[aria-pressed=true]){opacity:1}
+  .wishlist-heart[data-heart=white]{color:#fff;--halo:#0007}
+  .wishlist-heart[data-heart=black]{color:#000;--halo:#fff9}
+  .wishlist-heart::before{content:"";width:1.25rem;height:1.25rem;background:currentcolor;filter:drop-shadow(0 0 2px var(--halo,var(--color-bg)));-webkit-mask:var(--heart) center/contain no-repeat;mask:var(--heart) center/contain no-repeat}
+  .wishlist-heart[aria-pressed=true]::before{-webkit-mask-image:var(--heart-fill);mask-image:var(--heart-fill)}
+{% endstylesheet %}

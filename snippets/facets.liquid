@@ -1,0 +1,137 @@
+{% doc %}
+  Filter bar, sort select and active-filter chips for a storefront-filtered
+  list. Shared by the collection page and the search results page. Must sit
+  inside <facets-form> (assets/facets.js), which swaps the results in place.
+
+  @param {object} source - collection or search (has filters, sort_options, sort_by)
+  @param {string} action - URL the GET form submits to
+  @param {string} clear_url - URL with no filters, for the "Clear all" chip
+  @param {string} [q] - search terms, kept as a hidden field on the search page
+  @param {boolean} [type_filter] - add the result-type filter (products, articles, pages), search page only
+  @param {string} [current_type] - the type now filtered on
+{% enddoc %}
+
+{%- if source.filters.size > 0 or source.sort_options.size > 1 or type_filter -%}
+  <form class="facets" data-facets action="{{ action }}" method="get">
+    {%- if q != blank -%}<input type="hidden" name="q" value="{{ q | escape }}">{%- endif -%}
+    <div class="facets__bar">
+      {%- if type_filter -%}
+        <details class="facet" name="facets" id="facet-type">
+          <summary>
+            {{ 'products.type' | t }}
+            {%- if current_type != blank %} <span class="facet__count mono">(1)</span>{% endif -%}
+          </summary>
+          <div class="facet__body">
+            <ul role="list">
+              {%- assign type_values = ',product,article,page' | split: ',' -%}
+              {%- for value in type_values -%}
+                <li>
+                  <label class="facet__value" for="filter-type-{{ forloop.index }}">
+                    <input id="filter-type-{{ forloop.index }}" type="radio" name="type" value="{{ value }}"{% if value == current_type or value == blank and current_type == blank %} checked{% endif %}>
+                    <span>
+                      {%- case value -%}
+                        {%- when 'product' -%}{{ 'search.products' | t }}
+                        {%- when 'article' -%}{{ 'search.type_article' | t }}
+                        {%- when 'page' -%}{{ 'search.type_page' | t }}
+                        {%- else -%}{{ 'search.type_all' | t }}
+                      {%- endcase -%}
+                    </span>
+                  </label>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </details>
+      {%- endif -%}
+      {%- for filter in source.filters -%}
+        <details class="facet" name="facets" id="facet-{{ forloop.index }}">
+          <summary>
+            {{ filter.label }}
+            {%- if filter.active_values.size > 0 %} <span class="facet__count mono">({{ filter.active_values.size }})</span>{% endif -%}
+          </summary>
+          <div class="facet__body">
+            {%- if filter.type == 'price_range' -%}
+              <div class="facet__price">
+                <label for="price-min">{{ 'collection.price_from' | t }}</label>
+                <input id="price-min" type="number" inputmode="decimal" min="0" name="{{ filter.min_value.param_name }}" placeholder="0" value="{% if filter.min_value.value %}{{ filter.min_value.value | divided_by: 100.0 }}{% endif %}">
+                <label for="price-max">{{ 'collection.price_to' | t }}</label>
+                <input id="price-max" type="number" inputmode="decimal" min="0" name="{{ filter.max_value.param_name }}" placeholder="{{ filter.range_max | divided_by: 100.0 | ceil }}" value="{% if filter.max_value.value %}{{ filter.max_value.value | divided_by: 100.0 }}{% endif %}">
+              </div>
+            {%- else -%}
+              <ul role="list">
+                {%- for value in filter.values -%}
+                  <li>
+                    <label class="facet__value" for="filter-{{ forloop.parentloop.index }}-{{ forloop.index }}">
+                      <input
+                        id="filter-{{ forloop.parentloop.index }}-{{ forloop.index }}"
+                        type="checkbox"
+                        name="{{ value.param_name }}"
+                        value="{{ value.value }}"
+                        {% if value.active %}checked{% endif %}
+                        {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                      >
+                      <span>{{ value.label }} <span class="mono muted">({{ value.count }})</span></span>
+                    </label>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </div>
+        </details>
+      {%- endfor -%}
+    </div>
+
+    {%- if source.sort_options.size > 1 -%}
+      <div class="facets__sort">
+        <label class="visually-hidden" for="sort-by">{{ 'collection.sort_by' | t }}</label>
+        <select id="sort-by" name="sort_by">
+          {%- for option in source.sort_options -%}
+            <option value="{{ option.value }}"{% if option.value == source.sort_by %} selected{% endif %}>{{ option.name }}</option>
+          {%- endfor -%}
+        </select>
+      </div>
+    {%- endif -%}
+
+    <noscript><button class="button" type="submit">{{ 'collection.apply' | t }}</button></noscript>
+  </form>
+{%- endif -%}
+
+{%- assign active = false -%}
+{%- if current_type != blank -%}{%- assign active = true -%}{%- endif -%}
+{%- for filter in source.filters -%}
+  {%- if filter.active_values.size > 0 or filter.min_value.value or filter.max_value.value -%}{%- assign active = true -%}{%- endif -%}
+{%- endfor -%}
+{%- if active -%}
+  <ul class="chips" role="list">
+    {%- for filter in source.filters -%}
+      {%- for value in filter.active_values -%}
+        <li><a class="chip" data-facet-link href="{{ value.url_to_remove }}">{{ value.label }} &times;</a></li>
+      {%- endfor -%}
+      {%- if filter.min_value.value or filter.max_value.value -%}
+        <li><a class="chip" data-facet-link href="{{ filter.url_to_remove }}">{{ filter.label }} &times;</a></li>
+      {%- endif -%}
+    {%- endfor -%}
+    <li><a class="chip" data-facet-link href="{{ clear_url }}">{{ 'collection.clear_all' | t }}</a></li>
+  </ul>
+{%- endif -%}
+
+{% stylesheet %}
+  .facets { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin-block-end: 1rem; }
+  .facets__bar { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .facet { position: relative; }
+  .facet summary { display: inline-flex; align-items: center; min-height: 3rem; padding-inline: 1rem; border: 1px solid var(--color-control); border-radius: var(--radius); cursor: pointer; list-style: none; }
+  .facet summary::-webkit-details-marker { display: none; }
+  .facet[open] summary { border-color: var(--color-fg); }
+  .facet summary::after { content: ''; flex: none; width: 0.4375rem; height: 0.4375rem; margin-inline-start: 0.75rem; border-right: 2px solid currentcolor; /* rtl-ok: symmetric chevron */ border-bottom: 2px solid currentcolor; transform: translateY(-0.125rem) rotate(45deg); transition: transform 0.15s; }
+  .facet[open] summary::after { transform: translateY(0.0625rem) rotate(-135deg); }
+  .facet__count { margin-inline-start: 0.375rem; font-size: 0.75rem; }
+  .facet__body { position: absolute; z-index: 5; inset-block-start: calc(100% + 0.25rem); inset-inline-start: 0; min-width: 14rem; max-height: 20rem; overflow: auto; padding: 0.75rem; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); }
+  .facet__body ul { padding: 0; }
+  .facet__value { display: flex; align-items: center; gap: 0.75rem; min-height: 2.75rem; margin: 0; font-weight: var(--font-weight-body); cursor: pointer; }
+  .facet__value input { width: 1.125rem; min-height: 0; height: 1.125rem; }
+  .facet__price { display: grid; gap: 0.5rem; }
+  .facets__sort { min-width: 12rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin-block-end: 1rem; }
+  .chips .chip { min-height: 2.25rem; padding-block: 0.25rem; text-decoration: none; }
+  .collection__count { margin-block-end: 1rem; font-size: 0.8125rem; }
+{% endstylesheet %}

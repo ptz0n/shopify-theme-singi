@@ -1,0 +1,135 @@
+{
+  "404": {
+    "title": "Stránka sa nenašla",
+    "body": "Stránka, ktorú hľadáte, neexistuje alebo bola presunutá.",
+    "cta": "Pokračovať v nákupe"
+  },
+  "general": {
+    "skip_to_content": "Preskočiť na obsah",
+    "main_menu": "Hlavná ponuka",
+    "footer_menu": "Ponuka v pätičke",
+    "search": "Hľadať",
+    "account": "Účet",
+    "cart": "Košík",
+    "toggle_theme": "Prepnúť svetlý a tmavý režim",
+    "light_mode": "Svetlý režim",
+    "dark_mode": "Tmavý režim",
+    "open_menu": "Menu",
+    "home": "Domov",
+    "breadcrumbs": "Navigačná cesta",
+    "pagination": "Stránkovanie",
+    "previous": "Predchádzajúca",
+    "next": "Ďalšia",
+    "tagged": "Označené {{ tags }}",
+    "page_number": "Strana {{ number }}"
+  },
+  "products": {
+    "sold_out": "Vypredané",
+    "recently_viewed": "Nedávno zobrazené",
+    "add_to_cart": "Pridať do košíka",
+    "added": "Pridané do košíka.",
+    "add_error": "Pridanie do košíka sa nepodarilo. Skúste to prosím znova.",
+    "view_cart": "Zobraziť košík",
+    "sale_price": "Zľavnená cena",
+    "regular_price": "Pôvodná cena",
+    "quantity": "Množstvo",
+    "sku": "SKU",
+    "type": "Typ",
+    "availability": "Dostupnosť",
+    "in_stock": "Na sklade",
+    "percent_off": "zľava {{ percent }} %",
+    "quantity_decrease": "Znížiť množstvo",
+    "quantity_increase": "Zvýšiť množstvo"
+  },
+  "collection": {
+    "price_from": "Od",
+    "price_to": "Do",
+    "sort_by": "Zoradiť podľa",
+    "apply": "Použiť filtre",
+    "clear_all": "Zrušiť filtre",
+    "product_count": {
+      "one": "{{ count }} produkt",
+      "few": "{{ count }} produkty",
+      "many": "{{ count }} produktu",
+      "other": "{{ count }} produktov"
+    },
+    "empty": "Týmto filtrom nezodpovedajú žiadne produkty.",
+    "show_more": "Zobraziť viac",
+    "showing": "Zobrazených {{ shown }} z {{ total }}"
+  },
+  "collections": {
+    "title": "Kolekcie"
+  },
+  "cart": {
+    "title": "Košík",
+    "empty": "Váš košík je prázdny.",
+    "continue": "Pokračovať v nákupe",
+    "remove": "Odstrániť",
+    "subtotal": "Medzisúčet",
+    "taxes_note": "Dane a poštovné sa vypočítajú pri pokladni.",
+    "update": "Aktualizovať košík",
+    "checkout": "Prejsť k pokladni",
+    "error": "Košík sa nepodarilo aktualizovať. Skúste to prosím znova.",
+    "remove_item": "Odstrániť {{ title }} z košíka"
+  },
+  "search": {
+    "title": "Vyhľadávanie",
+    "heading": "„{{ terms }}“",
+    "label": "Hľadať v obchode",
+    "placeholder": "Hľadať",
+    "submit": "Hľadať",
+    "results_count": {
+      "one": "{{ count }} výsledok pre „{{ terms }}“",
+      "few": "{{ count }} výsledky pre „{{ terms }}“",
+      "many": "{{ count }} výsledku pre „{{ terms }}“",
+      "other": "{{ count }} výsledkov pre „{{ terms }}“"
+    },
+    "suggestions": "Návrhy",
+    "results_status": "Výsledky: {{ count }}",
+    "products": "Produkty",
+    "pages": "Stránky a články",
+    "type_all": "Všetko",
+    "type_article": "Články",
+    "type_page": "Stránky",
+    "show_all": "Zobraziť všetko pre „{{ terms }}“",
+    "no_results": "Nenašli sa žiadne výsledky. Skúste iné vyhľadávanie."
+  },
+  "password": {
+    "title": "Tento obchod je súkromný",
+    "label": "Heslo",
+    "enter": "Vstúpiť",
+    "owner": "Majiteľ obchodu? Prihláste sa"
+  },
+  "footer": {
+    "newsletter_label": "Pridajte sa k odberu",
+    "newsletter_placeholder": "E-mailová adresa",
+    "newsletter_submit": "Odoberať",
+    "newsletter_success": "Ďakujeme za prihlásenie na odber."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Zobraziť všetko"
+    }
+  },
+  "gift_card": {
+    "expired": "Platnosť tejto darčekovej karty vypršala.",
+    "expires_on": "Platí do {{ date }}",
+    "use_at_checkout": "Tento kód použite pri pokladni.",
+    "add_to_apple_wallet": "Pridať do Apple Wallet"
+  },
+  "localization": {
+    "label": "Krajina a jazyk",
+    "country": "Krajina/región",
+    "language": "Jazyk",
+    "error": "Zoznam sa nepodarilo načítať. Skúste to znova."
+  },
+  "wishlist": {
+    "title": "Obľúbené",
+    "toggle": "Uložiť {{ title }} do obľúbených",
+    "saved": "Uložené do obľúbených",
+    "removed": "Odstránené z obľúbených",
+    "add_to_cart": "Pridať {{ title }} do košíka",
+    "choose_options": "Vybrať možnosti pre {{ title }}",
+    "remove": "Odstrániť {{ title }} z obľúbených"
+  }
+}

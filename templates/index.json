@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": { "height": "large", "align": "start", "overlay": 40 }
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": { "collection": "all", "limit": 8 }
+    }
+  },
+  "order": ["hero", "featured"]
+}

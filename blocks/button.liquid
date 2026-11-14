@@ -1,0 +1,37 @@
+{% doc %}
+  Link styled as a button. Renders nothing without a label and a link.
+
+  @example
+  {% content_for 'block', type: 'button', id: 'cta' %}
+{% enddoc %}
+
+{%- assign s = block.settings -%}
+
+{%- if s.label != blank and s.link != blank -%}
+  <a class="button{% if s.style == 'secondary' %} button--secondary{% endif %}" href="{{ s.link }}" {{ block.shopify_attributes }}>
+    {{- s.label -}}
+  </a>
+{%- else -%}
+  {%- render 'placeholder', label: 'Button: add a label and a link' -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Button",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label" },
+    { "type": "url", "id": "link", "label": "Link" },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        { "value": "primary", "label": "Primary" },
+        { "value": "secondary", "label": "Secondary" }
+      ],
+      "default": "primary"
+    }
+  ],
+  "presets": [{ "name": "Button" }]
+}
+{% endschema %}

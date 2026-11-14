@@ -1,0 +1,87 @@
+# singi
+
+A Shopify Online Store 2.0 theme built for storefront rendering speed, clear structure and easy extension by people and coding agents. Read this file for the overview and quickstart, then follow the links in the docs index.
+
+## Status
+
+Early. Be aware of what is and is not verified:
+
+- `shopify theme check` reports no offenses at any severity, and `npm run check` passes.
+- The theme runs on the dev store and its pages have been checked by hand in Chrome. Lighthouse scores have not been measured yet, so treat every performance claim in these docs as a design intent until [testing](docs/testing.md) has been run and recorded.
+- Translations in `locales/` are machine-generated and need native review. See [i18n](docs/i18n.md).
+- Soft navigation ships off by default. See [soft navigation](docs/soft-navigation.md).
+
+## Principles
+
+- **Web-native.** Modern CSS (`light-dark()`, logical properties, popover, `<details name>`, scroll snap), custom elements and native forms. No framework, no polyfills.
+- **Server-rendered.** Shopify renders the HTML with Liquid. JavaScript only upgrades what already works without it.
+- **Fast by construction.** Critical CSS inlined, first-paint resources above `content_for_header`, one LCP image per page, no global JS bundle, no render-blocking third parties. See [performance](docs/performance.md).
+- **Minimal.** A feature earns its place by being worth its bytes. No slider, cart drawer or predictive search unless measured to be worth it.
+- **Robust.** Every interactive feature has a no-JavaScript path. RTL and dark mode are first-class. Failures fall back to normal navigation.
+- **A bit magical.** Small, cheap, CSS-first details (view transitions, skeletons, scroll-driven polish) that never touch the LCP element. See [extending](docs/extending.md#planned).
+
+Typography is restricted to Shopify's official font library (Inter for text, a monospace for accents) so the storefront matches checkout. See [design system](docs/design-system.md#fonts).
+
+## Quickstart
+
+Requirements: Node 20+, [Shopify CLI](https://shopify.dev/docs/api/shopify-cli) 3.x or newer, access to the dev store.
+
+```bash
+npm install
+npm run dev          # shopify theme dev against the dev store (override with SINGI_STORE)
+npm run check        # theme check + repo rules
+npm run docs         # regenerate docs/reference/*.md
+```
+
+Set `SINGI_STORE` in `.env` to your development store (see [tooling](docs/tooling.md)). Push an unpublished copy to share it:
+
+```bash
+shopify theme push --store $SINGI_STORE --unpublished --theme singi-dev
+```
+
+Never publish a theme from a script. See [tooling](docs/tooling.md#dev-store-workflow).
+
+## Repo map
+
+```
+layout/       theme.liquid (storefront shell), password.liquid
+templates/    JSON templates, one per page type, plus gift_card.liquid
+sections/     header, footer, hero, featured-collection, content, main-* page sections, *-group.json
+blocks/       theme blocks: public (group, heading, text, ...) and private (_product-*, _buy-buttons, ...)
+snippets/     tokens, meta-tags, image, icon, price, product-card, pagination, breadcrumbs, skeletons
+assets/       base.css (inlined in <head>) and ES modules: utils, soft-nav, product-form, cart-items, facets
+config/       settings_schema.json (theme settings), settings_data.json (editor state)
+locales/      en.default.json plus one file per language
+scripts/      repo checks, reference generator, Lighthouse wrapper, checkout branding sync
+docs/         this documentation; docs/reference/ is generated
+```
+
+## Documentation index
+
+| Doc | Read it when |
+| --- | --- |
+| [AGENTS.md](AGENTS.md) | You are a coding agent about to change this repo. Start here. |
+| [docs/decisions/](docs/decisions/README.md) | You want to know why something is built the way it is, before you change it. |
+| [docs/architecture.md](docs/architecture.md) | You need to know how a request becomes a page, and where CSS and JS come from. |
+| [docs/performance.md](docs/performance.md) | You are changing anything that affects load speed, or debugging a metric. |
+| [docs/design-system.md](docs/design-system.md) | You are changing colors, fonts, spacing or dark mode. |
+| [docs/blocks-and-sections.md](docs/blocks-and-sections.md) | You are composing pages or looking for the right block, section or snippet. |
+| [docs/soft-navigation.md](docs/soft-navigation.md) | You are touching client-side navigation or skeletons. |
+| [docs/i18n.md](docs/i18n.md) | You are adding strings, a language, or checking RTL. |
+| [docs/seo-and-accessibility.md](docs/seo-and-accessibility.md) | You are changing markup, headings, meta tags or structured data. |
+| [docs/tooling.md](docs/tooling.md) | You need a command, CI or the dev-store workflow. |
+| [docs/checkout-branding.md](docs/checkout-branding.md) | You want checkout, customer accounts and sign-in to match the theme. |
+| [docs/search.md](docs/search.md) | You are changing the header search, results as you type, or the search page. |
+| [docs/component-library.md](docs/component-library.md) | You want to see every component at once, or check a style change in light, dark and RTL. |
+| [docs/media.md](docs/media.md) | You are changing images, focal points, the gallery, video, the card heart or media tests. |
+| [docs/extending.md](docs/extending.md) | You are adding a section, block, setting, template, language or integration. |
+| [docs/testing.md](docs/testing.md) | You are verifying a change or recording Lighthouse results. |
+| [docs/reference/](docs/reference/) | Generated API reference for snippets, blocks and sections (run `npm run docs`). |
+
+## License
+
+[MIT](LICENSE) © Erik Eng and singi contributors. Use it on client builds, fork it, sell stores built with it.
+
+Write new code from scratch, and only submit code you can license under MIT.
+
+The name "singi" and its logo are not covered by the MIT license; see [CONTRIBUTING.md](CONTRIBUTING.md#name).

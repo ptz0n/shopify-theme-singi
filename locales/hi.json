@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "पेज नहीं मिला",
+    "body": "आप जो पेज खोज रहे हैं वह मौजूद नहीं है या उसे स्थानांतरित कर दिया गया है।",
+    "cta": "खरीदारी जारी रखें"
+  },
+  "general": {
+    "skip_to_content": "सामग्री पर जाएँ",
+    "main_menu": "मुख्य मेनू",
+    "footer_menu": "फ़ूटर मेनू",
+    "search": "खोजें",
+    "account": "खाता",
+    "cart": "कार्ट",
+    "toggle_theme": "लाइट और डार्क मोड बदलें",
+    "light_mode": "लाइट मोड",
+    "dark_mode": "डार्क मोड",
+    "open_menu": "मेनू",
+    "home": "होम",
+    "breadcrumbs": "ब्रेडक्रम्ब्स",
+    "pagination": "पेज नंबर",
+    "previous": "पिछला",
+    "next": "अगला",
+    "tagged": "टैग: {{ tags }}",
+    "page_number": "पेज {{ number }}"
+  },
+  "products": {
+    "sold_out": "स्टॉक में नहीं है",
+    "recently_viewed": "हाल ही में देखे गए",
+    "add_to_cart": "कार्ट में जोड़ें",
+    "added": "कार्ट में जोड़ दिया गया।",
+    "add_error": "कार्ट में नहीं जोड़ा जा सका। कृपया फिर से प्रयास करें।",
+    "view_cart": "कार्ट देखें",
+    "sale_price": "सेल मूल्य",
+    "regular_price": "सामान्य मूल्य",
+    "quantity": "मात्रा",
+    "sku": "SKU",
+    "type": "प्रकार",
+    "availability": "उपलब्धता",
+    "in_stock": "स्टॉक में है",
+    "percent_off": "{{ percent }}% की छूट",
+    "quantity_decrease": "मात्रा घटाएं",
+    "quantity_increase": "मात्रा बढ़ाएं"
+  },
+  "collection": {
+    "price_from": "से",
+    "price_to": "तक",
+    "sort_by": "क्रमबद्ध करें",
+    "apply": "फ़िल्टर लागू करें",
+    "clear_all": "फ़िल्टर हटाएं",
+    "product_count": {
+      "one": "{{ count }} उत्पाद",
+      "other": "{{ count }} उत्पाद"
+    },
+    "empty": "इन फ़िल्टर से मेल खाने वाला कोई उत्पाद नहीं है।",
+    "show_more": "और दिखाएं",
+    "showing": "{{ total }} में से {{ shown }} दिखाए जा रहे हैं"
+  },
+  "collections": {
+    "title": "कलेक्शन"
+  },
+  "cart": {
+    "title": "कार्ट",
+    "empty": "आपका कार्ट खाली है।",
+    "continue": "खरीदारी जारी रखें",
+    "remove": "हटाएँ",
+    "subtotal": "उप-योग",
+    "taxes_note": "कर और शिपिंग की गणना चेकआउट पर की जाती है।",
+    "update": "कार्ट अपडेट करें",
+    "checkout": "चेकआउट करें",
+    "error": "आपका कार्ट अपडेट नहीं हो सका। कृपया फिर से प्रयास करें।",
+    "remove_item": "कार्ट से {{ title }} हटाएं"
+  },
+  "search": {
+    "title": "खोजें",
+    "heading": "“{{ terms }}”",
+    "label": "स्टोर में खोजें",
+    "placeholder": "खोजें",
+    "submit": "खोजें",
+    "results_count": {
+      "one": "“{{ terms }}” के लिए {{ count }} परिणाम",
+      "other": "“{{ terms }}” के लिए {{ count }} परिणाम"
+    },
+    "suggestions": "सुझाव",
+    "results_status": "परिणाम: {{ count }}",
+    "products": "उत्पाद",
+    "pages": "पेज और लेख",
+    "type_all": "सभी",
+    "type_article": "लेख",
+    "type_page": "पेज",
+    "show_all": "“{{ terms }}” के लिए सभी दिखाएं",
+    "no_results": "कोई परिणाम नहीं मिला। कृपया कोई दूसरा शब्द खोजें।"
+  },
+  "password": {
+    "title": "यह स्टोर निजी है",
+    "label": "पासवर्ड",
+    "enter": "प्रवेश करें",
+    "owner": "स्टोर के मालिक? लॉग इन करें"
+  },
+  "footer": {
+    "newsletter_label": "हमारी सूची से जुड़ें",
+    "newsletter_placeholder": "ईमेल पता",
+    "newsletter_submit": "सब्सक्राइब करें",
+    "newsletter_success": "सब्सक्राइब करने के लिए धन्यवाद।"
+  },
+  "sections": {
+    "featured": {
+      "view_all": "सभी देखें"
+    }
+  },
+  "gift_card": {
+    "expired": "इस गिफ़्ट कार्ड की समय-सीमा समाप्त हो गई है।",
+    "expires_on": "समाप्ति तिथि: {{ date }}",
+    "use_at_checkout": "चेकआउट पर इस कोड का उपयोग करें।",
+    "add_to_apple_wallet": "Apple Wallet में जोड़ें"
+  },
+  "localization": {
+    "label": "देश और भाषा",
+    "country": "देश/क्षेत्र",
+    "language": "भाषा",
+    "error": "सूची लोड नहीं हो सकी। कृपया फिर से प्रयास करें।"
+  },
+  "wishlist": {
+    "title": "पसंदीदा",
+    "toggle": "{{ title }} को पसंदीदा में सहेजें",
+    "saved": "पसंदीदा में सहेजा गया",
+    "removed": "पसंदीदा से हटाया गया",
+    "add_to_cart": "{{ title }} को कार्ट में जोड़ें",
+    "choose_options": "{{ title }} के विकल्प चुनें",
+    "remove": "{{ title }} को पसंदीदा से हटाएं"
+  }
+}

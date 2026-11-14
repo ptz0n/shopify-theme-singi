@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Síða fannst ekki",
+    "body": "Síðan sem þú leitar að er ekki til eða hefur verið flutt.",
+    "cta": "Halda áfram að versla"
+  },
+  "general": {
+    "skip_to_content": "Fara í efni",
+    "main_menu": "Aðalvalmynd",
+    "footer_menu": "Valmynd í fæti",
+    "search": "Leita",
+    "account": "Aðgangur",
+    "cart": "Karfa",
+    "toggle_theme": "Skipta á milli ljóss og dökks ham",
+    "light_mode": "Ljós stilling",
+    "dark_mode": "Dökk stilling",
+    "open_menu": "Valmynd",
+    "home": "Forsíða",
+    "breadcrumbs": "Brauðmolar",
+    "pagination": "Síðuskipting",
+    "previous": "Fyrri",
+    "next": "Næsta",
+    "tagged": "Merkt {{ tags }}",
+    "page_number": "Síða {{ number }}"
+  },
+  "products": {
+    "sold_out": "Uppselt",
+    "recently_viewed": "Nýlega skoðað",
+    "add_to_cart": "Setja í körfu",
+    "added": "Bætt í körfu.",
+    "add_error": "Ekki tókst að bæta í körfu. Reyndu aftur.",
+    "view_cart": "Skoða körfu",
+    "sale_price": "Útsöluverð",
+    "regular_price": "Venjulegt verð",
+    "quantity": "Magn",
+    "sku": "Vörunúmer",
+    "type": "Tegund",
+    "availability": "Framboð",
+    "in_stock": "Til á lager",
+    "percent_off": "{{ percent }}% afsláttur",
+    "quantity_decrease": "Minnka magn",
+    "quantity_increase": "Auka magn"
+  },
+  "collection": {
+    "price_from": "Frá",
+    "price_to": "Til",
+    "sort_by": "Raða eftir",
+    "apply": "Nota síur",
+    "clear_all": "Hreinsa síur",
+    "product_count": {
+      "one": "{{ count }} vara",
+      "other": "{{ count }} vörur"
+    },
+    "empty": "Engar vörur passa við þessar síur.",
+    "show_more": "Sýna fleiri",
+    "showing": "Sýni {{ shown }} af {{ total }}"
+  },
+  "collections": {
+    "title": "Vöruflokkar"
+  },
+  "cart": {
+    "title": "Karfa",
+    "empty": "Karfan þín er tóm.",
+    "continue": "Halda áfram að versla",
+    "remove": "Fjarlægja",
+    "subtotal": "Millisumma",
+    "taxes_note": "Skattar og sendingarkostnaður reiknast í greiðsluferlinu.",
+    "update": "Uppfæra körfu",
+    "checkout": "Ganga frá kaupum",
+    "error": "Ekki tókst að uppfæra körfuna. Reyndu aftur.",
+    "remove_item": "Fjarlægja {{ title }} úr körfu"
+  },
+  "search": {
+    "title": "Leit",
+    "heading": "„{{ terms }}“",
+    "label": "Leita í versluninni",
+    "placeholder": "Leita",
+    "submit": "Leita",
+    "results_count": {
+      "one": "{{ count }} niðurstaða fyrir „{{ terms }}“",
+      "other": "{{ count }} niðurstöður fyrir „{{ terms }}“"
+    },
+    "suggestions": "Tillögur",
+    "results_status": "Niðurstöður: {{ count }}",
+    "products": "Vörur",
+    "pages": "Síður og greinar",
+    "type_all": "Allt",
+    "type_article": "Greinar",
+    "type_page": "Síður",
+    "show_all": "Sýna allt fyrir „{{ terms }}“",
+    "no_results": "Engar niðurstöður fundust. Prófaðu aðra leit."
+  },
+  "password": {
+    "title": "Þessi verslun er lokuð",
+    "label": "Lykilorð",
+    "enter": "Opna",
+    "owner": "Verslunareigandi? Skráðu þig inn"
+  },
+  "footer": {
+    "newsletter_label": "Skráðu þig á listann",
+    "newsletter_placeholder": "Netfang",
+    "newsletter_submit": "Skrá mig",
+    "newsletter_success": "Takk fyrir skráninguna."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Skoða allt"
+    }
+  },
+  "gift_card": {
+    "expired": "Þetta gjafakort er útrunnið.",
+    "expires_on": "Rennur út {{ date }}",
+    "use_at_checkout": "Notaðu þennan kóða við greiðslu.",
+    "add_to_apple_wallet": "Bæta í Apple Wallet"
+  },
+  "localization": {
+    "label": "Land og tungumál",
+    "country": "Land/svæði",
+    "language": "Tungumál",
+    "error": "Ekki tókst að hlaða listann. Reyndu aftur."
+  },
+  "wishlist": {
+    "title": "Uppáhöld",
+    "toggle": "Vista {{ title }} í uppáhöld",
+    "saved": "Vistað í uppáhöld",
+    "removed": "Fjarlægt úr uppáhöldum",
+    "add_to_cart": "Setja {{ title }} í körfu",
+    "choose_options": "Velja valkosti fyrir {{ title }}",
+    "remove": "Fjarlægja {{ title }} úr uppáhöldum"
+  }
+}

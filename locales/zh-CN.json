@@ -1,0 +1,129 @@
+{
+  "404": {
+    "title": "找不到页面",
+    "body": "您查找的页面不存在或已被移动。",
+    "cta": "继续购物"
+  },
+  "general": {
+    "skip_to_content": "跳至内容",
+    "main_menu": "主菜单",
+    "footer_menu": "页脚菜单",
+    "search": "搜索",
+    "account": "账户",
+    "cart": "购物车",
+    "toggle_theme": "切换浅色/深色模式",
+    "light_mode": "浅色模式",
+    "dark_mode": "深色模式",
+    "open_menu": "菜单",
+    "home": "首页",
+    "breadcrumbs": "面包屑导航",
+    "pagination": "分页",
+    "previous": "上一页",
+    "next": "下一页",
+    "tagged": "标签：{{ tags }}",
+    "page_number": "第 {{ number }} 页"
+  },
+  "products": {
+    "sold_out": "已售罄",
+    "recently_viewed": "最近浏览",
+    "add_to_cart": "加入购物车",
+    "added": "已加入购物车。",
+    "add_error": "无法加入购物车，请重试。",
+    "view_cart": "查看购物车",
+    "sale_price": "促销价",
+    "regular_price": "原价",
+    "quantity": "数量",
+    "sku": "SKU",
+    "type": "类型",
+    "availability": "库存状态",
+    "in_stock": "有货",
+    "percent_off": "立减 {{ percent }}%",
+    "quantity_decrease": "减少数量",
+    "quantity_increase": "增加数量"
+  },
+  "collection": {
+    "price_from": "最低价",
+    "price_to": "最高价",
+    "sort_by": "排序方式",
+    "apply": "应用筛选",
+    "clear_all": "清除筛选",
+    "product_count": {
+      "other": "{{ count }} 件商品"
+    },
+    "empty": "没有符合这些筛选条件的商品。",
+    "show_more": "显示更多",
+    "showing": "显示 {{ shown }} / {{ total }}"
+  },
+  "collections": {
+    "title": "系列"
+  },
+  "cart": {
+    "title": "购物车",
+    "empty": "您的购物车是空的。",
+    "continue": "继续购物",
+    "remove": "移除",
+    "subtotal": "小计",
+    "taxes_note": "税费和运费将在结账时计算。",
+    "update": "更新购物车",
+    "checkout": "结账",
+    "error": "无法更新您的购物车，请重试。",
+    "remove_item": "从购物车中移除{{ title }}"
+  },
+  "search": {
+    "title": "搜索",
+    "heading": "“{{ terms }}”",
+    "label": "搜索商店",
+    "placeholder": "搜索",
+    "submit": "搜索",
+    "results_count": {
+      "other": "“{{ terms }}”的搜索结果：{{ count }} 条"
+    },
+    "suggestions": "搜索建议",
+    "results_status": "结果：{{ count }}",
+    "products": "商品",
+    "pages": "页面和文章",
+    "type_all": "全部",
+    "type_article": "文章",
+    "type_page": "页面",
+    "show_all": "显示“{{ terms }}”的全部结果",
+    "no_results": "未找到结果，请尝试其他搜索词。"
+  },
+  "password": {
+    "title": "此商店为私密商店",
+    "label": "密码",
+    "enter": "进入",
+    "owner": "店主？请登录"
+  },
+  "footer": {
+    "newsletter_label": "订阅我们的资讯",
+    "newsletter_placeholder": "电子邮箱地址",
+    "newsletter_submit": "订阅",
+    "newsletter_success": "感谢您的订阅。"
+  },
+  "sections": {
+    "featured": {
+      "view_all": "查看全部"
+    }
+  },
+  "gift_card": {
+    "expired": "此礼品卡已过期。",
+    "expires_on": "有效期至 {{ date }}",
+    "use_at_checkout": "请在结账时使用此代码。",
+    "add_to_apple_wallet": "添加到 Apple Wallet"
+  },
+  "localization": {
+    "label": "国家和语言",
+    "country": "国家/地区",
+    "language": "语言",
+    "error": "无法加载列表，请重试。"
+  },
+  "wishlist": {
+    "title": "收藏",
+    "toggle": "将{{ title }}加入收藏",
+    "saved": "已加入收藏",
+    "removed": "已从收藏中移除",
+    "add_to_cart": "将{{ title }}加入购物车",
+    "choose_options": "选择{{ title }}的选项",
+    "remove": "将{{ title }}从收藏中移除"
+  }
+}

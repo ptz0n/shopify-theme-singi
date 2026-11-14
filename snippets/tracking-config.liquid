@@ -1,0 +1,18 @@
+{% doc %}
+  Runtime configuration for assets/tracking.js as inert JSON. Rendered once
+  in layout/theme.liquid, only when settings.tracking_enabled is on.
+
+  @example
+  {% render 'tracking-config' %}
+{% enddoc %}
+
+<script type="application/json" id="tracking-config">
+  {
+    "gtm": {{ settings.gtm_container_id | strip | json }},
+    "ga4": {{ settings.ga4_measurement_id | strip | json }},
+    "load": {{ settings.tracking_load | json }},
+    "consent": {{ settings.tracking_consent | json }},
+    "currency": {{ cart.currency.iso_code | json }},
+    "debug": {{ settings.tracking_debug | json }}
+  }
+</script>

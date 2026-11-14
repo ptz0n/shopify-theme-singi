@@ -1,0 +1,139 @@
+{
+  "404": {
+    "title": "الصفحة غير موجودة",
+    "body": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+    "cta": "متابعة التسوق"
+  },
+  "general": {
+    "skip_to_content": "انتقل إلى المحتوى",
+    "main_menu": "القائمة الرئيسية",
+    "footer_menu": "قائمة التذييل",
+    "search": "بحث",
+    "account": "الحساب",
+    "cart": "السلة",
+    "toggle_theme": "التبديل بين الوضع الفاتح والداكن",
+    "light_mode": "الوضع الفاتح",
+    "dark_mode": "الوضع الداكن",
+    "open_menu": "القائمة",
+    "home": "الرئيسية",
+    "breadcrumbs": "مسار التنقل",
+    "pagination": "ترقيم الصفحات",
+    "previous": "السابق",
+    "next": "التالي",
+    "tagged": "الوسوم: {{ tags }}",
+    "page_number": "الصفحة {{ number }}"
+  },
+  "products": {
+    "sold_out": "نفدت الكمية",
+    "recently_viewed": "شوهدت مؤخرًا",
+    "add_to_cart": "أضف إلى السلة",
+    "added": "تمت الإضافة إلى السلة.",
+    "add_error": "تعذرت الإضافة إلى السلة. يرجى المحاولة مرة أخرى.",
+    "view_cart": "عرض السلة",
+    "sale_price": "سعر التخفيض",
+    "regular_price": "السعر الأصلي",
+    "quantity": "الكمية",
+    "sku": "رمز المنتج (SKU)",
+    "type": "النوع",
+    "availability": "التوفر",
+    "in_stock": "متوفر",
+    "percent_off": "خصم {{ percent }}%",
+    "quantity_decrease": "تقليل الكمية",
+    "quantity_increase": "زيادة الكمية"
+  },
+  "collection": {
+    "price_from": "من",
+    "price_to": "إلى",
+    "sort_by": "ترتيب حسب",
+    "apply": "تطبيق التصفية",
+    "clear_all": "مسح عوامل التصفية",
+    "product_count": {
+      "zero": "{{ count }} منتج",
+      "one": "{{ count }} منتج",
+      "two": "{{ count }} منتجان",
+      "few": "{{ count }} منتجات",
+      "many": "{{ count }} منتجًا",
+      "other": "{{ count }} منتج"
+    },
+    "empty": "لا توجد منتجات تطابق هذه التصفية.",
+    "show_more": "عرض المزيد",
+    "showing": "عرض {{ shown }} من {{ total }}"
+  },
+  "collections": {
+    "title": "المجموعات"
+  },
+  "cart": {
+    "title": "السلة",
+    "empty": "سلتك فارغة.",
+    "continue": "متابعة التسوق",
+    "remove": "إزالة",
+    "subtotal": "المجموع الفرعي",
+    "taxes_note": "يتم احتساب الضرائب والشحن عند إتمام الطلب.",
+    "update": "تحديث السلة",
+    "checkout": "إتمام الطلب",
+    "error": "تعذر تحديث سلتك. يرجى المحاولة مرة أخرى.",
+    "remove_item": "إزالة {{ title }} من السلة"
+  },
+  "search": {
+    "title": "بحث",
+    "heading": "“{{ terms }}”",
+    "label": "البحث في المتجر",
+    "placeholder": "بحث",
+    "submit": "بحث",
+    "results_count": {
+      "zero": "{{ count }} نتيجة لـ “{{ terms }}”",
+      "one": "{{ count }} نتيجة لـ “{{ terms }}”",
+      "two": "{{ count }} نتيجتان لـ “{{ terms }}”",
+      "few": "{{ count }} نتائج لـ “{{ terms }}”",
+      "many": "{{ count }} نتيجة لـ “{{ terms }}”",
+      "other": "{{ count }} نتيجة لـ “{{ terms }}”"
+    },
+    "suggestions": "اقتراحات",
+    "results_status": "النتائج: {{ count }}",
+    "products": "المنتجات",
+    "pages": "الصفحات والمقالات",
+    "type_all": "الكل",
+    "type_article": "المقالات",
+    "type_page": "الصفحات",
+    "show_all": "عرض الكل لـ “{{ terms }}”",
+    "no_results": "لم يتم العثور على نتائج. جرّب بحثًا مختلفًا."
+  },
+  "password": {
+    "title": "هذا المتجر خاص",
+    "label": "كلمة المرور",
+    "enter": "دخول",
+    "owner": "مالك المتجر؟ سجّل الدخول"
+  },
+  "footer": {
+    "newsletter_label": "انضم إلى القائمة البريدية",
+    "newsletter_placeholder": "البريد الإلكتروني",
+    "newsletter_submit": "اشترك",
+    "newsletter_success": "شكرًا لاشتراكك."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "عرض الكل"
+    }
+  },
+  "gift_card": {
+    "expired": "انتهت صلاحية بطاقة الهدية هذه.",
+    "expires_on": "تنتهي الصلاحية في {{ date }}",
+    "use_at_checkout": "استخدم هذا الرمز عند إتمام الطلب.",
+    "add_to_apple_wallet": "أضف إلى Apple Wallet"
+  },
+  "localization": {
+    "label": "البلد واللغة",
+    "country": "البلد/المنطقة",
+    "language": "اللغة",
+    "error": "تعذّر تحميل القائمة. يُرجى المحاولة مرة أخرى."
+  },
+  "wishlist": {
+    "title": "المفضلة",
+    "toggle": "احفظ {{ title }} في المفضلة",
+    "saved": "تم الحفظ في المفضلة",
+    "removed": "تمت الإزالة من المفضلة",
+    "add_to_cart": "أضف {{ title }} إلى السلة",
+    "choose_options": "اختر خيارات {{ title }}",
+    "remove": "إزالة {{ title }} من المفضلة"
+  }
+}

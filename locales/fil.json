@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Hindi nahanap ang pahina",
+    "body": "Ang pahinang hinahanap mo ay wala o inilipat na.",
+    "cta": "Magpatuloy sa pamimili"
+  },
+  "general": {
+    "skip_to_content": "Lumaktaw sa nilalaman",
+    "main_menu": "Pangunahing menu",
+    "footer_menu": "Menu sa footer",
+    "search": "Maghanap",
+    "account": "Account",
+    "cart": "Cart",
+    "toggle_theme": "Palitan ang light at dark mode",
+    "light_mode": "Light mode",
+    "dark_mode": "Dark mode",
+    "open_menu": "Menu",
+    "home": "Home",
+    "breadcrumbs": "Breadcrumbs",
+    "pagination": "Pagination",
+    "previous": "Nakaraan",
+    "next": "Susunod",
+    "tagged": "May tag na {{ tags }}",
+    "page_number": "Pahina {{ number }}"
+  },
+  "products": {
+    "sold_out": "Sold out",
+    "recently_viewed": "Kamakailang tiningnan",
+    "add_to_cart": "Idagdag sa cart",
+    "added": "Naidagdag sa cart.",
+    "add_error": "Hindi maidagdag sa cart. Pakisubukan ulit.",
+    "view_cart": "Tingnan ang cart",
+    "sale_price": "Presyong sale",
+    "regular_price": "Regular na presyo",
+    "quantity": "Dami",
+    "sku": "SKU",
+    "type": "Uri",
+    "availability": "Availability",
+    "in_stock": "May stock",
+    "percent_off": "{{ percent }}% diskwento",
+    "quantity_decrease": "Bawasan ang dami",
+    "quantity_increase": "Dagdagan ang dami"
+  },
+  "collection": {
+    "price_from": "Mula",
+    "price_to": "Hanggang",
+    "sort_by": "Pagkakasunod-sunod",
+    "apply": "I-apply ang mga filter",
+    "clear_all": "I-clear ang mga filter",
+    "product_count": {
+      "one": "{{ count }} produkto",
+      "other": "{{ count }} produkto"
+    },
+    "empty": "Walang produktong tumutugma sa mga filter na ito.",
+    "show_more": "Magpakita pa",
+    "showing": "Ipinapakita ang {{ shown }} sa {{ total }}"
+  },
+  "collections": {
+    "title": "Mga Koleksyon"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Walang laman ang iyong cart.",
+    "continue": "Magpatuloy sa pamimili",
+    "remove": "Alisin",
+    "subtotal": "Subtotal",
+    "taxes_note": "Kakalkulahin ang mga buwis at shipping sa checkout.",
+    "update": "I-update ang cart",
+    "checkout": "Mag-checkout",
+    "error": "Hindi ma-update ang iyong cart. Pakisubukan ulit.",
+    "remove_item": "Alisin ang {{ title }} sa cart"
+  },
+  "search": {
+    "title": "Maghanap",
+    "heading": "“{{ terms }}”",
+    "label": "Maghanap sa tindahan",
+    "placeholder": "Maghanap",
+    "submit": "Maghanap",
+    "results_count": {
+      "one": "{{ count }} resulta para sa “{{ terms }}”",
+      "other": "{{ count }} resulta para sa “{{ terms }}”"
+    },
+    "suggestions": "Mga mungkahi",
+    "results_status": "Mga resulta: {{ count }}",
+    "products": "Mga produkto",
+    "pages": "Mga pahina at artikulo",
+    "type_all": "Lahat",
+    "type_article": "Mga artikulo",
+    "type_page": "Mga pahina",
+    "show_all": "Ipakita lahat para sa “{{ terms }}”",
+    "no_results": "Walang nahanap na resulta. Subukan ang ibang paghahanap."
+  },
+  "password": {
+    "title": "Pribado ang tindahang ito",
+    "label": "Password",
+    "enter": "Pumasok",
+    "owner": "May-ari ng tindahan? Mag-log in"
+  },
+  "footer": {
+    "newsletter_label": "Sumali sa listahan",
+    "newsletter_placeholder": "Email address",
+    "newsletter_submit": "Mag-subscribe",
+    "newsletter_success": "Salamat sa pag-subscribe."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Tingnan lahat"
+    }
+  },
+  "gift_card": {
+    "expired": "Nag-expire na ang gift card na ito.",
+    "expires_on": "Mag-e-expire sa {{ date }}",
+    "use_at_checkout": "Gamitin ang code na ito sa checkout.",
+    "add_to_apple_wallet": "Idagdag sa Apple Wallet"
+  },
+  "localization": {
+    "label": "Bansa at wika",
+    "country": "Bansa/rehiyon",
+    "language": "Wika",
+    "error": "Hindi ma-load ang listahan. Pakisubukang muli."
+  },
+  "wishlist": {
+    "title": "Mga paborito",
+    "toggle": "I-save ang {{ title }} sa mga paborito",
+    "saved": "Na-save sa mga paborito",
+    "removed": "Inalis sa mga paborito",
+    "add_to_cart": "Idagdag ang {{ title }} sa cart",
+    "choose_options": "Pumili ng mga opsyon para sa {{ title }}",
+    "remove": "Alisin ang {{ title }} sa mga paborito"
+  }
+}

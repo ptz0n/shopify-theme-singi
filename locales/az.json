@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Səhifə tapılmadı",
+    "body": "Axtardığınız səhifə mövcud deyil və ya köçürülüb.",
+    "cta": "Alış-verişə davam et"
+  },
+  "general": {
+    "skip_to_content": "Məzmuna keç",
+    "main_menu": "Əsas menyu",
+    "footer_menu": "Alt menyu",
+    "search": "Axtar",
+    "account": "Hesab",
+    "cart": "Səbət",
+    "toggle_theme": "İşıqlı və qaranlıq rejimi dəyiş",
+    "light_mode": "İşıqlı rejim",
+    "dark_mode": "Qaranlıq rejim",
+    "open_menu": "Menyu",
+    "home": "Ana səhifə",
+    "breadcrumbs": "Naviqasiya yolu",
+    "pagination": "Səhifələmə",
+    "previous": "Əvvəlki",
+    "next": "Növbəti",
+    "tagged": "Etiket: {{ tags }}",
+    "page_number": "Səhifə {{ number }}"
+  },
+  "products": {
+    "sold_out": "Satılıb",
+    "recently_viewed": "Son baxılanlar",
+    "add_to_cart": "Səbətə at",
+    "added": "Səbətə əlavə edildi.",
+    "add_error": "Səbətə əlavə etmək mümkün olmadı. Zəhmət olmasa yenidən cəhd edin.",
+    "view_cart": "Səbətə bax",
+    "sale_price": "Endirimli qiymət",
+    "regular_price": "Adi qiymət",
+    "quantity": "Miqdar",
+    "sku": "SKU",
+    "type": "Növ",
+    "availability": "Mövcudluq",
+    "in_stock": "Stokda var",
+    "percent_off": "{{ percent }}% endirim",
+    "quantity_decrease": "Sayı azalt",
+    "quantity_increase": "Sayı artır"
+  },
+  "collection": {
+    "price_from": "Minimum",
+    "price_to": "Maksimum",
+    "sort_by": "Sırala",
+    "apply": "Filtrləri tətbiq et",
+    "clear_all": "Filtrləri təmizlə",
+    "product_count": {
+      "one": "{{ count }} məhsul",
+      "other": "{{ count }} məhsul"
+    },
+    "empty": "Bu filtrlərə uyğun məhsul yoxdur.",
+    "show_more": "Daha çox göstər",
+    "showing": "{{ total }} nəticədən {{ shown }} göstərilir"
+  },
+  "collections": {
+    "title": "Kolleksiyalar"
+  },
+  "cart": {
+    "title": "Səbət",
+    "empty": "Səbətiniz boşdur.",
+    "continue": "Alış-verişə davam et",
+    "remove": "Sil",
+    "subtotal": "Ara cəm",
+    "taxes_note": "Vergilər və çatdırılma ödəniş zamanı hesablanır.",
+    "update": "Səbəti yenilə",
+    "checkout": "Ödənişə keç",
+    "error": "Səbətinizi yeniləmək mümkün olmadı. Zəhmət olmasa yenidən cəhd edin.",
+    "remove_item": "{{ title }} məhsulunu səbətdən sil"
+  },
+  "search": {
+    "title": "Axtarış",
+    "heading": "“{{ terms }}”",
+    "label": "Mağazada axtar",
+    "placeholder": "Axtar",
+    "submit": "Axtar",
+    "results_count": {
+      "one": "“{{ terms }}” üçün {{ count }} nəticə",
+      "other": "“{{ terms }}” üçün {{ count }} nəticə"
+    },
+    "suggestions": "Təkliflər",
+    "results_status": "Nəticələr: {{ count }}",
+    "products": "Məhsullar",
+    "pages": "Səhifələr və məqalələr",
+    "type_all": "Hamısı",
+    "type_article": "Məqalələr",
+    "type_page": "Səhifələr",
+    "show_all": "“{{ terms }}” üçün hamısını göstər",
+    "no_results": "Nəticə tapılmadı. Başqa axtarış cəhd edin."
+  },
+  "password": {
+    "title": "Bu mağaza gizlidir",
+    "label": "Parol",
+    "enter": "Daxil ol",
+    "owner": "Mağaza sahibisiniz? Daxil olun"
+  },
+  "footer": {
+    "newsletter_label": "Siyahıya qoşulun",
+    "newsletter_placeholder": "E-poçt ünvanı",
+    "newsletter_submit": "Abunə ol",
+    "newsletter_success": "Abunə olduğunuz üçün təşəkkür edirik."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Hamısına bax"
+    }
+  },
+  "gift_card": {
+    "expired": "Bu hədiyyə kartının müddəti bitib.",
+    "expires_on": "Bitmə tarixi: {{ date }}",
+    "use_at_checkout": "Bu kodu ödəniş zamanı istifadə edin.",
+    "add_to_apple_wallet": "Apple Wallet-ə əlavə et"
+  },
+  "localization": {
+    "label": "Ölkə və dil",
+    "country": "Ölkə/region",
+    "language": "Dil",
+    "error": "Siyahı yüklənə bilmədi. Yenidən cəhd edin."
+  },
+  "wishlist": {
+    "title": "Sevimlilər",
+    "toggle": "{{ title }} məhsulunu sevimlilərə əlavə et",
+    "saved": "Sevimlilərə əlavə edildi",
+    "removed": "Sevimlilərdən silindi",
+    "add_to_cart": "{{ title }} məhsulunu səbətə əlavə et",
+    "choose_options": "{{ title }} üçün seçimləri seç",
+    "remove": "{{ title }} məhsulunu sevimlilərdən sil"
+  }
+}

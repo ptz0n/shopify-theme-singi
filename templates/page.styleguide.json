@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-styleguide",
+      "blocks": {
+        "accordion-one": {
+          "type": "accordion",
+          "settings": {
+            "title": "Accordion, open by default",
+            "content": "<p>Native details element with a shared name, so opening one closes the others, with no JavaScript. <a href=\"#interactive\">A link inside</a>.</p>",
+            "open": true
+          }
+        },
+        "accordion-two": {
+          "type": "accordion",
+          "settings": {
+            "title": "Accordion, closed",
+            "content": "<p>More content to check spacing and the chevron.</p>"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": { "text": "Heading block", "tag": "h3", "size": "md" }
+        },
+        "text": {
+          "type": "text",
+          "settings": { "text": "<p>A rich text block with a <strong>strong</strong> word.</p>", "size": "normal" }
+        },
+        "button": {
+          "type": "button",
+          "settings": { "label": "Button block", "link": "/", "style": "secondary" }
+        }
+      },
+      "block_order": ["accordion-one", "accordion-two", "heading", "text", "button"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,46 @@
+{% layout none %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" dir="{{ request.locale.direction | default: 'ltr' }}" data-layout="gift_card">
+  <head>
+    {%- render 'meta-tags' -%}
+    {%- render 'tokens' -%}
+    <style>
+      {{- 'base.css' | inline_asset_content -}}
+    </style>
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    <main id="main" class="container section gc stack">
+      <h1 class="mono">{{ gift_card.balance | money }}</h1>
+
+      {%- if gift_card.enabled == false or gift_card.expired -%}
+        <p class="form-error">{{ 'gift_card.expired' | t }}</p>
+      {%- endif -%}
+
+      {%- if gift_card.expires_on -%}
+        {%- assign expires_on = gift_card.expires_on | date: '%B %e, %Y' -%}
+        <p class="muted">{{ 'gift_card.expires_on' | t: date: expires_on }}</p>
+      {%- endif -%}
+
+      <p class="eyebrow">{{ shop.name }}</p>
+      <p>{{ 'gift_card.use_at_checkout' | t }}</p>
+      <p class="gc__code mono">{{ gift_card.code | format_code }}</p>
+
+      {%- if gift_card.pass_url -%}
+        <a href="{{ gift_card.pass_url }}">
+          <img
+            src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}"
+            alt="{{ 'gift_card.add_to_apple_wallet' | t }}"
+            width="120"
+            height="40"
+          >
+        </a>
+      {%- endif -%}
+    </main>
+    <style>
+      .gc { max-width: 32rem; text-align: center; justify-items: center; min-height: 100svh; align-content: center; }
+      .gc__code { padding: 1rem 1.5rem; border: 1px dashed var(--color-border); border-radius: var(--radius); font-size: 1.5rem; letter-spacing: 0.1em; }
+    </style>
+  </body>
+</html>

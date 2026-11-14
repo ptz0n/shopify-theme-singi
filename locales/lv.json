@@ -1,0 +1,133 @@
+{
+  "404": {
+    "title": "Lapa nav atrasta",
+    "body": "Lapa, ko meklējat, neeksistē vai ir pārvietota.",
+    "cta": "Turpināt iepirkties"
+  },
+  "general": {
+    "skip_to_content": "Pāriet uz saturu",
+    "main_menu": "Galvenā izvēlne",
+    "footer_menu": "Kājenes izvēlne",
+    "search": "Meklēt",
+    "account": "Konts",
+    "cart": "Grozs",
+    "toggle_theme": "Pārslēgt gaišo un tumšo režīmu",
+    "light_mode": "Gaišais režīms",
+    "dark_mode": "Tumšais režīms",
+    "open_menu": "Izvēlne",
+    "home": "Sākums",
+    "breadcrumbs": "Navigācijas ceļš",
+    "pagination": "Lappuses",
+    "previous": "Iepriekšējā",
+    "next": "Nākamā",
+    "tagged": "Birkas: {{ tags }}",
+    "page_number": "{{ number }}. lappuse"
+  },
+  "products": {
+    "sold_out": "Izpārdots",
+    "recently_viewed": "Nesen skatītie",
+    "add_to_cart": "Pievienot grozam",
+    "added": "Pievienots grozam.",
+    "add_error": "Neizdevās pievienot grozam. Lūdzu, mēģiniet vēlreiz.",
+    "view_cart": "Skatīt grozu",
+    "sale_price": "Akcijas cena",
+    "regular_price": "Parastā cena",
+    "quantity": "Daudzums",
+    "sku": "SKU",
+    "type": "Veids",
+    "availability": "Pieejamība",
+    "in_stock": "Ir noliktavā",
+    "percent_off": "atlaide {{ percent }}%",
+    "quantity_decrease": "Samazināt daudzumu",
+    "quantity_increase": "Palielināt daudzumu"
+  },
+  "collection": {
+    "price_from": "No",
+    "price_to": "Līdz",
+    "sort_by": "Kārtot pēc",
+    "apply": "Lietot filtrus",
+    "clear_all": "Notīrīt filtrus",
+    "product_count": {
+      "zero": "{{ count }} produktu",
+      "one": "{{ count }} produkts",
+      "other": "{{ count }} produkti"
+    },
+    "empty": "Nav produktu, kas atbilst šiem filtriem.",
+    "show_more": "Rādīt vairāk",
+    "showing": "Rāda {{ shown }} no {{ total }}"
+  },
+  "collections": {
+    "title": "Kolekcijas"
+  },
+  "cart": {
+    "title": "Grozs",
+    "empty": "Jūsu grozs ir tukšs.",
+    "continue": "Turpināt iepirkties",
+    "remove": "Noņemt",
+    "subtotal": "Starpsumma",
+    "taxes_note": "Nodokļi un piegāde tiek aprēķināti, noformējot pasūtījumu.",
+    "update": "Atjaunināt grozu",
+    "checkout": "Noformēt pasūtījumu",
+    "error": "Neizdevās atjaunināt grozu. Lūdzu, mēģiniet vēlreiz.",
+    "remove_item": "Noņemt {{ title }} no groza"
+  },
+  "search": {
+    "title": "Meklēšana",
+    "heading": "„{{ terms }}”",
+    "label": "Meklēt veikalā",
+    "placeholder": "Meklēt",
+    "submit": "Meklēt",
+    "results_count": {
+      "zero": "{{ count }} rezultātu pēc pieprasījuma „{{ terms }}“",
+      "one": "{{ count }} rezultāts pēc pieprasījuma „{{ terms }}“",
+      "other": "{{ count }} rezultāti pēc pieprasījuma „{{ terms }}“"
+    },
+    "suggestions": "Ieteikumi",
+    "results_status": "Rezultāti: {{ count }}",
+    "products": "Produkti",
+    "pages": "Lapas un raksti",
+    "type_all": "Visi",
+    "type_article": "Raksti",
+    "type_page": "Lapas",
+    "show_all": "Rādīt visu pēc „{{ terms }}”",
+    "no_results": "Nekas netika atrasts. Izmēģiniet citu meklēšanas vaicājumu."
+  },
+  "password": {
+    "title": "Šis veikals ir privāts",
+    "label": "Parole",
+    "enter": "Ieiet",
+    "owner": "Veikala īpašnieks? Pieslēdzieties"
+  },
+  "footer": {
+    "newsletter_label": "Pieteikties jaunumiem",
+    "newsletter_placeholder": "E-pasta adrese",
+    "newsletter_submit": "Pieteikties",
+    "newsletter_success": "Paldies, ka pieteicāties."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Skatīt visu"
+    }
+  },
+  "gift_card": {
+    "expired": "Šīs dāvanu kartes derīguma termiņš ir beidzies.",
+    "expires_on": "Derīga līdz {{ date }}",
+    "use_at_checkout": "Izmantojiet šo kodu, noformējot pasūtījumu.",
+    "add_to_apple_wallet": "Pievienot Apple Wallet"
+  },
+  "localization": {
+    "label": "Valsts un valoda",
+    "country": "Valsts/reģions",
+    "language": "Valoda",
+    "error": "Sarakstu neizdevās ielādēt. Lūdzu, mēģiniet vēlreiz."
+  },
+  "wishlist": {
+    "title": "Izlase",
+    "toggle": "Saglabāt {{ title }} izlasē",
+    "saved": "Saglabāts izlasē",
+    "removed": "Noņemts no izlases",
+    "add_to_cart": "Pievienot {{ title }} grozam",
+    "choose_options": "Izvēlēties {{ title }} opcijas",
+    "remove": "Noņemt {{ title }} no izlases"
+  }
+}

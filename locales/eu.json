@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Ez da orria aurkitu",
+    "body": "Bilatzen ari zaren orria ez da existitzen edo lekuz aldatu da.",
+    "cta": "Jarraitu erosten"
+  },
+  "general": {
+    "skip_to_content": "Joan edukira",
+    "main_menu": "Menu nagusia",
+    "footer_menu": "Oineko menua",
+    "search": "Bilatu",
+    "account": "Kontua",
+    "cart": "Saskia",
+    "toggle_theme": "Aldatu modu argia eta iluna",
+    "light_mode": "Modu argia",
+    "dark_mode": "Modu iluna",
+    "open_menu": "Menua",
+    "home": "Hasiera",
+    "breadcrumbs": "Nabigazio-bidea",
+    "pagination": "Orrikapena",
+    "previous": "Aurrekoa",
+    "next": "Hurrengoa",
+    "tagged": "Etiketa: {{ tags }}",
+    "page_number": "{{ number }}. orria"
+  },
+  "products": {
+    "sold_out": "Agortuta",
+    "recently_viewed": "Duela gutxi ikusiak",
+    "add_to_cart": "Gehitu saskira",
+    "added": "Saskira gehitu da.",
+    "add_error": "Ezin izan da saskira gehitu. Saiatu berriro.",
+    "view_cart": "Ikusi saskia",
+    "sale_price": "Eskaintza-prezioa",
+    "regular_price": "Prezio arrunta",
+    "quantity": "Kantitatea",
+    "sku": "SKU",
+    "type": "Mota",
+    "availability": "Eskuragarritasuna",
+    "in_stock": "Stockean",
+    "percent_off": "{{ percent }}% deskontua",
+    "quantity_decrease": "Murriztu kopurua",
+    "quantity_increase": "Handitu kopurua"
+  },
+  "collection": {
+    "price_from": "Noiztik",
+    "price_to": "Nora",
+    "sort_by": "Ordenatu",
+    "apply": "Aplikatu iragazkiak",
+    "clear_all": "Garbitu iragazkiak",
+    "product_count": {
+      "one": "{{ count }} produktu",
+      "other": "{{ count }} produktu"
+    },
+    "empty": "Ez dago iragazki hauei dagokien produkturik.",
+    "show_more": "Erakutsi gehiago",
+    "showing": "{{ shown }} erakusten, guztira {{ total }}"
+  },
+  "collections": {
+    "title": "Bildumak"
+  },
+  "cart": {
+    "title": "Saskia",
+    "empty": "Zure saskia hutsik dago.",
+    "continue": "Jarraitu erosten",
+    "remove": "Kendu",
+    "subtotal": "Azpitotala",
+    "taxes_note": "Zergak eta bidalketa ordainketan kalkulatzen dira.",
+    "update": "Eguneratu saskia",
+    "checkout": "Ordaindu",
+    "error": "Ezin izan da saskia eguneratu. Saiatu berriro.",
+    "remove_item": "Kendu {{ title }} saskitik"
+  },
+  "search": {
+    "title": "Bilatu",
+    "heading": "“{{ terms }}”",
+    "label": "Bilatu dendan",
+    "placeholder": "Bilatu",
+    "submit": "Bilatu",
+    "results_count": {
+      "one": "Emaitza {{ count }} «{{ terms }}» bilaketarako",
+      "other": "{{ count }} emaitza «{{ terms }}» bilaketarako"
+    },
+    "suggestions": "Iradokizunak",
+    "results_status": "Emaitzak: {{ count }}",
+    "products": "Produktuak",
+    "pages": "Orriak eta artikuluak",
+    "type_all": "Dena",
+    "type_article": "Artikuluak",
+    "type_page": "Orriak",
+    "show_all": "Erakutsi guztiak “{{ terms }}” bilaketarako",
+    "no_results": "Ez da emaitzarik aurkitu. Saiatu beste bilaketa batekin."
+  },
+  "password": {
+    "title": "Denda hau pribatua da",
+    "label": "Pasahitza",
+    "enter": "Sartu",
+    "owner": "Dendaren jabea? Hasi saioa"
+  },
+  "footer": {
+    "newsletter_label": "Eman izena zerrendan",
+    "newsletter_placeholder": "Helbide elektronikoa",
+    "newsletter_submit": "Harpidetu",
+    "newsletter_success": "Eskerrik asko harpidetzeagatik."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Ikusi guztia"
+    }
+  },
+  "gift_card": {
+    "expired": "Opari-txartel hau iraungi da.",
+    "expires_on": "Iraungitze-data: {{ date }}",
+    "use_at_checkout": "Erabili kode hau ordainketan.",
+    "add_to_apple_wallet": "Gehitu Apple Wallet-era"
+  },
+  "localization": {
+    "label": "Herrialdea eta hizkuntza",
+    "country": "Herrialdea/eskualdea",
+    "language": "Hizkuntza",
+    "error": "Ezin izan da zerrenda kargatu. Saiatu berriro."
+  },
+  "wishlist": {
+    "title": "Gogokoak",
+    "toggle": "Gorde {{ title }} gogokoetan",
+    "saved": "Gogokoetan gorde da",
+    "removed": "Gogokoetatik kendu da",
+    "add_to_cart": "Gehitu {{ title }} saskira",
+    "choose_options": "Aukeratu {{ title }}(r)en aukerak",
+    "remove": "Kendu {{ title }} gogokoetatik"
+  }
+}

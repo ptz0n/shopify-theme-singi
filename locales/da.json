@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Siden blev ikke fundet",
+    "body": "Siden, du leder efter, findes ikke eller er flyttet.",
+    "cta": "Fortsæt med at handle"
+  },
+  "general": {
+    "skip_to_content": "Gå til indhold",
+    "main_menu": "Hovedmenu",
+    "footer_menu": "Footermenu",
+    "search": "Søg",
+    "account": "Konto",
+    "cart": "Kurv",
+    "toggle_theme": "Skift mellem lys og mørk tilstand",
+    "light_mode": "Lys tilstand",
+    "dark_mode": "Mørk tilstand",
+    "open_menu": "Menu",
+    "home": "Forside",
+    "breadcrumbs": "Brødkrummesti",
+    "pagination": "Sideinddeling",
+    "previous": "Forrige",
+    "next": "Næste",
+    "tagged": "Mærket {{ tags }}",
+    "page_number": "Side {{ number }}"
+  },
+  "products": {
+    "sold_out": "Udsolgt",
+    "recently_viewed": "Senest set",
+    "add_to_cart": "Læg i kurv",
+    "added": "Lagt i kurven.",
+    "add_error": "Varen kunne ikke lægges i kurven. Prøv igen.",
+    "view_cart": "Se kurv",
+    "sale_price": "Tilbudspris",
+    "regular_price": "Normalpris",
+    "quantity": "Antal",
+    "sku": "SKU",
+    "type": "Type",
+    "availability": "Tilgængelighed",
+    "in_stock": "På lager",
+    "percent_off": "{{ percent }}% rabat",
+    "quantity_decrease": "Reducer antal",
+    "quantity_increase": "Øg antal"
+  },
+  "collection": {
+    "price_from": "Fra",
+    "price_to": "Til",
+    "sort_by": "Sortér efter",
+    "apply": "Anvend filtre",
+    "clear_all": "Ryd filtre",
+    "product_count": {
+      "one": "{{ count }} produkt",
+      "other": "{{ count }} produkter"
+    },
+    "empty": "Ingen produkter matcher disse filtre.",
+    "show_more": "Vis flere",
+    "showing": "Viser {{ shown }} af {{ total }}"
+  },
+  "collections": {
+    "title": "Kollektioner"
+  },
+  "cart": {
+    "title": "Kurv",
+    "empty": "Din kurv er tom.",
+    "continue": "Fortsæt med at handle",
+    "remove": "Fjern",
+    "subtotal": "Subtotal",
+    "taxes_note": "Moms og fragt beregnes ved kassen.",
+    "update": "Opdatér kurv",
+    "checkout": "Gå til kassen",
+    "error": "Din kurv kunne ikke opdateres. Prøv igen.",
+    "remove_item": "Fjern {{ title }} fra kurven"
+  },
+  "search": {
+    "title": "Søg",
+    "heading": "“{{ terms }}”",
+    "label": "Søg i butikken",
+    "placeholder": "Søg",
+    "submit": "Søg",
+    "results_count": {
+      "one": "{{ count }} resultat for »{{ terms }}«",
+      "other": "{{ count }} resultater for »{{ terms }}«"
+    },
+    "suggestions": "Forslag",
+    "results_status": "Resultater: {{ count }}",
+    "products": "Produkter",
+    "pages": "Sider og artikler",
+    "type_all": "Alle",
+    "type_article": "Artikler",
+    "type_page": "Sider",
+    "show_all": "Vis alle for “{{ terms }}”",
+    "no_results": "Ingen resultater fundet. Prøv en anden søgning."
+  },
+  "password": {
+    "title": "Denne butik er privat",
+    "label": "Adgangskode",
+    "enter": "Log ind",
+    "owner": "Butiksejer? Log ind"
+  },
+  "footer": {
+    "newsletter_label": "Tilmeld dig listen",
+    "newsletter_placeholder": "E-mailadresse",
+    "newsletter_submit": "Tilmeld",
+    "newsletter_success": "Tak for din tilmelding."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Se alle"
+    }
+  },
+  "gift_card": {
+    "expired": "Dette gavekort er udløbet.",
+    "expires_on": "Udløber den {{ date }}",
+    "use_at_checkout": "Brug denne kode ved kassen.",
+    "add_to_apple_wallet": "Tilføj til Apple Wallet"
+  },
+  "localization": {
+    "label": "Land og sprog",
+    "country": "Land/område",
+    "language": "Sprog",
+    "error": "Listen kunne ikke indlæses. Prøv igen."
+  },
+  "wishlist": {
+    "title": "Favoritter",
+    "toggle": "Gem {{ title }} i favoritter",
+    "saved": "Gemt i favoritter",
+    "removed": "Fjernet fra favoritter",
+    "add_to_cart": "Læg {{ title }} i kurven",
+    "choose_options": "Vælg muligheder for {{ title }}",
+    "remove": "Fjern {{ title }} fra favoritter"
+  }
+}

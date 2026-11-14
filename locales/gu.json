@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "પેજ મળ્યું નથી",
+    "body": "તમે જે પેજ શોધી રહ્યા છો તે અસ્તિત્વમાં નથી અથવા ખસેડવામાં આવ્યું છે.",
+    "cta": "ખરીદી ચાલુ રાખો"
+  },
+  "general": {
+    "skip_to_content": "સામગ્રી પર જાઓ",
+    "main_menu": "મુખ્ય મેનૂ",
+    "footer_menu": "ફૂટર મેનૂ",
+    "search": "શોધો",
+    "account": "એકાઉન્ટ",
+    "cart": "કાર્ટ",
+    "toggle_theme": "લાઇટ અને ડાર્ક મોડ બદલો",
+    "light_mode": "લાઇટ મોડ",
+    "dark_mode": "ડાર્ક મોડ",
+    "open_menu": "મેનૂ",
+    "home": "હોમ",
+    "breadcrumbs": "બ્રેડક્રમ્બ્સ",
+    "pagination": "પેજિનેશન",
+    "previous": "પાછલું",
+    "next": "આગળ",
+    "tagged": "ટેગ કરેલ {{ tags }}",
+    "page_number": "પેજ {{ number }}"
+  },
+  "products": {
+    "sold_out": "વેચાઈ ગયું",
+    "recently_viewed": "તાજેતરમાં જોયેલ",
+    "add_to_cart": "કાર્ટમાં ઉમેરો",
+    "added": "કાર્ટમાં ઉમેરાયું.",
+    "add_error": "કાર્ટમાં ઉમેરી શકાયું નથી. કૃપા કરીને ફરી પ્રયાસ કરો.",
+    "view_cart": "કાર્ટ જુઓ",
+    "sale_price": "વેચાણ કિંમત",
+    "regular_price": "સામાન્ય કિંમત",
+    "quantity": "જથ્થો",
+    "sku": "SKU",
+    "type": "પ્રકાર",
+    "availability": "ઉપલબ્ધતા",
+    "in_stock": "સ્ટોકમાં",
+    "percent_off": "{{ percent }}% છૂટ",
+    "quantity_decrease": "જથ્થો ઘટાડો",
+    "quantity_increase": "જથ્થો વધારો"
+  },
+  "collection": {
+    "price_from": "થી",
+    "price_to": "સુધી",
+    "sort_by": "આ પ્રમાણે ગોઠવો",
+    "apply": "ફિલ્ટર લાગુ કરો",
+    "clear_all": "ફિલ્ટર સાફ કરો",
+    "product_count": {
+      "one": "{{ count }} પ્રોડક્ટ",
+      "other": "{{ count }} પ્રોડક્ટ્સ"
+    },
+    "empty": "આ ફિલ્ટર સાથે કોઈ પ્રોડક્ટ મેળ ખાતી નથી.",
+    "show_more": "વધુ બતાવો",
+    "showing": "{{ total }} માંથી {{ shown }} બતાવી રહ્યાં છીએ"
+  },
+  "collections": {
+    "title": "કલેક્શન્સ"
+  },
+  "cart": {
+    "title": "કાર્ટ",
+    "empty": "તમારું કાર્ટ ખાલી છે.",
+    "continue": "ખરીદી ચાલુ રાખો",
+    "remove": "દૂર કરો",
+    "subtotal": "પેટા કુલ",
+    "taxes_note": "ટેક્સ અને શિપિંગની ગણતરી ચેકઆઉટ સમયે થાય છે.",
+    "update": "કાર્ટ અપડેટ કરો",
+    "checkout": "ચેકઆઉટ કરો",
+    "error": "તમારું કાર્ટ અપડેટ કરી શકાયું નથી. કૃપા કરીને ફરી પ્રયાસ કરો.",
+    "remove_item": "કાર્ટમાંથી {{ title }} દૂર કરો"
+  },
+  "search": {
+    "title": "શોધો",
+    "heading": "“{{ terms }}”",
+    "label": "સ્ટોરમાં શોધો",
+    "placeholder": "શોધો",
+    "submit": "શોધો",
+    "results_count": {
+      "one": "“{{ terms }}” માટે {{ count }} પરિણામ",
+      "other": "“{{ terms }}” માટે {{ count }} પરિણામો"
+    },
+    "suggestions": "સૂચનો",
+    "results_status": "પરિણામો: {{ count }}",
+    "products": "ઉત્પાદનો",
+    "pages": "પૃષ્ઠો અને લેખો",
+    "type_all": "બધા",
+    "type_article": "લેખો",
+    "type_page": "પૃષ્ઠો",
+    "show_all": "“{{ terms }}” માટે બધું બતાવો",
+    "no_results": "કોઈ પરિણામ મળ્યું નથી. અલગ શોધ અજમાવો."
+  },
+  "password": {
+    "title": "આ સ્ટોર ખાનગી છે",
+    "label": "પાસવર્ડ",
+    "enter": "દાખલ કરો",
+    "owner": "સ્ટોર માલિક? લોગ ઇન કરો"
+  },
+  "footer": {
+    "newsletter_label": "લિસ્ટમાં જોડાઓ",
+    "newsletter_placeholder": "ઇમેઇલ એડ્રેસ",
+    "newsletter_submit": "સબ્સ્ક્રાઇબ કરો",
+    "newsletter_success": "સબ્સ્ક્રાઇબ કરવા બદલ આભાર."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "બધું જુઓ"
+    }
+  },
+  "gift_card": {
+    "expired": "આ ગિફ્ટ કાર્ડની મુદત પૂરી થઈ ગઈ છે.",
+    "expires_on": "{{ date }} ના રોજ સમાપ્ત થાય છે",
+    "use_at_checkout": "ચેકઆઉટ સમયે આ કોડનો ઉપયોગ કરો.",
+    "add_to_apple_wallet": "Apple Wallet માં ઉમેરો"
+  },
+  "localization": {
+    "label": "દેશ અને ભાષા",
+    "country": "દેશ/પ્રદેશ",
+    "language": "ભાષા",
+    "error": "સૂચિ લોડ થઈ શકી નથી. ફરીથી પ્રયાસ કરો."
+  },
+  "wishlist": {
+    "title": "મનપસંદ",
+    "toggle": "{{ title }} ને મનપસંદમાં સાચવો",
+    "saved": "મનપસંદમાં સાચવ્યું",
+    "removed": "મનપસંદમાંથી દૂર કર્યું",
+    "add_to_cart": "{{ title }} કાર્ટમાં ઉમેરો",
+    "choose_options": "{{ title }} માટે વિકલ્પો પસંદ કરો",
+    "remove": "મનપસંદમાંથી {{ title }} દૂર કરો"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "singi",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Erik Eng <https://github.com/ptz0n>",
+  "homepage": "https://github.com/ptz0n/shopify-theme-singi#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ptz0n/shopify-theme-singi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ptz0n/shopify-theme-singi/issues"
+  },
+  "keywords": [
+    "shopify",
+    "shopify-theme",
+    "liquid",
+    "online-store-2-0",
+    "performance",
+    "accessibility",
+    "open-source"
+  ],
+  "private": true,
+  "description": "A fast, minimal, web-native Shopify theme.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node scripts/shopify.mjs theme dev --live-reload hot-reload --ignore config/settings_data.json",
+    "ship": "node scripts/ship.mjs",
+    "push": "node scripts/shopify.mjs theme push -e DEV --allow-live --ignore config/settings_data.json",
+    "theme:list": "node scripts/shopify.mjs theme list -e DEV",
+    "check": "npm run check:theme && npm run check:rules",
+    "check:theme": "shopify theme check --fail-level error",
+    "check:rules": "node scripts/check.mjs",
+    "docs": "node scripts/gen-reference.mjs",
+    "docs:check": "node scripts/gen-reference.mjs --check",
+    "perf:lighthouse": "node scripts/lighthouse.mjs",
+    "perf:liquid": "node scripts/shopify.mjs theme profile -e DEV",
+    "test:media": "node scripts/test-media.mjs",
+    "audit": "node scripts/audit.mjs",
+    "checkout:plan": "node scripts/checkout-branding.mjs",
+    "checkout:apply": "node scripts/checkout-branding.mjs --apply",
+    "admin": "node scripts/admin.mjs",
+    "mock:plan": "node scripts/mock-content.mjs",
+    "mock:apply": "node scripts/mock-content.mjs --apply",
+    "mock:clean": "node scripts/mock-content.mjs --clean --apply",
+    "theme:duplicate": "node scripts/shopify.mjs theme duplicate -e DEV",
+    "theme:set": "node scripts/theme-settings.mjs",
+    "dev:setup": "node scripts/shopify.mjs theme push --unpublished --theme singi-dev --ignore config/settings_data.json",
+    "dev:push": "node scripts/shopify.mjs theme push --dev-theme --ignore config/settings_data.json"
+  }
+}

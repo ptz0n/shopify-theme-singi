@@ -1,0 +1,133 @@
+{
+  "404": {
+    "title": "Stranica nije pronađena",
+    "body": "Stranica koju tražite ne postoji ili je premeštena.",
+    "cta": "Nastavi kupovinu"
+  },
+  "general": {
+    "skip_to_content": "Pređi na sadržaj",
+    "main_menu": "Glavni meni",
+    "footer_menu": "Meni u podnožju",
+    "search": "Pretraga",
+    "account": "Nalog",
+    "cart": "Korpa",
+    "toggle_theme": "Promeni svetli i tamni režim",
+    "light_mode": "Svetli režim",
+    "dark_mode": "Tamni režim",
+    "open_menu": "Meni",
+    "home": "Početna",
+    "breadcrumbs": "Putanja navigacije",
+    "pagination": "Paginacija",
+    "previous": "Prethodna",
+    "next": "Sledeća",
+    "tagged": "Oznaka: {{ tags }}",
+    "page_number": "Strana {{ number }}"
+  },
+  "products": {
+    "sold_out": "Rasprodato",
+    "recently_viewed": "Nedavno pregledano",
+    "add_to_cart": "Dodaj u korpu",
+    "added": "Dodato u korpu.",
+    "add_error": "Dodavanje u korpu nije uspelo. Pokušajte ponovo.",
+    "view_cart": "Pogledaj korpu",
+    "sale_price": "Akcijska cena",
+    "regular_price": "Redovna cena",
+    "quantity": "Količina",
+    "sku": "SKU",
+    "type": "Tip",
+    "availability": "Dostupnost",
+    "in_stock": "Na stanju",
+    "percent_off": "{{ percent }}% popusta",
+    "quantity_decrease": "Smanji količinu",
+    "quantity_increase": "Povećaj količinu"
+  },
+  "collection": {
+    "price_from": "Od",
+    "price_to": "Do",
+    "sort_by": "Sortiraj po",
+    "apply": "Primeni filtere",
+    "clear_all": "Очисти филтере",
+    "product_count": {
+      "one": "{{ count }} proizvod",
+      "few": "{{ count }} proizvoda",
+      "other": "{{ count }} proizvoda"
+    },
+    "empty": "Nijedan proizvod ne odgovara ovim filterima.",
+    "show_more": "Prikaži više",
+    "showing": "Prikazano {{ shown }} od {{ total }}"
+  },
+  "collections": {
+    "title": "Kolekcije"
+  },
+  "cart": {
+    "title": "Korpa",
+    "empty": "Vaša korpa je prazna.",
+    "continue": "Nastavi kupovinu",
+    "remove": "Ukloni",
+    "subtotal": "Međuzbir",
+    "taxes_note": "Porezi i isporuka se obračunavaju prilikom plaćanja.",
+    "update": "Ažuriraj korpu",
+    "checkout": "Plaćanje",
+    "error": "Korpu nije bilo moguće ažurirati. Pokušajte ponovo.",
+    "remove_item": "Ukloni {{ title }} iz korpe"
+  },
+  "search": {
+    "title": "Pretraga",
+    "heading": "„{{ terms }}“",
+    "label": "Pretražite prodavnicu",
+    "placeholder": "Pretraga",
+    "submit": "Traži",
+    "results_count": {
+      "one": "{{ count }} rezultat za „{{ terms }}“",
+      "few": "{{ count }} rezultata za „{{ terms }}“",
+      "other": "{{ count }} rezultata za „{{ terms }}“"
+    },
+    "suggestions": "Predlozi",
+    "results_status": "Rezultati: {{ count }}",
+    "products": "Proizvodi",
+    "pages": "Stranice i članci",
+    "type_all": "Све",
+    "type_article": "Чланци",
+    "type_page": "Странице",
+    "show_all": "Prikaži sve za „{{ terms }}“",
+    "no_results": "Nema rezultata. Pokušajte sa drugom pretragom."
+  },
+  "password": {
+    "title": "Ova prodavnica je privatna",
+    "label": "Lozinka",
+    "enter": "Uđi",
+    "owner": "Vlasnik prodavnice? Prijavite se"
+  },
+  "footer": {
+    "newsletter_label": "Pridružite se listi",
+    "newsletter_placeholder": "Adresa e-pošte",
+    "newsletter_submit": "Prijavi se",
+    "newsletter_success": "Hvala na prijavi."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Prikaži sve"
+    }
+  },
+  "gift_card": {
+    "expired": "Ova poklon kartica je istekla.",
+    "expires_on": "Ističe {{ date }}",
+    "use_at_checkout": "Iskoristite ovaj kod prilikom plaćanja.",
+    "add_to_apple_wallet": "Dodaj u Apple Wallet"
+  },
+  "localization": {
+    "label": "Država i jezik",
+    "country": "Država/region",
+    "language": "Jezik",
+    "error": "Spisak nije moguće učitati. Pokušajte ponovo."
+  },
+  "wishlist": {
+    "title": "Омиљено",
+    "toggle": "Сачувај {{ title }} у омиљено",
+    "saved": "Сачувано у омиљено",
+    "removed": "Уклоњено из омиљеног",
+    "add_to_cart": "Dodaj {{ title }} u korpu",
+    "choose_options": "Izaberi opcije za {{ title }}",
+    "remove": "Уклони {{ title }} из омиљеног"
+  }
+}

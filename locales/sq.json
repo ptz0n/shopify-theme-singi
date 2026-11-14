@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Faqja nuk u gjet",
+    "body": "Faqja që kërkoni nuk ekziston ose është zhvendosur.",
+    "cta": "Vazhdo blerjet"
+  },
+  "general": {
+    "skip_to_content": "Kalo te përmbajtja",
+    "main_menu": "Menuja kryesore",
+    "footer_menu": "Menuja e fundit të faqes",
+    "search": "Kërko",
+    "account": "Llogaria",
+    "cart": "Shporta",
+    "toggle_theme": "Ndërro mes modalitetit të çelët dhe të errët",
+    "light_mode": "Modaliteti i çelët",
+    "dark_mode": "Modaliteti i errët",
+    "open_menu": "Menuja",
+    "home": "Kryefaqja",
+    "breadcrumbs": "Rruga e navigimit",
+    "pagination": "Faqosja",
+    "previous": "Mbrapa",
+    "next": "Përpara",
+    "tagged": "Etiketuar {{ tags }}",
+    "page_number": "Faqja {{ number }}"
+  },
+  "products": {
+    "sold_out": "Shitur",
+    "recently_viewed": "Të shikuara së fundmi",
+    "add_to_cart": "Shto në shportë",
+    "added": "U shtua në shportë.",
+    "add_error": "Nuk mund të shtohej në shportë. Ju lutemi provoni përsëri.",
+    "view_cart": "Shiko shportën",
+    "sale_price": "Çmimi i ofertës",
+    "regular_price": "Çmimi normal",
+    "quantity": "Sasia",
+    "sku": "SKU",
+    "type": "Lloji",
+    "availability": "Disponueshmëria",
+    "in_stock": "Në stok",
+    "percent_off": "{{ percent }}% zbritje",
+    "quantity_decrease": "Ul sasinë",
+    "quantity_increase": "Rrit sasinë"
+  },
+  "collection": {
+    "price_from": "Nga",
+    "price_to": "Deri",
+    "sort_by": "Rendit sipas",
+    "apply": "Apliko filtrat",
+    "clear_all": "Pastro filtrat",
+    "product_count": {
+      "one": "{{ count }} produkt",
+      "other": "{{ count }} produkte"
+    },
+    "empty": "Asnjë produkt nuk përputhet me këta filtra.",
+    "show_more": "Shfaq më shumë",
+    "showing": "Po shfaqen {{ shown }} nga {{ total }}"
+  },
+  "collections": {
+    "title": "Koleksionet"
+  },
+  "cart": {
+    "title": "Shporta",
+    "empty": "Shporta juaj është bosh.",
+    "continue": "Vazhdo blerjet",
+    "remove": "Hiq",
+    "subtotal": "Nëntotali",
+    "taxes_note": "Taksat dhe transporti llogariten në arkë.",
+    "update": "Përditëso shportën",
+    "checkout": "Shko te pagesa",
+    "error": "Shporta juaj nuk mund të përditësohej. Ju lutemi provoni përsëri.",
+    "remove_item": "Hiq {{ title }} nga shporta"
+  },
+  "search": {
+    "title": "Kërko",
+    "heading": "“{{ terms }}”",
+    "label": "Kërko në dyqan",
+    "placeholder": "Kërko",
+    "submit": "Kërko",
+    "results_count": {
+      "one": "{{ count }} rezultat për „{{ terms }}“",
+      "other": "{{ count }} rezultate për „{{ terms }}“"
+    },
+    "suggestions": "Sugjerime",
+    "results_status": "Rezultate: {{ count }}",
+    "products": "Produkte",
+    "pages": "Faqe dhe artikuj",
+    "type_all": "Të gjitha",
+    "type_article": "Artikuj",
+    "type_page": "Faqe",
+    "show_all": "Shfaq të gjitha për “{{ terms }}”",
+    "no_results": "Nuk u gjet asnjë rezultat. Provoni një kërkim tjetër."
+  },
+  "password": {
+    "title": "Ky dyqan është privat",
+    "label": "Fjalëkalimi",
+    "enter": "Hyr",
+    "owner": "Pronar i dyqanit? Hyni"
+  },
+  "footer": {
+    "newsletter_label": "Bashkohu në listë",
+    "newsletter_placeholder": "Adresa e emailit",
+    "newsletter_submit": "Abonohu",
+    "newsletter_success": "Faleminderit për abonimin."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Shiko të gjitha"
+    }
+  },
+  "gift_card": {
+    "expired": "Kjo kartë dhuratë ka skaduar.",
+    "expires_on": "Skadon më {{ date }}",
+    "use_at_checkout": "Përdor këtë kod në arkë.",
+    "add_to_apple_wallet": "Shto në Apple Wallet"
+  },
+  "localization": {
+    "label": "Shteti dhe gjuha",
+    "country": "Shteti/rajoni",
+    "language": "Gjuha",
+    "error": "Lista nuk mund të ngarkohej. Provo përsëri."
+  },
+  "wishlist": {
+    "title": "Të preferuarat",
+    "toggle": "Ruaj {{ title }} te të preferuarat",
+    "saved": "U ruajt te të preferuarat",
+    "removed": "U hoq nga të preferuarat",
+    "add_to_cart": "Shto {{ title }} në shportë",
+    "choose_options": "Zgjidh opsionet për {{ title }}",
+    "remove": "Hiq {{ title }} nga të preferuarat"
+  }
+}

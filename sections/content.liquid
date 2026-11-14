@@ -1,0 +1,71 @@
+{% comment %}
+  Generic container for composing content from theme blocks (heading, text,
+  image, button, group, accordion, spacer). Use it for any page that does not
+  need a dedicated section.
+{% endcomment %}
+
+{%- liquid
+  assign content_align = section.settings.align
+  if content_align == 'left'
+    assign content_align = 'start'
+  elsif content_align == 'right'
+    assign content_align = 'end'
+  endif
+-%}
+
+{%- capture blocks_html -%}{% content_for 'blocks' %}{%- endcapture -%}
+{%- assign blocks_text = blocks_html | strip -%}
+
+{%- if blocks_text != blank -%}
+<section
+  class="container section content content--{{ section.settings.width }}"
+  style="--content-align: {{ content_align }}; padding-block: {{ section.settings.padding }}px"
+>
+  <div class="stack">
+    {{ blocks_html }}
+  </div>
+</section>
+{%- else -%}
+  {%- render 'placeholder', label: 'Custom content: add blocks', wide: true -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .content > .stack { --stack: 1.25rem; text-align: var(--content-align, start); }
+  .content--narrow > .stack { max-width: 44rem; margin-inline: auto; }
+  .content--wide > .stack { max-width: none; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom content",
+  "settings": [
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Content width",
+      "options": [
+        { "value": "narrow", "label": "Narrow" },
+        { "value": "wide", "label": "Full width" }
+      ],
+      "default": "narrow"
+    },
+    {
+      "type": "text_alignment",
+      "id": "align",
+      "label": "Text alignment",
+      "default": "left"
+    },
+    { "type": "range", "id": "padding", "label": "Vertical padding", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 64 }
+  ],
+  "blocks": [{ "type": "@theme" }],
+  "presets": [
+    {
+      "name": "Custom content",
+      "blocks": [
+        { "type": "heading" },
+        { "type": "text" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,37 @@
+{% comment %}
+  Article page. The featured image is the LCP candidate.
+{% endcomment %}
+
+<article class="container section article">
+  {%- render 'breadcrumbs', kind: 'article' -%}
+
+  <header class="article__head stack">
+    <p class="eyebrow">
+      {{ article.published_at | time_tag: format: 'date' }}
+      {%- if article.author != blank %} &middot; {{ article.author }}{% endif -%}
+    </p>
+    <h1>{{ article.title }}</h1>
+  </header>
+
+  {%- if article.image -%}
+    <div class="article__image">
+      {%- render 'image', image: article.image, priority: true, sizes: '(min-width: 56em) 48rem, 100vw', widths: '480, 720, 960, 1200, 1600', width: 1600, alt: article.title -%}
+    </div>
+  {%- endif -%}
+
+  <div class="prose article__body">{{ article.content }}</div>
+</article>
+
+{% stylesheet %}
+  .article__head { --stack: 0.75rem; margin-block: 1rem 2rem; max-width: 48rem; }
+  .article__image { max-width: 60rem; margin-block-end: 2rem; overflow: hidden; border-radius: var(--radius); background: var(--color-surface); }
+  .article__image img { width: 100%; height: auto; }
+  .article__body { max-width: 48rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": []
+}
+{% endschema %}

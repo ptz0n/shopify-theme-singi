@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Página não encontrada",
+    "body": "A página que procura não existe ou foi movida.",
+    "cta": "Continuar a comprar"
+  },
+  "general": {
+    "skip_to_content": "Saltar para o conteúdo",
+    "main_menu": "Menu principal",
+    "footer_menu": "Menu do rodapé",
+    "search": "Pesquisar",
+    "account": "Conta",
+    "cart": "Carrinho",
+    "toggle_theme": "Alternar entre modo claro e escuro",
+    "light_mode": "Modo claro",
+    "dark_mode": "Modo escuro",
+    "open_menu": "Menu",
+    "home": "Início",
+    "breadcrumbs": "Caminho de navegação",
+    "pagination": "Paginação",
+    "previous": "Anterior",
+    "next": "Seguinte",
+    "tagged": "Etiquetado com {{ tags }}",
+    "page_number": "Página {{ number }}"
+  },
+  "products": {
+    "sold_out": "Esgotado",
+    "recently_viewed": "Vistos recentemente",
+    "add_to_cart": "Adicionar ao carrinho",
+    "added": "Adicionado ao carrinho.",
+    "add_error": "Não foi possível adicionar ao carrinho. Tente novamente.",
+    "view_cart": "Ver carrinho",
+    "sale_price": "Preço promocional",
+    "regular_price": "Preço normal",
+    "quantity": "Quantidade",
+    "sku": "SKU",
+    "type": "Tipo",
+    "availability": "Disponibilidade",
+    "in_stock": "Em stock",
+    "percent_off": "{{ percent }}% de desconto",
+    "quantity_decrease": "Diminuir quantidade",
+    "quantity_increase": "Aumentar quantidade"
+  },
+  "collection": {
+    "price_from": "De",
+    "price_to": "Até",
+    "sort_by": "Ordenar por",
+    "apply": "Aplicar filtros",
+    "clear_all": "Limpar filtros",
+    "product_count": {
+      "one": "{{ count }} produto",
+      "other": "{{ count }} produtos"
+    },
+    "empty": "Nenhum produto corresponde a estes filtros.",
+    "show_more": "Mostrar mais",
+    "showing": "A mostrar {{ shown }} de {{ total }}"
+  },
+  "collections": {
+    "title": "Coleções"
+  },
+  "cart": {
+    "title": "Carrinho",
+    "empty": "O seu carrinho está vazio.",
+    "continue": "Continuar a comprar",
+    "remove": "Remover",
+    "subtotal": "Subtotal",
+    "taxes_note": "Os impostos e os portes de envio são calculados no checkout.",
+    "update": "Atualizar carrinho",
+    "checkout": "Finalizar compra",
+    "error": "Não foi possível atualizar o seu carrinho. Tente novamente.",
+    "remove_item": "Remover {{ title }} do carrinho"
+  },
+  "search": {
+    "title": "Pesquisa",
+    "heading": "“{{ terms }}”",
+    "label": "Pesquisar na loja",
+    "placeholder": "Pesquisar",
+    "submit": "Pesquisar",
+    "results_count": {
+      "one": "{{ count }} resultado para «{{ terms }}»",
+      "other": "{{ count }} resultados para «{{ terms }}»"
+    },
+    "suggestions": "Sugestões",
+    "results_status": "Resultados: {{ count }}",
+    "products": "Produtos",
+    "pages": "Páginas e artigos",
+    "type_all": "Tudo",
+    "type_article": "Artigos",
+    "type_page": "Páginas",
+    "show_all": "Mostrar tudo para “{{ terms }}”",
+    "no_results": "Nenhum resultado encontrado. Tente uma pesquisa diferente."
+  },
+  "password": {
+    "title": "Esta loja é privada",
+    "label": "Palavra-passe",
+    "enter": "Entrar",
+    "owner": "Proprietário da loja? Inicie sessão"
+  },
+  "footer": {
+    "newsletter_label": "Junte-se à lista",
+    "newsletter_placeholder": "Endereço de email",
+    "newsletter_submit": "Subscrever",
+    "newsletter_success": "Obrigado por subscrever."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Ver tudo"
+    }
+  },
+  "gift_card": {
+    "expired": "Este cartão de oferta expirou.",
+    "expires_on": "Expira em {{ date }}",
+    "use_at_checkout": "Utilize este código no checkout.",
+    "add_to_apple_wallet": "Adicionar ao Apple Wallet"
+  },
+  "localization": {
+    "label": "País e idioma",
+    "country": "País/região",
+    "language": "Idioma",
+    "error": "Não foi possível carregar a lista. Tente novamente."
+  },
+  "wishlist": {
+    "title": "Favoritos",
+    "toggle": "Guardar {{ title }} nos favoritos",
+    "saved": "Guardado nos favoritos",
+    "removed": "Removido dos favoritos",
+    "add_to_cart": "Adicionar {{ title }} ao carrinho",
+    "choose_options": "Escolher opções de {{ title }}",
+    "remove": "Remover {{ title }} dos favoritos"
+  }
+}

@@ -1,0 +1,79 @@
+{% doc %}
+  Pagination for a {% paginate %} object. Two styles:
+
+  - numbered (default): accessible page links, crawlable, no JavaScript.
+  - show_more: a "Show more" button that is a REAL link to the next page
+    (rel="next"). Crawlers follow it, every ?page=N stays a self-canonical,
+    indexable page, and without JavaScript it simply navigates. With JavaScript
+    (assets/show-more.js) a normal click loads the next page's products into the
+    list in place, announces "Showing N of M", moves focus to the first new
+    product, and survives Back through history.state. Modified clicks (new tab)
+    follow the link.
+
+  Do not add rel="nofollow" to pagination links: it hides deeper pages from
+  crawlers. Page N titles and self-referencing canonicals come from
+  snippets/meta-tags.liquid and Shopify.
+
+  The list that grows needs the attribute data-show-more-list.
+
+  @param {object} paginate - The paginate object from {% paginate %}
+  @param {string} [type] - numbered (default) or show_more
+  @param {number} [page_items] - Items on this page (show_more)
+  @param {number} [total] - Items in the whole result (show_more)
+  @param {string} [section_id] - section.id of the calling section (show_more)
+
+  @example
+  {% render 'pagination', paginate: paginate, type: 'show_more', page_items: collection.products.size, total: collection.products_count, section_id: section.id %}
+{% enddoc %}
+
+{%- if type == 'show_more' -%}
+  {%- assign shown = paginate.current_offset | plus: page_items -%}
+  <show-more class="show-more" data-section-id="{{ section_id }}"{% if paginate.next %} data-url="{{ paginate.next.url }}"{% endif %}>
+    <p class="show-more__status mono muted">{{ 'collection.showing' | t: shown: shown, total: total }}</p>
+    {%- if paginate.next -%}
+      <a class="button button--secondary" href="{{ paginate.next.url }}" rel="next">{{ 'collection.show_more' | t }}</a>
+    {%- endif -%}
+    {%- if paginate.previous -%}
+      <a class="show-more__prev" href="{{ paginate.previous.url }}" rel="prev">{{ 'general.previous' | t }}</a>
+    {%- endif -%}
+  </show-more>
+  {%- if paginate.pages > 1 -%}
+    <script src="{{ 'show-more.js' | asset_url }}" type="module"></script>
+  {%- endif -%}
+{%- elsif paginate.pages > 1 -%}
+  {%- assign current = paginate.current_page | append: '' -%}
+  <nav class="pagination" aria-label="{{ 'general.pagination' | t }}">
+    {%- if paginate.previous -%}
+      <a class="pagination__step" href="{{ paginate.previous.url }}" rel="prev">{{ 'general.previous' | t }}</a>
+    {%- endif -%}
+    <ul class="pagination__pages mono" role="list">
+      {%- for part in paginate.parts -%}
+        <li>
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}">{{ part.title }}</a>
+          {%- elsif part.title == current -%}
+            <span aria-current="page">{{ part.title }}</span>
+          {%- else -%}
+            <span>{{ part.title }}</span>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- if paginate.next -%}
+      <a class="pagination__step" href="{{ paginate.next.url }}" rel="next">{{ 'general.next' | t }}</a>
+    {%- endif -%}
+  </nav>
+{%- endif -%}
+
+{% stylesheet %}
+  .pagination { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: center; margin-block-start: 3rem; }
+  .pagination__pages { display: flex; gap: 0.25rem; padding: 0; list-style: none; }
+  .pagination__pages :is(a, span) { display: grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; border-radius: var(--radius); text-decoration: none; }
+  .pagination__pages a:hover { background: var(--color-surface); }
+  .pagination__pages [aria-current] { background: var(--color-fg); color: var(--color-bg); }
+  .pagination__step { display: inline-flex; align-items: center; min-height: 2.75rem; padding-inline: 0.5rem; }
+  .show-more { display: grid; justify-items: center; gap: 0.75rem; margin-block-start: 3rem; }
+  .show-more__status { margin: 0; font-size: 0.8125rem; }
+  .show-more__prev { display: inline-flex; align-items: center; min-height: 2.75rem; font-size: 0.875rem; color: var(--color-muted); }
+  .show-more a[aria-busy='true'] { opacity: 0.6; pointer-events: none; }
+{% endstylesheet %}

@@ -1,0 +1,125 @@
+{% comment %}
+  Product page. The gallery is plain HTML with CSS scroll-snap (no slider JS).
+  The details column is a <product-form> custom element (assets/product-form.js)
+  that owns variant switching and add-to-cart; its children are the
+  merchant-orderable blocks.
+
+  The first image is the LCP candidate: eager, fetchpriority=high, preloaded.
+  Every other image lazy loads.
+{% endcomment %}
+
+{%- assign variant = product.selected_or_first_available_variant -%}
+{%- if settings.tracking_enabled -%}
+  {%- capture tracking_item -%}{%- render 'tracking-item', product: product, variant: variant -%}{%- endcapture -%}
+{%- endif -%}
+
+<div class="container section product">
+  {%- render 'breadcrumbs', kind: 'product' -%}
+
+  <div class="product__layout">
+    <div class="product__gallery"{% if product.media.size > 1 %} role="group" aria-label="{{ product.title | escape }}" tabindex="0"{% endif %}>
+      {%- assign first_image = true -%}
+      {%- for media in product.media limit: 30 -%}
+        <div class="product__media" id="media-{{ media.id }}">
+          {%- case media.media_type -%}
+            {%- when 'image' -%}
+              {%- render 'image',
+                image: media,
+                priority: first_image,
+                sizes: '(min-width: 56em) 55vw, 100vw',
+                widths: '480, 720, 960, 1200, 1600',
+                width: 1600,
+                alt: media.alt
+              -%}
+              {%- render 'ai-label', alt: media.alt -%}
+              {%- assign first_image = false -%}
+            {%- when 'video' -%}
+              {{- media | video_tag: image_size: '1200x', controls: true, preload: 'none', playsinline: true, aria-label: media.alt -}}
+            {%- when 'external_video' -%}
+              {{- media | external_video_tag: loading: 'lazy', title: media.alt -}}
+          {%- endcase -%}
+        </div>
+      {%- else -%}
+        {%- if settings.placeholder_image -%}
+          <div class="product__media">
+            {%- render 'image',
+              image: settings.placeholder_image,
+              priority: true,
+              sizes: '(min-width: 56em) 55vw, 100vw',
+              widths: '480, 720, 960, 1200, 1600',
+              width: 1600,
+              alt: product.title
+            -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <product-form
+      data-handle="{{ product.handle }}"
+      class="product__details stack"
+      data-section-id="{{ section.id }}"
+      data-cart-url="{{ routes.cart_url }}"
+      data-variant-media="{{ variant.featured_media.id }}"
+      data-added="{{ 'products.added' | t }}"
+      data-label-add="{{ 'products.add_to_cart' | t }}"
+      data-label-sold-out="{{ 'products.sold_out' | t }}"
+      data-error="{{ 'products.add_error' | t }}"
+      {% if settings.tracking_enabled %}
+        data-item="{{ tracking_item | strip | escape }}"
+      {% endif %}
+    >
+      {% content_for 'blocks' %}
+    </product-form>
+  </div>
+</div>
+
+{%- if settings.tracking_enabled -%}
+  <script type="application/json" data-track="view_item">
+    {
+      "currency": {{ cart.currency.iso_code | json }},
+      "value": {{ variant.price | divided_by: 100.0 }},
+      "items": [{{ tracking_item | strip }}]
+    }
+  </script>
+{%- endif -%}
+
+<script src="{{ 'product-form.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .product__layout { display: grid; gap: 2rem; }
+  .product__gallery { display: grid; gap: 0.75rem; }
+  .product__media { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--color-surface); }
+  .product__media :is(img, video) { display: block; width: 100%; height: auto; }
+  .product__media iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+  /* The card image the visitor just clicked (snippets/theme-init.liquid), behind the real image until it arrives. */
+  .product__media:first-child { background-image: var(--placeholder, none); background-position: center; background-size: cover; }
+  .product__details { --stack: 1.5rem; align-content: start; min-width: 0; }
+  @media (max-width: 55.99em) {
+    .product__gallery { grid-auto-flow: column; grid-auto-columns: 88%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); }
+    .product__media { scroll-snap-align: start; }
+    .product__gallery:not([tabindex]) { grid-auto-columns: 100%; overflow: visible; }
+  }
+  @media (min-width: 56em) {
+    .product__layout { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 4rem; align-items: start; }
+    .product__gallery { grid-template-columns: repeat(2, 1fr); }
+    .product__media:first-child { grid-column: 1 / -1; }
+    .product__details { position: sticky; top: calc(var(--header-h) + 1.5rem); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [],
+  "blocks": [
+    { "type": "_product-title" },
+    { "type": "_product-price" },
+    { "type": "_variant-picker" },
+    { "type": "_buy-buttons" },
+    { "type": "_product-description" },
+    { "type": "_product-meta" },
+    { "type": "@theme" }
+  ]
+}
+{% endschema %}

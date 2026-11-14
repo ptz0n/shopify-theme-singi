@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Sayfa bulunamadı",
+    "body": "Aradığınız sayfa mevcut değil veya taşınmış.",
+    "cta": "Alışverişe devam et"
+  },
+  "general": {
+    "skip_to_content": "İçeriğe geç",
+    "main_menu": "Ana menü",
+    "footer_menu": "Alt bilgi menüsü",
+    "search": "Ara",
+    "account": "Hesap",
+    "cart": "Sepet",
+    "toggle_theme": "Açık ve koyu modu değiştir",
+    "light_mode": "Açık mod",
+    "dark_mode": "Koyu mod",
+    "open_menu": "Menü",
+    "home": "Ana sayfa",
+    "breadcrumbs": "Gezinti yolu",
+    "pagination": "Sayfalama",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "tagged": "Etiket: {{ tags }}",
+    "page_number": "Sayfa {{ number }}"
+  },
+  "products": {
+    "sold_out": "Tükendi",
+    "recently_viewed": "Son görüntülenenler",
+    "add_to_cart": "Sepete ekle",
+    "added": "Sepete eklendi.",
+    "add_error": "Sepete eklenemedi. Lütfen tekrar deneyin.",
+    "view_cart": "Sepeti görüntüle",
+    "sale_price": "İndirimli fiyat",
+    "regular_price": "Normal fiyat",
+    "quantity": "Adet",
+    "sku": "Stok kodu",
+    "type": "Tür",
+    "availability": "Stok durumu",
+    "in_stock": "Stokta",
+    "percent_off": "%{{ percent }} indirim",
+    "quantity_decrease": "Miktarı azalt",
+    "quantity_increase": "Miktarı artır"
+  },
+  "collection": {
+    "price_from": "En az",
+    "price_to": "En fazla",
+    "sort_by": "Sırala",
+    "apply": "Filtreleri uygula",
+    "clear_all": "Filtreleri temizle",
+    "product_count": {
+      "one": "{{ count }} ürün",
+      "other": "{{ count }} ürün"
+    },
+    "empty": "Bu filtrelerle eşleşen ürün yok.",
+    "show_more": "Daha fazla göster",
+    "showing": "{{ total }} üründen {{ shown }} tanesi gösteriliyor"
+  },
+  "collections": {
+    "title": "Koleksiyonlar"
+  },
+  "cart": {
+    "title": "Sepet",
+    "empty": "Sepetiniz boş.",
+    "continue": "Alışverişe devam et",
+    "remove": "Kaldır",
+    "subtotal": "Ara toplam",
+    "taxes_note": "Vergiler ve kargo ödeme sırasında hesaplanır.",
+    "update": "Sepeti güncelle",
+    "checkout": "Ödeme yap",
+    "error": "Sepetiniz güncellenemedi. Lütfen tekrar deneyin.",
+    "remove_item": "{{ title }} ürününü sepetten kaldır"
+  },
+  "search": {
+    "title": "Ara",
+    "heading": "“{{ terms }}”",
+    "label": "Mağazada ara",
+    "placeholder": "Ara",
+    "submit": "Ara",
+    "results_count": {
+      "one": "“{{ terms }}” için {{ count }} sonuç",
+      "other": "“{{ terms }}” için {{ count }} sonuç"
+    },
+    "suggestions": "Öneriler",
+    "results_status": "Sonuçlar: {{ count }}",
+    "products": "Ürünler",
+    "pages": "Sayfalar ve makaleler",
+    "type_all": "Tümü",
+    "type_article": "Makaleler",
+    "type_page": "Sayfalar",
+    "show_all": "“{{ terms }}” için tümünü göster",
+    "no_results": "Sonuç bulunamadı. Farklı bir arama deneyin."
+  },
+  "password": {
+    "title": "Bu mağaza özeldir",
+    "label": "Şifre",
+    "enter": "Giriş",
+    "owner": "Mağaza sahibi misiniz? Giriş yapın"
+  },
+  "footer": {
+    "newsletter_label": "Listeye katılın",
+    "newsletter_placeholder": "E-posta adresi",
+    "newsletter_submit": "Abone ol",
+    "newsletter_success": "Abone olduğunuz için teşekkürler."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Tümünü gör"
+    }
+  },
+  "gift_card": {
+    "expired": "Bu hediye kartının süresi doldu.",
+    "expires_on": "Son kullanma tarihi: {{ date }}",
+    "use_at_checkout": "Bu kodu ödeme sırasında kullanın.",
+    "add_to_apple_wallet": "Apple Wallet'a ekle"
+  },
+  "localization": {
+    "label": "Ülke ve dil",
+    "country": "Ülke/bölge",
+    "language": "Dil",
+    "error": "Liste yüklenemedi. Lütfen tekrar deneyin."
+  },
+  "wishlist": {
+    "title": "Favoriler",
+    "toggle": "{{ title }} ürününü favorilere kaydet",
+    "saved": "Favorilere kaydedildi",
+    "removed": "Favorilerden kaldırıldı",
+    "add_to_cart": "{{ title }} ürününü sepete ekle",
+    "choose_options": "{{ title }} için seçenekleri belirle",
+    "remove": "{{ title }} ürününü favorilerden kaldır"
+  }
+}

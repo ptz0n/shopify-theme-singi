@@ -1,0 +1,77 @@
+{% doc %}
+  Organization and WebSite structured data for the home page, as one linked
+  @graph. The @id values are reused by other schema snippets so the pieces
+  connect: `/#organization` and `/#website`.
+
+  - Organization: name, url, logo (ImageObject), sameAs from the Social profile
+    URLs theme setting. Extend with contactPoint, address or
+    hasMerchantReturnPolicy for a specific brand here, not elsewhere.
+  - WebSite: SearchAction pointing at the store search.
+
+  Render only on the home page. Every string goes through `json`.
+
+  @example
+  {% render 'schema-site' %}
+{% enddoc %}
+
+{%- liquid
+  assign origin = request.origin
+  assign site_logo = settings.logo | default: shop.brand.logo
+  assign profiles = settings.social_profiles | newline_to_br | split: '<br />'
+  capture search_template
+    echo origin
+    echo routes.search_url
+    echo '?q={search_term_string}'
+  endcapture
+  assign first_profile = true
+-%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": {{ origin | append: '/#organization' | json }},
+        "name": {{ shop.name | json }},
+        "url": {{ origin | append: '/' | json }}
+        {%- if site_logo != blank -%}
+          ,
+          "logo": {
+            "@type": "ImageObject",
+            "url": {{ site_logo | image_url: width: 512 | prepend: 'https:' | json }},
+            "width": {{ site_logo.width | at_most: 512 }},
+            "height": {{ site_logo.height | times: 512 | divided_by: site_logo.width | at_most: 512 }}
+          }
+        {%- endif -%}
+        {%- if profiles.size > 0 -%}
+          ,
+          "sameAs": [
+            {%- for profile in profiles -%}
+              {%- assign url = profile | strip -%}
+              {%- unless url contains 'http' -%}{%- continue -%}{%- endunless -%}
+              {%- unless first_profile -%},{%- endunless -%}
+              {%- assign first_profile = false -%}
+              {{ url | json }}
+            {%- endfor -%}
+          ]
+        {%- endif -%}
+      },
+      {
+        "@type": "WebSite",
+        "@id": {{ origin | append: '/#website' | json }},
+        "url": {{ origin | append: '/' | json }},
+        "name": {{ shop.name | json }},
+        "inLanguage": {{ request.locale.iso_code | json }},
+        "publisher": { "@id": {{ origin | append: '/#organization' | json }} },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": {{ search_template | json }}
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+</script>

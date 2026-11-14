@@ -1,0 +1,68 @@
+# Images, video and product media
+
+How the theme renders product media, and how it is tested. Read it before touching `snippets/image.liquid`, the product gallery, product cards or favorites heart.
+
+## One way to render an image
+
+Every image goes through `snippets/image.liquid`, which calls `image_url | image_tag`. That gives responsive `srcset`, width and height (no layout shift), one loading strategy (`priority`, `eager`, or lazy) and, importantly, **focal points**.
+
+## Focal points
+
+A merchant sets a focal point per image in the Shopify admin (product media or Content > Files), and per `image_picker` setting in the theme editor. `image_tag` turns it into an inline `object-position`, so every `object-fit: cover` crop keeps the subject in view: cards (4:5), hero, image blocks, cart and favorites rows.
+
+- The Admin API has no focal point input, so focal points cannot be seeded by `mock:apply`. Set one by hand on a `mock-mixed-ratios` image and check the card crop.
+- Never render an image with a bare `<img>` or `background-image` plus `object-fit: cover`: it would ignore the focal point. Use the `image` snippet.
+- The product page gallery shows images at their natural ratio (`height: auto`), so nothing is cropped there.
+
+## Product gallery
+
+`sections/main-product.liquid` renders up to 30 media items, in order:
+
+| Media type | Rendered as |
+| --- | --- |
+| `image` | the `image` snippet; the first image is the LCP image (`priority`), the rest lazy |
+| `video` | `video_tag` with controls, `preload="none"`, an `aria-label` from the alt text |
+| `external_video` | `external_video_tag`, lazy, 16:9, with a title |
+| anything else (3D models) | skipped |
+
+The gallery is HTML with CSS scroll-snap on mobile and a two column grid on desktop; there is no slider JavaScript.
+
+**Variant images.** Each variant can have its own image. When the visitor changes an option, `assets/product-form.js` reads the new variant's `featured_media`, scrolls the gallery to it and keeps `data-variant-media` current. A variant without an image leaves the gallery where it is; it never blanks it.
+
+**No media.** A product without media shows `settings.placeholder_image` when the merchant set one (Theme settings > Brand > Product placeholder image), otherwise nothing on the product page and a neutral block of the card's shape on cards. The same fallback is used in the cart and favorites.
+
+## Favorites heart on cards: black or white
+
+Liquid cannot know how dark an image is. `assets/image-tone.js` measures it in the browser, once per card, when the card nears the viewport:
+
+1. It maps the heart's box onto the image, the way `object-fit: cover` and the focal point crop it.
+2. It averages a few pixels there and computes relative luminance.
+3. It sets `data-heart="white"` (luminance below 0.179, the point where white has the better contrast ratio) or `"black"` on the button. `base.css` colors the heart and its halo from that.
+
+Card images carry `crossorigin="anonymous"` so the browser lets the script read them (Shopify's CDN allows it). Videos work the same way, from the poster or current frame. If the pixels cannot be read, or JavaScript is off, the heart keeps the theme foreground color with a halo in the background color. The tone is measured once per card, so it does not follow later resizes.
+
+## Mock products for these cases
+
+`npm run mock:apply` creates them (collection `mock-media`):
+
+| Handle | Covers |
+| --- | --- |
+| `mock-gallery-24` | 24 images, no variant images |
+| `mock-color-images` | 4 colors x 3 sizes; each color has 3 images and its variants point at the first |
+| `mock-partial-variant-images` | only 2 of 4 colors have an image |
+| `mock-variant-images-only` | six colors, one image each, nothing else |
+| `mock-mixed-ratios` | portrait, landscape, square, tall and panorama in one gallery |
+| `mock-video-gallery` | 3 images plus an embedded video (a hosted video needs a real file, so it is not mocked) |
+
+Variant images are attached after the product exists (`productVariantAppendMedia`), once Shopify finishes processing the media; the script waits for it. Running `mock:apply` again repairs a half-created product.
+
+## Tests
+
+`scripts/tests/media.browser.js` holds the assertions: gallery counts, lazy loading, the LCP image, variant to image mapping, aspect ratios not distorted, the video's ratio and accessible name, card hearts getting a tone, no horizontal scroll.
+
+- In a browser: paste it into the console of one of the mock pages. It checks the page it is on.
+- Headless: `SINGI_URL=... SINGI_PASSWORD=... npm run test:media` (needs `npm install --no-save puppeteer-core`; see the header of `scripts/test-media.mjs`).
+
+`npm run test:media` defaults to the local `npm run dev` server (see [tooling.md](tooling.md#testing-against-the-dev-server)).
+
+Last run (2026-11-13, headless Chrome, 390px wide, through the dev server): all seven pages pass (collection hearts and crossorigin, 24-image gallery, variant images for color, partial and variant-only products, mixed ratios, video). The placeholder image setting and the AI label are not covered by the script yet, and focal points cannot be tested without setting one by hand.

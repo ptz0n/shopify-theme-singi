@@ -1,0 +1,54 @@
+{% doc %}
+  Heading with a configurable level and visual size. Keep exactly one h1 per page.
+
+  @example
+  {% content_for 'block', type: 'heading', id: 'title' %}
+{% enddoc %}
+
+{%- assign s = block.settings -%}
+
+{%- if s.text != blank -%}
+  <{{ s.tag }} class="heading heading--{{ s.size }}" {{ block.shopify_attributes }}>{{ s.text }}</{{ s.tag }}>
+{%- else -%}
+  {%- render 'placeholder', label: 'Heading: add text in the block settings' -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .heading--sm { font-size: 1.25rem; }
+  .heading--md { font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem); }
+  .heading--lg { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.25rem); }
+  .heading--xl { font-size: clamp(2.5rem, 1.5rem + 4.5vw, 5rem); letter-spacing: var(--tracking-tight); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Heading",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Text" },
+    {
+      "type": "select",
+      "id": "tag",
+      "label": "Heading level",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Size",
+      "options": [
+        { "value": "sm", "label": "Small" },
+        { "value": "md", "label": "Medium" },
+        { "value": "lg", "label": "Large" },
+        { "value": "xl", "label": "Extra large" }
+      ],
+      "default": "md"
+    }
+  ],
+  "presets": [{ "name": "Heading" }]
+}
+{% endschema %}

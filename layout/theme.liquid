@@ -1,0 +1,91 @@
+<!doctype html>
+<html
+  lang="{{ request.locale.iso_code }}"
+  dir="{{ request.locale.direction | default: 'ltr' }}"
+  {% if settings.color_mode != 'system' %}
+    data-theme="{{ settings.color_mode }}"
+  {% endif %}
+  data-layout="theme"
+  data-template="{{ request.page_type }}"
+  {% if settings.soft_navigation %}
+    data-soft-nav
+    data-soft-nav-skip="{{ routes.cart_url }} {{ routes.account_url }} /checkout /apps /cdn /password /challenge"
+  {% endif %}
+  {% if settings.view_transitions %}
+    data-view-transitions
+  {% endif %}
+>
+  <head>
+    {%- render 'meta-tags' -%}
+
+    {%- render 'theme-init' -%}
+
+    {%- render 'tokens' -%}
+    <style>
+      {{- 'base.css' | inline_asset_content -}}
+    </style>
+
+    {%- unless settings.font_body.system? -%}
+      {%- assign preload_regular = settings.font_body | font_url: 'woff2' -%}
+      {%- assign preload_strong = settings.font_body | font_modify: 'weight', '600' | font_url: 'woff2' -%}
+      {{ preload_regular | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+      {{ preload_strong | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+    {%- endunless -%}
+
+    <script type="importmap">
+      { "imports": { "@singi/utils": {{ 'utils.js' | asset_url | json }} } }
+    </script>
+
+    {%- if settings.speculation == 'moderate' and settings.soft_navigation == false -%}
+      <script type="speculationrules">
+        {
+          "prefetch": [
+            {
+              "where": {
+                "and": [
+                  { "href_matches": "/*" },
+                  { "not": { "href_matches": [{{ routes.cart_url | append: '*' | json }}, {{ routes.account_url | append: '*' | json }}, "/checkout*"] } },
+                  { "not": { "selector_matches": "[rel~=nofollow], [download]" } }
+                ]
+              },
+              "eagerness": "moderate"
+            }
+          ]
+        }
+      </script>
+    {%- endif -%}
+
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">{{ 'general.skip_to_content' | t }}</a>
+
+    {% sections 'header-group' %}
+
+    <main id="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    <p id="route-announcer" class="visually-hidden" role="status" aria-live="polite"{% if settings.wishlist_enabled %} data-wishlist-saved="{{ 'wishlist.saved' | t }}" data-wishlist-removed="{{ 'wishlist.removed' | t }}"{% endif %}></p>
+
+    {%- if settings.wishlist_enabled -%}
+      <script src="{{ 'wishlist.js' | asset_url }}" type="module"></script>
+      {%- if settings.wishlist_cards -%}
+        <script src="{{ 'image-tone.js' | asset_url }}" type="module"></script>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if settings.tracking_enabled -%}
+      {%- render 'tracking-config' -%}
+      <script src="{{ 'tracking.js' | asset_url }}" type="module"></script>
+    {%- endif -%}
+
+    {%- if settings.soft_navigation -%}
+      {%- render 'skeletons' -%}
+      <script src="{{ 'soft-nav.js' | asset_url }}" type="module"></script>
+    {%- endif -%}
+  </body>
+</html>

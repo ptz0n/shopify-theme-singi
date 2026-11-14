@@ -1,0 +1,49 @@
+{% doc %}
+  CollectionPage structured data with an ItemList of the products on this page.
+  Items carry position, url and name only: Google's guidance for list pages is
+  summary entries that link to the product page, where the full Product markup
+  lives. Positions are collection-absolute across pagination.
+
+  Links to the breadcrumb and website by @id, so it must be rendered with the
+  `breadcrumbs` snippet on the same page. Render inside {% paginate %}.
+
+  @param {object} products - The products on this page (collection.products inside paginate)
+  @param {number} [offset] - Products before this page. Default: 0
+
+  @example
+  {% render 'schema-collection', products: collection.products, offset: paginate.current_offset %}
+{% enddoc %}
+
+{%- liquid
+  assign origin = request.origin
+  assign page_id = canonical_url | default: origin | append: collection.url
+  assign start = offset | default: 0
+  assign summary = collection.description | strip_html | strip_newlines | strip | truncate: 320
+-%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": {{ page_id | append: '#collectionpage' | json }},
+    "url": {{ page_id | json }},
+    "name": {{ collection.title | json }},
+    "description": {{ summary | json }},
+    "inLanguage": {{ request.locale.iso_code | json }},
+    "isPartOf": { "@id": {{ origin | append: '/#website' | json }} },
+    "breadcrumb": { "@id": {{ page_id | append: '#breadcrumb' | json }} },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": {{ collection.products_count }},
+      "itemListElement": [
+        {%- for product in products -%}
+          {
+            "@type": "ListItem",
+            "position": {{ forloop.index | plus: start }},
+            "url": {{ origin | append: product.url | json }},
+            "name": {{ product.title | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  }
+</script>

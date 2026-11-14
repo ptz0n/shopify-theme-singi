@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Pàgina no trobada",
+    "body": "La pàgina que cerques no existeix o s'ha mogut.",
+    "cta": "Continua comprant"
+  },
+  "general": {
+    "skip_to_content": "Vés al contingut",
+    "main_menu": "Menú principal",
+    "footer_menu": "Menú del peu de pàgina",
+    "search": "Cerca",
+    "account": "Compte",
+    "cart": "Cistella",
+    "toggle_theme": "Canvia entre mode clar i fosc",
+    "light_mode": "Mode clar",
+    "dark_mode": "Mode fosc",
+    "open_menu": "Menú",
+    "home": "Inici",
+    "breadcrumbs": "Camí de navegació",
+    "pagination": "Paginació",
+    "previous": "Anterior",
+    "next": "Següent",
+    "tagged": "Etiquetat amb {{ tags }}",
+    "page_number": "Pàgina {{ number }}"
+  },
+  "products": {
+    "sold_out": "Esgotat",
+    "recently_viewed": "Vistos recentment",
+    "add_to_cart": "Afegeix a la cistella",
+    "added": "Afegit a la cistella.",
+    "add_error": "No s'ha pogut afegir a la cistella. Torna-ho a provar.",
+    "view_cart": "Veure la cistella",
+    "sale_price": "Preu rebaixat",
+    "regular_price": "Preu habitual",
+    "quantity": "Quantitat",
+    "sku": "SKU",
+    "type": "Tipus",
+    "availability": "Disponibilitat",
+    "in_stock": "En estoc",
+    "percent_off": "{{ percent }}% de descompte",
+    "quantity_decrease": "Redueix la quantitat",
+    "quantity_increase": "Augmenta la quantitat"
+  },
+  "collection": {
+    "price_from": "Des de",
+    "price_to": "Fins a",
+    "sort_by": "Ordena per",
+    "apply": "Aplica els filtres",
+    "clear_all": "Esborra els filtres",
+    "product_count": {
+      "one": "{{ count }} producte",
+      "other": "{{ count }} productes"
+    },
+    "empty": "Cap producte coincideix amb aquests filtres.",
+    "show_more": "Mostra'n més",
+    "showing": "Es mostren {{ shown }} de {{ total }}"
+  },
+  "collections": {
+    "title": "Col·leccions"
+  },
+  "cart": {
+    "title": "Cistella",
+    "empty": "La teva cistella és buida.",
+    "continue": "Continua comprant",
+    "remove": "Elimina",
+    "subtotal": "Subtotal",
+    "taxes_note": "Els impostos i l'enviament es calculen en finalitzar la compra.",
+    "update": "Actualitza la cistella",
+    "checkout": "Finalitza la compra",
+    "error": "No s'ha pogut actualitzar la cistella. Torna-ho a provar.",
+    "remove_item": "Elimina {{ title }} de la cistella"
+  },
+  "search": {
+    "title": "Cerca",
+    "heading": "“{{ terms }}”",
+    "label": "Cerca a la botiga",
+    "placeholder": "Cerca",
+    "submit": "Cerca",
+    "results_count": {
+      "one": "{{ count }} resultat per a «{{ terms }}»",
+      "other": "{{ count }} resultats per a «{{ terms }}»"
+    },
+    "suggestions": "Suggeriments",
+    "results_status": "Resultats: {{ count }}",
+    "products": "Productes",
+    "pages": "Pàgines i articles",
+    "type_all": "Tot",
+    "type_article": "Articles",
+    "type_page": "Pàgines",
+    "show_all": "Mostra-ho tot per a “{{ terms }}”",
+    "no_results": "No s'ha trobat cap resultat. Prova una altra cerca."
+  },
+  "password": {
+    "title": "Aquesta botiga és privada",
+    "label": "Contrasenya",
+    "enter": "Entra",
+    "owner": "Ets el propietari de la botiga? Inicia la sessió"
+  },
+  "footer": {
+    "newsletter_label": "Uneix-te a la llista",
+    "newsletter_placeholder": "Adreça electrònica",
+    "newsletter_submit": "Subscriu-m'hi",
+    "newsletter_success": "Gràcies per subscriure't."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Veure-ho tot"
+    }
+  },
+  "gift_card": {
+    "expired": "Aquesta targeta regal ha caducat.",
+    "expires_on": "Caduca el {{ date }}",
+    "use_at_checkout": "Utilitza aquest codi en finalitzar la compra.",
+    "add_to_apple_wallet": "Afegeix a Apple Wallet"
+  },
+  "localization": {
+    "label": "País i idioma",
+    "country": "País/regió",
+    "language": "Idioma",
+    "error": "No s'ha pogut carregar la llista. Torna-ho a provar."
+  },
+  "wishlist": {
+    "title": "Preferits",
+    "toggle": "Desa {{ title }} als preferits",
+    "saved": "Desat als preferits",
+    "removed": "Eliminat dels preferits",
+    "add_to_cart": "Afegeix {{ title }} a la cistella",
+    "choose_options": "Tria les opcions de {{ title }}",
+    "remove": "Elimina {{ title }} dels preferits"
+  }
+}

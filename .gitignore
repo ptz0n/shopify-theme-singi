@@ -1,0 +1,12 @@
+.DS_Store
+node_modules/
+.shopify/
+.lighthouseci/
+.env
+.env.*
+!.env.example
+shopify.theme.toml
+*.zip
+.audit/
+
+.TODO.local.md

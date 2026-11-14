@@ -1,0 +1,26 @@
+{% doc %}
+  Price of the selected variant. Private to product sections.
+{% enddoc %}
+
+{%- assign variant = product.selected_or_first_available_variant -%}
+
+<div class="product-price" data-swap="price" aria-live="polite" {{ block.shopify_attributes }}>
+  {%- render 'price', price: variant.price, compare_at_price: variant.compare_at_price, class: 'product-price__value' -%}
+  {%- if variant.unit_price_measurement -%}
+    <p class="muted mono product-price__unit">
+      {{- variant.unit_price | money }} / {{ variant.unit_price_measurement.reference_value }}{{ variant.unit_price_measurement.reference_unit -}}
+    </p>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .product-price__value { font-size: 1.25rem; }
+  .product-price__unit { font-size: 0.8125rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product price",
+  "settings": []
+}
+{% endschema %}

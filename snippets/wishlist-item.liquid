@@ -1,0 +1,100 @@
+{% doc %}
+  One saved product as a cart-style row: thumbnail, title, price and two small icon
+  controls: a primary add to cart (adds the saved variant, or the only variant, at once;
+  links to the product page to choose options when no variant was saved; hidden when
+  sold out) and the pressed
+  heart (the same secondary button as on the product page; it removes the item). Fetched
+  by assets/wishlist.js through templates/product.wishlist.liquid.
+
+  Self-contained on purpose: it owns its CSS. The cart page renders this snippet
+  once without a product (it outputs nothing) so Shopify includes the CSS there,
+  because the rows themselves are inserted by JavaScript.
+
+  The saved variant arrives as ?variant=ID (product.selected_variant), so the row shows
+  that variant's title, price, image and stock.
+
+  @param {product} [product] - The saved product. Without one the snippet only carries its CSS.
+
+  @example
+  {% render 'wishlist-item', product: product %}
+{% enddoc %}
+
+{%- if product -%}
+  {%- liquid
+    assign chosen = product.selected_variant
+    assign shown = chosen | default: product.selected_or_first_available_variant
+    assign unavailable = false
+    assign quick = false
+    assign label_title = product.title
+    if chosen and product.has_only_default_variant == false
+      assign label_title = product.title | append: ' (' | append: chosen.title | append: ')'
+    endif
+    if chosen
+      if chosen.available
+        assign quick = true
+      else
+        assign unavailable = true
+      endif
+    elsif product.available == false
+      assign unavailable = true
+    elsif product.has_only_default_variant
+      assign quick = true
+    endif
+    assign row_image = shown.featured_image | default: product.featured_image
+    assign variant_label = ''
+    if chosen and product.has_only_default_variant == false
+      for option_name in product.options
+        unless forloop.first
+          assign variant_label = variant_label | append: ', '
+        endunless
+        assign variant_label = variant_label | append: option_name | append: ': ' | append: chosen.options[forloop.index0]
+      endfor
+    endif
+  -%}
+  <li class="wishlist-item">
+    <a class="wishlist-item__image" href="{{ chosen.url | default: product.url }}" tabindex="-1" aria-hidden="true">
+      {%- if row_image -%}
+        {%- render 'image', image: row_image, sizes: '96px', widths: '96, 192, 288', width: 288, alt: product.title -%}
+      {%- elsif settings.placeholder_image -%}
+        {%- render 'image', image: settings.placeholder_image, sizes: '96px', widths: '96, 192, 288', width: 288, alt: product.title -%}
+      {%- endif -%}
+    </a>
+    <div class="wishlist-item__info">
+      <a class="wishlist-item__title" href="{{ chosen.url | default: product.url }}">{{ product.title }}</a>
+      {%- if variant_label != blank -%}
+        <p class="wishlist-item__note muted mono">{{ variant_label }}</p>
+      {%- endif -%}
+      {%- render 'price', price: shown.price, compare_at_price: shown.compare_at_price -%}
+      {%- if unavailable -%}
+        <p class="wishlist-item__note muted mono">{{ 'products.sold_out' | t }}</p>
+      {%- endif -%}
+    </div>
+    {%- if quick -%}
+      <button class="button wishlist-item__add" type="button" data-wishlist-add="{{ shown.id }}" aria-label="{{ 'wishlist.add_to_cart' | t: title: label_title }}">
+        {%- render 'icon', name: 'cart' -%}
+      </button>
+    {%- elsif unavailable == false -%}
+      <a class="button wishlist-item__add" href="{{ product.url }}" aria-label="{{ 'wishlist.choose_options' | t: title: label_title }}">
+        {%- render 'icon', name: 'cart' -%}
+      </a>
+    {%- endif -%}
+    <button class="icon-button wishlist-item__remove" type="button" data-wishlist-remove="{{ product.handle }}" aria-label="{{ 'wishlist.remove' | t: title: label_title }}">
+      {%- render 'icon', name: 'close' -%}
+    </button>
+  </li>
+{%- endif -%}
+
+{% stylesheet %}
+  .wishlist-item { display: grid; grid-template-columns: 5rem 1fr auto; gap: 0.5rem 1rem; align-items: start; padding-block: 1.25rem; border-block-end: 1px solid var(--color-border); }
+  .wishlist-item__image { display: block; aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--radius); background: var(--color-surface); }
+  .wishlist-item__image img { width: 100%; height: 100%; object-fit: cover; }
+  .wishlist-item__info { display: grid; gap: 0.25rem; min-width: 0; }
+  .wishlist-item__title { font-weight: var(--font-weight-strong); text-decoration: none; }
+  .wishlist-item__title:hover { text-decoration: underline; }
+  .wishlist-item__note { margin: 0; font-size: 0.8125rem; }
+  .wishlist-item__image, .wishlist-item__info { grid-row: 1 / span 2; }
+  .wishlist-item__remove { grid-column: 3; grid-row: 1; justify-self: end; width: 2.75rem; height: 2.75rem; margin-block-start: -0.5rem; margin-inline-end: -0.5rem; }
+  .wishlist-item__add { grid-column: 3; grid-row: 2; align-self: end; justify-self: end; width: 2.75rem; min-height: 2.75rem; padding: 0; }
+  .wishlist-item__add[aria-busy='true'] { opacity: 0.6; pointer-events: none; }
+  @media (min-width: 56em) { .wishlist-item { grid-template-columns: 6rem 1fr auto; } }
+{% endstylesheet %}

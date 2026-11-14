@@ -1,0 +1,135 @@
+{
+  "404": {
+    "title": "Сторінку не знайдено",
+    "body": "Сторінки, яку ви шукаєте, не існує або її переміщено.",
+    "cta": "Продовжити покупки"
+  },
+  "general": {
+    "skip_to_content": "Перейти до вмісту",
+    "main_menu": "Головне меню",
+    "footer_menu": "Меню в нижній частині сторінки",
+    "search": "Пошук",
+    "account": "Обліковий запис",
+    "cart": "Кошик",
+    "toggle_theme": "Перемкнути світлий і темний режим",
+    "light_mode": "Світлий режим",
+    "dark_mode": "Темний режим",
+    "open_menu": "Меню",
+    "home": "Головна",
+    "breadcrumbs": "Навігаційний ланцюжок",
+    "pagination": "Сторінки",
+    "previous": "Назад",
+    "next": "Далі",
+    "tagged": "Тег: {{ tags }}",
+    "page_number": "Сторінка {{ number }}"
+  },
+  "products": {
+    "sold_out": "Немає в наявності",
+    "recently_viewed": "Нещодавно переглянуті",
+    "add_to_cart": "Додати до кошика",
+    "added": "Додано до кошика.",
+    "add_error": "Не вдалося додати до кошика. Спробуйте ще раз.",
+    "view_cart": "Переглянути кошик",
+    "sale_price": "Ціна зі знижкою",
+    "regular_price": "Звичайна ціна",
+    "quantity": "Кількість",
+    "sku": "Артикул",
+    "type": "Тип",
+    "availability": "Наявність",
+    "in_stock": "В наявності",
+    "percent_off": "знижка {{ percent }}%",
+    "quantity_decrease": "Зменшити кількість",
+    "quantity_increase": "Збільшити кількість"
+  },
+  "collection": {
+    "price_from": "Від",
+    "price_to": "До",
+    "sort_by": "Сортувати",
+    "apply": "Застосувати фільтри",
+    "clear_all": "Скинути фільтри",
+    "product_count": {
+      "one": "{{ count }} товар",
+      "few": "{{ count }} товари",
+      "many": "{{ count }} товарів",
+      "other": "{{ count }} товару"
+    },
+    "empty": "Немає товарів, що відповідають цим фільтрам.",
+    "show_more": "Показати ще",
+    "showing": "Показано {{ shown }} з {{ total }}"
+  },
+  "collections": {
+    "title": "Колекції"
+  },
+  "cart": {
+    "title": "Кошик",
+    "empty": "Ваш кошик порожній.",
+    "continue": "Продовжити покупки",
+    "remove": "Видалити",
+    "subtotal": "Проміжна сума",
+    "taxes_note": "Податки та доставка розраховуються під час оформлення замовлення.",
+    "update": "Оновити кошик",
+    "checkout": "Оформити замовлення",
+    "error": "Не вдалося оновити кошик. Спробуйте ще раз.",
+    "remove_item": "Видалити {{ title }} з кошика"
+  },
+  "search": {
+    "title": "Пошук",
+    "heading": "«{{ terms }}»",
+    "label": "Пошук у магазині",
+    "placeholder": "Пошук",
+    "submit": "Шукати",
+    "results_count": {
+      "one": "{{ count }} результат за запитом «{{ terms }}»",
+      "few": "{{ count }} результати за запитом «{{ terms }}»",
+      "many": "{{ count }} результатів за запитом «{{ terms }}»",
+      "other": "{{ count }} результату за запитом «{{ terms }}»"
+    },
+    "suggestions": "Підказки",
+    "results_status": "Результати: {{ count }}",
+    "products": "Товари",
+    "pages": "Сторінки та статті",
+    "type_all": "Усе",
+    "type_article": "Статті",
+    "type_page": "Сторінки",
+    "show_all": "Показати все за запитом «{{ terms }}»",
+    "no_results": "Нічого не знайдено. Спробуйте інший запит."
+  },
+  "password": {
+    "title": "Цей магазин закритий",
+    "label": "Пароль",
+    "enter": "Увійти",
+    "owner": "Власник магазину? Увійти"
+  },
+  "footer": {
+    "newsletter_label": "Приєднуйтесь до розсилки",
+    "newsletter_placeholder": "Електронна адреса",
+    "newsletter_submit": "Підписатися",
+    "newsletter_success": "Дякуємо за підписку."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Переглянути все"
+    }
+  },
+  "gift_card": {
+    "expired": "Термін дії цієї подарункової картки минув.",
+    "expires_on": "Діє до {{ date }}",
+    "use_at_checkout": "Використайте цей код під час оформлення замовлення.",
+    "add_to_apple_wallet": "Додати до Apple Wallet"
+  },
+  "localization": {
+    "label": "Країна та мова",
+    "country": "Країна/регіон",
+    "language": "Мова",
+    "error": "Не вдалося завантажити список. Спробуйте ще раз."
+  },
+  "wishlist": {
+    "title": "Обране",
+    "toggle": "Додати {{ title }} в обране",
+    "saved": "Додано в обране",
+    "removed": "Видалено з обраного",
+    "add_to_cart": "Додати {{ title }} до кошика",
+    "choose_options": "Вибрати параметри: {{ title }}",
+    "remove": "Видалити {{ title }} з обраного"
+  }
+}

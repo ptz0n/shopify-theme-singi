@@ -1,0 +1,56 @@
+{% doc %}
+  Quantity stepper: minus button, number input, plus button. Without JavaScript
+  it is a plain number input (the buttons stay invisible but keep their space until assets/quantity-input.js
+  upgrades the element). The buttons use aria-disabled at the limits so keyboard
+  focus is never lost, and a polite live region announces the new value.
+
+  Pair it with a <label for="{{ id }}"> (visible or visually hidden). Stepping
+  fires a normal `change` event, so forms and assets/cart-items.js react as if
+  the number had been typed.
+
+  @param {string} id - id of the input, for the label
+  @param {string} name - name of the input
+  @param {number} value - current quantity
+  @param {number} [min] - lowest value. Default: 1 (0 in the cart removes the line)
+  @param {number} [max] - highest value
+  @param {number} [line] - cart line number: adds data-quantity and data-line for cart-items.js
+
+  @example
+  {% render 'quantity-input', id: 'quantity-main', name: 'quantity', value: 1 %}
+{% enddoc %}
+
+{%- assign min_value = min | default: 1 -%}
+<quantity-input class="qty" data-min="{{ min_value }}">
+  <button class="qty__button" type="button" data-step="-1" aria-controls="{{ id }}" aria-label="{{ 'products.quantity_decrease' | t }}">
+    {%- render 'icon', name: 'minus' -%}
+  </button>
+  <input
+    class="qty__input"
+    id="{{ id }}"
+    name="{{ name }}"
+    type="number"
+    value="{{ value }}"
+    min="{{ min_value }}"
+    {% if max %}max="{{ max }}"{% endif %}
+    inputmode="numeric"
+    autocomplete="off"
+    {% if line %}data-quantity data-line="{{ line }}"{% endif %}
+  >
+  <button class="qty__button" type="button" data-step="1" aria-controls="{{ id }}" aria-label="{{ 'products.quantity_increase' | t }}">
+    {%- render 'icon', name: 'plus' -%}
+  </button>
+  <span class="visually-hidden" role="status" data-qty-live></span>
+</quantity-input>
+
+<script src="{{ 'quantity-input.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .qty { display: inline-flex; align-items: center; border: 1px solid var(--color-control); border-radius: var(--radius); background: var(--color-bg); }
+  .qty__button { display: grid; place-items: center; flex: none; width: calc(3rem - 2px); height: calc(3rem - 2px); padding: 0; border: 0; border-radius: var(--radius); background: none; color: inherit; cursor: pointer; }
+  .qty__button:hover { background: var(--color-surface); }
+  .qty__button[aria-disabled='true'] { opacity: 0.4; cursor: not-allowed; }
+  .qty__button[aria-disabled='true']:hover { background: none; }
+  .qty__input { width: 3.5rem; min-height: calc(3rem - 2px); padding: 0; border: 0; border-radius: 0; background: transparent; text-align: center; font-family: var(--font-mono); appearance: textfield; -moz-appearance: textfield; }
+  .qty__input::-webkit-inner-spin-button, .qty__input::-webkit-outer-spin-button { appearance: none; margin: 0; }
+  quantity-input:not(:defined) .qty__button { visibility: hidden; }
+{% endstylesheet %}

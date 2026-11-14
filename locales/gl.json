@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Páxina non atopada",
+    "body": "A páxina que buscas non existe ou foi movida.",
+    "cta": "Seguir comprando"
+  },
+  "general": {
+    "skip_to_content": "Ir ao contido",
+    "main_menu": "Menú principal",
+    "footer_menu": "Menú do pé de páxina",
+    "search": "Buscar",
+    "account": "Conta",
+    "cart": "Cesta",
+    "toggle_theme": "Cambiar entre modo claro e escuro",
+    "light_mode": "Modo claro",
+    "dark_mode": "Modo escuro",
+    "open_menu": "Menú",
+    "home": "Inicio",
+    "breadcrumbs": "Ruta de navegación",
+    "pagination": "Paxinación",
+    "previous": "Anterior",
+    "next": "Seguinte",
+    "tagged": "Etiquetado como {{ tags }}",
+    "page_number": "Páxina {{ number }}"
+  },
+  "products": {
+    "sold_out": "Esgotado",
+    "recently_viewed": "Vistos recentemente",
+    "add_to_cart": "Engadir á cesta",
+    "added": "Engadido á cesta.",
+    "add_error": "Non se puido engadir á cesta. Téntao de novo.",
+    "view_cart": "Ver cesta",
+    "sale_price": "Prezo de oferta",
+    "regular_price": "Prezo habitual",
+    "quantity": "Cantidade",
+    "sku": "SKU",
+    "type": "Tipo",
+    "availability": "Dispoñibilidade",
+    "in_stock": "En stock",
+    "percent_off": "{{ percent }}% de desconto",
+    "quantity_decrease": "Reducir a cantidade",
+    "quantity_increase": "Aumentar a cantidade"
+  },
+  "collection": {
+    "price_from": "Desde",
+    "price_to": "Ata",
+    "sort_by": "Ordenar por",
+    "apply": "Aplicar filtros",
+    "clear_all": "Borrar filtros",
+    "product_count": {
+      "one": "{{ count }} produto",
+      "other": "{{ count }} produtos"
+    },
+    "empty": "Ningún produto coincide con estes filtros.",
+    "show_more": "Mostrar máis",
+    "showing": "Mostrando {{ shown }} de {{ total }}"
+  },
+  "collections": {
+    "title": "Coleccións"
+  },
+  "cart": {
+    "title": "Cesta",
+    "empty": "A túa cesta está baleira.",
+    "continue": "Seguir comprando",
+    "remove": "Eliminar",
+    "subtotal": "Subtotal",
+    "taxes_note": "Os impostos e o envío calcúlanse ao finalizar a compra.",
+    "update": "Actualizar cesta",
+    "checkout": "Finalizar compra",
+    "error": "Non se puido actualizar a túa cesta. Téntao de novo.",
+    "remove_item": "Quitar {{ title }} da cesta"
+  },
+  "search": {
+    "title": "Buscar",
+    "heading": "“{{ terms }}”",
+    "label": "Buscar na tenda",
+    "placeholder": "Buscar",
+    "submit": "Buscar",
+    "results_count": {
+      "one": "{{ count }} resultado para «{{ terms }}»",
+      "other": "{{ count }} resultados para «{{ terms }}»"
+    },
+    "suggestions": "Suxestións",
+    "results_status": "Resultados: {{ count }}",
+    "products": "Produtos",
+    "pages": "Páxinas e artigos",
+    "type_all": "Todo",
+    "type_article": "Artigos",
+    "type_page": "Páxinas",
+    "show_all": "Mostrar todo para “{{ terms }}”",
+    "no_results": "Non se atoparon resultados. Proba cunha busca diferente."
+  },
+  "password": {
+    "title": "Esta tenda é privada",
+    "label": "Contrasinal",
+    "enter": "Entrar",
+    "owner": "Es o propietario da tenda? Inicia sesión"
+  },
+  "footer": {
+    "newsletter_label": "Únete á lista",
+    "newsletter_placeholder": "Enderezo de correo electrónico",
+    "newsletter_submit": "Subscribirse",
+    "newsletter_success": "Grazas por subscribirte."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Ver todo"
+    }
+  },
+  "gift_card": {
+    "expired": "Esta tarxeta agasallo caducou.",
+    "expires_on": "Caduca o {{ date }}",
+    "use_at_checkout": "Usa este código ao finalizar a compra.",
+    "add_to_apple_wallet": "Engadir a Apple Wallet"
+  },
+  "localization": {
+    "label": "País e idioma",
+    "country": "País/rexión",
+    "language": "Idioma",
+    "error": "Non se puido cargar a lista. Téntao de novo."
+  },
+  "wishlist": {
+    "title": "Favoritos",
+    "toggle": "Gardar {{ title }} en favoritos",
+    "saved": "Gardado en favoritos",
+    "removed": "Eliminado de favoritos",
+    "add_to_cart": "Engadir {{ title }} á cesta",
+    "choose_options": "Escoller as opcións de {{ title }}",
+    "remove": "Quitar {{ title }} de favoritos"
+  }
+}

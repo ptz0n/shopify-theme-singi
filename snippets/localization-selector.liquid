@@ -1,0 +1,107 @@
+{% doc %}
+  Country and language selector, rendered in the footer. Hidden unless the store
+  has more than one country or language.
+
+  Plain markup: one `localization` form whose options are submit buttons, so it
+  works with no JavaScript. Choosing an option posts to Shopify, which sets the
+  market and returns to the current page.
+
+  Performance: `localization.available_countries` can hold about 240 countries
+  on a store with a "Rest of world" market. With more than 12 countries the list
+  is not rendered on page load. It is fetched the first time the selector is
+  opened, through the Section Rendering API (assets/localization.js). That is
+  detected with `section.index`, which is nil in Section Rendering API responses
+  and in the theme editor, so those always get the full list.
+
+  Must be rendered inside a section (it reads `section.id` and `section.index`).
+
+  @example
+  {% render 'localization-selector' %}
+{% enddoc %}
+
+{%- liquid
+  assign countries = localization.available_countries
+  assign languages = localization.available_languages
+  assign show = false
+  if countries.size > 1 or languages.size > 1
+    assign show = true
+  endif
+  assign lazy = false
+  if countries.size > 12 and section.index
+    assign lazy = true
+  endif
+-%}
+
+{%- if show -%}
+  <localization-selector class="loc" data-url="{{ routes.root_url }}?section_id={{ section.id }}" data-error="{{ 'localization.error' | t }}">
+    <details class="loc__details">
+      <summary class="loc__summary">
+        <span class="visually-hidden">{{ 'localization.label' | t }}:</span>
+        <span class="mono">{{ localization.country.name }} ({{ localization.country.currency.iso_code }})</span>
+        <span lang="{{ localization.language.iso_code }}">{{ localization.language.endonym_name }}</span>
+        {%- render 'icon', name: 'chevron-down' -%}
+      </summary>
+
+      <div class="loc__panel" data-localization-list>
+        {%- unless lazy -%}
+          {%- form 'localization', class: 'loc__form' -%}
+            <input type="hidden" name="return_to" value="{{ request.path | default: routes.root_url }}">
+
+            {%- if languages.size > 1 -%}
+              <fieldset class="loc__group">
+                <legend class="eyebrow">{{ 'localization.language' | t }}</legend>
+                <ul role="list">
+                  {%- for language in languages -%}
+                    <li>
+                      <button class="loc__option" type="submit" name="language_code" value="{{ language.iso_code }}" lang="{{ language.iso_code }}"{% if language.iso_code == localization.language.iso_code %} aria-current="true"{% endif %}>
+                        {{ language.endonym_name }}
+                      </button>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </fieldset>
+            {%- endif -%}
+
+            {%- if countries.size > 1 -%}
+              <fieldset class="loc__group">
+                <legend class="eyebrow">{{ 'localization.country' | t }}</legend>
+                <ul role="list">
+                  {%- for country in countries -%}
+                    <li>
+                      <button class="loc__option" type="submit" name="country_code" value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %}>
+                        <span>{{ country.name }}</span>
+                        <span class="mono muted">{{ country.currency.iso_code }}</span>
+                      </button>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </fieldset>
+            {%- endif -%}
+          {%- endform -%}
+        {%- endunless -%}
+      </div>
+    </details>
+  </localization-selector>
+
+  {%- if lazy -%}
+    <script src="{{ 'localization.js' | asset_url }}" type="module"></script>
+  {%- endif -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .loc { position: relative; font-family: var(--font-sans); }
+  .loc__summary { display: inline-flex; align-items: center; gap: 0.75rem; min-height: 2.75rem; padding-inline: 0.75rem; border: 1px solid var(--color-control); border-radius: var(--radius); background: var(--color-bg); color: var(--color-fg); font-size: 0.8125rem; cursor: pointer; list-style: none; }
+  .loc__summary::-webkit-details-marker { display: none; }
+  .loc__details[open] .loc__summary .icon { transform: rotate(180deg); }
+  .loc__panel { margin-block-start: 0.5rem; max-height: 22rem; overflow: auto; padding: 1rem; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); color: var(--color-fg); }
+  .loc__panel[aria-busy='true'] { min-height: 4rem; opacity: 0.6; }
+  .loc__group { min-width: 0; padding: 0; margin: 0 0 1rem; border: 0; }
+  .loc__group:last-child { margin-block-end: 0; }
+  .loc__group ul { padding: 0; margin: 0; list-style: none; }
+  .loc__option { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; min-height: 2.75rem; padding: 0.5rem 0.75rem; border: 0; border-radius: var(--radius); background: none; color: inherit; font: inherit; font-size: 0.875rem; text-align: start; cursor: pointer; }
+  .loc__option:hover { background: var(--color-surface); }
+  .loc__option[aria-current='true'] { background: var(--color-surface); font-weight: var(--font-weight-strong); }
+  @media (min-width: 56em) {
+    .loc__panel { position: absolute; inset-block-end: calc(100% + 0.5rem); inset-inline-end: 0; z-index: 5; width: 22rem; margin: 0; }
+  }
+{% endstylesheet %}

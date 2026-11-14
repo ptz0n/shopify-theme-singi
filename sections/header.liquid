@@ -1,0 +1,166 @@
+{% comment %}
+  Site header. HTML and CSS, with one deferred module for the search. The mobile menu is a popover opened by the button at the
+  start (left in LTR, right in RTL), before the logo; desktop dropdowns are :hover/:focus-within; search is a popover with
+  live results (assets/predictive-search.js, see docs/search.md); the theme toggle is handled by the tiny inline script in
+  snippets/theme-init.liquid. Account and the theme toggle each exist twice, one visible at a time: as rows at the bottom
+  of the mobile menu drawer (.nav__mobile), and as icon buttons in the header actions on desktop (.header__desk), which has
+  no drawer.
+
+  The base header rules live in assets/base.css (inlined in <head>) so the header paints with the first chunk. The
+  popover panels, the search box and the overlay live in this section's stylesheet.
+{% endcomment %}
+
+{%- assign menu = settings.header_menu -%}
+
+<header class="header">
+  <div class="container header__inner">
+    <button class="icon-button nav-toggle" type="button" popovertarget="site-nav" aria-label="{{ 'general.open_menu' | t }}">
+      {%- render 'icon', name: 'menu' -%}
+    </button>
+
+    <a class="header__logo" href="{{ routes.root_url }}">
+      {%- if settings.logo != blank -%}
+        {%- assign logo_sizes = settings.logo_width | append: 'px' -%}
+        {%- render 'image',
+          image: settings.logo,
+          sizes: logo_sizes,
+          widths: '96, 192, 288, 384, 480',
+          width: 480,
+          alt: shop.name,
+          eager: true
+        -%}
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </a>
+
+    <nav id="site-nav" class="nav" popover aria-label="{{ 'general.main_menu' | t }}">
+      <ul role="list">
+        {%- for link in menu.links -%}
+          <li>
+            <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+            {%- if link.links != blank -%}
+              <ul role="list">
+                {%- for child in link.links -%}
+                  <li><a href="{{ child.url }}"{% if child.current %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+      {%- if shop.customer_accounts_enabled -%}
+        <a class="nav__mobile" href="{{ routes.account_url }}">
+          {%- render 'icon', name: 'account' -%}
+          {{ 'general.account' | t }}
+        </a>
+      {%- endif -%}
+      {%- if settings.show_theme_toggle -%}
+        <button class="theme-toggle nav__mobile" type="button" data-theme-toggle>
+          <span class="i-moon">{% render 'icon', name: 'moon' %}{{ 'general.dark_mode' | t }}</span>
+          <span class="i-sun">{% render 'icon', name: 'sun' %}{{ 'general.light_mode' | t }}</span>
+        </button>
+      {%- endif -%}
+    </nav>
+
+    <predictive-search class="search" id="site-search" popover data-url="{{ routes.predictive_search_url }}">
+      <form class="search__form" action="{{ routes.search_url }}" method="get" role="search">
+        <label class="visually-hidden" for="header-search">{{ 'search.label' | t }}</label>
+        <input id="header-search" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}" role="combobox" aria-expanded="false" aria-controls="search-listbox" aria-autocomplete="list" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">
+        <input type="hidden" name="options[prefix]" value="last">
+        <button class="search__submit" type="submit" tabindex="-1" aria-label="{{ 'search.submit' | t }}">
+          {%- render 'icon', name: 'search' -%}
+        </button>
+      </form>
+      <div class="search__results" data-results hidden></div>
+      {%- render 'search-results' -%}
+      <p class="visually-hidden" role="status" data-live></p>
+    </predictive-search>
+
+    <div class="header__actions">
+      <button class="icon-button search-toggle" type="button" popovertarget="site-search" aria-label="{{ 'general.search' | t }}">
+        {%- render 'icon', name: 'search', class: 'i-search' -%}
+        {%- render 'icon', name: 'close', class: 'i-close' -%}
+      </button>
+
+      {%- if settings.show_theme_toggle -%}
+        <button class="icon-button theme-toggle header__desk" type="button" data-theme-toggle aria-label="{{ 'general.toggle_theme' | t }}">
+          {%- render 'icon', name: 'sun', class: 'i-sun' -%}
+          {%- render 'icon', name: 'moon', class: 'i-moon' -%}
+        </button>
+      {%- endif -%}
+
+      {%- if shop.customer_accounts_enabled -%}
+        <a class="icon-button header__desk" href="{{ routes.account_url }}" aria-label="{{ 'general.account' | t }}">
+          {%- render 'icon', name: 'account' -%}
+        </a>
+      {%- endif -%}
+
+      <a class="icon-button" href="{{ routes.cart_url }}">
+        {%- render 'icon', name: 'cart' -%}
+        <span class="visually-hidden">{{ 'general.cart' | t }}</span>
+        <span class="cart-count" data-cart-count data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
+      </a>
+
+    </div>
+  </div>
+</header>
+
+<script src="{{ 'predictive-search.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  /* Rows at the bottom of the mobile menu drawer: Account, and the light/dark toggle. Both are hidden from
+     56em (base.css), where the header has its own Account and theme icon buttons (.header__desk). The
+     toggle names the mode you would switch to, with that mode's icon; base.css shows one of its two spans. */
+  @media (max-width: 55.99em) {
+    /* The divider matches the one in the search dropdown: 8px of air on both sides, inset to the page margins. */
+    .nav ul + .nav__mobile { min-height: 3.5rem; margin-block-start: 0.5rem; padding-block-start: 0.5rem; background: linear-gradient(var(--color-border), var(--color-border)) center top / calc(100% - var(--gutter) * 2) 1px no-repeat; }
+    button.nav__mobile { display: block; width: 100%; min-height: 3rem; padding: 0 var(--gutter); border: 0; border-radius: 0; background: none; color: inherit; font: inherit; font-weight: var(--font-weight-strong); text-align: start; cursor: pointer; }
+    .nav__mobile span { line-height: 3rem; }
+    .nav__mobile .icon { display: inline-block; margin-inline-end: 0.75rem; vertical-align: middle; }
+  }
+
+  /* While the search panel or the menu is open the header's bottom line goes: the panel continues the header, with no rule between them. */
+  .header:has(.nav:popover-open, #site-search:popover-open) { border-bottom-color: transparent; }
+  /* The overlay behind an open menu or search panel. It is the panel's own shadow, clipped at the panel's top edge, so it starts
+     BELOW the panel: the panel (translucent, like the header) then shows the same undimmed page the header does, and the two read as
+     one surface. The popover backdrop stays, transparent, to swallow the click that closes the panel. */
+  .nav:popover-open, .search:popover-open { box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.5); clip-path: inset(0 -100vmax -100vmax); }
+  .nav::backdrop, .search::backdrop { background: transparent; }
+  /* The search button shows an X while its panel is open (the menu button morphs into one the same way). */
+  .search-toggle .i-close { display: none; }
+  .header:has(#site-search:popover-open) .search-toggle .i-search { display: none; }
+  .header:has(#site-search:popover-open) .search-toggle .i-close { display: block; }
+  /* Search: a dropdown panel under the header at every width, opened by the search icon (a popover, like the menu). The field and the
+     suggestions under it (snippets/search-results.liquid) form one box that grows downward; matching products, pages and the "Show all"
+     button follow below it. The panel has no top padding: the header's own 8px below its 48px controls is the gap above the field.
+     Left, right and bottom use the page gutter. The focus ring is on the input alone, drawn inside it so the scrolling panel never clips it. */
+  .search { position: fixed; inset: var(--header-b) 0 auto 0; width: 100%; max-height: calc(100svh - var(--header-b)); margin: 0; padding: 0 var(--gutter) var(--gutter); overflow: auto; border: 0; border-bottom: 1px solid var(--color-border); background: var(--glass); backdrop-filter: blur(12px); color: inherit; }
+  /* The spacing values of the drawer, shared by the panel and the results (snippets/search-results.liquid explains them). */
+  .search { --space: 1.25rem; --line: 1.25rem; --ink: 0.25rem; --part: var(--space); }
+  /* --space is the rhythm between rows; --part is the gap between the PARTS of the drawer (the box, the products, the pages, the button).
+     They are equal on a phone, where height is scarce; a desktop has room, so the parts breathe. */
+  @media (min-width: 56em) { .search { --part: 1.75rem; } }
+  /* Under the last element the panel pads like the page does on its sides (the gutter), but never more than the visible gap above the
+     button (--part + --ink): on wide screens the gutter grows to 32px, and the button would sit further from the panel edge than from the line. */
+  .search { padding-block-end: min(var(--gutter), calc(var(--part) + var(--ink))); }
+  .search > * { max-width: 44rem; margin-inline: auto; }
+  /* The icon inside the field is a pointer and touch shortcut: Enter in the field submits, and Tab goes from the field straight to the suggestions. */
+  .search__form { position: relative; }
+  .search input[type='search'] { padding-inline-end: 3rem; -webkit-appearance: none; appearance: none; }
+  .search input[type='search']:focus-visible { outline-offset: -2px; }
+  .search input::-webkit-search-cancel-button { display: none; }
+  .search__submit { position: absolute; inset-block: 0; inset-inline-end: 0; display: grid; place-items: center; width: 3rem; padding: 0; border: 0; border-radius: var(--radius); background: none; color: inherit; cursor: pointer; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Logo, menu and toggles are configured under Theme settings."
+    }
+  ]
+}
+{% endschema %}

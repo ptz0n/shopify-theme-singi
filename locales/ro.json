@@ -1,0 +1,133 @@
+{
+  "404": {
+    "title": "Pagina nu a fost găsită",
+    "body": "Pagina pe care o căutați nu există sau a fost mutată.",
+    "cta": "Continuă cumpărăturile"
+  },
+  "general": {
+    "skip_to_content": "Salt la conținut",
+    "main_menu": "Meniu principal",
+    "footer_menu": "Meniu subsol",
+    "search": "Căutare",
+    "account": "Cont",
+    "cart": "Coș",
+    "toggle_theme": "Comută între modul luminos și întunecat",
+    "light_mode": "Mod luminos",
+    "dark_mode": "Mod întunecat",
+    "open_menu": "Meniu",
+    "home": "Acasă",
+    "breadcrumbs": "Navigare",
+    "pagination": "Paginare",
+    "previous": "Anterior",
+    "next": "Următor",
+    "tagged": "Etichetat cu {{ tags }}",
+    "page_number": "Pagina {{ number }}"
+  },
+  "products": {
+    "sold_out": "Stoc epuizat",
+    "recently_viewed": "Vizualizate recent",
+    "add_to_cart": "Adaugă în coș",
+    "added": "Adăugat în coș.",
+    "add_error": "Nu s-a putut adăuga în coș. Vă rugăm să încercați din nou.",
+    "view_cart": "Vezi coșul",
+    "sale_price": "Preț redus",
+    "regular_price": "Preț obișnuit",
+    "quantity": "Cantitate",
+    "sku": "SKU",
+    "type": "Tip",
+    "availability": "Disponibilitate",
+    "in_stock": "În stoc",
+    "percent_off": "reducere {{ percent }}%",
+    "quantity_decrease": "Scade cantitatea",
+    "quantity_increase": "Crește cantitatea"
+  },
+  "collection": {
+    "price_from": "De la",
+    "price_to": "Până la",
+    "sort_by": "Sortează după",
+    "apply": "Aplică filtrele",
+    "clear_all": "Șterge filtrele",
+    "product_count": {
+      "one": "{{ count }} produs",
+      "few": "{{ count }} produse",
+      "other": "{{ count }} de produse"
+    },
+    "empty": "Niciun produs nu corespunde acestor filtre.",
+    "show_more": "Afișează mai multe",
+    "showing": "Se afișează {{ shown }} din {{ total }}"
+  },
+  "collections": {
+    "title": "Colecții"
+  },
+  "cart": {
+    "title": "Coș",
+    "empty": "Coșul dvs. este gol.",
+    "continue": "Continuă cumpărăturile",
+    "remove": "Elimină",
+    "subtotal": "Subtotal",
+    "taxes_note": "Taxele și transportul se calculează la finalizarea comenzii.",
+    "update": "Actualizează coșul",
+    "checkout": "Finalizează comanda",
+    "error": "Coșul dvs. nu a putut fi actualizat. Vă rugăm să încercați din nou.",
+    "remove_item": "Elimină {{ title }} din coș"
+  },
+  "search": {
+    "title": "Căutare",
+    "heading": "„{{ terms }}”",
+    "label": "Caută în magazin",
+    "placeholder": "Căutare",
+    "submit": "Caută",
+    "results_count": {
+      "one": "{{ count }} rezultat pentru „{{ terms }}”",
+      "few": "{{ count }} rezultate pentru „{{ terms }}”",
+      "other": "{{ count }} de rezultate pentru „{{ terms }}”"
+    },
+    "suggestions": "Sugestii",
+    "results_status": "Rezultate: {{ count }}",
+    "products": "Produse",
+    "pages": "Pagini și articole",
+    "type_all": "Toate",
+    "type_article": "Articole",
+    "type_page": "Pagini",
+    "show_all": "Afișează tot pentru „{{ terms }}”",
+    "no_results": "Nu am găsit niciun rezultat. Încercați o altă căutare."
+  },
+  "password": {
+    "title": "Acest magazin este privat",
+    "label": "Parolă",
+    "enter": "Intră",
+    "owner": "Proprietarul magazinului? Autentifică-te"
+  },
+  "footer": {
+    "newsletter_label": "Alătură-te listei",
+    "newsletter_placeholder": "Adresă de e-mail",
+    "newsletter_submit": "Abonează-te",
+    "newsletter_success": "Vă mulțumim pentru abonare."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Vezi tot"
+    }
+  },
+  "gift_card": {
+    "expired": "Acest card cadou a expirat.",
+    "expires_on": "Expiră la {{ date }}",
+    "use_at_checkout": "Folosiți acest cod la finalizarea comenzii.",
+    "add_to_apple_wallet": "Adaugă în Apple Wallet"
+  },
+  "localization": {
+    "label": "Țară și limbă",
+    "country": "Țară/regiune",
+    "language": "Limbă",
+    "error": "Lista nu a putut fi încărcată. Încearcă din nou."
+  },
+  "wishlist": {
+    "title": "Favorite",
+    "toggle": "Salvează {{ title }} la favorite",
+    "saved": "Salvat la favorite",
+    "removed": "Eliminat de la favorite",
+    "add_to_cart": "Adaugă {{ title }} în coș",
+    "choose_options": "Alege opțiunile pentru {{ title }}",
+    "remove": "Elimină {{ title }} de la favorite"
+  }
+}

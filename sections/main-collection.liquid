@@ -1,0 +1,75 @@
+{% comment %}
+  Collection page with storefront filtering and sorting.
+
+  Works with no JavaScript: filters are a GET form and pagination is links.
+  assets/facets.js upgrades the <facets-form> wrapper to swap results through
+  the Section Rendering API and push the new URL.
+
+  `paginate` caps how many products are fetched; keep per_page modest.
+{% endcomment %}
+
+{%- paginate collection.products by section.settings.per_page -%}
+  <div class="container section">
+    {%- render 'breadcrumbs', kind: 'collection' -%}
+
+    <header class="collection__head stack">
+      <h1>{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="prose muted">{{ collection.description }}</div>
+      {%- endif -%}
+    </header>
+
+    <facets-form class="collection" data-section-id="{{ section.id }}">
+      {%- render 'facets', source: collection, action: collection.url, clear_url: collection.url -%}
+
+      <p class="mono muted collection__count" role="status">{{ 'collection.product_count' | t: count: collection.products_count }}</p>
+
+      {%- if collection.products.size > 0 -%}
+        <ul class="product-grid" role="list" data-show-more-list>
+          {%- for product in collection.products -%}
+            {%- liquid
+              assign card_eager = false
+              if forloop.index <= 4
+                assign card_eager = true
+              endif
+            -%}
+            {% render 'product-card', product: product, eager: card_eager, heading: 'h2' %}
+          {%- endfor -%}
+        </ul>
+        {%- if settings.tracking_enabled -%}
+          {%- render 'tracking-list', products: collection.products, list_id: collection.handle, list_name: collection.title, offset: paginate.current_offset -%}
+        {%- endif -%}
+        {%- render 'schema-collection', products: collection.products, offset: paginate.current_offset -%}
+        {%- render 'pagination', paginate: paginate, type: section.settings.pagination, page_items: collection.products.size, total: collection.products_count, section_id: section.id -%}
+      {%- else -%}
+        <p>{{ 'collection.empty' | t }}</p>
+      {%- endif -%}
+    </facets-form>
+  </div>
+{%- endpaginate -%}
+
+<script src="{{ 'facets.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .collection__head { margin-block: 1rem 2rem; --stack: 0.75rem; max-width: 48rem; }
+  facets-form[aria-busy='true'] .product-grid { opacity: 0.5; transition: opacity 0.15s; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "range", "id": "per_page", "label": "Products per page", "min": 8, "max": 48, "step": 4, "default": 24 },
+    {
+      "type": "select",
+      "id": "pagination",
+      "label": "Pagination style",
+      "options": [
+        { "value": "show_more", "label": "Show more button" },
+        { "value": "numbered", "label": "Numbered pages" }
+      ],
+      "default": "show_more"
+    }
+  ]
+}
+{% endschema %}

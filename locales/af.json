@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Bladsy nie gevind nie",
+    "body": "Die bladsy waarna jy soek bestaan nie of het geskuif.",
+    "cta": "Gaan voort met inkopies doen"
+  },
+  "general": {
+    "skip_to_content": "Slaan oor na inhoud",
+    "main_menu": "Hoofkieslys",
+    "footer_menu": "Voetkieslys",
+    "search": "Soek",
+    "account": "Rekening",
+    "cart": "Mandjie",
+    "toggle_theme": "Wissel tussen lig- en donkermodus",
+    "light_mode": "Ligte modus",
+    "dark_mode": "Donker modus",
+    "open_menu": "Kieslys",
+    "home": "Tuis",
+    "breadcrumbs": "Broodkrummels",
+    "pagination": "Bladsynommering",
+    "previous": "Vorige",
+    "next": "Volgende",
+    "tagged": "Gemerk {{ tags }}",
+    "page_number": "Bladsy {{ number }}"
+  },
+  "products": {
+    "sold_out": "Uitverkoop",
+    "recently_viewed": "Onlangs besigtig",
+    "add_to_cart": "Voeg by mandjie",
+    "added": "By mandjie gevoeg.",
+    "add_error": "Kon nie by mandjie voeg nie. Probeer asseblief weer.",
+    "view_cart": "Bekyk mandjie",
+    "sale_price": "Uitverkopingsprys",
+    "regular_price": "Gewone prys",
+    "quantity": "Hoeveelheid",
+    "sku": "SKU",
+    "type": "Tipe",
+    "availability": "Beskikbaarheid",
+    "in_stock": "In voorraad",
+    "percent_off": "{{ percent }}% afslag",
+    "quantity_decrease": "Verminder hoeveelheid",
+    "quantity_increase": "Verhoog hoeveelheid"
+  },
+  "collection": {
+    "price_from": "Vanaf",
+    "price_to": "Tot",
+    "sort_by": "Sorteer volgens",
+    "apply": "Pas filters toe",
+    "clear_all": "Maak filters skoon",
+    "product_count": {
+      "one": "{{ count }} produk",
+      "other": "{{ count }} produkte"
+    },
+    "empty": "Geen produkte stem met hierdie filters ooreen nie.",
+    "show_more": "Wys meer",
+    "showing": "Wys {{ shown }} van {{ total }}"
+  },
+  "collections": {
+    "title": "Versamelings"
+  },
+  "cart": {
+    "title": "Mandjie",
+    "empty": "Jou mandjie is leeg.",
+    "continue": "Gaan voort met inkopies doen",
+    "remove": "Verwyder",
+    "subtotal": "Subtotaal",
+    "taxes_note": "Belasting en versending word by die kassa bereken.",
+    "update": "Werk mandjie op",
+    "checkout": "Gaan na kassa",
+    "error": "Kon nie jou mandjie opdateer nie. Probeer asseblief weer.",
+    "remove_item": "Verwyder {{ title }} uit die mandjie"
+  },
+  "search": {
+    "title": "Soek",
+    "heading": "“{{ terms }}”",
+    "label": "Soek in die winkel",
+    "placeholder": "Soek",
+    "submit": "Soek",
+    "results_count": {
+      "one": "{{ count }} resultaat vir “{{ terms }}”",
+      "other": "{{ count }} resultate vir “{{ terms }}”"
+    },
+    "suggestions": "Voorstelle",
+    "results_status": "Resultate: {{ count }}",
+    "products": "Produkte",
+    "pages": "Bladsye en artikels",
+    "type_all": "Alles",
+    "type_article": "Artikels",
+    "type_page": "Bladsye",
+    "show_all": "Wys alles vir “{{ terms }}”",
+    "no_results": "Geen resultate gevind nie. Probeer 'n ander soektog."
+  },
+  "password": {
+    "title": "Hierdie winkel is privaat",
+    "label": "Wagwoord",
+    "enter": "Gaan in",
+    "owner": "Winkeleienaar? Teken in"
+  },
+  "footer": {
+    "newsletter_label": "Sluit by die lys aan",
+    "newsletter_placeholder": "E-posadres",
+    "newsletter_submit": "Teken in",
+    "newsletter_success": "Dankie dat jy ingeteken het."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Bekyk alles"
+    }
+  },
+  "gift_card": {
+    "expired": "Hierdie geskenkbewys het verval.",
+    "expires_on": "Verval op {{ date }}",
+    "use_at_checkout": "Gebruik hierdie kode by die kassa.",
+    "add_to_apple_wallet": "Voeg by Apple Wallet"
+  },
+  "localization": {
+    "label": "Land en taal",
+    "country": "Land/streek",
+    "language": "Taal",
+    "error": "Die lys kon nie gelaai word nie. Probeer asseblief weer."
+  },
+  "wishlist": {
+    "title": "Gunstelinge",
+    "toggle": "Stoor {{ title }} by gunstelinge",
+    "saved": "By gunstelinge gestoor",
+    "removed": "Van gunstelinge verwyder",
+    "add_to_cart": "Voeg {{ title }} by die mandjie",
+    "choose_options": "Kies opsies vir {{ title }}",
+    "remove": "Verwyder {{ title }} van gunstelinge"
+  }
+}

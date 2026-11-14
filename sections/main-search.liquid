@@ -1,0 +1,76 @@
+{% comment %}
+  Search page: server-rendered results. There is no search form here: the header
+  search (sections/header.liquid, see docs/search.md) is the one place to search,
+  and it shows the current terms. Filters and sorting come from snippets/facets.liquid, shared with the collection page. Products reuse the product card; articles and
+  pages render as text rows. Noindexed in meta-tags.
+{% endcomment %}
+
+<div class="container section">
+  <h1 class="search__page-title">{% if search.performed and search.terms != blank %}{{ 'search.heading' | t: terms: search.terms }}{% else %}{{ 'search.title' | t }}{% endif %}</h1>
+
+  {%- if search.performed -%}
+    {%- if search.types.size == 1 -%}{%- assign current_type = search.types.first -%}{%- endif -%}
+    {%- capture search_clear -%}{{ routes.search_url }}?q={{ search.terms | url_encode }}{%- endcapture -%}
+    {%- paginate search.results by 24 -%}
+      <facets-form class="collection" data-section-id="{{ section.id }}">
+      {%- render 'facets', source: search, action: routes.search_url, clear_url: search_clear, q: search.terms, type_filter: true, current_type: current_type -%}
+      <p class="mono muted search__count collection__count" role="status">{{ 'search.results_count' | t: count: search.results_count, terms: search.terms }}</p>
+      {%- if settings.tracking_enabled -%}
+        <script type="application/json" data-track="view_search_results">
+          { "search_term": {{ search.terms | json }}, "results_count": {{ search.results_count }} }
+        </script>
+      {%- endif -%}
+
+      {%- if search.results_count == 0 -%}
+        <p>{{ 'search.no_results' | t }}</p>
+      {%- else -%}
+        <ul class="product-grid" role="list" data-show-more-list>
+          {%- for result in search.results -%}
+            {%- if result.object_type == 'product' -%}
+              {% render 'product-card', product: result, eager: forloop.first, heading: 'h2' %}
+            {%- else -%}
+              <li class="search__row">
+                {%- if result.object_type == 'article' and result.published_at -%}
+                  <p class="eyebrow">{{ result.published_at | time_tag: format: 'date' }}</p>
+                {%- endif -%}
+                <h2 class="search__heading"><a href="{{ result.url }}">{{ result.title }}</a></h2>
+                {%- if result.object_type == 'article' -%}
+                  {%- assign excerpt = result.excerpt_or_content | strip_html | strip_newlines | strip | truncate: 320 -%}
+                {%- else -%}
+                  {%- assign excerpt = result.content | strip_html | strip_newlines | strip | truncate: 320 -%}
+                {%- endif -%}
+                {%- if excerpt != blank -%}<p class="search__excerpt muted">{{ excerpt | escape_once }}</p>{%- endif -%}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        {%- if settings.tracking_enabled -%}
+          {%- render 'tracking-list', products: search.results, list_id: 'search', list_name: 'Search results', only_products: true -%}
+        {%- endif -%}
+        {%- render 'pagination', paginate: paginate, type: 'show_more', page_items: search.results.size, total: search.results_count, section_id: section.id -%}
+      {%- endif -%}
+      </facets-form>
+    {%- endpaginate -%}
+  {%- endif -%}
+</div>
+
+<script src="{{ 'facets.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .search__page-title { margin-block-end: 1.5rem; }
+  .search__count { margin-block: 1rem 1.5rem; font-size: 0.8125rem; }
+  /* Articles and pages span the grid as text rows: they often have no image, so the heading (h2 scale) and an excerpt carry them. The whole row is the link. */
+  .search__row { position: relative; grid-column: 1 / -1; display: grid; gap: 0.5rem; max-width: 48rem; padding-block: 1.25rem; border-block-start: 1px solid var(--color-border); }
+  .search__heading { margin: 0; font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem); }
+  .search__heading a { text-decoration: none; }
+  .search__heading a::after { content: ''; position: absolute; inset: 0; }
+  .search__row:hover .search__heading a { text-decoration: underline; }
+  .search__excerpt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin: 0; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Search",
+  "settings": []
+}
+{% endschema %}

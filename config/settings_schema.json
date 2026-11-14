@@ -1,0 +1,168 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "singi",
+    "theme_version": "0.1.0",
+    "theme_author": "Erik Eng",
+    "theme_documentation_url": "https://github.com/ptz0n/shopify-theme-singi#readme",
+    "theme_support_url": "https://github.com/ptz0n/shopify-theme-singi/issues"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo" },
+      { "type": "range", "id": "logo_width", "label": "Logo width", "min": 40, "max": 240, "step": 4, "unit": "px", "default": 96 },
+      { "type": "image_picker", "id": "placeholder_image", "label": "Product placeholder image", "info": "Shown wherever a product has no image: cards, product page, cart and favorites. Leave empty for a plain neutral block. Use the same shape as your product images (4:5 works best)." },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon", "info": "Square PNG, at least 48x48px." },
+      { "type": "textarea", "id": "social_profiles", "label": "Social profile URLs", "info": "One full URL per line. Published as schema.org sameAs on the home page." }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Only fonts from Shopify's font library are available. They are served from Shopify's CDN and match checkout. Body text loads weights 400 and 600."
+      },
+      { "type": "font_picker", "id": "font_body", "label": "Body and headings", "default": "inter_n4" },
+      { "type": "font_picker", "id": "font_mono", "label": "Monospace accents", "default": "mono", "info": "Used for prices, labels, SKUs and metadata. The default system monospace font costs zero bytes." }
+    ]
+  },
+  {
+    "name": "Colors: light",
+    "settings": [
+      { "type": "color", "id": "light_background", "label": "Background", "default": "#ffffff" },
+      { "type": "color", "id": "light_surface", "label": "Surface", "default": "#f6f6f7" },
+      { "type": "color", "id": "light_foreground", "label": "Text", "default": "#0a0a0b" },
+      { "type": "color", "id": "light_muted", "label": "Muted text", "default": "#5a5a63" },
+      { "type": "color", "id": "light_border", "label": "Border (decorative)", "default": "#e4e4e7" },
+      { "type": "color", "id": "light_control", "label": "Control border (needs 3:1 contrast)", "default": "#8b8b94" },
+      { "type": "color", "id": "light_accent", "label": "Accent", "default": "#1d4ed8" }
+    ]
+  },
+  {
+    "name": "Colors: dark",
+    "settings": [
+      { "type": "color", "id": "dark_background", "label": "Background", "default": "#0a0a0b" },
+      { "type": "color", "id": "dark_surface", "label": "Surface", "default": "#151517" },
+      { "type": "color", "id": "dark_foreground", "label": "Text", "default": "#f4f4f5" },
+      { "type": "color", "id": "dark_muted", "label": "Muted text", "default": "#a1a1aa" },
+      { "type": "color", "id": "dark_border", "label": "Border (decorative)", "default": "#2a2a2e" },
+      { "type": "color", "id": "dark_control", "label": "Control border (needs 3:1 contrast)", "default": "#6b6b75" },
+      { "type": "color", "id": "dark_accent", "label": "Accent", "default": "#7aa2ff" }
+    ]
+  },
+  {
+    "name": "Appearance",
+    "settings": [
+      {
+        "type": "select",
+        "id": "color_mode",
+        "label": "Default color mode",
+        "options": [
+          { "value": "system", "label": "Follow device" },
+          { "value": "light", "label": "Light" },
+          { "value": "dark", "label": "Dark" }
+        ],
+        "default": "system"
+      },
+      { "type": "checkbox", "id": "show_theme_toggle", "label": "Show light/dark toggle in header", "default": true },
+      { "type": "checkbox", "id": "show_percent_off", "label": "Show percentage off on discounted prices", "default": true },
+      {
+        "type": "select",
+        "id": "page_width",
+        "label": "Page width",
+        "options": [
+          { "value": "72rem", "label": "Narrow" },
+          { "value": "84rem", "label": "Standard" },
+          { "value": "100rem", "label": "Wide" }
+        ],
+        "default": "84rem"
+      },
+      { "type": "range", "id": "radius", "label": "Corner radius", "min": 0, "max": 16, "step": 1, "unit": "px", "default": 6 }
+    ]
+  },
+  {
+    "name": "Navigation",
+    "settings": [
+      { "type": "link_list", "id": "header_menu", "label": "Header menu", "default": "main-menu" },
+      { "type": "link_list", "id": "footer_menu", "label": "Footer menu", "default": "footer" },
+      { "type": "link_list", "id": "breadcrumb_menu", "label": "Breadcrumb menu", "default": "main-menu", "info": "A collection nested under another item in this menu gets that item as its parent in breadcrumbs (up to three levels). Collection metafields override it. Leave empty to use the metafields only." }
+    ]
+  },
+  {
+    "name": "Performance",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Soft navigation swaps only the main content area and keeps the header and footer mounted. It does not run Shopify's page-load analytics or consent hooks, so verify your tracking before enabling it."
+      },
+      { "type": "checkbox", "id": "soft_navigation", "label": "Enable soft navigation with skeletons", "default": false },
+      { "type": "checkbox", "id": "view_transitions", "label": "Enable cross-fade page transitions", "default": false },
+      {
+        "type": "select",
+        "id": "speculation",
+        "label": "Prefetch links (Chromium)",
+        "info": "Ignored when soft navigation is on, which prefetches on its own.",
+        "options": [
+          { "value": "off", "label": "Off (Shopify default only)" },
+          { "value": "moderate", "label": "On hover (recommended)" }
+        ],
+        "default": "moderate"
+      }
+    ]
+  },
+  {
+    "name": "Tracking",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "GA4 ecommerce events pushed to the dataLayer: page_view, view_item_list, select_item, view_item, add_to_cart, remove_from_cart, view_cart, view_search_results, generate_lead. Checkout events (begin_checkout to purchase) come from the Customer Events pixel in scripts/pixels. Off by default; nothing is rendered or loaded when off."
+      },
+      { "type": "checkbox", "id": "tracking_enabled", "label": "Enable ecommerce dataLayer events", "default": false },
+      { "type": "text", "id": "gtm_container_id", "label": "Google Tag Manager container ID", "placeholder": "GTM-XXXXXXX" },
+      { "type": "text", "id": "ga4_measurement_id", "label": "GA4 measurement ID (used only without a GTM ID)", "placeholder": "G-XXXXXXXXXX" },
+      {
+        "type": "select",
+        "id": "tracking_load",
+        "label": "Load GTM or gtag",
+        "info": "After interaction keeps Lighthouse clean but loses sessions that never interact.",
+        "options": [
+          { "value": "idle", "label": "When the browser is idle (recommended)" },
+          { "value": "interaction", "label": "After the first interaction" }
+        ],
+        "default": "idle"
+      },
+      {
+        "type": "select",
+        "id": "tracking_consent",
+        "label": "Consent",
+        "options": [
+          { "value": "shopify", "label": "Google Consent Mode v2, driven by Shopify Customer Privacy" },
+          { "value": "none", "label": "Do not manage consent here" }
+        ],
+        "default": "shopify"
+      },
+      { "type": "checkbox", "id": "tracking_debug", "label": "Log events to the browser console", "default": false }
+    ]
+  },
+  {
+    "name": "Favorites",
+    "settings": [
+      { "type": "checkbox", "id": "wishlist_enabled", "label": "Enable favorites", "default": true, "info": "Saved per device in the browser (localStorage) and shown on the cart page. No account needed." },
+      { "type": "checkbox", "id": "wishlist_cards", "label": "Show a heart on product cards", "default": true, "info": "Adds one button per card. Turn off to keep grids as light as possible; the product page button stays." }
+    ]
+  },
+  {
+    "name": "Developer",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "styleguide_enabled",
+        "label": "Enable the component library page",
+        "default": false,
+        "info": "Developer tool for the page template page.styleguide: every component, an accessibility audit and live measurements. Renders nothing when off. Keep off on production stores."
+      }
+    ]
+  }
+]

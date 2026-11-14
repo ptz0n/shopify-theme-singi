@@ -1,0 +1,21 @@
+{% comment %}
+  Not found page.
+{% endcomment %}
+
+<div class="container section nf stack">
+  <p class="eyebrow">404</p>
+  <h1>{{ '404.title' | t }}</h1>
+  <p class="muted">{{ '404.body' | t }}</p>
+  <a class="button" href="{{ routes.all_products_collection_url }}">{{ '404.cta' | t }}</a>
+</div>
+
+{% stylesheet %}
+  .nf { justify-items: start; min-height: 50svh; align-content: center; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Not found",
+  "settings": []
+}
+{% endschema %}

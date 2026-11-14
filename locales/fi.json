@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Sivua ei löytynyt",
+    "body": "Etsimääsi sivua ei ole olemassa tai se on siirretty.",
+    "cta": "Jatka ostoksia"
+  },
+  "general": {
+    "skip_to_content": "Siirry sisältöön",
+    "main_menu": "Päävalikko",
+    "footer_menu": "Alatunnisteen valikko",
+    "search": "Haku",
+    "account": "Tili",
+    "cart": "Ostoskori",
+    "toggle_theme": "Vaihda vaalean ja tumman tilan välillä",
+    "light_mode": "Vaalea tila",
+    "dark_mode": "Tumma tila",
+    "open_menu": "Valikko",
+    "home": "Etusivu",
+    "breadcrumbs": "Navigointipolku",
+    "pagination": "Sivutus",
+    "previous": "Edellinen",
+    "next": "Seuraava",
+    "tagged": "Tunniste: {{ tags }}",
+    "page_number": "Sivu {{ number }}"
+  },
+  "products": {
+    "sold_out": "Loppuunmyyty",
+    "recently_viewed": "Äskettäin katsotut",
+    "add_to_cart": "Lisää ostoskoriin",
+    "added": "Lisätty ostoskoriin.",
+    "add_error": "Ostoskoriin lisääminen epäonnistui. Yritä uudelleen.",
+    "view_cart": "Näytä ostoskori",
+    "sale_price": "Alennushinta",
+    "regular_price": "Normaalihinta",
+    "quantity": "Määrä",
+    "sku": "Tuotenumero",
+    "type": "Tyyppi",
+    "availability": "Saatavuus",
+    "in_stock": "Varastossa",
+    "percent_off": "{{ percent }} % alennus",
+    "quantity_decrease": "Vähennä määrää",
+    "quantity_increase": "Lisää määrää"
+  },
+  "collection": {
+    "price_from": "Alkaen",
+    "price_to": "Asti",
+    "sort_by": "Lajittele",
+    "apply": "Käytä suodattimia",
+    "clear_all": "Tyhjennä suodattimet",
+    "product_count": {
+      "one": "{{ count }} tuote",
+      "other": "{{ count }} tuotetta"
+    },
+    "empty": "Mikään tuote ei vastaa valittuja suodattimia.",
+    "show_more": "Näytä lisää",
+    "showing": "Näytetään {{ shown }} / {{ total }}"
+  },
+  "collections": {
+    "title": "Kokoelmat"
+  },
+  "cart": {
+    "title": "Ostoskori",
+    "empty": "Ostoskorisi on tyhjä.",
+    "continue": "Jatka ostoksia",
+    "remove": "Poista",
+    "subtotal": "Välisumma",
+    "taxes_note": "Verot ja toimituskulut lasketaan kassalla.",
+    "update": "Päivitä ostoskori",
+    "checkout": "Siirry kassalle",
+    "error": "Ostoskorin päivittäminen epäonnistui. Yritä uudelleen.",
+    "remove_item": "Poista {{ title }} ostoskorista"
+  },
+  "search": {
+    "title": "Haku",
+    "heading": "“{{ terms }}”",
+    "label": "Hae kaupasta",
+    "placeholder": "Hae",
+    "submit": "Hae",
+    "results_count": {
+      "one": "{{ count }} tulos haulle ”{{ terms }}”",
+      "other": "{{ count }} tulosta haulle ”{{ terms }}”"
+    },
+    "suggestions": "Ehdotukset",
+    "results_status": "Tulokset: {{ count }}",
+    "products": "Tuotteet",
+    "pages": "Sivut ja artikkelit",
+    "type_all": "Kaikki",
+    "type_article": "Artikkelit",
+    "type_page": "Sivut",
+    "show_all": "Näytä kaikki haulle “{{ terms }}”",
+    "no_results": "Tuloksia ei löytynyt. Kokeile eri hakusanaa."
+  },
+  "password": {
+    "title": "Tämä kauppa on yksityinen",
+    "label": "Salasana",
+    "enter": "Jatka",
+    "owner": "Kaupan omistaja? Kirjaudu sisään"
+  },
+  "footer": {
+    "newsletter_label": "Liity postituslistalle",
+    "newsletter_placeholder": "Sähköpostiosoite",
+    "newsletter_submit": "Tilaa",
+    "newsletter_success": "Kiitos tilauksesta."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Näytä kaikki"
+    }
+  },
+  "gift_card": {
+    "expired": "Tämä lahjakortti on vanhentunut.",
+    "expires_on": "Voimassa {{ date }} asti",
+    "use_at_checkout": "Käytä tämä koodi kassalla.",
+    "add_to_apple_wallet": "Lisää Apple Walletiin"
+  },
+  "localization": {
+    "label": "Maa ja kieli",
+    "country": "Maa/alue",
+    "language": "Kieli",
+    "error": "Luetteloa ei voitu ladata. Yritä uudelleen."
+  },
+  "wishlist": {
+    "title": "Suosikit",
+    "toggle": "Tallenna {{ title }} suosikkeihin",
+    "saved": "Tallennettu suosikkeihin",
+    "removed": "Poistettu suosikeista",
+    "add_to_cart": "Lisää {{ title }} ostoskoriin",
+    "choose_options": "Valitse vaihtoehdot: {{ title }}",
+    "remove": "Poista {{ title }} suosikeista"
+  }
+}

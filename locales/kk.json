@@ -1,0 +1,131 @@
+{
+  "404": {
+    "title": "Бет табылмады",
+    "body": "Сіз іздеген бет жоқ немесе басқа жерге көшірілген.",
+    "cta": "Сатып алуды жалғастыру"
+  },
+  "general": {
+    "skip_to_content": "Мазмұнға өту",
+    "main_menu": "Негізгі мәзір",
+    "footer_menu": "Төменгі мәзір",
+    "search": "Іздеу",
+    "account": "Аккаунт",
+    "cart": "Себет",
+    "toggle_theme": "Жарық және қараңғы режимді ауыстыру",
+    "light_mode": "Ашық режим",
+    "dark_mode": "Қараңғы режим",
+    "open_menu": "Мәзір",
+    "home": "Басты бет",
+    "breadcrumbs": "Навигация жолы",
+    "pagination": "Беттеу",
+    "previous": "Алдыңғы",
+    "next": "Келесі",
+    "tagged": "Тег: {{ tags }}",
+    "page_number": "{{ number }}-бет"
+  },
+  "products": {
+    "sold_out": "Сатылып кетті",
+    "recently_viewed": "Жуырда қаралған",
+    "add_to_cart": "Себетке салу",
+    "added": "Себетке салынды.",
+    "add_error": "Себетке салу мүмкін болмады. Қайталап көріңіз.",
+    "view_cart": "Себетті көру",
+    "sale_price": "Жеңілдік бағасы",
+    "regular_price": "Әдеттегі баға",
+    "quantity": "Саны",
+    "sku": "SKU",
+    "type": "Түрі",
+    "availability": "Қолжетімділік",
+    "in_stock": "Қоймада бар",
+    "percent_off": "{{ percent }}% жеңілдік",
+    "quantity_decrease": "Санын азайту",
+    "quantity_increase": "Санын көбейту"
+  },
+  "collection": {
+    "price_from": "Бастап",
+    "price_to": "Дейін",
+    "sort_by": "Сұрыптау",
+    "apply": "Сүзгілерді қолдану",
+    "clear_all": "Сүзгілерді тазалау",
+    "product_count": {
+      "one": "{{ count }} тауар",
+      "other": "{{ count }} тауар"
+    },
+    "empty": "Бұл сүзгілерге сәйкес тауар жоқ.",
+    "show_more": "Тағы көрсету",
+    "showing": "{{ total }} ішінен {{ shown }} көрсетілді"
+  },
+  "collections": {
+    "title": "Топтамалар"
+  },
+  "cart": {
+    "title": "Себет",
+    "empty": "Себетіңіз бос.",
+    "continue": "Сатып алуды жалғастыру",
+    "remove": "Жою",
+    "subtotal": "Аралық сома",
+    "taxes_note": "Салықтар мен жеткізу құны төлем кезінде есептеледі.",
+    "update": "Себетті жаңарту",
+    "checkout": "Төлемге өту",
+    "error": "Себетті жаңарту мүмкін болмады. Қайталап көріңіз.",
+    "remove_item": "{{ title }} себеттен жою"
+  },
+  "search": {
+    "title": "Іздеу",
+    "heading": "«{{ terms }}»",
+    "label": "Дүкеннен іздеу",
+    "placeholder": "Іздеу",
+    "submit": "Іздеу",
+    "results_count": {
+      "one": "«{{ terms }}» бойынша {{ count }} нәтиже",
+      "other": "«{{ terms }}» бойынша {{ count }} нәтиже"
+    },
+    "suggestions": "Ұсыныстар",
+    "results_status": "Нәтижелер: {{ count }}",
+    "products": "Өнімдер",
+    "pages": "Беттер мен мақалалар",
+    "type_all": "Барлығы",
+    "type_article": "Мақалалар",
+    "type_page": "Беттер",
+    "show_all": "«{{ terms }}» бойынша барлығын көрсету",
+    "no_results": "Ештеңе табылмады. Басқа сөзбен іздеп көріңіз."
+  },
+  "password": {
+    "title": "Бұл дүкен жабық",
+    "label": "Құпиясөз",
+    "enter": "Кіру",
+    "owner": "Дүкен иесі ме? Кіру"
+  },
+  "footer": {
+    "newsletter_label": "Тізімге қосылыңыз",
+    "newsletter_placeholder": "Электрондық пошта мекенжайы",
+    "newsletter_submit": "Жазылу",
+    "newsletter_success": "Жазылғаныңыз үшін рахмет."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Барлығын көру"
+    }
+  },
+  "gift_card": {
+    "expired": "Бұл сыйлық картасының мерзімі аяқталған.",
+    "expires_on": "Жарамдылық мерзімі: {{ date }}",
+    "use_at_checkout": "Бұл кодты төлем кезінде пайдаланыңыз.",
+    "add_to_apple_wallet": "Apple Wallet-ке қосу"
+  },
+  "localization": {
+    "label": "Ел және тіл",
+    "country": "Ел/аймақ",
+    "language": "Тіл",
+    "error": "Тізімді жүктеу мүмкін болмады. Қайталап көріңіз."
+  },
+  "wishlist": {
+    "title": "Таңдаулылар",
+    "toggle": "{{ title }} тауарын таңдаулыларға сақтау",
+    "saved": "Таңдаулыларға сақталды",
+    "removed": "Таңдаулылардан жойылды",
+    "add_to_cart": "{{ title }} себетке қосу",
+    "choose_options": "{{ title }} үшін опцияларды таңдау",
+    "remove": "{{ title }} тауарын таңдаулылардан жою"
+  }
+}

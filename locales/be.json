@@ -1,0 +1,135 @@
+{
+  "404": {
+    "title": "Старонка не знойдзена",
+    "body": "Старонка, якую вы шукаеце, не існуе або была перамешчана.",
+    "cta": "Працягнуць пакупкі"
+  },
+  "general": {
+    "skip_to_content": "Перайсці да змесціва",
+    "main_menu": "Галоўнае меню",
+    "footer_menu": "Меню ў ніжняй частцы",
+    "search": "Пошук",
+    "account": "Акаўнт",
+    "cart": "Кошык",
+    "toggle_theme": "Пераключыць светлы і цёмны рэжым",
+    "light_mode": "Светлы рэжым",
+    "dark_mode": "Цёмны рэжым",
+    "open_menu": "Меню",
+    "home": "Галоўная",
+    "breadcrumbs": "Навігацыйны шлях",
+    "pagination": "Пастаронкавая навігацыя",
+    "previous": "Папярэдняя",
+    "next": "Наступная",
+    "tagged": "Тэг: {{ tags }}",
+    "page_number": "Старонка {{ number }}"
+  },
+  "products": {
+    "sold_out": "Прададзена",
+    "recently_viewed": "Нядаўна прагледжанае",
+    "add_to_cart": "Дадаць у кошык",
+    "added": "Дададзена ў кошык.",
+    "add_error": "Не ўдалося дадаць у кошык. Паспрабуйце яшчэ раз.",
+    "view_cart": "Паглядзець кошык",
+    "sale_price": "Цана са зніжкай",
+    "regular_price": "Звычайная цана",
+    "quantity": "Колькасць",
+    "sku": "Артыкул",
+    "type": "Тып",
+    "availability": "Наяўнасць",
+    "in_stock": "У наяўнасці",
+    "percent_off": "зніжка {{ percent }}%",
+    "quantity_decrease": "Паменшыць колькасць",
+    "quantity_increase": "Павялічыць колькасць"
+  },
+  "collection": {
+    "price_from": "Ад",
+    "price_to": "Да",
+    "sort_by": "Сартаваць па",
+    "apply": "Ужыць фільтры",
+    "clear_all": "Ачысціць фільтры",
+    "product_count": {
+      "one": "{{ count }} тавар",
+      "few": "{{ count }} тавары",
+      "many": "{{ count }} тавараў",
+      "other": "{{ count }} тавару"
+    },
+    "empty": "Няма тавараў, якія адпавядаюць гэтым фільтрам.",
+    "show_more": "Паказаць яшчэ",
+    "showing": "Паказана {{ shown }} з {{ total }}"
+  },
+  "collections": {
+    "title": "Калекцыі"
+  },
+  "cart": {
+    "title": "Кошык",
+    "empty": "Ваш кошык пусты.",
+    "continue": "Працягнуць пакупкі",
+    "remove": "Выдаліць",
+    "subtotal": "Прамежкавая сума",
+    "taxes_note": "Падаткі і дастаўка разлічваюцца пры афармленні заказу.",
+    "update": "Абнавіць кошык",
+    "checkout": "Афармленне заказу",
+    "error": "Не ўдалося абнавіць ваш кошык. Паспрабуйце яшчэ раз.",
+    "remove_item": "Выдаліць {{ title }} з кошыка"
+  },
+  "search": {
+    "title": "Пошук",
+    "heading": "«{{ terms }}»",
+    "label": "Пошук па краме",
+    "placeholder": "Пошук",
+    "submit": "Шукаць",
+    "results_count": {
+      "one": "{{ count }} вынік па запыце «{{ terms }}»",
+      "few": "{{ count }} вынікі па запыце «{{ terms }}»",
+      "many": "{{ count }} вынікаў па запыце «{{ terms }}»",
+      "other": "{{ count }} выніку па запыце «{{ terms }}»"
+    },
+    "suggestions": "Падказкі",
+    "results_status": "Вынікі: {{ count }}",
+    "products": "Тавары",
+    "pages": "Старонкі і артыкулы",
+    "type_all": "Усе",
+    "type_article": "Артыкулы",
+    "type_page": "Старонкі",
+    "show_all": "Паказаць усё для «{{ terms }}»",
+    "no_results": "Нічога не знойдзена. Паспрабуйце іншы запыт."
+  },
+  "password": {
+    "title": "Гэта крама зачыненая",
+    "label": "Пароль",
+    "enter": "Увайсці",
+    "owner": "Уладальнік крамы? Увайсці"
+  },
+  "footer": {
+    "newsletter_label": "Далучайцеся да рассылкі",
+    "newsletter_placeholder": "Адрас электроннай пошты",
+    "newsletter_submit": "Падпісацца",
+    "newsletter_success": "Дзякуем за падпіску."
+  },
+  "sections": {
+    "featured": {
+      "view_all": "Паглядзець усе"
+    }
+  },
+  "gift_card": {
+    "expired": "Тэрмін дзеяння гэтай падарункавай карты скончыўся.",
+    "expires_on": "Дзейнічае да {{ date }}",
+    "use_at_checkout": "Выкарыстайце гэты код пры аплаце.",
+    "add_to_apple_wallet": "Дадаць у Apple Wallet"
+  },
+  "localization": {
+    "label": "Краіна і мова",
+    "country": "Краіна/рэгіён",
+    "language": "Мова",
+    "error": "Не ўдалося загрузіць спіс. Паспрабуйце яшчэ раз."
+  },
+  "wishlist": {
+    "title": "Абранае",
+    "toggle": "Захаваць {{ title }} у абранае",
+    "saved": "Захавана ў абранае",
+    "removed": "Выдалена з абранага",
+    "add_to_cart": "Дадаць {{ title }} у кошык",
+    "choose_options": "Выбраць параметры: {{ title }}",
+    "remove": "Выдаліць {{ title }} з абранага"
+  }
+}
