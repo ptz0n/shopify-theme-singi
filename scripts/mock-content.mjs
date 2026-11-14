@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * Creates mock content on the dev store with the custom app token from `.env`:
- * products (edge cases), collections, a page, a blog with articles, and the
- * header and footer menus. Idempotent: anything that already exists is skipped.
+ * products (edge cases, and a niche catalog, see docs/mock-catalog.md), collections, a page,
+ * a blog with articles, and the header and footer menus. Idempotent: anything that already exists is skipped.
  *
  *   npm run mock:plan                      print what would be created (default, no network)
  *   npm run mock:apply                     create it
@@ -20,7 +20,8 @@
 import { admin, domain, userErrors } from './lib/admin.mjs';
 import { OPS } from './lib/mock-ops.mjs';
 import { gradientPng } from './lib/png.mjs';
-import { BLOG, COLLECTIONS, PAGES, PRODUCTS, SIBLING_GROUPS, TAG, imageSize } from './mock-data.mjs';
+import { BLOG, COLLECTIONS, NICHE_DEFINITIONS, PAGES, PRODUCTS, SIBLING_GROUPS, TAG, imageSize } from './mock-data.mjs';
+import { ensureDefinitions } from './lib/metafield-definitions.mjs';
 import { defineMetafields, linkGroup } from './lib/siblings.mjs';
 
 const argv = process.argv.slice(2);
@@ -151,6 +152,26 @@ const stageImage = async (seed) => {
   return target.resourceUrl;
 };
 
+/* One variant. Option extras from scripts/mock-data.mjs: prices, units (unit price measurement) and
+   variantMetafields, keyed by option value; the product's soldOutValues make a variant unavailable. */
+const variantInput = (p, options, optionValues, index) => {
+  const extra = (key) => optionValues.map(({ optionName, name }) => options.find((o) => o.name === optionName)?.[key]?.[name]).filter(Boolean);
+  const price = extra('prices').at(-1) ?? p.price;
+  const [unit] = extra('units');
+  const metafields = extra('variantMetafields').flat();
+  const unavailable = p.soldOut || optionValues.some(({ optionName, name }) => p.soldOutValues?.[optionName]?.includes(name));
+  return {
+    optionValues,
+    price,
+    ...(p.compareAt ? { compareAtPrice: p.compareAt } : {}),
+    sku: `${p.handle}-${index + 1}`,
+    inventoryPolicy: unavailable ? 'DENY' : 'CONTINUE',
+    ...(unavailable ? { inventoryItem: { tracked: true } } : {}),
+    ...(unit ? { unitPriceMeasurement: unit, showUnitPrice: true } : {}),
+    ...(metafields.length ? { metafields: metafields.map((m) => ({ namespace: 'custom', ...m })) } : {}),
+  };
+};
+
 const productInput = async (p) => {
   const options = p.options.length ? p.options : [{ name: 'Title', values: ['Default Title'] }];
   const combos = options.reduce((acc, o) => acc.flatMap((combo) => o.values.map((name) => [...combo, { optionName: o.name, name }])), [[]]);
@@ -163,14 +184,8 @@ const productInput = async (p) => {
     tags: [TAG],
     status: 'ACTIVE',
     productOptions: options.map((o) => ({ name: o.name, values: o.values.map((name) => ({ name })) })),
-    variants: combos.map((optionValues, i) => ({
-      optionValues,
-      price: p.price,
-      ...(p.compareAt ? { compareAtPrice: p.compareAt } : {}),
-      sku: `${p.handle}-${i + 1}`,
-      inventoryPolicy: p.soldOut ? 'DENY' : 'CONTINUE',
-      ...(p.soldOut ? { inventoryItem: { tracked: true } } : {}),
-    })),
+    ...(p.metafields?.length ? { metafields: p.metafields.map((m) => ({ namespace: 'custom', ...m })) } : {}),
+    variants: combos.map((optionValues, i) => variantInput(p, options, optionValues, i)),
     files: [
       ...(await Promise.all(p.images.map(async (seed, i) => ({ originalSource: await stageImage(seed), contentType: 'IMAGE', alt: `${p.title} ${i + 1}` })))),
       ...(p.externalVideo ? [{ originalSource: p.externalVideo.url, contentType: 'EXTERNAL_VIDEO', alt: p.externalVideo.alt }] : []),
@@ -197,6 +212,12 @@ const assignVariantImages = async (productId, p) => {
   }
   if (variantMedia.length) check(await admin(OPS.variantAppendMedia, { productId, variantMedia }), `${p.handle} variant images`);
 };
+
+if (wants('products') && !clean) {
+  await attempt('metafields', 'definitions', async () => {
+    for (const row of await ensureDefinitions(NICHE_DEFINITIONS, { apply: true })) if (row.status !== 'exists') log(row.status === 'created' ? 'created' : 'FAILED', 'metafield', row.label, row.status === 'created' ? '' : row.status);
+  });
+}
 
 const productIds = new Map();
 if (wants('products') || wants('collections')) {

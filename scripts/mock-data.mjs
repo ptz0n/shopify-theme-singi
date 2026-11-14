@@ -366,3 +366,365 @@ export const imageSize = (seed) => {
   if (seed.startsWith('pano')) return [2400, 800];
   return [1000, 1250];
 };
+
+/* ---------- Niche catalog ----------
+   Two products per merchant niche, with the data each shopper persona needs (see docs/mock-catalog.md):
+   unit prices, measurement and text metafields (namespace "custom"), per-variant dimensions,
+   sold-out sizes, long option ranges and personalization fields. The copy reads like a real
+   store on purpose, so screenshots and reviews of the theme are not full of test text.
+   Option extras: prices { value: price }, units { value: unit price measurement },
+   variantMetafields { value: [metafield] }. Product extras: soldOutValues { option: [values] },
+   metafields [{ key, type, value }]. */
+
+/* Measurement metafield value. Units: dimension cm, mm; weight kg, g; power watts; area square_meters (Shopify rejects W and m2). */
+const measure = (value, unit) => JSON.stringify({ value, unit });
+const list = (...values) => JSON.stringify(values);
+
+export const NICHE_DEFINITIONS = [
+  { ownerType: 'PRODUCT', key: 'fit_notes', name: 'Fit notes', type: 'single_line_text_field', description: 'How the product fits, for example "Regular fit. Model is 185 cm and wears size M."' },
+  { ownerType: 'PRODUCT', key: 'size_chart', name: 'Size chart', type: 'multi_line_text_field', description: 'A plain-text size chart, one row per size.' },
+  { ownerType: 'PRODUCT', key: 'material', name: 'Material', type: 'single_line_text_field', description: 'Main material or composition.' },
+  { ownerType: 'PRODUCT', key: 'care', name: 'Care', type: 'multi_line_text_field', description: 'Care instructions.' },
+  { ownerType: 'PRODUCT', key: 'ingredients', name: 'Ingredients', type: 'multi_line_text_field', description: 'Full ingredient list (INCI for cosmetics).' },
+  { ownerType: 'PRODUCT', key: 'allergens', name: 'Allergens', type: 'list.single_line_text_field', description: 'Allergens the product contains or may contain.' },
+  { ownerType: 'PRODUCT', key: 'compatible_with', name: 'Compatible with', type: 'list.single_line_text_field', description: 'Devices or systems the product works with.' },
+  { ownerType: 'PRODUCT', key: 'weight', name: 'Weight', type: 'weight', description: 'Product weight.' },
+  { ownerType: 'PRODUCT', key: 'packed_length', name: 'Packed length', type: 'dimension', description: 'Packed length.' },
+  { ownerType: 'PRODUCT', key: 'power', name: 'Power', type: 'power', description: 'Rated power.' },
+  { ownerType: 'PRODUCT', key: 'battery_hours', name: 'Battery life (hours)', type: 'number_integer', description: 'Battery life in hours.' },
+  { ownerType: 'PRODUCT', key: 'waterproof_mm', name: 'Waterproof rating (mm)', type: 'number_integer', description: 'Hydrostatic head in millimetres.' },
+  { ownerType: 'PRODUCT', key: 'warranty', name: 'Warranty', type: 'single_line_text_field', description: 'Warranty terms in one line.' },
+  { ownerType: 'PRODUCT', key: 'case_diameter', name: 'Case diameter', type: 'dimension', description: 'Watch case diameter.' },
+  { ownerType: 'PRODUCT', key: 'production_days', name: 'Production time (days)', type: 'number_integer', description: 'Working days to make a made-to-order product, before shipping.' },
+  { ownerType: 'PRODUCT', key: 'edition', name: 'Edition', type: 'single_line_text_field', description: 'Edition information for prints and art.' },
+  { ownerType: 'PRODUCT', key: 'personalization_label', name: 'Personalization label', type: 'single_line_text_field', description: 'Label of the personalization field, for example "Engraving".' },
+  { ownerType: 'PRODUCT', key: 'personalization_max_length', name: 'Personalization max length', type: 'number_integer', description: 'Maximum characters in the personalization text.' },
+  { ownerType: 'PRODUCTVARIANT', key: 'width', name: 'Width', type: 'dimension', description: 'Width of this variant.' },
+  { ownerType: 'PRODUCTVARIANT', key: 'depth', name: 'Depth', type: 'dimension', description: 'Depth of this variant.' },
+  { ownerType: 'PRODUCTVARIANT', key: 'height', name: 'Height', type: 'dimension', description: 'Height of this variant.' },
+  { ownerType: 'PRODUCTVARIANT', key: 'area', name: 'Area', type: 'area', description: 'Area covered by this variant.' },
+].map((d) => ({ namespace: 'custom', ...d }));
+
+const SHADES = ['Fair', 'Light', 'Medium', 'Tan', 'Deep', 'Rich'].flatMap((tone) => ['Cool', 'Neutral', 'Warm', 'Olive'].map((undertone) => `${tone} ${undertone}`));
+const apparelSizes = ['XS', 'S', 'M', 'L', 'XL'];
+const dimsFor = (w, d, h) => [
+  { key: 'width', type: 'dimension', value: measure(w, 'cm') },
+  { key: 'depth', type: 'dimension', value: measure(d, 'cm') },
+  { key: 'height', type: 'dimension', value: measure(h, 'cm') },
+];
+const niche = (slug, fields) => ({ handle: `mock-${slug}`, vendor: 'Singi', images: [`niche-${slug}-1`, `niche-${slug}-2`], ...fields });
+
+PRODUCTS.push(
+  /* Fashion */
+  niche('merino-sweater', {
+    title: 'Merino Crew Sweater',
+    type: 'Knitwear',
+    price: '129.00',
+    description: '<p>A fine-gauge merino sweater that sits close without clinging. Soft against the skin and warm without bulk.</p><ul><li>100% extra-fine merino wool</li><li>Ribbed neck, cuffs and hem</li><li>Machine washable at 30 degrees</li></ul>',
+    options: [
+      { name: 'Color', values: ['Navy', 'Oat', 'Moss'] },
+      { name: 'Size', values: apparelSizes },
+    ],
+    soldOutValues: { Size: ['XL'] },
+    collections: ['mock-fashion', 'mock-new-arrivals'],
+    metafields: [
+      { key: 'fit_notes', type: 'single_line_text_field', value: 'Regular fit. Model is 185 cm and wears size M.' },
+      { key: 'material', type: 'single_line_text_field', value: '100% extra-fine merino wool' },
+      { key: 'care', type: 'multi_line_text_field', value: 'Machine wash at 30 degrees, wool cycle.\nReshape and dry flat.\nDo not tumble dry.' },
+      { key: 'size_chart', type: 'multi_line_text_field', value: 'XS: chest 88 cm\nS: chest 94 cm\nM: chest 100 cm\nL: chest 106 cm\nXL: chest 112 cm' },
+    ],
+  }),
+  niche('leather-boot', {
+    title: 'Leather Ankle Boot',
+    type: 'Footwear',
+    price: '249.00',
+    description: '<p>A resoleable ankle boot in full-grain leather with a Goodyear welt. Breaks in within a week and lasts for years.</p>',
+    options: [
+      { name: 'Color', values: ['Black', 'Tan'] },
+      { name: 'Size', values: ['EU 38', 'EU 39', 'EU 40', 'EU 41', 'EU 42', 'EU 43'] },
+    ],
+    soldOutValues: { Size: ['EU 40', 'EU 41'] },
+    collections: ['mock-fashion'],
+    metafields: [
+      { key: 'fit_notes', type: 'single_line_text_field', value: 'Runs half a size large. Order your usual size or half a size down.' },
+      { key: 'material', type: 'single_line_text_field', value: 'Full-grain calf leather, leather lining, rubber sole' },
+    ],
+  }),
+  /* Jewelry and watches */
+  niche('signet-ring', {
+    title: 'Signet Ring',
+    type: 'Rings',
+    price: '189.00',
+    description: '<p>A solid signet ring with a flat oval face, cast and finished by hand. Wear it on the little finger or stack it.</p>',
+    options: [
+      { name: 'Metal', values: ['Gold', 'Silver'], prices: { Gold: '189.00', Silver: '119.00' } },
+      { name: 'Ring size', values: ['48', '50', '52', '54', '56', '58', '60'] },
+    ],
+    soldOutValues: { 'Ring size': ['60'] },
+    images: ['square-signet-ring-1', 'square-signet-ring-2'],
+    collections: ['mock-jewelry'],
+    metafields: [
+      { key: 'material', type: 'single_line_text_field', value: '9 carat solid gold, or sterling silver 925' },
+      { key: 'warranty', type: 'single_line_text_field', value: 'Lifetime warranty on materials and workmanship' },
+      { key: 'production_days', type: 'number_integer', value: '4' },
+      { key: 'personalization_label', type: 'single_line_text_field', value: 'Engraving (inside the band)' },
+      { key: 'personalization_max_length', type: 'number_integer', value: '16' },
+    ],
+  }),
+  niche('field-watch', {
+    title: 'Field Watch 38 mm',
+    type: 'Watches',
+    price: '245.00',
+    description: '<p>A simple three-hand field watch with a sapphire crystal and an automatic movement. Legible at a glance, built for daily wear.</p>',
+    options: [{ name: 'Strap', values: ['Leather', 'Steel bracelet', 'NATO'], prices: { Leather: '245.00', 'Steel bracelet': '275.00', NATO: '225.00' } }],
+    images: ['square-field-watch-1', 'square-field-watch-2'],
+    collections: ['mock-jewelry'],
+    metafields: [
+      { key: 'case_diameter', type: 'dimension', value: measure(38, 'mm') },
+      { key: 'weight', type: 'weight', value: measure(62, 'g') },
+      { key: 'waterproof_mm', type: 'number_integer', value: '100' },
+      { key: 'warranty', type: 'single_line_text_field', value: '5 years international warranty' },
+      { key: 'material', type: 'single_line_text_field', value: 'Stainless steel case, sapphire crystal, automatic movement' },
+    ],
+  }),
+  /* Beauty */
+  niche('skin-tint', {
+    title: 'Skin Tint Foundation',
+    type: 'Complexion',
+    price: '34.00',
+    description: '<p>A light, buildable skin tint with a natural finish. Twenty-four shades, matched by tone and undertone, with SPF 20.</p>',
+    options: [{ name: 'Shade', values: SHADES }],
+    collections: ['mock-beauty'],
+    metafields: [
+      { key: 'ingredients', type: 'multi_line_text_field', value: 'Aqua, Caprylic/Capric Triglyceride, Glycerin, Zinc Oxide, Titanium Dioxide, Squalane, Niacinamide, Tocopherol, Mica, Iron Oxides (CI 77491, CI 77492, CI 77499).' },
+      { key: 'care', type: 'multi_line_text_field', value: 'Shake well. Apply with fingertips or a damp sponge. Use within 12 months of opening.' },
+    ],
+  }),
+  niche('barrier-serum', {
+    title: 'Barrier Repair Serum',
+    type: 'Skincare',
+    price: '28.00',
+    description: '<p>A fragrance-free serum with ceramides, niacinamide and panthenol. Supports the skin barrier and calms redness.</p>',
+    options: [
+      {
+        name: 'Size',
+        values: ['30 ml', '50 ml'],
+        prices: { '30 ml': '28.00', '50 ml': '39.00' },
+        units: {
+          '30 ml': { quantityValue: 30, quantityUnit: 'ML', referenceValue: 100, referenceUnit: 'ML' },
+          '50 ml': { quantityValue: 50, quantityUnit: 'ML', referenceValue: 100, referenceUnit: 'ML' },
+        },
+      },
+    ],
+    collections: ['mock-beauty'],
+    metafields: [
+      { key: 'ingredients', type: 'multi_line_text_field', value: 'Aqua, Glycerin, Niacinamide, Panthenol, Ceramide NP, Ceramide AP, Ceramide EOP, Phytosphingosine, Cholesterol, Sodium Hyaluronate, Allantoin, Xanthan Gum, Phenoxyethanol.' },
+      { key: 'allergens', type: 'list.single_line_text_field', value: list('Fragrance-free') },
+    ],
+  }),
+  /* Food and drink */
+  niche('coffee-beans', {
+    title: 'Single-Origin Coffee, Huila',
+    type: 'Coffee',
+    price: '14.00',
+    description: '<p>A washed Colombian coffee from smallholders in Huila. Red apple, caramel and a clean finish. Roasted to order and shipped within two days.</p>',
+    options: [
+      {
+        name: 'Size',
+        values: ['250 g', '1 kg'],
+        prices: { '250 g': '14.00', '1 kg': '48.00' },
+        units: {
+          '250 g': { quantityValue: 250, quantityUnit: 'G', referenceValue: 1, referenceUnit: 'KG' },
+          '1 kg': { quantityValue: 1, quantityUnit: 'KG', referenceValue: 1, referenceUnit: 'KG' },
+        },
+      },
+      { name: 'Grind', values: ['Whole bean', 'Espresso', 'Filter'] },
+    ],
+    images: ['square-coffee-beans-1', 'square-coffee-beans-2'],
+    collections: ['mock-food'],
+    metafields: [
+      { key: 'ingredients', type: 'multi_line_text_field', value: '100% Arabica coffee beans.' },
+      { key: 'allergens', type: 'list.single_line_text_field', value: list('Packed in a facility that also handles nuts and milk') },
+      { key: 'care', type: 'multi_line_text_field', value: 'Store airtight, away from light and heat. Best within 6 weeks of the roast date.' },
+    ],
+  }),
+  niche('olive-oil', {
+    title: 'Cold-Pressed Olive Oil',
+    type: 'Pantry',
+    price: '16.00',
+    description: '<p>An early-harvest extra virgin olive oil from a single family estate. Peppery, green and fresh.</p>',
+    options: [
+      {
+        name: 'Size',
+        values: ['500 ml', '750 ml', '3 L'],
+        prices: { '500 ml': '16.00', '750 ml': '22.00', '3 L': '72.00' },
+        units: {
+          '500 ml': { quantityValue: 500, quantityUnit: 'ML', referenceValue: 1, referenceUnit: 'L' },
+          '750 ml': { quantityValue: 750, quantityUnit: 'ML', referenceValue: 1, referenceUnit: 'L' },
+          '3 L': { quantityValue: 3, quantityUnit: 'L', referenceValue: 1, referenceUnit: 'L' },
+        },
+      },
+    ],
+    images: ['square-olive-oil-1', 'square-olive-oil-2'],
+    collections: ['mock-food'],
+    metafields: [
+      { key: 'ingredients', type: 'multi_line_text_field', value: 'Extra virgin olive oil, early harvest.' },
+      { key: 'allergens', type: 'list.single_line_text_field', value: list('No allergens') },
+    ],
+  }),
+  /* Electronics */
+  niche('headphones', {
+    title: 'Noise-Cancelling Headphones',
+    type: 'Audio',
+    price: '299.00',
+    description: '<p>Over-ear headphones with adaptive noise cancelling, multipoint Bluetooth and a battery that lasts the week.</p>',
+    options: [{ name: 'Color', values: ['Black', 'Silver'] }],
+    collections: ['mock-electronics', 'mock-new-arrivals'],
+    metafields: [
+      { key: 'weight', type: 'weight', value: measure(254, 'g') },
+      { key: 'battery_hours', type: 'number_integer', value: '40' },
+      { key: 'warranty', type: 'single_line_text_field', value: '2 years' },
+      { key: 'compatible_with', type: 'list.single_line_text_field', value: list('iPhone and iPad', 'Android 8 and newer', 'Mac and Windows', 'Bluetooth 5.3 and multipoint') },
+    ],
+  }),
+  niche('usb-charger', {
+    title: 'USB-C GaN Charger 65 W',
+    type: 'Chargers',
+    price: '49.00',
+    description: '<p>A compact two-port GaN charger that powers a laptop and a phone at the same time.</p>',
+    options: [],
+    collections: ['mock-electronics'],
+    metafields: [
+      { key: 'power', type: 'power', value: measure(65, 'watts') },
+      { key: 'weight', type: 'weight', value: measure(112, 'g') },
+      { key: 'warranty', type: 'single_line_text_field', value: '2 years' },
+      { key: 'compatible_with', type: 'list.single_line_text_field', value: list('MacBook Air and Pro (USB-C)', 'iPhone 15 and newer', 'Pixel 8 and newer', 'Nintendo Switch and Steam Deck') },
+    ],
+  }),
+  /* Home and furniture */
+  niche('oak-table', {
+    title: 'Oak Dining Table',
+    type: 'Tables',
+    price: '890.00',
+    description: '<p>A solid oak dining table with a hand-oiled finish and a slim trestle base. Delivered flat-packed with the legs ready to fit in minutes.</p>',
+    options: [
+      {
+        name: 'Size',
+        values: ['160 cm', '200 cm', '240 cm'],
+        prices: { '160 cm': '890.00', '200 cm': '1090.00', '240 cm': '1290.00' },
+        variantMetafields: { '160 cm': dimsFor(160, 90, 75), '200 cm': dimsFor(200, 95, 75), '240 cm': dimsFor(240, 100, 75) },
+      },
+    ],
+    images: ['wide-oak-table-1', 'wide-oak-table-2'],
+    collections: ['mock-home'],
+    metafields: [
+      { key: 'material', type: 'single_line_text_field', value: 'Solid European oak, hand-oiled' },
+      { key: 'weight', type: 'weight', value: measure(48, 'kg') },
+      { key: 'production_days', type: 'number_integer', value: '15' },
+      { key: 'care', type: 'multi_line_text_field', value: 'Wipe with a damp cloth. Re-oil once a year.' },
+    ],
+  }),
+  niche('wool-rug', {
+    title: 'Hand-Knotted Wool Rug',
+    type: 'Rugs',
+    price: '420.00',
+    description: '<p>A dense hand-knotted wool rug in an undyed natural palette. Each piece varies slightly, which is the point.</p>',
+    options: [
+      {
+        name: 'Size',
+        values: ['170 x 240 cm', '200 x 300 cm'],
+        prices: { '170 x 240 cm': '420.00', '200 x 300 cm': '690.00' },
+        variantMetafields: {
+          '170 x 240 cm': [{ key: 'area', type: 'area', value: measure(4.08, 'square_meters') }],
+          '200 x 300 cm': [{ key: 'area', type: 'area', value: measure(6, 'square_meters') }],
+        },
+      },
+    ],
+    images: ['wide-wool-rug-1', 'wide-wool-rug-2'],
+    collections: ['mock-home'],
+    metafields: [
+      { key: 'material', type: 'single_line_text_field', value: '100% New Zealand wool, cotton foundation' },
+      { key: 'production_days', type: 'number_integer', value: '10' },
+    ],
+  }),
+  /* Outdoor and sports */
+  niche('trail-tent', {
+    title: 'Three-Season Trail Tent, 2 Person',
+    type: 'Tents',
+    price: '389.00',
+    description: '<p>A freestanding two-person tent that packs small and pitches in under five minutes. Two doors, two vestibules, and room for the gear.</p>',
+    options: [{ name: 'Color', values: ['Forest', 'Dusk'] }],
+    images: ['wide-trail-tent-1', 'wide-trail-tent-2'],
+    collections: ['mock-outdoor'],
+    metafields: [
+      { key: 'weight', type: 'weight', value: measure(2.1, 'kg') },
+      { key: 'packed_length', type: 'dimension', value: measure(46, 'cm') },
+      { key: 'waterproof_mm', type: 'number_integer', value: '3000' },
+      { key: 'warranty', type: 'single_line_text_field', value: '3 years, repairs for life' },
+    ],
+  }),
+  niche('shell-jacket', {
+    title: 'Waterproof Shell Jacket',
+    type: 'Jackets',
+    price: '279.00',
+    description: '<p>A three-layer waterproof shell for wet days on the trail. Fully taped seams, a helmet-compatible hood and pit zips.</p>',
+    options: [
+      { name: 'Color', values: ['Black', 'Rust'] },
+      { name: 'Size', values: apparelSizes },
+    ],
+    soldOutValues: { Size: ['XS'] },
+    collections: ['mock-outdoor', 'mock-fashion'],
+    metafields: [
+      { key: 'fit_notes', type: 'single_line_text_field', value: 'Regular fit with room for a mid-layer. Model is 180 cm and wears size M.' },
+      { key: 'waterproof_mm', type: 'number_integer', value: '20000' },
+      { key: 'weight', type: 'weight', value: measure(410, 'g') },
+      { key: 'size_chart', type: 'multi_line_text_field', value: 'XS: chest 86 cm\nS: chest 92 cm\nM: chest 98 cm\nL: chest 104 cm\nXL: chest 110 cm' },
+      { key: 'care', type: 'multi_line_text_field', value: 'Wash at 30 degrees with a technical-fabric detergent. Tumble dry low to reactivate the water repellency.' },
+    ],
+  }),
+  /* Art and made-to-order */
+  niche('framed-print', {
+    title: 'Personalized Star Map Print',
+    type: 'Prints',
+    price: '59.00',
+    description: '<p>A print of the night sky from a date and place that matter to you. Printed on archival cotton paper and framed by hand.</p>',
+    options: [
+      { name: 'Size', values: ['30 x 40 cm', '50 x 70 cm', '70 x 100 cm'], prices: { '30 x 40 cm': '59.00', '50 x 70 cm': '99.00', '70 x 100 cm': '149.00' } },
+      { name: 'Frame', values: ['No frame', 'Oak', 'Black'] },
+    ],
+    images: ['niche-framed-print-1', 'niche-framed-print-2'],
+    collections: ['mock-made-to-order'],
+    metafields: [
+      { key: 'production_days', type: 'number_integer', value: '5' },
+      { key: 'personalization_label', type: 'single_line_text_field', value: 'Place and date, printed under the map' },
+      { key: 'personalization_max_length', type: 'number_integer', value: '40' },
+      { key: 'edition', type: 'single_line_text_field', value: 'Made to order, one print per order' },
+    ],
+  }),
+  niche('cutting-board', {
+    title: 'Engraved Walnut Cutting Board',
+    type: 'Kitchen',
+    price: '75.00',
+    description: '<p>A solid walnut cutting board, oiled and ready to use. Add a name or a short message and we engrave it on the corner.</p>',
+    options: [{ name: 'Size', values: ['Small', 'Large'], prices: { Small: '75.00', Large: '110.00' } }],
+    images: ['niche-cutting-board-1', 'niche-cutting-board-2'],
+    collections: ['mock-made-to-order', 'mock-home'],
+    metafields: [
+      { key: 'material', type: 'single_line_text_field', value: 'Solid walnut, food-safe oil finish' },
+      { key: 'production_days', type: 'number_integer', value: '3' },
+      { key: 'personalization_label', type: 'single_line_text_field', value: 'Engraving' },
+      { key: 'personalization_max_length', type: 'number_integer', value: '24' },
+    ],
+  }),
+);
+
+COLLECTIONS.push(
+  { handle: 'mock-fashion', title: 'Fashion', description: '<p>Knitwear, footwear and technical layers, with the size and fit information you need before you order.</p>' },
+  { handle: 'mock-jewelry', title: 'Jewelry and watches', description: '<p>Rings and watches in solid metals, with warranty on every piece.</p>' },
+  { handle: 'mock-beauty', title: 'Beauty', description: '<p>Skincare and complexion, with full ingredient lists and shades matched by tone and undertone.</p>' },
+  { handle: 'mock-food', title: 'Food and drink', description: '<p>Coffee and pantry staples, priced per kilo and per litre so sizes are easy to compare.</p>' },
+  { handle: 'mock-electronics', title: 'Electronics', description: '<p>Audio and charging gear, with specs and compatibility spelled out.</p>' },
+  { handle: 'mock-home', title: 'Home', description: '<p>Furniture and decor in natural materials, with exact dimensions for every size.</p>' },
+  { handle: 'mock-outdoor', title: 'Outdoor', description: '<p>Tents and shell layers, with weights and waterproof ratings you can compare.</p>' },
+  { handle: 'mock-made-to-order', title: 'Made to order', description: '<p>Personalized prints and engraved pieces, made in a few working days.</p>' },
+);
