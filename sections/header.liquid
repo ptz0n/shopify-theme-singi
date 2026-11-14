@@ -55,6 +55,12 @@
           {{ 'general.account' | t }}
         </a>
       {%- endif -%}
+      {%- if settings.wishlist_enabled -%}
+        <a class="nav__mobile" href="{{ routes.cart_url }}#favorites">
+          {%- render 'icon', name: 'heart' -%}
+          {{ 'wishlist.title' | t }} <span class="nav__count" data-wishlist-count data-count="0"></span>
+        </a>
+      {%- endif -%}
       {%- if settings.show_theme_toggle -%}
         <button class="theme-toggle nav__mobile" type="button" data-theme-toggle>
           <span class="i-moon">{% render 'icon', name: 'moon' %}{{ 'general.dark_mode' | t }}</span>
@@ -96,6 +102,14 @@
         </a>
       {%- endif -%}
 
+      {%- if settings.wishlist_enabled -%}
+        <a class="icon-button header__desk" href="{{ routes.cart_url }}#favorites">
+          {%- render 'icon', name: 'heart' -%}
+          <span class="visually-hidden">{{ 'wishlist.title' | t }}</span>
+          <span class="cart-count" data-wishlist-count data-count="0">0</span>
+        </a>
+      {%- endif -%}
+
       <a class="icon-button" href="{{ routes.cart_url }}">
         {%- render 'icon', name: 'cart' -%}
         <span class="visually-hidden">{{ 'general.cart' | t }}</span>
@@ -117,6 +131,10 @@
     .nav ul + .nav__mobile { min-height: 3.5rem; margin-block-start: 0.5rem; padding-block-start: 0.5rem; background: linear-gradient(var(--color-border), var(--color-border)) center top / calc(100% - var(--gutter) * 2) 1px no-repeat; }
     button.nav__mobile { display: block; width: 100%; min-height: 3rem; padding: 0 var(--gutter); border: 0; border-radius: 0; background: none; color: inherit; font: inherit; font-weight: var(--font-weight-strong); text-align: start; cursor: pointer; }
     .nav__mobile span { line-height: 3rem; }
+    .nav__count { margin-inline-start: 0.375rem; }
+    .nav__count[data-count='0'] { display: none; }
+    .nav__count::before { content: '('; }
+    .nav__count::after { content: ')'; }
     .nav__mobile .icon { display: inline-block; margin-inline-end: 0.75rem; vertical-align: middle; }
   }
 

@@ -91,6 +91,12 @@ document.addEventListener('click', async (event) => {
 
 for (const type of ['singi:navigate', 'singi:facets', 'singi:variant']) document.addEventListener(type, () => sync());
 addEventListener('pageshow', () => sync());
+const count = () => {
+  const n = read().length;
+  for (const el of document.querySelectorAll('[data-wishlist-count]')) el.dataset.count = el.textContent = n;
+};
+document.addEventListener('singi:wishlist', count);
+count();
 addEventListener('storage', (event) => {
   if (event.key !== KEY) return;
   sync();

@@ -20,4 +20,4 @@ Size in bytes (before Shopify's CDN compression) and where each asset is referen
 | `assets/styleguide.js` | 12560 | `sections/main-styleguide.liquid` |
 | `assets/tracking.js` | 6431 | `layout/theme.liquid` |
 | `assets/utils.js` | 1135 | `layout/theme.liquid` |
-| `assets/wishlist.js` | 7318 | `layout/theme.liquid` |
+| `assets/wishlist.js` | 7541 | `layout/theme.liquid` |

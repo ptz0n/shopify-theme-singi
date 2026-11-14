@@ -104,9 +104,10 @@ The four checks asked of every finished feature: **reuse** (is there one impleme
 | Product type on cards (off by default) | one setting; `.eyebrow` class | Type from the admin, nothing when blank | no cost with it off: collection render 31.8 to 35.4 ms against 33.8 to 36.8 ms before, card snippet 10.0 to 11.6 ms against 11.8 to 12.3 ms | `test:card-type`, both modes |
 | Result count on the filter line | the shared filter bar renders it (`count` parameter), one live region | same class the route announcer reads | no cost: it moved, it was not added | `test:facets`, 78 checks |
 | Grid and list view toggle | one snippet, the variant picker's chip pattern, two icons | [decision 010](decisions/010-grid-and-list-view-without-javascript.md), 3 strings in 62 locales | +250 B delivered CSS, 0 JS; collection render 31.7 to 31.8 ms against 31.8 to 35.4 ms before | `test:view`, 146 checks |
+| Favorites link with a count in the header | the cart's badge and link pattern; `wishlist.js` already announces every change | [decision 011](decisions/011-favorites-link-in-the-header.md), WCAG 2.5.3 (the number is in the accessible name) | `wishlist.js` +50 B delivered (2,004 to 2,054 B), CSS +28 B; JS budget raised to 17,400 on purpose; home render 42 to 51 ms against 45.7 ms before | `test:favorites-link`, 16 checks |
 | App blocks (`@app`) in content and product sections | one schema entry per section | accepted by `shopify theme check` and the theme push | 0 | not testable here: needs an app on the store |
 
-Delivered totals after all of the above (CDN, brotli): CSS 6.6 KB; JavaScript 5.5 KB (home), 6.5 KB (collection), 8.4 KB (product). Not yet measured: Lighthouse Performance, Best practices and LCP, which need a run against the real storefront ([testing.md](testing.md#results)).
+Delivered totals after all of the above (CDN, brotli): CSS 6.7 KB; JavaScript 5.5 KB (home), 6.5 KB (collection), 8.4 KB (product). Not yet measured: Lighthouse Performance, Best practices and LCP, which need a run against the real storefront ([testing.md](testing.md#results)).
 
 ## Debugging playbook
 
