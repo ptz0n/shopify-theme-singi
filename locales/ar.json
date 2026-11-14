@@ -137,6 +137,8 @@
     "saved": "تم الحفظ في المفضلة",
     "removed": "تمت الإزالة من المفضلة",
     "add_to_cart": "أضف {{ title }} إلى السلة",
+    "added_to_cart": "{{ title }} موجود في سلتك",
+    "go_to_product": "انتقل إلى {{ title }}",
     "choose_options": "اختر خيارات {{ title }}",
     "remove": "إزالة {{ title }} من المفضلة"
   }

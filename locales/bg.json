@@ -129,6 +129,8 @@
     "saved": "Запазено в любими",
     "removed": "Премахнато от любими",
     "add_to_cart": "Добави {{ title }} в количката",
+    "added_to_cart": "{{ title }} е във вашата количка",
+    "go_to_product": "Към {{ title }}",
     "choose_options": "Избери опции за {{ title }}",
     "remove": "Премахни {{ title }} от любими"
   }

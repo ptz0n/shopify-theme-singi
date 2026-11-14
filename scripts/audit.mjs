@@ -20,6 +20,7 @@
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
+import { signed } from './lib/crawl-sign.mjs';
 
 const require = createRequire(import.meta.url);
 let puppeteer;
@@ -103,10 +104,10 @@ const inPage = () => {
   return out;
 };
 
-const browser = await puppeteer.launch({
+const browser = signed(await puppeteer.launch({
   executablePath: process.env.SINGI_CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   headless: true,
-});
+}), base);
 
 const findings = new Map();
 const note = (key, severity, where) => {

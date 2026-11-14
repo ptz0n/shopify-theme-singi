@@ -129,6 +129,8 @@
     "saved": "મનપસંદમાં સાચવ્યું",
     "removed": "મનપસંદમાંથી દૂર કર્યું",
     "add_to_cart": "{{ title }} કાર્ટમાં ઉમેરો",
+    "added_to_cart": "{{ title }} તમારા કાર્ટમાં છે",
+    "go_to_product": "{{ title }} પર જાઓ",
     "choose_options": "{{ title }} માટે વિકલ્પો પસંદ કરો",
     "remove": "મનપસંદમાંથી {{ title }} દૂર કરો"
   }

@@ -10,6 +10,7 @@
  * Env and setup as for npm run test:media. Needs the niche catalog (npm run mock:apply), whose
  * products use templates/product.demo.json (labels bound to the custom.* metafields).
  */
+import { signed } from './lib/crawl-sign.mjs';
 const base = (process.env.SINGI_URL || 'http://127.0.0.1:9292').replace(/\/$/, '');
 const preview = process.env.SINGI_THEME_ID ? `?preview_theme_id=${process.env.SINGI_THEME_ID}` : '';
 let puppeteer;
@@ -20,10 +21,10 @@ try {
   process.exit(2);
 }
 
-const browser = await puppeteer.launch({
+const browser = signed(await puppeteer.launch({
   executablePath: process.env.SINGI_CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   headless: true,
-});
+}), base);
 let failures = 0;
 let checks = 0;
 const ok = (condition, message) => {

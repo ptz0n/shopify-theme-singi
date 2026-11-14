@@ -129,6 +129,8 @@
     "saved": "Opgeslagen in favorieten",
     "removed": "Verwijderd uit favorieten",
     "add_to_cart": "{{ title }} in winkelwagen",
+    "added_to_cart": "{{ title }} zit in je winkelwagen",
+    "go_to_product": "Ga naar {{ title }}",
     "choose_options": "Opties kiezen voor {{ title }}",
     "remove": "{{ title }} verwijderen uit favorieten"
   }

@@ -133,6 +133,8 @@
     "saved": "Išsaugota mėgstamiausiuose",
     "removed": "Pašalinta iš mėgstamiausių",
     "add_to_cart": "Įdėti {{ title }} į krepšelį",
+    "added_to_cart": "{{ title }} yra jūsų krepšelyje",
+    "go_to_product": "Eiti į {{ title }}",
     "choose_options": "Pasirinkti {{ title }} parinktis",
     "remove": "Pašalinti {{ title }} iš mėgstamiausių"
   }

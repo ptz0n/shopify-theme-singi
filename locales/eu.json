@@ -129,6 +129,8 @@
     "saved": "Gogokoetan gorde da",
     "removed": "Gogokoetatik kendu da",
     "add_to_cart": "Gehitu {{ title }} saskira",
+    "added_to_cart": "{{ title }} zure saskian dago",
+    "go_to_product": "Joan {{ title }} orrira",
     "choose_options": "Aukeratu {{ title }}(r)en aukerak",
     "remove": "Kendu {{ title }} gogokoetatik"
   }

@@ -13,6 +13,7 @@
  *   npm install --no-save puppeteer-core
  * The products come from `npm run mock:apply` (four colors linked, the last one sold out).
  */
+import { signed } from './lib/crawl-sign.mjs';
 const base = (process.env.SINGI_URL || 'http://127.0.0.1:9292').replace(/\/$/, '');
 const preview = process.env.SINGI_THEME_ID ? `preview_theme_id=${process.env.SINGI_THEME_ID}` : '';
 
@@ -32,10 +33,10 @@ const GROUP = [
 ];
 
 const url = (path) => `${base}${path}${preview ? `${path.includes('?') ? '&' : '?'}${preview}` : ''}`;
-const browser = await puppeteer.launch({
+const browser = signed(await puppeteer.launch({
   executablePath: process.env.SINGI_CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   headless: true,
-});
+}), base);
 
 let failures = 0;
 let checks = 0;

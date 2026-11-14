@@ -133,6 +133,8 @@
     "saved": "Uložené do obľúbených",
     "removed": "Odstránené z obľúbených",
     "add_to_cart": "Pridať {{ title }} do košíka",
+    "added_to_cart": "{{ title }} je vo vašom košíku",
+    "go_to_product": "Prejsť na {{ title }}",
     "choose_options": "Vybrať možnosti pre {{ title }}",
     "remove": "Odstrániť {{ title }} z obľúbených"
   }

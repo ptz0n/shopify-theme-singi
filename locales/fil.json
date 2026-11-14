@@ -129,6 +129,8 @@
     "saved": "Na-save sa mga paborito",
     "removed": "Inalis sa mga paborito",
     "add_to_cart": "Idagdag ang {{ title }} sa cart",
+    "added_to_cart": "Nasa cart mo ang {{ title }}",
+    "go_to_product": "Pumunta sa {{ title }}",
     "choose_options": "Pumili ng mga opsyon para sa {{ title }}",
     "remove": "Alisin ang {{ title }} sa mga paborito"
   }

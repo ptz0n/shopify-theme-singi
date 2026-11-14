@@ -129,6 +129,8 @@
     "saved": "در علاقه‌مندی‌ها ذخیره شد",
     "removed": "از علاقه‌مندی‌ها حذف شد",
     "add_to_cart": "افزودن {{ title }} به سبد خرید",
+    "added_to_cart": "{{ title }} در سبد خرید شماست",
+    "go_to_product": "رفتن به {{ title }}",
     "choose_options": "انتخاب گزینه‌های {{ title }}",
     "remove": "حذف {{ title }} از علاقه‌مندی‌ها"
   }

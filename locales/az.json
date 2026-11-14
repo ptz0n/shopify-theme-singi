@@ -129,6 +129,8 @@
     "saved": "Sevimlilərə əlavə edildi",
     "removed": "Sevimlilərdən silindi",
     "add_to_cart": "{{ title }} məhsulunu səbətə əlavə et",
+    "added_to_cart": "{{ title }} səbətinizdədir",
+    "go_to_product": "{{ title }} səhifəsinə keç",
     "choose_options": "{{ title }} üçün seçimləri seç",
     "remove": "{{ title }} məhsulunu sevimlilərdən sil"
   }

@@ -127,6 +127,8 @@
     "saved": "Disimpan ke kegemaran",
     "removed": "Dialih keluar daripada kegemaran",
     "add_to_cart": "Tambah {{ title }} ke troli",
+    "added_to_cart": "{{ title }} ada dalam troli anda",
+    "go_to_product": "Pergi ke {{ title }}",
     "choose_options": "Pilih pilihan untuk {{ title }}",
     "remove": "Alih keluar {{ title }} daripada kegemaran"
   }

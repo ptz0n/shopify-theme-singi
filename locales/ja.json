@@ -127,6 +127,8 @@
     "saved": "お気に入りに保存しました",
     "removed": "お気に入りから削除しました",
     "add_to_cart": "{{ title }}をカートに追加",
+    "added_to_cart": "{{ title }}はカートに入っています",
+    "go_to_product": "{{ title }}へ移動",
     "choose_options": "{{ title }}のオプションを選択",
     "remove": "{{ title }}をお気に入りから削除"
   }

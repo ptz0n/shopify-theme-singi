@@ -129,6 +129,8 @@
     "saved": "Favorilere kaydedildi",
     "removed": "Favorilerden kaldırıldı",
     "add_to_cart": "{{ title }} ürününü sepete ekle",
+    "added_to_cart": "{{ title }} sepetinizde",
+    "go_to_product": "{{ title }} sayfasına git",
     "choose_options": "{{ title }} için seçenekleri belirle",
     "remove": "{{ title }} ürününü favorilerden kaldır"
   }

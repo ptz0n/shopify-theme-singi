@@ -127,6 +127,8 @@
     "saved": "즐겨찾기에 저장했습니다",
     "removed": "즐겨찾기에서 삭제했습니다",
     "add_to_cart": "{{ title }} 장바구니에 담기",
+    "added_to_cart": "{{ title }}이(가) 장바구니에 있습니다",
+    "go_to_product": "{{ title }}(으)로 이동",
     "choose_options": "{{ title }} 옵션 선택",
     "remove": "{{ title }}을(를) 즐겨찾기에서 삭제"
   }

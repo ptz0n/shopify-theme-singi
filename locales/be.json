@@ -133,6 +133,8 @@
     "saved": "Захавана ў абранае",
     "removed": "Выдалена з абранага",
     "add_to_cart": "Дадаць {{ title }} у кошык",
+    "added_to_cart": "{{ title }} у вашым кошыку",
+    "go_to_product": "Перайсці да {{ title }}",
     "choose_options": "Выбраць параметры: {{ title }}",
     "remove": "Выдаліць {{ title }} з абранага"
   }

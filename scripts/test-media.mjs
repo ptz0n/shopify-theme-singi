@@ -16,6 +16,7 @@
  * scripts/tests/media.browser.js into the console of each page instead.
  */
 import { readFileSync } from 'node:fs';
+import { signed } from './lib/crawl-sign.mjs';
 
 /* Default: the local `npm run dev` server, which already handles the storefront password. */
 const base = (process.env.SINGI_URL || 'http://127.0.0.1:9292').replace(/\/$/, '');
@@ -39,10 +40,10 @@ const PAGES = [
 const script = readFileSync(new URL('./tests/media.browser.js', import.meta.url), 'utf8');
 const preview = process.env.SINGI_THEME_ID ? `?preview_theme_id=${process.env.SINGI_THEME_ID}` : '';
 
-const browser = await puppeteer.launch({
+const browser = signed(await puppeteer.launch({
   executablePath: process.env.SINGI_CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   headless: true,
-});
+}), base);
 const page = await browser.newPage();
 await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true });
 

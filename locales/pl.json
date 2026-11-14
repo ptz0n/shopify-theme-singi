@@ -133,6 +133,8 @@
     "saved": "Zapisano w ulubionych",
     "removed": "Usunięto z ulubionych",
     "add_to_cart": "Dodaj {{ title }} do koszyka",
+    "added_to_cart": "{{ title }} jest w Twoim koszyku",
+    "go_to_product": "Przejdź do {{ title }}",
     "choose_options": "Wybierz opcje dla {{ title }}",
     "remove": "Usuń {{ title }} z ulubionych"
   }

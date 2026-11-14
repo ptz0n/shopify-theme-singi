@@ -127,6 +127,8 @@
     "saved": "Đã lưu vào yêu thích",
     "removed": "Đã xóa khỏi yêu thích",
     "add_to_cart": "Thêm {{ title }} vào giỏ hàng",
+    "added_to_cart": "{{ title }} đã có trong giỏ hàng",
+    "go_to_product": "Đi tới {{ title }}",
     "choose_options": "Chọn tùy chọn cho {{ title }}",
     "remove": "Xóa {{ title }} khỏi yêu thích"
   }

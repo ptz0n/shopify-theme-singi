@@ -129,6 +129,8 @@
     "saved": "Lemmikutesse salvestatud",
     "removed": "Lemmikutest eemaldatud",
     "add_to_cart": "Lisa {{ title }} ostukorvi",
+    "added_to_cart": "{{ title }} on sinu ostukorvis",
+    "go_to_product": "Mine tootele {{ title }}",
     "choose_options": "Vali {{ title }} valikud",
     "remove": "Eemalda {{ title }} lemmikutest"
   }

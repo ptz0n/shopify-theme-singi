@@ -129,6 +129,8 @@
     "saved": "Salvato nei preferiti",
     "removed": "Rimosso dai preferiti",
     "add_to_cart": "Aggiungi {{ title }} al carrello",
+    "added_to_cart": "{{ title }} è nel tuo carrello",
+    "go_to_product": "Vai a {{ title }}",
     "choose_options": "Scegli le opzioni per {{ title }}",
     "remove": "Rimuovi {{ title }} dai preferiti"
   }

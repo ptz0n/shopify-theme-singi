@@ -9,6 +9,7 @@ All npm scripts, what they do, the environment variables they read, and the dev-
 | `npm run dev` | `shopify theme dev` against the store in `SINGI_STORE` through `scripts/shopify.mjs`. Hot-reloads a development theme and prints the preview and editor URLs. |
 | `npm run ship` | The end of an iteration in one command (about 5 seconds): theme check, repo rules, regenerate `docs/reference`, then push the live `singi` theme and `singi-dev` in parallel. Stops before pushing if a check fails. While `npm run dev` runs you do not need it to see a change. |
 | `npm run test:media` | Gallery, variant image, video and card heart assertions on the mock pages, in headless Chrome. Defaults to the local `npm run dev` server at `127.0.0.1:9292`, which signs in to a password protected store for you. Needs `npm install --no-save puppeteer-core`. See [media.md](media.md#tests). |
+| `npm run test:favorites` | Favorites on the cart page: add, added (disabled check) and go to product (arrow), the switches as the cart changes, 44px targets. Through the dev server it checks the static states and skips the cart transitions (the dev proxy does not serve `/cart.js` reliably); run those against the storefront with `SINGI_URL` and `SINGI_PASSWORD`. |
 | `npm run test:details` | The data-driven product blocks on the niche catalog: accordions, specifications, size guide popover (focus, Escape, 44px link), returns note, and that blocks only render for products with the data. Same setup as `test:media`. |
 | `npm run test:unit-price` | Unit price on the niche products: the text shown and the screen reader sentence, no "1" before a reference unit, instant update to the same text the server returns. Same setup as `test:media`. |
 | `npm run test:siblings` | Color siblings assertions on the mock "Studio Shirt" group in headless Chrome: same swatches and order on every page, `aria-current`, accessible names, 44px targets, keyboard, no JS, no horizontal scroll. Same setup as `test:media`. |
@@ -81,6 +82,10 @@ Without a token the wrapper warns and falls back to the normal CLI login. The lo
 - Because the dev store theme is live, every `npm run push` changes what the dev storefront shows immediately. Do not point `.env` or `shopify.theme.toml` at a production store.
 - Do not push over a theme you did not create.
 - `config/settings_data.json` is written by the theme editor. Pushing local settings can overwrite merchant changes: `shopify theme pull` first if the editor was used.
+
+### Throttling (HTTP 429) in test runs
+
+The browser scripts load many pages, and Shopify throttles that. With `CRAWL_SIGN` and `CRAWL_SIGN_INPUT` in `.env` (Shopify's web bot authentication, see `.env.example`) every script sends the signature to the origin it tests, and signed requests to the storefront are not throttled. The signature expires; the scripts say so and send unsigned requests after that. The dev server (`npm run dev`) does not pass the headers on to Shopify, so a run through it can still get 429 on cart and product `.js` requests: point `SINGI_URL` at the storefront (with `SINGI_PASSWORD`) for those, and keep runs short.
 
 ### Dev server shows "Failed to Upload Theme Files"
 

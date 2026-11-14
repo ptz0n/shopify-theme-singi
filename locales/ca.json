@@ -129,6 +129,8 @@
     "saved": "Desat als preferits",
     "removed": "Eliminat dels preferits",
     "add_to_cart": "Afegeix {{ title }} a la cistella",
+    "added_to_cart": "{{ title }} és a la cistella",
+    "go_to_product": "Ves a {{ title }}",
     "choose_options": "Tria les opcions de {{ title }}",
     "remove": "Elimina {{ title }} dels preferits"
   }

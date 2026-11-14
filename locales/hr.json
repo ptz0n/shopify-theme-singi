@@ -131,6 +131,8 @@
     "saved": "Spremljeno u favorite",
     "removed": "Uklonjeno iz favorita",
     "add_to_cart": "Dodaj {{ title }} u košaricu",
+    "added_to_cart": "{{ title }} je u vašoj košarici",
+    "go_to_product": "Idi na {{ title }}",
     "choose_options": "Odaberi opcije za {{ title }}",
     "remove": "Ukloni {{ title }} iz favorita"
   }

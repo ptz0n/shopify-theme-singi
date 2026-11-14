@@ -129,6 +129,8 @@
     "saved": "By gunstelinge gestoor",
     "removed": "Van gunstelinge verwyder",
     "add_to_cart": "Voeg {{ title }} by die mandjie",
+    "added_to_cart": "{{ title }} is in jou mandjie",
+    "go_to_product": "Gaan na {{ title }}",
     "choose_options": "Kies opsies vir {{ title }}",
     "remove": "Verwyder {{ title }} van gunstelinge"
   }

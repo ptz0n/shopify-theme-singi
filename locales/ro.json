@@ -131,6 +131,8 @@
     "saved": "Salvat la favorite",
     "removed": "Eliminat de la favorite",
     "add_to_cart": "Adaugă {{ title }} în coș",
+    "added_to_cart": "{{ title }} este în coș",
+    "go_to_product": "Mergi la {{ title }}",
     "choose_options": "Alege opțiunile pentru {{ title }}",
     "remove": "Elimină {{ title }} de la favorite"
   }

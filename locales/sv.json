@@ -129,6 +129,8 @@
     "saved": "Sparad som favorit",
     "removed": "Borttagen från favoriter",
     "add_to_cart": "Lägg {{ title }} i varukorgen",
+    "added_to_cart": "{{ title }} finns i din varukorg",
+    "go_to_product": "Gå till {{ title }}",
     "choose_options": "Välj alternativ för {{ title }}",
     "remove": "Ta bort {{ title }} från favoriter"
   }

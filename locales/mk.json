@@ -129,6 +129,8 @@
     "saved": "Зачувано во омилени",
     "removed": "Отстрането од омилени",
     "add_to_cart": "Додај {{ title }} во кошничката",
+    "added_to_cart": "{{ title }} е во вашата кошничка",
+    "go_to_product": "Оди на {{ title }}",
     "choose_options": "Избери опции за {{ title }}",
     "remove": "Отстрани го {{ title }} од омилени"
   }

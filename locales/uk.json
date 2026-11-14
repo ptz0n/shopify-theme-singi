@@ -133,6 +133,8 @@
     "saved": "Додано в обране",
     "removed": "Видалено з обраного",
     "add_to_cart": "Додати {{ title }} до кошика",
+    "added_to_cart": "{{ title }} у вашому кошику",
+    "go_to_product": "Перейти до {{ title }}",
     "choose_options": "Вибрати параметри: {{ title }}",
     "remove": "Видалити {{ title }} з обраного"
   }

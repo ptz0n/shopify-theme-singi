@@ -129,6 +129,8 @@
     "saved": "आवडत्यांमध्ये जतन केले",
     "removed": "आवडत्यांमधून काढले",
     "add_to_cart": "{{ title }} कार्टमध्ये जोडा",
+    "added_to_cart": "{{ title }} तुमच्या कार्टमध्ये आहे",
+    "go_to_product": "{{ title }} वर जा",
     "choose_options": "{{ title }} साठी पर्याय निवडा",
     "remove": "{{ title }} आवडत्यांमधून काढा"
   }

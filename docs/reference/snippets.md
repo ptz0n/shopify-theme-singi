@@ -95,7 +95,7 @@ aria-label on the parent control.
 
 | Param | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | `string` | yes | sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, chevron-down |
+| `name` | `string` | yes | sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, check, chevron-down |
 | `class` | `string` | no | Extra class on the svg The menu icon is two separate paths on purpose: the header turns them into an X with CSS while the menu is open (base.css, .nav-toggle path). |
 
 ```liquid
@@ -555,11 +555,13 @@ Screen readers get a full sentence instead of the slash (products.unit_price_per
 File: `snippets/wishlist-item.liquid`
 
 One saved product as a cart-style row: thumbnail, title, price and two small icon
-controls: a primary add to cart (adds the saved variant, or the only variant, at once;
-links to the product page to choose options when no variant was saved; hidden when
-sold out) and the pressed
-heart (the same secondary button as on the product page; it removes the item). Fetched
-by assets/wishlist.js through templates/product.wishlist.liquid.
+controls. The first is exactly one of three states: a primary add to cart (the saved
+variant, or the only variant, is available: adds it at once), the same button disabled
+with a check once that variant is in the cart (assets/wishlist.js switches it as the cart
+changes), or a secondary link with an arrow to the product page (a variant has to be
+chosen, or it is sold out). The second is the pressed heart (the same secondary button as
+on the product page; it removes the item). Fetched by assets/wishlist.js through
+templates/product.wishlist.liquid.
 
 Self-contained on purpose: it owns its CSS. The cart page renders this snippet
 once without a product (it outputs nothing) so Shopify includes the CSS there,

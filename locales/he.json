@@ -131,6 +131,8 @@
     "saved": "נשמר במועדפים",
     "removed": "הוסר מהמועדפים",
     "add_to_cart": "הוסף את {{ title }} לסל",
+    "added_to_cart": "{{ title }} נמצא בעגלה שלך",
+    "go_to_product": "עבור אל {{ title }}",
     "choose_options": "בחר אפשרויות עבור {{ title }}",
     "remove": "הסרת {{ title }} מהמועדפים"
   }

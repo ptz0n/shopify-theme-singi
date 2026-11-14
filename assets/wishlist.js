@@ -63,7 +63,7 @@ const readCart = (scope) => {
 
 document.addEventListener('click', async (event) => {
   const button = event.target.closest('[data-wishlist-add]');
-  if (!button || button.getAttribute('aria-busy') === 'true') return;
+  if (!button || button.getAttribute('aria-busy') === 'true' || button.getAttribute('aria-disabled') === 'true') return;
   const host = button.closest('wishlist-list');
   button.setAttribute('aria-busy', 'true');
   try {
@@ -102,14 +102,32 @@ sync();
    alternate template with the saved variant, so title, price, image and stock are always current. */
 class WishlistList extends HTMLElement {
   #rows = new Map();
+  #inCart = new Set();
 
   connectedCallback() {
+    this.#inCart = new Set(this.dataset.inCart?.split(','));
     document.addEventListener('singi:wishlist', this.#onChange);
+    document.addEventListener('singi:cart', this.#onCart);
     this.#render();
   }
 
   disconnectedCallback() {
     document.removeEventListener('singi:wishlist', this.#onChange);
+    document.removeEventListener('singi:cart', this.#onCart);
+  }
+
+  #onCart = ({ detail }) => {
+    this.#inCart = new Set(detail.items.map((item) => String(item.variant_id)));
+    this.#paint();
+  };
+
+  #paint() {
+    for (const button of this.querySelectorAll('[data-wishlist-add]')) {
+      const added = this.#inCart.has(button.dataset.wishlistAdd);
+      button.classList.toggle('button--secondary', added);
+      button.setAttribute('aria-disabled', String(added));
+      button.setAttribute('aria-label', added ? button.dataset.labelAdded : button.dataset.labelAdd);
+    }
   }
 
   #onChange = ({ detail }) => {
@@ -159,6 +177,7 @@ class WishlistList extends HTMLElement {
     this.replaceChildren(heading, list);
     this.hidden = false;
     sync(this);
+    this.#paint();
   }
 }
 

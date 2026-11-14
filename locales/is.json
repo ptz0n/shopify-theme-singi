@@ -129,6 +129,8 @@
     "saved": "Vistað í uppáhöld",
     "removed": "Fjarlægt úr uppáhöldum",
     "add_to_cart": "Setja {{ title }} í körfu",
+    "added_to_cart": "{{ title }} er í körfunni þinni",
+    "go_to_product": "Fara á {{ title }}",
     "choose_options": "Velja valkosti fyrir {{ title }}",
     "remove": "Fjarlægja {{ title }} úr uppáhöldum"
   }

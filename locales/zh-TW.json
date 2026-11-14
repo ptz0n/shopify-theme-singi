@@ -127,6 +127,8 @@
     "saved": "已加入收藏",
     "removed": "已從收藏中移除",
     "add_to_cart": "將{{ title }}加入購物車",
+    "added_to_cart": "{{ title }}已在購物車中",
+    "go_to_product": "前往{{ title }}",
     "choose_options": "選擇{{ title }}的選項",
     "remove": "將{{ title }}從收藏中移除"
   }

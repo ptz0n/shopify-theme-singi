@@ -127,6 +127,8 @@
     "saved": "Disimpan ke favorit",
     "removed": "Dihapus dari favorit",
     "add_to_cart": "Tambahkan {{ title }} ke keranjang",
+    "added_to_cart": "{{ title }} ada di keranjang Anda",
+    "go_to_product": "Buka {{ title }}",
     "choose_options": "Pilih opsi untuk {{ title }}",
     "remove": "Hapus {{ title }} dari favorit"
   }

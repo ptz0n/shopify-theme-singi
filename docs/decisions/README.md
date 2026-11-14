@@ -29,3 +29,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [004](004-quantity-stays-separate-from-add-to-cart.md) | The quantity stays its own labeled component above the Add to cart row | product page, buy box |
 | [005](005-unit-price-format-and-instant-update.md) | The unit price is formatted by the theme, read out as a sentence, and updates at once | product page, pricing, accessibility |
 | [006](006-product-details-connect-through-dynamic-sources.md) | Product details connect to metafields through dynamic sources, not hardcoded keys or mapping settings | product page, data model, settings |
+| [007](007-favorites-rows-have-three-states.md) | A favorite on the cart page has exactly one of three controls | cart page, favorites |

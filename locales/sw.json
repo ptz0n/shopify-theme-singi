@@ -129,6 +129,8 @@
     "saved": "Imehifadhiwa kwenye vipendwa",
     "removed": "Imeondolewa kwenye vipendwa",
     "add_to_cart": "Weka {{ title }} kwenye kikapu",
+    "added_to_cart": "{{ title }} iko kwenye kikapu chako",
+    "go_to_product": "Nenda kwa {{ title }}",
     "choose_options": "Chagua chaguo za {{ title }}",
     "remove": "Ondoa {{ title }} kwenye vipendwa"
   }

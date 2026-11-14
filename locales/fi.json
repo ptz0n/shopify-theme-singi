@@ -129,6 +129,8 @@
     "saved": "Tallennettu suosikkeihin",
     "removed": "Poistettu suosikeista",
     "add_to_cart": "Lisää {{ title }} ostoskoriin",
+    "added_to_cart": "{{ title }} on ostoskorissasi",
+    "go_to_product": "Siirry tuotteeseen {{ title }}",
     "choose_options": "Valitse vaihtoehdot: {{ title }}",
     "remove": "Poista {{ title }} suosikeista"
   }

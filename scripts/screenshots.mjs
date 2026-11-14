@@ -25,6 +25,7 @@
  */
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { signed } from './lib/crawl-sign.mjs';
 
 const root = new URL('..', import.meta.url).pathname;
 const outDir = `${root}docs/images`;
@@ -70,10 +71,10 @@ const SHOTS = [
 
 const url = (path) => `${base}${path}${preview ? `${path.includes('?') ? '&' : '?'}${preview}` : ''}`;
 
-const browser = await puppeteer.launch({
+const browser = signed(await puppeteer.launch({
   executablePath: process.env.SINGI_CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   headless: true,
-});
+}), base);
 
 const signIn = async (page, path) => {
   if (!process.env.SINGI_PASSWORD) throw new Error('The store is password protected. Set SINGI_PASSWORD.');

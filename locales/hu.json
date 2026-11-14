@@ -129,6 +129,8 @@
     "saved": "Mentve a kedvencek közé",
     "removed": "Eltávolítva a kedvencek közül",
     "add_to_cart": "{{ title }} kosárba helyezése",
+    "added_to_cart": "{{ title }} a kosaradban van",
+    "go_to_product": "Ugrás ide: {{ title }}",
     "choose_options": "{{ title }} opcióinak kiválasztása",
     "remove": "{{ title }} eltávolítása a kedvencek közül"
   }

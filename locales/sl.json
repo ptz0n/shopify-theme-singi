@@ -133,6 +133,8 @@
     "saved": "Shranjeno med priljubljene",
     "removed": "Odstranjeno iz priljubljenih",
     "add_to_cart": "Dodaj {{ title }} v košarico",
+    "added_to_cart": "{{ title }} je v vaši košarici",
+    "go_to_product": "Pojdi na {{ title }}",
     "choose_options": "Izberi možnosti za {{ title }}",
     "remove": "Odstrani {{ title }} iz priljubljenih"
   }

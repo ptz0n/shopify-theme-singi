@@ -12,6 +12,7 @@
  * Env and setup as for npm run test:media. Needs the niche catalog (npm run mock:apply).
  * Prices assume the default mock data and a store in US dollars.
  */
+import { signed } from './lib/crawl-sign.mjs';
 const base = (process.env.SINGI_URL || 'http://127.0.0.1:9292').replace(/\/$/, '');
 const preview = process.env.SINGI_THEME_ID ? `?preview_theme_id=${process.env.SINGI_THEME_ID}` : '';
 let puppeteer;
@@ -32,10 +33,10 @@ const CASES = [
   ['mock-coffee-beans', 1, '$56.00 / kg', '$56.00 per kg'],
 ];
 
-const browser = await puppeteer.launch({
+const browser = signed(await puppeteer.launch({
   executablePath: process.env.SINGI_CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   headless: true,
-});
+}), base);
 let failures = 0;
 let checks = 0;
 const ok = (condition, message) => {

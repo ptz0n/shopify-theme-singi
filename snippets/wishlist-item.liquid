@@ -1,10 +1,12 @@
 {% doc %}
   One saved product as a cart-style row: thumbnail, title, price and two small icon
-  controls: a primary add to cart (adds the saved variant, or the only variant, at once;
-  links to the product page to choose options when no variant was saved; hidden when
-  sold out) and the pressed
-  heart (the same secondary button as on the product page; it removes the item). Fetched
-  by assets/wishlist.js through templates/product.wishlist.liquid.
+  controls. The first is exactly one of three states: a primary add to cart (the saved
+  variant, or the only variant, is available: adds it at once), the same button disabled
+  with a check once that variant is in the cart (assets/wishlist.js switches it as the cart
+  changes), or a secondary link with an arrow to the product page (a variant has to be
+  chosen, or it is sold out). The second is the pressed heart (the same secondary button as
+  on the product page; it removes the item). Fetched by assets/wishlist.js through
+  templates/product.wishlist.liquid.
 
   Self-contained on purpose: it owns its CSS. The cart page renders this snippet
   once without a product (it outputs nothing) so Shopify includes the CSS there,
@@ -70,12 +72,14 @@
       {%- endif -%}
     </div>
     {%- if quick -%}
-      <button class="button wishlist-item__add" type="button" data-wishlist-add="{{ shown.id }}" aria-label="{{ 'wishlist.add_to_cart' | t: title: label_title }}">
+      {%- assign add_label = 'wishlist.add_to_cart' | t: title: label_title -%}
+      <button class="button wishlist-item__add" type="button" data-wishlist-add="{{ shown.id }}" data-label-add="{{ add_label | escape }}" data-label-added="{{ 'wishlist.added_to_cart' | t: title: label_title | escape }}" aria-label="{{ add_label }}">
         {%- render 'icon', name: 'cart' -%}
+        {%- render 'icon', name: 'check' -%}
       </button>
-    {%- elsif unavailable == false -%}
-      <a class="button wishlist-item__add" href="{{ product.url }}" aria-label="{{ 'wishlist.choose_options' | t: title: label_title }}">
-        {%- render 'icon', name: 'cart' -%}
+    {%- else -%}
+      <a class="button button--secondary wishlist-item__add" href="{{ chosen.url | default: product.url }}" aria-label="{% if unavailable %}{{ 'wishlist.go_to_product' | t: title: label_title }}{% else %}{{ 'wishlist.choose_options' | t: title: label_title }}{% endif %}">
+        {%- render 'icon', name: 'arrow-right' -%}
       </a>
     {%- endif -%}
     <button class="icon-button wishlist-item__remove" type="button" data-wishlist-remove="{{ product.handle }}" aria-label="{{ 'wishlist.remove' | t: title: label_title }}">
@@ -95,6 +99,9 @@
   .wishlist-item__image, .wishlist-item__info { grid-row: 1 / span 2; }
   .wishlist-item__remove { grid-column: 3; grid-row: 1; justify-self: end; width: 2.75rem; height: 2.75rem; margin-block-start: -0.5rem; margin-inline-end: -0.5rem; }
   .wishlist-item__add { grid-column: 3; grid-row: 2; align-self: end; justify-self: end; width: 2.75rem; min-height: 2.75rem; padding: 0; }
-  .wishlist-item__add[aria-busy='true'] { opacity: 0.6; pointer-events: none; }
+  .wishlist-item__add[aria-busy='true'], .wishlist-item__add[aria-disabled='true'] { opacity: 0.6; pointer-events: none; }
+  /* One button, two icons: the cart until the variant is in the cart, then the check. */
+  .wishlist-item__add .icon + .icon, .wishlist-item__add[aria-disabled='true'] .icon { display: none; }
+  .wishlist-item__add[aria-disabled='true'] .icon + .icon { display: block; }
   @media (min-width: 56em) { .wishlist-item { grid-template-columns: 6rem 1fr auto; } }
 {% endstylesheet %}

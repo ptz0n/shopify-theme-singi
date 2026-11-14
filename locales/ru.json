@@ -133,6 +133,8 @@
     "saved": "Добавлено в избранное",
     "removed": "Удалено из избранного",
     "add_to_cart": "Добавить {{ title }} в корзину",
+    "added_to_cart": "{{ title }} в вашей корзине",
+    "go_to_product": "Перейти к {{ title }}",
     "choose_options": "Выбрать параметры: {{ title }}",
     "remove": "Удалить {{ title }} из избранного"
   }

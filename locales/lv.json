@@ -131,6 +131,8 @@
     "saved": "Saglabāts izlasē",
     "removed": "Noņemts no izlases",
     "add_to_cart": "Pievienot {{ title }} grozam",
+    "added_to_cart": "{{ title }} ir jūsu grozā",
+    "go_to_product": "Doties uz {{ title }}",
     "choose_options": "Izvēlēties {{ title }} opcijas",
     "remove": "Noņemt {{ title }} no izlases"
   }
