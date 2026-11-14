@@ -104,6 +104,18 @@ The heading block (`blocks/heading.liquid`) offers `sm`, `md`, `lg`, `xl` sizes 
 
 Prices are formatted with Shopify's money filters, so the currency, symbol, separators and position follow the store's currency format and the visitor's market. The setting **Hide .00 on whole prices** (Theme settings > Appearance, `price_trim_zeros`, off by default) switches every displayed price to `money_without_trailing_zeros`: $79.00 becomes $79, while $79.50 stays $79.50. It never rounds. It covers cards, the product page (including the price that updates when an option is chosen), the unit price, the cart and favorites.
 
+Where it applies, and what each place costs:
+
+| Place | File | Notes |
+| --- | --- | --- |
+| Current and compare-at price on cards, product page, search, favorites, recently viewed | `snippets/price.liquid` | One snippet, three branches. |
+| Price that updates when an option is chosen | `blocks/_variant-picker.liquid` (`data-price`) | Inline branch, not a snippet: it runs once per variant, so a render per variant would add cost. |
+| Unit price ("$78 / 100 ml") | `snippets/unit-price.liquid` | The same setting, so a unit price and its price never disagree. |
+| Cart line total and subtotal | `sections/main-cart.liquid` | |
+| Not affected | `snippets/meta-tags.liquid`, `schema-*`, `templates/gift_card.liquid` | Structured data keeps exact amounts; the gift card page is a customer facing exception. |
+
+Measured (`npm run perf:liquid`, median of 7): the product page renders in 32.5 ms and the 12 variant product in 39.8 ms with the branches in place, against 35.3 ms recorded before them. No JavaScript is involved.
+
 Two rules keep it consistent. Every displayed price that uses `| money` must sit beside a `settings.price_trim_zeros` test; `npm run check` fails otherwise. Structured data (`snippets/meta-tags.liquid`, `schema-*`) and the gift card page are exempt: search engines get the exact amount. `npm run test:price-format` checks both modes (`SINGI_TRIM=1` for the trimmed one).
 
 ## Changing the look safely
