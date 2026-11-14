@@ -85,6 +85,7 @@ inside <facets-form> (assets/facets.js), which swaps the results in place.
 | `q` | `string` | no | search terms, kept as a hidden field on the search page |
 | `type_filter` | `boolean` | no | add the result-type filter (products, articles, pages), search page only |
 | `current_type` | `string` | no | the type now filtered on |
+| `count` | `string` | no | the translated result count, for example "13 products". Shown on the filter bar's line, or on its own line when the page has no bar. It is the live region the route announcer reads (class collection__count). |
 
 ## icon
 

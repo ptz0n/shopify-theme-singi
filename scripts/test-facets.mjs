@@ -2,8 +2,9 @@
 /**
  * Tests the filter and sort bar shared by the collection and search pages in headless Chrome:
  * the "Sort by" label is visible (not visually hidden), tied to its select, on one line with it
- * (the select is 44px or taller), and the bar never scrolls the page sideways, in left to right and
- * right to left layouts, desktop and phone.
+ * (the select is 44px or taller), the result count is the one live region and sits on the filter row
+ * (and comes back there after a change re-renders the region), and the bar never scrolls the page
+ * sideways, in left to right and right to left layouts, desktop and phone.
  *
  *   npm run dev            (in one terminal)
  *   npm run test:facets    (in another)
@@ -56,6 +57,14 @@ try {
           sameLine: Math.abs((l.top + l.height / 2) - (s.top + s.height / 2)) < 6,
           overflow: document.documentElement.scrollWidth - innerWidth,
           barOverflow: document.querySelector('.facets').scrollWidth - document.querySelector('.facets').clientWidth,
+          count: (() => {
+            const count = document.querySelector('.facets__bar .facets__count');
+            const first = document.querySelector('.facets__bar .facet');
+            if (!count) return null;
+            const c = count.getBoundingClientRect();
+            const f = first?.getBoundingClientRect();
+            return { text: count.textContent.trim(), status: count.getAttribute('role'), live: count.classList.contains('collection__count'), sameRow: f ? Math.abs((c.top + c.height / 2) - (f.top + f.height / 2)) < 30 : true, below: document.querySelectorAll('.collection__count').length };
+          })(),
         };
       });
       ok(Boolean(r), `${path} ${label}: no sort control found`);
@@ -64,7 +73,28 @@ try {
         ok(r.tied, `${path} ${label}: the label is not tied to the select`);
         ok(r.sameLine, `${path} ${label}: the label and the select are not on one line`);
         ok(r.selectHeight >= 44, `${path} ${label}: the select is ${r.selectHeight}px tall`);
+        ok(Boolean(r.count) && r.count.text.length > 0, `${path} ${label}: no result count inside the filter bar`);
+        if (r.count) {
+          ok(r.count.status === 'status' && r.count.live, `${path} ${label}: the count is not the live region the route announcer reads`);
+          ok(r.count.below === 1, `${path} ${label}: ${r.count.below} counts on the page, expected one`);
+          if (width >= 768) ok(r.count.sameRow, `${path} ${label}: the count is not on the filter row`);
+        }
         ok(r.overflow <= 0 && r.barOverflow <= 0, `${path} ${label}: scrolls horizontally (page ${r.overflow}px, bar ${r.barOverflow}px)`);
+      }
+      await page.close();
+    }
+    /* A change re-renders the whole region with JavaScript: the count must come back inside the bar. */
+    {
+      const page = await browser.newPage();
+      await page.setViewport({ width: 1200, height: 900 });
+      await page.goto(`${base}${path}`, { waitUntil: 'load', timeout: 60000 });
+      const next = await page.evaluate(() => [...document.querySelectorAll('#sort-by option')].find((o) => !o.selected)?.value);
+      if (next) {
+        await page.select('#sort-by', next);
+        await page.waitForFunction((value) => location.search.includes(value), { timeout: 15000 }, next).catch(() => {});
+        await new Promise((resolve) => setTimeout(resolve, 600));
+        const after = await page.evaluate(() => ({ inBar: !!document.querySelector('.facets__bar .facets__count'), text: document.querySelector('.collection__count')?.textContent.trim(), n: document.querySelectorAll('.collection__count').length }));
+        ok(after.inBar && after.n === 1 && after.text, `${path}: after changing the sort the count is ${JSON.stringify(after)}`);
       }
       await page.close();
     }

@@ -20,9 +20,8 @@
     </header>
 
     <facets-form class="collection" data-section-id="{{ section.id }}">
-      {%- render 'facets', source: collection, action: collection.url, clear_url: collection.url -%}
-
-      <p class="mono muted collection__count" role="status">{{ 'collection.product_count' | t: count: collection.products_count }}</p>
+      {%- capture count_text -%}{{ 'collection.product_count' | t: count: collection.products_count }}{%- endcapture -%}
+      {%- render 'facets', source: collection, action: collection.url, clear_url: collection.url, count: count_text -%}
 
       {%- if collection.products.size > 0 -%}
         <ul class="product-grid" role="list" data-show-more-list>

@@ -9,9 +9,12 @@
   @param {string} [q] - search terms, kept as a hidden field on the search page
   @param {boolean} [type_filter] - add the result-type filter (products, articles, pages), search page only
   @param {string} [current_type] - the type now filtered on
+  @param {string} [count] - the translated result count, for example "13 products". Shown on the filter bar's line, or on its own line when the page has no bar. It is the live region the route announcer reads (class collection__count).
 {% enddoc %}
 
-{%- if source.filters.size > 0 or source.sort_options.size > 1 or type_filter -%}
+{%- assign has_bar = false -%}
+{%- if source.filters.size > 0 or source.sort_options.size > 1 or type_filter -%}{%- assign has_bar = true -%}{%- endif -%}
+{%- if has_bar -%}
   <form class="facets" data-facets action="{{ action }}" method="get">
     {%- if q != blank -%}<input type="hidden" name="q" value="{{ q | escape }}">{%- endif -%}
     <div class="facets__bar">
@@ -79,6 +82,7 @@
           </div>
         </details>
       {%- endfor -%}
+      {%- if count != blank -%}<p class="mono muted collection__count facets__count" role="status">{{ count }}</p>{%- endif -%}
     </div>
 
     {%- if source.sort_options.size > 1 -%}
@@ -95,6 +99,8 @@
     <noscript><button class="button" type="submit">{{ 'collection.apply' | t }}</button></noscript>
   </form>
 {%- endif -%}
+
+{%- if has_bar == false and count != blank -%}<p class="mono muted collection__count" role="status">{{ count }}</p>{%- endif -%}
 
 {%- assign active = false -%}
 {%- if current_type != blank -%}{%- assign active = true -%}{%- endif -%}
@@ -136,4 +142,5 @@
   .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin-block-end: 1rem; }
   .chips .chip { min-height: 2.25rem; padding-block: 0.25rem; text-decoration: none; }
   .collection__count { margin-block-end: 1rem; font-size: 0.8125rem; }
+  .facets__bar .facets__count { align-self: center; margin: 0 0 0 0.25rem; }
 {% endstylesheet %}

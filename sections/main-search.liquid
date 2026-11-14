@@ -13,8 +13,8 @@
     {%- capture search_clear -%}{{ routes.search_url }}?q={{ search.terms | url_encode }}{%- endcapture -%}
     {%- paginate search.results by 24 -%}
       <facets-form class="collection" data-section-id="{{ section.id }}">
-      {%- render 'facets', source: search, action: routes.search_url, clear_url: search_clear, q: search.terms, type_filter: true, current_type: current_type -%}
-      <p class="mono muted search__count collection__count" role="status">{{ 'search.results_count' | t: count: search.results_count, terms: search.terms }}</p>
+      {%- capture count_text -%}{{ 'search.results_count' | t: count: search.results_count, terms: search.terms }}{%- endcapture -%}
+      {%- render 'facets', source: search, action: routes.search_url, clear_url: search_clear, q: search.terms, type_filter: true, current_type: current_type, count: count_text -%}
       {%- if settings.tracking_enabled -%}
         <script type="application/json" data-track="view_search_results">
           { "search_term": {{ search.terms | json }}, "results_count": {{ search.results_count }} }
@@ -58,7 +58,6 @@
 
 {% stylesheet %}
   .search__page-title { margin-block-end: 1.5rem; }
-  .search__count { margin-block: 1rem 1.5rem; font-size: 0.8125rem; }
   /* Articles and pages span the grid as text rows: they often have no image, so the heading (h2 scale) and an excerpt carry them. The whole row is the link. */
   .search__row { position: relative; grid-column: 1 / -1; display: grid; gap: 0.5rem; max-width: 48rem; padding-block: 1.25rem; border-block-start: 1px solid var(--color-border); }
   .search__heading { margin: 0; font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem); }
