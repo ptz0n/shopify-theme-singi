@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "बिक्री भइसक्यो",
+    "unit_price_per": "प्रति {{ reference }} {{ price }}",
     "color": "रङ",
     "recently_viewed": "हालै हेरिएका",
     "add_to_cart": "कार्टमा हाल्नुहोस्",

@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Elfogyott",
+    "unit_price_per": "{{ reference }} egységára: {{ price }}",
     "color": "Szín",
     "recently_viewed": "Legutóbb megtekintett",
     "add_to_cart": "Kosárba",

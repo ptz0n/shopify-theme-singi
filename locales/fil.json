@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Sold out",
+    "unit_price_per": "{{ price }} bawat {{ reference }}",
     "color": "Kulay",
     "recently_viewed": "Kamakailang tiningnan",
     "add_to_cart": "Idagdag sa cart",

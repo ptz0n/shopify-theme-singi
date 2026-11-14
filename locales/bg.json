@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Изчерпано",
+    "unit_price_per": "{{ price }} за {{ reference }}",
     "color": "Цвят",
     "recently_viewed": "Наскоро разгледани",
     "add_to_cart": "Добави в количката",

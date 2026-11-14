@@ -64,8 +64,7 @@ _No settings._
 
 File: `blocks/_product-price.liquid` · Editor name: **Product price** · private
 
-Price of the selected variant, with its unit price (formatted by Shopify's
-unit_price_with_measurement filter, so wording and units follow the store) when the
+Price of the selected variant, with its unit price (snippets/unit-price.liquid) when the
 merchant set one. Private to product sections.
 
 _No settings._
@@ -91,7 +90,7 @@ Option picker. Radios with real labels: the change handler lives in
 assets/product-form.js and refetches this section through the Section
 Rendering API. Options and values come from product.options_with_values, so
 no loop ever walks the variants array. Each option also carries the price and the unit
-price of the variant it selects (data-price, data-unit-price), so assets/product-form.js
+price of the variant it selects (data-price, data-unit-price, data-unit-label), so assets/product-form.js
 can show both at once instead of waiting for the server. Private to product sections.
 
 _No settings._

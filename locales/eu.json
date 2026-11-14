@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Agortuta",
+    "unit_price_per": "{{ price }} {{ reference }} bakoitzeko",
     "color": "Kolorea",
     "recently_viewed": "Duela gutxi ikusiak",
     "add_to_cart": "Gehitu saskira",

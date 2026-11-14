@@ -40,6 +40,7 @@
     "perf:liquid": "node scripts/profile.mjs",
     "test:media": "node scripts/test-media.mjs",
     "test:siblings": "node scripts/test-siblings.mjs",
+    "test:unit-price": "node scripts/test-unit-price.mjs",
     "screenshots": "node scripts/screenshots.mjs",
     "audit": "node scripts/audit.mjs",
     "checkout:plan": "node scripts/checkout-branding.mjs",

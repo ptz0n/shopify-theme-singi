@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Esaurito",
+    "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Colore",
     "recently_viewed": "Visti di recente",
     "add_to_cart": "Aggiungi al carrello",

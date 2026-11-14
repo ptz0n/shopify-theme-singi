@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Imeisha",
+    "unit_price_per": "{{ price }} kwa {{ reference }}",
     "color": "Rangi",
     "recently_viewed": "Zilizotazamwa hivi karibuni",
     "add_to_cart": "Weka kwenye kikapu",

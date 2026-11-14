@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Razprodano",
+    "unit_price_per": "{{ price }} za {{ reference }}",
     "color": "Barva",
     "recently_viewed": "Nedavno ogledano",
     "add_to_cart": "Dodaj v košarico",

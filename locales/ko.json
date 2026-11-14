@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "품절",
+    "unit_price_per": "{{ reference }}당 {{ price }}",
     "color": "색상",
     "recently_viewed": "최근 본 상품",
     "add_to_cart": "장바구니에 담기",

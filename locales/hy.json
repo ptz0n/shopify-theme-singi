@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Սպառված է",
+    "unit_price_per": "{{ reference }}-ի համար {{ price }}",
     "color": "Գույն",
     "recently_viewed": "Վերջերս դիտված",
     "add_to_cart": "Ավելացնել զամբյուղ",

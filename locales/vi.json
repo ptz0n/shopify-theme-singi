@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Hết hàng",
+    "unit_price_per": "{{ price }} mỗi {{ reference }}",
     "color": "Màu sắc",
     "recently_viewed": "Đã xem gần đây",
     "add_to_cart": "Thêm vào giỏ hàng",

@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Немає в наявності",
+    "unit_price_per": "{{ price }} за {{ reference }}",
     "color": "Колір",
     "recently_viewed": "Нещодавно переглянуті",
     "add_to_cart": "Додати до кошика",

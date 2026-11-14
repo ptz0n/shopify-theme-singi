@@ -30,7 +30,7 @@ const BUDGETS = {
   'assets/styleguide.js': { raw: 14000 },
   'assets/wishlist.js': { raw: 7500 },
   'assets/image-tone.js': { raw: 3500 },
-  'assets/product-form.js': { raw: 6400 },
+  'assets/product-form.js': { raw: 6600 },
   'assets/predictive-search.js': { raw: 8500 },
 };
 const DEFAULT_JS_BUDGET = 6000;

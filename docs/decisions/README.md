@@ -27,3 +27,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [002](002-names-literal-in-code-place-names-in-labels.md) | Names are literal in code, and mountain place names only label what people see | naming |
 | [003](003-color-siblings-product-list.md) | Color siblings are a list of products on each product, with the swatch color on the product itself | product page, data model |
 | [004](004-quantity-stays-separate-from-add-to-cart.md) | The quantity stays its own labeled component above the Add to cart row | product page, buy box |
+| [005](005-unit-price-format-and-instant-update.md) | The unit price is formatted by the theme, read out as a sentence, and updates at once | product page, pricing, accessibility |

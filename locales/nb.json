@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Utsolgt",
+    "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Farge",
     "recently_viewed": "Nylig vist",
     "add_to_cart": "Legg i handlekurv",

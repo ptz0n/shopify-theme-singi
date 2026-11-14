@@ -3,7 +3,7 @@
   assets/product-form.js and refetches this section through the Section
   Rendering API. Options and values come from product.options_with_values, so
   no loop ever walks the variants array. Each option also carries the price and the unit
-  price of the variant it selects (data-price, data-unit-price), so assets/product-form.js
+  price of the variant it selects (data-price, data-unit-price, data-unit-label), so assets/product-form.js
   can show both at once instead of waiting for the server. Private to product sections.
 {% enddoc %}
 
@@ -27,7 +27,12 @@
               data-variant-id="{{ value.variant.id }}"
               data-available="{{ value.variant.available }}"
               data-price="{{ value.variant.price | money | escape }}"
-              {% if value.variant.unit_price_measurement %}data-unit-price="{{ value.variant.unit_price | unit_price_with_measurement: value.variant.unit_price_measurement | escape }}"{% endif %}
+              {%- if value.variant.unit_price_measurement -%}
+                {%- capture unit_visible -%}{%- render 'unit-price', variant: value.variant, part: 'visible' -%}{%- endcapture -%}
+                {%- capture unit_label -%}{%- render 'unit-price', variant: value.variant, part: 'label' -%}{%- endcapture -%}
+                data-unit-price="{{ unit_visible | strip | escape }}"
+                data-unit-label="{{ unit_label | strip | escape }}"
+              {%- endif %}
               {% if value.selected %}checked{% endif %}
               {% unless value.variant %}disabled{% endunless %}
             >

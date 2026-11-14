@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "स्टॉक में नहीं है",
+    "unit_price_per": "प्रति {{ reference }} {{ price }}",
     "color": "रंग",
     "recently_viewed": "हाल ही में देखे गए",
     "add_to_cart": "कार्ट में जोड़ें",

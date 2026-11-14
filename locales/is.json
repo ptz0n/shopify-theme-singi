@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Uppselt",
+    "unit_price_per": "{{ price }} á {{ reference }}",
     "color": "Litur",
     "recently_viewed": "Nýlega skoðað",
     "add_to_cart": "Setja í körfu",

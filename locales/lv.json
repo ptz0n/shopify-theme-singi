@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Izpārdots",
+    "unit_price_per": "{{ price }} par {{ reference }}",
     "color": "Krāsa",
     "recently_viewed": "Nesen skatītie",
     "add_to_cart": "Pievienot grozam",

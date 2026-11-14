@@ -515,6 +515,28 @@ up the new list.
 {% render 'tracking-list', products: collection.products, list_id: collection.handle, list_name: collection.title, offset: paginate.current_offset %}
 ```
 
+## unit-price
+
+File: `snippets/unit-price.liquid`
+
+Unit price of a variant, for comparing sizes: "$78.00 / 100 ml". Renders nothing when the
+variant has no unit price set. Shopify's own filter (unit_price_with_measurement) prints
+"$78.00/100ml" and cannot be spaced, so the pieces are formatted here: the price with the
+store's money format, a reference value of 1 left out ("$24.00 / L", not "/ 1 L"), and unit
+symbols written the usual way (L, m², ft²). Shopify returns the unit lowercase.
+
+Screen readers get a full sentence instead of the slash (products.unit_price_per, for example
+"$78.00 per 100 ml"), so each language keeps its own word order.
+
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `variant` | `variant` | yes | The variant |
+| `part` | `string` | no | 'visible' for the text shown, 'label' for the screen reader sentence. Both are plain text with ordinary spaces (assets/product-form.js reads them from data attributes). Default: the finished <p> with both. |
+
+```liquid
+{% render 'unit-price', variant: product.selected_or_first_available_variant %}
+```
+
 ## wishlist-item
 
 File: `snippets/wishlist-item.liquid`

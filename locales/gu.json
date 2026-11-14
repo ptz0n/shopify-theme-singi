@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "વેચાઈ ગયું",
+    "unit_price_per": "{{ reference }} દીઠ {{ price }}",
     "color": "રંગ",
     "recently_viewed": "તાજેતરમાં જોયેલ",
     "add_to_cart": "કાર્ટમાં ઉમેરો",

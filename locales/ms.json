@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Habis dijual",
+    "unit_price_per": "{{ price }} setiap {{ reference }}",
     "color": "Warna",
     "recently_viewed": "Dilihat baru-baru ini",
     "add_to_cart": "Tambah ke troli",

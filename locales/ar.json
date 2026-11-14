@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "نفدت الكمية",
+    "unit_price_per": "{{ price }} لكل {{ reference }}",
     "color": "اللون",
     "recently_viewed": "شوهدت مؤخرًا",
     "add_to_cart": "أضف إلى السلة",

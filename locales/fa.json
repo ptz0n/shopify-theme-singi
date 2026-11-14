@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "ناموجود",
+    "unit_price_per": "{{ price }} به ازای هر {{ reference }}",
     "color": "رنگ",
     "recently_viewed": "بازدیدهای اخیر",
     "add_to_cart": "افزودن به سبد خرید",

@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "فروخت ہو چکا",
+    "unit_price_per": "{{ price }} فی {{ reference }}",
     "color": "رنگ",
     "recently_viewed": "حال ہی میں دیکھے گئے",
     "add_to_cart": "کارٹ میں شامل کریں",

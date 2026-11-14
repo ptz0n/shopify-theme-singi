@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Shitur",
+    "unit_price_per": "{{ price }} për {{ reference }}",
     "color": "Ngjyra",
     "recently_viewed": "Të shikuara së fundmi",
     "add_to_cart": "Shto në shportë",

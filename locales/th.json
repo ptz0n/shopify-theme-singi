@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "สินค้าหมด",
+    "unit_price_per": "{{ price }} ต่อ {{ reference }}",
     "color": "สี",
     "recently_viewed": "ดูล่าสุด",
     "add_to_cart": "เพิ่มลงตะกร้า",

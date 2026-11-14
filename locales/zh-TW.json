@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "已售完",
+    "unit_price_per": "每{{ reference }}{{ price }}",
     "color": "顏色",
     "recently_viewed": "最近瀏覽",
     "add_to_cart": "加入購物車",

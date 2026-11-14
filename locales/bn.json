@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "স্টক শেষ",
+    "unit_price_per": "প্রতি {{ reference }} {{ price }}",
     "color": "রং",
     "recently_viewed": "সম্প্রতি দেখা",
     "add_to_cart": "কার্টে যোগ করুন",

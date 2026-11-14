@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Vypredané",
+    "unit_price_per": "{{ price }} za {{ reference }}",
     "color": "Farba",
     "recently_viewed": "Nedávno zobrazené",
     "add_to_cart": "Pridať do košíka",

@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "விற்றுத் தீர்ந்தது",
+    "unit_price_per": "{{ reference }}க்கு {{ price }}",
     "color": "நிறம்",
     "recently_viewed": "சமீபத்தில் பார்த்தவை",
     "add_to_cart": "கார்ட்டில் சேர்",

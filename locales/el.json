@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Εξαντλήθηκε",
+    "unit_price_per": "{{ price }} ανά {{ reference }}",
     "color": "Χρώμα",
     "recently_viewed": "Προβλήθηκαν πρόσφατα",
     "add_to_cart": "Προσθήκη στο καλάθι",

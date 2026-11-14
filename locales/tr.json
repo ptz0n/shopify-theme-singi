@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Tükendi",
+    "unit_price_per": "{{ reference }} başına {{ price }}",
     "color": "Renk",
     "recently_viewed": "Son görüntülenenler",
     "add_to_cart": "Sepete ekle",

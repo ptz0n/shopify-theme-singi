@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Uitverkoop",
+    "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Kleur",
     "recently_viewed": "Onlangs besigtig",
     "add_to_cart": "Voeg by mandjie",

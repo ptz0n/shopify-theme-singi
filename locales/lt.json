@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Išparduota",
+    "unit_price_per": "{{ price }} už {{ reference }}",
     "color": "Spalva",
     "recently_viewed": "Neseniai peržiūrėta",
     "add_to_cart": "Į krepšelį",

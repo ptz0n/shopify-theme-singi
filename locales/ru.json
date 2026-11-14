@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Распродано",
+    "unit_price_per": "{{ price }} за {{ reference }}",
     "color": "Цвет",
     "recently_viewed": "Недавно просмотренные",
     "add_to_cart": "Добавить в корзину",

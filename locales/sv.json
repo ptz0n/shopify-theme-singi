@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Slutsåld",
+    "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Färg",
     "recently_viewed": "Nyligen visade",
     "add_to_cart": "Lägg i varukorgen",

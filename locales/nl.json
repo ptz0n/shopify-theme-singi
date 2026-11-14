@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Uitverkocht",
+    "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Kleur",
     "recently_viewed": "Onlangs bekeken",
     "add_to_cart": "In winkelwagen",
