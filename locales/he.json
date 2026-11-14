@@ -103,11 +103,12 @@
     "enter": "כניסה",
     "owner": "בעלי החנות? התחברו"
   },
-  "footer": {
-    "newsletter_label": "הצטרפו לרשימה",
-    "newsletter_placeholder": "כתובת אימייל",
-    "newsletter_submit": "הרשמה",
-    "newsletter_success": "תודה על ההרשמה."
+  "footer": {},
+  "newsletter": {
+    "label": "הצטרפו לרשימה",
+    "placeholder": "כתובת אימייל",
+    "submit": "הרשמה",
+    "success": "תודה על ההרשמה."
   },
   "sections": {
     "featured": {

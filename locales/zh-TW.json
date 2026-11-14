@@ -99,11 +99,12 @@
     "enter": "進入",
     "owner": "店主？請登入"
   },
-  "footer": {
-    "newsletter_label": "訂閱我們的電子報",
-    "newsletter_placeholder": "電子郵件地址",
-    "newsletter_submit": "訂閱",
-    "newsletter_success": "感謝您的訂閱。"
+  "footer": {},
+  "newsletter": {
+    "label": "訂閱我們的電子報",
+    "placeholder": "電子郵件地址",
+    "submit": "訂閱",
+    "success": "感謝您的訂閱。"
   },
   "sections": {
     "featured": {

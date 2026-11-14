@@ -101,11 +101,12 @@
     "enter": "Jatka",
     "owner": "Kaupan omistaja? Kirjaudu sisään"
   },
-  "footer": {
-    "newsletter_label": "Liity postituslistalle",
-    "newsletter_placeholder": "Sähköpostiosoite",
-    "newsletter_submit": "Tilaa",
-    "newsletter_success": "Kiitos tilauksesta."
+  "footer": {},
+  "newsletter": {
+    "label": "Liity postituslistalle",
+    "placeholder": "Sähköpostiosoite",
+    "submit": "Tilaa",
+    "success": "Kiitos tilauksesta."
   },
   "sections": {
     "featured": {

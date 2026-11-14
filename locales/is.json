@@ -101,11 +101,12 @@
     "enter": "Opna",
     "owner": "Verslunareigandi? Skráðu þig inn"
   },
-  "footer": {
-    "newsletter_label": "Skráðu þig á listann",
-    "newsletter_placeholder": "Netfang",
-    "newsletter_submit": "Skrá mig",
-    "newsletter_success": "Takk fyrir skráninguna."
+  "footer": {},
+  "newsletter": {
+    "label": "Skráðu þig á listann",
+    "placeholder": "Netfang",
+    "submit": "Skrá mig",
+    "success": "Takk fyrir skráninguna."
   },
   "sections": {
     "featured": {

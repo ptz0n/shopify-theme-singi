@@ -101,11 +101,12 @@
     "enter": "Кіру",
     "owner": "Дүкен иесі ме? Кіру"
   },
-  "footer": {
-    "newsletter_label": "Тізімге қосылыңыз",
-    "newsletter_placeholder": "Электрондық пошта мекенжайы",
-    "newsletter_submit": "Жазылу",
-    "newsletter_success": "Жазылғаныңыз үшін рахмет."
+  "footer": {},
+  "newsletter": {
+    "label": "Тізімге қосылыңыз",
+    "placeholder": "Электрондық пошта мекенжайы",
+    "submit": "Жазылу",
+    "success": "Жазылғаныңыз үшін рахмет."
   },
   "sections": {
     "featured": {

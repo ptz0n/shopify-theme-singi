@@ -1,0 +1,22 @@
+{% doc %}
+  Newsletter signup with the email input and Subscribe button joined as one control. Posts a
+  normal Shopify customer form that tags the subscriber "newsletter", so it works without
+  JavaScript. Fires the generate_lead tracking event on success when tracking is on.
+
+  @example
+  {% content_for 'block', type: 'newsletter', id: 'signup' %}
+{% enddoc %}
+
+{%- assign form_id = block.id | prepend: 'newsletter-' -%}
+{%- render 'newsletter', id: form_id, source: 'block_newsletter', label: block.settings.label, text: block.settings.text -%}
+
+{% schema %}
+{
+  "name": "Newsletter signup",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "info": "Leave empty to use the translated default." },
+    { "type": "text", "id": "text", "label": "Supporting text", "info": "Optional, shown under the label." }
+  ],
+  "presets": [{ "name": "Newsletter signup" }]
+}
+{% endschema %}

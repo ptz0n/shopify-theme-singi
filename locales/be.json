@@ -105,11 +105,12 @@
     "enter": "Увайсці",
     "owner": "Уладальнік крамы? Увайсці"
   },
-  "footer": {
-    "newsletter_label": "Далучайцеся да рассылкі",
-    "newsletter_placeholder": "Адрас электроннай пошты",
-    "newsletter_submit": "Падпісацца",
-    "newsletter_success": "Дзякуем за падпіску."
+  "footer": {},
+  "newsletter": {
+    "label": "Далучайцеся да рассылкі",
+    "placeholder": "Адрас электроннай пошты",
+    "submit": "Падпісацца",
+    "success": "Дзякуем за падпіску."
   },
   "sections": {
     "featured": {

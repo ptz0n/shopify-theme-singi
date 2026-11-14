@@ -46,6 +46,7 @@
     "test:search": "node scripts/test-search.mjs",
     "test:recent": "node scripts/test-recent.mjs",
     "test:related": "node scripts/test-related.mjs",
+    "test:newsletter": "node scripts/test-newsletter.mjs",
     "screenshots": "node scripts/screenshots.mjs",
     "audit": "node scripts/audit.mjs",
     "checkout:plan": "node scripts/checkout-branding.mjs",

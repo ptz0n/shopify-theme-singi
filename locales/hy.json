@@ -101,11 +101,12 @@
     "enter": "Մուտք",
     "owner": "Խանութի սեփականատե՞ր եք։ Մուտք գործեք"
   },
-  "footer": {
-    "newsletter_label": "Միացեք ցանկին",
-    "newsletter_placeholder": "Էլ. փոստի հասցե",
-    "newsletter_submit": "Բաժանորդագրվել",
-    "newsletter_success": "Շնորհակալություն բաժանորդագրվելու համար։"
+  "footer": {},
+  "newsletter": {
+    "label": "Միացեք ցանկին",
+    "placeholder": "Էլ. փոստի հասցե",
+    "submit": "Բաժանորդագրվել",
+    "success": "Շնորհակալություն բաժանորդագրվելու համար։"
   },
   "sections": {
     "featured": {

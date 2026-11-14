@@ -101,11 +101,12 @@
     "enter": "Logg inn",
     "owner": "Butikkeier? Logg inn"
   },
-  "footer": {
-    "newsletter_label": "Meld deg på listen",
-    "newsletter_placeholder": "E-postadresse",
-    "newsletter_submit": "Abonner",
-    "newsletter_success": "Takk for at du abonnerer."
+  "footer": {},
+  "newsletter": {
+    "label": "Meld deg på listen",
+    "placeholder": "E-postadresse",
+    "submit": "Abonner",
+    "success": "Takk for at du abonnerer."
   },
   "sections": {
     "featured": {

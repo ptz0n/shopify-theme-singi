@@ -221,6 +221,19 @@ need an above-the-fold image, use the hero section instead.
 | `image` | image_picker | Image |  |
 | `ratio` | select | Aspect ratio | `"adapt"` |
 
+## newsletter
+
+File: `blocks/newsletter.liquid` · Editor name: **Newsletter signup** · public · has preset
+
+Newsletter signup with the email input and Subscribe button joined as one control. Posts a
+normal Shopify customer form that tags the subscriber "newsletter", so it works without
+JavaScript. Fires the generate_lead tracking event on success when tracking is on.
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `label` | text | Label |  |
+| `text` | text | Supporting text |  |
+
 ## recently-viewed
 
 File: `blocks/recently-viewed.liquid` · Editor name: **Recently viewed** · public · has preset

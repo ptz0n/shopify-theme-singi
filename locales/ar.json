@@ -109,11 +109,12 @@
     "enter": "دخول",
     "owner": "مالك المتجر؟ سجّل الدخول"
   },
-  "footer": {
-    "newsletter_label": "انضم إلى القائمة البريدية",
-    "newsletter_placeholder": "البريد الإلكتروني",
-    "newsletter_submit": "اشترك",
-    "newsletter_success": "شكرًا لاشتراكك."
+  "footer": {},
+  "newsletter": {
+    "label": "انضم إلى القائمة البريدية",
+    "placeholder": "البريد الإلكتروني",
+    "submit": "اشترك",
+    "success": "شكرًا لاشتراكك."
   },
   "sections": {
     "featured": {

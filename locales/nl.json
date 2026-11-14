@@ -101,11 +101,12 @@
     "enter": "Openen",
     "owner": "Winkeleigenaar? Log in"
   },
-  "footer": {
-    "newsletter_label": "Schrijf je in",
-    "newsletter_placeholder": "E-mailadres",
-    "newsletter_submit": "Inschrijven",
-    "newsletter_success": "Bedankt voor je inschrijving."
+  "footer": {},
+  "newsletter": {
+    "label": "Schrijf je in",
+    "placeholder": "E-mailadres",
+    "submit": "Inschrijven",
+    "success": "Bedankt voor je inschrijving."
   },
   "sections": {
     "featured": {

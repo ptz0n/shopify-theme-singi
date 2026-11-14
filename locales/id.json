@@ -99,11 +99,12 @@
     "enter": "Masuk",
     "owner": "Pemilik toko? Masuk"
   },
-  "footer": {
-    "newsletter_label": "Bergabung dengan daftar kami",
-    "newsletter_placeholder": "Alamat email",
-    "newsletter_submit": "Berlangganan",
-    "newsletter_success": "Terima kasih telah berlangganan."
+  "footer": {},
+  "newsletter": {
+    "label": "Bergabung dengan daftar kami",
+    "placeholder": "Alamat email",
+    "submit": "Berlangganan",
+    "success": "Terima kasih telah berlangganan."
   },
   "sections": {
     "featured": {

@@ -99,11 +99,12 @@
     "enter": "入力",
     "owner": "ストアオーナーの方はこちらからログイン"
   },
-  "footer": {
-    "newsletter_label": "メールマガジンに登録",
-    "newsletter_placeholder": "メールアドレス",
-    "newsletter_submit": "登録する",
-    "newsletter_success": "ご登録ありがとうございます。"
+  "footer": {},
+  "newsletter": {
+    "label": "メールマガジンに登録",
+    "placeholder": "メールアドレス",
+    "submit": "登録する",
+    "success": "ご登録ありがとうございます。"
   },
   "sections": {
     "featured": {

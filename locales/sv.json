@@ -101,11 +101,12 @@
     "enter": "Gå in",
     "owner": "Butiksägare? Logga in"
   },
-  "footer": {
-    "newsletter_label": "Gå med i listan",
-    "newsletter_placeholder": "E-postadress",
-    "newsletter_submit": "Prenumerera",
-    "newsletter_success": "Tack för att du prenumererar."
+  "footer": {},
+  "newsletter": {
+    "label": "Gå med i listan",
+    "placeholder": "E-postadress",
+    "submit": "Prenumerera",
+    "success": "Tack för att du prenumererar."
   },
   "sections": {
     "featured": {

@@ -38,7 +38,7 @@ Every performance technique Singi uses and where it lives, the budgets, what is 
 | Soft navigation: intent prefetch, in-memory cache, skeletons (opt-in) | `assets/soft-nav.js` | navigation |
 | View Transitions (opt-in) | `snippets/tokens.liquid`, `assets/soft-nav.js` | perceived speed |
 | Dynamic checkout buttons can be turned off per product block | `blocks/_buy-buttons.liquid` | TBT |
-| Newsletter form is a normal Shopify `customer` form, no script | `sections/footer.liquid` | TBT |
+| Newsletter form is a normal Shopify `customer` form, no script | `snippets/newsletter.liquid` | TBT |
 | Animations limited to `transform` and `opacity` | all CSS | INP |
 | No `unload` handlers, so back/forward cache works | all JS | navigation |
 

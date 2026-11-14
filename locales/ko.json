@@ -99,11 +99,12 @@
     "enter": "입력",
     "owner": "스토어 소유자이신가요? 로그인"
   },
-  "footer": {
-    "newsletter_label": "뉴스레터 구독",
-    "newsletter_placeholder": "이메일 주소",
-    "newsletter_submit": "구독하기",
-    "newsletter_success": "구독해 주셔서 감사합니다."
+  "footer": {},
+  "newsletter": {
+    "label": "뉴스레터 구독",
+    "placeholder": "이메일 주소",
+    "submit": "구독하기",
+    "success": "구독해 주셔서 감사합니다."
   },
   "sections": {
     "featured": {

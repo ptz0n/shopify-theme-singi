@@ -101,11 +101,12 @@
     "enter": "Вход",
     "owner": "Собственик на магазина? Влезте"
   },
-  "footer": {
-    "newsletter_label": "Абонирайте се",
-    "newsletter_placeholder": "Имейл адрес",
-    "newsletter_submit": "Абонирай се",
-    "newsletter_success": "Благодарим ви за абонамента."
+  "footer": {},
+  "newsletter": {
+    "label": "Абонирайте се",
+    "placeholder": "Имейл адрес",
+    "submit": "Абонирай се",
+    "success": "Благодарим ви за абонамента."
   },
   "sections": {
     "featured": {

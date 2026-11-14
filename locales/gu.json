@@ -101,11 +101,12 @@
     "enter": "દાખલ કરો",
     "owner": "સ્ટોર માલિક? લોગ ઇન કરો"
   },
-  "footer": {
-    "newsletter_label": "લિસ્ટમાં જોડાઓ",
-    "newsletter_placeholder": "ઇમેઇલ એડ્રેસ",
-    "newsletter_submit": "સબ્સ્ક્રાઇબ કરો",
-    "newsletter_success": "સબ્સ્ક્રાઇબ કરવા બદલ આભાર."
+  "footer": {},
+  "newsletter": {
+    "label": "લિસ્ટમાં જોડાઓ",
+    "placeholder": "ઇમેઇલ એડ્રેસ",
+    "submit": "સબ્સ્ક્રાઇબ કરો",
+    "success": "સબ્સ્ક્રાઇબ કરવા બદલ આભાર."
   },
   "sections": {
     "featured": {

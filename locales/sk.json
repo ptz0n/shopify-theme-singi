@@ -105,11 +105,12 @@
     "enter": "Vstúpiť",
     "owner": "Majiteľ obchodu? Prihláste sa"
   },
-  "footer": {
-    "newsletter_label": "Pridajte sa k odberu",
-    "newsletter_placeholder": "E-mailová adresa",
-    "newsletter_submit": "Odoberať",
-    "newsletter_success": "Ďakujeme za prihlásenie na odber."
+  "footer": {},
+  "newsletter": {
+    "label": "Pridajte sa k odberu",
+    "placeholder": "E-mailová adresa",
+    "submit": "Odoberať",
+    "success": "Ďakujeme za prihlásenie na odber."
   },
   "sections": {
     "featured": {

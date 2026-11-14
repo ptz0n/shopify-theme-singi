@@ -183,6 +183,28 @@ charset lands inside the first 1024 bytes.
 {% render 'meta-tags' %}
 ```
 
+## newsletter
+
+File: `snippets/newsletter.liquid`
+
+Newsletter signup: a Shopify customer form (no JavaScript) that tags the new subscriber
+"newsletter". The email input and the Subscribe button are one joined control: they share one
+border, radius and height, and the button's side follows the reading direction (RTL safe).
+
+Used by the footer and by blocks/newsletter.liquid. Each use needs its own `id`, so the label
+and input stay paired when the form appears twice on a page.
+
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | yes | Unique per form on the page, for example footer-newsletter |
+| `source` | `string` | no | Lead source sent with the generate_lead tracking event. Default: the id |
+| `label` | `string` | no | Visible label. Default: the translated "Join the list" |
+| `text` | `string` | no | Optional supporting sentence under the label |
+
+```liquid
+{% render 'newsletter', id: 'footer-newsletter', source: 'footer_newsletter' %}
+```
+
 ## pagination
 
 File: `snippets/pagination.liquid`

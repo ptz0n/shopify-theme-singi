@@ -99,11 +99,12 @@
     "enter": "เข้าสู่ร้านค้า",
     "owner": "เจ้าของร้าน? เข้าสู่ระบบ"
   },
-  "footer": {
-    "newsletter_label": "เข้าร่วมรายชื่อผู้รับข่าวสาร",
-    "newsletter_placeholder": "ที่อยู่อีเมล",
-    "newsletter_submit": "สมัครรับข่าวสาร",
-    "newsletter_success": "ขอบคุณที่สมัครรับข่าวสาร"
+  "footer": {},
+  "newsletter": {
+    "label": "เข้าร่วมรายชื่อผู้รับข่าวสาร",
+    "placeholder": "ที่อยู่อีเมล",
+    "submit": "สมัครรับข่าวสาร",
+    "success": "ขอบคุณที่สมัครรับข่าวสาร"
   },
   "sections": {
     "featured": {

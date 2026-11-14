@@ -105,11 +105,12 @@
     "enter": "Wejdź",
     "owner": "Właściciel sklepu? Zaloguj się"
   },
-  "footer": {
-    "newsletter_label": "Dołącz do listy",
-    "newsletter_placeholder": "Adres e-mail",
-    "newsletter_submit": "Zapisz się",
-    "newsletter_success": "Dziękujemy za zapisanie się."
+  "footer": {},
+  "newsletter": {
+    "label": "Dołącz do listy",
+    "placeholder": "Adres e-mail",
+    "submit": "Zapisz się",
+    "success": "Dziękujemy za zapisanie się."
   },
   "sections": {
     "featured": {

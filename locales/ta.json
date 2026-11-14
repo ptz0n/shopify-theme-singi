@@ -101,11 +101,12 @@
     "enter": "உள்ளிடவும்",
     "owner": "கடை உரிமையாளரா? உள்நுழைக"
   },
-  "footer": {
-    "newsletter_label": "பட்டியலில் இணையுங்கள்",
-    "newsletter_placeholder": "மின்னஞ்சல் முகவரி",
-    "newsletter_submit": "குழுசேர்",
-    "newsletter_success": "குழுசேர்ந்ததற்கு நன்றி."
+  "footer": {},
+  "newsletter": {
+    "label": "பட்டியலில் இணையுங்கள்",
+    "placeholder": "மின்னஞ்சல் முகவரி",
+    "submit": "குழுசேர்",
+    "success": "குழுசேர்ந்ததற்கு நன்றி."
   },
   "sections": {
     "featured": {

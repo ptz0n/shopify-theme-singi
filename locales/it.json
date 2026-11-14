@@ -101,11 +101,12 @@
     "enter": "Entra",
     "owner": "Proprietario del negozio? Accedi"
   },
-  "footer": {
-    "newsletter_label": "Iscriviti alla lista",
-    "newsletter_placeholder": "Indirizzo e-mail",
-    "newsletter_submit": "Iscriviti",
-    "newsletter_success": "Grazie per esserti iscritto."
+  "footer": {},
+  "newsletter": {
+    "label": "Iscriviti alla lista",
+    "placeholder": "Indirizzo e-mail",
+    "submit": "Iscriviti",
+    "success": "Grazie per esserti iscritto."
   },
   "sections": {
     "featured": {

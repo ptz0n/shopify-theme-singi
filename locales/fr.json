@@ -101,11 +101,12 @@
     "enter": "Entrer",
     "owner": "Propriétaire de la boutique ? Connectez-vous"
   },
-  "footer": {
-    "newsletter_label": "Rejoignez la liste",
-    "newsletter_placeholder": "Adresse e-mail",
-    "newsletter_submit": "S’abonner",
-    "newsletter_success": "Merci de votre inscription."
+  "footer": {},
+  "newsletter": {
+    "label": "Rejoignez la liste",
+    "placeholder": "Adresse e-mail",
+    "submit": "S’abonner",
+    "success": "Merci de votre inscription."
   },
   "sections": {
     "featured": {

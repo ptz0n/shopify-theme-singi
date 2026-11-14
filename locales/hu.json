@@ -101,11 +101,12 @@
     "enter": "Belépés",
     "owner": "Áruházi tulajdonos? Jelentkezzen be"
   },
-  "footer": {
-    "newsletter_label": "Csatlakozzon a listához",
-    "newsletter_placeholder": "E-mail-cím",
-    "newsletter_submit": "Feliratkozás",
-    "newsletter_success": "Köszönjük a feliratkozást."
+  "footer": {},
+  "newsletter": {
+    "label": "Csatlakozzon a listához",
+    "placeholder": "E-mail-cím",
+    "submit": "Feliratkozás",
+    "success": "Köszönjük a feliratkozást."
   },
   "sections": {
     "featured": {

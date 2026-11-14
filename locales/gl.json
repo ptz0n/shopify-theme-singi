@@ -101,11 +101,12 @@
     "enter": "Entrar",
     "owner": "Es o propietario da tenda? Inicia sesión"
   },
-  "footer": {
-    "newsletter_label": "Únete á lista",
-    "newsletter_placeholder": "Enderezo de correo electrónico",
-    "newsletter_submit": "Subscribirse",
-    "newsletter_success": "Grazas por subscribirte."
+  "footer": {},
+  "newsletter": {
+    "label": "Únete á lista",
+    "placeholder": "Enderezo de correo electrónico",
+    "submit": "Subscribirse",
+    "success": "Grazas por subscribirte."
   },
   "sections": {
     "featured": {

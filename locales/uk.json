@@ -105,11 +105,12 @@
     "enter": "Увійти",
     "owner": "Власник магазину? Увійти"
   },
-  "footer": {
-    "newsletter_label": "Приєднуйтесь до розсилки",
-    "newsletter_placeholder": "Електронна адреса",
-    "newsletter_submit": "Підписатися",
-    "newsletter_success": "Дякуємо за підписку."
+  "footer": {},
+  "newsletter": {
+    "label": "Приєднуйтесь до розсилки",
+    "placeholder": "Електронна адреса",
+    "submit": "Підписатися",
+    "success": "Дякуємо за підписку."
   },
   "sections": {
     "featured": {

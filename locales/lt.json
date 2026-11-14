@@ -105,11 +105,12 @@
     "enter": "Prisijungti",
     "owner": "Parduotuvės savininkas? Prisijunkite"
   },
-  "footer": {
-    "newsletter_label": "Prenumeruokite naujienas",
-    "newsletter_placeholder": "El. pašto adresas",
-    "newsletter_submit": "Prenumeruoti",
-    "newsletter_success": "Dėkojame, kad prenumeruojate."
+  "footer": {},
+  "newsletter": {
+    "label": "Prenumeruokite naujienas",
+    "placeholder": "El. pašto adresas",
+    "submit": "Prenumeruoti",
+    "success": "Dėkojame, kad prenumeruojate."
   },
   "sections": {
     "featured": {

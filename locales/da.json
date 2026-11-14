@@ -101,11 +101,12 @@
     "enter": "Log ind",
     "owner": "Butiksejer? Log ind"
   },
-  "footer": {
-    "newsletter_label": "Tilmeld dig listen",
-    "newsletter_placeholder": "E-mailadresse",
-    "newsletter_submit": "Tilmeld",
-    "newsletter_success": "Tak for din tilmelding."
+  "footer": {},
+  "newsletter": {
+    "label": "Tilmeld dig listen",
+    "placeholder": "E-mailadresse",
+    "submit": "Tilmeld",
+    "success": "Tak for din tilmelding."
   },
   "sections": {
     "featured": {

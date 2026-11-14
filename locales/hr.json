@@ -103,11 +103,12 @@
     "enter": "Uđi",
     "owner": "Vlasnik trgovine? Prijavite se"
   },
-  "footer": {
-    "newsletter_label": "Pridružite se popisu",
-    "newsletter_placeholder": "Adresa e-pošte",
-    "newsletter_submit": "Pretplati se",
-    "newsletter_success": "Hvala na pretplati."
+  "footer": {},
+  "newsletter": {
+    "label": "Pridružite se popisu",
+    "placeholder": "Adresa e-pošte",
+    "submit": "Pretplati se",
+    "success": "Hvala na pretplati."
   },
   "sections": {
     "featured": {

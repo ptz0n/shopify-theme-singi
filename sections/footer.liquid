@@ -32,33 +32,7 @@
     {%- endif -%}
 
     {%- if section.settings.show_newsletter -%}
-      <div class="footer__newsletter">
-        {%- form 'customer', id: 'footer-newsletter' -%}
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          <label for="footer-email">{{ 'footer.newsletter_label' | t }}</label>
-          <div class="footer__newsletter-row">
-            <input
-              id="footer-email"
-              type="email"
-              name="contact[email]"
-              autocomplete="email"
-              required
-              placeholder="{{ 'footer.newsletter_placeholder' | t }}"
-              value="{{ form.email }}"
-            >
-            <button class="button" type="submit">{{ 'footer.newsletter_submit' | t }}</button>
-          </div>
-          {%- if form.posted_successfully? -%}
-            <p role="status">{{ 'footer.newsletter_success' | t }}</p>
-            {%- if settings.tracking_enabled -%}
-              <script type="application/json" data-track="generate_lead">{ "lead_source": "footer_newsletter" }</script>
-            {%- endif -%}
-          {%- endif -%}
-          {%- if form.errors -%}
-            {{ form.errors | default_errors }}
-          {%- endif -%}
-        {%- endform -%}
-      </div>
+      {%- render 'newsletter', id: 'footer-newsletter', source: 'footer_newsletter' -%}
     {%- endif -%}
   </div>
 
@@ -86,8 +60,6 @@
   .footer__nav ul { display: grid; gap: 0.25rem; padding: 0; }
   .footer__nav a { display: inline-flex; align-items: center; min-height: 2.75rem; text-decoration: none; }
   .footer__nav a:hover { text-decoration: underline; }
-  .footer__newsletter-row { display: flex; gap: 0.5rem; }
-  .footer__newsletter-row input { flex: 1; min-width: 0; }
   .footer__legal { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin-block-start: 2.5rem; padding-block-start: 1.5rem; border-block-start: 1px solid var(--color-border); font-size: 0.75rem; color: var(--color-muted); }
   .footer__payment { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; }
   .footer__payment-icon { width: 2.375rem; height: 1.5rem; }

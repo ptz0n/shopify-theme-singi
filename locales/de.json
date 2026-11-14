@@ -101,11 +101,12 @@
     "enter": "Eintreten",
     "owner": "Shop-Inhaber? Anmelden"
   },
-  "footer": {
-    "newsletter_label": "Newsletter abonnieren",
-    "newsletter_placeholder": "E-Mail-Adresse",
-    "newsletter_submit": "Abonnieren",
-    "newsletter_success": "Vielen Dank für Ihre Anmeldung."
+  "footer": {},
+  "newsletter": {
+    "label": "Newsletter abonnieren",
+    "placeholder": "E-Mail-Adresse",
+    "submit": "Abonnieren",
+    "success": "Vielen Dank für Ihre Anmeldung."
   },
   "sections": {
     "featured": {

@@ -101,11 +101,12 @@
     "enter": "Entra",
     "owner": "Ets el propietari de la botiga? Inicia la sessió"
   },
-  "footer": {
-    "newsletter_label": "Uneix-te a la llista",
-    "newsletter_placeholder": "Adreça electrònica",
-    "newsletter_submit": "Subscriu-m'hi",
-    "newsletter_success": "Gràcies per subscriure't."
+  "footer": {},
+  "newsletter": {
+    "label": "Uneix-te a la llista",
+    "placeholder": "Adreça electrònica",
+    "submit": "Subscriu-m'hi",
+    "success": "Gràcies per subscriure't."
   },
   "sections": {
     "featured": {

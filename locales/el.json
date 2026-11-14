@@ -101,11 +101,12 @@
     "enter": "Είσοδος",
     "owner": "Ιδιοκτήτης καταστήματος; Συνδεθείτε"
   },
-  "footer": {
-    "newsletter_label": "Εγγραφή στη λίστα",
-    "newsletter_placeholder": "Διεύθυνση email",
-    "newsletter_submit": "Εγγραφή",
-    "newsletter_success": "Σας ευχαριστούμε για την εγγραφή."
+  "footer": {},
+  "newsletter": {
+    "label": "Εγγραφή στη λίστα",
+    "placeholder": "Διεύθυνση email",
+    "submit": "Εγγραφή",
+    "success": "Σας ευχαριστούμε για την εγγραφή."
   },
   "sections": {
     "featured": {

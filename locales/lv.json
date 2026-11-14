@@ -103,11 +103,12 @@
     "enter": "Ieiet",
     "owner": "Veikala īpašnieks? Pieslēdzieties"
   },
-  "footer": {
-    "newsletter_label": "Pieteikties jaunumiem",
-    "newsletter_placeholder": "E-pasta adrese",
-    "newsletter_submit": "Pieteikties",
-    "newsletter_success": "Paldies, ka pieteicāties."
+  "footer": {},
+  "newsletter": {
+    "label": "Pieteikties jaunumiem",
+    "placeholder": "E-pasta adrese",
+    "submit": "Pieteikties",
+    "success": "Paldies, ka pieteicāties."
   },
   "sections": {
     "featured": {

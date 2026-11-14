@@ -99,11 +99,12 @@
     "enter": "进入",
     "owner": "店主？请登录"
   },
-  "footer": {
-    "newsletter_label": "订阅我们的资讯",
-    "newsletter_placeholder": "电子邮箱地址",
-    "newsletter_submit": "订阅",
-    "newsletter_success": "感谢您的订阅。"
+  "footer": {},
+  "newsletter": {
+    "label": "订阅我们的资讯",
+    "placeholder": "电子邮箱地址",
+    "submit": "订阅",
+    "success": "感谢您的订阅。"
   },
   "sections": {
     "featured": {

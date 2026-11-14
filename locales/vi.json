@@ -99,11 +99,12 @@
     "enter": "Vào",
     "owner": "Chủ cửa hàng? Đăng nhập"
   },
-  "footer": {
-    "newsletter_label": "Đăng ký nhận tin",
-    "newsletter_placeholder": "Địa chỉ email",
-    "newsletter_submit": "Đăng ký",
-    "newsletter_success": "Cảm ơn bạn đã đăng ký."
+  "footer": {},
+  "newsletter": {
+    "label": "Đăng ký nhận tin",
+    "placeholder": "Địa chỉ email",
+    "submit": "Đăng ký",
+    "success": "Cảm ơn bạn đã đăng ký."
   },
   "sections": {
     "featured": {

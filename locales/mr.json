@@ -101,11 +101,12 @@
     "enter": "प्रवेश करा",
     "owner": "स्टोअर मालक? लॉग इन करा"
   },
-  "footer": {
-    "newsletter_label": "यादीत सामील व्हा",
-    "newsletter_placeholder": "ईमेल पत्ता",
-    "newsletter_submit": "सदस्यता घ्या",
-    "newsletter_success": "सदस्यता घेतल्याबद्दल धन्यवाद."
+  "footer": {},
+  "newsletter": {
+    "label": "यादीत सामील व्हा",
+    "placeholder": "ईमेल पत्ता",
+    "submit": "सदस्यता घ्या",
+    "success": "सदस्यता घेतल्याबद्दल धन्यवाद."
   },
   "sections": {
     "featured": {

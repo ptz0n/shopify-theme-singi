@@ -101,11 +101,12 @@
     "enter": "प्रवेश करें",
     "owner": "स्टोर के मालिक? लॉग इन करें"
   },
-  "footer": {
-    "newsletter_label": "हमारी सूची से जुड़ें",
-    "newsletter_placeholder": "ईमेल पता",
-    "newsletter_submit": "सब्सक्राइब करें",
-    "newsletter_success": "सब्सक्राइब करने के लिए धन्यवाद।"
+  "footer": {},
+  "newsletter": {
+    "label": "हमारी सूची से जुड़ें",
+    "placeholder": "ईमेल पता",
+    "submit": "सब्सक्राइब करें",
+    "success": "सब्सक्राइब करने के लिए धन्यवाद।"
   },
   "sections": {
     "featured": {

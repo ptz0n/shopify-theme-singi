@@ -101,11 +101,12 @@
     "enter": "Sisene",
     "owner": "Poeomanik? Logi sisse"
   },
-  "footer": {
-    "newsletter_label": "Liitu meililistiga",
-    "newsletter_placeholder": "E-posti aadress",
-    "newsletter_submit": "Telli",
-    "newsletter_success": "Täname tellimuse eest."
+  "footer": {},
+  "newsletter": {
+    "label": "Liitu meililistiga",
+    "placeholder": "E-posti aadress",
+    "submit": "Telli",
+    "success": "Täname tellimuse eest."
   },
   "sections": {
     "featured": {

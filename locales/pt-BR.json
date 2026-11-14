@@ -101,11 +101,12 @@
     "enter": "Entrar",
     "owner": "Dono da loja? Faça login"
   },
-  "footer": {
-    "newsletter_label": "Entre para a lista",
-    "newsletter_placeholder": "Endereço de e-mail",
-    "newsletter_submit": "Inscrever-se",
-    "newsletter_success": "Obrigado por se inscrever."
+  "footer": {},
+  "newsletter": {
+    "label": "Entre para a lista",
+    "placeholder": "Endereço de e-mail",
+    "submit": "Inscrever-se",
+    "success": "Obrigado por se inscrever."
   },
   "sections": {
     "featured": {

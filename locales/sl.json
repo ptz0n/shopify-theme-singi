@@ -105,11 +105,12 @@
     "enter": "Vstopi",
     "owner": "Lastnik trgovine? Prijavite se"
   },
-  "footer": {
-    "newsletter_label": "Pridružite se seznamu",
-    "newsletter_placeholder": "E-poštni naslov",
-    "newsletter_submit": "Naroči se",
-    "newsletter_success": "Hvala za prijavo."
+  "footer": {},
+  "newsletter": {
+    "label": "Pridružite se seznamu",
+    "placeholder": "E-poštni naslov",
+    "submit": "Naroči se",
+    "success": "Hvala za prijavo."
   },
   "sections": {
     "featured": {

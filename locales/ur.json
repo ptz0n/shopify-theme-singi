@@ -101,11 +101,12 @@
     "enter": "داخل ہوں",
     "owner": "اسٹور کے مالک؟ لاگ اِن کریں"
   },
-  "footer": {
-    "newsletter_label": "ہماری فہرست میں شامل ہوں",
-    "newsletter_placeholder": "ای میل ایڈریس",
-    "newsletter_submit": "سبسکرائب کریں",
-    "newsletter_success": "سبسکرائب کرنے کا شکریہ۔"
+  "footer": {},
+  "newsletter": {
+    "label": "ہماری فہرست میں شامل ہوں",
+    "placeholder": "ای میل ایڈریس",
+    "submit": "سبسکرائب کریں",
+    "success": "سبسکرائب کرنے کا شکریہ۔"
   },
   "sections": {
     "featured": {

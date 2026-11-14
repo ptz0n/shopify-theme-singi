@@ -103,11 +103,12 @@
     "enter": "Intră",
     "owner": "Proprietarul magazinului? Autentifică-te"
   },
-  "footer": {
-    "newsletter_label": "Alătură-te listei",
-    "newsletter_placeholder": "Adresă de e-mail",
-    "newsletter_submit": "Abonează-te",
-    "newsletter_success": "Vă mulțumim pentru abonare."
+  "footer": {},
+  "newsletter": {
+    "label": "Alătură-te listei",
+    "placeholder": "Adresă de e-mail",
+    "submit": "Abonează-te",
+    "success": "Vă mulțumim pentru abonare."
   },
   "sections": {
     "featured": {

@@ -101,11 +101,12 @@
     "enter": "შესვლა",
     "owner": "მაღაზიის მფლობელი ხართ? შედით"
   },
-  "footer": {
-    "newsletter_label": "გამოიწერეთ სიახლეები",
-    "newsletter_placeholder": "ელფოსტის მისამართი",
-    "newsletter_submit": "გამოწერა",
-    "newsletter_success": "გმადლობთ გამოწერისთვის."
+  "footer": {},
+  "newsletter": {
+    "label": "გამოიწერეთ სიახლეები",
+    "placeholder": "ელფოსტის მისამართი",
+    "submit": "გამოწერა",
+    "success": "გმადლობთ გამოწერისთვის."
   },
   "sections": {
     "featured": {

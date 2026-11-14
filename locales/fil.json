@@ -101,11 +101,12 @@
     "enter": "Pumasok",
     "owner": "May-ari ng tindahan? Mag-log in"
   },
-  "footer": {
-    "newsletter_label": "Sumali sa listahan",
-    "newsletter_placeholder": "Email address",
-    "newsletter_submit": "Mag-subscribe",
-    "newsletter_success": "Salamat sa pag-subscribe."
+  "footer": {},
+  "newsletter": {
+    "label": "Sumali sa listahan",
+    "placeholder": "Email address",
+    "submit": "Mag-subscribe",
+    "success": "Salamat sa pag-subscribe."
   },
   "sections": {
     "featured": {

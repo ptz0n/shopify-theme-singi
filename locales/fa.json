@@ -101,11 +101,12 @@
     "enter": "ورود",
     "owner": "مالک فروشگاه هستید؟ وارد شوید"
   },
-  "footer": {
-    "newsletter_label": "عضو خبرنامه شوید",
-    "newsletter_placeholder": "نشانی ایمیل",
-    "newsletter_submit": "عضویت",
-    "newsletter_success": "از عضویت شما سپاسگزاریم."
+  "footer": {},
+  "newsletter": {
+    "label": "عضو خبرنامه شوید",
+    "placeholder": "نشانی ایمیل",
+    "submit": "عضویت",
+    "success": "از عضویت شما سپاسگزاریم."
   },
   "sections": {
     "featured": {

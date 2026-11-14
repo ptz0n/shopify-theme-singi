@@ -101,11 +101,12 @@
     "enter": "Daxil ol",
     "owner": "Mağaza sahibisiniz? Daxil olun"
   },
-  "footer": {
-    "newsletter_label": "Siyahıya qoşulun",
-    "newsletter_placeholder": "E-poçt ünvanı",
-    "newsletter_submit": "Abunə ol",
-    "newsletter_success": "Abunə olduğunuz üçün təşəkkür edirik."
+  "footer": {},
+  "newsletter": {
+    "label": "Siyahıya qoşulun",
+    "placeholder": "E-poçt ünvanı",
+    "submit": "Abunə ol",
+    "success": "Abunə olduğunuz üçün təşəkkür edirik."
   },
   "sections": {
     "featured": {

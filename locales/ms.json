@@ -99,11 +99,12 @@
     "enter": "Masuk",
     "owner": "Pemilik kedai? Log masuk"
   },
-  "footer": {
-    "newsletter_label": "Sertai senarai kami",
-    "newsletter_placeholder": "Alamat e-mel",
-    "newsletter_submit": "Langgan",
-    "newsletter_success": "Terima kasih kerana melanggan."
+  "footer": {},
+  "newsletter": {
+    "label": "Sertai senarai kami",
+    "placeholder": "Alamat e-mel",
+    "submit": "Langgan",
+    "success": "Terima kasih kerana melanggan."
   },
   "sections": {
     "featured": {

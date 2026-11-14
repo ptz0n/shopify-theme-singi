@@ -101,11 +101,12 @@
     "enter": "ప్రవేశించండి",
     "owner": "స్టోర్ యజమానినా? లాగిన్ అవ్వండి"
   },
-  "footer": {
-    "newsletter_label": "జాబితాలో చేరండి",
-    "newsletter_placeholder": "ఇమెయిల్ చిరునామా",
-    "newsletter_submit": "సబ్‌స్క్రైబ్ చేయండి",
-    "newsletter_success": "సబ్‌స్క్రైబ్ చేసినందుకు ధన్యవాదాలు."
+  "footer": {},
+  "newsletter": {
+    "label": "జాబితాలో చేరండి",
+    "placeholder": "ఇమెయిల్ చిరునామా",
+    "submit": "సబ్‌స్క్రైబ్ చేయండి",
+    "success": "సబ్‌స్క్రైబ్ చేసినందుకు ధన్యవాదాలు."
   },
   "sections": {
     "featured": {

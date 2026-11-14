@@ -101,11 +101,12 @@
     "enter": "Enter",
     "owner": "Store owner? Log in"
   },
-  "footer": {
-    "newsletter_label": "Join the list",
-    "newsletter_placeholder": "Email address",
-    "newsletter_submit": "Subscribe",
-    "newsletter_success": "Thanks for subscribing."
+  "footer": {},
+  "newsletter": {
+    "label": "Join the list",
+    "placeholder": "Email address",
+    "submit": "Subscribe",
+    "success": "Thanks for subscribing."
   },
   "sections": {
     "featured": {

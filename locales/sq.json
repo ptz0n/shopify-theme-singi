@@ -101,11 +101,12 @@
     "enter": "Hyr",
     "owner": "Pronar i dyqanit? Hyni"
   },
-  "footer": {
-    "newsletter_label": "Bashkohu në listë",
-    "newsletter_placeholder": "Adresa e emailit",
-    "newsletter_submit": "Abonohu",
-    "newsletter_success": "Faleminderit për abonimin."
+  "footer": {},
+  "newsletter": {
+    "label": "Bashkohu në listë",
+    "placeholder": "Adresa e emailit",
+    "submit": "Abonohu",
+    "success": "Faleminderit për abonimin."
   },
   "sections": {
     "featured": {

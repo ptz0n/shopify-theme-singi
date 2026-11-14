@@ -101,11 +101,12 @@
     "enter": "Giriş",
     "owner": "Mağaza sahibi misiniz? Giriş yapın"
   },
-  "footer": {
-    "newsletter_label": "Listeye katılın",
-    "newsletter_placeholder": "E-posta adresi",
-    "newsletter_submit": "Abone ol",
-    "newsletter_success": "Abone olduğunuz için teşekkürler."
+  "footer": {},
+  "newsletter": {
+    "label": "Listeye katılın",
+    "placeholder": "E-posta adresi",
+    "submit": "Abone ol",
+    "success": "Abone olduğunuz için teşekkürler."
   },
   "sections": {
     "featured": {

@@ -101,11 +101,12 @@
     "enter": "Sartu",
     "owner": "Dendaren jabea? Hasi saioa"
   },
-  "footer": {
-    "newsletter_label": "Eman izena zerrendan",
-    "newsletter_placeholder": "Helbide elektronikoa",
-    "newsletter_submit": "Harpidetu",
-    "newsletter_success": "Eskerrik asko harpidetzeagatik."
+  "footer": {},
+  "newsletter": {
+    "label": "Eman izena zerrendan",
+    "placeholder": "Helbide elektronikoa",
+    "submit": "Harpidetu",
+    "success": "Eskerrik asko harpidetzeagatik."
   },
   "sections": {
     "featured": {

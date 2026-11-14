@@ -101,11 +101,12 @@
     "enter": "Entrar",
     "owner": "¿Eres el propietario? Inicia sesión"
   },
-  "footer": {
-    "newsletter_label": "Únete a la lista",
-    "newsletter_placeholder": "Correo electrónico",
-    "newsletter_submit": "Suscribirme",
-    "newsletter_success": "Gracias por suscribirte."
+  "footer": {},
+  "newsletter": {
+    "label": "Únete a la lista",
+    "placeholder": "Correo electrónico",
+    "submit": "Suscribirme",
+    "success": "Gracias por suscribirte."
   },
   "sections": {
     "featured": {

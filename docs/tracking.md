@@ -22,7 +22,7 @@ GA4 ecommerce events for the storefront, how they are produced, how consent and 
 | `remove_from_cart` | Remove or quantity decrease in the cart | `cart-items.js` event `singi:cart-diff` |
 | `view_cart` | Cart page load | `snippets/tracking-cart.liquid` |
 | `view_search_results` | Search page with a query (`search_term`, `results_count`) | `sections/main-search.liquid` |
-| `generate_lead` | Footer newsletter signup succeeded (`lead_source`) | `sections/footer.liquid` |
+| `generate_lead` | A newsletter signup succeeded (`lead_source`: `footer_newsletter` in the footer, `block_newsletter` in the block) | `snippets/newsletter.liquid` |
 | `begin_checkout`, `add_shipping_info`, `add_payment_info`, `purchase` | Checkout steps | Customer Events pixel, not the theme |
 
 The theme never sends `begin_checkout` or `purchase`, so installing the pixel cannot double count.

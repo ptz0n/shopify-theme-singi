@@ -101,11 +101,12 @@
     "enter": "Ingia",
     "owner": "Mmiliki wa duka? Ingia"
   },
-  "footer": {
-    "newsletter_label": "Jiunge na orodha",
-    "newsletter_placeholder": "Barua pepe",
-    "newsletter_submit": "Jiandikishe",
-    "newsletter_success": "Asante kwa kujiandikisha."
+  "footer": {},
+  "newsletter": {
+    "label": "Jiunge na orodha",
+    "placeholder": "Barua pepe",
+    "submit": "Jiandikishe",
+    "success": "Asante kwa kujiandikisha."
   },
   "sections": {
     "featured": {

@@ -101,11 +101,12 @@
     "enter": "Gaan in",
     "owner": "Winkeleienaar? Teken in"
   },
-  "footer": {
-    "newsletter_label": "Sluit by die lys aan",
-    "newsletter_placeholder": "E-posadres",
-    "newsletter_submit": "Teken in",
-    "newsletter_success": "Dankie dat jy ingeteken het."
+  "footer": {},
+  "newsletter": {
+    "label": "Sluit by die lys aan",
+    "placeholder": "E-posadres",
+    "submit": "Teken in",
+    "success": "Dankie dat jy ingeteken het."
   },
   "sections": {
     "featured": {

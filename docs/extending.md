@@ -90,7 +90,7 @@ Nothing in this section exists yet. These are intended designs, in rough priorit
 
 ### Native Klaviyo signup
 
-A `<klaviyo-signup>` custom element rendering a normal accessible form (works as a link to a hosted form without JS) and, when JS is available, posting directly to Klaviyo's client subscribe endpoint with the company's public key and a list id, so Klaviyo's onsite JavaScript is never loaded. Settings: public company id, list id, consent text, success message. Needs: the current Klaviyo client API revision and request shape confirmed against Klaviyo's documentation, a consent checkbox where required, rate-limit and error handling, and translations for every string. Replaces the Shopify `customer` newsletter form in `sections/footer.liquid` where Klaviyo is the system of record.
+A `<klaviyo-signup>` custom element rendering a normal accessible form (works as a link to a hosted form without JS) and, when JS is available, posting directly to Klaviyo's client subscribe endpoint with the company's public key and a list id, so Klaviyo's onsite JavaScript is never loaded. Settings: public company id, list id, consent text, success message. Needs: the current Klaviyo client API revision and request shape confirmed against Klaviyo's documentation, a consent checkbox where required, rate-limit and error handling, and translations for every string. Replaces the Shopify `customer` newsletter form in `snippets/newsletter.liquid` (used by the footer and the newsletter block) where Klaviyo is the system of record.
 
 ### Reviews
 

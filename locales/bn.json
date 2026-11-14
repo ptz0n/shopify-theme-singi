@@ -101,11 +101,12 @@
     "enter": "প্রবেশ করুন",
     "owner": "স্টোরের মালিক? লগ ইন করুন"
   },
-  "footer": {
-    "newsletter_label": "তালিকায় যোগ দিন",
-    "newsletter_placeholder": "ইমেইল ঠিকানা",
-    "newsletter_submit": "সাবস্ক্রাইব করুন",
-    "newsletter_success": "সাবস্ক্রাইব করার জন্য ধন্যবাদ।"
+  "footer": {},
+  "newsletter": {
+    "label": "তালিকায় যোগ দিন",
+    "placeholder": "ইমেইল ঠিকানা",
+    "submit": "সাবস্ক্রাইব করুন",
+    "success": "সাবস্ক্রাইব করার জন্য ধন্যবাদ।"
   },
   "sections": {
     "featured": {

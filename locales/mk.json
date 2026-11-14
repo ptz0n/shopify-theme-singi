@@ -101,11 +101,12 @@
     "enter": "Влези",
     "owner": "Сопственик на продавницата? Најавете се"
   },
-  "footer": {
-    "newsletter_label": "Придружете се на листата",
-    "newsletter_placeholder": "Е-пошта",
-    "newsletter_submit": "Претплати се",
-    "newsletter_success": "Ви благодариме за претплатата."
+  "footer": {},
+  "newsletter": {
+    "label": "Придружете се на листата",
+    "placeholder": "Е-пошта",
+    "submit": "Претплати се",
+    "success": "Ви благодариме за претплатата."
   },
   "sections": {
     "featured": {
