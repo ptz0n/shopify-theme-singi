@@ -82,6 +82,6 @@ docs/         this documentation; docs/reference/ is generated
 
 [MIT](LICENSE) © Erik Eng and singi contributors. Use it on client builds, fork it, sell stores built with it.
 
-Write new code from scratch, and only submit code you can license under MIT.
+The architecture (JSON templates, thin sections, nestable theme blocks) follows the latest approach of Shopify's themes. Write new code from scratch, and only submit code you can license under MIT.
 
 The name "singi" and its logo are not covered by the MIT license; see [CONTRIBUTING.md](CONTRIBUTING.md#name).
