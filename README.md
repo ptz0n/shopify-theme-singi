@@ -16,9 +16,9 @@ A Shopify Online Store 2.0 theme built for storefront rendering speed, clear str
 </table>
 
 <p align="center">
-  <img src="docs/images/product-mobile-light.webp" alt="Product page on a phone, light mode" width="240">
+  <img src="docs/images/product-mobile-light.webp" alt="Product page on a phone, light mode" width="200">
   &nbsp;&nbsp;
-  <img src="docs/images/product-mobile-dark.webp" alt="Product page on a phone, dark mode" width="240">
+  <img src="docs/images/product-mobile-dark.webp" alt="Product page on a phone, dark mode" width="200">
   <br><sub>Product page on a phone, light and dark</sub>
 </p>
 
