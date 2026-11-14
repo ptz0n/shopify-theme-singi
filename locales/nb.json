@@ -48,7 +48,10 @@
     "in_stock": "På lager",
     "percent_off": "{{ percent }} % rabatt",
     "quantity_decrease": "Reduser antall",
-    "quantity_increase": "Øk antall"
+    "quantity_increase": "Øk antall",
+    "quantity_min": "Minimum {{ count }}",
+    "quantity_multiple": "Multipler av {{ count }}",
+    "quantity_max": "Maksimum {{ count }}"
   },
   "collection": {
     "price_from": "Fra",

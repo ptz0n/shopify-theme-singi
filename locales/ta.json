@@ -48,7 +48,10 @@
     "in_stock": "கையிருப்பில் உள்ளது",
     "percent_off": "{{ percent }}% தள்ளுபடி",
     "quantity_decrease": "அளவைக் குறை",
-    "quantity_increase": "அளவை அதிகரி"
+    "quantity_increase": "அளவை அதிகரி",
+    "quantity_min": "குறைந்தபட்சம் {{ count }}",
+    "quantity_multiple": "{{ count }} இன் மடங்குகள்",
+    "quantity_max": "அதிகபட்சம் {{ count }}"
   },
   "collection": {
     "price_from": "குறைந்தபட்சம்",

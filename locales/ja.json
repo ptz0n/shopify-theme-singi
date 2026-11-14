@@ -48,7 +48,10 @@
     "in_stock": "在庫あり",
     "percent_off": "{{ percent }}%オフ",
     "quantity_decrease": "数量を減らす",
-    "quantity_increase": "数量を増やす"
+    "quantity_increase": "数量を増やす",
+    "quantity_min": "最小 {{ count }}",
+    "quantity_multiple": "{{ count }} の倍数",
+    "quantity_max": "最大 {{ count }}"
   },
   "collection": {
     "price_from": "最小",

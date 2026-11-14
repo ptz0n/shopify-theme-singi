@@ -48,7 +48,10 @@
     "in_stock": "Laos olemas",
     "percent_off": "{{ percent }}% allahindlus",
     "quantity_decrease": "Vähenda kogust",
-    "quantity_increase": "Suurenda kogust"
+    "quantity_increase": "Suurenda kogust",
+    "quantity_min": "Vähemalt {{ count }}",
+    "quantity_multiple": "{{ count }} kordsed",
+    "quantity_max": "Kuni {{ count }}"
   },
   "collection": {
     "price_from": "Alates",

@@ -48,7 +48,10 @@
     "in_stock": "Ada stok",
     "percent_off": "diskaun {{ percent }}%",
     "quantity_decrease": "Kurangkan kuantiti",
-    "quantity_increase": "Tambah kuantiti"
+    "quantity_increase": "Tambah kuantiti",
+    "quantity_min": "Minimum {{ count }}",
+    "quantity_multiple": "Gandaan {{ count }}",
+    "quantity_max": "Maksimum {{ count }}"
   },
   "collection": {
     "price_from": "Dari",

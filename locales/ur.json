@@ -48,7 +48,10 @@
     "in_stock": "اسٹاک میں موجود",
     "percent_off": "{{ percent }}% رعایت",
     "quantity_decrease": "مقدار کم کریں",
-    "quantity_increase": "مقدار بڑھائیں"
+    "quantity_increase": "مقدار بڑھائیں",
+    "quantity_min": "کم از کم {{ count }}",
+    "quantity_multiple": "{{ count }} کے ضرب",
+    "quantity_max": "زیادہ سے زیادہ {{ count }}"
   },
   "collection": {
     "price_from": "از",

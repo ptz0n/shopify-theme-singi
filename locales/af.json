@@ -48,7 +48,10 @@
     "in_stock": "In voorraad",
     "percent_off": "{{ percent }}% afslag",
     "quantity_decrease": "Verminder hoeveelheid",
-    "quantity_increase": "Verhoog hoeveelheid"
+    "quantity_increase": "Verhoog hoeveelheid",
+    "quantity_min": "Minimum {{ count }}",
+    "quantity_multiple": "Veelvoude van {{ count }}",
+    "quantity_max": "Maksimum {{ count }}"
   },
   "collection": {
     "price_from": "Vanaf",

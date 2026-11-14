@@ -48,7 +48,10 @@
     "in_stock": "Ipo dukani",
     "percent_off": "punguzo la {{ percent }}%",
     "quantity_decrease": "Punguza idadi",
-    "quantity_increase": "Ongeza idadi"
+    "quantity_increase": "Ongeza idadi",
+    "quantity_min": "Kiwango cha chini {{ count }}",
+    "quantity_multiple": "Mizidisho ya {{ count }}",
+    "quantity_max": "Kiwango cha juu {{ count }}"
   },
   "collection": {
     "price_from": "Kuanzia",

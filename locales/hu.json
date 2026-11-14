@@ -48,7 +48,10 @@
     "in_stock": "Raktáron",
     "percent_off": "{{ percent }}% kedvezmény",
     "quantity_decrease": "Mennyiség csökkentése",
-    "quantity_increase": "Mennyiség növelése"
+    "quantity_increase": "Mennyiség növelése",
+    "quantity_min": "Minimum: {{ count }}",
+    "quantity_multiple": "{{ count }} többszörösei",
+    "quantity_max": "Maximum: {{ count }}"
   },
   "collection": {
     "price_from": "Ettől",

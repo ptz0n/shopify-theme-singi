@@ -48,7 +48,10 @@
     "in_stock": "Në stok",
     "percent_off": "{{ percent }}% zbritje",
     "quantity_decrease": "Ul sasinë",
-    "quantity_increase": "Rrit sasinë"
+    "quantity_increase": "Rrit sasinë",
+    "quantity_min": "Minimumi {{ count }}",
+    "quantity_multiple": "Shumëfishat e {{ count }}",
+    "quantity_max": "Maksimumi {{ count }}"
   },
   "collection": {
     "price_from": "Nga",

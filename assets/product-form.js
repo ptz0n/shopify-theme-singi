@@ -57,7 +57,9 @@ class ProductForm extends HTMLElement {
   #reconcile(next) {
     for (const target of this.querySelectorAll('[data-swap]')) {
       const source = next.querySelector(`[data-swap="${target.dataset.swap}"]`);
-      if (source) target.replaceChildren(...source.childNodes);
+      /* The quantity block is replaced only when this variant's limits differ, so a typed quantity survives a size change. */
+      const rules = (el) => el.querySelector('quantity-input')?.dataset.rules;
+      if (source && !(target.dataset.swap === 'quantity' && rules(target) === rules(source))) target.replaceChildren(...source.childNodes);
     }
     for (const input of this.querySelectorAll('input[data-option-url]')) {
       const source = next.querySelector(`#${CSS.escape(input.id)}`);

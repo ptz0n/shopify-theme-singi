@@ -48,7 +48,10 @@
     "in_stock": "Stokda var",
     "percent_off": "{{ percent }}% endirim",
     "quantity_decrease": "Sayı azalt",
-    "quantity_increase": "Sayı artır"
+    "quantity_increase": "Sayı artır",
+    "quantity_min": "Minimum {{ count }}",
+    "quantity_multiple": "{{ count }} qatları",
+    "quantity_max": "Maksimum {{ count }}"
   },
   "collection": {
     "price_from": "Minimum",

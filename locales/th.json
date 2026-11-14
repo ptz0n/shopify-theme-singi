@@ -48,7 +48,10 @@
     "in_stock": "มีสินค้า",
     "percent_off": "ลด {{ percent }}%",
     "quantity_decrease": "ลดจำนวน",
-    "quantity_increase": "เพิ่มจำนวน"
+    "quantity_increase": "เพิ่มจำนวน",
+    "quantity_min": "ขั้นต่ำ {{ count }}",
+    "quantity_multiple": "ทวีคูณของ {{ count }}",
+    "quantity_max": "สูงสุด {{ count }}"
   },
   "collection": {
     "price_from": "ตั้งแต่",

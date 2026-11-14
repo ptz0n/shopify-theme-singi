@@ -48,7 +48,10 @@
     "in_stock": "May stock",
     "percent_off": "{{ percent }}% diskwento",
     "quantity_decrease": "Bawasan ang dami",
-    "quantity_increase": "Dagdagan ang dami"
+    "quantity_increase": "Dagdagan ang dami",
+    "quantity_min": "Pinakamababa {{ count }}",
+    "quantity_multiple": "Mga multiple ng {{ count }}",
+    "quantity_max": "Pinakamataas {{ count }}"
   },
   "collection": {
     "price_from": "Mula",

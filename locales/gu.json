@@ -48,7 +48,10 @@
     "in_stock": "સ્ટોકમાં",
     "percent_off": "{{ percent }}% છૂટ",
     "quantity_decrease": "જથ્થો ઘટાડો",
-    "quantity_increase": "જથ્થો વધારો"
+    "quantity_increase": "જથ્થો વધારો",
+    "quantity_min": "ન્યૂનતમ {{ count }}",
+    "quantity_multiple": "{{ count }}ના ગુણાંક",
+    "quantity_max": "મહત્તમ {{ count }}"
   },
   "collection": {
     "price_from": "થી",

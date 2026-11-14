@@ -32,6 +32,8 @@ export const OPS = {
   collectionCreate:
     'mutation SingiCollectionCreate($collection: CollectionCreateInput!) { collectionCreate(collection: $collection) { collection { id handle } userErrors { field message } } }',
 
+  locations: 'query SingiLocation { locations(first: 1) { nodes { id } } }',
+
   pageByHandle: 'query SingiPageByHandle($query: String!) { pages(first: 1, query: $query) { nodes { id handle } } }',
 
   pageCreate: 'mutation SingiPageCreate($page: PageCreateInput!) { pageCreate(page: $page) { page { id handle } userErrors { field message } } }',

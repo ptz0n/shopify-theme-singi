@@ -48,7 +48,10 @@
     "in_stock": "На залиха",
     "percent_off": "{{ percent }}% попуст",
     "quantity_decrease": "Намали количина",
-    "quantity_increase": "Зголеми количина"
+    "quantity_increase": "Зголеми количина",
+    "quantity_min": "Минимум {{ count }}",
+    "quantity_multiple": "Повеќекратници на {{ count }}",
+    "quantity_max": "Максимум {{ count }}"
   },
   "collection": {
     "price_from": "Од",

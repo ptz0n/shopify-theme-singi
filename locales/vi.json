@@ -48,7 +48,10 @@
     "in_stock": "Còn hàng",
     "percent_off": "giảm {{ percent }}%",
     "quantity_decrease": "Giảm số lượng",
-    "quantity_increase": "Tăng số lượng"
+    "quantity_increase": "Tăng số lượng",
+    "quantity_min": "Tối thiểu {{ count }}",
+    "quantity_multiple": "Bội số của {{ count }}",
+    "quantity_max": "Tối đa {{ count }}"
   },
   "collection": {
     "price_from": "Từ",

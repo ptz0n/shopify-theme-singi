@@ -48,7 +48,10 @@
     "in_stock": "Ir noliktavā",
     "percent_off": "atlaide {{ percent }}%",
     "quantity_decrease": "Samazināt daudzumu",
-    "quantity_increase": "Palielināt daudzumu"
+    "quantity_increase": "Palielināt daudzumu",
+    "quantity_min": "Minimums {{ count }}",
+    "quantity_multiple": "{{ count }} daudzkārši",
+    "quantity_max": "Maksimums {{ count }}"
   },
   "collection": {
     "price_from": "No",

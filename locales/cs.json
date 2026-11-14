@@ -48,7 +48,10 @@
     "in_stock": "Skladem",
     "percent_off": "sleva {{ percent }} %",
     "quantity_decrease": "Snížit množství",
-    "quantity_increase": "Zvýšit množství"
+    "quantity_increase": "Zvýšit množství",
+    "quantity_min": "Minimum {{ count }}",
+    "quantity_multiple": "Násobky {{ count }}",
+    "quantity_max": "Maximum {{ count }}"
   },
   "collection": {
     "price_from": "Od",

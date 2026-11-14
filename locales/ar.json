@@ -48,7 +48,10 @@
     "in_stock": "متوفر",
     "percent_off": "خصم {{ percent }}%",
     "quantity_decrease": "تقليل الكمية",
-    "quantity_increase": "زيادة الكمية"
+    "quantity_increase": "زيادة الكمية",
+    "quantity_min": "الحد الأدنى {{ count }}",
+    "quantity_multiple": "من مضاعفات {{ count }}",
+    "quantity_max": "الحد الأقصى {{ count }}"
   },
   "collection": {
     "price_from": "من",

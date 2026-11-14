@@ -48,7 +48,10 @@
     "in_stock": "స్టాక్‌లో ఉంది",
     "percent_off": "{{ percent }}% తగ్గింపు",
     "quantity_decrease": "పరిమాణం తగ్గించండి",
-    "quantity_increase": "పరిమాణం పెంచండి"
+    "quantity_increase": "పరిమాణం పెంచండి",
+    "quantity_min": "కనీసం {{ count }}",
+    "quantity_multiple": "{{ count }} గుణిజాలు",
+    "quantity_max": "గరిష్టం {{ count }}"
   },
   "collection": {
     "price_from": "నుండి",

@@ -155,7 +155,7 @@ const stageImage = async (seed) => {
 
 /* One variant. Option extras from scripts/mock-data.mjs: prices, units (unit price measurement) and
    variantMetafields, keyed by option value; the product's soldOutValues make a variant unavailable. */
-const variantInput = (p, options, optionValues, index) => {
+const variantInput = (p, options, optionValues, index, locationId) => {
   const extra = (key) => optionValues.map(({ optionName, name }) => options.find((o) => o.name === optionName)?.[key]?.[name]).filter(Boolean);
   const price = extra('prices').at(-1) ?? p.price;
   const [unit] = extra('units');
@@ -166,14 +166,17 @@ const variantInput = (p, options, optionValues, index) => {
     price,
     ...(p.compareAt ? { compareAtPrice: p.compareAt } : {}),
     sku: `${p.handle}-${index + 1}`,
-    inventoryPolicy: unavailable ? 'DENY' : 'CONTINUE',
-    ...(unavailable ? { inventoryItem: { tracked: true } } : {}),
+    inventoryPolicy: unavailable || p.stock ? 'DENY' : 'CONTINUE',
+    ...(unavailable || p.stock ? { inventoryItem: { tracked: true } } : {}),
+    /* p.stock: tracked and in stock, so the product page caps the quantity at it (decision 015) */
+    ...(p.stock && !unavailable ? { inventoryQuantities: [{ locationId, name: 'available', quantity: p.stock }] } : {}),
     ...(unit ? { unitPriceMeasurement: unit, showUnitPrice: true } : {}),
     ...(metafields.length ? { metafields: metafields.map((m) => ({ namespace: 'custom', ...m })) } : {}),
   };
 };
 
 const productInput = async (p) => {
+  const locationId = p.stock ? (await admin(OPS.locations)).locations.nodes[0].id : undefined;
   const options = p.options.length ? p.options : [{ name: 'Title', values: ['Default Title'] }];
   const combos = options.reduce((acc, o) => acc.flatMap((combo) => o.values.map((name) => [...combo, { optionName: o.name, name }])), [[]]);
   return {
@@ -187,7 +190,7 @@ const productInput = async (p) => {
     status: 'ACTIVE',
     productOptions: options.map((o) => ({ name: o.name, values: o.values.map((name) => ({ name })) })),
     ...(p.metafields?.length ? { metafields: p.metafields.map((m) => ({ namespace: 'custom', ...m })) } : {}),
-    variants: combos.map((optionValues, i) => variantInput(p, options, optionValues, i)),
+    variants: combos.map((optionValues, i) => variantInput(p, options, optionValues, i, locationId)),
     files: [
       ...(await Promise.all(p.images.map(async (seed, i) => ({ originalSource: await stageImage(seed), contentType: 'IMAGE', alt: `${p.title} ${i + 1}` })))),
       ...(p.externalVideo ? [{ originalSource: p.externalVideo.url, contentType: 'EXTERNAL_VIDEO', alt: p.externalVideo.alt }] : []),

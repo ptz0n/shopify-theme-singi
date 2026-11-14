@@ -11,16 +11,29 @@
   @param {string} id - id of the input, for the label
   @param {string} name - name of the input
   @param {number} value - current quantity
-  @param {number} [min] - lowest value. Default: 1 (0 in the cart removes the line)
-  @param {number} [max] - highest value
+  @param {number} [min] - lowest allowed quantity (the variant's quantity rule). Default: 1
+  @param {number} [max] - highest value: the rule's maximum or the stock, whichever is lower
+  @param {number} [increment] - the quantity moves in steps of this size from the minimum (a rule). Default: 1
+  @param {boolean} [zero] - 0 is also allowed: the cart, where 0 removes the line
+  @param {number} [hint_max] - the rule's own maximum, named in the hint. Stock is never named (decision 015)
   @param {number} [line] - cart line number: adds data-quantity and data-line for cart-items.js
+
+  A hint under the control names the non-default limits ("Minimum 6 · Multiples of 6 · Maximum 24") and is
+  the input's description. With no rule there is no hint. Decision record: docs/decisions/015-quantity-limits-follow-the-rule-and-never-name-the-stock.md.
 
   @example
   {% render 'quantity-input', id: 'quantity-main', name: 'quantity', value: 1 %}
 {% enddoc %}
 
 {%- assign min_value = min | default: 1 -%}
-<quantity-input class="qty" data-min="{{ min_value }}">
+{%- assign step_value = increment | default: 1 -%}
+{%- capture hint_parts -%}
+  {%- if min_value > 1 -%}{{ 'products.quantity_min' | t: count: min_value }}||{%- endif -%}
+  {%- if step_value > 1 -%}{{ 'products.quantity_multiple' | t: count: step_value }}||{%- endif -%}
+  {%- if hint_max != blank -%}{{ 'products.quantity_max' | t: count: hint_max }}||{%- endif -%}
+{%- endcapture -%}
+{%- assign hint = hint_parts | strip | split: '||' | join: ' · ' -%}
+<quantity-input class="qty" data-min="{{ min_value }}" data-increment="{{ step_value }}"{% if zero %} data-zero{% endif %} data-rules="{{ min_value }}|{{ max }}|{{ step_value }}">
   <button class="qty__button" type="button" data-step="-1" aria-controls="{{ id }}" aria-label="{{ 'products.quantity_decrease' | t }}">
     {%- render 'icon', name: 'minus' -%}
   </button>
@@ -30,8 +43,10 @@
     name="{{ name }}"
     type="number"
     value="{{ value }}"
-    min="{{ min_value }}"
-    {% if max %}max="{{ max }}"{% endif %}
+    min="{% if zero %}0{% else %}{{ min_value }}{% endif %}"
+    {% if max != blank %}max="{{ max }}"{% endif %}
+    {% if step_value > 1 %}step="{{ step_value }}"{% endif %}
+    {% if hint != blank %}aria-describedby="{{ id }}-hint"{% endif %}
     inputmode="numeric"
     autocomplete="off"
     {% if line %}data-quantity data-line="{{ line }}"{% endif %}
@@ -41,6 +56,7 @@
   </button>
   <span class="visually-hidden" role="status" data-qty-live></span>
 </quantity-input>
+{%- if hint != blank -%}<p class="qty-hint mono" id="{{ id }}-hint">{{ hint }}</p>{%- endif -%}
 
 <script src="{{ 'quantity-input.js' | asset_url }}" type="module"></script>
 
@@ -53,4 +69,5 @@
   .qty__input { width: 3.5rem; min-height: calc(3rem - 2px); padding: 0; border: 0; border-radius: 0; background: transparent; text-align: center; font-family: var(--font-mono); appearance: textfield; -moz-appearance: textfield; }
   .qty__input::-webkit-inner-spin-button, .qty__input::-webkit-outer-spin-button { appearance: none; margin: 0; }
   quantity-input:not(:defined) .qty__button { visibility: hidden; }
+  .qty-hint { margin: 0.5rem 0 0; font-size: 0.8125rem; color: var(--color-muted); }
 {% endstylesheet %}

@@ -44,7 +44,7 @@ Measured on 2026-11-14 (version 0.1.0) on a development store with mock content,
 | Cumulative Layout Shift | 0 | 0 | 0 |
 | Total Blocking Time (upper bound) | 8 ms | 10 ms | 10 ms |
 | DOM nodes | 201 | 275 | 276 |
-| Theme JavaScript (delivered, brotli) | 5.5 KB | 6.6 KB | 9.3 KB |
+| Theme JavaScript (delivered, brotli) | 5.5 KB | 6.6 KB | 9.4 KB |
 | Server render time (Liquid) | 46 ms | 38 ms | 35 ms |
 
 The theme's CSS is 7.3 KB (delivered, brotli) in one stylesheet plus `base.css`, 3.1 KB inline. JavaScript and CSS sizes are what Shopify's CDN delivers, from `npm run perf:sizes`. The home page's own HTML is about 34 KB; Shopify adds another 68 KB of scripts through `content_for_header`, which no theme controls.

@@ -48,7 +48,10 @@
     "in_stock": "В наявності",
     "percent_off": "знижка {{ percent }}%",
     "quantity_decrease": "Зменшити кількість",
-    "quantity_increase": "Збільшити кількість"
+    "quantity_increase": "Збільшити кількість",
+    "quantity_min": "Мінімум {{ count }}",
+    "quantity_multiple": "Кратно {{ count }}",
+    "quantity_max": "Максимум {{ count }}"
   },
   "collection": {
     "price_from": "Від",

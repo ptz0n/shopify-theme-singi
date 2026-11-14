@@ -48,7 +48,10 @@
     "in_stock": "স্টকে আছে",
     "percent_off": "{{ percent }}% ছাড়",
     "quantity_decrease": "পরিমাণ কমান",
-    "quantity_increase": "পরিমাণ বাড়ান"
+    "quantity_increase": "পরিমাণ বাড়ান",
+    "quantity_min": "ন্যূনতম {{ count }}",
+    "quantity_multiple": "{{ count }}-এর গুণিতক",
+    "quantity_max": "সর্বোচ্চ {{ count }}"
   },
   "collection": {
     "price_from": "থেকে",

@@ -48,7 +48,10 @@
     "in_stock": "موجود",
     "percent_off": "{{ percent }}٪ تخفیف",
     "quantity_decrease": "کاهش تعداد",
-    "quantity_increase": "افزایش تعداد"
+    "quantity_increase": "افزایش تعداد",
+    "quantity_min": "حداقل {{ count }}",
+    "quantity_multiple": "مضرب‌های {{ count }}",
+    "quantity_max": "حداکثر {{ count }}"
   },
   "collection": {
     "price_from": "از",

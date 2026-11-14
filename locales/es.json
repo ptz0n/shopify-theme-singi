@@ -48,7 +48,10 @@
     "in_stock": "En stock",
     "percent_off": "{{ percent }}% de descuento",
     "quantity_decrease": "Reducir cantidad",
-    "quantity_increase": "Aumentar cantidad"
+    "quantity_increase": "Aumentar cantidad",
+    "quantity_min": "Mínimo {{ count }}",
+    "quantity_multiple": "Múltiplos de {{ count }}",
+    "quantity_max": "Máximo {{ count }}"
   },
   "collection": {
     "price_from": "Desde",

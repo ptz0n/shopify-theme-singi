@@ -48,7 +48,10 @@
     "in_stock": "Қоймада бар",
     "percent_off": "{{ percent }}% жеңілдік",
     "quantity_decrease": "Санын азайту",
-    "quantity_increase": "Санын көбейту"
+    "quantity_increase": "Санын көбейту",
+    "quantity_min": "Ең аз {{ count }}",
+    "quantity_multiple": "{{ count }} еселіктері",
+    "quantity_max": "Ең көп {{ count }}"
   },
   "collection": {
     "price_from": "Бастап",

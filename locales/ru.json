@@ -48,7 +48,10 @@
     "in_stock": "В наличии",
     "percent_off": "скидка {{ percent }}%",
     "quantity_decrease": "Уменьшить количество",
-    "quantity_increase": "Увеличить количество"
+    "quantity_increase": "Увеличить количество",
+    "quantity_min": "Минимум {{ count }}",
+    "quantity_multiple": "Кратно {{ count }}",
+    "quantity_max": "Максимум {{ count }}"
   },
   "collection": {
     "price_from": "От",

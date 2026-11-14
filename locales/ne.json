@@ -48,7 +48,10 @@
     "in_stock": "स्टकमा छ",
     "percent_off": "{{ percent }}% छुट",
     "quantity_decrease": "मात्रा घटाउनुहोस्",
-    "quantity_increase": "मात्रा बढाउनुहोस्"
+    "quantity_increase": "मात्रा बढाउनुहोस्",
+    "quantity_min": "न्यूनतम {{ count }}",
+    "quantity_multiple": "{{ count }} का गुणांक",
+    "quantity_max": "अधिकतम {{ count }}"
   },
   "collection": {
     "price_from": "देखि",

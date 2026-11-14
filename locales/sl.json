@@ -48,7 +48,10 @@
     "in_stock": "Na zalogi",
     "percent_off": "{{ percent }} % popusta",
     "quantity_decrease": "Zmanjšaj količino",
-    "quantity_increase": "Povečaj količino"
+    "quantity_increase": "Povečaj količino",
+    "quantity_min": "Najmanj {{ count }}",
+    "quantity_multiple": "Večkratniki števila {{ count }}",
+    "quantity_max": "Največ {{ count }}"
   },
   "collection": {
     "price_from": "Od",

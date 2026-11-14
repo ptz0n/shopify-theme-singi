@@ -48,7 +48,10 @@
     "in_stock": "Առկա է",
     "percent_off": "զեղչ {{ percent }}%",
     "quantity_decrease": "Նվազեցնել քանակը",
-    "quantity_increase": "Ավելացնել քանակը"
+    "quantity_increase": "Ավելացնել քանակը",
+    "quantity_min": "Նվազագույնը՝ {{ count }}",
+    "quantity_multiple": "{{ count }}-ի բազմապատիկներ",
+    "quantity_max": "Առավելագույնը՝ {{ count }}"
   },
   "collection": {
     "price_from": "Սկսած",

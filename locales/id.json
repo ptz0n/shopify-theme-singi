@@ -48,7 +48,10 @@
     "in_stock": "Tersedia",
     "percent_off": "diskon {{ percent }}%",
     "quantity_decrease": "Kurangi jumlah",
-    "quantity_increase": "Tambah jumlah"
+    "quantity_increase": "Tambah jumlah",
+    "quantity_min": "Minimum {{ count }}",
+    "quantity_multiple": "Kelipatan {{ count }}",
+    "quantity_max": "Maksimum {{ count }}"
   },
   "collection": {
     "price_from": "Dari",

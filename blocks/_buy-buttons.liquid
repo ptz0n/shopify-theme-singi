@@ -5,17 +5,30 @@
   page load. Private to product sections.
 {% enddoc %}
 
-{%- assign variant = product.selected_or_first_available_variant -%}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  comment
+    The quantity follows the variant's quantity rule (minimum, maximum, increment). When stock is tracked and
+    overselling is denied, the stock also caps the maximum. The stock number is never shown (decision 015).
+  endcomment
+  assign rule = variant.quantity_rule
+  assign qty_max = rule.max
+  if variant.available and variant.inventory_management != blank and variant.inventory_policy == 'deny'
+    if qty_max == blank or variant.inventory_quantity < qty_max
+      assign qty_max = variant.inventory_quantity
+    endif
+  endif
+-%}
 
 <div class="buy stack" {{ block.shopify_attributes }}>
   {%- form 'product', product, data-add-to-cart: '', class: 'buy__form stack' -%}
     <input type="hidden" name="id" value="{{ variant.id }}">
 
     {%- if block.settings.show_quantity -%}
-      <div>
+      <div data-swap="quantity">
         {%- assign quantity_id = 'quantity-' | append: section.id -%}
         <label for="{{ quantity_id }}">{{ 'products.quantity' | t }}</label>
-        {%- render 'quantity-input', id: quantity_id, name: 'quantity', value: 1, min: 1 -%}
+        {%- render 'quantity-input', id: quantity_id, name: 'quantity', value: rule.min, min: rule.min, max: qty_max, increment: rule.increment, hint_max: rule.max -%}
       </div>
     {%- endif -%}
 

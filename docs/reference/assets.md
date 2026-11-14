@@ -12,8 +12,8 @@ Size in bytes (before Shopify's CDN compression) and where each asset is referen
 | `assets/image-tone.js` | 3297 | `layout/theme.liquid` |
 | `assets/localization.js` | 1114 | `snippets/localization-selector.liquid` |
 | `assets/predictive-search.js` | 9366 | `sections/header.liquid` |
-| `assets/product-form.js` | 6463 | `sections/main-product.liquid` |
-| `assets/quantity-input.js` | 1350 | `snippets/quantity-input.liquid` |
+| `assets/product-form.js` | 6745 | `sections/main-product.liquid` |
+| `assets/quantity-input.js` | 1772 | `snippets/quantity-input.liquid` |
 | `assets/quick-add.js` | 1637 | `layout/theme.liquid` |
 | `assets/recently-viewed.js` | 2233 | `sections/header.liquid`, `blocks/recently-viewed.liquid` |
 | `assets/show-more.js` | 3120 | `snippets/pagination.liquid` |

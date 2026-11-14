@@ -48,7 +48,10 @@
     "in_stock": "有現貨",
     "percent_off": "省 {{ percent }}%",
     "quantity_decrease": "減少數量",
-    "quantity_increase": "增加數量"
+    "quantity_increase": "增加數量",
+    "quantity_min": "最少 {{ count }}",
+    "quantity_multiple": "{{ count }} 的倍數",
+    "quantity_max": "最多 {{ count }}"
   },
   "collection": {
     "price_from": "最低價",

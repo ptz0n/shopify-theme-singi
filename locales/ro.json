@@ -48,7 +48,10 @@
     "in_stock": "În stoc",
     "percent_off": "reducere {{ percent }}%",
     "quantity_decrease": "Scade cantitatea",
-    "quantity_increase": "Crește cantitatea"
+    "quantity_increase": "Crește cantitatea",
+    "quantity_min": "Minimum {{ count }}",
+    "quantity_multiple": "Multipli de {{ count }}",
+    "quantity_max": "Maximum {{ count }}"
   },
   "collection": {
     "price_from": "De la",

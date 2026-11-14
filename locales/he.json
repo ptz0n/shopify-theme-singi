@@ -48,7 +48,10 @@
     "in_stock": "במלאי",
     "percent_off": "{{ percent }}% הנחה",
     "quantity_decrease": "הפחת כמות",
-    "quantity_increase": "הגדל כמות"
+    "quantity_increase": "הגדל כמות",
+    "quantity_min": "מינימום {{ count }}",
+    "quantity_multiple": "כפולות של {{ count }}",
+    "quantity_max": "מקסימום {{ count }}"
   },
   "collection": {
     "price_from": "מ-",

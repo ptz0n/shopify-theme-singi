@@ -48,7 +48,10 @@
     "in_stock": "재고 있음",
     "percent_off": "{{ percent }}% 할인",
     "quantity_decrease": "수량 줄이기",
-    "quantity_increase": "수량 늘리기"
+    "quantity_increase": "수량 늘리기",
+    "quantity_min": "최소 {{ count }}",
+    "quantity_multiple": "{{ count }}의 배수",
+    "quantity_max": "최대 {{ count }}"
   },
   "collection": {
     "price_from": "최소",

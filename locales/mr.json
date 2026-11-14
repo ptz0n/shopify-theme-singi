@@ -48,7 +48,10 @@
     "in_stock": "स्टॉकमध्ये आहे",
     "percent_off": "{{ percent }}% सूट",
     "quantity_decrease": "प्रमाण कमी करा",
-    "quantity_increase": "प्रमाण वाढवा"
+    "quantity_increase": "प्रमाण वाढवा",
+    "quantity_min": "किमान {{ count }}",
+    "quantity_multiple": "{{ count }} च्या पटीत",
+    "quantity_max": "कमाल {{ count }}"
   },
   "collection": {
     "price_from": "पासून",

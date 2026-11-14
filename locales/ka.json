@@ -48,7 +48,10 @@
     "in_stock": "მარაგშია",
     "percent_off": "ფასდაკლება {{ percent }}%",
     "quantity_decrease": "რაოდენობის შემცირება",
-    "quantity_increase": "რაოდენობის გაზრდა"
+    "quantity_increase": "რაოდენობის გაზრდა",
+    "quantity_min": "მინიმუმ {{ count }}",
+    "quantity_multiple": "{{ count }}-ის ჯერადი",
+    "quantity_max": "მაქსიმუმ {{ count }}"
   },
   "collection": {
     "price_from": "დან",

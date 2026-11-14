@@ -377,9 +377,12 @@ the number had been typed.
 | `id` | `string` | yes | id of the input, for the label |
 | `name` | `string` | yes | name of the input |
 | `value` | `number` | yes | current quantity |
-| `min` | `number` | no | lowest value. Default: 1 (0 in the cart removes the line) |
-| `max` | `number` | no | highest value |
-| `line` | `number` | no | cart line number: adds data-quantity and data-line for cart-items.js |
+| `min` | `number` | no | lowest allowed quantity (the variant's quantity rule). Default: 1 |
+| `max` | `number` | no | highest value: the rule's maximum or the stock, whichever is lower |
+| `increment` | `number` | no | the quantity moves in steps of this size from the minimum (a rule). Default: 1 |
+| `zero` | `boolean` | no | 0 is also allowed: the cart, where 0 removes the line |
+| `hint_max` | `number` | no | the rule's own maximum, named in the hint. Stock is never named (decision 015) |
+| `line` | `number` | no | cart line number: adds data-quantity and data-line for cart-items.js A hint under the control names the non-default limits ("Minimum 6 · Multiples of 6 · Maximum 24") and is the input's description. With no rule there is no hint. Decision record: docs/decisions/015-quantity-limits-follow-the-rule-and-never-name-the-stock.md. |
 
 ```liquid
 {% render 'quantity-input', id: 'quantity-main', name: 'quantity', value: 1 %}

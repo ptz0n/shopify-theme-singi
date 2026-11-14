@@ -223,6 +223,14 @@
             <label for="sg-qty">Quantity</label>
             {%- render 'quantity-input', id: 'sg-qty', name: 'sg-qty', value: 1, min: 1, max: 5 -%}
           </div>
+          <div>
+            <label for="sg-qty-rule">Quantity with a rule</label>
+            {%- render 'quantity-input', id: 'sg-qty-rule', name: 'sg-qty-rule', value: 6, min: 6, max: 24, increment: 6, hint_max: 24 -%}
+          </div>
+          <div>
+            <label for="sg-qty-cart">Quantity in the cart (0 removes)</label>
+            {%- render 'quantity-input', id: 'sg-qty-cart', name: 'sg-qty-cart', value: 6, min: 6, increment: 6, zero: true -%}
+          </div>
         </div>
 
         <p class="eyebrow">Accordion and other blocks (real theme blocks, from the template)</p>

@@ -37,3 +37,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [012](012-quick-add-for-single-variant-products.md) | Quick add exists only for in-stock products with one variant, and is off by default | product card, cart, accessibility |
 | [013](013-recently-viewed-in-the-empty-search-panel.md) | The empty search panel shows recently viewed products, loaded when it first opens | search, navigation, performance |
 | [014](014-product-image-zoom-is-a-native-dialog.md) | Product image zoom is one native dialog, opened by one button per image | product page, accessibility, performance |
+| [015](015-quantity-limits-follow-the-rule-and-never-name-the-stock.md) | Quantity limits follow the variant's rule, and the stock number is never shown | product page, cart, accessibility |

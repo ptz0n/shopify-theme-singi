@@ -48,7 +48,10 @@
     "in_stock": "Stockean",
     "percent_off": "{{ percent }}% deskontua",
     "quantity_decrease": "Murriztu kopurua",
-    "quantity_increase": "Handitu kopurua"
+    "quantity_increase": "Handitu kopurua",
+    "quantity_min": "Gutxienez {{ count }}",
+    "quantity_multiple": "{{ count }}ren multiploak",
+    "quantity_max": "Gehienez {{ count }}"
   },
   "collection": {
     "price_from": "Noiztik",

@@ -48,7 +48,10 @@
     "in_stock": "Til á lager",
     "percent_off": "{{ percent }}% afsláttur",
     "quantity_decrease": "Minnka magn",
-    "quantity_increase": "Auka magn"
+    "quantity_increase": "Auka magn",
+    "quantity_min": "Lágmark {{ count }}",
+    "quantity_multiple": "Margfeldi af {{ count }}",
+    "quantity_max": "Hámark {{ count }}"
   },
   "collection": {
     "price_from": "Frá",

@@ -48,7 +48,10 @@
     "in_stock": "Stokta",
     "percent_off": "%{{ percent }} indirim",
     "quantity_decrease": "Miktarı azalt",
-    "quantity_increase": "Miktarı artır"
+    "quantity_increase": "Miktarı artır",
+    "quantity_min": "En az {{ count }}",
+    "quantity_multiple": "{{ count }} katları",
+    "quantity_max": "En fazla {{ count }}"
   },
   "collection": {
     "price_from": "En az",

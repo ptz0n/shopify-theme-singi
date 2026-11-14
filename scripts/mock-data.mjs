@@ -86,6 +86,18 @@ export const PRODUCTS = [
     collections: ['mock-edge-cases'],
   },
   {
+    handle: 'mock-limited-stock',
+    title: 'Limited Stock, Three Left',
+    type: 'Prints',
+    vendor: 'Singi Editions',
+    price: '45.00',
+    description: '<p>Tracked inventory of three, oversell denied, to exercise the quantity cap on the product page.</p>',
+    options: [],
+    stock: 3,
+    images: ['poster-1'],
+    collections: ['mock-edge-cases'],
+  },
+  {
     handle: 'mock-long-title-product',
     title: 'The Extra Long Product Title That Keeps Going Across Several Lines to Test Cards, Headings and Wrapping Gracefully',
     type: 'Edge cases',

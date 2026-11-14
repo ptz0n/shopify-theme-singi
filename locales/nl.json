@@ -48,7 +48,10 @@
     "in_stock": "Op voorraad",
     "percent_off": "{{ percent }}% korting",
     "quantity_decrease": "Aantal verlagen",
-    "quantity_increase": "Aantal verhogen"
+    "quantity_increase": "Aantal verhogen",
+    "quantity_min": "Minimaal {{ count }}",
+    "quantity_multiple": "Veelvouden van {{ count }}",
+    "quantity_max": "Maximaal {{ count }}"
   },
   "collection": {
     "price_from": "Van",

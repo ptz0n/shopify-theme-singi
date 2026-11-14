@@ -48,7 +48,10 @@
     "in_stock": "Yra sandėlyje",
     "percent_off": "{{ percent }}% nuolaida",
     "quantity_decrease": "Sumažinti kiekį",
-    "quantity_increase": "Padidinti kiekį"
+    "quantity_increase": "Padidinti kiekį",
+    "quantity_min": "Mažiausiai {{ count }}",
+    "quantity_multiple": "{{ count }} kartotiniai",
+    "quantity_max": "Daugiausiai {{ count }}"
   },
   "collection": {
     "price_from": "Nuo",

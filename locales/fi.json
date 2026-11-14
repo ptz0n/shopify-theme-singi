@@ -48,7 +48,10 @@
     "in_stock": "Varastossa",
     "percent_off": "{{ percent }} % alennus",
     "quantity_decrease": "Vähennä määrää",
-    "quantity_increase": "Lisää määrää"
+    "quantity_increase": "Lisää määrää",
+    "quantity_min": "Vähintään {{ count }}",
+    "quantity_multiple": "{{ count }} monikerrat",
+    "quantity_max": "Enintään {{ count }}"
   },
   "collection": {
     "price_from": "Alkaen",

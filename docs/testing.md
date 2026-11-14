@@ -132,7 +132,7 @@ Runs per page / aggregation: 3 runs, median (Liquid time: 7 runs, median)
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Home | 100 | 100 | 0.000 | 8 ms | 201 | 5.5 KB | 7.3 KB | 45.7 ms |
 | Collection | 100 | 100 | 0.000 | 10 ms | 275 | 6.6 KB | 7.3 KB | 37.7 ms |
-| Product | 100 | 100 | 0.000 | 10 ms | 276 | 9.3 KB | 7.3 KB | 35.3 ms |
+| Product | 100 | 100 | 0.000 | 10 ms | 276 | 9.4 KB | 7.3 KB | 35.3 ms |
 ```
 
 All three runs of every page scored 100 for accessibility and SEO.

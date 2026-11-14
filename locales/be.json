@@ -48,7 +48,10 @@
     "in_stock": "У наяўнасці",
     "percent_off": "зніжка {{ percent }}%",
     "quantity_decrease": "Паменшыць колькасць",
-    "quantity_increase": "Павялічыць колькасць"
+    "quantity_increase": "Павялічыць колькасць",
+    "quantity_min": "Мінімум {{ count }}",
+    "quantity_multiple": "Кратна {{ count }}",
+    "quantity_max": "Максімум {{ count }}"
   },
   "collection": {
     "price_from": "Ад",
