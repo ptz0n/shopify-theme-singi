@@ -34,6 +34,7 @@
     "add_to_cart": "Add to cart",
     "added": "Added to cart.",
     "add_error": "Could not add to cart. Please try again.",
+    "quick_add": "Add {{ title }} to cart",
     "view_cart": "View cart",
     "sale_price": "Sale price",
     "regular_price": "Regular price",

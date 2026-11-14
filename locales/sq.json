@@ -34,6 +34,7 @@
     "add_to_cart": "Shto në shportë",
     "added": "U shtua në shportë.",
     "add_error": "Nuk mund të shtohej në shportë. Ju lutemi provoni përsëri.",
+    "quick_add": "Shto {{ title }} në shportë",
     "view_cart": "Shiko shportën",
     "sale_price": "Çmimi i ofertës",
     "regular_price": "Çmimi normal",

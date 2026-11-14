@@ -34,6 +34,7 @@
     "add_to_cart": "Setja í körfu",
     "added": "Bætt í körfu.",
     "add_error": "Ekki tókst að bæta í körfu. Reyndu aftur.",
+    "quick_add": "Setja {{ title }} í körfu",
     "view_cart": "Skoða körfu",
     "sale_price": "Útsöluverð",
     "regular_price": "Venjulegt verð",

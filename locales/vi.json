@@ -34,6 +34,7 @@
     "add_to_cart": "Thêm vào giỏ hàng",
     "added": "Đã thêm vào giỏ hàng.",
     "add_error": "Không thể thêm vào giỏ hàng. Vui lòng thử lại.",
+    "quick_add": "Thêm {{ title }} vào giỏ hàng",
     "view_cart": "Xem giỏ hàng",
     "sale_price": "Giá khuyến mãi",
     "regular_price": "Giá gốc",

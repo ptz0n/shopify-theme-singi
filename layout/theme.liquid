@@ -69,13 +69,17 @@
 
     {% sections 'footer-group' %}
 
-    <p id="route-announcer" class="visually-hidden" role="status" aria-live="polite"{% if settings.wishlist_enabled %} data-wishlist-saved="{{ 'wishlist.saved' | t }}" data-wishlist-removed="{{ 'wishlist.removed' | t }}"{% endif %}></p>
+    <p id="route-announcer" class="visually-hidden" role="status" aria-live="polite"{% if settings.wishlist_enabled %} data-wishlist-saved="{{ 'wishlist.saved' | t }}" data-wishlist-removed="{{ 'wishlist.removed' | t }}"{% endif %}{% if settings.card_quick_add %} data-add-url="{{ routes.cart_add_url }}.js" data-cart-url="{{ routes.cart_url }}" data-added="{{ 'products.added' | t }}" data-error="{{ 'products.add_error' | t }}"{% endif %}></p>
 
     {%- if settings.wishlist_enabled -%}
       <script src="{{ 'wishlist.js' | asset_url }}" type="module"></script>
       {%- if settings.wishlist_cards -%}
         <script src="{{ 'image-tone.js' | asset_url }}" type="module"></script>
       {%- endif -%}
+    {%- endif -%}
+
+    {%- if settings.card_quick_add -%}
+      <script src="{{ 'quick-add.js' | asset_url }}" type="module"></script>
     {%- endif -%}
 
     {%- if settings.tracking_enabled -%}

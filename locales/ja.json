@@ -34,6 +34,7 @@
     "add_to_cart": "カートに追加",
     "added": "カートに追加しました。",
     "add_error": "カートに追加できませんでした。もう一度お試しください。",
+    "quick_add": "{{ title }}をカートに追加",
     "view_cart": "カートを見る",
     "sale_price": "セール価格",
     "regular_price": "通常価格",

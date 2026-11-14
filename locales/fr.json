@@ -34,6 +34,7 @@
     "add_to_cart": "Ajouter au panier",
     "added": "Ajouté au panier.",
     "add_error": "Impossible d’ajouter l’article au panier. Veuillez réessayer.",
+    "quick_add": "Ajouter {{ title }} au panier",
     "view_cart": "Voir le panier",
     "sale_price": "Prix promotionnel",
     "regular_price": "Prix habituel",

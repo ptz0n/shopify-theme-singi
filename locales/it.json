@@ -34,6 +34,7 @@
     "add_to_cart": "Aggiungi al carrello",
     "added": "Aggiunto al carrello.",
     "add_error": "Impossibile aggiungere al carrello. Riprova.",
+    "quick_add": "Aggiungi {{ title }} al carrello",
     "view_cart": "Visualizza carrello",
     "sale_price": "Prezzo scontato",
     "regular_price": "Prezzo di listino",

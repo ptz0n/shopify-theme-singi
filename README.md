@@ -47,7 +47,7 @@ Measured on 2026-11-14 (version 0.1.0) on a development store with mock content,
 | Theme JavaScript (delivered, brotli) | 5.5 KB | 6.5 KB | 8.4 KB |
 | Server render time (Liquid) | 46 ms | 38 ms | 35 ms |
 
-The theme's CSS is 6.7 KB (delivered, brotli) in one stylesheet plus `base.css`, 3.1 KB inline. JavaScript and CSS sizes are what Shopify's CDN delivers, from `npm run perf:sizes`. The home page's own HTML is about 34 KB; Shopify adds another 68 KB of scripts through `content_for_header`, which no theme controls.
+The theme's CSS is 6.8 KB (delivered, brotli) in one stylesheet plus `base.css`, 3.1 KB inline. JavaScript and CSS sizes are what Shopify's CDN delivers, from `npm run perf:sizes`. The home page's own HTML is about 34 KB; Shopify adds another 68 KB of scripts through `content_for_header`, which no theme controls.
 
 **Not published yet: Lighthouse Performance, Best practices, LCP.** The numbers from a development server describe the server (plain `http`, hot reload, platform scripts), not the theme, so they are not shown. They need a run against the real storefront: `npm run perf:lighthouse` ([tooling](docs/tooling.md#perf-lighthouse)). Until then, read the performance claims here as design intent.
 

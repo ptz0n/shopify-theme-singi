@@ -34,6 +34,7 @@
     "add_to_cart": "Sepete ekle",
     "added": "Sepete eklendi.",
     "add_error": "Sepete eklenemedi. Lütfen tekrar deneyin.",
+    "quick_add": "{{ title }} ürününü sepete ekle",
     "view_cart": "Sepeti görüntüle",
     "sale_price": "İndirimli fiyat",
     "regular_price": "Normal fiyat",

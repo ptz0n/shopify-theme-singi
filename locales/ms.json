@@ -34,6 +34,7 @@
     "add_to_cart": "Tambah ke troli",
     "added": "Ditambah ke troli.",
     "add_error": "Tidak dapat menambah ke troli. Sila cuba lagi.",
+    "quick_add": "Tambah {{ title }} ke troli",
     "view_cart": "Lihat troli",
     "sale_price": "Harga jualan",
     "regular_price": "Harga biasa",

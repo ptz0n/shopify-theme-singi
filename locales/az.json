@@ -34,6 +34,7 @@
     "add_to_cart": "Səbətə at",
     "added": "Səbətə əlavə edildi.",
     "add_error": "Səbətə əlavə etmək mümkün olmadı. Zəhmət olmasa yenidən cəhd edin.",
+    "quick_add": "{{ title }} məhsulunu səbətə əlavə et",
     "view_cart": "Səbətə bax",
     "sale_price": "Endirimli qiymət",
     "regular_price": "Adi qiymət",

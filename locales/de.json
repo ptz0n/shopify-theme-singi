@@ -34,6 +34,7 @@
     "add_to_cart": "In den Warenkorb",
     "added": "Zum Warenkorb hinzugefügt.",
     "add_error": "Der Artikel konnte nicht hinzugefügt werden. Bitte versuchen Sie es erneut.",
+    "quick_add": "{{ title }} in den Warenkorb legen",
     "view_cart": "Warenkorb ansehen",
     "sale_price": "Angebotspreis",
     "regular_price": "Normalpreis",

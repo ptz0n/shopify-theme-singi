@@ -34,6 +34,7 @@
     "add_to_cart": "Přidat do košíku",
     "added": "Přidáno do košíku.",
     "add_error": "Přidání do košíku se nezdařilo. Zkuste to prosím znovu.",
+    "quick_add": "Přidat {{ title }} do košíku",
     "view_cart": "Zobrazit košík",
     "sale_price": "Akční cena",
     "regular_price": "Běžná cena",

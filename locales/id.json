@@ -34,6 +34,7 @@
     "add_to_cart": "Tambah ke keranjang",
     "added": "Ditambahkan ke keranjang.",
     "add_error": "Tidak dapat menambahkan ke keranjang. Silakan coba lagi.",
+    "quick_add": "Tambahkan {{ title }} ke keranjang",
     "view_cart": "Lihat keranjang",
     "sale_price": "Harga diskon",
     "regular_price": "Harga normal",

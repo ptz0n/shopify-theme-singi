@@ -34,6 +34,7 @@
     "add_to_cart": "Voeg by mandjie",
     "added": "By mandjie gevoeg.",
     "add_error": "Kon nie by mandjie voeg nie. Probeer asseblief weer.",
+    "quick_add": "Voeg {{ title }} by die mandjie",
     "view_cart": "Bekyk mandjie",
     "sale_price": "Uitverkopingsprys",
     "regular_price": "Gewone prys",

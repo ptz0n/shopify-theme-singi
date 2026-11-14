@@ -34,6 +34,7 @@
     "add_to_cart": "Legg i handlekurv",
     "added": "Lagt i handlekurven.",
     "add_error": "Kunne ikke legge i handlekurven. Prøv igjen.",
+    "quick_add": "Legg {{ title }} i handlekurven",
     "view_cart": "Se handlekurv",
     "sale_price": "Salgspris",
     "regular_price": "Ordinær pris",

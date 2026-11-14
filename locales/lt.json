@@ -34,6 +34,7 @@
     "add_to_cart": "Į krepšelį",
     "added": "Įdėta į krepšelį.",
     "add_error": "Nepavyko įdėti į krepšelį. Bandykite dar kartą.",
+    "quick_add": "Įdėti {{ title }} į krepšelį",
     "view_cart": "Peržiūrėti krepšelį",
     "sale_price": "Akcijos kaina",
     "regular_price": "Įprasta kaina",

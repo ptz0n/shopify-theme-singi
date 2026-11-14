@@ -34,6 +34,7 @@
     "add_to_cart": "Lägg i varukorgen",
     "added": "Tillagd i varukorgen.",
     "add_error": "Det gick inte att lägga till i varukorgen. Försök igen.",
+    "quick_add": "Lägg {{ title }} i varukorgen",
     "view_cart": "Visa varukorg",
     "sale_price": "Reapris",
     "regular_price": "Ordinarie pris",

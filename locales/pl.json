@@ -34,6 +34,7 @@
     "add_to_cart": "Dodaj do koszyka",
     "added": "Dodano do koszyka.",
     "add_error": "Nie udało się dodać do koszyka. Spróbuj ponownie.",
+    "quick_add": "Dodaj {{ title }} do koszyka",
     "view_cart": "Zobacz koszyk",
     "sale_price": "Cena promocyjna",
     "regular_price": "Cena regularna",

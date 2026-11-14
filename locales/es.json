@@ -34,6 +34,7 @@
     "add_to_cart": "Añadir al carrito",
     "added": "Añadido al carrito.",
     "add_error": "No se pudo añadir al carrito. Inténtalo de nuevo.",
+    "quick_add": "Añadir {{ title }} al carrito",
     "view_cart": "Ver carrito",
     "sale_price": "Precio rebajado",
     "regular_price": "Precio habitual",

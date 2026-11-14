@@ -34,6 +34,7 @@
     "add_to_cart": "Dodaj u korpu",
     "added": "Dodato u korpu.",
     "add_error": "Dodavanje u korpu nije uspelo. Pokušajte ponovo.",
+    "quick_add": "Dodaj {{ title }} u korpu",
     "view_cart": "Pogledaj korpu",
     "sale_price": "Akcijska cena",
     "regular_price": "Redovna cena",

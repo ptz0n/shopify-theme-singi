@@ -34,6 +34,7 @@
     "add_to_cart": "Engadir á cesta",
     "added": "Engadido á cesta.",
     "add_error": "Non se puido engadir á cesta. Téntao de novo.",
+    "quick_add": "Engadir {{ title }} á cesta",
     "view_cart": "Ver cesta",
     "sale_price": "Prezo de oferta",
     "regular_price": "Prezo habitual",

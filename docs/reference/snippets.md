@@ -627,7 +627,7 @@ The toggle sits on the filter bar's line, at its end: the bar leaves room for it
 .facets) and the toggle is placed over that room. All of it is logical properties, so it mirrors in right to left.
 
 In the list view the card's image is a fixed 7.5rem column and the text sits beside it. The card's
-absolutely placed parts (AI label, favorite heart) are positioned against the image's corner, not the card's. The sold out badge moves into the text column, above the title, because the narrow image has no room for it beside the heart. The text is centered beside the image with two spacer rows.
+absolutely placed parts (AI label, favorite heart) are positioned against the image's corner, not the card's. The sold out badge moves into the text column, above the title, because the narrow image has no room for it beside the heart. The quick add button (when on) keeps the image's bottom start corner. The text is centered beside the image with two spacer rows.
 
 ```liquid
 <div class="view-wrap">

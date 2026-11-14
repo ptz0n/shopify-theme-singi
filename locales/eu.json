@@ -34,6 +34,7 @@
     "add_to_cart": "Gehitu saskira",
     "added": "Saskira gehitu da.",
     "add_error": "Ezin izan da saskira gehitu. Saiatu berriro.",
+    "quick_add": "Gehitu {{ title }} saskira",
     "view_cart": "Ikusi saskia",
     "sale_price": "Eskaintza-prezioa",
     "regular_price": "Prezio arrunta",

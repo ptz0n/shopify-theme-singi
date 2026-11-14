@@ -34,6 +34,7 @@
     "add_to_cart": "Lisa ostukorvi",
     "added": "Lisatud ostukorvi.",
     "add_error": "Ostukorvi lisamine ebaõnnestus. Palun proovige uuesti.",
+    "quick_add": "Lisa {{ title }} ostukorvi",
     "view_cart": "Vaata ostukorvi",
     "sale_price": "Soodushind",
     "regular_price": "Tavahind",

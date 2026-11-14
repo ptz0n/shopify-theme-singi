@@ -52,6 +52,7 @@ Defined in `config/settings_schema.json`, read in Liquid as `settings.<id>`.
 | `color_mode` | select | Default color mode | `"system"` |
 | `show_theme_toggle` | checkbox | Show light/dark toggle in header | `true` |
 | `price_trim_zeros` | checkbox | Hide .00 on whole prices | `false` |
+| `card_quick_add` | checkbox | Show a quick add button on product cards | `false` |
 | `card_show_type` | checkbox | Show the product type above the title on product cards | `false` |
 | `show_percent_off` | checkbox | Show percentage off on discounted prices | `true` |
 | `page_width` | select | Page width | `"84rem"` |

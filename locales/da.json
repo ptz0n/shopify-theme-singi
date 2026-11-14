@@ -34,6 +34,7 @@
     "add_to_cart": "Læg i kurv",
     "added": "Lagt i kurven.",
     "add_error": "Varen kunne ikke lægges i kurven. Prøv igen.",
+    "quick_add": "Læg {{ title }} i kurven",
     "view_cart": "Se kurv",
     "sale_price": "Tilbudspris",
     "regular_price": "Normalpris",

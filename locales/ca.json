@@ -34,6 +34,7 @@
     "add_to_cart": "Afegeix a la cistella",
     "added": "Afegit a la cistella.",
     "add_error": "No s'ha pogut afegir a la cistella. Torna-ho a provar.",
+    "quick_add": "Afegeix {{ title }} a la cistella",
     "view_cart": "Veure la cistella",
     "sale_price": "Preu rebaixat",
     "regular_price": "Preu habitual",

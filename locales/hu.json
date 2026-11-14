@@ -34,6 +34,7 @@
     "add_to_cart": "Kosárba",
     "added": "Kosárba helyezve.",
     "add_error": "Nem sikerült a kosárba helyezés. Kérjük, próbálja újra.",
+    "quick_add": "{{ title }} kosárba helyezése",
     "view_cart": "Kosár megtekintése",
     "sale_price": "Akciós ár",
     "regular_price": "Normál ár",

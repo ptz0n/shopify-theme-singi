@@ -34,6 +34,7 @@
     "add_to_cart": "Idagdag sa cart",
     "added": "Naidagdag sa cart.",
     "add_error": "Hindi maidagdag sa cart. Pakisubukan ulit.",
+    "quick_add": "Idagdag ang {{ title }} sa cart",
     "view_cart": "Tingnan ang cart",
     "sale_price": "Presyong sale",
     "regular_price": "Regular na presyo",

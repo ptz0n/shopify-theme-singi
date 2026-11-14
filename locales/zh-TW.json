@@ -34,6 +34,7 @@
     "add_to_cart": "加入購物車",
     "added": "已加入購物車。",
     "add_error": "無法加入購物車，請再試一次。",
+    "quick_add": "將{{ title }}加入購物車",
     "view_cart": "查看購物車",
     "sale_price": "特價",
     "regular_price": "原價",

@@ -34,6 +34,7 @@
     "add_to_cart": "Pievienot grozam",
     "added": "Pievienots grozam.",
     "add_error": "Neizdevās pievienot grozam. Lūdzu, mēģiniet vēlreiz.",
+    "quick_add": "Pievienot {{ title }} grozam",
     "view_cart": "Skatīt grozu",
     "sale_price": "Akcijas cena",
     "regular_price": "Parastā cena",
