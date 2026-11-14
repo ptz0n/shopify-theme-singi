@@ -47,13 +47,11 @@
 {%- endif -%}
 
 {% stylesheet %}
-  /* A swatch is a chip, like the size options: the .chip class gives it the same height, border, corner radius, hover and (with [aria-current]) selected state. Only the shape and the color inside are added here. */
+  /* A swatch is a chip, like the size options: the .chip class gives it the same height, border, corner radius, hover and (with [aria-current]) selected state. Only the square shape and the color are added here; the color fills the chip, the border sits directly around it. */
   .color-siblings ul { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
-  .color-swatch { width: 2.75rem; padding: 0.1875rem; }
-  .color-swatch::before { content: ""; align-self: stretch; flex: 1; border-radius: max(0px, calc(var(--radius) - 0.1875rem)); background: var(--swatch); }
-  .color-swatch.chip--unavailable::before { background: linear-gradient(to top right, transparent calc(50% - 1px), var(--color-fg) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)), var(--swatch); }
-  .color-swatch--text { width: auto; padding: 0.5rem 1rem; }
-  .color-swatch--text::before { display: none; }
+  .color-swatch { width: 2.75rem; padding: 0; background: var(--swatch); }
+  .color-swatch.chip--unavailable { background: linear-gradient(to top right, transparent calc(50% - 1px), var(--color-fg) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)), var(--swatch); }
+  .color-swatch--text { width: auto; padding: 0.5rem 1rem; background: none; }
 {% endstylesheet %}
 
 {% schema %}

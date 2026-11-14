@@ -115,10 +115,7 @@ const read = (page) =>
           width: rect.width,
           left: rect.left,
           height: rect.height,
-          color: getComputedStyle(a, '::before').backgroundColor,
-          radius: getComputedStyle(a, '::before').borderTopLeftRadius,
-          width_visual: parseFloat(getComputedStyle(a, '::before').width),
-          height_visual: parseFloat(getComputedStyle(a, '::before').height),
+          color: getComputedStyle(a).backgroundColor,
         };
       }),
     };
@@ -148,7 +145,7 @@ for (const member of GROUP) {
       ok(Math.abs(link.width - link.height) < 0.5, `${member.handle}: swatch ${index + 1} is not square (${link.width}x${link.height})`);
       ok(Math.abs(link.height - data.size.height) < 0.5, `${member.handle}: swatch ${index + 1} is ${link.height}px tall, the size options are ${data.size.height}px`);
       ok(!expected.soldOut || /sold out/i.test(link.name), `${member.handle}: sold out swatch name does not say sold out ("${link.name}")`);
-      if (!expected.soldOut) ok(link.color === expected.color, `${member.handle}: swatch ${index + 1} color is ${link.color}, expected ${expected.color}`);
+      ok(link.color === expected.color, `${member.handle}: swatch ${index + 1} color is ${link.color}, expected ${expected.color}`);
     });
     ok(data.size && data.swatchBox && data.swatchBox.radius === data.size.radius && data.swatchBox.radius === data.buttonRadius, `${member.handle}: swatch corner radius ${data.swatchBox?.radius} differs from the size options (${data.size?.radius}) or buttons (${data.buttonRadius})`);
     ok(data.swatchBox && data.swatchBox.border === data.size.border, `${member.handle}: swatch border ${data.swatchBox?.border} differs from the size options (${data.size?.border})`);
