@@ -9,7 +9,7 @@ JSON templates compose sections. JSON templates are eligible for Shopify's strea
 | `404.json` | `main-404` |  |
 | `article.json` | `main-article` |  |
 | `blog.json` | `main-blog` |  |
-| `cart.json` | `main-cart` |  |
+| `cart.json` | `main-cart` | `recently-viewed` |
 | `collection.json` | `main-collection` |  |
 | `index.json` | `hero`, `featured-collection` |  |
 | `list-collections.json` | `main-list-collections` |  |

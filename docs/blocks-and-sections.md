@@ -80,7 +80,7 @@ Header and footer content that merchants control (menus, logo, toggle) comes fro
 ## Composing pages in the editor
 
 - **Home** (`templates/index.json`): a `hero` (heading, text and button blocks) followed by `featured-collection`. Add `content` sections for any custom story, and compose with `group`, `heading`, `text`, `image`, `button`, `accordion`.
-- **Product** (`templates/product.json`): `main-product` with blocks title, price, picker, buy, description, meta. Reorder, remove or add `accordion` and other public blocks in the details column. A second section, `recent`, holds the `recently-viewed` block under the product.
+- **Product** (`templates/product.json`): `main-product` with blocks title, price, picker, buy, description, meta. Reorder, remove or add `accordion` and other public blocks in the details column. A second section, `recent`, holds the `recently-viewed` block under the product. The **Cart** (`templates/cart.json`) accepts theme blocks that show only while the cart is empty; `recently-viewed` is added by default, so an empty cart offers the products the visitor opened (nothing, if there is no history).
 - **Other pages** use one `main-*` section. To make a page editable, add `content` sections to its template in the editor.
 - Keep exactly one `h1` per page. The hero heading block defaults to `h1` on the home page; `_product-title` is the product h1.
 

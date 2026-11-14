@@ -23,6 +23,8 @@
         <p>{{ 'cart.empty' | t }}</p>
         <a class="button" href="{{ routes.all_products_collection_url }}">{{ 'cart.continue' | t }}</a>
       </div>
+      {%- comment -%} Blocks (recently viewed by default) only fill an empty cart; with items the page is about checking out. {%- endcomment -%}
+      {%- if section.blocks.size > 0 -%}<div class="cart__more">{% content_for 'blocks' %}</div>{%- endif -%}
     {%- else -%}
       <form class="cart" action="{{ routes.cart_url }}" method="post">
         <ul class="cart__items" role="list">
@@ -91,6 +93,7 @@
   .cart__subtotal { display: flex; justify-content: space-between; font-size: 1.125rem; font-weight: var(--font-weight-strong); }
   .cart__note { font-size: 0.8125rem; }
   .cart__empty { margin-block-start: 2rem; justify-items: start; }
+  .cart__more { margin-block-start: 4rem; }
   .wishlist { display: block; margin-block-start: 4rem; }
   .wishlist h2 { margin-block-end: 1.5rem; }
   .wishlist h2:focus { outline: none; }
@@ -109,6 +112,7 @@
 {% schema %}
 {
   "name": "Cart",
-  "settings": []
+  "settings": [],
+  "blocks": [{ "type": "@theme" }]
 }
 {% endschema %}

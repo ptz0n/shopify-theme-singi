@@ -124,6 +124,8 @@ Cart page. A normal form post with no JavaScript (quantity update and
 checkout buttons); assets/cart-items.js upgrades it to update lines through
 /cart/change.js and re-render this section via the Section Rendering API.
 
+Accepts blocks: `@theme`
+
 _No settings._
 
 ## main-collection
