@@ -15,7 +15,12 @@
      the saved path matches the page and is under 30 seconds old. window.singiPlaceholder()
      re-applies it after a soft navigation.
 
-  3. Search focus. When the header's search panel (a popover) opens, focus moves to its
+  3. Grid or list view. A saved "list" choice (localStorage singi-view) is put on <html> as
+     data-view before first paint, so a collection or search page never shows the grid and then
+     jumps to the list. The radios of snippets/view-toggle.liquid follow it after load and after
+     a soft navigation, and a change saves the new choice. Decision 010.
+
+  4. Search focus. When the header's search panel (a popover) opens, focus moves to its
      input. The HTML autofocus attribute is not used: it would fire on page load instead.
      (assets/predictive-search.js also focuses it inside the tap, which iOS needs for the
      keyboard; this handler covers the moment before that module has loaded.)
@@ -32,6 +37,24 @@
     const saved = localStorage.getItem(key);
     if (saved) root.dataset.theme = saved;
   } catch (e) {}
+  const view = 'singi-view';
+  try {
+    if (localStorage.getItem(view) === 'list') root.dataset.view = 'list';
+  } catch (e) {}
+  const syncView = () => {
+    const radio = document.getElementById('view-' + (root.dataset.view || 'grid'));
+    if (radio) radio.checked = true;
+  };
+  addEventListener('DOMContentLoaded', syncView);
+  document.addEventListener('singi:navigate', syncView);
+  addEventListener('change', (event) => {
+    if (!event.target.closest('.view-toggle')) return;
+    if (event.target.value === 'list') root.dataset.view = 'list';
+    else delete root.dataset.view;
+    try {
+      localStorage.setItem(view, event.target.value);
+    } catch (e) {}
+  });
   addEventListener('toggle', (event) => {
     if (event.newState === 'open' && event.target.id === 'site-search') event.target.querySelector('input').focus();
   }, true);

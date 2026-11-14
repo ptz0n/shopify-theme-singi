@@ -78,7 +78,45 @@ const read = () => {
   };
 };
 
+const KEY = 'singi-view';
+
 try {
+  /* The choice is remembered: saved on change, applied before first paint, shared by both pages. */
+  {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1200, height: 900 });
+    await page.goto(`${base}/collections/mock-new-arrivals`, { waitUntil: 'load', timeout: 60000 });
+    await page.evaluate((key) => localStorage.removeItem(key), KEY);
+    await page.reload({ waitUntil: 'load' });
+    ok((await page.evaluate(read)).columns >= 3, 'remember: the default is not the grid');
+    await page.click('label[for=view-list]');
+    ok((await page.evaluate((key) => localStorage.getItem(key), KEY)) === 'list', 'remember: choosing the list did not save it');
+    ok((await page.evaluate(() => document.documentElement.dataset.view)) === 'list', 'remember: data-view is not set on the page after choosing the list');
+    /* a reload: the list layout is there at DOMContentLoaded, before any module could have run */
+    await page.goto(`${base}/collections/mock-new-arrivals`, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    const early = await page.evaluate(read);
+    ok(early.columns === 1, `remember: at DOMContentLoaded the page has ${early.columns} columns, expected the saved list (a flash of the grid otherwise)`);
+    await sleep(500);
+    const synced = await page.evaluate(read);
+    ok(synced.listChecked && !synced.gridChecked, 'remember: the radio does not follow the saved list');
+    /* the other page opens in the list too */
+    await page.goto(`${base}/search?q=shirt`, { waitUntil: 'load', timeout: 60000 });
+    await sleep(300);
+    ok((await page.evaluate(read)).columns === 1, 'remember: the search page did not open in the list');
+    /* after a soft navigation the radios are re-synced from the saved choice */
+    await page.evaluate(() => { document.getElementById('view-grid').checked = true; document.dispatchEvent(new CustomEvent('singi:navigate')); });
+    ok((await page.evaluate(read)).listChecked, 'remember: singi:navigate did not re-sync the radios');
+    /* switching back is saved too */
+    await page.click('label[for=view-grid]');
+    ok((await page.evaluate((key) => localStorage.getItem(key), KEY)) === 'grid' && (await page.evaluate(() => document.documentElement.dataset.view)) === undefined, 'remember: choosing the grid did not clear the saved list');
+    await page.reload({ waitUntil: 'load' });
+    await sleep(300);
+    ok((await page.evaluate(read)).columns >= 3, 'remember: the grid was not restored after choosing it');
+    await page.evaluate((key) => localStorage.removeItem(key), KEY);
+    await page.close();
+    console.log('  remember: ok');
+  }
+
   for (const path of ['/collections/mock-new-arrivals', '/search?q=shirt']) {
     for (const [label, width, dir] of [['desktop', 1200, 'ltr'], ['phone', 390, 'ltr'], ['desktop rtl', 1200, 'rtl'], ['phone rtl', 390, 'rtl']]) {
       const page = await browser.newPage();

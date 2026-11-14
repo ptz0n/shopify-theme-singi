@@ -5,8 +5,10 @@
   replaces everything inside facets-form on every filter change, so a toggle inside it would reset to
   the grid each time.
 
-  The choice is not remembered between page loads (that would need JavaScript and a JS budget
-  decision); the grid is always the default. Decision record: docs/decisions/010-grid-and-list-view-without-javascript.md.
+  The choice is remembered: snippets/theme-init.liquid saves it (localStorage singi-view), puts a saved
+  "list" on <html> as data-view before first paint (so there is no flash of the grid) and keeps these radios
+  in step. Without JavaScript the radios still work, but nothing is remembered and the grid is the default.
+  Decision record: docs/decisions/010-grid-and-list-view-without-javascript.md.
 
   The toggle sits on the filter bar's line, at its end: the bar leaves room for it (padding-inline-end on
   .facets) and the toggle is placed over that room. All of it is logical properties, so it mirrors in right to left.
@@ -35,15 +37,15 @@
   .view-toggle { position: absolute; inset-block-start: 0.125rem; inset-inline-end: 0; display: flex; gap: 0.25rem; min-width: 0; margin: 0; padding: 0; border: 0; }
   .view-option { min-width: 2.75rem; justify-content: center; padding-inline: 0.75rem; }
   .view-option .icon { width: 1.25rem; height: 1.25rem; }
-  .view-wrap:has(#view-list:checked) .product-grid { grid-template-columns: 1fr; max-width: 48rem; gap: 1.25rem 0; }
-  .view-wrap:has(#view-list:checked) .product-card { grid-template-columns: 7.5rem 1fr; grid-template-rows: 1fr repeat(3, auto) 1fr; gap: 0 1rem; }
-  .view-wrap:has(#view-list:checked) .product-card > :is(img, .product-card__media) { grid-column: 1; grid-row: 1 / -1; }
-  .view-wrap:has(#view-list:checked) .product-card > :is(.product-card__type, .product-card__title, .price) { grid-column: 2; }
-  .view-wrap:has(#view-list:checked) .product-card__type { grid-row: 2; }
-  .view-wrap:has(#view-list:checked) .product-card__title { grid-row: 3; }
-  .view-wrap:has(#view-list:checked) .product-card > .price { grid-row: 4; margin-block-start: 0.25rem; }
-  .view-wrap:has(#view-list:checked) .product-card__badge { position: static; grid-column: 2; grid-row: 1; align-self: end; justify-self: start; margin-block-end: 0.5rem; }
-  .view-wrap:has(#view-list:checked) .product-card > .ai-label { inset-block: calc(7.5rem * 1.25 - 0.75rem) auto; inset-inline: auto calc(100% - 7.5rem + 0.75rem); }
-  .view-wrap:has(#view-list:checked) .wishlist-heart { inset-inline-end: calc(100% - 7.5rem); }
-  .view-wrap:has(#view-list:checked) .card-add { inset-block-start: calc(7.5rem * 1.25 - 0.75rem); }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-grid { grid-template-columns: 1fr; max-width: 48rem; gap: 1.25rem 0; }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card { grid-template-columns: 7.5rem 1fr; grid-template-rows: 1fr repeat(3, auto) 1fr; gap: 0 1rem; }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card > :is(img, .product-card__media) { grid-column: 1; grid-row: 1 / -1; }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card > :is(.product-card__type, .product-card__title, .price) { grid-column: 2; }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card__type { grid-row: 2; }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card__title { grid-row: 3; }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card > .price { grid-row: 4; margin-block-start: 0.25rem; }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card__badge { position: static; grid-column: 2; grid-row: 1; align-self: end; justify-self: start; margin-block-end: 0.5rem; }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card > .ai-label { inset-block: calc(7.5rem * 1.25 - 0.75rem) auto; inset-inline: auto calc(100% - 7.5rem + 0.75rem); }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .wishlist-heart { inset-inline-end: calc(100% - 7.5rem); }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .card-add { inset-block-start: calc(7.5rem * 1.25 - 0.75rem); }
 {% endstylesheet %}

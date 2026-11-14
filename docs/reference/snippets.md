@@ -496,7 +496,12 @@ happen before first paint, plus one tiny handler that is not about paint:
    the saved path matches the page and is under 30 seconds old. window.singiPlaceholder()
    re-applies it after a soft navigation.
 
-3. Search focus. When the header's search panel (a popover) opens, focus moves to its
+3. Grid or list view. A saved "list" choice (localStorage singi-view) is put on <html> as
+   data-view before first paint, so a collection or search page never shows the grid and then
+   jumps to the list. The radios of snippets/view-toggle.liquid follow it after load and after
+   a soft navigation, and a change saves the new choice. Decision 010.
+
+4. Search focus. When the header's search panel (a popover) opens, focus moves to its
    input. The HTML autofocus attribute is not used: it would fire on page load instead.
    (assets/predictive-search.js also focuses it inside the tap, which iOS needs for the
    keyboard; this handler covers the moment before that module has loaded.)
@@ -620,8 +625,10 @@ Grid or list view for a page of product cards, with no JavaScript: two radio chi
 replaces everything inside facets-form on every filter change, so a toggle inside it would reset to
 the grid each time.
 
-The choice is not remembered between page loads (that would need JavaScript and a JS budget
-decision); the grid is always the default. Decision record: docs/decisions/010-grid-and-list-view-without-javascript.md.
+The choice is remembered: snippets/theme-init.liquid saves it (localStorage singi-view), puts a saved
+"list" on <html> as data-view before first paint (so there is no flash of the grid) and keeps these radios
+in step. Without JavaScript the radios still work, but nothing is remembered and the grid is the default.
+Decision record: docs/decisions/010-grid-and-list-view-without-javascript.md.
 
 The toggle sits on the filter bar's line, at its end: the bar leaves room for it (padding-inline-end on
 .facets) and the toggle is placed over that room. All of it is logical properties, so it mirrors in right to left.
