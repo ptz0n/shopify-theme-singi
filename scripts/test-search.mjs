@@ -64,14 +64,22 @@ for (const [label, width, reduced] of [['desktop', 1200, false], ['phone', 390, 
       thumbRadius: before.borderTopLeftRadius,
       bar: [Math.round(parseFloat(after.width)), parseFloat(after.height)],
       shadows: before.boxShadow.split('rgb').length - 1,
-      realRadius: getComputedStyle(document.querySelector('.button')).borderTopLeftRadius,
+      realRadius: (() => {
+        /* the theme's radius token, measured on a throwaway element (a button may have square corners on purpose, like the joined newsletter button) */
+        const probe = document.createElement('div');
+        probe.style.borderRadius = 'var(--radius)';
+        document.body.append(probe);
+        const value = getComputedStyle(probe).borderTopLeftRadius;
+        probe.remove();
+        return value;
+      })(),
       overflow: document.documentElement.scrollWidth - innerWidth,
     };
   });
   ok(loading.busy === 'true' && loading.hidden && loading.display === 'block', `${label}: while loading the panel is ${JSON.stringify({ busy: loading.busy, hidden: loading.hidden, display: loading.display })}, expected a visible skeleton box`);
   ok(Math.abs(loading.height - 204) < 1, `${label}: skeleton is ${loading.height}px tall, expected 204px (three rows of 3.75rem and 0.75rem gaps)`);
   ok(loading.thumb[0] === 48 && loading.thumb[1] === 60, `${label}: skeleton thumbnail is ${loading.thumb.join('x')}px, the real one is 48x60px`);
-  ok(loading.thumbRadius === loading.realRadius, `${label}: skeleton corner radius ${loading.thumbRadius} differs from the buttons' ${loading.realRadius}`);
+  ok(loading.thumbRadius === loading.realRadius, `${label}: skeleton corner radius ${loading.thumbRadius} differs from the theme radius ${loading.realRadius}`);
   ok(loading.shadows === 2, `${label}: ${loading.shadows} repeated rows, expected 2 shadows (three rows)`);
   ok(reduced ? loading.animation === 'none' : loading.animation === 'search-pulse', `${label}: animation is ${loading.animation}`);
   ok(loading.overflow <= 0, `${label}: page scrolls horizontally by ${loading.overflow}px while loading`);
