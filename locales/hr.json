@@ -36,7 +36,7 @@
     "add_error": "Dodavanje u košaricu nije uspjelo. Pokušajte ponovno.",
     "quick_add": "Dodaj {{ title }} u košaricu",
     "zoom_open": "Povećaj sliku {{ position }} od {{ total }}",
-    "zoom_toggle": "Povećaj",
+    "video_play": "Pokreni video: {{ title }}",
     "zoom_shown_for": "Prikazano za: {{ variants }}",
     "view_cart": "Pogledaj košaricu",
     "sale_price": "Akcijska cijena",

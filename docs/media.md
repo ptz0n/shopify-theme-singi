@@ -23,9 +23,14 @@ A merchant sets a focal point per image in the Shopify admin (product media or C
 | `image` | the `image` snippet; the first image is the LCP image (`priority`), the rest lazy |
 | `video` | `video_tag` with controls, `preload="none"`, an `aria-label` from the alt text |
 | `external_video` | `external_video_tag`, lazy, 16:9, with a title |
-| anything else (3D models) | skipped |
+| `model` (3D models) | not rendered: the item is skipped whole and leaves no empty cell. There is no WebGL viewer or AR (see below) |
+| anything else | skipped |
 
 The gallery is HTML with CSS scroll-snap on mobile and a two column grid on desktop; there is no slider JavaScript.
+
+**Video.** Always starts muted. A video uploaded to Shopify is a `<video>` with `muted`, controls and no autoplay. A YouTube video is a poster and a play button that loads nothing from YouTube until it is pressed, because no player parameter can hide YouTube's title, share and "Watch on YouTube" overlay; the player it then loads is muted, on the privacy-enhanced address ([decision 018](decisions/018-youtube-is-a-poster-until-it-is-pressed.md)). Vimeo keeps its player, muted. In the gallery, video fills the slot the row gives it (on a phone as tall as the square images beside it), not a 16:9 box with an empty band under it. For a player with none of YouTube's chrome, upload the video to Shopify.
+
+**3D models.** Not supported. Shopify's viewer is Google's `model-viewer` (WebGL), several hundred kilobytes of script that every visitor of a product with a model would download, so it does not fit a theme whose pages weigh a few kilobytes of script. A product's 3D models are skipped in the gallery and in the zoom view. If a store sells products that need one (furniture, shoes), the way to add it without that cost is a poster image with a "View in 3D" button that loads the viewer on first press (and Shopify's AR launcher for phones); it is not built yet and would need a decision record and a JavaScript budget decision.
 
 **Variant images.** Each variant can have its own image. When the visitor changes an option, `assets/product-form.js` reads the new variant's `featured_media`, scrolls the gallery to it and keeps `data-variant-media` current. A variant without an image leaves the gallery where it is; it never blanks it.
 

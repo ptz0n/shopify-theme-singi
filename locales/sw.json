@@ -36,7 +36,7 @@
     "add_error": "Imeshindwa kuweka kwenye kikapu. Tafadhali jaribu tena.",
     "quick_add": "Weka {{ title }} kwenye kikapu",
     "zoom_open": "Kuza picha {{ position }} kati ya {{ total }}",
-    "zoom_toggle": "Kuza",
+    "video_play": "Cheza video: {{ title }}",
     "zoom_shown_for": "Inaonyeshwa kwa: {{ variants }}",
     "view_cart": "Tazama kikapu",
     "sale_price": "Bei ya punguzo",

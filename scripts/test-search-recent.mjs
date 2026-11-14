@@ -97,7 +97,9 @@ try {
     await sleep(500);
     ok((await page.evaluate(state)).shown, `${label}: the suggestions do not return when the field is cleared`);
 
-    /* the keyboard reaches the cards and the panel stays open */
+    /* the keyboard reaches the cards and the panel stays open (first let the panel settle: a request for the typed word may still be ending) */
+    await page.waitForFunction(() => !document.querySelector('#site-search').hasAttribute('aria-busy'), { timeout: 8000 }).catch(() => {});
+    await sleep(300);
     await page.focus('#header-search');
     await page.keyboard.press('Tab');
     await sleep(200);

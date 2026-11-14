@@ -36,7 +36,7 @@
     "add_error": "No se pudo añadir al carrito. Inténtalo de nuevo.",
     "quick_add": "Añadir {{ title }} al carrito",
     "zoom_open": "Ampliar imagen {{ position }} de {{ total }}",
-    "zoom_toggle": "Ampliar",
+    "video_play": "Reproducir vídeo: {{ title }}",
     "zoom_shown_for": "Se muestra para: {{ variants }}",
     "view_cart": "Ver carrito",
     "sale_price": "Precio rebajado",

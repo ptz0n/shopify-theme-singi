@@ -86,6 +86,18 @@ export const PRODUCTS = [
     collections: ['mock-edge-cases'],
   },
   {
+    handle: 'mock-card-video',
+    title: 'Video Preview, Hover Me',
+    type: 'Prints',
+    vendor: 'Singi Editions',
+    price: '38.00',
+    description: '<p>A short hosted video, to exercise the preview on product cards (hover or focus). Needs ffmpeg to create the clip when the mock content is applied; without it the product has no video.</p>',
+    options: [],
+    video: true,
+    images: ['poster-1'],
+    collections: ['mock-new-arrivals'],
+  },
+  {
     handle: 'mock-limited-stock',
     title: 'Limited Stock, Three Left',
     type: 'Prints',

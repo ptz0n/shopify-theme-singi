@@ -36,7 +36,7 @@
     "add_error": "Ekki tókst að bæta í körfu. Reyndu aftur.",
     "quick_add": "Setja {{ title }} í körfu",
     "zoom_open": "Stækka mynd {{ position }} af {{ total }}",
-    "zoom_toggle": "Stækka",
+    "video_play": "Spila myndband: {{ title }}",
     "zoom_shown_for": "Sýnt fyrir: {{ variants }}",
     "view_cart": "Skoða körfu",
     "sale_price": "Útsöluverð",

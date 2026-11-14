@@ -36,7 +36,7 @@
     "add_error": "Kunne ikke legge i handlekurven. Prøv igjen.",
     "quick_add": "Legg {{ title }} i handlekurven",
     "zoom_open": "Zoom inn på bilde {{ position }} av {{ total }}",
-    "zoom_toggle": "Zoom",
+    "video_play": "Spill av video: {{ title }}",
     "zoom_shown_for": "Vist for: {{ variants }}",
     "view_cart": "Se handlekurv",
     "sale_price": "Salgspris",

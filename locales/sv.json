@@ -36,7 +36,7 @@
     "add_error": "Det gick inte att lägga till i varukorgen. Försök igen.",
     "quick_add": "Lägg {{ title }} i varukorgen",
     "zoom_open": "Zooma bild {{ position }} av {{ total }}",
-    "zoom_toggle": "Zooma",
+    "video_play": "Spela upp video: {{ title }}",
     "zoom_shown_for": "Visas för: {{ variants }}",
     "view_cart": "Visa varukorg",
     "sale_price": "Reapris",

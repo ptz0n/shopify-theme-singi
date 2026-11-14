@@ -36,7 +36,7 @@
     "add_error": "Pridanie do košíka sa nepodarilo. Skúste to prosím znova.",
     "quick_add": "Pridať {{ title }} do košíka",
     "zoom_open": "Priblížiť obrázok {{ position }} z {{ total }}",
-    "zoom_toggle": "Priblížiť",
+    "video_play": "Prehrať video: {{ title }}",
     "zoom_shown_for": "Zobrazené pre: {{ variants }}",
     "view_cart": "Zobraziť košík",
     "sale_price": "Zľavnená cena",

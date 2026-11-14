@@ -36,7 +36,7 @@
     "add_error": "Nuk mund të shtohej në shportë. Ju lutemi provoni përsëri.",
     "quick_add": "Shto {{ title }} në shportë",
     "zoom_open": "Zmadho imazhin {{ position }} nga {{ total }}",
-    "zoom_toggle": "Zmadho",
+    "video_play": "Luaj videon: {{ title }}",
     "zoom_shown_for": "Shfaqur për: {{ variants }}",
     "view_cart": "Shiko shportën",
     "sale_price": "Çmimi i ofertës",

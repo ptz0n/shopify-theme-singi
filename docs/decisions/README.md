@@ -36,6 +36,8 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [011](011-favorites-link-in-the-header.md) | A favorites link with a count sits in the header, always visible | navigation, favorites, accessibility |
 | [012](012-quick-add-for-single-variant-products.md) | Quick add exists only for in-stock products with one variant, and is off by default | product card, cart, accessibility |
 | [013](013-recently-viewed-in-the-empty-search-panel.md) | The empty search panel shows recently viewed products, loaded when it first opens | search, navigation, performance |
-| [014](014-product-image-zoom-is-a-native-dialog.md) | Product image zoom is one native dialog, opened by one button per image | product page, accessibility, performance |
+| [014](014-product-image-zoom-is-a-native-dialog.md) | Product image zoom is one native dialog with one image per screen | product page, accessibility, performance |
 | [015](015-quantity-limits-follow-the-rule-and-never-name-the-stock.md) | Quantity limits follow the variant's rule, and the stock number is never shown | product page, cart, accessibility |
 | [016](016-contextual-product-links-keep-the-canonical.md) | Product links from a collection can carry the collection, and the canonical stays plain | SEO, navigation, product page |
+| [017](017-card-video-previews-play-on-hover-or-focus-only.md) | A card's video preview plays on hover or focus only, and loads nothing before | product card, performance, accessibility |
+| [018](018-youtube-is-a-poster-until-it-is-pressed.md) | YouTube is a poster and a play button until it is pressed, and all video starts muted | product page, media, performance, privacy |

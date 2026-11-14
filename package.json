@@ -46,6 +46,8 @@
     "test:favorites": "node scripts/test-favorites.mjs",
     "test:favorites-link": "node scripts/test-favorites-link.mjs",
     "test:quick-add": "node scripts/test-quick-add.mjs",
+    "test:card-video": "node scripts/test-card-video.mjs",
+    "test:video-muted": "node scripts/test-video-muted.mjs",
     "test:quantity": "node scripts/test-quantity.mjs",
     "test:zoom": "node scripts/test-zoom.mjs",
     "test:search": "node scripts/test-search.mjs",

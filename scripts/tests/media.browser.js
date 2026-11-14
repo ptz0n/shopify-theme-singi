@@ -77,14 +77,16 @@
   }
 
   if (path.endsWith('/mock-video-gallery')) {
-    const frame = document.querySelector('.product__media iframe, .product__media video');
+    /* A YouTube video is a facade (poster and play button, decision 018) that fills the slot the gallery gives it. */
+    const frame = document.querySelector('.product__media a.embed, .product__media iframe, .product__media video');
     ok(frame, 'the video is not rendered in the gallery');
     if (frame) {
       const box = frame.getBoundingClientRect();
-      ok(Math.abs(box.width / box.height - 16 / 9) < 0.05, `video ratio is ${(box.width / box.height).toFixed(2)}, expected 1.78`);
+      const slot = frame.closest('.product__media').getBoundingClientRect();
+      ok(Math.abs(box.width - slot.width) <= 1 && Math.abs(box.height - slot.height) <= 1, `the video is ${Math.round(box.width)}x${Math.round(box.height)} in a slot of ${Math.round(slot.width)}x${Math.round(slot.height)}: it should fill it`);
       ok(frame.title || frame.getAttribute('aria-label'), 'the video has no accessible name');
     }
-    ok(gallery().filter((m) => m.querySelector('img')).length === 3, 'expected 3 images next to the video');
+    ok(gallery().filter((m) => m.querySelector('img') && !m.querySelector('a.embed')).length === 3, 'expected 3 images next to the video');
   }
 
   return { page: path, passed, failed };

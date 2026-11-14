@@ -53,6 +53,7 @@ Defined in `config/settings_schema.json`, read in Liquid as `settings.<id>`.
 | `show_theme_toggle` | checkbox | Show light/dark toggle in header | `true` |
 | `price_trim_zeros` | checkbox | Hide .00 on whole prices | `false` |
 | `product_zoom` | checkbox | Let shoppers zoom product images | `true` |
+| `card_video` | checkbox | Play a short video preview when a product card is hovered or focused | `false` |
 | `card_quick_add` | checkbox | Show a quick add button on product cards | `false` |
 | `card_show_type` | checkbox | Show the product type above the title on product cards | `false` |
 | `show_percent_off` | checkbox | Show percentage off on discounted prices | `true` |

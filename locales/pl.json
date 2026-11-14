@@ -36,7 +36,7 @@
     "add_error": "Nie udało się dodać do koszyka. Spróbuj ponownie.",
     "quick_add": "Dodaj {{ title }} do koszyka",
     "zoom_open": "Powiększ obraz {{ position }} z {{ total }}",
-    "zoom_toggle": "Powiększ",
+    "video_play": "Odtwórz wideo: {{ title }}",
     "zoom_shown_for": "Pokazano dla: {{ variants }}",
     "view_cart": "Zobacz koszyk",
     "sale_price": "Cena promocyjna",

@@ -36,7 +36,7 @@
     "add_error": "कार्ट में नहीं जोड़ा जा सका। कृपया फिर से प्रयास करें।",
     "quick_add": "{{ title }} को कार्ट में जोड़ें",
     "zoom_open": "चित्र {{ position }} / {{ total }} बड़ा करें",
-    "zoom_toggle": "ज़ूम",
+    "video_play": "वीडियो चलाएँ: {{ title }}",
     "zoom_shown_for": "इसके लिए दिखाया गया: {{ variants }}",
     "view_cart": "कार्ट देखें",
     "sale_price": "सेल मूल्य",

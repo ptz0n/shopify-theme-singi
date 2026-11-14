@@ -36,7 +36,7 @@
     "add_error": "Không thể thêm vào giỏ hàng. Vui lòng thử lại.",
     "quick_add": "Thêm {{ title }} vào giỏ hàng",
     "zoom_open": "Phóng to ảnh {{ position }} trên {{ total }}",
-    "zoom_toggle": "Phóng to",
+    "video_play": "Phát video: {{ title }}",
     "zoom_shown_for": "Hiển thị cho: {{ variants }}",
     "view_cart": "Xem giỏ hàng",
     "sale_price": "Giá khuyến mãi",

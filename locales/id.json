@@ -36,7 +36,7 @@
     "add_error": "Tidak dapat menambahkan ke keranjang. Silakan coba lagi.",
     "quick_add": "Tambahkan {{ title }} ke keranjang",
     "zoom_open": "Perbesar gambar {{ position }} dari {{ total }}",
-    "zoom_toggle": "Perbesar",
+    "video_play": "Putar video: {{ title }}",
     "zoom_shown_for": "Ditampilkan untuk: {{ variants }}",
     "view_cart": "Lihat keranjang",
     "sale_price": "Harga diskon",

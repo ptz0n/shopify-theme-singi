@@ -36,7 +36,7 @@
     "add_error": "Nije moguće dodati u korpu. Molimo pokušajte ponovo.",
     "quick_add": "Dodaj {{ title }} u korpu",
     "zoom_open": "Povećaj sliku {{ position }} od {{ total }}",
-    "zoom_toggle": "Povećaj",
+    "video_play": "Pokreni video: {{ title }}",
     "zoom_shown_for": "Prikazano za: {{ variants }}",
     "view_cart": "Pogledaj korpu",
     "sale_price": "Akcijska cijena",

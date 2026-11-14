@@ -36,7 +36,7 @@
     "add_error": "Себетке салу мүмкін болмады. Қайталап көріңіз.",
     "quick_add": "{{ title }} себетке қосу",
     "zoom_open": "{{ position }}/{{ total }} суретті үлкейту",
-    "zoom_toggle": "Үлкейту",
+    "video_play": "Бейнені ойнату: {{ title }}",
     "zoom_shown_for": "Мынаған көрсетілген: {{ variants }}",
     "view_cart": "Себетті көру",
     "sale_price": "Жеңілдік бағасы",

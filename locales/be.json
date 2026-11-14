@@ -36,7 +36,7 @@
     "add_error": "Не ўдалося дадаць у кошык. Паспрабуйце яшчэ раз.",
     "quick_add": "Дадаць {{ title }} у кошык",
     "zoom_open": "Павялічыць відарыс {{ position }} з {{ total }}",
-    "zoom_toggle": "Павялічыць",
+    "video_play": "Прайграць відэа: {{ title }}",
     "zoom_shown_for": "Паказана для: {{ variants }}",
     "view_cart": "Паглядзець кошык",
     "sale_price": "Цана са зніжкай",

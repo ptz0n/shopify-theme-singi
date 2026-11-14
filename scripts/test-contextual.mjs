@@ -40,7 +40,7 @@ const ok = (condition, message) => {
   }
 };
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const cards = () => [...document.querySelectorAll('.product-grid .product-card__link')].map((a) => ({ href: new URL(a.href).pathname, rel: a.getAttribute('rel') }));
+const cards = () => [...document.querySelectorAll('main .product-grid .product-card__link')].map((a) => ({ href: new URL(a.href).pathname, rel: a.getAttribute('rel') }));
 
 try {
   const page = await browser.newPage();
@@ -77,7 +77,7 @@ try {
       const product = await page.evaluate(() => ({
         canonical: document.querySelector('link[rel=canonical]')?.getAttribute('href') ?? '',
         trail: [...document.querySelectorAll('nav[aria-label="Breadcrumbs"] ol li a')].map((a) => ({ href: new URL(a.href).pathname, text: a.textContent.trim() })),
-        related: [...document.querySelectorAll('.product-grid .product-card__link')].map((a) => new URL(a.href).pathname),
+        related: [...document.querySelectorAll('main .product-grid .product-card__link')].map((a) => new URL(a.href).pathname),
       }));
       ok(/\/products\/mock-everyday-hoodie$/.test(product.canonical) && !/\/collections\//.test(product.canonical), `opened from ${slug}: the canonical is ${product.canonical}`);
       /* the collection the shopper came from is the product's parent: the last link (Sale sits under Shop in the mock menu, so its trail is Shop, Sale) */

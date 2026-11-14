@@ -24,6 +24,8 @@
         {%- assign zoom_position = 0 -%}
       {%- endif -%}
       {%- for media in product.media limit: 30 -%}
+        {%- comment -%}3D models are not rendered (docs/media.md): skip the item whole, so it leaves no empty cell in the gallery.{%- endcomment -%}
+        {%- if media.media_type == 'model' -%}{%- continue -%}{%- endif -%}
         <div class="product__media" id="media-{{ media.id }}">
           {%- case media.media_type -%}
             {%- when 'image' -%}
@@ -45,9 +47,21 @@
               {%- endif -%}
               {%- assign first_image = false -%}
             {%- when 'video' -%}
-              {{- media | video_tag: image_size: '1200x', controls: true, preload: 'none', playsinline: true, aria-label: media.alt -}}
+              {{- media | video_tag: image_size: '1200x', controls: true, muted: true, preload: 'none', playsinline: true, aria-label: media.alt -}}
             {%- when 'external_video' -%}
-              {{- media | external_video_tag: loading: 'lazy', title: media.alt -}}
+              {%- comment -%}Video always starts muted (the viewer can unmute it): the parameter is called mute for YouTube and muted for Vimeo.{%- endcomment -%}
+              {%- if media.host == 'youtube' -%}
+                {%- comment -%}YouTube is shown as its poster with a play button and loads nothing until pressed (decision 018): none of its title, share and "Watch on YouTube" overlay shows before play. Without JavaScript the poster is a link to the video.{%- endcomment -%}
+                <a class="embed" href="https://www.youtube.com/watch?v={{ media.external_id }}" data-embed="https://www.youtube-nocookie.com/embed/{{ media.external_id }}?autoplay=1&mute=1&playsinline=1&rel=0&iv_load_policy=3&color=white" data-title="{{ media.alt | escape }}" aria-label="{{ 'products.video_play' | t: title: media.alt }}">
+                  {%- render 'image', image: media.preview_image, sizes: '(min-width: 56em) 55vw, 100vw', widths: '480, 720, 960, 1200, 1600', width: 1600, alt: '' -%}
+                  <span class="embed__play" aria-hidden="true"></span>
+                </a>
+                {%- assign has_embed = true -%}
+              {%- elsif media.host == 'vimeo' -%}
+                {{- media | external_video_url: muted: '1' | external_video_tag: loading: 'lazy', title: media.alt -}}
+              {%- else -%}
+                {{- media | external_video_tag: loading: 'lazy', title: media.alt -}}
+              {%- endif -%}
           {%- endcase -%}
         </div>
       {%- else -%}
@@ -66,6 +80,7 @@
       {%- endfor -%}
     </div>
 
+    {%- if has_embed -%}<script src="{{ 'embed.js' | asset_url }}" type="module"></script>{%- endif -%}
     {%- if settings.product_zoom -%}{%- render 'product-zoom' -%}{%- endif -%}
 
     <product-form
@@ -103,12 +118,19 @@
   .product__layout { display: grid; gap: 2rem; }
   .product__gallery { display: grid; gap: 0.75rem; }
   .product__media { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--color-surface); }
-  .product__zoom { position: absolute; inset: 0; z-index: 1; padding: 0; border: 0; background: none; color: var(--color-fg); cursor: zoom-in; }
-  .product__zoom::before { content: ''; position: absolute; inset-block-start: 0.75rem; inset-inline-end: 0.75rem; width: 2rem; height: 2rem; border-radius: var(--radius); background: var(--color-bg); opacity: 0.85; }
-  .product__zoom::after { content: ''; position: absolute; inset-block-start: 1.0625rem; inset-inline-end: 1.0625rem; width: 1.25rem; height: 1.25rem; background: currentcolor; -webkit-mask: var(--zoom-icon) center / contain no-repeat; mask: var(--zoom-icon) center / contain no-repeat; --zoom-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5M11 8v6M8 11h6'/%3E%3C/svg%3E"); }
+  /* Video fills the slot the gallery gives it (on a phone the row is as tall as its square images, in two columns it is as tall as the neighbour): 100% of the stretched cell, and 16:9 only when nothing else sets the row. The YouTube poster covers it, enlarged a little to crop the black bars YouTube bakes into its preview. */
+  .embed { position: relative; display: block; width: 100%; height: 100%; aspect-ratio: 16 / 9; overflow: hidden; cursor: pointer; }
+  .product__media .embed img { position: absolute; inset: 0; height: 100%; object-fit: cover; scale: 1.34; }
+  .embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .embed__play { position: absolute; inset: 50% auto auto 50%; translate: -50% -50%; width: 4rem; height: 4rem; border-radius: 50%; background: var(--color-bg); opacity: 0.9; }
+  .embed__play::after { content: ''; position: absolute; inset: 50% auto auto 50%; translate: -35% -50%; width: 1.5rem; height: 1.5rem; background: var(--color-fg); clip-path: polygon(0 0, 100% 50%, 0 100%); }
+  .embed:hover .embed__play { opacity: 1; }
+  .embed:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -4px; }
+  .product__zoom { position: absolute; inset: 0; z-index: 1; padding: 0; border: 0; background: none; cursor: zoom-in; }
   .product__zoom:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -4px; }
   .product__media :is(img, video) { display: block; width: 100%; height: auto; }
-  .product__media iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+  .product__media video { height: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #000; }
+  .product__media iframe { display: block; width: 100%; height: 100%; aspect-ratio: 16 / 9; border: 0; }
   /* The card image the visitor just clicked (snippets/theme-init.liquid), behind the real image until it arrives. */
   .product__media:first-child { background-image: var(--placeholder, none); background-position: center; background-size: cover; }
   .product__details { --stack: 1.5rem; align-content: start; min-width: 0; }

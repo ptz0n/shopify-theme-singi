@@ -36,7 +36,7 @@
     "add_error": "Səbətə əlavə etmək mümkün olmadı. Zəhmət olmasa yenidən cəhd edin.",
     "quick_add": "{{ title }} məhsulunu səbətə əlavə et",
     "zoom_open": "{{ position }}/{{ total }} şəkli böyüt",
-    "zoom_toggle": "Böyüt",
+    "video_play": "Videonu oynat: {{ title }}",
     "zoom_shown_for": "Bunun üçün göstərilir: {{ variants }}",
     "view_cart": "Səbətə bax",
     "sale_price": "Endirimli qiymət",

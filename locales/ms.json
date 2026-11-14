@@ -36,7 +36,7 @@
     "add_error": "Tidak dapat menambah ke troli. Sila cuba lagi.",
     "quick_add": "Tambah {{ title }} ke troli",
     "zoom_open": "Zum imej {{ position }} daripada {{ total }}",
-    "zoom_toggle": "Zum",
+    "video_play": "Main video: {{ title }}",
     "zoom_shown_for": "Dipaparkan untuk: {{ variants }}",
     "view_cart": "Lihat troli",
     "sale_price": "Harga jualan",

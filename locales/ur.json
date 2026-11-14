@@ -36,7 +36,7 @@
     "add_error": "کارٹ میں شامل نہیں کیا جا سکا۔ براہ کرم دوبارہ کوشش کریں۔",
     "quick_add": "{{ title }} کو کارٹ میں شامل کریں",
     "zoom_open": "تصویر {{ position }} از {{ total }} بڑی کریں",
-    "zoom_toggle": "زوم",
+    "video_play": "ویڈیو چلائیں: {{ title }}",
     "zoom_shown_for": "ان کے لیے دکھایا گیا: {{ variants }}",
     "view_cart": "کارٹ دیکھیں",
     "sale_price": "سیل کی قیمت",

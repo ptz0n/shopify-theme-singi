@@ -36,7 +36,7 @@
     "add_error": "Hindi maidagdag sa cart. Pakisubukan ulit.",
     "quick_add": "Idagdag ang {{ title }} sa cart",
     "zoom_open": "I-zoom ang larawan {{ position }} sa {{ total }}",
-    "zoom_toggle": "I-zoom",
+    "video_play": "I-play ang video: {{ title }}",
     "zoom_shown_for": "Ipinapakita para sa: {{ variants }}",
     "view_cart": "Tingnan ang cart",
     "sale_price": "Presyong sale",

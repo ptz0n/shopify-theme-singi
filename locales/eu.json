@@ -36,7 +36,7 @@
     "add_error": "Ezin izan da saskira gehitu. Saiatu berriro.",
     "quick_add": "Gehitu {{ title }} saskira",
     "zoom_open": "Handitu {{ position }}/{{ total }} irudia",
-    "zoom_toggle": "Handitu",
+    "video_play": "Erreproduzitu bideoa: {{ title }}",
     "zoom_shown_for": "Honentzat erakusten da: {{ variants }}",
     "view_cart": "Ikusi saskia",
     "sale_price": "Eskaintza-prezioa",

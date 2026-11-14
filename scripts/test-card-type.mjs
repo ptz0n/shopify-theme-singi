@@ -41,7 +41,7 @@ try {
     await page.setViewport({ width, height: 900, isMobile: width < 600, hasTouch: width < 600 });
     await page.goto(`${base}/collections/mock-new-arrivals`, { waitUntil: 'load', timeout: 60000 });
     const r = await page.evaluate(() => {
-      const cards = [...document.querySelectorAll('.product-grid .product-card')];
+      const cards = [...document.querySelectorAll('main .product-grid .product-card')];
       return {
         cards: cards.length,
         types: cards.map((card) => card.querySelector('.product-card__type')?.textContent.trim() ?? null),

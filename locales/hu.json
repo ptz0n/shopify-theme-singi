@@ -36,7 +36,7 @@
     "add_error": "Nem sikerült a kosárba helyezés. Kérjük, próbálja újra.",
     "quick_add": "{{ title }} kosárba helyezése",
     "zoom_open": "{{ position }}. kép nagyítása ({{ total }} közül)",
-    "zoom_toggle": "Nagyítás",
+    "video_play": "Videó lejátszása: {{ title }}",
     "zoom_shown_for": "Ehhez jelenik meg: {{ variants }}",
     "view_cart": "Kosár megtekintése",
     "sale_price": "Akciós ár",

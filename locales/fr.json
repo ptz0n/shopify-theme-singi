@@ -36,7 +36,7 @@
     "add_error": "Impossible d’ajouter l’article au panier. Veuillez réessayer.",
     "quick_add": "Ajouter {{ title }} au panier",
     "zoom_open": "Agrandir l'image {{ position }} sur {{ total }}",
-    "zoom_toggle": "Zoom",
+    "video_play": "Lire la vidéo : {{ title }}",
     "zoom_shown_for": "Affichée pour : {{ variants }}",
     "view_cart": "Voir le panier",
     "sale_price": "Prix promotionnel",

@@ -36,7 +36,7 @@
     "add_error": "カートに追加できませんでした。もう一度お試しください。",
     "quick_add": "{{ title }}をカートに追加",
     "zoom_open": "画像 {{ position }}/{{ total }} を拡大",
-    "zoom_toggle": "拡大",
+    "video_play": "動画を再生: {{ title }}",
     "zoom_shown_for": "対象: {{ variants }}",
     "view_cart": "カートを見る",
     "sale_price": "セール価格",

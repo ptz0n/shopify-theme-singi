@@ -36,7 +36,7 @@
     "add_error": "Could not add to cart. Please try again.",
     "quick_add": "Add {{ title }} to cart",
     "zoom_open": "Zoom image {{ position }} of {{ total }}",
-    "zoom_toggle": "Zoom",
+    "video_play": "Play video: {{ title }}",
     "zoom_shown_for": "Shown for: {{ variants }}",
     "view_cart": "View cart",
     "sale_price": "Sale price",

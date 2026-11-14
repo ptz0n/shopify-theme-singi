@@ -36,7 +36,7 @@
     "add_error": "Kon nie by mandjie voeg nie. Probeer asseblief weer.",
     "quick_add": "Voeg {{ title }} by die mandjie",
     "zoom_open": "Vergroot beeld {{ position }} van {{ total }}",
-    "zoom_toggle": "Vergroot",
+    "video_play": "Speel video: {{ title }}",
     "zoom_shown_for": "Vertoon vir: {{ variants }}",
     "view_cart": "Bekyk mandjie",
     "sale_price": "Uitverkopingsprys",

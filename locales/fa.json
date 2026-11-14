@@ -36,7 +36,7 @@
     "add_error": "افزودن به سبد خرید انجام نشد. لطفاً دوباره تلاش کنید.",
     "quick_add": "افزودن {{ title }} به سبد خرید",
     "zoom_open": "بزرگ‌نمایی تصویر {{ position }} از {{ total }}",
-    "zoom_toggle": "بزرگ‌نمایی",
+    "video_play": "پخش ویدیو: {{ title }}",
     "zoom_shown_for": "نمایش برای: {{ variants }}",
     "view_cart": "مشاهده سبد خرید",
     "sale_price": "قیمت فروش ویژه",

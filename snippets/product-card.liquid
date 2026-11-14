@@ -64,6 +64,13 @@
   {%- else -%}
     <div class="product-card__media"></div>
   {%- endif -%}
+  {%- if settings.card_video -%}
+    {%- assign preview = product.media | where: 'media_type', 'video' | first -%}
+    {%- if preview -%}
+      {%- assign preview_file = preview.sources | where: 'format', 'mp4' | sort: 'width' | first -%}
+      <video class="card-video" data-card-video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" poster="{{ preview.preview_image | image_url: width: 480 }}"><source src="{{ preview_file.url }}" type="video/mp4"></video>
+    {%- endif -%}
+  {%- endif -%}
   {%- render 'ai-label', alt: product.featured_image.alt -%}
   {%- if settings.wishlist_enabled and settings.wishlist_cards -%}
     <button class="wishlist-heart" type="button" data-wishlist="{{ product.handle }}" aria-pressed="false" aria-label="{{ 'wishlist.toggle' | t: title: product.title }}"></button>
@@ -84,6 +91,8 @@
 </li>
 
 {% stylesheet %}
+  .card-video { position: absolute; inset-block-start: 0; inset-inline-start: 0; width: 100%; aspect-ratio: 4 / 5; border-radius: var(--radius); object-fit: cover; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+  .card-video[data-playing] { opacity: 1; }
   .card-add { --plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E"); --done: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 5 5L20 7'/%3E%3C/svg%3E"); position: absolute; inset-block-start: calc(125cqw - 0.75rem); inset-inline-start: 0.75rem; translate: 0 -100%; z-index: 1; width: 2.75rem; height: 2.75rem; padding: 0; border: 0; border-radius: var(--radius); background: var(--color-fg); color: var(--color-bg); cursor: pointer; }
   .card-add::before { content: ''; display: block; width: 1.25rem; height: 1.25rem; margin: auto; background: currentcolor; -webkit-mask: var(--plus) center / contain no-repeat; mask: var(--plus) center / contain no-repeat; }
   .card-add[data-added]::before { -webkit-mask-image: var(--done); mask-image: var(--done); }

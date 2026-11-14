@@ -36,7 +36,7 @@
     "add_error": "Sepete eklenemedi. Lütfen tekrar deneyin.",
     "quick_add": "{{ title }} ürününü sepete ekle",
     "zoom_open": "{{ position }}/{{ total }} görseli büyüt",
-    "zoom_toggle": "Yakınlaştır",
+    "video_play": "Videoyu oynat: {{ title }}",
     "zoom_shown_for": "Şunun için gösteriliyor: {{ variants }}",
     "view_cart": "Sepeti görüntüle",
     "sale_price": "İndirimli fiyat",

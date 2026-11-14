@@ -36,7 +36,7 @@
     "add_error": "Kan niet aan winkelwagen toevoegen. Probeer het opnieuw.",
     "quick_add": "{{ title }} in winkelwagen",
     "zoom_open": "Afbeelding {{ position }} van {{ total }} vergroten",
-    "zoom_toggle": "Zoom",
+    "video_play": "Video afspelen: {{ title }}",
     "zoom_shown_for": "Getoond voor: {{ variants }}",
     "view_cart": "Winkelwagen bekijken",
     "sale_price": "Aanbiedingsprijs",

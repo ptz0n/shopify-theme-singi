@@ -7,7 +7,9 @@ Size in bytes (before Shopify's CDN compression) and where each asset is referen
 | Asset | Bytes | Referenced by |
 | --- | --- | --- |
 | `assets/base.css` | 11956 | `layout/password.liquid`, `layout/theme.liquid`, `templates/gift_card.liquid` |
+| `assets/card-video.js` | 1425 | `layout/theme.liquid` |
 | `assets/cart-items.js` | 2181 | `sections/main-cart.liquid` |
+| `assets/embed.js` | 948 | `sections/main-product.liquid` |
 | `assets/facets.js` | 3353 | `sections/main-collection.liquid`, `sections/main-search.liquid` |
 | `assets/image-tone.js` | 3297 | `layout/theme.liquid` |
 | `assets/localization.js` | 1114 | `snippets/localization-selector.liquid` |
@@ -22,4 +24,4 @@ Size in bytes (before Shopify's CDN compression) and where each asset is referen
 | `assets/tracking.js` | 6431 | `layout/theme.liquid` |
 | `assets/utils.js` | 1135 | `layout/theme.liquid` |
 | `assets/wishlist.js` | 7541 | `layout/theme.liquid` |
-| `assets/zoom.js` | 2835 | `snippets/product-zoom.liquid` |
+| `assets/zoom.js` | 4278 | `snippets/product-zoom.liquid` |

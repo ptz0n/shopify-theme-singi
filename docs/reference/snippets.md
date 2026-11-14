@@ -345,15 +345,20 @@ The full screen image viewer of the product page: one native <dialog>, opened by
 sections/main-product.liquid puts over each gallery image. assets/zoom.js fills it. Decision record:
 docs/decisions/014-product-image-zoom-is-a-native-dialog.md.
 
-It shows the image the shopper chose, at the largest size the store has, fitted to the screen (a click
-or the Zoom button shows it twice as wide, and the stage scrolls), the image's own description, and, when
-the image belongs to variants, "Shown for: Moss / M". Previous and next buttons and the arrow keys move
-through the images; Escape or the close button return to the gallery with focus on the button that opened it.
+The viewer is a column of screens, one image per screen with no padding: the whole image, a line of caption
+under it (the description without any "AI generated" wording and, when the image belongs to variants, "Shown for:
+Moss / M"), the image count "1 / 2" in the top start corner when there are several images, and nothing pushed
+out of the viewport, however long the caption. Scrolling snaps from image to image (wheel, finger or scroll bar; pinch zoom works natively);
+the arrow keys and Space jump too. The image the shopper pressed is in view when it opens, and Escape or the
+close button return to the gallery with focus on the button that opened it.
 
-The image's width and height attributes are only there for the markup rules: CSS sizes the image and the loaded file brings its own ratio.
+The images are built by the script the first time the viewer opens, so a page nobody zooms carries only this
+shell. The image width and height attributes of the one <img> in the markup are only there for the markup rules.
 
-Rendered once per page, only when the setting "Let shoppers zoom product images" is on. The dialog is
-modal, so the page behind it is inert. Focus starts on the Close button (autofocus), not on the scrolling stage, so no ring is drawn around the picture on open.
+Focus starts on the scrolling area (autofocus), not on a button: Space on a focused Close button would close
+the viewer instead of moving to the next image. The dialog is modal, so the page behind it is inert.
+
+Rendered once per page, only when the setting "Let shoppers zoom product images" is on.
 
 ```liquid
 {% render 'product-zoom' %}
@@ -659,7 +664,7 @@ The toggle sits on the filter bar's line, at its end: the bar leaves room for it
 .facets) and the toggle is placed over that room. All of it is logical properties, so it mirrors in right to left.
 
 In the list view the card's image is a fixed 7.5rem column and the text sits beside it. The card's
-absolutely placed parts (AI label, favorite heart) are positioned against the image's corner, not the card's. The sold out badge moves into the text column, above the title, because the narrow image has no room for it beside the heart. The quick add button (when on) keeps the image's bottom start corner. The text is centered beside the image with two spacer rows.
+absolutely placed parts (AI label, favorite heart) are positioned against the image's corner, not the card's. The sold out badge moves into the text column, above the title, because the narrow image has no room for it beside the heart. The quick add button (when on) keeps the image's bottom start corner, and a card's video preview (when on) is as wide as the image. The text is centered beside the image with two spacer rows.
 
 ```liquid
 <div class="view-wrap">

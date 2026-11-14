@@ -18,6 +18,10 @@
  * Required app scopes: write_products, write_publications, write_inventory,
  * write_content, write_online_store_pages, write_online_store_navigation.
  */
+import { execFileSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { admin, domain, userErrors } from './lib/admin.mjs';
 import { OPS } from './lib/mock-ops.mjs';
 import { gradientPng } from './lib/png.mjs';
@@ -175,6 +179,31 @@ const variantInput = (p, options, optionValues, index, locationId) => {
   };
 };
 
+/* A two second H.264 clip, made with ffmpeg when it is installed (nothing else in the mock content needs it), written to the system temp folder and overwritten on every run. */
+let clip;
+const stageVideo = async () => {
+  if (clip !== undefined) return clip;
+  clip = null;
+  const file = join(tmpdir(), 'singi-mock-clip.mp4');
+  try {
+    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'lavfi', '-i', 'testsrc2=duration=2:size=480x600:rate=24', '-pix_fmt', 'yuv420p', '-c:v', 'libx264', '-movflags', '+faststart', file]);
+  } catch {
+    console.log('  note: ffmpeg is not available, so the video product is created without its video');
+    return clip;
+  }
+  const bytes = readFileSync(file);
+  const payload = await admin(OPS.stagedUploads, { input: [{ resource: 'VIDEO', filename: 'singi-mock-clip.mp4', mimeType: 'video/mp4', httpMethod: 'POST', fileSize: String(bytes.length) }] });
+  check(payload, 'stage video');
+  const target = payload.stagedUploadsCreate.stagedTargets[0];
+  const form = new FormData();
+  for (const { name, value } of target.parameters) form.append(name, value);
+  form.append('file', new Blob([bytes], { type: 'video/mp4' }), 'singi-mock-clip.mp4');
+  const response = await fetch(target.url, { method: 'POST', body: form });
+  if (!response.ok) throw new Error(`upload of the video failed: HTTP ${response.status}`);
+  clip = target.resourceUrl;
+  return clip;
+};
+
 const productInput = async (p) => {
   const locationId = p.stock ? (await admin(OPS.locations)).locations.nodes[0].id : undefined;
   const options = p.options.length ? p.options : [{ name: 'Title', values: ['Default Title'] }];
@@ -194,6 +223,7 @@ const productInput = async (p) => {
     files: [
       ...(await Promise.all(p.images.map(async (seed, i) => ({ originalSource: await stageImage(seed), contentType: 'IMAGE', alt: `${p.title} ${i + 1}` })))),
       ...(p.externalVideo ? [{ originalSource: p.externalVideo.url, contentType: 'EXTERNAL_VIDEO', alt: p.externalVideo.alt }] : []),
+      ...(p.video && (await stageVideo()) ? [{ originalSource: await stageVideo(), contentType: 'VIDEO', alt: `${p.title} video` }] : []),
     ],
   };
 };

@@ -1,65 +1,70 @@
-# 014. Product image zoom is one native dialog, opened by one button per image
+# 014. Product image zoom is one native dialog with one image per screen
 
-Status: accepted
+Status: accepted (revised 2026-11-14 after review: a column of screens replaced a single image with buttons)
 Area: product page | accessibility | performance
 Code: `sections/main-product.liquid`, `snippets/product-zoom.liquid`, `assets/zoom.js`
 
 ## Context
 
-Shoppers want to look closely at a product: texture, stitching, the label. The gallery shows images at the width of a column. A zoom has to work with a mouse, a finger and a keyboard, say what the picture is for people who cannot see it, and say which variants it belongs to, because on a product with colors the picture a shopper is zooming may not be the one they have selected.
+Shoppers want to look closely at a product: texture, stitching, the label. The gallery shows images at the width of a column. A zoom has to work with a mouse, a finger and a keyboard, say what the picture is for people who cannot see it, and say which variants it belongs to, because on a product with colors the picture a shopper is zooming may not be the one they have selected. It must also use the whole screen: the image, its count and its caption have to fit together.
 
 ## Decision
 
-With the setting "Let shoppers zoom product images" on (the default), each image in the gallery gets one button that fills it and is named "Zoom image 2 of 6". It is drawn with a small magnifier badge in the image's top end corner. Videos get none.
+With the setting "Let shoppers zoom product images" on (the default), each image in the gallery gets one transparent button that fills it, named "Zoom image 2 of 6". The only hint is the `zoom-in` cursor (no icon on the image, by choice), plus a visible focus ring for the keyboard. Videos get none.
 
-Pressing it opens one native modal `<dialog>` per page, full screen:
+Pressing it opens one native modal `<dialog>`, full screen (`100dvh`), a column of screens:
 
-- the image, fitted to the screen, first as the picture already on the page and then, once decoded, at 2400 pixels wide (the same URL with a larger `width`);
-- a caption with the image's description (its alt text) and, when the image belongs to variants, "Shown for: Moss / M, Moss / L". An image with no variant says nothing about variants;
-- a Zoom button (and a click or tap on the image) that shows it twice as wide in a scrolling stage; pinch zoom works natively (`touch-action: pan-x pan-y pinch-zoom`);
-- Previous and Next buttons, and the left and right arrow keys (reversed in right to left), wrapping around; the arrows scroll instead while zoomed in;
-- Escape or the Close button; focus returns to the button that opened it.
-
-The script is one delegated click handler in `assets/zoom.js`, loaded only on product pages with the setting on. The HTML carries almost nothing per image: the button, its name and, only when needed, the variants text. The large URL and the description come from the image element on the page.
+- **One image per screen, no padding.** Every image is one viewport tall: the whole image (`object-fit: contain`, square corners) over a caption line, and scrolling snaps from image to image (`scroll-snap-type: y mandatory`). The pressed image is in view when it opens.
+- **Everything fits one screen.** A grid of two rows gives the image whatever the caption leaves; the caption is capped at 7rem and scrolls inside itself, so a very long description never pushes the image or the caption out of the viewport.
+- **Count in the top start corner** ("1 / 2"), only when the product has more than one image. It mirrors in right to left.
+- **Caption:** the image's description without any "AI generated" or "AI altered" wording (the image keeps the full text for assistive technology, and the picture keeps its "AI" badge, because the label states how the picture was made), and, when the image belongs to variants, "Shown for: Moss / M". An image that belongs to none says nothing about variants.
+- **Large images:** the one already on the page with a larger `width` in its URL (2400), lazy, built on the first open, so a page nobody zooms carries only the empty shell.
+- **Keys** (focus starts on the scrolling area): ArrowDown, ArrowRight (ArrowLeft in right to left) and Space go to the next image; ArrowUp, the other horizontal arrow and Shift+Space to the previous one; Home and End jump to the ends. A single step glides (instant under reduced motion); Home and End are instant. The image is announced in a polite live region ("3 / 12: ..."). Space on the focused Close button closes the viewer, as a button should; Escape closes and focus returns to the button that opened it.
+- Pinch zoom works natively (`touch-action: pan-y pinch-zoom`).
 
 ## Why
 
-- **Native dialog:** a modal `<dialog>` makes the page behind it inert, keeps Tab inside, closes on Escape and returns focus, all without script. No focus trap code, no dependency.
-- **One button per image:** one tab stop, one name, no second control overlapping the picture; a swipe on the mobile gallery still scrolls it.
-- **Honest about variants:** WCAG 1.1.1 (a text alternative) is served by the alt text, 1.3.1 and 3.3.2 by saying which variants a picture is for, instead of leaving the shopper to guess.
-- **Cheap:** off, nothing changes and nothing loads. On, about 1 KB delivered on product pages only.
+- **A native dialog** makes the page behind inert, keeps Tab inside, closes on Escape and returns focus, with no script for any of it.
+- **One image per screen** makes the viewport the unit: "the image in view" is the scroll position divided by the screen height, navigation is one scroll, and the caption can never be pushed away. It also suits touch (a flick moves one image) and keyboard (a key moves one image).
+- **Focus starts on the scrolling area, not on a button,** because Space on a focused Close button would close the viewer instead of moving on.
+- **The count and caption are text on the page,** which assistive technology reads as figure captions; the visible alt text is `aria-hidden` there because the image already announces it.
+- **Cheap:** off, nothing changes and nothing loads. On, about 1 KB of script delivered, on product pages only.
 
 ## Alternatives rejected
 
 | Alternative | Why not |
 | --- | --- |
 | A zoom library or a lightbox package | A dependency and a lot of script for what a dialog does. |
+| One image with previous and next buttons and a zoom toggle (the first version) | Two ways to move, buttons to size and keep clear of the picture, and a zoom toggle where pinch already works; scrolling is the same gesture as the page. |
+| A column of full width images of natural height | Each screen showed part of an image and the caption was somewhere below it. |
 | Magnify on hover (an inner zoom pane) | Does not work on touch, and a keyboard cannot hover. |
-| Putting the large image URL and the description in each button's attributes | Duplicates data the image element already has, and costs HTML on a page with up to 30 images. |
-| A "Shown for" line on every image | An image that belongs to no variant has nothing to say; silence is correct there. |
+| A magnifier icon on every image | Chosen against: the cursor says it on desktop, and the button's name says it to assistive technology. |
+| Putting the large URL and the description in each button's attributes | Duplicates data the image element already has, and costs HTML on a page with up to 30 images. |
 
 ## Edge cases and dead ends
 
-If the Zoom button seems to do nothing on a small image, the file is smaller than the screen: the large version cannot be bigger than the upload.
+If a key does nothing, focus is on a button (Close): a button keeps its own keys. Focus the picture area again with Tab.
 
-If a zoom button does not appear on a gallery item, it is a video or the setting is off.
+If the large version looks no sharper, the upload is smaller than the screen: it cannot be bigger than the file.
 
-The dialog's image carries `width` and `height` attributes only to satisfy the markup rules; CSS sizes it and the loaded file brings its own ratio. It is the one raw `<img>` allowed besides the image snippet (`scripts/check.mjs`): it is shown with `object-fit: contain`, so a focal point is not needed.
+On a touch screen there is no cursor hint: the gallery images look the same as before; the tap target is the whole image.
 
-The caption repeats the alt text visibly, so the alt span is `aria-hidden` there: the image already announces it.
+If a zoom button does not appear on a gallery item, it is a video or a 3D model (see [media.md](../media.md)), or the setting is off.
 
-If you add a product media type that is not an image, give it no zoom button and keep the counts ("image 2 of 6") to images only.
+The dialog is the one raw `<img>` allowed besides the image snippet (`scripts/check.mjs`): it is shown with `object-fit: contain`, so a focal point is not needed.
+
+If you add a media type that should be zoomable, keep the counts ("image 2 of 6") to images only.
 
 ## Trade-offs we accept
 
-- **JavaScript budget:** `zoom.js` is 945 bytes as source and less delivered. The total budget moved from 18,000 to 19,000, deliberately. It loads on product pages only.
-- A gallery with many images gets one button each (up to 30 nodes).
-- Zooming is not a magnifier that follows the pointer: it is fit or twice as wide, scrolled.
+- **JavaScript budget:** `zoom.js` is 1.5 KB as source and less delivered. The total budget (a sum over every module, which no page loads together) was raised for it; it is a growth guard, and `npm run perf:sizes` shows what a page downloads.
+- A gallery with many images gets one button each (up to 30 nodes), and the viewer builds up to 30 figures when first opened.
+- Zooming in beyond the fitted image is by pinch (touch) or the browser's own zoom: there is no magnifier that follows the pointer.
 
 ## How to verify
 
-`npm run test:zoom`: one button per image and none on videos, named with their position; pressing one opens a full screen dialog on that image with the large URL, the description and, where it applies, "Shown for: ..."; arrows (reversed in right to left), the step buttons and wrap-around move through the images; the toggle doubles the width and the arrows stop moving images; Escape closes and returns focus to the opener; Tab stays inside; the page behind does not scroll; no horizontal scroll; with the setting off there is nothing.
+`npm run test:zoom`: one button per image, none on a video, each named with its position; pressing one opens a full screen dialog with one figure per image, each exactly one viewport tall with no padding and snapping, the pressed image in view, the large version loaded for the images near, later ones lazy; the count in the top start corner (only when there are several images); a very long description stays inside its screen; the caption has no "AI generated" while the image alt keeps it and the picture shows the badge; square corners; every key does what it says in both directions, at the ends and fast; Space on Close closes; Tab never reaches the page behind; Escape returns focus; no horizontal scroll, desktop, phone and right to left; nothing at all with the setting off.
 
 ## Revisit when
 
-Shoppers need a pointer following magnifier, or the gallery gains 3D models or a different media type that should be viewable.
+Shoppers need a pointer following magnifier, or the gallery gains 3D models or another media type that should be viewable.

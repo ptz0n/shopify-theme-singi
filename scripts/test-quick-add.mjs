@@ -66,7 +66,7 @@ const fakeCart = () => {
 
 const cardInfo = () => {
   const rtl = document.documentElement.dir === 'rtl';
-  const cards = [...document.querySelectorAll('.product-grid .product-card')];
+  const cards = [...document.querySelectorAll('main .product-grid .product-card')];
   const rect = (el) => el?.getBoundingClientRect();
   const overlaps = (a, b) => a && b && a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
   return cards.map((card) => {

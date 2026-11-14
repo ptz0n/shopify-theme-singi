@@ -36,7 +36,7 @@
     "add_error": "Nu s-a putut adăuga în coș. Vă rugăm să încercați din nou.",
     "quick_add": "Adaugă {{ title }} în coș",
     "zoom_open": "Mărește imaginea {{ position }} din {{ total }}",
-    "zoom_toggle": "Mărește",
+    "video_play": "Redă videoclipul: {{ title }}",
     "zoom_shown_for": "Afișată pentru: {{ variants }}",
     "view_cart": "Vezi coșul",
     "sale_price": "Preț redus",

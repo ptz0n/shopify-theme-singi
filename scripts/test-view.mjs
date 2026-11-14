@@ -42,7 +42,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const read = () => {
   const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
   const rtl = document.documentElement.dir === 'rtl';
-  const grid = document.querySelector('.product-grid');
+  const grid = document.querySelector('main .product-grid');
   const cards = [...grid.querySelectorAll('.product-card')];
   const card = cards[0];
   const media = card.querySelector('img, .product-card__media');

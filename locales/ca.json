@@ -36,7 +36,7 @@
     "add_error": "No s'ha pogut afegir a la cistella. Torna-ho a provar.",
     "quick_add": "Afegeix {{ title }} a la cistella",
     "zoom_open": "Amplia la imatge {{ position }} de {{ total }}",
-    "zoom_toggle": "Amplia",
+    "video_play": "Reprodueix el vídeo: {{ title }}",
     "zoom_shown_for": "Es mostra per a: {{ variants }}",
     "view_cart": "Veure la cistella",
     "sale_price": "Preu rebaixat",

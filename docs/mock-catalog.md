@@ -4,6 +4,11 @@ Sample products for developing and testing the theme against realistic stores. `
 
 The first group of products exercises edge cases of the theme itself (long titles, no image, many options, media, bulk pagination). The **niche catalog** below is two products per merchant niche, written like a real store, with the data each shopper persona needs. The personas and the research behind them are summarized in the project notes; the rule they led to is: render from data when it exists, and add a setting only when the data cannot decide.
 
+## Products for the card and quantity features
+
+- `mock-card-video`: a hosted two second video, for the preview on cards ([decision 017](decisions/017-card-video-previews-play-on-hover-or-focus-only.md)). The clip is made with ffmpeg when the mock content is applied; without ffmpeg the product is created with no video and says so.
+- `mock-limited-stock`: tracked inventory of three with overselling denied, for the quantity cap ([decision 015](decisions/015-quantity-limits-follow-the-rule-and-never-name-the-stock.md)). On the development store the storefront served it as sold out although the admin reports it available, so `npm run test:quantity` skips that part there; quantity rules themselves need a B2B catalog and are tested on the component library page instead.
+
 ## Color siblings
 
 Six "Studio Shirt" products (black, sand, moss, clay, striped, harbor) are linked as color siblings ([decision 003](decisions/003-color-siblings-product-list.md)): clay is sold out, striped has two colors and harbor three, to exercise the unavailable and multi-color swatches. `npm run siblings -- check` verifies the group.

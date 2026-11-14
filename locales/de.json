@@ -36,7 +36,7 @@
     "add_error": "Der Artikel konnte nicht hinzugefügt werden. Bitte versuchen Sie es erneut.",
     "quick_add": "{{ title }} in den Warenkorb legen",
     "zoom_open": "Bild {{ position }} von {{ total }} vergrößern",
-    "zoom_toggle": "Zoom",
+    "video_play": "Video abspielen: {{ title }}",
     "zoom_shown_for": "Gezeigt für: {{ variants }}",
     "view_cart": "Warenkorb ansehen",
     "sale_price": "Angebotspreis",

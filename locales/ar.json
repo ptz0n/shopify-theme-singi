@@ -36,7 +36,7 @@
     "add_error": "تعذرت الإضافة إلى السلة. يرجى المحاولة مرة أخرى.",
     "quick_add": "أضف {{ title }} إلى السلة",
     "zoom_open": "تكبير الصورة {{ position }} من {{ total }}",
-    "zoom_toggle": "تكبير",
+    "video_play": "تشغيل الفيديو: {{ title }}",
     "zoom_shown_for": "معروضة لـ: {{ variants }}",
     "view_cart": "عرض السلة",
     "sale_price": "سعر التخفيض",
