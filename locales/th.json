@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "สินค้าหมด",
-    "colors": "สี",
+    "color": "สี",
     "recently_viewed": "ดูล่าสุด",
     "add_to_cart": "เพิ่มลงตะกร้า",
     "added": "เพิ่มลงตะกร้าแล้ว",

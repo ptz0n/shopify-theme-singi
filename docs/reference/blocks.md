@@ -23,13 +23,15 @@ page load. Private to product sections.
 File: `blocks/_color-siblings.liquid` · Editor name: **Color siblings** · private
 
 Color siblings: separate products that are the same product in another color, shown
-as swatch links. Server-rendered, no JavaScript. Private to the product section.
+as chip-shaped swatch links, the same chip as the size options. Server-rendered, no JavaScript. Private to the product section.
 
 Reads the product metafield singi.color_siblings (list of products, the whole group,
 this product included, the same list on every member) and each member's singi.color
 (hex). Renders nothing for a product with no group. The list order is the swatch order,
 so it is the same on every page of the group; a list that omits this product shows it
-first. A member without a color shows its title as a text chip instead.
+first. A member without a color shows its title as a text chip instead. A visible
+"Color" label sits above, styled like the other option labels, and names the navigation.
+Square 44px chips, corner radius and selected state shared with .chip in assets/base.css.
 
 Why a product list, and the one metafield read per member inside the loop (a bounded
 exception to the Liquid cost rule): docs/decisions/003-color-siblings-product-list.md.

@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "স্টক শেষ",
-    "colors": "রং",
+    "color": "রং",
     "recently_viewed": "সম্প্রতি দেখা",
     "add_to_cart": "কার্টে যোগ করুন",
     "added": "কার্টে যোগ করা হয়েছে।",

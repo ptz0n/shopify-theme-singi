@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Satılıb",
-    "colors": "Rənglər",
+    "color": "Rəng",
     "recently_viewed": "Son baxılanlar",
     "add_to_cart": "Səbətə at",
     "added": "Səbətə əlavə edildi.",

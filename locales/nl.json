@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Uitverkocht",
-    "colors": "Kleuren",
+    "color": "Kleur",
     "recently_viewed": "Onlangs bekeken",
     "add_to_cart": "In winkelwagen",
     "added": "Toegevoegd aan winkelwagen.",

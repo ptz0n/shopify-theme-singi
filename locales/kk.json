@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Сатылып кетті",
-    "colors": "Түстер",
+    "color": "Түс",
     "recently_viewed": "Жуырда қаралған",
     "add_to_cart": "Себетке салу",
     "added": "Себетке салынды.",

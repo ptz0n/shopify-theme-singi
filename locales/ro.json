@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Stoc epuizat",
-    "colors": "Culori",
+    "color": "Culoare",
     "recently_viewed": "Vizualizate recent",
     "add_to_cart": "Adaugă în coș",
     "added": "Adăugat în coș.",

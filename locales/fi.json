@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Loppuunmyyty",
-    "colors": "Värit",
+    "color": "Väri",
     "recently_viewed": "Äskettäin katsotut",
     "add_to_cart": "Lisää ostoskoriin",
     "added": "Lisätty ostoskoriin.",

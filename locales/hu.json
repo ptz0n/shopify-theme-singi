@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Elfogyott",
-    "colors": "Színek",
+    "color": "Szín",
     "recently_viewed": "Legutóbb megtekintett",
     "add_to_cart": "Kosárba",
     "added": "Kosárba helyezve.",

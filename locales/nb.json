@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Utsolgt",
-    "colors": "Farger",
+    "color": "Farge",
     "recently_viewed": "Nylig vist",
     "add_to_cart": "Legg i handlekurv",
     "added": "Lagt i handlekurven.",

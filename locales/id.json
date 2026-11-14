@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Habis terjual",
-    "colors": "Warna",
+    "color": "Warna",
     "recently_viewed": "Baru dilihat",
     "add_to_cart": "Tambah ke keranjang",
     "added": "Ditambahkan ke keranjang.",

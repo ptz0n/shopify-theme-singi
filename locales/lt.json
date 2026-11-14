@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Išparduota",
-    "colors": "Spalvos",
+    "color": "Spalva",
     "recently_viewed": "Neseniai peržiūrėta",
     "add_to_cart": "Į krepšelį",
     "added": "Įdėta į krepšelį.",

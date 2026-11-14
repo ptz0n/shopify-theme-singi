@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Tükendi",
-    "colors": "Renkler",
+    "color": "Renk",
     "recently_viewed": "Son görüntülenenler",
     "add_to_cart": "Sepete ekle",
     "added": "Sepete eklendi.",

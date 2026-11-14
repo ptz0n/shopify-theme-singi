@@ -6,7 +6,7 @@ Size in bytes (before Shopify's CDN compression) and where each asset is referen
 
 | Asset | Bytes | Referenced by |
 | --- | --- | --- |
-| `assets/base.css` | 11833 | `layout/password.liquid`, `layout/theme.liquid`, `templates/gift_card.liquid` |
+| `assets/base.css` | 11870 | `layout/password.liquid`, `layout/theme.liquid`, `templates/gift_card.liquid` |
 | `assets/cart-items.js` | 2181 | `sections/main-cart.liquid` |
 | `assets/facets.js` | 3353 | `sections/main-collection.liquid`, `sections/main-search.liquid` |
 | `assets/image-tone.js` | 3297 | `layout/theme.liquid` |

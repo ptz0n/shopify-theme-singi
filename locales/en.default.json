@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Sold out",
-    "colors": "Colors",
+    "color": "Color",
     "recently_viewed": "Recently viewed",
     "add_to_cart": "Add to cart",
     "added": "Added to cart.",

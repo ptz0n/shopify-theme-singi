@@ -1,12 +1,14 @@
 {% doc %}
   Color siblings: separate products that are the same product in another color, shown
-  as swatch links. Server-rendered, no JavaScript. Private to the product section.
+  as chip-shaped swatch links, the same chip as the size options. Server-rendered, no JavaScript. Private to the product section.
 
   Reads the product metafield singi.color_siblings (list of products, the whole group,
   this product included, the same list on every member) and each member's singi.color
   (hex). Renders nothing for a product with no group. The list order is the swatch order,
   so it is the same on every page of the group; a list that omits this product shows it
-  first. A member without a color shows its title as a text chip instead.
+  first. A member without a color shows its title as a text chip instead. A visible
+  "Color" label sits above, styled like the other option labels, and names the navigation.
+  Square 44px chips, corner radius and selected state shared with .chip in assets/base.css.
 
   Why a product list, and the one metafield read per member inside the loop (a bounded
   exception to the Liquid cost rule): docs/decisions/003-color-siblings-product-list.md.
@@ -16,12 +18,13 @@
 {%- assign group = product.metafields.singi.color_siblings.value -%}
 {%- if group.size > 1 -%}
   {%- assign lists_itself = group | where: 'id', product.id | size -%}
-  <nav class="color-siblings" aria-label="{{ 'products.colors' | t }}" data-color-siblings {{ block.shopify_attributes }}>
+  <nav class="color-siblings" aria-labelledby="color-siblings-{{ block.id }}" data-color-siblings {{ block.shopify_attributes }}>
+    <p class="label" id="color-siblings-{{ block.id }}">{{ 'products.color' | t }}</p>
     <ul role="list">
       {%- if lists_itself == 0 -%}
         {%- assign color = product.metafields.singi.color.value -%}
         <li>
-          <a class="color-swatch{% unless color %} color-swatch--text{% endunless %}" href="{{ product.url }}" aria-current="true"{% if color %} style="--swatch: {{ color | escape }}"{% endif %}>
+          <a class="chip color-swatch{% unless color %} color-swatch--text{% endunless %}" href="{{ product.url }}" aria-current="true"{% if color %} style="--swatch: {{ color | escape }}"{% endif %}>
             <span{% if color %} class="visually-hidden"{% endif %}>{{ product.title }}</span>
           </a>
         </li>
@@ -30,7 +33,7 @@
         {%- assign color = member.metafields.singi.color.value -%}
         <li>
           <a
-            class="color-swatch{% unless member.available %} color-swatch--unavailable{% endunless %}{% unless color %} color-swatch--text{% endunless %}"
+            class="chip color-swatch{% unless member.available %} chip--unavailable{% endunless %}{% unless color %} color-swatch--text{% endunless %}"
             href="{{ member.url }}"
             {% if member.id == product.id %}aria-current="true"{% endif %}
             {% if color %}style="--swatch: {{ color | escape }}"{% endif %}
@@ -44,16 +47,13 @@
 {%- endif -%}
 
 {% stylesheet %}
-  /* The 44px target is wider than the 28px circle: pull the row back so the first circle lines up with the text edge. */
-  .color-siblings ul { display: flex; flex-wrap: wrap; gap: 0.25rem; margin: 0; margin-inline-start: -0.5rem; padding: 0; list-style: none; }
-  .color-swatch { display: inline-grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; border-radius: 50%; text-decoration: none; }
-  .color-swatch::before { content: ""; width: 1.75rem; height: 1.75rem; border: 1px solid var(--color-control); border-radius: 50%; background: var(--swatch); }
-  .color-swatch[aria-current]::before { outline: 2px solid var(--color-fg); outline-offset: 2px; }
-  .color-swatch--unavailable::before { background: linear-gradient(to top right, transparent calc(50% - 1px), var(--color-fg) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)), var(--swatch); }
-  .color-swatch--text { padding-inline: 0.75rem; border: 1px solid var(--color-control); border-radius: var(--radius); }
+  /* A swatch is a chip, like the size options: the .chip class gives it the same height, border, corner radius, hover and (with [aria-current]) selected state. Only the shape and the color inside are added here. */
+  .color-siblings ul { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+  .color-swatch { width: 2.75rem; padding: 0.1875rem; }
+  .color-swatch::before { content: ""; align-self: stretch; flex: 1; border-radius: max(0px, calc(var(--radius) - 0.1875rem)); background: var(--swatch); }
+  .color-swatch.chip--unavailable::before { background: linear-gradient(to top right, transparent calc(50% - 1px), var(--color-fg) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)), var(--swatch); }
+  .color-swatch--text { width: auto; padding: 0.5rem 1rem; }
   .color-swatch--text::before { display: none; }
-  .color-swatch--text[aria-current] { border-color: var(--color-fg); box-shadow: inset 0 0 0 1px var(--color-fg); }
-  .color-swatch--text.color-swatch--unavailable { color: var(--color-muted); text-decoration: line-through; }
 {% endstylesheet %}
 
 {% schema %}

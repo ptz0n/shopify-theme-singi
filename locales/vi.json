@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Hết hàng",
-    "colors": "Màu sắc",
+    "color": "Màu sắc",
     "recently_viewed": "Đã xem gần đây",
     "add_to_cart": "Thêm vào giỏ hàng",
     "added": "Đã thêm vào giỏ hàng.",

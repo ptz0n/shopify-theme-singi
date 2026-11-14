@@ -25,7 +25,7 @@
   },
   "products": {
     "sold_out": "Uppselt",
-    "colors": "Litir",
+    "color": "Litur",
     "recently_viewed": "Nýlega skoðað",
     "add_to_cart": "Setja í körfu",
     "added": "Bætt í körfu.",
