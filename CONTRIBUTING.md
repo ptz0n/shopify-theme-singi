@@ -10,7 +10,7 @@ By contributing you agree that your work is licensed under the [MIT license](LIC
 - New sections, blocks or settings: open an issue first so we can agree on scope and budget.
 - Security problems: see [SECURITY.md](SECURITY.md), never a public issue.
 
-Coding agents (Claude Code, Cursor, Codex): read [AGENTS.md](AGENTS.md) first. The rules there apply to people too.
+Coding agents (Claude Code, Cursor, Codex): read [AGENTS.md](AGENTS.md) first. The rules there apply to humans too.
 
 ## Set up
 

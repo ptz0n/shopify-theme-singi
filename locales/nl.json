@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Kleur",
     "recently_viewed": "Onlangs bekeken",
+    "related": "Misschien vind je dit ook leuk",
     "add_to_cart": "In winkelwagen",
     "added": "Toegevoegd aan winkelwagen.",
     "add_error": "Kan niet aan winkelwagen toevoegen. Probeer het opnieuw.",

@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Färg",
     "recently_viewed": "Nyligen visade",
+    "related": "Du kanske också gillar",
     "add_to_cart": "Lägg i varukorgen",
     "added": "Tillagd i varukorgen.",
     "add_error": "Det gick inte att lägga till i varukorgen. Försök igen.",

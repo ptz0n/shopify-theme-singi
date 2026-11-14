@@ -1,0 +1,69 @@
+{% doc %}
+  Related products as a row of product cards, rendered on the server (no JavaScript).
+
+  Source, in order: the product's "Related products" from the Shopify Search & Discovery app
+  (metafield shopify--discovery--product_recommendation.related_products), then other products
+  from the first collection the product is in. Nothing renders when there is neither, and the
+  product being viewed is never listed. The cards are plain HTML, so they are cached with the
+  page and visible to search engines. Why not Shopify's recommendation endpoint: docs/decisions/008-related-products-render-on-the-server.md.
+
+  @example
+  {% content_for 'block', type: 'related-products', id: 'related' %}
+{% enddoc %}
+
+{%- liquid
+  assign s = block.settings
+  assign heading = s.heading | default: 'products.related' | t
+  assign picks = product.metafields.shopify--discovery--product_recommendation.related_products.value
+  assign count = 0
+  assign shown = ''
+  comment
+    Load only as many products as can be shown, plus one in case the viewed product is among them.
+  endcomment
+  assign fetch = s.limit | plus: 1
+-%}
+
+{%- capture cards -%}
+  {%- for other in picks limit: fetch -%}
+    {%- if count >= s.limit -%}{%- break -%}{%- endif -%}
+    {%- if other.handle != product.handle -%}
+      {%- render 'product-card', product: other -%}
+      {%- assign count = count | plus: 1 -%}
+      {%- assign shown = shown | append: other.handle | append: ',' -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if count < s.limit -%}
+    {%- for other in product.collections.first.products limit: fetch -%}
+      {%- if count >= s.limit -%}{%- break -%}{%- endif -%}
+      {%- assign key = other.handle | append: ',' -%}
+      {%- unless other.handle == product.handle or shown contains key -%}
+        {%- render 'product-card', product: other -%}
+        {%- assign count = count | plus: 1 -%}
+      {%- endunless -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if count > 0 -%}
+  <div class="related" {{ block.shopify_attributes }}>
+    <h2>{{ heading }}</h2>
+    <ul class="product-grid" role="list">{{ cards }}</ul>
+  </div>
+{%- else -%}
+  {%- render 'placeholder', label: 'Related products: shows the related products set in Search and Discovery, or others from the same collection. Empty when there are neither.' -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .related h2 { margin-block-end: 1rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Related products",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave empty to use the translated default." },
+    { "type": "range", "id": "limit", "label": "Products to show", "min": 2, "max": 8, "step": 1, "default": 4 }
+  ],
+  "presets": [{ "name": "Related products" }]
+}
+{% endschema %}

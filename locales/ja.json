@@ -30,6 +30,7 @@
     "unit_price_per": "{{ reference }}あたり{{ price }}",
     "color": "カラー",
     "recently_viewed": "最近見た商品",
+    "related": "こちらもおすすめ",
     "add_to_cart": "カートに追加",
     "added": "カートに追加しました。",
     "add_error": "カートに追加できませんでした。もう一度お試しください。",

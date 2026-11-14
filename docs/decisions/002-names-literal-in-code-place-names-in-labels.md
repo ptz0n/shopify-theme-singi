@@ -19,7 +19,7 @@ Singi is named after the STF mountain hut Singi fjällstuga on the Kungsleden, i
 
 ## Why
 
-- **Searchability.** People and coding agents locate code by function (`grep product-card`). A themed identifier costs a lookup every time and gets mistyped.
+- **Searchability.** Humans and agents alike locate code by function (`grep product-card`). A themed identifier costs a lookup every time and gets mistyped.
 - **Portability.** Diacritics in file names, Liquid asset names, URLs and JSON keys break across file systems, CDNs, shells and Shopify's own asset handling, and are hard to type on non-Nordic keyboards.
 - **Stable APIs.** Events, settings keys and CSS classes are public surface (themes and apps hook into them). Their names must describe behavior and never change for taste.
 - **Brand coherence at low cost.** Merchants and agencies see the theme editor, the changelog and the docs. A restrained mountain identity there makes the project memorable without touching the code they depend on.

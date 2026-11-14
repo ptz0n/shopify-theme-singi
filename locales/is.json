@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} á {{ reference }}",
     "color": "Litur",
     "recently_viewed": "Nýlega skoðað",
+    "related": "Þér gæti líka líkað",
     "add_to_cart": "Setja í körfu",
     "added": "Bætt í körfu.",
     "add_error": "Ekki tókst að bæta í körfu. Reyndu aftur.",

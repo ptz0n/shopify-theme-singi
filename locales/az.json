@@ -30,6 +30,7 @@
     "unit_price_per": "{{ reference }} üçün {{ price }}",
     "color": "Rəng",
     "recently_viewed": "Son baxılanlar",
+    "related": "Bunlar da xoşunuza gələ bilər",
     "add_to_cart": "Səbətə at",
     "added": "Səbətə əlavə edildi.",
     "add_error": "Səbətə əlavə etmək mümkün olmadı. Zəhmət olmasa yenidən cəhd edin.",

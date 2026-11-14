@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} par {{ reference }}",
     "color": "Couleur",
     "recently_viewed": "Récemment consultés",
+    "related": "Vous aimerez aussi",
     "add_to_cart": "Ajouter au panier",
     "added": "Ajouté au panier.",
     "add_error": "Impossible d’ajouter l’article au panier. Veuillez réessayer.",

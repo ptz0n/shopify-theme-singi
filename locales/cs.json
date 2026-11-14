@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} za {{ reference }}",
     "color": "Barva",
     "recently_viewed": "Nedávno zobrazené",
+    "related": "Mohlo by se vám líbit i",
     "add_to_cart": "Přidat do košíku",
     "added": "Přidáno do košíku.",
     "add_error": "Přidání do košíku se nezdařilo. Zkuste to prosím znovu.",

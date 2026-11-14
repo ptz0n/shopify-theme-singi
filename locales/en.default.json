@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Color",
     "recently_viewed": "Recently viewed",
+    "related": "You may also like",
     "add_to_cart": "Add to cart",
     "added": "Added to cart.",
     "add_error": "Could not add to cart. Please try again.",

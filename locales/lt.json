@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} už {{ reference }}",
     "color": "Spalva",
     "recently_viewed": "Neseniai peržiūrėta",
+    "related": "Jums taip pat gali patikti",
     "add_to_cart": "Į krepšelį",
     "added": "Įdėta į krepšelį.",
     "add_error": "Nepavyko įdėti į krepšelį. Bandykite dar kartą.",

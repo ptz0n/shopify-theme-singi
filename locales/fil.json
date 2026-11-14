@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} bawat {{ reference }}",
     "color": "Kulay",
     "recently_viewed": "Kamakailang tiningnan",
+    "related": "Maaari mo ring magustuhan",
     "add_to_cart": "Idagdag sa cart",
     "added": "Naidagdag sa cart.",
     "add_error": "Hindi maidagdag sa cart. Pakisubukan ulit.",

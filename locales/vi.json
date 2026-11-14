@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} mỗi {{ reference }}",
     "color": "Màu sắc",
     "recently_viewed": "Đã xem gần đây",
+    "related": "Có thể bạn cũng thích",
     "add_to_cart": "Thêm vào giỏ hàng",
     "added": "Đã thêm vào giỏ hàng.",
     "add_error": "Không thể thêm vào giỏ hàng. Vui lòng thử lại.",

@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} לכל {{ reference }}",
     "color": "צבע",
     "recently_viewed": "נצפו לאחרונה",
+    "related": "ייתכן שיעניין אותך גם",
     "add_to_cart": "הוספה לעגלה",
     "added": "נוסף לעגלה.",
     "add_error": "לא ניתן היה להוסיף לעגלה. אנא נסו שוב.",

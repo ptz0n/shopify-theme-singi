@@ -131,11 +131,15 @@
     "recent": {
       "type": "content",
       "blocks": {
+        "related-products": {
+          "type": "related-products"
+        },
         "recently-viewed": {
           "type": "recently-viewed"
         }
       },
       "block_order": [
+        "related-products",
         "recently-viewed"
       ],
       "settings": {

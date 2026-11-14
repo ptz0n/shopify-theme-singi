@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Warna",
     "recently_viewed": "Baru dilihat",
+    "related": "Anda mungkin juga suka",
     "add_to_cart": "Tambah ke keranjang",
     "added": "Ditambahkan ke keranjang.",
     "add_error": "Tidak dapat menambahkan ke keranjang. Silakan coba lagi.",

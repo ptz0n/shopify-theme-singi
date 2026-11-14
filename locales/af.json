@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Kleur",
     "recently_viewed": "Onlangs besigtig",
+    "related": "Jy sal dalk ook hou van",
     "add_to_cart": "Voeg by mandjie",
     "added": "By mandjie gevoeg.",
     "add_error": "Kon nie by mandjie voeg nie. Probeer asseblief weer.",

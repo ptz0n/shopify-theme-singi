@@ -30,6 +30,7 @@
     "unit_price_per": "{{ reference }} egységára: {{ price }}",
     "color": "Szín",
     "recently_viewed": "Legutóbb megtekintett",
+    "related": "Ezek is tetszhetnek",
     "add_to_cart": "Kosárba",
     "added": "Kosárba helyezve.",
     "add_error": "Nem sikerült a kosárba helyezés. Kérjük, próbálja újra.",

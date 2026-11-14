@@ -30,6 +30,7 @@
     "unit_price_per": "每{{ reference }}{{ price }}",
     "color": "顏色",
     "recently_viewed": "最近瀏覽",
+    "related": "你可能也會喜歡",
     "add_to_cart": "加入購物車",
     "added": "已加入購物車。",
     "add_error": "無法加入購物車，請再試一次。",

@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Culoare",
     "recently_viewed": "Vizualizate recent",
+    "related": "Ți-ar putea plăcea și",
     "add_to_cart": "Adaugă în coș",
     "added": "Adăugat în coș.",
     "add_error": "Nu s-a putut adăuga în coș. Vă rugăm să încercați din nou.",

@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} për {{ reference }}",
     "color": "Ngjyra",
     "recently_viewed": "Të shikuara së fundmi",
+    "related": "Mund t’ju pëlqejë edhe",
     "add_to_cart": "Shto në shportë",
     "added": "U shtua në shportë.",
     "add_error": "Nuk mund të shtohej në shportë. Ju lutemi provoni përsëri.",

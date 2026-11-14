@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} {{ reference }} kohta",
     "color": "Värv",
     "recently_viewed": "Hiljuti vaadatud",
+    "related": "Sulle võib meeldida ka",
     "add_to_cart": "Lisa ostukorvi",
     "added": "Lisatud ostukorvi.",
     "add_error": "Ostukorvi lisamine ebaõnnestus. Palun proovige uuesti.",

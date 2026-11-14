@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} par {{ reference }}",
     "color": "Krāsa",
     "recently_viewed": "Nesen skatītie",
+    "related": "Jums varētu patikt arī",
     "add_to_cart": "Pievienot grozam",
     "added": "Pievienots grozam.",
     "add_error": "Neizdevās pievienot grozam. Lūdzu, mēģiniet vēlreiz.",

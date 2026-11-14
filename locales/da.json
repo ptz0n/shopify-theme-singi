@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} pr. {{ reference }}",
     "color": "Farve",
     "recently_viewed": "Senest set",
+    "related": "Du kan også lide",
     "add_to_cart": "Læg i kurv",
     "added": "Lagt i kurven.",
     "add_error": "Varen kunne ikke lægges i kurven. Prøv igen.",

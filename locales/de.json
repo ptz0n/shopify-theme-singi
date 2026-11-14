@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} pro {{ reference }}",
     "color": "Farbe",
     "recently_viewed": "Zuletzt angesehen",
+    "related": "Das könnte Ihnen auch gefallen",
     "add_to_cart": "In den Warenkorb",
     "added": "Zum Warenkorb hinzugefügt.",
     "add_error": "Der Artikel konnte nicht hinzugefügt werden. Bitte versuchen Sie es erneut.",

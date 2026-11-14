@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} setiap {{ reference }}",
     "color": "Warna",
     "recently_viewed": "Dilihat baru-baru ini",
+    "related": "Anda mungkin juga suka",
     "add_to_cart": "Tambah ke troli",
     "added": "Ditambah ke troli.",
     "add_error": "Tidak dapat menambah ke troli. Sila cuba lagi.",

@@ -242,6 +242,23 @@ Works in any content section; on the product page it is added below the product.
 | `heading` | text | Heading |  |
 | `limit` | range | Products to show | `4` |
 
+## related-products
+
+File: `blocks/related-products.liquid` · Editor name: **Related products** · public · has preset
+
+Related products as a row of product cards, rendered on the server (no JavaScript).
+
+Source, in order: the product's "Related products" from the Shopify Search & Discovery app
+(metafield shopify--discovery--product_recommendation.related_products), then other products
+from the first collection the product is in. Nothing renders when there is neither, and the
+product being viewed is never listed. The cards are plain HTML, so they are cached with the
+page and visible to search engines. Why not Shopify's recommendation endpoint: docs/decisions/008-related-products-render-on-the-server.md.
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `heading` | text | Heading |  |
+| `limit` | range | Products to show | `4` |
+
 ## spacer
 
 File: `blocks/spacer.liquid` · Editor name: **Spacer** · public · has preset

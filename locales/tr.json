@@ -30,6 +30,7 @@
     "unit_price_per": "{{ reference }} başına {{ price }}",
     "color": "Renk",
     "recently_viewed": "Son görüntülenenler",
+    "related": "Bunları da beğenebilirsiniz",
     "add_to_cart": "Sepete ekle",
     "added": "Sepete eklendi.",
     "add_error": "Sepete eklenemedi. Lütfen tekrar deneyin.",

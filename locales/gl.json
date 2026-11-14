@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} por {{ reference }}",
     "color": "Cor",
     "recently_viewed": "Vistos recentemente",
+    "related": "Tamén che pode gustar",
     "add_to_cart": "Engadir á cesta",
     "added": "Engadido á cesta.",
     "add_error": "Non se puido engadir á cesta. Téntao de novo.",

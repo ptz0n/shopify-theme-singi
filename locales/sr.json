@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} po {{ reference }}",
     "color": "Boja",
     "recently_viewed": "Nedavno pregledano",
+    "related": "Можда ће вам се свидети и",
     "add_to_cart": "Dodaj u korpu",
     "added": "Dodato u korpu.",
     "add_error": "Dodavanje u korpu nije uspelo. Pokušajte ponovo.",

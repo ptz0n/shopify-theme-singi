@@ -30,6 +30,7 @@
     "unit_price_per": "{{ price }} {{ reference }} bakoitzeko",
     "color": "Kolorea",
     "recently_viewed": "Duela gutxi ikusiak",
+    "related": "Hau ere gustatuko zaizu",
     "add_to_cart": "Gehitu saskira",
     "added": "Saskira gehitu da.",
     "add_error": "Ezin izan da saskira gehitu. Saiatu berriro.",
