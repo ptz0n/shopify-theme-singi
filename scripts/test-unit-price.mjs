@@ -2,8 +2,9 @@
 /**
  * Tests the unit price (snippets/unit-price.liquid) on the mock niche products in headless Chrome:
  * the text shown ("$78.00 / 100 ml"), the sentence for screen readers, a reference value of 1
- * left out, no unit price where none is set, and that switching size updates it at once
- * (before the server answers) to the same text the server then returns.
+ * left out, no unit price where none is set, that options carry the unit price only when it
+ * differs from the current one, and that switching size updates it at once (before the server
+ * answers) to the same text the server then returns.
  *
  *   npm run dev              (in one terminal)
  *   npm run test:unit-price  (in another)
@@ -81,6 +82,28 @@ for (const [handle, index, shown, label] of CASES) {
   ok(late && late.shown === early?.shown && late.label === early?.label, `${where}: the text changed when the server answered (${JSON.stringify(early?.shown)} then ${JSON.stringify(late?.shown)})`);
   ok(late && !late.hidden, `${where}: the unit price is hidden`);
   console.log(`  ${where}: ${late?.shown.replaceAll(NBSP, ' ')}`);
+  await page.close();
+}
+
+/* Options carry the unit price only when it differs from the current variant's (absent means unchanged). */
+for (const [handle, expected] of [['mock-coffee-beans', 1], ['mock-olive-oil', 2], ['mock-barrier-serum', 1], ['mock-everyday-hoodie', 0]]) {
+  const page = await open(handle);
+  const count = await page.evaluate(() => document.querySelectorAll('input[data-unit-price]').length);
+  ok(count === expected, `${handle}: ${count} options carry a unit price, expected ${expected}`);
+  await page.close();
+}
+
+/* Changing an option that cannot change the unit price (the grind) leaves it alone. */
+{
+  const page = await open('mock-coffee-beans');
+  const before = await read(page);
+  const labels = await page.$$('.variant-option:nth-of-type(2) label.chip');
+  await labels[1].click();
+  await new Promise((resolve) => setTimeout(resolve, 80));
+  const early = await read(page);
+  await new Promise((resolve) => setTimeout(resolve, 1800));
+  const late = await read(page);
+  ok(early && late && early.shown === before.shown && late.shown === before.shown && late.label === before.label, `coffee grind: the unit price changed (${JSON.stringify(before?.shown)}, ${JSON.stringify(early?.shown)}, ${JSON.stringify(late?.shown)})`);
   await page.close();
 }
 

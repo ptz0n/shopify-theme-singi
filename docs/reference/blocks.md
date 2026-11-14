@@ -89,9 +89,10 @@ File: `blocks/_variant-picker.liquid` · Editor name: **Variant picker** · priv
 Option picker. Radios with real labels: the change handler lives in
 assets/product-form.js and refetches this section through the Section
 Rendering API. Options and values come from product.options_with_values, so
-no loop ever walks the variants array. Each option also carries the price and the unit
-price of the variant it selects (data-price, data-unit-price, data-unit-label), so assets/product-form.js
-can show both at once instead of waiting for the server. Private to product sections.
+no loop ever walks the variants array. Each option also carries the price of the variant it selects (data-price) and, only when that
+variant's unit price differs from the current one, the unit price (data-unit-price,
+data-unit-label; absent means unchanged), so assets/product-form.js can show them at once
+instead of waiting for the server. Private to product sections.
 
 _No settings._
 

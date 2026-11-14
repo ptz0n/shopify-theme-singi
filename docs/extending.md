@@ -51,6 +51,20 @@ Follow [i18n.md](i18n.md#add-a-language): copy `locales/en.default.json` to `loc
 
 Follow [soft-navigation.md](soft-navigation.md#add-a-skeleton): add a `<template id="skeleton-<name>">` in `snippets/skeletons.liquid` and map the route in `skeletonFor()` in `assets/soft-nav.js`.
 
+
+## Add a field that changes with the variant
+
+The price and the unit price update the instant a size is chosen, before the server answers. Use the same pattern for any other value that depends on the variant (a SKU, a delivery estimate, a stock note):
+
+1. **Render it on the server** in its block, inside an element the section refetch already swaps (`data-swap`), so the server's answer is always the truth.
+2. **Carry the value on the options:** in `blocks/_variant-picker.liquid` add a `data-<name>` attribute to each option input, taken from `value.variant`. Add it only when it differs from the current variant (`current`), so options that cannot change it (a Grind choice does not change the size) add no markup. Absent means unchanged.
+3. **Apply it in `#optimistic`** in `assets/product-form.js`, only when the attribute is present, writing text with `textContent`.
+4. **Keep it fresh:** add the attribute name to the list copied from the server's answer in `#reconcile`.
+5. **Format in one place:** put the formatting in a snippet with a `part` parameter (see `snippets/unit-price.liquid`), so the server markup and the attribute never disagree.
+6. **Test the instant update:** assert the text at about 80 ms equals the text after the server answered (see `scripts/test-unit-price.mjs`).
+
+The unit price is the worked example: [decision 005](decisions/005-unit-price-format-and-instant-update.md).
+
 ## Add a third-party integration
 
 Every integration costs main-thread time, network and often layout shift. Default answer is no. If it is unavoidable, follow these rules:

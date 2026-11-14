@@ -2,12 +2,14 @@
   Option picker. Radios with real labels: the change handler lives in
   assets/product-form.js and refetches this section through the Section
   Rendering API. Options and values come from product.options_with_values, so
-  no loop ever walks the variants array. Each option also carries the price and the unit
-  price of the variant it selects (data-price, data-unit-price, data-unit-label), so assets/product-form.js
-  can show both at once instead of waiting for the server. Private to product sections.
+  no loop ever walks the variants array. Each option also carries the price of the variant it selects (data-price) and, only when that
+  variant's unit price differs from the current one, the unit price (data-unit-price,
+  data-unit-label; absent means unchanged), so assets/product-form.js can show them at once
+  instead of waiting for the server. Private to product sections.
 {% enddoc %}
 
 {%- unless product.has_only_default_variant -%}
+  {%- assign current = product.selected_or_first_available_variant -%}
   <div class="variant-picker stack" {{ block.shopify_attributes }}>
     {%- for option in product.options_with_values -%}
       {%- assign option_index = forloop.index -%}
@@ -27,7 +29,7 @@
               data-variant-id="{{ value.variant.id }}"
               data-available="{{ value.variant.available }}"
               data-price="{{ value.variant.price | money | escape }}"
-              {%- if value.variant.unit_price_measurement -%}
+              {%- if value.variant.unit_price_measurement and value.variant.unit_price != current.unit_price -%}
                 {%- capture unit_visible -%}{%- render 'unit-price', variant: value.variant, part: 'visible' -%}{%- endcapture -%}
                 {%- capture unit_label -%}{%- render 'unit-price', variant: value.variant, part: 'label' -%}{%- endcapture -%}
                 data-unit-price="{{ unit_visible | strip | escape }}"
