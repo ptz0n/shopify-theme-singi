@@ -24,3 +24,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | # | Decision | Area |
 | --- | --- | --- |
 | [001](001-stretched-card-link.md) | A product card has one link: the title, stretched over the whole card | product card, accessibility |
+| [002](002-names-literal-in-code-place-names-in-labels.md) | Names are literal in code, and mountain place names only label what people see | naming |

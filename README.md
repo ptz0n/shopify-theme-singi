@@ -78,6 +78,10 @@ docs/         this documentation; docs/reference/ is generated
 | [docs/testing.md](docs/testing.md) | You are verifying a change or recording Lighthouse results. |
 | [docs/reference/](docs/reference/) | Generated API reference for snippets, blocks and sections (run `npm run docs`). |
 
+## About the name
+
+Singi is named after the STF mountain hut [Singi fjällstuga](https://www.svenskaturistforeningen.se/boende/stf-singi-fjallstuga/) on the Kungsleden in northern Sweden. Singi is not affiliated with Svenska Turistföreningen (STF). Mountain names label what people see (releases, color presets, sample content); code stays plainly named. See [the naming decision](docs/decisions/002-names-literal-in-code-place-names-in-labels.md).
+
 ## License
 
 [MIT](LICENSE) © Erik Eng and Singi contributors. Use it on client builds, fork it, sell stores built with it.
