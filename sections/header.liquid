@@ -69,7 +69,7 @@
       {%- endif -%}
     </nav>
 
-    <predictive-search class="search" id="site-search" popover data-overlay data-url="{{ routes.predictive_search_url }}">
+    <predictive-search class="search" id="site-search" popover data-overlay data-url="{{ routes.predictive_search_url }}" data-recent="{{ 'recently-viewed.js' | asset_url }}">
       <form class="search__form" action="{{ routes.search_url }}" method="get" role="search">
         <label class="visually-hidden" for="header-search">{{ 'search.label' | t }}</label>
         <input id="header-search" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}" role="combobox" aria-expanded="false" aria-controls="search-listbox" aria-autocomplete="list" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">
@@ -80,6 +80,10 @@
       </form>
       <div class="search__results" data-results hidden></div>
       {%- render 'search-results' -%}
+      <recently-viewed class="search__recent" data-current="{{ product.handle }}" data-limit="4" data-url="{{ routes.root_url }}products/" hidden>
+        <h2>{{ 'products.recently_viewed' | t }}</h2>
+        <ul class="product-grid" role="list"></ul>
+      </recently-viewed>
       <p class="visually-hidden" role="status" data-live></p>
     </predictive-search>
 
@@ -163,6 +167,11 @@
      button (--part + --ink): on wide screens the gutter grows to 32px, and the button would sit further from the panel edge than from the line. */
   .search { padding-block-end: min(var(--gutter), calc(var(--part) + var(--ink))); }
   .search > * { max-width: 44rem; margin-inline: auto; }
+  /* Before anyone types, the panel shows the products the visitor looked at (assets/recently-viewed.js, loaded when the panel first opens; nothing shows without history). It
+     steps aside as soon as the field has text. */
+  .search__recent:not([hidden]) { display: block; margin-block-start: var(--part); }
+  .search__recent h2 { margin-block-end: 1rem; font-size: 1.125rem; }
+  .search:has(#header-search:not(:placeholder-shown)) .search__recent { display: none; }
   /* The icon inside the field is a pointer and touch shortcut: Enter in the field submits, and Tab goes from the field straight to the suggestions. */
   .search__form { position: relative; }
   .search input[type='search'] { padding-inline-end: 3rem; -webkit-appearance: none; appearance: none; }

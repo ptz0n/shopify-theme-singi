@@ -68,6 +68,8 @@ class PredictiveSearch extends HTMLElement {
     this.input.addEventListener('focus', () => this.results.firstElementChild && this.#open());
     /* Opening the panel with terms already in the field (the search page pre-fills them): show their results now. */
     this.addEventListener('toggle', (event) => {
+      /* The first time the panel opens, load the recently viewed products shown before anyone types (decision 013). */
+      if (event.newState === 'open' && this.dataset.recent) import(this.dataset.recent).finally(() => delete this.dataset.recent);
       if (event.newState !== 'open' || !this.input.value.trim()) return;
       const end = this.input.value.length;
       this.input.setSelectionRange(end, end);

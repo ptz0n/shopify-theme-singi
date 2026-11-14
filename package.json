@@ -47,6 +47,7 @@
     "test:favorites-link": "node scripts/test-favorites-link.mjs",
     "test:quick-add": "node scripts/test-quick-add.mjs",
     "test:search": "node scripts/test-search.mjs",
+    "test:search-recent": "node scripts/test-search-recent.mjs",
     "test:recent": "node scripts/test-recent.mjs",
     "test:related": "node scripts/test-related.mjs",
     "test:newsletter": "node scripts/test-newsletter.mjs",

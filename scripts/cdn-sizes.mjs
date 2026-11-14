@@ -14,7 +14,9 @@
  * file's public CDN address from the store's file path (one read-only Admin API query for a product
  * image, nothing is printed or stored) and asks the CDN for it with Accept-Encoding: br. The
  * numbers are for the theme as last pushed (`npm run ship`), compiled by Shopify, not the dev
- * server's local copy. Modules a script imports later (anything beyond utils.js) are not counted.
+ * server's local copy. Modules a script imports later (anything beyond utils.js) are not counted;
+ * a module named in data-recent is listed but not added to the page's total, because it loads only
+ * when the search panel first opens.
  */
 import { admin } from './lib/admin.mjs';
 
@@ -46,11 +48,17 @@ console.log(`Delivered by the CDN (brotli), the theme's own files only, for the 
 for (const page of pages) {
   /* the import map is JSON, which escapes slashes */
   const html = (await (await fetch(base + page)).text()).replaceAll('\\/', '/');
-  const refs = [...new Set(html.match(/cdn\/shop\/t\/\d+\/(?:assets|compiled_assets)\/[A-Za-z0-9_.-]+\.(?:js|css)\?v=\d+/g) ?? [])];
+  const pattern = /cdn\/shop\/t\/\d+\/(?:assets|compiled_assets)\/[A-Za-z0-9_.-]+\.(?:js|css)\?v=\d+/g;
+  /* modules named in data-recent are loaded later (when the search panel first opens), not with the page */
+  const withoutLazy = html.replace(/data-recent="[^"]*"/g, '');
+  const refs = [...new Set(withoutLazy.match(pattern) ?? [])];
+  const lazy = new Set((html.match(/data-recent="[^"]*"/g)?.flatMap((attribute) => attribute.match(pattern) ?? []) ?? []).filter((ref) => !refs.includes(ref)));
   const rows = [];
   for (const ref of refs) rows.push({ name: ref.replace(/^.*\/(?:assets|compiled_assets)\//, '').replace(/\?v=\d+$/, ''), ...(await size(ref)) });
   const sum = (kind) => rows.filter((row) => row.name.endsWith(kind)).reduce((total, row) => total + row.bytes, 0);
   console.log(page);
   for (const row of rows.sort((a, b) => b.bytes - a.bytes)) console.log(`  ${String(row.bytes).padStart(6)} B  ${row.name}${row.encoded === 'br' ? '' : `  (${row.encoded ?? 'not compressed'})`}`);
-  console.log(`  ${String(sum('.js')).padStart(6)} B  JavaScript   ${String(sum('.css')).padStart(6)} B  CSS\n`);
+  console.log(`  ${String(sum('.js')).padStart(6)} B  JavaScript   ${String(sum('.css')).padStart(6)} B  CSS`);
+  for (const ref of lazy) console.log(`  ${String((await size(ref)).bytes).padStart(6)} B  ${ref.replace(/^.*\/assets\//, '').replace(/\?v=\d+$/, '')}  (not counted: loads when the search panel first opens)`);
+  console.log('');
 }

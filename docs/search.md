@@ -42,11 +42,13 @@ A visually hidden `role="status"` element announces "Results: N" after each upda
 
 ## Not built yet
 
-- Something to show before anyone has typed (popular or recently viewed products).
+- Suggested products for visitors with no history (a merchant chosen collection). Visitors who have history see it before typing: see below.
 - Search term tracking for analytics (`view_search_results` is tracked on the search page only).
 - Nothing else on the `/search` page: it has no form of its own. The header search is the only place to search, and it shows the current terms.
 
 ## Recently viewed
+
+The same element also fills the empty search panel (four cards under the field, until you type): [decision 013](decisions/013-recently-viewed-in-the-empty-search-panel.md). `recently-viewed.js` is loaded only when the panel first opens.
 
 A separate block, `blocks/recently-viewed.liquid`, shows the products a visitor opened. `assets/product-form.js` saves each product page's handle in localStorage (`singi-recent`, newest first, 12 at most); the block (`assets/recently-viewed.js`) leaves out the product on screen, reserves space with skeleton cards, and when it nears the viewport fetches one server-rendered card per handle from `templates/product.recent.liquid`. The list never leaves the visitor's browser, so there are no cookies and the page stays cacheable. It is hidden until there is history. Heading string: `products.recently_viewed` (62 locales).
 

@@ -31,7 +31,7 @@ const BUDGETS = {
   'assets/wishlist.js': { raw: 7700 },
   'assets/image-tone.js': { raw: 3500 },
   'assets/product-form.js': { raw: 6600 },
-  'assets/predictive-search.js': { raw: 9200 },
+  'assets/predictive-search.js': { raw: 9500 },
 };
 const DEFAULT_JS_BUDGET = 6000;
 const TOTAL_JS_BROTLI_BUDGET = 18000; // sum of every module's SOURCE compressed with brotli: an upper bound, because Shopify's CDN minifies what it serves (see npm run perf:sizes for the delivered sizes); no page loads them all, each is a separate, lazily loaded file. Raw size counts the documentation comments, so it is capped per file instead.

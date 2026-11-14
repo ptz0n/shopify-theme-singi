@@ -130,9 +130,9 @@ Runs per page / aggregation: 3 runs, median (Liquid time: 7 runs, median)
 
 | Page | A11y | SEO | CLS | TBT (upper bound) | DOM nodes | Theme JS (delivered) | Theme CSS (delivered) | Liquid render |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Home | 100 | 100 | 0.000 | 8 ms | 201 | 5.5 KB | 6.8 KB | 45.7 ms |
-| Collection | 100 | 100 | 0.000 | 10 ms | 275 | 6.5 KB | 6.8 KB | 37.7 ms |
-| Product | 100 | 100 | 0.000 | 10 ms | 276 | 8.4 KB | 6.8 KB | 35.3 ms |
+| Home | 100 | 100 | 0.000 | 8 ms | 201 | 5.5 KB | 6.9 KB | 45.7 ms |
+| Collection | 100 | 100 | 0.000 | 10 ms | 275 | 6.6 KB | 6.9 KB | 37.7 ms |
+| Product | 100 | 100 | 0.000 | 10 ms | 276 | 8.5 KB | 6.9 KB | 35.3 ms |
 ```
 
 All three runs of every page scored 100 for accessibility and SEO.
