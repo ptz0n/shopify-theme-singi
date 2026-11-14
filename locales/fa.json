@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "ناموجود",
+    "colors": "رنگ‌ها",
     "recently_viewed": "بازدیدهای اخیر",
     "add_to_cart": "افزودن به سبد خرید",
     "added": "به سبد خرید اضافه شد.",

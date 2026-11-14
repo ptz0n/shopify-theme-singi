@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Rasprodano",
+    "colors": "Boje",
     "recently_viewed": "Nedavno pregledano",
     "add_to_cart": "Dodaj u košaricu",
     "added": "Dodano u košaricu.",

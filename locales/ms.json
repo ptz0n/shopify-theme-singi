@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Habis dijual",
+    "colors": "Warna",
     "recently_viewed": "Dilihat baru-baru ini",
     "add_to_cart": "Tambah ke troli",
     "added": "Ditambah ke troli.",

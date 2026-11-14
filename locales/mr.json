@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "विकले गेले",
+    "colors": "रंग",
     "recently_viewed": "अलीकडे पाहिलेले",
     "add_to_cart": "कार्टमध्ये जोडा",
     "added": "कार्टमध्ये जोडले.",

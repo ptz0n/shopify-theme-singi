@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Esgotat",
+    "colors": "Colors",
     "recently_viewed": "Vistos recentment",
     "add_to_cart": "Afegeix a la cistella",
     "added": "Afegit a la cistella.",

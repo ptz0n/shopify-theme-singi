@@ -189,7 +189,7 @@ merchant-orderable blocks.
 The first image is the LCP candidate: eager, fetchpriority=high, preloaded.
 Every other image lazy loads.
 
-Accepts blocks: `_product-title`, `_product-price`, `_variant-picker`, `_buy-buttons`, `_product-description`, `_product-meta`, `@theme`
+Accepts blocks: `_product-title`, `_product-price`, `_color-siblings`, `_variant-picker`, `_buy-buttons`, `_product-description`, `_product-meta`, `@theme`
 
 _No settings._
 

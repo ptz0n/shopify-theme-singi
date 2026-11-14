@@ -9,6 +9,9 @@
         "price": {
           "type": "_product-price"
         },
+        "colors": {
+          "type": "_color-siblings"
+        },
         "picker": {
           "type": "_variant-picker"
         },
@@ -25,6 +28,7 @@
       "block_order": [
         "title",
         "price",
+        "colors",
         "picker",
         "buy",
         "description",

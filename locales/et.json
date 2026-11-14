@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Välja müüdud",
+    "colors": "Värvid",
     "recently_viewed": "Hiljuti vaadatud",
     "add_to_cart": "Lisa ostukorvi",
     "added": "Lisatud ostukorvi.",

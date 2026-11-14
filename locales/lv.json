@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Izpārdots",
+    "colors": "Krāsas",
     "recently_viewed": "Nesen skatītie",
     "add_to_cart": "Pievienot grozam",
     "added": "Pievienots grozam.",

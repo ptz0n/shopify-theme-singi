@@ -31,6 +31,7 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 | --- | --- |
 | `_product-title` | Page h1 with optional vendor eyebrow. |
 | `_product-price` | Price (and unit price) for the selected variant, via `snippets/price.liquid`. |
+| `_color-siblings` | Swatch links between separate products that are the same product in another color. Server-rendered, no JS. Data and upkeep: [decision 003](decisions/003-color-siblings-product-list.md), `npm run siblings`. |
 | `_variant-picker` | Radio chips from `product.options_with_values`. Fires `change`; handled by `<product-form>`. |
 | `_buy-buttons` | Quantity, add to cart, optional dynamic checkout button, status region. Works without JS. |
 | `_product-description` | Product description in `.prose`. |

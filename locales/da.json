@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Udsolgt",
+    "colors": "Farver",
     "recently_viewed": "Senest set",
     "add_to_cart": "Læg i kurv",
     "added": "Lagt i kurven.",

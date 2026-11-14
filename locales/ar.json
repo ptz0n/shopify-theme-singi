@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "نفدت الكمية",
+    "colors": "الألوان",
     "recently_viewed": "شوهدت مؤخرًا",
     "add_to_cart": "أضف إلى السلة",
     "added": "تمت الإضافة إلى السلة.",

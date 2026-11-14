@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "אזל במלאי",
+    "colors": "צבעים",
     "recently_viewed": "נצפו לאחרונה",
     "add_to_cart": "הוספה לעגלה",
     "added": "נוסף לעגלה.",

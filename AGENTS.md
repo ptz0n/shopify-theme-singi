@@ -85,6 +85,7 @@ Detailed recipes are in [docs/extending.md](docs/extending.md). Short forms:
 | Title, description, canonical, OG, hreflang, JSON-LD | `snippets/meta-tags.liquid` |
 | Image loading strategy | `snippets/image.liquid` |
 | Global CSS, header CSS | `assets/base.css` |
+| Color siblings (separate products linked as colors) | `blocks/_color-siblings.liquid`, `scripts/lib/siblings.mjs`, [decision 003](docs/decisions/003-color-siblings-product-list.md) |
 | Variant switching and add to cart | `assets/product-form.js`, `blocks/_variant-picker.liquid`, `blocks/_buy-buttons.liquid` |
 | Cart updates | `assets/cart-items.js`, `sections/main-cart.liquid` |
 | Filtering and sorting | `assets/facets.js`, `sections/main-collection.liquid` |

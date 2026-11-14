@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Slutsåld",
+    "colors": "Färger",
     "recently_viewed": "Nyligen visade",
     "add_to_cart": "Lägg i varukorgen",
     "added": "Tillagd i varukorgen.",

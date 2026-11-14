@@ -20,7 +20,8 @@
 import { admin, domain, userErrors } from './lib/admin.mjs';
 import { OPS } from './lib/mock-ops.mjs';
 import { gradientPng } from './lib/png.mjs';
-import { BLOG, COLLECTIONS, PAGES, PRODUCTS, TAG, imageSize } from './mock-data.mjs';
+import { BLOG, COLLECTIONS, PAGES, PRODUCTS, SIBLING_GROUPS, TAG, imageSize } from './mock-data.mjs';
+import { defineMetafields, linkGroup } from './lib/siblings.mjs';
 
 const argv = process.argv.slice(2);
 const flag = (name) => argv.includes(`--${name}`);
@@ -63,6 +64,7 @@ if (!apply) {
     console.log(`  delete blog ${BLOG.handle} (and its articles)`);
   } else {
     for (const p of PRODUCTS) console.log(`  product    ${p.handle.padEnd(26)} ${p.options.reduce((n, o) => n * o.values.length, 1)} variant(s), ${p.images.length} image(s)${p.soldOut ? ', sold out' : ''}${p.compareAt ? ', on sale' : ''}`);
+    for (const group of SIBLING_GROUPS) console.log(`  siblings   ${group.map((g) => g.handle.replace('mock-', '')).join(', ')} (linked both ways)`);
     for (const c of COLLECTIONS) console.log(`  collection ${c.handle}`);
     for (const p of PAGES) console.log(`  page       ${p.handle}`);
     console.log(`  blog       ${BLOG.handle} with ${BLOG.articles.length} articles`);
@@ -215,6 +217,18 @@ if (wants('products') || wants('collections')) {
       if (p.variantImages) await assignVariantImages(id, p);
       await publish(id);
       log('created', 'product', p.handle);
+    });
+  }
+}
+
+if (wants('products') && !clean) {
+  await attempt('siblings', 'definitions', async () => {
+    for (const row of await defineMetafields({ apply: true })) log(row.status === 'created' ? 'created' : 'exists', 'metafield', `singi.${row.key}`);
+  });
+  for (const group of SIBLING_GROUPS) {
+    await attempt('siblings', group[0].handle, async () => {
+      const rows = await linkGroup(group, { apply: true });
+      log('linked', 'siblings', rows.map((r) => r.handle.replace('mock-', '')).join(', '));
     });
   }
 }

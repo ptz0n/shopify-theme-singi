@@ -30,6 +30,24 @@ export const PRODUCTS = [
     images: ['tee-1', 'tee-2', 'tee-3'],
     collections: ['mock-new-arrivals'],
   },
+  ...[
+    ['black', 'Black', '#1d1d1f'],
+    ['sand', 'Sand', '#d8c7a5'],
+    ['moss', 'Moss', '#6b7a4f'],
+    ['clay', 'Clay', '#b5654a'],
+  ].map(([slug, name]) => ({
+    handle: `mock-shirt-${slug}`,
+    title: `Studio Shirt, ${name}`,
+    type: 'Tops',
+    vendor: 'Singi',
+    price: '69.00',
+    description: `<p>A color sibling: the same shirt as its sibling products, in ${name}. Each color is its own product, linked through the singi.color_siblings metafield.</p>`,
+    options: withOptions([{ name: 'Size', values: sizes.slice(0, 3) }]),
+    images: [`shirt-${slug}-1`, `shirt-${slug}-2`],
+    collections: ['mock-new-arrivals'],
+    /* The last color is sold out, to exercise an unavailable sibling. */
+    soldOut: slug === 'clay',
+  })),
   {
     handle: 'mock-everyday-hoodie',
     title: 'Everyday Hoodie',
@@ -217,6 +235,16 @@ PRODUCTS.push(
     collections: ['mock-media'],
   },
 );
+
+/* Products linked as color siblings, both ways, with each product's swatch color. See scripts/lib/siblings.mjs. */
+export const SIBLING_GROUPS = [
+  [
+    { handle: 'mock-shirt-black', color: '#1d1d1f' },
+    { handle: 'mock-shirt-sand', color: '#d8c7a5' },
+    { handle: 'mock-shirt-moss', color: '#6b7a4f' },
+    { handle: 'mock-shirt-clay', color: '#b5654a' },
+  ],
+];
 
 export const COLLECTIONS = [
   { handle: 'mock-new-arrivals', title: 'New Arrivals', description: '<p>The latest, to exercise a collection with filters and several products.</p>' },

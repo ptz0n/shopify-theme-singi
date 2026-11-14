@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Vypredané",
+    "colors": "Farby",
     "recently_viewed": "Nedávno zobrazené",
     "add_to_cart": "Pridať do košíka",
     "added": "Pridané do košíka.",

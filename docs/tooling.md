@@ -9,6 +9,8 @@ All npm scripts, what they do, the environment variables they read, and the dev-
 | `npm run dev` | `shopify theme dev` against the store in `SINGI_STORE` through `scripts/shopify.mjs`. Hot-reloads a development theme and prints the preview and editor URLs. |
 | `npm run ship` | The end of an iteration in one command (about 5 seconds): theme check, repo rules, regenerate `docs/reference`, then push the live `singi` theme and `singi-dev` in parallel. Stops before pushing if a check fails. While `npm run dev` runs you do not need it to see a change. |
 | `npm run test:media` | Gallery, variant image, video and card heart assertions on the mock pages, in headless Chrome. Defaults to the local `npm run dev` server at `127.0.0.1:9292`, which signs in to a password protected store for you. Needs `npm install --no-save puppeteer-core`. See [media.md](media.md#tests). |
+| `npm run test:siblings` | Color siblings assertions on the mock "Studio Shirt" group in headless Chrome: same swatches and order on every page, `aria-current`, accessible names, 44px targets, keyboard, no JS, no horizontal scroll. Same setup as `test:media`. |
+| `npm run siblings -- <define\|check\|link>` | Maintains color siblings on the dev store: create the two metafield definitions, check the data for drift, or link products as a group. Needs `read_products` and `write_products`. See [decision 003](decisions/003-color-siblings-product-list.md). |
 | `npm run push` | Pushes to the theme in `shopify.theme.toml` (environment `DEV`, the live `singi` theme on the dev store). |
 | `npm run theme:list` | Lists themes and ids on the dev store. |
 | `npm run check` | Runs `check:theme` then `check:rules`. Run before finishing any change. |

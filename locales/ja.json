@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "完売",
+    "colors": "カラー",
     "recently_viewed": "最近見た商品",
     "add_to_cart": "カートに追加",
     "added": "カートに追加しました。",

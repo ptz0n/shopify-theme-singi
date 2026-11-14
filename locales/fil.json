@@ -25,6 +25,7 @@
   },
   "products": {
     "sold_out": "Sold out",
+    "colors": "Mga kulay",
     "recently_viewed": "Kamakailang tiningnan",
     "add_to_cart": "Idagdag sa cart",
     "added": "Naidagdag sa cart.",
