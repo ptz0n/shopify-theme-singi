@@ -211,9 +211,10 @@ for (const mode of MODES) {
     note(`drawer check failed: ${error.message.slice(0, 100)}`, 'error', `drawers (${mode.id})`);
   }
   console.log(`done ${mode.id}`);
-  await page.close();
+  /* A browser that already went away must not throw the findings of the finished modes away. */
+  await page.close().catch(() => {});
 }
-await browser.close();
+await browser.close().catch(() => {});
 
 mkdirSync(new URL('../.audit/', import.meta.url), { recursive: true });
 writeFileSync(new URL('../.audit/audit.json', import.meta.url), JSON.stringify(all, null, 1));
