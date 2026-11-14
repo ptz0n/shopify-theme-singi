@@ -50,7 +50,7 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 | --- | --- | --- |
 | `header` | Logo, popover navigation, search link, theme toggle, account, cart count. No JS. | no |
 | `footer` | Tagline, menu, newsletter form, payment icons. | no |
-| `hero` | Full-width image with overlaid blocks. Image is the LCP candidate when first. Addable. | `@theme` |
+| `hero` | Full-width hero with blocks, in two layouts: text over the image (default) or the image beside the text (two columns from 48em, the image first on a phone, mirrored in right to left; the text uses the page colors, so its contrast never depends on the picture). The image is the LCP candidate when the hero is first. Addable. | `@theme`; layout, height, alignment, overlay, image |
 | `featured-collection` | Heading and a grid of products from a collection. Addable. | no |
 | `content` | Generic composition container. Addable. | `@theme` |
 | `main-product` | Gallery plus `<product-form>` details column. | private product blocks and `@theme` |

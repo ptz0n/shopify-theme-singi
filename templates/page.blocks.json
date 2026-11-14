@@ -5,7 +5,11 @@
       "blocks": {
         "intro": {
           "type": "heading",
-          "settings": { "text": "Content blocks", "tag": "h1", "size": "lg" }
+          "settings": {
+            "text": "Content blocks",
+            "tag": "h1",
+            "size": "lg"
+          }
         },
         "quote": {
           "type": "quote",
@@ -17,16 +21,114 @@
         },
         "grid": {
           "type": "product-grid",
-          "settings": { "collection": "mock-new-arrivals", "limit": 4 }
+          "settings": {
+            "collection": "mock-new-arrivals",
+            "limit": 4
+          }
         },
         "signup": {
           "type": "newsletter",
-          "settings": { "text": "One email a month. No noise." }
+          "settings": {
+            "text": "One email a month. No noise."
+          }
         }
       },
-      "block_order": ["intro", "quote", "grid", "signup"],
-      "settings": { "width": "wide", "align": "left", "padding": 64 }
+      "block_order": [
+        "intro",
+        "quote",
+        "grid",
+        "signup"
+      ],
+      "settings": {
+        "width": "wide",
+        "align": "left",
+        "padding": 64
+      }
+    },
+    "hero-overlay": {
+      "type": "hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "text": "Hero, text over the image",
+            "tag": "h2",
+            "size": "lg"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Two layouts of one section. Beside the text, contrast never depends on the picture.</p>",
+            "size": "large"
+          }
+        },
+        "cta": {
+          "type": "button",
+          "settings": {
+            "label": "Shop new arrivals",
+            "link": "/collections/mock-new-arrivals",
+            "style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "cta"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/hoodie-1.png",
+        "layout": "overlay",
+        "height": "medium",
+        "align": "start",
+        "overlay": 40
+      }
+    },
+    "hero-split": {
+      "type": "hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "text": "Hero, image beside the text",
+            "tag": "h2",
+            "size": "lg"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Two layouts of one section. Beside the text, contrast never depends on the picture.</p>",
+            "size": "large"
+          }
+        },
+        "cta": {
+          "type": "button",
+          "settings": {
+            "label": "Shop new arrivals",
+            "link": "/collections/mock-new-arrivals",
+            "style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "cta"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/hoodie-1.png",
+        "layout": "split",
+        "height": "medium",
+        "align": "start",
+        "overlay": 40
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "hero-overlay",
+    "hero-split"
+  ]
 }

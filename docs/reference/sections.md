@@ -76,7 +76,7 @@ _No settings._
 
 File: `sections/hero.liquid` · Editor name: **Hero** · addable in the editor
 
-Full-width hero with an image behind composable blocks. The image is the
+Full-width hero with composable blocks, in two layouts: text over the image (default), or the image beside the text (split: two columns from 48em, the image first on a phone, mirrored in right to left). Below, the overlay layout: an image behind composable blocks. The image is the
 LCP candidate when this is the first section: it gets eager loading,
 fetchpriority=high and a preload hint. Below that position it lazy loads.
 
@@ -88,6 +88,7 @@ Accepts blocks: `@theme`
 | Setting | Type | Label | Default |
 | --- | --- | --- | --- |
 | `image` | image_picker | Image |  |
+| `layout` | select | Layout | `"overlay"` |
 | `overlay` | range | Image overlay | `40` |
 | `height` | select | Height | `"large"` |
 | `align` | select | Content alignment | `"start"` |

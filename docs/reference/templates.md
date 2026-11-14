@@ -13,7 +13,7 @@ JSON templates compose sections. JSON templates are eligible for Shopify's strea
 | `collection.json` | `main-collection` |  |
 | `index.json` | `hero`, `featured-collection` |  |
 | `list-collections.json` | `main-list-collections` |  |
-| `page.blocks.json` | `content` | `heading`, `quote`, `product-grid`, `newsletter` |
+| `page.blocks.json` | `content`, `hero`, `hero` | `heading`, `quote`, `product-grid`, `newsletter`, `heading`, `text`, `button`, `heading`, `text`, `button` |
 | `page.json` | `main-page` |  |
 | `page.styleguide.json` | `main-styleguide` | `accordion`, `accordion`, `heading`, `text`, `button` |
 | `password.json` | `main-password` |  |
