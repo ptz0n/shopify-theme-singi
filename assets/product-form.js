@@ -43,6 +43,8 @@ class ProductForm extends HTMLElement {
     this.querySelector('[data-payment]')?.toggleAttribute('hidden', !available);
     const price = this.querySelector('[data-swap="price"] .price');
     if (price && input.dataset.price) (price.children.length ? price.querySelector('.price__now') : price)?.replaceChildren(input.dataset.price);
+    const unit = this.querySelector('.product-price__unit');
+    if (unit) unit.hidden = !(unit.textContent = input.dataset.unitPrice ?? '');
     history.replaceState(history.state, '', input.dataset.optionUrl);
   }
 
@@ -56,7 +58,7 @@ class ProductForm extends HTMLElement {
     for (const input of this.querySelectorAll('input[data-option-url]')) {
       const source = next.querySelector(`#${CSS.escape(input.id)}`);
       if (!source) continue;
-      for (const name of ['data-option-url', 'data-variant-id', 'data-available', 'data-price']) input.setAttribute(name, source.getAttribute(name) ?? '');
+      for (const name of ['data-option-url', 'data-variant-id', 'data-available', 'data-price', 'data-unit-price']) input.setAttribute(name, source.getAttribute(name) ?? '');
       input.disabled = source.disabled;
       const label = this.querySelector(`label[for="${CSS.escape(input.id)}"]`);
       const sourceLabel = next.querySelector(`label[for="${CSS.escape(input.id)}"]`);

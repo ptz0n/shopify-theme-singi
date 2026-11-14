@@ -1,5 +1,7 @@
 {% doc %}
-  Price of the selected variant. Private to product sections.
+  Price of the selected variant, with its unit price (formatted by Shopify's
+  unit_price_with_measurement filter, so wording and units follow the store) when the
+  merchant set one. Private to product sections.
 {% enddoc %}
 
 {%- assign variant = product.selected_or_first_available_variant -%}
@@ -7,9 +9,7 @@
 <div class="product-price" data-swap="price" aria-live="polite" {{ block.shopify_attributes }}>
   {%- render 'price', price: variant.price, compare_at_price: variant.compare_at_price, class: 'product-price__value' -%}
   {%- if variant.unit_price_measurement -%}
-    <p class="muted mono product-price__unit">
-      {{- variant.unit_price | money }} / {{ variant.unit_price_measurement.reference_value }}{{ variant.unit_price_measurement.reference_unit -}}
-    </p>
+    <p class="muted mono product-price__unit">{{ variant.unit_price | unit_price_with_measurement: variant.unit_price_measurement }}</p>
   {%- endif -%}
 </div>
 
