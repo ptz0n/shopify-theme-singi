@@ -138,4 +138,11 @@
   .search__info { display: grid; align-content: center; gap: 0.125rem; min-width: 0; }
   .search__line { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .search__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--font-weight-strong); }
+  /* While the first results load, the panel is aria-busy and this box is still hidden: show it as a skeleton of three product rows, the size of the real ones (a 3rem by 3.75rem thumbnail, 0.75rem apart), so nothing jumps when they arrive. Drawn with the box and its two pseudo-elements (shadows repeat the shapes with the corner radius), no markup and no script. Only opacity animates. */
+  .search[aria-busy='true'] .search__results[hidden] { --sk: color-mix(in srgb, var(--color-surface) 55%, var(--color-border)); position: relative; display: block; height: 12.75rem; margin-block-start: var(--part); animation: search-pulse 1.2s ease-in-out infinite alternate; }
+  .search[aria-busy='true'] .search__results[hidden]::before, .search[aria-busy='true'] .search__results[hidden]::after { content: ''; position: absolute; border-radius: var(--radius); background: var(--sk); }
+  .search[aria-busy='true'] .search__results[hidden]::before { inset: 0 auto auto 0; width: 3rem; height: 3.75rem; box-shadow: 0 4.5rem 0 0 var(--sk), 0 9rem 0 0 var(--sk); }
+  .search[aria-busy='true'] .search__results[hidden]::after { inset: 1.4375rem auto auto 3.75rem; width: min(55%, 16rem); height: 0.875rem; box-shadow: 0 4.5rem 0 0 var(--sk), 0 9rem 0 0 var(--sk); }
+  @keyframes search-pulse { from { opacity: 0.55; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .search[aria-busy='true'] .search__results[hidden] { animation: none; } }
 {% endstylesheet %}
