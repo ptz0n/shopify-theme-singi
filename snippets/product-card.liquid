@@ -64,11 +64,13 @@
   {%- unless product.available -%}
     <span class="product-card__badge mono">{{ 'products.sold_out' | t }}</span>
   {%- endunless -%}
+  {%- if settings.card_show_type and product.type != blank -%}<p class="eyebrow product-card__type">{{ product.type }}</p>{%- endif -%}
   <{{ card_heading }} class="product-card__title"><a class="product-card__link" href="{{ product.url }}">{{ product.title }}</a></{{ card_heading }}>
   {%- render 'price', price: product.price, compare_at_price: product.compare_at_price -%}
 </li>
 
 {% stylesheet %}
+  .product-card__type { margin-block-end: -0.25rem; }
   /* Elements in the card's top corners share one visible inset, 12px from the edges: the sold-out badge starts there (a fixed mid-grey with white text, 6.9:1 contrast, the same in both color schemes because it sits on a photo), and the
      heart's 44px tap area sits in the corner so its 20px icon lands on the same 12px. The badge is 20px tall, so its center is the icon's. */
   .product-card__badge { position: absolute; inset-block-start: 0.75rem; inset-inline-start: 0.75rem; display: inline-flex; align-items: center; min-height: 1.25rem; padding: 0 0.5rem; border-radius: var(--radius); background: #5a5a63; color: #fff; font-size: 0.6875rem; letter-spacing: var(--tracking-wide); text-transform: uppercase; }

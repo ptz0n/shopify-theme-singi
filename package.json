@@ -51,6 +51,7 @@
     "test:blocks": "node scripts/test-blocks.mjs",
     "test:hero": "node scripts/test-hero.mjs",
     "test:facets": "node scripts/test-facets.mjs",
+    "test:card-type": "node scripts/test-card-type.mjs",
     "test:breadcrumbs": "node scripts/test-breadcrumbs.mjs",
     "test:popovers": "node scripts/test-popovers.mjs",
     "test:price-format": "node scripts/test-price-format.mjs",
