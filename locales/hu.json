@@ -50,6 +50,9 @@
     "price_from": "Ettől",
     "price_to": "Eddig",
     "sort_by": "Rendezés",
+    "view": "Nézet",
+    "view_grid": "Rácsnézet",
+    "view_list": "Listanézet",
     "apply": "Szűrők alkalmazása",
     "clear_all": "Szűrők törlése",
     "product_count": {

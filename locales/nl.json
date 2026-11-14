@@ -50,6 +50,9 @@
     "price_from": "Van",
     "price_to": "Tot",
     "sort_by": "Sorteren op",
+    "view": "Weergave",
+    "view_grid": "Rasterweergave",
+    "view_list": "Lijstweergave",
     "apply": "Filters toepassen",
     "clear_all": "Filters wissen",
     "product_count": {

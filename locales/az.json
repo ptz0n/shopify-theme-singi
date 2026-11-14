@@ -50,6 +50,9 @@
     "price_from": "Minimum",
     "price_to": "Maksimum",
     "sort_by": "Sırala",
+    "view": "Görünüş",
+    "view_grid": "Şəbəkə görünüşü",
+    "view_list": "Siyahı görünüşü",
     "apply": "Filtrləri tətbiq et",
     "clear_all": "Filtrləri təmizlə",
     "product_count": {

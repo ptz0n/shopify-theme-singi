@@ -50,6 +50,9 @@
     "price_from": "დან",
     "price_to": "მდე",
     "sort_by": "დალაგება",
+    "view": "ხედი",
+    "view_grid": "ბადისებრი ხედი",
+    "view_list": "სიის ხედი",
     "apply": "ფილტრების გამოყენება",
     "clear_all": "ფილტრების გასუფთავება",
     "product_count": {

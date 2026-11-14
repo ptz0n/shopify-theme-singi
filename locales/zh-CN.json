@@ -50,6 +50,9 @@
     "price_from": "最低价",
     "price_to": "最高价",
     "sort_by": "排序方式",
+    "view": "视图",
+    "view_grid": "网格视图",
+    "view_list": "列表视图",
     "apply": "应用筛选",
     "clear_all": "清除筛选",
     "product_count": {

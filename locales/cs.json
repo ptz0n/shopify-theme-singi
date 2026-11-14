@@ -50,6 +50,9 @@
     "price_from": "Od",
     "price_to": "Do",
     "sort_by": "Seřadit podle",
+    "view": "Zobrazení",
+    "view_grid": "Zobrazení v mřížce",
+    "view_list": "Zobrazení v seznamu",
     "apply": "Použít filtry",
     "clear_all": "Zrušit filtry",
     "product_count": {

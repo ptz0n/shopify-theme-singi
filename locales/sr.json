@@ -50,6 +50,9 @@
     "price_from": "Od",
     "price_to": "Do",
     "sort_by": "Sortiraj po",
+    "view": "Приказ",
+    "view_grid": "Приказ у мрежи",
+    "view_list": "Приказ у листи",
     "apply": "Primeni filtere",
     "clear_all": "Очисти филтере",
     "product_count": {

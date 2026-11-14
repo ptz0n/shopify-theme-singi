@@ -50,6 +50,9 @@
     "price_from": "থেকে",
     "price_to": "পর্যন্ত",
     "sort_by": "সাজানোর ক্রম",
+    "view": "ভিউ",
+    "view_grid": "গ্রিড ভিউ",
+    "view_list": "তালিকা ভিউ",
     "apply": "ফিল্টার প্রয়োগ করুন",
     "clear_all": "ফিল্টার মুছুন",
     "product_count": {

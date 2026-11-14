@@ -50,6 +50,9 @@
     "price_from": "Mula",
     "price_to": "Hanggang",
     "sort_by": "Pagkakasunod-sunod",
+    "view": "Tingnan",
+    "view_grid": "Grid na tingin",
+    "view_list": "Listahang tingin",
     "apply": "I-apply ang mga filter",
     "clear_all": "I-clear ang mga filter",
     "product_count": {

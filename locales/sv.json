@@ -50,6 +50,9 @@
     "price_from": "Från",
     "price_to": "Till",
     "sort_by": "Sortera efter",
+    "view": "Visning",
+    "view_grid": "Rutnätsvy",
+    "view_list": "Listvy",
     "apply": "Använd filter",
     "clear_all": "Rensa filter",
     "product_count": {

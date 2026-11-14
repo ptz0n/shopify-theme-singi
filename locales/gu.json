@@ -50,6 +50,9 @@
     "price_from": "થી",
     "price_to": "સુધી",
     "sort_by": "આ પ્રમાણે ગોઠવો",
+    "view": "દૃશ્ય",
+    "view_grid": "ગ્રિડ દૃશ્ય",
+    "view_list": "યાદી દૃશ્ય",
     "apply": "ફિલ્ટર લાગુ કરો",
     "clear_all": "ફિલ્ટર સાફ કરો",
     "product_count": {

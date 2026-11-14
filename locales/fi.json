@@ -50,6 +50,9 @@
     "price_from": "Alkaen",
     "price_to": "Asti",
     "sort_by": "Lajittele",
+    "view": "Näkymä",
+    "view_grid": "Ruudukkonäkymä",
+    "view_list": "Luettelonäkymä",
     "apply": "Käytä suodattimia",
     "clear_all": "Tyhjennä suodattimet",
     "product_count": {

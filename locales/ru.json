@@ -50,6 +50,9 @@
     "price_from": "От",
     "price_to": "До",
     "sort_by": "Сортировать по",
+    "view": "Вид",
+    "view_grid": "Плиткой",
+    "view_list": "Списком",
     "apply": "Применить фильтры",
     "clear_all": "Сбросить фильтры",
     "product_count": {

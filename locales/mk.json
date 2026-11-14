@@ -50,6 +50,9 @@
     "price_from": "Од",
     "price_to": "До",
     "sort_by": "Подреди по",
+    "view": "Приказ",
+    "view_grid": "Мрежест приказ",
+    "view_list": "Списочен приказ",
     "apply": "Примени филтри",
     "clear_all": "Исчисти ги филтрите",
     "product_count": {

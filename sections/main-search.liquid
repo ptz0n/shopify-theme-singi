@@ -12,6 +12,8 @@
     {%- if search.types.size == 1 -%}{%- assign current_type = search.types.first -%}{%- endif -%}
     {%- capture search_clear -%}{{ routes.search_url }}?q={{ search.terms | url_encode }}{%- endcapture -%}
     {%- paginate search.results by 24 -%}
+      <div class="view-wrap">
+      {%- if search.results_count > 0 -%}{%- render 'view-toggle' -%}{%- endif -%}
       <facets-form class="collection" data-section-id="{{ section.id }}">
       {%- capture count_text -%}{{ 'search.results_count' | t: count: search.results_count, terms: search.terms }}{%- endcapture -%}
       {%- render 'facets', source: search, action: routes.search_url, clear_url: search_clear, q: search.terms, type_filter: true, current_type: current_type, count: count_text -%}
@@ -50,6 +52,7 @@
         {%- render 'pagination', paginate: paginate, type: 'show_more', page_items: search.results.size, total: search.results_count, section_id: section.id -%}
       {%- endif -%}
       </facets-form>
+      </div>
     {%- endpaginate -%}
   {%- endif -%}
 </div>

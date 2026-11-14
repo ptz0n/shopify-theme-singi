@@ -50,6 +50,9 @@
     "price_from": "Od",
     "price_to": "Do",
     "sort_by": "Razvrsti po",
+    "view": "Pogled",
+    "view_grid": "Mrežni pogled",
+    "view_list": "Pogled seznama",
     "apply": "Uporabi filtre",
     "clear_all": "Počisti filtre",
     "product_count": {

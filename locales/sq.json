@@ -50,6 +50,9 @@
     "price_from": "Nga",
     "price_to": "Deri",
     "sort_by": "Rendit sipas",
+    "view": "Pamja",
+    "view_grid": "Pamje rrjete",
+    "view_list": "Pamje liste",
     "apply": "Apliko filtrat",
     "clear_all": "Pastro filtrat",
     "product_count": {

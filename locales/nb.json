@@ -50,6 +50,9 @@
     "price_from": "Fra",
     "price_to": "Til",
     "sort_by": "Sorter etter",
+    "view": "Visning",
+    "view_grid": "Rutenettvisning",
+    "view_list": "Listevisning",
     "apply": "Bruk filtre",
     "clear_all": "Fjern filtre",
     "product_count": {

@@ -50,6 +50,9 @@
     "price_from": "از",
     "price_to": "تا",
     "sort_by": "مرتب‌سازی بر اساس",
+    "view": "نما",
+    "view_grid": "نمای شبکه‌ای",
+    "view_list": "نمای فهرستی",
     "apply": "اعمال فیلترها",
     "clear_all": "پاک کردن فیلترها",
     "product_count": {

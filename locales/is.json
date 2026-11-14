@@ -50,6 +50,9 @@
     "price_from": "Frá",
     "price_to": "Til",
     "sort_by": "Raða eftir",
+    "view": "Sýn",
+    "view_grid": "Töflusýn",
+    "view_list": "Listasýn",
     "apply": "Nota síur",
     "clear_all": "Hreinsa síur",
     "product_count": {

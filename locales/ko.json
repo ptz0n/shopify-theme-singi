@@ -50,6 +50,9 @@
     "price_from": "최소",
     "price_to": "최대",
     "sort_by": "정렬",
+    "view": "보기",
+    "view_grid": "그리드 보기",
+    "view_list": "목록 보기",
     "apply": "필터 적용",
     "clear_all": "필터 지우기",
     "product_count": {

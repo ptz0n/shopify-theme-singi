@@ -96,7 +96,7 @@ aria-label on the parent control.
 
 | Param | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | `string` | yes | sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, check, chevron-down |
+| `name` | `string` | yes | sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, check, chevron-down, grid, list |
 | `class` | `string` | no | Extra class on the svg The menu icon is two separate paths on purpose: the header turns them into an X with CSS while the menu is open (base.css, .nav-toggle path). |
 
 ```liquid
@@ -608,6 +608,32 @@ Screen readers get a full sentence instead of the slash (products.unit_price_per
 
 ```liquid
 {% render 'unit-price', variant: product.selected_or_first_available_variant %}
+```
+
+## view-toggle
+
+File: `snippets/view-toggle.liquid`
+
+Grid or list view for a page of product cards, with no JavaScript: two radio chips (the same
+.chip pattern as the variant picker) and a few CSS rules that react to the checked one with
+:has() on the wrapper. Render it inside <div class="view-wrap">, BEFORE <facets-form>: facets.js
+replaces everything inside facets-form on every filter change, so a toggle inside it would reset to
+the grid each time.
+
+The choice is not remembered between page loads (that would need JavaScript and a JS budget
+decision); the grid is always the default. Decision record: docs/decisions/010-grid-and-list-view-without-javascript.md.
+
+The toggle sits on the filter bar's line, at its end: the bar leaves room for it (padding-inline-end on
+.facets) and the toggle is placed over that room. All of it is logical properties, so it mirrors in right to left.
+
+In the list view the card's image is a fixed 7.5rem column and the text sits beside it. The card's
+absolutely placed parts (AI label, favorite heart) are positioned against the image's corner, not the card's. The sold out badge moves into the text column, above the title, because the narrow image has no room for it beside the heart. The text is centered beside the image with two spacer rows.
+
+```liquid
+<div class="view-wrap">
+  {% render 'view-toggle' %}
+  <facets-form>...</facets-form>
+</div>
 ```
 
 ## wishlist-item

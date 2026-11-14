@@ -50,6 +50,9 @@
     "price_from": "ตั้งแต่",
     "price_to": "ถึง",
     "sort_by": "เรียงตาม",
+    "view": "มุมมอง",
+    "view_grid": "มุมมองตาราง",
+    "view_list": "มุมมองรายการ",
     "apply": "ใช้ตัวกรอง",
     "clear_all": "ล้างตัวกรอง",
     "product_count": {

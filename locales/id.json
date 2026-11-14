@@ -50,6 +50,9 @@
     "price_from": "Dari",
     "price_to": "Hingga",
     "sort_by": "Urutkan",
+    "view": "Tampilan",
+    "view_grid": "Tampilan kisi",
+    "view_list": "Tampilan daftar",
     "apply": "Terapkan filter",
     "clear_all": "Hapus filter",
     "product_count": {

@@ -50,6 +50,9 @@
     "price_from": "Od",
     "price_to": "Do",
     "sort_by": "Sortuj według",
+    "view": "Widok",
+    "view_grid": "Widok siatki",
+    "view_list": "Widok listy",
     "apply": "Zastosuj filtry",
     "clear_all": "Wyczyść filtry",
     "product_count": {

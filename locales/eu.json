@@ -50,6 +50,9 @@
     "price_from": "Noiztik",
     "price_to": "Nora",
     "sort_by": "Ordenatu",
+    "view": "Ikuspegia",
+    "view_grid": "Sareta ikuspegia",
+    "view_list": "Zerrenda ikuspegia",
     "apply": "Aplikatu iragazkiak",
     "clear_all": "Garbitu iragazkiak",
     "product_count": {

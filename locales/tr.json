@@ -50,6 +50,9 @@
     "price_from": "En az",
     "price_to": "En fazla",
     "sort_by": "Sırala",
+    "view": "Görünüm",
+    "view_grid": "Izgara görünümü",
+    "view_list": "Liste görünümü",
     "apply": "Filtreleri uygula",
     "clear_all": "Filtreleri temizle",
     "product_count": {

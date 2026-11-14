@@ -50,6 +50,9 @@
     "price_from": "От",
     "price_to": "До",
     "sort_by": "Подреди по",
+    "view": "Изглед",
+    "view_grid": "Мрежов изглед",
+    "view_list": "Списъчен изглед",
     "apply": "Приложи филтрите",
     "clear_all": "Изчисти филтрите",
     "product_count": {

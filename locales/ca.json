@@ -50,6 +50,9 @@
     "price_from": "Des de",
     "price_to": "Fins a",
     "sort_by": "Ordena per",
+    "view": "Vista",
+    "view_grid": "Vista en graella",
+    "view_list": "Vista en llista",
     "apply": "Aplica els filtres",
     "clear_all": "Esborra els filtres",
     "product_count": {

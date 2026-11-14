@@ -50,6 +50,9 @@
     "price_from": "No",
     "price_to": "Līdz",
     "sort_by": "Kārtot pēc",
+    "view": "Skats",
+    "view_grid": "Režģa skats",
+    "view_list": "Saraksta skats",
     "apply": "Lietot filtrus",
     "clear_all": "Notīrīt filtrus",
     "product_count": {

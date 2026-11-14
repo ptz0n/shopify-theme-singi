@@ -50,6 +50,9 @@
     "price_from": "पासून",
     "price_to": "पर्यंत",
     "sort_by": "क्रमवारी लावा",
+    "view": "दृश्य",
+    "view_grid": "ग्रिड दृश्य",
+    "view_list": "यादी दृश्य",
     "apply": "फिल्टर लागू करा",
     "clear_all": "फिल्टर साफ करा",
     "product_count": {

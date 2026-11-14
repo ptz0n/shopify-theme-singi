@@ -50,6 +50,9 @@
     "price_from": "Vanaf",
     "price_to": "Tot",
     "sort_by": "Sorteer volgens",
+    "view": "Aansig",
+    "view_grid": "Roosteraansig",
+    "view_list": "Lysaansig",
     "apply": "Pas filters toe",
     "clear_all": "Maak filters skoon",
     "product_count": {

@@ -50,6 +50,9 @@
     "price_from": "מ-",
     "price_to": "עד",
     "sort_by": "מיון לפי",
+    "view": "תצוגה",
+    "view_grid": "תצוגת רשת",
+    "view_list": "תצוגת רשימה",
     "apply": "החלת מסננים",
     "clear_all": "נקה מסננים",
     "product_count": {

@@ -50,6 +50,9 @@
     "price_from": "Від",
     "price_to": "До",
     "sort_by": "Сортувати",
+    "view": "Вигляд",
+    "view_grid": "Плиткою",
+    "view_list": "Списком",
     "apply": "Застосувати фільтри",
     "clear_all": "Скинути фільтри",
     "product_count": {

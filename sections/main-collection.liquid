@@ -19,6 +19,8 @@
       {%- endif -%}
     </header>
 
+    <div class="view-wrap">
+    {%- if collection.products_count > 0 -%}{%- render 'view-toggle' -%}{%- endif -%}
     <facets-form class="collection" data-section-id="{{ section.id }}">
       {%- capture count_text -%}{{ 'collection.product_count' | t: count: collection.products_count }}{%- endcapture -%}
       {%- render 'facets', source: collection, action: collection.url, clear_url: collection.url, count: count_text -%}
@@ -44,6 +46,7 @@
         <p>{{ 'collection.empty' | t }}</p>
       {%- endif -%}
     </facets-form>
+    </div>
   </div>
 {%- endpaginate -%}
 

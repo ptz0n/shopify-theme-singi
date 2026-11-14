@@ -102,9 +102,11 @@ The four checks asked of every finished feature: **reuse** (is there one impleme
 | Split hero layout | one section, one setting; overlay colors scoped to `.hero--overlay` | text on page colors, 18:1 or better in light and dark | +78 B delivered CSS; 0 JS | `test:hero`, 66 checks |
 | Visible Sort by label | the shared filter bar, existing `collection.sort_by` string | muted token, 44px select | +20 B delivered CSS; 0 JS | `test:facets`, 48 checks |
 | Product type on cards (off by default) | one setting; `.eyebrow` class | Type from the admin, nothing when blank | no cost with it off: collection render 31.8 to 35.4 ms against 33.8 to 36.8 ms before, card snippet 10.0 to 11.6 ms against 11.8 to 12.3 ms | `test:card-type`, both modes |
+| Result count on the filter line | the shared filter bar renders it (`count` parameter), one live region | same class the route announcer reads | no cost: it moved, it was not added | `test:facets`, 78 checks |
+| Grid and list view toggle | one snippet, the variant picker's chip pattern, two icons | [decision 010](decisions/010-grid-and-list-view-without-javascript.md), 3 strings in 62 locales | +250 B delivered CSS, 0 JS; collection render 31.7 to 31.8 ms against 31.8 to 35.4 ms before | `test:view`, 146 checks |
 | App blocks (`@app`) in content and product sections | one schema entry per section | accepted by `shopify theme check` and the theme push | 0 | not testable here: needs an app on the store |
 
-Delivered totals after all of the above (CDN, brotli): CSS 6.4 KB; JavaScript 5.5 KB (home), 6.5 KB (collection), 8.4 KB (product). Not yet measured: Lighthouse Performance, Best practices and LCP, which need a run against the real storefront ([testing.md](testing.md#results)).
+Delivered totals after all of the above (CDN, brotli): CSS 6.6 KB; JavaScript 5.5 KB (home), 6.5 KB (collection), 8.4 KB (product). Not yet measured: Lighthouse Performance, Best practices and LCP, which need a run against the real storefront ([testing.md](testing.md#results)).
 
 ## Debugging playbook
 

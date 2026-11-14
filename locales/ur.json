@@ -50,6 +50,9 @@
     "price_from": "از",
     "price_to": "تک",
     "sort_by": "ترتیب دیں",
+    "view": "منظر",
+    "view_grid": "گرڈ منظر",
+    "view_list": "فہرست منظر",
     "apply": "فلٹر لاگو کریں",
     "clear_all": "فلٹر صاف کریں",
     "product_count": {

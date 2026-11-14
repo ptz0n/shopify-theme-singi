@@ -50,6 +50,9 @@
     "price_from": "De la",
     "price_to": "Până la",
     "sort_by": "Sortează după",
+    "view": "Vizualizare",
+    "view_grid": "Vizualizare grilă",
+    "view_list": "Vizualizare listă",
     "apply": "Aplică filtrele",
     "clear_all": "Șterge filtrele",
     "product_count": {

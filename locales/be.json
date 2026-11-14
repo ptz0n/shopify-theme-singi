@@ -50,6 +50,9 @@
     "price_from": "Ад",
     "price_to": "Да",
     "sort_by": "Сартаваць па",
+    "view": "Выгляд",
+    "view_grid": "Сеткай",
+    "view_list": "Спісам",
     "apply": "Ужыць фільтры",
     "clear_all": "Ачысціць фільтры",
     "product_count": {

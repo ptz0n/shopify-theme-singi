@@ -50,6 +50,9 @@
     "price_from": "Nuo",
     "price_to": "Iki",
     "sort_by": "Rūšiuoti pagal",
+    "view": "Rodinys",
+    "view_grid": "Tinklelio rodinys",
+    "view_list": "Sąrašo rodinys",
     "apply": "Taikyti filtrus",
     "clear_all": "Išvalyti filtrus",
     "product_count": {

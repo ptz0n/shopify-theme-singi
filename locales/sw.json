@@ -50,6 +50,9 @@
     "price_from": "Kuanzia",
     "price_to": "Hadi",
     "sort_by": "Panga kwa",
+    "view": "Mwonekano",
+    "view_grid": "Mwonekano wa gridi",
+    "view_list": "Mwonekano wa orodha",
     "apply": "Tumia vichujio",
     "clear_all": "Futa vichujio",
     "product_count": {

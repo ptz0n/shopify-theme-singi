@@ -50,6 +50,9 @@
     "price_from": "من",
     "price_to": "إلى",
     "sort_by": "ترتيب حسب",
+    "view": "العرض",
+    "view_grid": "عرض شبكي",
+    "view_list": "عرض قائمة",
     "apply": "تطبيق التصفية",
     "clear_all": "مسح عوامل التصفية",
     "product_count": {

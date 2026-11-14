@@ -50,6 +50,9 @@
     "price_from": "最小",
     "price_to": "最大",
     "sort_by": "並び替え",
+    "view": "表示",
+    "view_grid": "グリッド表示",
+    "view_list": "リスト表示",
     "apply": "絞り込みを適用",
     "clear_all": "フィルターをクリア",
     "product_count": {

@@ -50,6 +50,9 @@
     "price_from": "से",
     "price_to": "तक",
     "sort_by": "क्रमबद्ध करें",
+    "view": "दृश्य",
+    "view_grid": "ग्रिड दृश्य",
+    "view_list": "सूची दृश्य",
     "apply": "फ़िल्टर लागू करें",
     "clear_all": "फ़िल्टर हटाएं",
     "product_count": {

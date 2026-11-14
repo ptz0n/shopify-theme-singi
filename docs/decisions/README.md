@@ -32,3 +32,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [007](007-favorites-rows-have-three-states.md) | A favorite on the cart page has exactly one of three controls | cart page, favorites |
 | [008](008-related-products-render-on-the-server.md) | Related products render on the server, from merchant picks first, then the first collection | product page, performance |
 | [009](009-popovers-swallow-the-dismissing-click.md) | A dimming panel's dismissing click is swallowed, and keyboard focus never hides behind it | navigation, accessibility, search |
+| [010](010-grid-and-list-view-without-javascript.md) | Grid and list view are two radio chips and CSS, with no JavaScript | collection page, search page, accessibility |

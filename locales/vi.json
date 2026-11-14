@@ -50,6 +50,9 @@
     "price_from": "Từ",
     "price_to": "Đến",
     "sort_by": "Sắp xếp theo",
+    "view": "Chế độ xem",
+    "view_grid": "Dạng lưới",
+    "view_list": "Dạng danh sách",
     "apply": "Áp dụng bộ lọc",
     "clear_all": "Xóa bộ lọc",
     "product_count": {

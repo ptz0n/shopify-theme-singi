@@ -50,6 +50,9 @@
     "price_from": "Dari",
     "price_to": "Hingga",
     "sort_by": "Isih mengikut",
+    "view": "Paparan",
+    "view_grid": "Paparan grid",
+    "view_list": "Paparan senarai",
     "apply": "Gunakan penapis",
     "clear_all": "Kosongkan penapis",
     "product_count": {

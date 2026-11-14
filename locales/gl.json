@@ -50,6 +50,9 @@
     "price_from": "Desde",
     "price_to": "Ata",
     "sort_by": "Ordenar por",
+    "view": "Vista",
+    "view_grid": "Vista en grella",
+    "view_list": "Vista en lista",
     "apply": "Aplicar filtros",
     "clear_all": "Borrar filtros",
     "product_count": {

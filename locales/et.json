@@ -50,6 +50,9 @@
     "price_from": "Alates",
     "price_to": "Kuni",
     "sort_by": "Sorteeri",
+    "view": "Vaade",
+    "view_grid": "Ruudustikuvaade",
+    "view_list": "Loendivaade",
     "apply": "Rakenda filtrid",
     "clear_all": "Tühjenda filtrid",
     "product_count": {
