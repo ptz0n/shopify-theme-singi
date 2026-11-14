@@ -26,7 +26,7 @@ If you changed a user-visible string, also confirm the key exists in `locales/en
 7. **Liquid cost.** No nested loops over products, variants or options. Always put `limit:` on `for` loops over `collection.products` or `collections`. Use `paginate` for anything larger. No metafield access inside loops. Do not iterate `product.variants` for UI; use `product.options_with_values`. Assign repeated filter results and `block.settings` / `section.settings` to a variable once. Do not nest `render` inside loops beyond one level (`product-card` may render `image` and `price`, nothing deeper).
 8. **Do not use `background-image` for content images.** Use `<img>` via `snippets/image.liquid`.
 9. **Animate only `transform` and `opacity`.**
-10. **Assets are the source, and Shopify does not minify modern JS.** Shopify minifies CSS and ES5-compatible JS only. Our ES modules ship as written, so keep them small, avoid long comments in `assets/*.js`, and do not add dependencies. There is no build step.
+10. **Assets are the source, and the budgets count the source.** There is no build step. Shopify's CDN minifies what it serves (observed on 2026-11-14 for a theme pushed with the CLI: comments and whitespace stripped, JavaScript and CSS 30 to 45 percent smaller than the source), so a comment costs visitors nothing. The budgets in `scripts/check.mjs` are measured on the source and are therefore an upper bound: keep them, they stop growth. What visitors download is measured by `npm run perf:sizes`, from the CDN. Do not add dependencies.
 
 ### Fonts and typography
 

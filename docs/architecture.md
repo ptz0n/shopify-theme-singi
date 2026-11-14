@@ -62,7 +62,7 @@ Rules that follow from this:
 - **ES modules in `assets/`**, loaded with `<script src="..." type="module">`. Modules are deferred by default and execute once.
 - **Import map** for the one shared module: `import { fetchDocument } from '@singi/utils'`. Shopify provides es-module-shims, so do not add your own.
 - **Custom elements for behaviour.** `assets/product-form.js` defines `<product-form>`, `assets/cart-items.js` defines `<cart-items>`, `assets/facets.js` defines `<facets-form>`. The element wraps the markup it controls and replaces its own children after a fetch. Because handlers live on the element, swapped markup needs no re-initialisation.
-- Shopify does not minify modern JavaScript, so modules ship as written. Keep them lean.
+- Modules are written without a build step. Shopify's CDN minifies what it serves, so the delivered files are smaller than the source (`npm run perf:sizes` measures them); the budgets in `scripts/check.mjs` count the source, as an upper bound. Keep modules lean.
 
 | File | Exports or defines |
 | --- | --- |

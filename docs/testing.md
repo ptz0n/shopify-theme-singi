@@ -128,11 +128,11 @@ Settings: soft navigation off (default), dynamic checkout on, no apps installed
 Device profile / throttling: Lighthouse 12.6.1, mobile, simulated throttling (default), headless Chrome
 Runs per page / aggregation: 3 runs, median (Liquid time: 7 runs, median)
 
-| Page | A11y | SEO | CLS | TBT (upper bound) | DOM nodes | Theme JS (brotli) | Liquid render |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Home | 100 | 100 | 0.000 | 8 ms | 201 | 6.7 KB | 45.7 ms |
-| Collection | 100 | 100 | 0.000 | 10 ms | 275 | 7.7 KB | 37.7 ms |
-| Product | 100 | 100 | 0.000 | 10 ms | 276 | 9.8 KB | 35.3 ms |
+| Page | A11y | SEO | CLS | TBT (upper bound) | DOM nodes | Theme JS (delivered) | Theme CSS (delivered) | Liquid render |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Home | 100 | 100 | 0.000 | 8 ms | 201 | 5.5 KB | 6.3 KB | 45.7 ms |
+| Collection | 100 | 100 | 0.000 | 10 ms | 275 | 6.5 KB | 6.3 KB | 37.7 ms |
+| Product | 100 | 100 | 0.000 | 10 ms | 276 | 8.4 KB | 6.3 KB | 35.3 ms |
 ```
 
 All three runs of every page scored 100 for accessibility and SEO.
@@ -142,7 +142,6 @@ All three runs of every page scored 100 for accessibility and SEO.
 How to read the columns:
 
 - **TBT** is an upper bound: it includes Shopify's platform scripts and the hot reload client, which the theme does not control.
-- **Theme JS** is the sum of the brotli size of the theme's own modules the page requested (home: predictive-search, wishlist, image-tone, utils; collection adds facets; product adds quantity-input, product-form and recently-viewed). Not included: Shopify's scripts.
+- **Theme JS and CSS** are the bytes Shopify's CDN delivers (brotli, minified), from `npm run perf:sizes`, for the theme as last pushed: the sum of the theme's own modules the page requested (home: predictive-search, wishlist, image-tone, utils; collection adds facets; product adds quantity-input, product-form and recently-viewed) and its one compiled stylesheet. `base.css` is also inlined in the HTML (3.1 KB brotli as a file). Not included: Shopify's scripts. Local file sizes are larger because the CDN strips comments and whitespace.
 - **Liquid render** is `npm run perf:liquid` (the server's time to render the page, from `shopify theme profile`).
-- **Theme CSS** is 3.1 KB (brotli) inline in `<head>` (`base.css`), plus one stylesheet that Shopify compiles from every component's `{% stylesheet %}` and loads on every page. Its delivered size is **not recorded**: the dev server compiles it locally without minifying (47.7 KB raw, about 10 KB brotli, marked `GENERATED LOCALLY`), which is not what Shopify serves to visitors. Measure it on the storefront. Splitting it per page is not possible with `{% stylesheet %}`; it is the cost of keeping each component's CSS next to its markup.
 - **HTML**: the home page is 102 KB raw, of which 68 KB is scripts Shopify injects through `content_for_header` (web pixels, exit interstitial, captcha, analytics). The theme's own HTML is about 34 KB (header 3.8 KB, footer 4.0 KB, eight product cards 8.4 KB, inline CSS 13.5 KB).
