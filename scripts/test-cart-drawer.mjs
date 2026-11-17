@@ -72,6 +72,7 @@ try {
     await page.goto(`${base}/`, { waitUntil: 'load', timeout: 60000 });
     let s = await page.evaluate(state);
     ok(s && !s.open, 'on load the drawer exists and is closed');
+    ok(await page.evaluate(() => Boolean(customElements.get('quantity-input'))), 'the quantity stepper is defined on a page with no cart lines (the drawer loads it, lines may arrive later)');
     await open(page);
     s = await page.evaluate(state);
     ok(s.open && s.path === '/', `the header link opens the drawer without leaving the page (open ${s.open}, path ${s.path})`);
@@ -102,6 +103,8 @@ try {
     let s = await page.evaluate(state);
     ok(s.open, 'an add to cart opens the drawer');
     ok(s.lines === 1 && s.count === '1' && s.quantity === '1', `one line, header count ${s.count}, quantity ${s.quantity}`);
+    const padding = await page.evaluate(() => { const item = document.querySelector('dialog.cart-drawer .cart-drawer__item').getBoundingClientRect(); const panel = document.querySelector('dialog.cart-drawer').getBoundingClientRect(); return Math.round(item.left - panel.left); });
+    ok(padding >= 16, `the line is inset from the panel edge by ${padding}px (not flush)`);
     ok(s.subtotal && /\d/.test(s.subtotal), `a subtotal is shown (${s.subtotal})`);
     const before = s.subtotal;
     await page.click('dialog.cart-drawer [data-step="1"]');

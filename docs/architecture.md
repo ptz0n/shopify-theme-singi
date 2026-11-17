@@ -74,7 +74,7 @@ Rules that follow from this:
 | `assets/quick-buy.js` | Delegated quick buy handler and its dialog (decisions 022, 023) | `layout/theme.liquid`, when on |
 | `assets/quick-add.js` | Delegated quick add handler (decision 012) | `layout/theme.liquid`, when on |
 | `assets/order-table.js` | `<order-table>`: the per variant quantity table (decision 019) | `blocks/_variants-table.liquid` |
-| `assets/quantity-input.js` | `<quantity-input>`: stepper buttons (decision 015) | `snippets/quantity-input.liquid` |
+| `assets/quantity-input.js` | `<quantity-input>`: stepper buttons (decision 015) | `snippets/quantity-input.liquid`; also the cart drawer and, when quick buy is on, `layout/theme.liquid`, because their quantity controls arrive as fetched markup |
 | `assets/facets.js` | `<facets-form>` | collection and search sections |
 | `assets/show-more.js` | `<show-more>` | `snippets/pagination.liquid` |
 | `assets/predictive-search.js` | `<predictive-search>` and the popover guards (decision 009) | `sections/header.liquid`, every page |

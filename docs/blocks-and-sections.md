@@ -14,6 +14,8 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 
 ## Public blocks
 
+<img src="images/content-blocks.webp" alt="A quote, a USP list and a feature list on the mock content page" width="560">
+
 | Block | Purpose | Key settings |
 | --- | --- | --- |
 | `group` | Flex container that nests any blocks. | direction, gap, align, justify |

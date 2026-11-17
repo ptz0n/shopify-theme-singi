@@ -4,6 +4,8 @@ Status: accepted
 Area: content blocks | product page | performance | accessibility
 Code: `blocks/feature-list.liquid`, `blocks/_feature-item.liquid`, `templates/page.blocks.json` (demo), `scripts/test-features.mjs`
 
+<img src="../images/content-blocks.webp" alt="A feature list of two images and an icon item, under a USP list" width="480">
+
 ## Context
 
 A considered shopper wants to see why a product is worth the price: the fabric, the fit, the care, what is in the box, ideally with a picture. A merchant needs a block for this that works on the product page and on content pages, editable in the theme editor, without an app, a slider or script. Decision 025 built the same shape for short promises; this one adds images.

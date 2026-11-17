@@ -4,6 +4,8 @@ Status: accepted
 Area: product page | cart | accessibility | performance
 Code: `snippets/sticky-buy.liquid`, `assets/sticky-buy.js`, `blocks/_buy-buttons.liquid` (setting `show_sticky_bar`, the form `id`)
 
+<img src="../images/sticky-buy-mobile.webp" alt="The sticky add to cart bar at the bottom of a product page on a phone" width="240">
+
 ## Context
 
 On a long product page the Add to cart button scrolls out of sight, and a shopper who has read the details must scroll back to buy. A bar fixed to the bottom edge keeps the action in reach (most useful on a phone). It must not be a second buy box that can disagree with the first, and it must not shift the page when it appears.

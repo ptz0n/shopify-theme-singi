@@ -93,6 +93,8 @@ try {
     ok(s && s.open, 'pressing the link opens the dialog');
     ok(s.label && s.label === (await page.evaluate(() => document.querySelector('dialog.quick-buy h2')?.textContent.trim())), `the dialog is labelled with the product title (${s.label})`);
     ok(s.fieldsets >= 1 && /\d/.test(s.price ?? '') && /Add to cart|Sold out/.test(s.add ?? ''), `it has options (${s.fieldsets}), a price (${s.price}) and an add button (${s.add})`);
+    const stepper = await page.evaluate(() => { const b = document.querySelector('dialog.quick-buy .qty__button'); const r = b?.getBoundingClientRect(); return { defined: Boolean(customElements.get('quantity-input')), shown: Boolean(r && r.width > 0 && getComputedStyle(b).visibility !== 'hidden') }; });
+    ok(stepper.defined && stepper.shown, `the quantity stepper works in the dialog (defined ${stepper.defined}, buttons shown ${stepper.shown})`);
     ok(s.payment === 0 && s.sticky === 0, `no dynamic checkout button (${s.payment}) and no sticky bar (${s.sticky})`);
     ok(s.href === before, 'the address bar did not change');
     ok(s.width <= 448 && s.left > 0 && s.right < s.vw, `a centered dialog (left ${s.left}, right ${s.right} of ${s.vw})`);

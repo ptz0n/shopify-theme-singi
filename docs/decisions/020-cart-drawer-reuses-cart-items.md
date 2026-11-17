@@ -4,6 +4,8 @@ Status: accepted
 Area: cart | navigation | accessibility | performance
 Code: `sections/cart-drawer.liquid`, `sections/header-group.json`, `assets/cart-drawer.js`, `assets/cart-items.js`, `sections/header.liquid` (`data-cart-link`), setting `cart_drawer`
 
+<img src="../images/cart-drawer.webp" alt="The cart drawer open beside a product page after an add to cart" width="480">
+
 ## Context
 
 Every add to cart sent the shopper to a status line and, to see the cart, to another page. A drawer keeps them where they were (a common expectation, and fewer steps for a shopper who adds several things). It must not cost a second implementation of quantity, remove and error handling, nor break the shopper without JavaScript.
@@ -37,6 +39,8 @@ Every add to cart sent the shopper to a status line and, to see the cart, to ano
 ## Edge cases and dead ends
 
 - **Do not reuse `main-cart` classes in the drawer.** They are only defined on the cart page and Theme Check warns (`ValidScopedCSSClass`). Use `cart-drawer__*` or a data attribute.
+- **Load `quantity-input.js` and `cart-items.js` with the drawer, always.** The drawer's lines can arrive after load (an add from a card or a product form re-renders them), and scripts inside fetched markup do not run, so on a page that never rendered a quantity input the stepper buttons would stay invisible. Found from a screenshot, not a test; `test:cart-drawer` now checks that `<quantity-input>` is defined on a page with no cart lines.
+- **`ul[role=list]` in `base.css` resets the padding** with a higher specificity than a single class: the drawer's list repeats the element in its selector, or the lines sit flush against the panel edge.
 - **Ids must be unique per page.** The drawer's quantity inputs use `drawer-qty-<n>`, the page's use `qty-<n>`, so both can exist on `/cart`. On `/cart` the header link navigates, the drawer still opens after an add made from elsewhere on that page.
 - **`event.target === dialog` is the backdrop only** because the panel inside fills the dialog and the dialog has no padding. Do not add padding to `.cart-drawer`.
 - **An add that fails to refresh the content** still opens the drawer, with the previous content; the cart count in the header is right either way.

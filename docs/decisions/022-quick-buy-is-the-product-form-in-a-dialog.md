@@ -4,6 +4,8 @@ Status: accepted
 Area: product card | cart | accessibility | performance
 Code: `sections/quick-buy.liquid`, `assets/quick-buy.js`, `snippets/product-card.liquid` (`.card-add--options`, dialog CSS), `blocks/_buy-buttons.liquid` (`in_dialog`), `assets/product-form.js` (no address change inside a dialog), `layout/theme.liquid`, setting `card_quick_buy`
 
+<img src="../images/quick-buy.webp" alt="The quick buy dialog over a collection page" width="480">
+
 ## Context
 
 Decision 012 gave single-variant products a one press add. Products with options had nothing: choosing a size or color needs the product page. A shopper who knows what they want should be able to choose and add without leaving the list. A second picker built for the card would duplicate the product page's variant, price, quantity and quantity rule handling.
@@ -41,6 +43,7 @@ Decision 012 gave single-variant products a one press add. Products with options
 - **Ids are per section.** The dialog's inputs use `option-quick-buy-…`, its form `buy-form-quick-buy`, so they never collide with the page's own product form (a product page with related product cards can open the dialog).
 - **Linting.** Classes in the section markup would be flagged (`ValidScopedCSSClass`) because the dialog's CSS lives in the product card's stylesheet, so the fetched section uses only base classes and a `data-` hook. The dialog itself is styled by `.quick-buy` rules in `snippets/product-card.liquid`.
 - **Compiled CSS.** The blocks' own `{% stylesheet %}` rules (picker, quantity, buy buttons) must be present on the page that shows the dialog. On the dev theme the compiled stylesheet is one file for every page (61,189 bytes on a collection, product, cart and page alike), so it works there. AGENTS.md says Shopify subsets compiled CSS per page; if a live store does, the dialog would be partly unstyled on pages that never render those files. Not verified on a live store. If it happens, render the blocks' CSS where the cards are or move the shared rules to `assets/base.css`.
+- **`quantity-input.js` loads with `product-form.js`** (both from `layout/theme.liquid` when the setting is on): the quantity control arrives in the fetched dialog markup, where scripts do not run, and a collection page has not rendered it, so its stepper buttons stay invisible. Found from a screenshot; `test:quick-buy` checks the buttons are shown.
 - **Recently viewed:** `<product-form>` records the product when it connects, so opening quick buy counts as viewing it. Accepted.
 - **A product with a selling plan, or sold out,** gets no button and keeps the plain card.
 - **Modified clicks** (new tab) are not a thing for a button; the product page is one tap away through the card's own link.

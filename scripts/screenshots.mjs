@@ -15,7 +15,10 @@
  * Chrome; default: the macOS app). Needs puppeteer-core, which is not a dependency of the theme:
  *   npm install --no-save puppeteer-core
  *
- * Pages come from `npm run mock:apply`. The component library page needs the setting
+ * Pages come from `npm run mock:apply`. The quick buy image needs the setting "Let shoppers choose options from
+ * product cards" on for the theme being shown (npm run theme:set -- card_quick_buy=true --theme <singi-dev id> --apply),
+ * and the content blocks image needs the mock page /pages/mock-blocks (it carries the USP and feature lists).
+ * Every image is taken in a fresh browser context, so the cart is empty unless the shot adds something. The component library page needs the setting
  * "Enable the component library page" (see docs/component-library.md). The shop name in
  * the header is replaced by "Singi" in the capture, so images never show a dev store's
  * name; a header with a logo image is left alone.
@@ -45,14 +48,61 @@ const VIEWPORTS = {
   mobile: { width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true },
 };
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 /* name, path, viewport, color scheme, selector that proves the page rendered what it should,
-   and optionally { ready: wait until true in the page, scrollTo: selector to frame, clipTop: px to cut off the top } */
+   and optionally { ready: wait until true in the page, scrollTo: selector to frame, clipTop: px to cut off the top,
+   after: async (page) => {} to act on the page before the picture (open the drawer, scroll) } */
 const SHOTS = [
   ['collection-light', '/collections/mock-new-arrivals', 'desktop', 'light', '.product-card'],
   ['collection-dark', '/collections/mock-new-arrivals', 'desktop', 'dark', '.product-card'],
   ['product-light', '/products/mock-everyday-hoodie', 'desktop', 'light', 'product-form'],
   ['product-mobile-light', '/products/mock-everyday-hoodie', 'mobile', 'light', 'product-form'],
   ['product-mobile-dark', '/products/mock-everyday-hoodie', 'mobile', 'dark', 'product-form'],
+  [
+    'cart-drawer',
+    '/products/mock-everyday-hoodie',
+    'desktop',
+    'light',
+    'product-form',
+    {
+      after: async (page) => {
+        await page.evaluate(() => document.querySelector('form[data-add-to-cart] [type=submit]').scrollIntoView({ block: 'center', behavior: 'instant' }));
+        await page.click('form[data-add-to-cart] [type=submit]');
+        await page.waitForFunction(() => document.querySelector('dialog.cart-drawer')?.open && document.querySelector('.cart-drawer__item'), { timeout: 20000 });
+        await sleep(600);
+      },
+    },
+  ],
+  [
+    'quick-buy',
+    '/collections/mock-new-arrivals',
+    'desktop',
+    'light',
+    '[data-quick-buy]',
+    {
+      after: async (page) => {
+        await page.click('[data-quick-buy]');
+        await page.waitForFunction(() => document.querySelector('dialog.quick-buy')?.open && document.querySelector('dialog.quick-buy form[data-add-to-cart]'), { timeout: 20000 });
+        await sleep(600);
+      },
+    },
+  ],
+  [
+    'sticky-buy-mobile',
+    '/products/mock-everyday-hoodie',
+    'mobile',
+    'light',
+    'sticky-buy',
+    {
+      after: async (page) => {
+        await page.evaluate(() => scrollTo({ top: scrollY + document.querySelector('.buy').getBoundingClientRect().bottom + 40, behavior: 'instant' }));
+        await page.waitForFunction(() => document.querySelector('sticky-buy')?.hasAttribute('data-show'), { timeout: 10000 });
+        await sleep(500);
+      },
+    },
+  ],
+  ['content-blocks', '/pages/mock-blocks', 'desktop', 'light', '.usp-list'],
   [
     'component-library',
     '/pages/mock-styleguide',
@@ -71,10 +121,12 @@ const SHOTS = [
 
 const url = (path) => `${base}${path}${preview ? `${path.includes('?') ? '&' : '?'}${preview}` : ''}`;
 
-const browser = signed(await puppeteer.launch({
+const browser = await puppeteer.launch({
   executablePath: process.env.SINGI_CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   headless: true,
-}), base);
+  /* The dev server loads the import map's module from another origin; without this the page scripts (drawer, dialogs) can fail to load. */
+  args: process.env.SINGI_URL?.startsWith('https://') ? [] : ['--disable-web-security'],
+});
 
 const signIn = async (page, path) => {
   if (!process.env.SINGI_PASSWORD) throw new Error('The store is password protected. Set SINGI_PASSWORD.');
@@ -88,7 +140,8 @@ const written = [];
 let failed = false;
 
 for (const [name, path, viewport, scheme, selector, options = {}] of SHOTS) {
-  const page = await browser.newPage();
+  const context = signed(await browser.createBrowserContext(), base);
+  const page = await context.newPage();
   try {
     /* clipTop cuts the sticky header off the top, so the viewport is that much taller: every desktop image ends up the same size, which keeps the README table even. */
     await page.setViewport({ ...VIEWPORTS[viewport], height: VIEWPORTS[viewport].height + (options.clipTop || 0) });
@@ -107,6 +160,7 @@ for (const [name, path, viewport, scheme, selector, options = {}] of SHOTS) {
       await Promise.race([loaded, new Promise((resolve) => setTimeout(resolve, 8000))]);
     });
     if (options.ready) await page.waitForFunction(options.ready, { timeout: 30000 });
+    if (options.after) await options.after(page);
     if (options.scrollTo) {
       await page.evaluate((selector) => document.querySelector(selector)?.scrollIntoView({ block: 'start' }), options.scrollTo);
       await new Promise((resolve) => setTimeout(resolve, 300));
@@ -127,7 +181,7 @@ for (const [name, path, viewport, scheme, selector, options = {}] of SHOTS) {
     failed = true;
     console.error(`FAIL  ${name}: ${error.message}`);
   } finally {
-    await page.close();
+    await context.close();
   }
 }
 await browser.close();

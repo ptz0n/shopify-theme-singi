@@ -4,6 +4,8 @@ Status: accepted
 Area: content blocks | product page | accessibility
 Code: `blocks/usp-list.liquid`, `blocks/_usp-item.liquid`, `snippets/icon.liquid` (ten new icons), `templates/page.blocks.json` (demo), `scripts/test-usp.mjs`
 
+<img src="../images/content-blocks.webp" alt="A USP list of three promises under a quote, above a feature list" width="480">
+
 ## Context
 
 Shipping, returns, payment and quality promises reduce uncertainty close to the decision to buy (Baymard and NNG, see the research basis in `todo.md`). A merchant needs to place a short list of them in a content section and on the product page, editable in the theme editor, without an app and without script.
