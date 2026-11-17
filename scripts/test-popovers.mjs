@@ -64,7 +64,7 @@ try {
   for (const [label, viewport, toggle, panel] of CASES) {
     const page = await browser.newPage();
     await page.setViewport(viewport);
-    await page.goto(`${base}/`, { waitUntil: 'load', timeout: 60000 });
+    await page.goto(`${base}/collections/mock-new-arrivals`, { waitUntil: 'load', timeout: 60000 });
     await page.bringToFront();
 
     /* 1. the dismissing tap or click does not reach the page underneath */
@@ -73,7 +73,7 @@ try {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
     ok(overflow <= 0, `${label}: scrolls horizontally by ${overflow}px while open`);
     const point = await pointOverLink(page, panel);
-    ok(Boolean(point), `${label}: no product link below the panel to tap (is the featured collection set?)`);
+    ok(Boolean(point), `${label}: no product link below the panel to tap (is a collection with products set up?)`);
     if (point) {
       const start = page.url();
       if (viewport.hasTouch) await page.touchscreen.tap(point.x, point.y);
@@ -91,7 +91,7 @@ try {
     }
 
     /* 2. expanded state and a stable name on the toggle */
-    await page.goto(`${base}/`, { waitUntil: 'load', timeout: 60000 });
+    await page.goto(`${base}/collections/mock-new-arrivals`, { waitUntil: 'load', timeout: 60000 });
     const nameClosed = await page.$eval(toggle, (el) => el.getAttribute('aria-label'));
     await open(page, toggle);
     const state = await page.evaluate((selector) => {

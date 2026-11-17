@@ -17,7 +17,7 @@
  *   npm install --no-save puppeteer-core
  *
  * Pages come from `npm run mock:apply`. Against the dev server the run sets up the dev theme itself (quick buy on, the square image
- * format, the Sale badge on, a hero on the home page: npm run mock:hero) and restores the defaults; against a storefront the quick buy
+ * format, the Sale badge on, a hero on the home page: npm run mock:hero) and restores the settings, leaving the hero in place; against a storefront the quick buy
  * image needs the setting "Let shoppers choose options from product cards" on and the front page images need a hero with an image and
  * blocks, otherwise they show the hero's empty state. The content blocks image needs the mock page /pages/mock-blocks (it carries the USP and feature lists).
  * The manifest records a fingerprint of the theme files (scripts/lib/visual-hash.mjs): `npm run check` warns when they changed since.
@@ -50,14 +50,13 @@ try {
 
 /* Setup: every run takes all the images, from the same state. Against the dev server this puts the settings the images need on
    the dev theme (quick buy on, the default square image format, the Sale badge on) and a hero on the home page, and puts the
-   defaults back when it ends. Against a storefront (SINGI_URL=https://...) or with --no-setup, prepare the store yourself. */
+   settings back when it ends. The hero stays on the dev theme's home page (npm run mock:hero -- off takes it away). Against a storefront (SINGI_URL=https://...) or with --no-setup, prepare the store yourself. */
 const isDevServer = !process.env.SINGI_URL || /^http:\/\/(127\.0\.0\.1|localhost)/.test(process.env.SINGI_URL);
 const setup = isDevServer && !process.argv.includes('--no-setup');
 const node = (file, args) => spawnSync('node', [`${root}scripts/${file}`, ...args], { cwd: root, encoding: 'utf8' });
 let themeId;
 const restore = () => {
   if (!setup || !themeId) return;
-  node('mock-hero.mjs', ['off']);
   node('theme-settings.mjs', ['card_quick_buy=false', '--theme', themeId, '--apply']);
   themeId = undefined;
 };
