@@ -162,7 +162,7 @@
   /* The last option is the theme's primary button. The highlight from the arrow keys is a ring, since a fill would change its color. */
   .search__matches .button[aria-selected='true'] { outline: 2px solid var(--color-accent); outline-offset: 2px; }
   .search__results mark { background: none; color: inherit; font-weight: var(--font-weight-strong); }
-  .search__product img, .search__thumb { flex: none; width: 3rem; height: 3.75rem; border-radius: var(--radius); object-fit: cover; background: var(--color-surface); }
+  .search__product img, .search__thumb { flex: none; width: 3rem; aspect-ratio: var(--ratio-product); border-radius: var(--radius); object-fit: cover; background: var(--color-surface); }
   .search__info { display: grid; align-content: center; gap: 0.125rem; min-width: 0; }
   .search__line { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .search__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--font-weight-strong); }

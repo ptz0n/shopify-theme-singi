@@ -51,8 +51,8 @@
   :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card__title { grid-row: 3; }
   :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card > .price { grid-row: 4; margin-block-start: 0.25rem; }
   :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card__badge { position: static; grid-column: 2; grid-row: 1; align-self: end; justify-self: start; margin-block-end: 0.5rem; }
-  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card > .ai-label { inset-block: calc(7.5rem * 1.25 - 0.75rem) auto; inset-inline: auto calc(100% - 7.5rem + 0.75rem); }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .product-card > .ai-label { inset-block: calc(7.5rem * var(--ratio-h) - 0.75rem) auto; inset-inline: auto calc(100% - 7.5rem + 0.75rem); }
   :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .wishlist-heart { inset-inline-end: calc(100% - 7.5rem); }
-  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .card-add { inset-block-start: calc(7.5rem * 1.25 - 0.75rem); }
+  :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .card-add { inset-block-start: calc(7.5rem * var(--ratio-h) - 0.75rem); }
   :is(.view-wrap:has(#view-list:checked), :root[data-view='list'] .view-wrap) .card-video { width: 7.5rem; }
 {% endstylesheet %}

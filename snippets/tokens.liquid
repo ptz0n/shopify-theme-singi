@@ -27,6 +27,25 @@
   assign sans_stack = sans_stack | append: ', ' | append: font_body.fallback_families
 
   assign mono_stack = font_mono.family | append: ', ' | append: font_mono.fallback_families
+
+  comment
+    The product image format (decision 043): the ratio itself, and its height as a number for the places that need
+    to position something at the bottom of an image (the card's quick add button).
+  endcomment
+  case settings.product_image_ratio
+    when 'portrait'
+      assign image_ratio = '4 / 5'
+      assign image_ratio_h = '1.25'
+    when 'tall'
+      assign image_ratio = '2 / 3'
+      assign image_ratio_h = '1.5'
+    when 'landscape'
+      assign image_ratio = '4 / 3'
+      assign image_ratio_h = '0.75'
+    else
+      assign image_ratio = '1 / 1'
+      assign image_ratio_h = '1'
+  endcase
 -%}
 
 {% style %}
@@ -54,6 +73,8 @@
     --font-weight-strong: {{ font_strong.weight }};
     --page-width: {{ settings.page_width }};
     --radius: {{ settings.radius }}px;
+    --ratio-product: {{ image_ratio }};
+    --ratio-h: {{ image_ratio_h }};
     --logo-width: {{ settings.logo_width }}px;
     --color-bg: light-dark({{ settings.light_background }}, {{ settings.dark_background }});
     --color-surface: light-dark({{ settings.light_surface }}, {{ settings.dark_surface }});

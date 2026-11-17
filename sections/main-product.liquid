@@ -161,6 +161,8 @@
   .product__zoom { position: absolute; inset: 0; z-index: 1; padding: 0; border: 0; background: none; cursor: zoom-in; }
   .product__zoom:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -4px; }
   .product__media :is(img, video) { display: block; width: 100%; height: auto; }
+  /* The product image format setting (decision 043): every image is cropped to it, as on the cards. Video keeps its own shape. */
+  .product__media img { aspect-ratio: var(--ratio-product); object-fit: cover; }
   .product__media video { height: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #000; }
   .product__media iframe { display: block; width: 100%; height: 100%; aspect-ratio: 16 / 9; border: 0; }
   /* The card image the visitor just clicked (snippets/theme-init.liquid), behind the real image until it arrives. */

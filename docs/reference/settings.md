@@ -59,6 +59,7 @@ Defined in `config/settings_schema.json`, read in Liquid as `settings.<id>`.
 | `card_quick_buy` | checkbox | Let shoppers choose options from product cards | `false` |
 | `card_show_type` | checkbox | Show the product type above the title on product cards | `false` |
 | `show_percent_off` | checkbox | Show percentage off on discounted prices | `true` |
+| `product_image_ratio` | select | Product image format | `"square"` |
 | `page_width` | select | Page width | `"84rem"` |
 | `radius` | range | Corner radius | `6` |
 

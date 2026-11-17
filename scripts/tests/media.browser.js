@@ -71,7 +71,9 @@
       const natural = img.naturalWidth / img.naturalHeight;
       const shown = img.getBoundingClientRect().width / img.getBoundingClientRect().height;
       ratios.add(natural.toFixed(2));
-      ok(Math.abs(natural - shown) / natural < 0.02, `image ${img.alt} is shown at ${shown.toFixed(2)}, natural ${natural.toFixed(2)}`);
+      /* decision 043: every gallery image is cropped to the product image format, whatever its own shape */
+      const [rw, rh] = getComputedStyle(document.documentElement).getPropertyValue('--ratio-product').split('/').map(Number);
+      ok(Math.abs(rw / rh - shown) / (rw / rh) < 0.02, `image ${img.alt} is shown at ${shown.toFixed(2)}, expected the product image format ${(rw / rh).toFixed(2)} (its own shape is ${natural.toFixed(2)})`);
     }
     ok(ratios.size >= 4, `expected at least 4 different aspect ratios, found ${ratios.size}`);
   }

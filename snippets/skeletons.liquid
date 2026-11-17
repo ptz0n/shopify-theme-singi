@@ -47,7 +47,7 @@
 
 {% stylesheet %}
   .sk-product { display: grid; gap: 2rem; }
-  .sk-media { aspect-ratio: 4 / 5; }
+  .sk-media { aspect-ratio: var(--ratio-product); }
   .sk-info, .sk-page { display: grid; gap: 1rem; align-content: start; }
   .sk-page { max-width: 48rem; }
   .sk-line { height: 1rem; }
@@ -58,7 +58,7 @@
   .sk-button { height: 3rem; }
   .sk-grid { display: grid; gap: 2rem 1rem; grid-template-columns: repeat(2, 1fr); margin-block-start: 2rem; }
   .sk-card { display: grid; gap: 0.5rem; align-content: start; }
-  .sk-card__media { aspect-ratio: 4 / 5; }
+  .sk-card__media { aspect-ratio: var(--ratio-product); }
   @media (min-width: 56em) {
     .sk-product { grid-template-columns: 1.2fr 1fr; }
     .sk-grid { grid-template-columns: repeat(4, 1fr); }

@@ -7,7 +7,7 @@ Size in bytes (before Shopify's CDN compression) and where each asset is referen
 | Asset | Bytes | Referenced by |
 | --- | --- | --- |
 | `assets/announcement-bar.js` | 521 | `sections/announcement-bar.liquid` |
-| `assets/base.css` | 12031 | `layout/password.liquid`, `layout/theme.liquid`, `templates/gift_card.liquid` |
+| `assets/base.css` | 12080 | `layout/password.liquid`, `layout/theme.liquid`, `templates/gift_card.liquid` |
 | `assets/card-video.js` | 1425 | `layout/theme.liquid` |
 | `assets/cart-drawer.js` | 1689 | `sections/cart-drawer.liquid` |
 | `assets/cart-items.js` | 2181 | `sections/cart-drawer.liquid`, `sections/main-cart.liquid` |
@@ -21,7 +21,7 @@ Size in bytes (before Shopify's CDN compression) and where each asset is referen
 | `assets/quantity-input.js` | 1772 | `layout/theme.liquid`, `sections/cart-drawer.liquid`, `snippets/quantity-input.liquid` |
 | `assets/quick-add.js` | 1637 | `layout/theme.liquid` |
 | `assets/quick-buy.js` | 1642 | `layout/theme.liquid` |
-| `assets/recently-viewed.js` | 2233 | `sections/header.liquid`, `blocks/recently-viewed.liquid` |
+| `assets/recently-viewed.js` | 2250 | `sections/header.liquid`, `blocks/recently-viewed.liquid` |
 | `assets/show-more.js` | 3120 | `snippets/pagination.liquid` |
 | `assets/soft-nav.js` | 8383 | `layout/theme.liquid` |
 | `assets/sticky-buy.js` | 561 | `snippets/sticky-buy.liquid` |

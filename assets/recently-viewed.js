@@ -26,7 +26,7 @@ class RecentlyViewed extends HTMLElement {
     if (!handles.length) return;
     this.list = this.querySelector('ul');
     this.list.innerHTML = handles
-      .map(() => '<li aria-hidden="true"><div class="skeleton" style="aspect-ratio:4/5"></div><div class="skeleton" style="height:3.5rem;margin-block-start:.5rem"></div></li>')
+      .map(() => '<li aria-hidden="true"><div class="skeleton" style="aspect-ratio:var(--ratio-product)"></div><div class="skeleton" style="height:3.5rem;margin-block-start:.5rem"></div></li>')
       .join('');
     this.hidden = false;
     this.observer = new IntersectionObserver(([entry]) => {
