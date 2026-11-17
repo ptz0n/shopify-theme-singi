@@ -1,0 +1,92 @@
+{% doc %}
+  Order table: one row per variant of the product, each with its own quantity, and one Add to cart for
+  all of them. For products bought in several sizes or colors at once (a repeat buyer, a team order).
+  A native table: a visually hidden caption (the product), column headers (one per option, SKU, price,
+  quantity) and a labelled quantity control per row. Decision record: docs/decisions/019-order-table-is-a-product-block.md.
+
+  Each row's quantity follows the variant's quantity rule and, when stock is tracked and overselling is
+  denied, the stock (the same limits as the buy block, decision 015); 0 means "none of this variant". A
+  sold out variant shows "Sold out" and no control. The footer counts the items, clears the quantities and adds
+  every row above 0 in one request, so the cart either takes all of them or none and says why. On a phone each
+  row becomes a small card. It lists up to 100 variants.
+
+  Needs JavaScript (assets/order-table.js); without it the table shows but the footer button does nothing, and
+  the buy block above still adds one variant. Private to product sections.
+{% enddoc %}
+
+<order-table class="order" data-add-url="{{ routes.cart_add_url }}.js" data-cart-url="{{ routes.cart_url }}" data-added="{{ 'products.added' | t }}" data-error="{{ 'products.add_error' | t }}" {{ block.shopify_attributes }}>
+  <table class="order__table">
+    <caption class="visually-hidden">{{ product.title }}</caption>
+    <thead>
+      <tr>
+        {%- for name in product.options -%}<th scope="col">{{ name }}</th>{%- endfor -%}
+        <th scope="col">{{ 'products.sku' | t }}</th>
+        <th scope="col">{{ 'products.order_price' | t }}</th>
+        <th scope="col">{{ 'products.quantity' | t }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for variant in product.variants limit: 100 -%}
+        {%- liquid
+          assign rule = variant.quantity_rule
+          assign row_max = rule.max
+          if variant.available and variant.inventory_management != blank and variant.inventory_policy == 'deny'
+            if row_max == blank or variant.inventory_quantity < row_max
+              assign row_max = variant.inventory_quantity
+            endif
+          endif
+          assign row_id = 'order-' | append: block.id | append: '-' | append: variant.id
+        -%}
+        <tr>
+          {%- for option in variant.options -%}
+            <td data-label="{{ product.options[forloop.index0] }}">{{ option }}</td>
+          {%- endfor -%}
+          <td data-label="{{ 'products.sku' | t }}" class="mono">{{ variant.sku }}</td>
+          <td data-label="{{ 'products.order_price' | t }}">{%- render 'price', price: variant.price, compare_at_price: variant.compare_at_price -%}</td>
+          <td data-label="{{ 'products.quantity' | t }}">
+            {%- if variant.available -%}
+              <label class="visually-hidden" for="{{ row_id }}">{{ 'products.order_quantity_for' | t: variant: variant.title }}</label>
+              {%- render 'quantity-input', id: row_id, name: variant.id, value: 0, min: rule.min, max: row_max, increment: rule.increment, hint_max: rule.max, zero: true -%}
+            {%- else -%}
+              <span class="muted">{{ 'products.sold_out' | t }}</span>
+            {%- endif -%}
+          </td>
+        </tr>
+      {%- endfor -%}
+    </tbody>
+  </table>
+
+  <div class="order__foot">
+    <p class="order__count mono"><span>{{ 'products.order_items' | t }}</span> <span data-order-count aria-live="polite">0</span></p>
+    <p class="form-error" role="alert" data-order-error hidden></p>
+    <button class="button button--secondary" type="button" data-order-reset disabled>{{ 'products.order_reset' | t }}</button>
+    <button class="button" type="button" data-order-add disabled>{%- render 'icon', name: 'cart' -%}<span>{{ 'products.add_to_cart' | t }}</span></button>
+  </div>
+</order-table>
+
+<script src="{{ 'order-table.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .order { display: grid; gap: 1rem; }
+  .order__table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+  .order__table th { padding: 0.5rem; border-bottom: 1px solid var(--color-border); text-align: start; font-size: 0.75rem; font-weight: var(--font-weight-strong); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-muted); }
+  .order__table td { padding: 0.5rem; border-bottom: 1px solid var(--color-border); vertical-align: middle; }
+  .order__table .qty-hint { max-width: 14rem; }
+  .order__foot { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+  .order__count { margin: 0; margin-inline-end: auto; }
+  .order__foot .form-error { flex-basis: 100%; order: -1; margin: 0; }
+  @media (max-width: 39.99em) {
+    .order__table thead { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); }
+    .order__table tr { display: grid; grid-template-columns: 1fr auto; gap: 0.25rem 1rem; padding-block: 0.75rem; border-bottom: 1px solid var(--color-border); }
+    .order__table td { display: flex; gap: 0.5rem; align-items: center; padding: 0; border: 0; }
+    .order__table td::before { content: attr(data-label); font-size: 0.75rem; color: var(--color-muted); }
+    .order__table td:last-child { grid-column: 1 / -1; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Order table",
+  "settings": []
+}
+{% endschema %}
