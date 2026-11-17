@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "commit": "f750f45",
+  "commit": "b3ce437",
   "generated": "2026-11-17",
   "images": [
     {
@@ -8,6 +8,12 @@
       "path": "/collections/mock-new-arrivals",
       "viewport": "desktop",
       "scheme": "light"
+    },
+    {
+      "file": "frontpage.webp",
+      "path": "/",
+      "viewport": "desktop",
+      "scheme": "dark"
     },
     {
       "file": "collection.webp",
@@ -18,6 +24,12 @@
     {
       "file": "product.webp",
       "path": "/products/mock-everyday-hoodie",
+      "viewport": "desktop",
+      "scheme": "dark"
+    },
+    {
+      "file": "search.webp",
+      "path": "/search?q=shirt",
       "viewport": "desktop",
       "scheme": "dark"
     },
@@ -34,15 +46,9 @@
       "scheme": "dark"
     },
     {
-      "file": "content-blocks.webp",
-      "path": "/pages/mock-blocks",
-      "viewport": "desktop",
-      "scheme": "dark"
-    },
-    {
-      "file": "component-library.webp",
-      "path": "/pages/mock-styleguide",
-      "viewport": "desktop",
+      "file": "frontpage-mobile.webp",
+      "path": "/",
+      "viewport": "mobile",
       "scheme": "dark"
     },
     {
@@ -54,6 +60,12 @@
     {
       "file": "product-mobile.webp",
       "path": "/products/mock-everyday-hoodie",
+      "viewport": "mobile",
+      "scheme": "dark"
+    },
+    {
+      "file": "search-mobile.webp",
+      "path": "/search?q=shirt",
       "viewport": "mobile",
       "scheme": "dark"
     },
@@ -70,15 +82,15 @@
       "scheme": "dark"
     },
     {
-      "file": "content-blocks-mobile.webp",
+      "file": "content-blocks.webp",
       "path": "/pages/mock-blocks",
-      "viewport": "mobile",
+      "viewport": "desktop",
       "scheme": "dark"
     },
     {
-      "file": "component-library-mobile.webp",
+      "file": "component-library.webp",
       "path": "/pages/mock-styleguide",
-      "viewport": "mobile",
+      "viewport": "desktop",
       "scheme": "dark"
     },
     {

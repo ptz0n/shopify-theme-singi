@@ -6,33 +6,33 @@ A Shopify Online Store 2.0 theme built for storefront rendering speed, clear str
 
 <table>
   <tr>
+    <td width="50%" valign="top"><img src="docs/images/frontpage.webp" alt="The front page with a hero image, heading and button, above a product list" width="100%"><br><sub>Front page</sub></td>
     <td width="50%" valign="top"><img src="docs/images/collection.webp" alt="Collection page with filters and product cards" width="100%"><br><sub>Collection</sub></td>
-    <td width="50%" valign="top"><img src="docs/images/product.webp" alt="Product page with variant chips, quantity and add to cart" width="100%"><br><sub>Product page</sub></td>
   </tr>
   <tr>
-    <td width="50%" valign="top"><img src="docs/images/cart-drawer.webp" alt="The cart drawer open beside a product page after an add to cart" width="100%"><br><sub>Cart drawer</sub></td>
-    <td width="50%" valign="top"><img src="docs/images/quick-buy.webp" alt="The quick buy dialog over a collection page, with the option picker, quantity and Add to cart" width="100%"><br><sub>Quick buy</sub></td>
+    <td width="50%" valign="top"><img src="docs/images/product.webp" alt="Product page with variant chips, quantity and add to cart" width="100%"><br><sub>Product</sub></td>
+    <td width="50%" valign="top"><img src="docs/images/search.webp" alt="Search results page with filters" width="100%"><br><sub>Search</sub></td>
   </tr>
   <tr>
-    <td width="50%" valign="top"><img src="docs/images/component-library.webp" alt="The component library page showing color tokens with live contrast ratios" width="100%"><br><sub>Component library, with live contrast ratios</sub></td>
-    <td width="50%" valign="top"><img src="docs/images/content-blocks.webp" alt="The USP list and feature list blocks on a page" width="100%"><br><sub>USP list and feature list</sub></td>
+    <td width="50%" valign="top"><img src="docs/images/cart-drawer.webp" alt="The mini cart open beside a product page after an add to cart" width="100%"><br><sub>Mini cart</sub></td>
+    <td width="50%" valign="top"><img src="docs/images/quick-buy.webp" alt="The quick add dialog over a collection page, with the option picker, quantity and Add to cart" width="100%"><br><sub>Quick add</sub></td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <td width="33%" valign="top"><img src="docs/images/collection-mobile.webp" alt="Collection page on a phone" width="100%"><br><sub>Collection</sub></td>
-    <td width="33%" valign="top"><img src="docs/images/product-mobile.webp" alt="Product page on a phone" width="100%"><br><sub>Product page</sub></td>
-    <td width="33%" valign="top"><img src="docs/images/cart-drawer-mobile.webp" alt="The cart drawer open on a phone after an add to cart" width="100%"><br><sub>Cart drawer</sub></td>
+    <td width="33%" valign="top"><img src="docs/images/frontpage-mobile.webp" alt="The front page with a hero image, heading and button, above a product list on a phone" width="100%"><br><sub>Front page</sub></td>
+    <td width="33%" valign="top"><img src="docs/images/collection-mobile.webp" alt="Collection page with filters and product cards on a phone" width="100%"><br><sub>Collection</sub></td>
+    <td width="33%" valign="top"><img src="docs/images/product-mobile.webp" alt="Product page with variant chips, quantity and add to cart on a phone" width="100%"><br><sub>Product</sub></td>
   </tr>
   <tr>
-    <td width="33%" valign="top"><img src="docs/images/quick-buy-mobile.webp" alt="The quick buy dialog on a phone, with the option picker and Add to cart" width="100%"><br><sub>Quick buy</sub></td>
-    <td width="33%" valign="top"><img src="docs/images/component-library-mobile.webp" alt="The component library page on a phone" width="100%"><br><sub>Component library</sub></td>
-    <td width="33%" valign="top"><img src="docs/images/content-blocks-mobile.webp" alt="The USP list and feature list blocks on a phone" width="100%"><br><sub>USP list and feature list</sub></td>
+    <td width="33%" valign="top"><img src="docs/images/search-mobile.webp" alt="Search results page with filters on a phone" width="100%"><br><sub>Search</sub></td>
+    <td width="33%" valign="top"><img src="docs/images/cart-drawer-mobile.webp" alt="The mini cart open beside a product page after an add to cart on a phone" width="100%"><br><sub>Mini cart</sub></td>
+    <td width="33%" valign="top"><img src="docs/images/quick-buy-mobile.webp" alt="The quick add dialog over a collection page, with the option picker, quantity and Add to cart on a phone" width="100%"><br><sub>Quick add</sub></td>
   </tr>
 </table>
 
-The sticky add to cart bar on a phone is shown in [decision 021](docs/decisions/021-sticky-add-to-cart-submits-the-product-form.md).
+The sticky add to cart bar on a phone is shown in [decision 021](docs/decisions/021-sticky-add-to-cart-submits-the-product-form.md), and the content blocks and the component library in the [docs](docs/README.md).
 
 The screenshots show mock content, in dark mode. They are generated by `npm run screenshots` for every release ([releasing](docs/releasing.md)).
 
