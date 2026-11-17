@@ -22,6 +22,21 @@
 
   const gallery = () => [...document.querySelectorAll('.product__media')];
 
+  /* The phone's gallery row has the page's side gutter at both ends: the first slide does not start at the screen edge (scroll-padding-inline) and the last one stops short of the other edge. */
+  const slider = document.querySelector('.product__gallery[tabindex]');
+  if (slider && innerWidth < 896) {
+    const slides = gallery();
+    await wait(300);
+    ok(slider.scrollLeft === 0 || slider.scrollLeft < 2, `the gallery row starts scrolled by ${slider.scrollLeft}px`);
+    const first = slides[0].getBoundingClientRect();
+    ok(first.left >= 12, `the first gallery slide starts ${Math.round(first.left)}px from the screen edge, expected the page gutter`);
+    slider.scrollTo({ left: slider.scrollWidth, behavior: 'instant' });
+    await wait(500);
+    const last = slides[slides.length - 1].getBoundingClientRect();
+    ok(innerWidth - last.right >= 12, `the last gallery slide ends ${Math.round(innerWidth - last.right)}px from the screen edge, expected the page gutter`);
+    slider.scrollTo({ left: 0, behavior: 'instant' });
+  }
+
   if (path.startsWith('/collections/')) {
     const cards = [...document.querySelectorAll('.product-card')];
     ok(cards.length > 0, 'collection has no product cards');
