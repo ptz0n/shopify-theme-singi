@@ -117,6 +117,28 @@ Notes (LCP element, largest scripts, regressions, fixes):
 
 ## Results
 
+### 2026-11-17, version 0.1.0, commit 8fc0f36: through the dev server
+
+```
+Date: 2026-11-17
+Commit: 8fc0f36 (plus the unpublished screenshot and README changes)
+Store / theme id: a Plus dev store, theme singi-dev, mock content (npm run mock:apply)
+Published or preview: development theme served by `npm run dev` at http://127.0.0.1:9292
+Settings: soft navigation off (default), dynamic checkout on, quick add, quick buy and the cart drawer at their defaults, no apps installed
+Device profile / throttling: Lighthouse 12.6.1, mobile, simulated throttling (default), headless Chrome
+Runs per page / aggregation: 3 runs, median
+
+| Page | A11y | SEO | CLS | TBT (upper bound) | DOM nodes | Theme JS (delivered) | Theme CSS (delivered) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Home | 100 | 100 | 0.000 | 19 ms (12, 19, 19) | 231 | 7.4 KB | 8.5 KB |
+| Collection | 100 | 100 | 0.000 | 12 ms (10, 12, 22) | 328 | 8.5 KB | 8.5 KB |
+| Product | 100 | 100 | 0.000 | 10 ms (9, 10, 10) | 331 | 11.6 KB | 8.5 KB |
+```
+
+All three runs of every page scored 100 for accessibility and SEO. Theme JS and CSS are from `npm run perf:sizes` (7,607 / 8,657 / 11,904 bytes of JavaScript, 8,720 bytes of CSS, brotli as the CDN serves them). Compared with 2026-11-14 the theme gained the cart drawer, sticky add to cart, quick buy, the announcement bar and the content blocks, so JavaScript grew by 1.8 to 1.9 KB per page and CSS by 1.1 KB; DOM nodes grew by 30 (home), 53 (collection) and 55 (product), mostly the cart drawer and the header.
+
+**Not re-measured on this date: Liquid render time** (`npm run perf:liquid` needs a `shopify auth login` session that was not available). The 2026-11-14 values (home 45.7 ms, collection 37.7 ms, product 35.3 ms) and the HTML split below predate those features and should not be read as current. **Not recorded: Performance, Best practices, LCP, FCP**, for the dev-server reasons given under the previous run (observed Performance 66 to 81 and Best practices 57 describe that setup, not the theme).
+
 ### 2026-11-14, version 0.1.0, commit 9823777: through the dev server
 
 ```

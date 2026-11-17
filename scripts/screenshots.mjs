@@ -44,26 +44,26 @@ try {
 }
 
 const VIEWPORTS = {
-  desktop: { width: 1440, height: 900, deviceScaleFactor: 1.5 },
+  desktop: { width: 1440, height: 1440, deviceScaleFactor: 1 },
   mobile: { width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true },
 };
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-/* name, path, viewport, color scheme, selector that proves the page rendered what it should,
+/* The README shows dark mode only; the collection pair stays light and dark for docs/design-system.md.
+   name, path, viewport, color scheme, selector that proves the page rendered what it should,
    and optionally { ready: wait until true in the page, scrollTo: selector to frame, clipTop: px to cut off the top,
    after: async (page) => {} to act on the page before the picture (open the drawer, scroll) } */
 const SHOTS = [
   ['collection-light', '/collections/mock-new-arrivals', 'desktop', 'light', '.product-card'],
   ['collection-dark', '/collections/mock-new-arrivals', 'desktop', 'dark', '.product-card'],
-  ['product-light', '/products/mock-everyday-hoodie', 'desktop', 'light', 'product-form'],
-  ['product-mobile-light', '/products/mock-everyday-hoodie', 'mobile', 'light', 'product-form'],
-  ['product-mobile-dark', '/products/mock-everyday-hoodie', 'mobile', 'dark', 'product-form'],
+  ['product', '/products/mock-everyday-hoodie', 'desktop', 'dark', 'product-form'],
+  ['product-mobile', '/products/mock-everyday-hoodie', 'mobile', 'dark', 'product-form'],
   [
     'cart-drawer',
     '/products/mock-everyday-hoodie',
     'desktop',
-    'light',
+    'dark',
     'product-form',
     {
       after: async (page) => {
@@ -78,7 +78,7 @@ const SHOTS = [
     'quick-buy',
     '/collections/mock-new-arrivals',
     'desktop',
-    'light',
+    'dark',
     '[data-quick-buy]',
     {
       after: async (page) => {
@@ -92,7 +92,7 @@ const SHOTS = [
     'sticky-buy-mobile',
     '/products/mock-everyday-hoodie',
     'mobile',
-    'light',
+    'dark',
     'sticky-buy',
     {
       after: async (page) => {
@@ -102,12 +102,12 @@ const SHOTS = [
       },
     },
   ],
-  ['content-blocks', '/pages/mock-blocks', 'desktop', 'light', '.usp-list'],
+  ['content-blocks', '/pages/mock-blocks', 'desktop', 'dark', '.usp-list'],
   [
     'component-library',
     '/pages/mock-styleguide',
     'desktop',
-    'light',
+    'dark',
     '[data-styleguide]',
     {
       /* the page audits itself on load; capture only after it finished */

@@ -15,7 +15,7 @@ How to cut a release so the version, the changelog and the screenshots all agree
 
 `scripts/screenshots.mjs` is the single source of the images. Do not edit or replace them by hand; change the script (the page list, viewports, color schemes) and run it again, so the next release produces the same set.
 
-- It captures light and dark, desktop and mobile, from the pages the mock content creates.
+- It captures desktop and mobile, in dark mode (the README shows dark only; the collection page is also captured in light for [design-system.md](design-system.md)), from the pages the mock content creates.
 - It replaces the shop name in the header with "Singi" so images never show a development store's name.
 - It fails, and writes no manifest, if a page is the password page, is missing the content it should show, or scrolls horizontally.
 - Requirements: `npm install --no-save puppeteer-core`, and Chrome (set `SINGI_CHROME` if it is not the macOS app).

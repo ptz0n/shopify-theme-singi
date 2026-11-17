@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "commit": "fc0aa50",
+  "commit": "8fc0f36",
   "generated": "2026-11-17",
   "images": [
     {
@@ -16,19 +16,13 @@
       "scheme": "dark"
     },
     {
-      "file": "product-light.webp",
+      "file": "product.webp",
       "path": "/products/mock-everyday-hoodie",
       "viewport": "desktop",
-      "scheme": "light"
+      "scheme": "dark"
     },
     {
-      "file": "product-mobile-light.webp",
-      "path": "/products/mock-everyday-hoodie",
-      "viewport": "mobile",
-      "scheme": "light"
-    },
-    {
-      "file": "product-mobile-dark.webp",
+      "file": "product-mobile.webp",
       "path": "/products/mock-everyday-hoodie",
       "viewport": "mobile",
       "scheme": "dark"
@@ -37,31 +31,31 @@
       "file": "cart-drawer.webp",
       "path": "/products/mock-everyday-hoodie",
       "viewport": "desktop",
-      "scheme": "light"
+      "scheme": "dark"
     },
     {
       "file": "quick-buy.webp",
       "path": "/collections/mock-new-arrivals",
       "viewport": "desktop",
-      "scheme": "light"
+      "scheme": "dark"
     },
     {
       "file": "sticky-buy-mobile.webp",
       "path": "/products/mock-everyday-hoodie",
       "viewport": "mobile",
-      "scheme": "light"
+      "scheme": "dark"
     },
     {
       "file": "content-blocks.webp",
       "path": "/pages/mock-blocks",
       "viewport": "desktop",
-      "scheme": "light"
+      "scheme": "dark"
     },
     {
       "file": "component-library.webp",
       "path": "/pages/mock-styleguide",
       "viewport": "desktop",
-      "scheme": "light"
+      "scheme": "dark"
     }
   ]
 }
