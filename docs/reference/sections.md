@@ -83,6 +83,7 @@ fold, so its CSS lives in this file's {% stylesheet %}.
 | `legal_text` | text | Legal line |  |
 | `show_newsletter` | checkbox | Show newsletter signup | `true` |
 | `show_payment_icons` | checkbox | Show payment icons | `true` |
+| `payment_icons_mono` | checkbox | Show payment icons in grayscale | `false` |
 
 ## header
 

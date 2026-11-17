@@ -61,6 +61,7 @@
     "test:social-links": "node scripts/test-social-links.mjs",
     "test:hreflang": "node scripts/test-hreflang.mjs",
     "test:sitemap": "node scripts/test-sitemap.mjs",
+    "test:payment-icons": "node scripts/test-payment-icons.mjs",
     "perf:interactions": "node scripts/perf-interactions.mjs",
     "test:zoom": "node scripts/test-zoom.mjs",
     "test:search": "node scripts/test-search.mjs",

@@ -309,6 +309,18 @@ JavaScript. Fires the generate_lead tracking event on success when tracking is o
 | `label` | text | Label |  |
 | `text` | text | Supporting text |  |
 
+## payment-icons
+
+File: `blocks/payment-icons.liquid` · Editor name: **Payment icons** · public · has preset
+
+The accepted payment methods as small icons, for any section that takes theme blocks: under the buy buttons on a
+product page, in a content section, on a page about payment. A choice of full color or grayscale. Nothing renders
+when the store has no payment methods. Decision record: docs/decisions/034-payment-icons-are-one-snippet-with-a-one-color-option.md.
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `mono` | checkbox | Show in grayscale | `false` |
+
 ## product-grid
 
 File: `blocks/product-grid.liquid` · Editor name: **Product grid** · public · has preset

@@ -124,6 +124,18 @@
             "c",
             "d"
           ]
+        },
+        "pay_color": {
+          "type": "payment-icons",
+          "settings": {
+            "mono": false
+          }
+        },
+        "pay_mono": {
+          "type": "payment-icons",
+          "settings": {
+            "mono": true
+          }
         }
       },
       "block_order": [
@@ -131,6 +143,8 @@
         "quote",
         "usp",
         "features",
+        "pay_color",
+        "pay_mono",
         "grid",
         "signup"
       ],

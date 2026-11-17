@@ -1,0 +1,29 @@
+{% doc %}
+  The payment methods the store accepts, as a row of small icons: one image per entry of `shop.enabled_payment_types`,
+  from Shopify's own payment icon set (served from Shopify's CDN, never built by hand), each named for screen readers
+  with its type ("Visa", "Apple pay"). Renders nothing when the store has none. Used by the footer and by
+  blocks/payment-icons.liquid. Decision record: docs/decisions/034-payment-icons-are-one-snippet-with-a-one-color-option.md.
+
+  The one color option turns the icons to grayscale and softens them (CSS only). The icons are not recolored to a
+  single brand color: Shopify's images are full color cards, so grayscale is the honest "monochrome".
+
+  @param {boolean} [mono] - Show the icons in grayscale
+  @param {string} [class] - Extra class on the list
+
+  @example
+  {% render 'payment-icons', mono: true %}
+{% enddoc %}
+
+{%- if shop.enabled_payment_types.size > 0 -%}
+  <ul class="payment-icons{% if mono %} payment-icons--mono{% endif %} {{ class }}" role="list">
+    {%- for type in shop.enabled_payment_types -%}
+      <li><img class="payment-icons__icon" src="{{ type | payment_type_img_url }}" alt="{{ type | replace: '_', ' ' | capitalize }}" width="38" height="24" loading="lazy" decoding="async"></li>
+    {%- endfor -%}
+  </ul>
+{%- endif -%}
+
+{% stylesheet %}
+  .payment-icons { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+  .payment-icons__icon { width: 2.375rem; height: 1.5rem; }
+  .payment-icons--mono .payment-icons__icon { filter: grayscale(1); opacity: 0.75; }
+{% endstylesheet %}

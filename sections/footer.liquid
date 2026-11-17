@@ -46,11 +46,7 @@
     {%- endif -%}
     {%- render 'localization-selector' -%}
     {%- if section.settings.show_payment_icons -%}
-      <ul class="footer__payment" role="list">
-        {%- for type in shop.enabled_payment_types -%}
-          <li><img class="footer__payment-icon" src="{{ type | payment_type_img_url }}" alt="{{ type | replace: '_', ' ' | capitalize }}" width="38" height="24" loading="lazy" decoding="async"></li>
-        {%- endfor -%}
-      </ul>
+      {%- render 'payment-icons', mono: section.settings.payment_icons_mono, class: 'footer__payment' -%}
     {%- endif -%}
   </div>
 </footer>
@@ -64,8 +60,6 @@
   .footer__nav a { display: inline-flex; align-items: center; min-height: 2.75rem; text-decoration: none; }
   .footer__nav a:hover { text-decoration: underline; }
   .footer__legal { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin-block-start: 2.5rem; padding-block-start: 1.5rem; border-block-start: 1px solid var(--color-border); font-size: 0.75rem; color: var(--color-muted); }
-  .footer__payment { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; }
-  .footer__payment-icon { width: 2.375rem; height: 1.5rem; }
   @media (min-width: 56em) {
     .footer__inner { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
   }
@@ -79,7 +73,8 @@
     { "type": "text", "id": "tagline", "label": "Tagline" },
     { "type": "text", "id": "legal_text", "label": "Legal line", "info": "Optional, for example a copyright notice or company details. [year] becomes the current year." },
     { "type": "checkbox", "id": "show_newsletter", "label": "Show newsletter signup", "default": true },
-    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true }
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true },
+    { "type": "checkbox", "id": "payment_icons_mono", "label": "Show payment icons in grayscale", "default": false }
   ]
 }
 {% endschema %}

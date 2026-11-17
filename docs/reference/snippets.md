@@ -247,6 +247,27 @@ The list that grows needs the attribute data-show-more-list.
 {% render 'pagination', paginate: paginate, type: 'show_more', page_items: collection.products.size, total: collection.products_count, section_id: section.id %}
 ```
 
+## payment-icons
+
+File: `snippets/payment-icons.liquid`
+
+The payment methods the store accepts, as a row of small icons: one image per entry of `shop.enabled_payment_types`,
+from Shopify's own payment icon set (served from Shopify's CDN, never built by hand), each named for screen readers
+with its type ("Visa", "Apple pay"). Renders nothing when the store has none. Used by the footer and by
+blocks/payment-icons.liquid. Decision record: docs/decisions/034-payment-icons-are-one-snippet-with-a-one-color-option.md.
+
+The one color option turns the icons to grayscale and softens them (CSS only). The icons are not recolored to a
+single brand color: Shopify's images are full color cards, so grayscale is the honest "monochrome".
+
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `mono` | `boolean` | no | Show the icons in grayscale |
+| `class` | `string` | no | Extra class on the list |
+
+```liquid
+{% render 'payment-icons', mono: true %}
+```
+
 ## placeholder
 
 File: `snippets/placeholder.liquid`

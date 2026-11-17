@@ -56,3 +56,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [031](031-no-location-prompt-yet-shopify-resolves-the-buyers-country.md) | No location prompt yet: Shopify already resolves the buyer's country, and the footer selector stays | internationalization, markets, SEO |
 | [032](032-hreflang-comes-from-explicit-alternates-per-resource.md) | hreflang comes from explicit alternates per resource; the theme adds none of its own | internationalization, SEO, multi-store |
 | [033](033-html-sitemap-is-collections-pages-and-blogs.md) | The HTML sitemap is collections, pages and chosen blogs, with no products and no settings | navigation, SEO, accessibility |
+| [034](034-payment-icons-are-one-snippet-with-a-one-color-option.md) | Payment icons are one snippet, used by the footer and a block, with a grayscale option | trust, footer, accessibility |

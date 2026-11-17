@@ -136,7 +136,7 @@ for (const file of liquidFiles) {
   if (file.startsWith('sections/') && hasDoc) fail(file, '{% doc %} is not supported in sections: use {% comment %}');
 
   /* snippets/product-zoom.liquid: its image is filled by script from an image that already went through the image snippet, and it is shown with object-fit: contain, so the focal point (which only matters for cover crops) is not needed. */
-  if (!['snippets/image.liquid', 'sections/footer.liquid', 'templates/gift_card.liquid', 'snippets/product-zoom.liquid'].includes(file) && /<img\b/.test(text)) warn(file, 'raw <img>: prefer the image snippet or image_tag');
+  if (!['snippets/image.liquid', 'snippets/payment-icons.liquid', 'templates/gift_card.liquid', 'snippets/product-zoom.liquid'].includes(file) && /<img\b/.test(text)) warn(file, 'raw <img>: prefer the image snippet or image_tag');
 
   checkCss(file, text);
 }
