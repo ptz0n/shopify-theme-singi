@@ -10,6 +10,7 @@ Index of all documentation. Agents: read [../AGENTS.md](../AGENTS.md) first, the
 | [design-system.md](design-system.md) | Tokens, light and dark scheme, fonts, spacing, components, how to restyle safely. |
 | [blocks-and-sections.md](blocks-and-sections.md) | Catalogue of blocks, sections and snippets, composition and conventions. |
 | [soft-navigation.md](soft-navigation.md) | How `assets/soft-nav.js` works, events, analytics caveat, skeletons, exclusions. |
+| [content-storage.md](content-storage.md) | Where merchant content lives (theme settings, section blocks, metaobjects, metafields), what each costs, and which Singi uses when. |
 | [i18n.md](i18n.md) | Locale files, plurals, RTL, tracking tokens, font coverage, hreflang. |
 | [seo-and-accessibility.md](seo-and-accessibility.md) | Meta tags, structured data, headings, landmarks, focus, contrast. |
 | [tooling.md](tooling.md) | npm scripts, CI, dev-store workflow. |

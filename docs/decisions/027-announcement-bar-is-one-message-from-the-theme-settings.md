@@ -51,4 +51,7 @@ Merchants need one visible place for a shipping threshold, a sale or a launch. T
 
 ## Revisit when
 
+**Under review (2026-11-17):** the research in [content-storage.md](../content-storage.md) finds that section settings in the header group are the common practice, take per market override files and can be connected to metaobjects; the to-do "Announcement bar content moves to the section's own settings" in `todo.md` would supersede the where-it-is-stored part of this record (not the one message, one look, dismissal or no rotation decisions).
+
+
 A real store needs two messages (then a second setting pair, not a carousel), or timed campaigns.
