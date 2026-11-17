@@ -1,0 +1,59 @@
+{% doc %}
+  The footer's social links: one plain text link per line of the theme setting "Social profile URLs" (the same list
+  that is published as schema.org sameAs, so there is one source). The link text is the network's name, taken from
+  the address (Instagram, Facebook, X, YouTube, TikTok, Pinterest, LinkedIn, Threads, Bluesky, Snapchat, Vimeo);
+  any other address shows its host name. Text, not logos: no brand artwork to ship, nothing to translate, and
+  the words are what a screen reader reads. At most twelve links; a line that is not a full address is skipped.
+  Renders nothing while the setting is empty. Decision record: docs/decisions/028-social-links-are-text-links-from-the-profile-list.md.
+
+  @example
+  {% render 'social-links' %}
+{% enddoc %}
+
+{%- if settings.social_profiles != blank -%}
+  {%- assign profiles = settings.social_profiles | newline_to_br | split: '<br />' -%}
+  {%- capture links_html -%}
+    {%- for profile in profiles limit: 12 -%}
+      {%- assign url = profile | strip -%}
+      {%- unless url contains '://' -%}{%- continue -%}{%- endunless -%}
+      {%- assign host = url | split: '://' | last | split: '/' | first | split: ':' | first | downcase | remove_first: 'www.' -%}
+      {%- liquid
+        if host contains 'instagram.com'
+          assign name = 'Instagram'
+        elsif host contains 'facebook.com' or host == 'fb.com'
+          assign name = 'Facebook'
+        elsif host == 'x.com' or host contains 'twitter.com'
+          assign name = 'X'
+        elsif host contains 'youtube.com' or host == 'youtu.be'
+          assign name = 'YouTube'
+        elsif host contains 'tiktok.com'
+          assign name = 'TikTok'
+        elsif host contains 'pinterest.'
+          assign name = 'Pinterest'
+        elsif host contains 'linkedin.com'
+          assign name = 'LinkedIn'
+        elsif host == 'threads.net' or host == 'threads.com'
+          assign name = 'Threads'
+        elsif host == 'bsky.app'
+          assign name = 'Bluesky'
+        elsif host contains 'snapchat.com'
+          assign name = 'Snapchat'
+        elsif host contains 'vimeo.com'
+          assign name = 'Vimeo'
+        else
+          assign name = host
+        endif
+      -%}
+      <li><a href="{{ url }}">{{ name }}</a></li>
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- if links_html contains '<li>' -%}
+    <ul class="social-links" role="list">{{ links_html }}</ul>
+  {%- endif -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .social-links { display: flex; flex-wrap: wrap; gap: 0 1.25rem; margin: 0; padding: 0; }
+  .social-links a { display: inline-flex; align-items: center; min-height: 2.75rem; text-decoration: none; }
+  .social-links a:hover { text-decoration: underline; }
+{% endstylesheet %}

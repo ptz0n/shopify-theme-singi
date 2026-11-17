@@ -101,7 +101,8 @@ Rules for the loop:
   - *Why:* High-visibility merchandising for promos/shipping/launch messages (very common Theme Store expectation).  
   - *Scope:* single/multiple messages, optional link, dismissible option, accessible markup; rotation/marquee only as opt-in progressive enhancement with reduced-motion support and no layout shift.
 
-- [ ] **Social links** — *P2,P3,P5*  
+- [x] **Social links** — *P2,P3,P5*  
+  - *Status:* built (decision 028, `npm run test:social-links`, 24 checks pass on the dev store across desktop, phone and right to left). Plain text links in the footer, named after the network, from the existing "Social profile URLs" setting (one list for the links and the structured data); no logos, no new setting, no JavaScript. **Scope decision:** text instead of icon+label, to avoid brand artwork and keep the footer quiet. Not measured on a live store.  
   - *Why:* Supports trust/brand legitimacy and off-site engagement.  
   - *Scope:* visible configurable links (e.g. footer/header) with accessible icon+label patterns; leverage existing `settings.social_profiles`/brand data where possible; lightweight, self-hosted icons/assets.
 

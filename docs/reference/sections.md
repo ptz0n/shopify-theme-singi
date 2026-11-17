@@ -69,7 +69,8 @@ Performance notes:
 
 File: `sections/footer.liquid` · Editor name: **Footer** · template-bound
 
-Site footer: optional shop name (off by default) and tagline, menu, optional newsletter, then a legal row
+Site footer: optional shop name (off by default) and tagline, menu, social links (from the theme setting
+"Social profile URLs"), optional newsletter, then a legal row
 (optional legal line, language and country, payment icons). The shop name is
 shown in the header, and in the footer only when the merchant turns it on; there is
 no default copyright line. Below the

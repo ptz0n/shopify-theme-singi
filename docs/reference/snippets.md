@@ -489,6 +489,21 @@ real page so the swap does not shift layout.
 {% render 'skeletons' %}
 ```
 
+## social-links
+
+File: `snippets/social-links.liquid`
+
+The footer's social links: one plain text link per line of the theme setting "Social profile URLs" (the same list
+that is published as schema.org sameAs, so there is one source). The link text is the network's name, taken from
+the address (Instagram, Facebook, X, YouTube, TikTok, Pinterest, LinkedIn, Threads, Bluesky, Snapchat, Vimeo);
+any other address shows its host name. Text, not logos: no brand artwork to ship, nothing to translate, and
+the words are what a screen reader reads. At most twelve links; a line that is not a full address is skipped.
+Renders nothing while the setting is empty. Decision record: docs/decisions/028-social-links-are-text-links-from-the-profile-list.md.
+
+```liquid
+{% render 'social-links' %}
+```
+
 ## sticky-buy
 
 File: `snippets/sticky-buy.liquid`
