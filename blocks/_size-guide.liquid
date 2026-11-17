@@ -26,7 +26,7 @@
   .size-guide { margin-block-start: -0.75rem; }
   .size-guide__button { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0; border: 0; background: none; color: var(--color-accent); font: inherit; font-size: 0.875rem; text-decoration: underline; cursor: pointer; }
   .size-guide__panel { inset: 0; margin: auto; width: min(36rem, calc(100vw - 2rem)); max-height: min(40rem, calc(100svh - 2rem)); overflow: auto; padding: 1.25rem; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); color: var(--color-fg); }
-  .size-guide__panel::backdrop { background: color-mix(in srgb, var(--color-fg) 45%, transparent); }
+  .size-guide__panel::backdrop { background: var(--color-scrim); }
   .size-guide__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-block-end: 1rem; }
   .size-guide__head h2 { font-size: 1.125rem; }
   .size-guide__panel p { white-space: pre-line; }

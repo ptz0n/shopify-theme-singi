@@ -61,6 +61,8 @@
     --color-border: light-dark({{ settings.light_border }}, {{ settings.dark_border }});
     --color-control: light-dark({{ settings.light_control }}, {{ settings.dark_control }});
     --color-accent: light-dark({{ settings.light_accent }}, {{ settings.dark_accent }});
+    /* The dimmed page behind a dialog or drawer: black in both schemes. It is not light-dark(): the foreground is light in dark mode, and a scrim built from it washes the page out. */
+    --color-scrim: rgb(0 0 0 / 0.6);
   }
 
   {%- if settings.view_transitions -%}

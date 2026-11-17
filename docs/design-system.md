@@ -18,6 +18,7 @@ Settings in `config/settings_schema.json` become CSS custom properties in `snipp
 | `--radius` | `settings.radius` | Corner radius in px. |
 | `--logo-width` | `settings.logo_width` | Logo width in px. |
 | `--color-bg`, `--color-surface`, `--color-fg`, `--color-muted`, `--color-border`, `--color-accent` | light and dark color settings | Resolved with `light-dark()`. |
+| `--color-scrim` | the dimmed page behind a dialog, drawer or popover | `rgb(0 0 0 / 0.6)` in both schemes, deliberately not `light-dark()`: the foreground is light in dark mode, and a scrim made from it turns the page pale. Use it for every `::backdrop` that dims the page. |
 | `--gutter` | `base.css` | `clamp(1rem, 4vw, 2rem)` page side padding. |
 | `--header-h` | `base.css` | 4rem sticky header height. |
 | `--tracking-tight`, `--tracking-wide` | `base.css` | Letter-spacing. Zeroed for RTL, CJK, Thai and Indic. |

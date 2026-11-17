@@ -91,6 +91,20 @@ try {
     console.log('  empty cart: open, Escape, backdrop');
   }
 
+  /* the dimmed page behind the drawer is dark in both color schemes */
+  for (const scheme of ['light', 'dark']) {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1200, height: 800 });
+    await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: scheme }]);
+    await page.goto(`${base}/`, { waitUntil: 'load', timeout: 60000 });
+    await open(page);
+    const scrim = await page.evaluate(() => getComputedStyle(document.querySelector('dialog.cart-drawer'), '::backdrop').backgroundColor);
+    const [r, g, b, a = 1] = scrim.match(/[\d.]+/g).map(Number);
+    ok(r + g + b <= 60 && a >= 0.5, `${scheme} scheme: the backdrop is dark (${scrim})`);
+    await page.close();
+  }
+  console.log('  backdrop is dark in light and dark mode');
+
   /* add, change the quantity, remove */
   {
     const page = await browser.newPage();

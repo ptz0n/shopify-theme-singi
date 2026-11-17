@@ -108,7 +108,7 @@
   html:has(dialog.quick-buy[open]) { overflow: hidden; }
   .quick-buy { width: min(28rem, calc(100% - 2rem)); max-width: none; max-height: calc(100dvh - 2rem); margin: auto; padding: 0; overflow-y: auto; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); color: var(--color-fg); }
   .quick-buy[open] { animation: quick-buy-in 0.2s ease-out; }
-  .quick-buy::backdrop { background: color-mix(in srgb, var(--color-fg) 40%, transparent); }
+  .quick-buy::backdrop { background: var(--color-scrim); }
   .quick-buy > div { display: grid; gap: 1rem; padding: 0.5rem 1.25rem 1.25rem; }
   .quick-buy h2 { margin: 0; font-size: 1.125rem; }
   .quick-buy h2 a { text-decoration: none; }
