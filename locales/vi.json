@@ -51,7 +51,11 @@
     "quantity_increase": "Tăng số lượng",
     "quantity_min": "Tối thiểu {{ count }}",
     "quantity_multiple": "Bội số của {{ count }}",
-    "quantity_max": "Tối đa {{ count }}"
+    "quantity_max": "Tối đa {{ count }}",
+    "order_price": "Giá",
+    "order_quantity_for": "Số lượng cho {{ variant }}",
+    "order_items": "Mặt hàng",
+    "order_reset": "Xóa"
   },
   "collection": {
     "price_from": "Từ",

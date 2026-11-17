@@ -70,7 +70,7 @@ const cardInfo = () => {
   const rect = (el) => el?.getBoundingClientRect();
   const overlaps = (a, b) => a && b && a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
   return cards.map((card) => {
-    const button = card.querySelector('.card-add');
+    const button = card.querySelector('.card-add[data-quick-add]');
     const media = rect(card.querySelector('img, .product-card__media'));
     const b = rect(button);
     const others = ['.wishlist-heart', '.product-card__badge', '.ai-label'].map((s) => rect(card.querySelector(s))).filter(Boolean);
@@ -114,13 +114,13 @@ try {
       }
       if (label === 'desktop') {
         /* press it: success */
-        await page.click('.card-add');
+        await page.click('.card-add[data-quick-add]');
         await sleep(300);
         const done = await page.evaluate(() => ({
           calls: window.__calls,
           count: document.querySelector('[data-cart-count]')?.textContent.trim(),
-          added: document.querySelector('.card-add[data-added]') !== null,
-          busy: document.querySelector('.card-add[aria-busy]') !== null,
+          added: document.querySelector('.card-add[data-quick-add][data-added]') !== null,
+          busy: document.querySelector('.card-add[data-quick-add][aria-busy]') !== null,
           announced: document.getElementById('route-announcer').textContent,
           events: window.__events,
         }));
@@ -130,12 +130,12 @@ try {
         ok(/: Added to cart\.?$/.test(done.announced), `${label}: the live region says "${done.announced}"`);
         ok(done.events === 1, `${label}: the tracking event fired ${done.events} times`);
         await sleep(2200);
-        ok(!(await page.evaluate(() => document.querySelector('.card-add[data-added]') !== null)), `${label}: the check mark stayed on`);
+        ok(!(await page.evaluate(() => document.querySelector('.card-add[data-quick-add][data-added]') !== null)), `${label}: the check mark stayed on`);
         /* press it: the store refuses */
         await page.evaluate(() => { window.__fail = true; document.querySelector('[data-cart-count]').textContent = '3'; });
-        await page.click('.card-add');
+        await page.click('.card-add[data-quick-add]');
         await sleep(300);
-        const failed = await page.evaluate(() => ({ count: document.querySelector('[data-cart-count]')?.textContent.trim(), announced: document.getElementById('route-announcer').textContent, added: document.querySelector('.card-add[data-added]') !== null, busy: document.querySelector('.card-add[aria-busy]') !== null }));
+        const failed = await page.evaluate(() => ({ count: document.querySelector('[data-cart-count]')?.textContent.trim(), announced: document.getElementById('route-announcer').textContent, added: document.querySelector('.card-add[data-quick-add][data-added]') !== null, busy: document.querySelector('.card-add[data-quick-add][aria-busy]') !== null }));
         ok(failed.count === '3' && !failed.added && !failed.busy, `${label}: after a refused add: count ${failed.count}, added ${failed.added}, busy ${failed.busy}`);
         ok(/You can only add 2 of this item/.test(failed.announced), `${label}: the live region says "${failed.announced}"`);
       }

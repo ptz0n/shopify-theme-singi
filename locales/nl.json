@@ -51,7 +51,11 @@
     "quantity_increase": "Aantal verhogen",
     "quantity_min": "Minimaal {{ count }}",
     "quantity_multiple": "Veelvouden van {{ count }}",
-    "quantity_max": "Maximaal {{ count }}"
+    "quantity_max": "Maximaal {{ count }}",
+    "order_price": "Prijs",
+    "order_quantity_for": "Aantal voor {{ variant }}",
+    "order_items": "Artikelen",
+    "order_reset": "Wissen"
   },
   "collection": {
     "price_from": "Van",

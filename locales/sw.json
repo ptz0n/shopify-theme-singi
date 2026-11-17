@@ -51,7 +51,11 @@
     "quantity_increase": "Ongeza idadi",
     "quantity_min": "Kiwango cha chini {{ count }}",
     "quantity_multiple": "Mizidisho ya {{ count }}",
-    "quantity_max": "Kiwango cha juu {{ count }}"
+    "quantity_max": "Kiwango cha juu {{ count }}",
+    "order_price": "Bei",
+    "order_quantity_for": "Kiasi cha {{ variant }}",
+    "order_items": "Bidhaa",
+    "order_reset": "Futa"
   },
   "collection": {
     "price_from": "Kuanzia",

@@ -25,6 +25,11 @@
       {{- 'base.css' | inline_asset_content -}}
     </style>
 
+    {%- comment -%}The card plus buttons (quick add, quick buy) need JavaScript; without it they would do nothing, so they are not shown.{%- endcomment -%}
+    {%- if settings.card_quick_add or settings.card_quick_buy -%}
+      <noscript><style>[data-quick-add],[data-quick-buy]{display:none!important}</style></noscript>
+    {%- endif -%}
+
     {%- unless settings.font_body.system? -%}
       {%- assign preload_regular = settings.font_body | font_url: 'woff2' -%}
       {%- assign preload_strong = settings.font_body | font_modify: 'weight', '600' | font_url: 'woff2' -%}
@@ -80,6 +85,11 @@
 
     {%- if settings.card_quick_add -%}
       <script src="{{ 'quick-add.js' | asset_url }}" type="module"></script>
+    {%- endif -%}
+
+    {%- if settings.card_quick_buy -%}
+      <script src="{{ 'product-form.js' | asset_url }}" type="module"></script>
+      <script src="{{ 'quick-buy.js' | asset_url }}" type="module"></script>
     {%- endif -%}
 
     {%- if settings.card_video -%}

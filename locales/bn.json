@@ -51,7 +51,11 @@
     "quantity_increase": "পরিমাণ বাড়ান",
     "quantity_min": "ন্যূনতম {{ count }}",
     "quantity_multiple": "{{ count }}-এর গুণিতক",
-    "quantity_max": "সর্বোচ্চ {{ count }}"
+    "quantity_max": "সর্বোচ্চ {{ count }}",
+    "order_price": "মূল্য",
+    "order_quantity_for": "{{ variant }}-এর পরিমাণ",
+    "order_items": "আইটেম",
+    "order_reset": "পরিষ্কার করুন"
   },
   "collection": {
     "price_from": "থেকে",

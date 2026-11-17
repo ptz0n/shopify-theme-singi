@@ -26,6 +26,8 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 | `quote` | A pull quote or testimonial as a figure with a blockquote and a caption (who said it, role or source). Nothing renders without the quote text. | quote, who said it, role or source |
 | `product-grid` | A heading, a "view all" link and a grid of products from one collection. Put it in a full-width Custom content section. Same cards, image loading and tracking as the Featured collection section, through `snippets/product-grid.liquid`. | heading, collection, products to show (2 to 12) |
 | `newsletter` | Signup form with the email input and Subscribe button joined as one control (a Shopify customer form that tags the subscriber `newsletter`; no JavaScript). The footer uses the same `newsletter` snippet. | label, supporting text |
+| `usp-list` | A list of short promises (free returns, fast delivery) as role list items, each with an icon, a heading and a line of text. Holds private `_usp-item` blocks; a preset ships icons and no copy; an item with no words renders nothing. No JavaScript. [Decision 025](decisions/025-usp-list-is-a-list-of-item-blocks.md). | layout (side by side or stacked) |
+| `feature-list` | Product feature highlights: one to four columns of items, each with a lazy image in one chosen shape (or an icon), a heading and a line of text. Holds private `_feature-item` blocks. No JavaScript. [Decision 026](decisions/026-feature-list-is-a-list-of-item-blocks.md). | columns, image shape |
 | `related-products` | Cards for the product's related products (Search & Discovery), filled up from its first collection, rendered on the server with no JavaScript. Hidden when there is neither. See [decision 008](decisions/008-related-products-render-on-the-server.md). | heading, products to show (2 to 8) |
 | `recently-viewed` | Cards for the products this visitor opened, newest first. Private to the visitor (localStorage), hidden until there is history, skeletons hold the space. See [media.md](media.md) for cards and `assets/recently-viewed.js` for the flow. | heading, products to show (2 to 8) |
 
@@ -39,8 +41,10 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 | `_size-guide` | A "Size guide" link under the size options that opens its content in a native popover (no JS). Content connects to a metafield; renders nothing when empty. See [metafields](metafields.md). |
 | `_product-specs` | Up to eight label and value rows as a table. Each value connects to a metafield; empty rows and an empty table are left out. See [metafields](metafields.md). |
 | `_product-policies` | Returns and shipping near the buy button: the store's refund and shipping policy links (when written) and an optional connected summary, for example terms for personalized items. |
-| `_variant-picker` | Radio chips from `product.options_with_values`. Fires `change`; handled by `<product-form>`. |
-| `_buy-buttons` | Quantity, add to cart, optional dynamic checkout button, status region. Works without JS. |
+| `_variant-picker` | Radio chips from `product.options_with_values`, each group's legend naming the chosen value ("Color: Grey", [decision 024](decisions/024-option-labels-name-the-chosen-value.md)). Fires `change`; handled by `<product-form>`. |
+| `_buy-buttons` | Quantity, add to cart, optional dynamic checkout button, status region, and the optional sticky add to cart bar (`snippets/sticky-buy.liquid`, [decision 021](decisions/021-sticky-add-to-cart-submits-the-product-form.md)). Works without JS (the bar only appears with it). Inside the quick buy dialog it leaves out the bar and the checkout button ([decision 022](decisions/022-quick-buy-is-the-product-form-in-a-dialog.md)). |
+| `_variants-table` | The order table: one row per variant with a quantity each and one Add to cart ([decision 019](decisions/019-order-table-is-a-product-block.md)). |
+| `_usp-item`, `_feature-item` | The items of the `usp-list` and `feature-list` blocks. Private to them. |
 | `_product-description` | Product description in `.prose`. |
 | `_product-meta` | SKU, type and availability in monospace. |
 
@@ -48,7 +52,9 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 
 | Section | Purpose | Accepts blocks |
 | --- | --- | --- |
-| `header` | Logo, popover navigation, search link, theme toggle, account, cart count. No JS. | no |
+| `header` | Logo, popover navigation, search, theme toggle, account, favorites, cart count. Only the search loads a module. | no |
+| `cart-drawer` | One native dialog on every page (in `header-group.json`), opened by the header cart link and after an add to cart; its lines are a `<cart-items>`. Renders nothing when the setting is off. [Decision 020](decisions/020-cart-drawer-reuses-cart-items.md). | no |
+| `quick-buy` | The content of the quick buy dialog: the product page's price, option picker and buy buttons for one product. Never placed on a page; fetched from `/products/<handle>?section_id=quick-buy`. [Decision 022](decisions/022-quick-buy-is-the-product-form-in-a-dialog.md). | no |
 | `footer` | Tagline, menu, newsletter form, payment icons. | no |
 | `hero` | Full-width hero with blocks, in two layouts: text over the image (default) or the image beside the text (two columns from 48em, the image first on a phone, mirrored in right to left; the text uses the page colors, so its contrast never depends on the picture). The image is the LCP candidate when the hero is first. Addable. | `@theme`; layout, height, alignment, overlay, image |
 | `featured-collection` | Heading and a grid of products from a collection. Addable. | no |
@@ -56,7 +62,7 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 | `main-product` | Gallery plus `<product-form>` details column. | private product blocks and `@theme` |
 | `main-collection` | Filters, sorting (`facets` snippet), grid, pagination inside `<facets-form>`. | no |
 | `main-list-collections` | Paginated grid of collections. | no |
-| `main-cart` | Cart lines and summary inside `<cart-items>`. | no |
+| `main-cart` | Cart lines and summary inside `<cart-items>`, then favorites. Blocks fill an empty cart. | `@theme` |
 | `main-search` | Search results (products as cards, other types as rows); no form, the header search is the one place to search. | no |
 | `main-page` | Page title, breadcrumbs, content. | no |
 | `main-blog` | Paginated article list. | no |
@@ -74,12 +80,17 @@ Header and footer content that merchants control (menus, logo, toggle) comes fro
 | `tokens` | Fonts and CSS custom properties from settings. | Rendered once in the layout head. |
 | `meta-tags` | Charset, viewport, title, description, canonical, robots, hreflang, OG, Twitter, theme-color, favicon, JSON-LD. | First in head. |
 | `image` | Responsive image with priority, eager and lazy modes. | `priority` for one LCP image per page. |
-| `icon` | Inline SVG icons. | `icon--flip` for `arrow-right` in RTL. |
+| `icon` | Inline SVG icons: sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, check, chevron-down, grid, list, truck, return, shield, leaf, star, gift, support, lock, clock, package. | `icon--flip` for `arrow-right` in RTL. |
+| `sticky-buy` | The sticky add to cart bar. | Rendered by `_buy-buttons`; its button submits the buy box's form. |
+| `quantity-input` | Stepper with the variant's quantity rule and hint. | [Decision 015](decisions/015-quantity-limits-follow-the-rule-and-never-name-the-stock.md). |
+| `unit-price` | The unit price of a variant. | [Decision 005](decisions/005-unit-price-format-and-instant-update.md). |
 | `price` | Price with optional compare-at price. | Monospace. |
 | `product-card` | Grid card for a product. | One level of render only. |
 | `pagination` | Accessible pagination from a `paginate` object. | Plain links. |
 | `breadcrumbs` | Breadcrumb trail plus BreadcrumbList JSON-LD. | The visible trail is the ancestors (metafields or the breadcrumb menu); the current page is only in the JSON-LD. |
 | `skeletons` | `<template>` placeholders for soft navigation. | Rendered only when soft navigation is on. |
+
+This table lists the building blocks you meet most. The complete, generated list of every block, section and snippet with its parameters and settings is in [reference/](reference/).
 
 ## Composing pages in the editor
 

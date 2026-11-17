@@ -114,7 +114,7 @@
         </a>
       {%- endif -%}
 
-      <a class="icon-button" href="{{ routes.cart_url }}">
+      <a class="icon-button" href="{{ routes.cart_url }}"{% if settings.cart_drawer %} data-cart-link{% endif %}>
         {%- render 'icon', name: 'cart' -%}
         <span class="visually-hidden">{{ 'general.cart' | t }}</span>
         <span class="cart-count" data-cart-count data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>

@@ -23,6 +23,7 @@ import { readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { admin, domain, userErrors } from './lib/admin.mjs';
+import { cubeGlb } from './lib/mock-model.mjs';
 import { OPS } from './lib/mock-ops.mjs';
 import { gradientPng } from './lib/png.mjs';
 import { BLOG, COLLECTIONS, NICHE_DEFINITIONS, PAGES, PRODUCTS, SIBLING_GROUPS, TAG, imageSize } from './mock-data.mjs';
@@ -205,6 +206,23 @@ const stageVideo = async () => {
   return clip;
 };
 
+/* The 3D model is generated here, so nothing external is needed. */
+let model;
+const stageModel = async () => {
+  if (model) return model;
+  const bytes = cubeGlb();
+  const payload = await admin(OPS.stagedUploads, { input: [{ resource: 'MODEL_3D', filename: 'singi-mock-cube.glb', mimeType: 'model/gltf-binary', httpMethod: 'POST', fileSize: String(bytes.length) }] });
+  check(payload, 'stage model');
+  const target = payload.stagedUploadsCreate.stagedTargets[0];
+  const form = new FormData();
+  for (const { name, value } of target.parameters) form.append(name, value);
+  form.append('file', new Blob([bytes], { type: 'model/gltf-binary' }), 'singi-mock-cube.glb');
+  const response = await fetch(target.url, { method: 'POST', body: form });
+  if (!response.ok) throw new Error(`upload of the 3D model failed: HTTP ${response.status}`);
+  model = target.resourceUrl;
+  return model;
+};
+
 const productInput = async (p) => {
   const locationId = p.stock ? (await admin(OPS.locations)).locations.nodes[0].id : undefined;
   const options = p.options.length ? p.options : [{ name: 'Title', values: ['Default Title'] }];
@@ -224,6 +242,7 @@ const productInput = async (p) => {
     files: [
       ...(await Promise.all(p.images.map(async (seed, i) => ({ originalSource: await stageImage(seed), contentType: 'IMAGE', alt: `${p.title} ${i + 1}` })))),
       ...(p.externalVideo ? [{ originalSource: p.externalVideo.url, contentType: 'EXTERNAL_VIDEO', alt: p.externalVideo.alt }] : []),
+      ...(p.model ? [{ originalSource: await stageModel(), contentType: 'MODEL_3D', alt: `${p.title} model` }] : []),
       ...(p.video && (await stageVideo()) ? [{ originalSource: await stageVideo(), contentType: 'VIDEO', alt: `${p.title} video` }] : []),
     ],
   };

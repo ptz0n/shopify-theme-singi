@@ -51,7 +51,11 @@
     "quantity_increase": "Padidinti kiekį",
     "quantity_min": "Mažiausiai {{ count }}",
     "quantity_multiple": "{{ count }} kartotiniai",
-    "quantity_max": "Daugiausiai {{ count }}"
+    "quantity_max": "Daugiausiai {{ count }}",
+    "order_price": "Kaina",
+    "order_quantity_for": "{{ variant }} kiekis",
+    "order_items": "Prekės",
+    "order_reset": "Išvalyti"
   },
   "collection": {
     "price_from": "Nuo",

@@ -51,7 +51,11 @@
     "quantity_increase": "Увеличи количеството",
     "quantity_min": "Минимум {{ count }}",
     "quantity_multiple": "Кратно на {{ count }}",
-    "quantity_max": "Максимум {{ count }}"
+    "quantity_max": "Максимум {{ count }}",
+    "order_price": "Цена",
+    "order_quantity_for": "Количество за {{ variant }}",
+    "order_items": "Артикули",
+    "order_reset": "Изчистване"
   },
   "collection": {
     "price_from": "От",

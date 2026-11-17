@@ -51,7 +51,11 @@
     "quantity_increase": "افزایش تعداد",
     "quantity_min": "حداقل {{ count }}",
     "quantity_multiple": "مضرب‌های {{ count }}",
-    "quantity_max": "حداکثر {{ count }}"
+    "quantity_max": "حداکثر {{ count }}",
+    "order_price": "قیمت",
+    "order_quantity_for": "تعداد برای {{ variant }}",
+    "order_items": "کالاها",
+    "order_reset": "پاک کردن"
   },
   "collection": {
     "price_from": "از",

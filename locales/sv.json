@@ -51,7 +51,11 @@
     "quantity_increase": "Öka antal",
     "quantity_min": "Minst {{ count }}",
     "quantity_multiple": "Multipler av {{ count }}",
-    "quantity_max": "Högst {{ count }}"
+    "quantity_max": "Högst {{ count }}",
+    "order_price": "Pris",
+    "order_quantity_for": "Antal för {{ variant }}",
+    "order_items": "Varor",
+    "order_reset": "Rensa"
   },
   "collection": {
     "price_from": "Från",

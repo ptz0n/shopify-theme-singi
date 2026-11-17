@@ -36,6 +36,7 @@ class ProductForm extends HTMLElement {
       if (heart) heart.dataset.variant = input.dataset.variantId;
       document.dispatchEvent(new CustomEvent('singi:variant'));
     }
+    input.closest('fieldset').querySelector('[data-selected]').textContent = input.value;
     const available = input.dataset.available !== 'false';
     const button = form.querySelector('[type="submit"]');
     button.disabled = !available;
@@ -49,7 +50,7 @@ class ProductForm extends HTMLElement {
       shown.textContent = input.dataset.unitPrice.replaceAll(' ', '\u00a0');
       label.textContent = input.dataset.unitLabel;
     }
-    history.replaceState(history.state, '', input.dataset.optionUrl);
+    if (!this.closest('dialog')) history.replaceState(history.state, '', input.dataset.optionUrl);
   }
 
   /* The rest comes from the server: price block, meta, other options' availability. Only what
@@ -109,15 +110,14 @@ class ProductForm extends HTMLElement {
     status.hidden = true;
 
     try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(form),
-      });
+      const drawer = document.querySelector('cart-drawer');
+      const body = new FormData(form);
+      if (drawer) body.set('sections', drawer.dataset.sectionId);
+      const response = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body });
       const data = await response.json();
       if (!response.ok) throw new Error(data.description || data.message);
-      const cart = await (await fetch(`${this.dataset.cartUrl}.js`)).json();
-      cartChanged(cart);
+      const html = drawer && data.sections?.[drawer.dataset.sectionId];
+      cartChanged(html ? drawer.render(html) : await (await fetch(`${this.dataset.cartUrl}.js`)).json());
       document.dispatchEvent(new CustomEvent('singi:cart-add', { detail: { element: this, quantity: Number(form.querySelector('[name="quantity"]')?.value) || 1 } }));
       status.querySelector('[data-message]').textContent = this.dataset.added;
       status.querySelector('a').hidden = false;

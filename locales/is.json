@@ -51,7 +51,11 @@
     "quantity_increase": "Auka magn",
     "quantity_min": "Lágmark {{ count }}",
     "quantity_multiple": "Margfeldi af {{ count }}",
-    "quantity_max": "Hámark {{ count }}"
+    "quantity_max": "Hámark {{ count }}",
+    "order_price": "Verð",
+    "order_quantity_for": "Magn fyrir {{ variant }}",
+    "order_items": "Vörur",
+    "order_reset": "Hreinsa"
   },
   "collection": {
     "price_from": "Frá",

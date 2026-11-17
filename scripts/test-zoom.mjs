@@ -160,6 +160,16 @@ try {
       ok(/width=2400/.test(v.sources[4]) && file(v.sources[4]) === file(g.files[4]), `${label}: image 5 is ${file(v.sources[4])} at ${/width=(\d+)/.exec(v.sources[4])?.[1]}, expected ${file(g.files[4])} at 2400`);
       ok(v.shown[4] === '' && /^Shown for: /.test(v.shown[0]), `${label}: "Shown for" is ${JSON.stringify([v.shown[0], v.shown[4]])}`);
 
+      /* the page image fills the screen under the large one until it has loaded (decision 014) */
+      const ph = await page.evaluate(() => [...document.querySelectorAll('dialog.zoom .zoom__item')].map((f) => {
+        const [large, under] = f.querySelectorAll('.zoom__frame img');
+        return { under: under && { hidden: under.getAttribute('aria-hidden'), alt: under.alt, src: under.currentSrc || under.src, shown: under.complete && under.naturalWidth > 0 }, loaded: large.hasAttribute('data-loaded'), opacity: getComputedStyle(large).opacity };
+      }));
+      ok(ph.every((p) => p.under && p.under.hidden === 'true' && p.under.alt === ''), `${label}: every image has a hidden, empty-alt placeholder under it`);
+      ok(file(ph[4].under.src) === file(g.files[4]) && ph[4].under.shown, `${label}: the placeholder is the page image (${file(ph[4].under.src)}) and is already shown`);
+      ok(ph[4].loaded && ph[4].opacity === '1', `${label}: image 5 has loaded, so the large image is on top (loaded ${ph[4].loaded}, opacity ${ph[4].opacity})`);
+      ok(!ph[11].loaded && ph[11].opacity === '0' && ph[11].under.shown, `${label}: the last image, not yet near, shows its placeholder (large loaded ${ph[11].loaded}, opacity ${ph[11].opacity}, placeholder shown ${ph[11].under.shown})`);
+
       /* keys */
       const forward = dir === 'rtl' ? 'ArrowLeft' : 'ArrowRight';
       const backward = dir === 'rtl' ? 'ArrowRight' : 'ArrowLeft';

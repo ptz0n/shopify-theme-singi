@@ -51,7 +51,11 @@
     "quantity_increase": "Suurenda kogust",
     "quantity_min": "Vähemalt {{ count }}",
     "quantity_multiple": "{{ count }} kordsed",
-    "quantity_max": "Kuni {{ count }}"
+    "quantity_max": "Kuni {{ count }}",
+    "order_price": "Hind",
+    "order_quantity_for": "Kogus: {{ variant }}",
+    "order_items": "Tooted",
+    "order_reset": "Tühjenda"
   },
   "collection": {
     "price_from": "Alates",

@@ -51,7 +51,11 @@
     "quantity_increase": "పరిమాణం పెంచండి",
     "quantity_min": "కనీసం {{ count }}",
     "quantity_multiple": "{{ count }} గుణిజాలు",
-    "quantity_max": "గరిష్టం {{ count }}"
+    "quantity_max": "గరిష్టం {{ count }}",
+    "order_price": "ధర",
+    "order_quantity_for": "{{ variant }} కోసం పరిమాణం",
+    "order_items": "వస్తువులు",
+    "order_reset": "క్లియర్ చేయి"
   },
   "collection": {
     "price_from": "నుండి",

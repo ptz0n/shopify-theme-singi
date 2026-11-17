@@ -63,7 +63,7 @@
         </ul>
 
         <div class="cart__summary stack">
-          <p class="cart__subtotal"><span>{{ 'cart.subtotal' | t }}</span> <span class="mono">{% if settings.price_trim_zeros %}{{ cart.total_price | money_without_trailing_zeros }}{% else %}{{ cart.total_price | money }}{% endif %}</span></p>
+          <p class="cart__subtotal" data-subtotal><span>{{ 'cart.subtotal' | t }}</span> <span class="mono">{% if settings.price_trim_zeros %}{{ cart.total_price | money_without_trailing_zeros }}{% else %}{{ cart.total_price | money }}{% endif %}</span></p>
           <p class="muted cart__note">{{ 'cart.taxes_note' | t }}</p>
           <noscript><button class="button button--secondary button--block" type="submit" name="update">{{ 'cart.update' | t }}</button></noscript>
           <button class="button button--block" type="submit" name="checkout">{{ 'cart.checkout' | t }}</button>

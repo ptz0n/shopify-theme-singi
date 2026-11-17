@@ -1,0 +1,80 @@
+{% doc %}
+  Product feature highlights: a row or grid of short features, each with an optional image or icon, a heading and
+  a line of text (materials, fit, care, what is in the box). A public block that holds private `_feature-item`
+  blocks. Use it in any content section and in the product page's details column. A list with no visible item
+  renders a hint in the theme editor and nothing on the storefront; a new list has three empty items (a preset
+  ships no copy). Decision record: docs/decisions/026-feature-list-is-a-list-of-item-blocks.md.
+
+  The markup is a plain list (role list, one list item per feature). Images are lazy loaded with their size
+  attributes (no layout shift) and cropped to one aspect ratio chosen here. No JavaScript.
+
+  @example
+  {% content_for 'block', type: 'feature-list', id: 'features' %}
+{% enddoc %}
+
+{%- assign s = block.settings -%}
+
+{%- case s.ratio -%}
+  {%- when 'square' -%}{%- assign ratio = '1 / 1' -%}
+  {%- when 'landscape' -%}{%- assign ratio = '16 / 10' -%}
+  {%- else -%}{%- assign ratio = '4 / 5' -%}
+{%- endcase -%}
+
+{%- capture items_html -%}{% content_for 'blocks' %}{%- endcapture -%}
+{%- assign items_text = items_html | strip -%}
+
+{%- if items_text != blank -%}
+  <div class="feature-list feature-list--{{ s.columns }}" role="list" style="--ratio: {{ ratio }}" {{ block.shopify_attributes }}>
+    {{ items_html }}
+  </div>
+{%- elsif request.design_mode -%}
+  {%- render 'placeholder', label: 'Feature list: add items' -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .feature-list { display: grid; gap: 1.5rem; }
+  @media (min-width: 40em) {
+    .feature-list--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .feature-list--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .feature-list--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Feature list",
+  "settings": [
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns on a wide screen",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "3",
+      "info": "A phone always shows one column."
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Image shape",
+      "options": [
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" },
+        { "value": "landscape", "label": "Landscape" }
+      ],
+      "default": "portrait"
+    }
+  ],
+  "blocks": [{ "type": "_feature-item" }],
+  "presets": [
+    {
+      "name": "Feature list",
+      "blocks": [{ "type": "_feature-item" }, { "type": "_feature-item" }, { "type": "_feature-item" }]
+    }
+  ]
+}
+{% endschema %}

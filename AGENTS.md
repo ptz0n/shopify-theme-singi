@@ -88,11 +88,16 @@ Detailed recipes are in [docs/extending.md](docs/extending.md). Short forms:
 | Color siblings (separate products linked as colors) | `blocks/_color-siblings.liquid`, `scripts/lib/siblings.mjs`, [decision 003](docs/decisions/003-color-siblings-product-list.md) |
 | Variant switching and add to cart | `assets/product-form.js`, `blocks/_variant-picker.liquid`, `blocks/_buy-buttons.liquid` |
 | Cart updates | `assets/cart-items.js`, `sections/main-cart.liquid` |
+| Cart drawer | `sections/cart-drawer.liquid`, `assets/cart-drawer.js`, [decision 020](docs/decisions/020-cart-drawer-reuses-cart-items.md) |
+| Sticky add to cart bar | `snippets/sticky-buy.liquid`, `assets/sticky-buy.js`, `blocks/_buy-buttons.liquid`, [decision 021](docs/decisions/021-sticky-add-to-cart-submits-the-product-form.md) |
+| Quick add and quick buy on cards | `snippets/product-card.liquid`, `assets/quick-add.js`, `assets/quick-buy.js`, `sections/quick-buy.liquid`, decisions [012](docs/decisions/012-quick-add-for-single-variant-products.md), [022](docs/decisions/022-quick-buy-is-the-product-form-in-a-dialog.md), [023](docs/decisions/023-add-to-cart-answers-with-the-drawer-and-quick-buy-warms-on-intent.md) |
+| USP list, feature highlights | `blocks/usp-list.liquid`, `blocks/feature-list.liquid` and their `_usp-item`, `_feature-item` children, decisions [025](docs/decisions/025-usp-list-is-a-list-of-item-blocks.md), [026](docs/decisions/026-feature-list-is-a-list-of-item-blocks.md) |
 | Filtering and sorting | `assets/facets.js`, `sections/main-collection.liquid` |
 | Client-side navigation | `assets/soft-nav.js`, `snippets/skeletons.liquid` |
 | Settings | `config/settings_schema.json` |
 | Strings | `locales/en.default.json` |
 | Repo rules and budgets | `scripts/check.mjs` |
+| Roadmap and its status | `todo.md` |
 | Why something is built the way it is | [docs/decisions/](docs/decisions/README.md) |
 | Preview every component (light, dark, RTL, a11y audit) | `sections/main-styleguide.liquid`, [docs/component-library.md](docs/component-library.md) |
 

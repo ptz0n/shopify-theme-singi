@@ -51,7 +51,11 @@
     "quantity_increase": "Aumentar quantidade",
     "quantity_min": "Mínimo {{ count }}",
     "quantity_multiple": "Múltiplos de {{ count }}",
-    "quantity_max": "Máximo {{ count }}"
+    "quantity_max": "Máximo {{ count }}",
+    "order_price": "Preço",
+    "order_quantity_for": "Quantidade para {{ variant }}",
+    "order_items": "Artigos",
+    "order_reset": "Limpar"
   },
   "collection": {
     "price_from": "De",

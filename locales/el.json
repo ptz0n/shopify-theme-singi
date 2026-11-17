@@ -51,7 +51,11 @@
     "quantity_increase": "Αύξηση ποσότητας",
     "quantity_min": "Ελάχιστο {{ count }}",
     "quantity_multiple": "Πολλαπλάσια του {{ count }}",
-    "quantity_max": "Μέγιστο {{ count }}"
+    "quantity_max": "Μέγιστο {{ count }}",
+    "order_price": "Τιμή",
+    "order_quantity_for": "Ποσότητα για {{ variant }}",
+    "order_items": "Προϊόντα",
+    "order_reset": "Εκκαθάριση"
   },
   "collection": {
     "price_from": "Από",

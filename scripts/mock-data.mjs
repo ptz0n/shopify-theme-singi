@@ -98,6 +98,18 @@ export const PRODUCTS = [
     collections: ['mock-new-arrivals'],
   },
   {
+    handle: 'mock-3d-model',
+    title: '3D Model, Skipped in the Gallery',
+    type: 'Prints',
+    vendor: 'Singi Editions',
+    price: '52.00',
+    description: '<p>A product with one image and one 3D model (a cube, made by scripts/lib/mock-model.mjs), to check that the gallery and the zoom skip the model and leave no empty cell. The theme has no 3D viewer (docs/media.md).</p>',
+    options: [],
+    model: true,
+    images: ['poster-1'],
+    collections: ['mock-edge-cases'],
+  },
+  {
     handle: 'mock-limited-stock',
     title: 'Limited Stock, Three Left',
     type: 'Prints',
@@ -205,6 +217,7 @@ PRODUCTS.push(
     vendor: 'Singi',
     price: '64.00',
     description: '<p>Four colors with three images each. Every color variant has its own image, and the three sizes of a color share it. Switching color must change the gallery to that color.</p>',
+    template: 'order',
     options: withOptions([
       { name: 'Color', values: colors },
       { name: 'Size', values: sizes.slice(0, 3) },
@@ -265,11 +278,11 @@ PRODUCTS.push(
 /* Products linked as color siblings, both ways, with each product's swatch color. See scripts/lib/siblings.mjs. */
 export const SIBLING_GROUPS = [
   [
-    { handle: 'mock-shirt-black', color: '#1d1d1f' },
-    { handle: 'mock-shirt-sand', color: '#d8c7a5' },
-    { handle: 'mock-shirt-moss', color: '#6b7a4f' },
-    { handle: 'mock-shirt-clay', color: '#b5654a' },
-    { handle: 'mock-shirt-stripe', color: ['#1d1d1f', '#f2efe8'] },
+    { handle: 'mock-shirt-black', color: '#1d1d1f', name: 'Black' },
+    { handle: 'mock-shirt-sand', color: '#d8c7a5', name: 'Sand' },
+    { handle: 'mock-shirt-moss', color: '#6b7a4f', name: 'Moss' },
+    { handle: 'mock-shirt-clay', color: '#b5654a', name: 'Clay' },
+    { handle: 'mock-shirt-stripe', color: ['#1d1d1f', '#f2efe8'], name: 'Striped' },
     { handle: 'mock-shirt-harbor', color: ['#1d3b5c', '#f2efe8', '#b5654a'] },
   ],
 ];

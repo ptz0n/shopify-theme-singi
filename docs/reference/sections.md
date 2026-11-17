@@ -4,6 +4,19 @@
 
 Files in `sections/`. Sections are thin: markup for the page region plus a slot for blocks.
 
+## cart-drawer
+
+File: `sections/cart-drawer.liquid` · Editor name: **Cart drawer** · template-bound
+
+The cart drawer: one native <dialog> on every page, opened by the header cart link and after an add to cart.
+Without JavaScript the link goes to the cart page and this dialog is never shown. The lines are the same
+<cart-items> element as the cart page, so assets/cart-items.js updates them through the Section Rendering API
+(section id "cart-drawer", from sections/header-group.json). assets/cart-drawer.js opens it and refreshes it
+when the cart changed somewhere else. Turn it off with the setting "Show the cart in a drawer".
+Decision record: docs/decisions/020-cart-drawer-reuses-cart-items.md.
+
+_No settings._
+
 ## content
 
 File: `sections/content.liquid` · Editor name: **Custom content** · addable in the editor
@@ -192,7 +205,7 @@ merchant-orderable blocks.
 The first image is the LCP candidate: eager, fetchpriority=high, preloaded.
 Every other image lazy loads.
 
-Accepts blocks: `@app`, `_product-title`, `_product-price`, `_color-siblings`, `_size-guide`, `_product-policies`, `_product-specs`, `_variant-picker`, `_buy-buttons`, `_product-description`, `_product-meta`, `@theme`
+Accepts blocks: `@app`, `_product-title`, `_product-price`, `_color-siblings`, `_size-guide`, `_product-policies`, `_product-specs`, `_variant-picker`, `_buy-buttons`, `_variants-table`, `_product-description`, `_product-meta`, `@theme`
 
 _No settings._
 
@@ -241,8 +254,21 @@ pages and articles and the "Show all" button sit below it. The markup is in snip
 
 _No settings._
 
+## quick-buy
+
+File: `sections/quick-buy.liquid` · Editor name: **Quick buy** · template-bound
+
+The content of the quick buy dialog on product cards. Never placed on a page: assets/quick-buy.js fetches it
+from /products/<handle>?section_id=quick-buy (Section Rendering API) and puts it in one native dialog, so the
+product is the page's product here. It is the product page's own price, variant picker and buy buttons blocks
+(static, private blocks) inside a <product-form>, so choosing options and adding work as on the product page,
+and a variant change re-fetches this same section. blocks/_buy-buttons.liquid leaves out the sticky bar and the
+dynamic checkout buttons when it renders here. Decision record: docs/decisions/022-quick-buy-is-the-product-form-in-a-dialog.md.
+
+_No settings._
+
 ## Section groups
 
 - `sections/footer-group.json`: Footer (`footer`)
-- `sections/header-group.json`: Header (`header`)
+- `sections/header-group.json`: Header (`header`, `cart-drawer`)
 

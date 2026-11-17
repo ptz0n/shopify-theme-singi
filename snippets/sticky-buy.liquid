@@ -1,0 +1,53 @@
+{% doc %}
+  The sticky add to cart bar of the product page: the product title, the chosen options, the price and an
+  Add to cart button, fixed to the bottom edge of the screen once the buy box has scrolled out of view above and
+  hidden again when the footer is reached. It is outside the page flow, so nothing moves when it appears.
+  Decision record: docs/decisions/021-sticky-add-to-cart-submits-the-product-form.md.
+
+  The button is not a second form: it submits the product form by its `form` attribute, so the quantity that is
+  chosen, the add request, the cart drawer, the tracking event and the error message are the ones of the buy box.
+  The inside of the bar is a `data-swap` region, so assets/product-form.js replaces it from the server's response
+  when the variant changes (price, options, sold out). Without JavaScript the bar is never shown.
+
+  Rendered by blocks/_buy-buttons.liquid when "Show a sticky add to cart bar" is on.
+
+  @param {variant} variant - the selected or first available variant
+  @param {string} form_id - id of the product form the button submits
+
+  @example
+  {% render 'sticky-buy', variant: variant, form_id: form_id %}
+{% enddoc %}
+
+<sticky-buy class="sticky-buy" data-target=".buy">
+  <div class="sticky-buy__inner" data-swap="sticky">
+    <div class="sticky-buy__info">
+      <p class="sticky-buy__title">{{ product.title }}</p>
+      <div class="sticky-buy__meta">
+        {%- unless product.has_only_default_variant -%}
+          <span class="muted mono sticky-buy__variant">{{ variant.title }}</span>
+        {%- endunless -%}
+        {%- render 'price', price: variant.price, compare_at_price: variant.compare_at_price -%}
+      </div>
+    </div>
+    <button class="button sticky-buy__button" type="submit" form="{{ form_id }}"{% unless variant.available %} disabled{% endunless %}>
+      {%- if variant.available -%}
+        {{ 'products.add_to_cart' | t }}
+      {%- else -%}
+        {{ 'products.sold_out' | t }}
+      {%- endif -%}
+    </button>
+  </div>
+</sticky-buy>
+
+<script src="{{ 'sticky-buy.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .sticky-buy { position: fixed; z-index: 5; inset-inline: 0; inset-block-end: 0; padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom)); border-block-start: 1px solid var(--color-border); background: var(--color-bg); transform: translateY(100%); visibility: hidden; transition: transform 0.2s ease-out, visibility 0s 0.2s; }
+  .sticky-buy[data-show] { transform: none; visibility: visible; transition-delay: 0s; }
+  .sticky-buy__inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 72rem; margin-inline: auto; }
+  .sticky-buy__info { min-width: 0; }
+  .sticky-buy__title { margin: 0; overflow: hidden; font-weight: var(--font-weight-strong); text-overflow: ellipsis; white-space: nowrap; }
+  .sticky-buy__meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.75rem; font-size: 0.875rem; }
+  .sticky-buy__button { flex: none; }
+  @media (prefers-reduced-motion: reduce) { .sticky-buy { transition: none; } }
+{% endstylesheet %}

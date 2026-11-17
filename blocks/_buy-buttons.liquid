@@ -2,7 +2,8 @@
   Quantity, add to cart with the wishlist toggle beside it (an icon button, named
   for screen readers with aria-label and aria-pressed), and dynamic checkout buttons. Works with no JavaScript
   (a normal form post); assets/product-form.js upgrades it to add without a
-  page load. Private to product sections.
+  page load. Private to product sections. In the quick buy dialog (section id "quick-buy", decision 022) it
+  leaves out the sticky bar and the dynamic checkout buttons.
 {% enddoc %}
 
 {%- liquid
@@ -12,6 +13,11 @@
     overselling is denied, the stock also caps the maximum. The stock number is never shown (decision 015).
   endcomment
   assign rule = variant.quantity_rule
+  assign form_id = 'buy-form-' | append: section.id
+  assign in_dialog = false
+  if section.id == 'quick-buy'
+    assign in_dialog = true
+  endif
   assign qty_max = rule.max
   if variant.available and variant.inventory_management != blank and variant.inventory_policy == 'deny'
     if qty_max == blank or variant.inventory_quantity < qty_max
@@ -21,7 +27,7 @@
 -%}
 
 <div class="buy stack" {{ block.shopify_attributes }}>
-  {%- form 'product', product, data-add-to-cart: '', class: 'buy__form stack' -%}
+  {%- form 'product', product, id: form_id, data-add-to-cart: '', class: 'buy__form stack' -%}
     <input type="hidden" name="id" value="{{ variant.id }}">
 
     {%- if block.settings.show_quantity -%}
@@ -50,7 +56,7 @@
       {%- endif -%}
     </div>
 
-    {%- if block.settings.show_dynamic_checkout -%}
+    {%- if block.settings.show_dynamic_checkout and in_dialog == false -%}
       <div data-payment{% unless variant.available %} hidden{% endunless %}>{{ form | payment_button }}</div>
     {%- endif -%}
   {%- endform -%}
@@ -60,6 +66,10 @@
     <a href="{{ routes.cart_url }}" hidden>{{ 'products.view_cart' | t }}</a>
   </p>
 </div>
+
+{%- if block.settings.show_sticky_bar and in_dialog == false -%}
+  {%- render 'sticky-buy', variant: variant, form_id: form_id -%}
+{%- endif -%}
 
 {% stylesheet %}
   .buy {
@@ -89,6 +99,7 @@
   "name": "Buy buttons",
   "settings": [
     { "type": "checkbox", "id": "show_quantity", "label": "Show quantity selector", "default": true, "info": "When hidden, the button adds one item." },
+    { "type": "checkbox", "id": "show_sticky_bar", "label": "Show a sticky add to cart bar", "default": true, "info": "A bar with the price and an Add to cart button at the bottom of the screen once the buy buttons have scrolled out of view. Loads one small script." },
     { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout buttons", "default": true, "info": "Loads Shopify's payment button script. Turn off for the best performance score." }
   ]
 }

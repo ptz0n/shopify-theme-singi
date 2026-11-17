@@ -51,7 +51,11 @@
     "quantity_increase": "مقدار بڑھائیں",
     "quantity_min": "کم از کم {{ count }}",
     "quantity_multiple": "{{ count }} کے ضرب",
-    "quantity_max": "زیادہ سے زیادہ {{ count }}"
+    "quantity_max": "زیادہ سے زیادہ {{ count }}",
+    "order_price": "قیمت",
+    "order_quantity_for": "{{ variant }} کی مقدار",
+    "order_items": "اشیاء",
+    "order_reset": "صاف کریں"
   },
   "collection": {
     "price_from": "از",

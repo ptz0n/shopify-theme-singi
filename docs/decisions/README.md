@@ -41,3 +41,11 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [016](016-contextual-product-links-keep-the-canonical.md) | Product links from a collection can carry the collection, and the canonical stays plain | SEO, navigation, product page |
 | [017](017-card-video-previews-play-on-hover-or-focus-only.md) | A card's video preview plays on hover or focus only, and loads nothing before | product card, performance, accessibility |
 | [018](018-youtube-is-a-poster-until-it-is-pressed.md) | YouTube is a poster and a play button until it is pressed, and all video starts muted | product page, media, performance, privacy |
+| [019](019-order-table-is-a-product-block.md) | The order table is a product block with one row per variant and one Add to cart | product page, cart, accessibility |
+| [020](020-cart-drawer-reuses-cart-items.md) | The cart drawer is one native dialog that reuses `<cart-items>`; the cart page stays the fallback | cart, navigation, accessibility |
+| [021](021-sticky-add-to-cart-submits-the-product-form.md) | The sticky add to cart bar submits the product form, and shows only between the buy box and the footer | product page, cart, accessibility |
+| [022](022-quick-buy-is-the-product-form-in-a-dialog.md) | Quick buy is the product page's own form in one dialog, rendered by the server; the card button is a link | product card, cart, accessibility |
+| [023](023-add-to-cart-answers-with-the-drawer-and-quick-buy-warms-on-intent.md) | An add to cart answers with the drawer's markup (one request), and quick buy loads when the pointer arrives | cart, perceived performance |
+| [024](024-option-labels-name-the-chosen-value.md) | Option labels name the chosen value ("Color: Grey"), and color siblings get an optional color name | product page, accessibility, data model |
+| [025](025-usp-list-is-a-list-of-item-blocks.md) | A USP list is one public block holding private item blocks, with plain list semantics and no script | content blocks, product page, accessibility |
+| [026](026-feature-list-is-a-list-of-item-blocks.md) | Feature highlights are one public block holding private item blocks, with lazy images cropped to one ratio | content blocks, product page, performance |

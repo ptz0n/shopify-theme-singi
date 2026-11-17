@@ -51,7 +51,11 @@
     "quantity_increase": "הגדל כמות",
     "quantity_min": "מינימום {{ count }}",
     "quantity_multiple": "כפולות של {{ count }}",
-    "quantity_max": "מקסימום {{ count }}"
+    "quantity_max": "מקסימום {{ count }}",
+    "order_price": "מחיר",
+    "order_quantity_for": "כמות עבור {{ variant }}",
+    "order_items": "פריטים",
+    "order_reset": "נקה"
   },
   "collection": {
     "price_from": "מ-",

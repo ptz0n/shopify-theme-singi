@@ -51,7 +51,11 @@
     "quantity_increase": "Lisää määrää",
     "quantity_min": "Vähintään {{ count }}",
     "quantity_multiple": "{{ count }} monikerrat",
-    "quantity_max": "Enintään {{ count }}"
+    "quantity_max": "Enintään {{ count }}",
+    "order_price": "Hinta",
+    "order_quantity_for": "Määrä: {{ variant }}",
+    "order_items": "Tuotteet",
+    "order_reset": "Tyhjennä"
   },
   "collection": {
     "price_from": "Alkaen",

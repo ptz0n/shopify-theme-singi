@@ -51,7 +51,11 @@
     "quantity_increase": "Crește cantitatea",
     "quantity_min": "Minimum {{ count }}",
     "quantity_multiple": "Multipli de {{ count }}",
-    "quantity_max": "Maximum {{ count }}"
+    "quantity_max": "Maximum {{ count }}",
+    "order_price": "Preț",
+    "order_quantity_for": "Cantitate pentru {{ variant }}",
+    "order_items": "Articole",
+    "order_reset": "Șterge"
   },
   "collection": {
     "price_from": "De la",

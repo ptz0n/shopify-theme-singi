@@ -50,3 +50,13 @@ Shopify resolves each connected setting when the page renders. Measured with `np
 2. Render nothing when it is blank, even in the editor. Show the editor hint (`snippets/placeholder.liquid`) only when the block itself is unfinished (for example no title), never when a connected value is merely empty for this product.
 3. Keep the line breaks of multi-line text (`white-space: pre-line` on the paragraph, as the accordion does).
 4. Add a case for it to `scripts/test-details.mjs`, including a product that lacks the data.
+
+## Metafields the theme itself reads (namespace `singi`)
+
+Unlike the suggested `custom.*` keys above, these are part of the theme's contract. They are created on the dev store by `npm run siblings -- define --apply` and written by `npm run siblings -- link ...` (see [decision 003](decisions/003-color-siblings-product-list.md) and [decision 024](decisions/024-option-labels-name-the-chosen-value.md)).
+
+| Key | Type | Used by |
+| --- | --- | --- |
+| `singi.color_siblings` | `list.product_reference` | `_color-siblings`: the whole color group, this product included, the same list on every member, in swatch order. |
+| `singi.color` | `list.color` | The swatch of this product: one to three hex colors (several split the swatch on the diagonal). |
+| `singi.color_name` | `single_line_text_field` | Optional. The color's name, so the label reads "Color: Moss". |

@@ -51,7 +51,11 @@
     "quantity_increase": "प्रमाण वाढवा",
     "quantity_min": "किमान {{ count }}",
     "quantity_multiple": "{{ count }} च्या पटीत",
-    "quantity_max": "कमाल {{ count }}"
+    "quantity_max": "कमाल {{ count }}",
+    "order_price": "किंमत",
+    "order_quantity_for": "{{ variant }} साठी प्रमाण",
+    "order_items": "आयटम",
+    "order_reset": "साफ करा"
   },
   "collection": {
     "price_from": "पासून",

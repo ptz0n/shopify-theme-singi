@@ -51,7 +51,11 @@
     "quantity_increase": "Павялічыць колькасць",
     "quantity_min": "Мінімум {{ count }}",
     "quantity_multiple": "Кратна {{ count }}",
-    "quantity_max": "Максімум {{ count }}"
+    "quantity_max": "Максімум {{ count }}",
+    "order_price": "Цана",
+    "order_quantity_for": "Колькасць для {{ variant }}",
+    "order_items": "Тавары",
+    "order_reset": "Ачысціць"
   },
   "collection": {
     "price_from": "Ад",

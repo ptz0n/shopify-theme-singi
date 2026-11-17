@@ -51,7 +51,11 @@
     "quantity_increase": "Sayı artır",
     "quantity_min": "Minimum {{ count }}",
     "quantity_multiple": "{{ count }} qatları",
-    "quantity_max": "Maksimum {{ count }}"
+    "quantity_max": "Maksimum {{ count }}",
+    "order_price": "Qiymət",
+    "order_quantity_for": "{{ variant }} üçün miqdar",
+    "order_items": "Məhsullar",
+    "order_reset": "Təmizlə"
   },
   "collection": {
     "price_from": "Minimum",

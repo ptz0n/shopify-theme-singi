@@ -51,7 +51,11 @@
     "quantity_increase": "मात्रा बढ़ाएं",
     "quantity_min": "न्यूनतम {{ count }}",
     "quantity_multiple": "{{ count }} के गुणज",
-    "quantity_max": "अधिकतम {{ count }}"
+    "quantity_max": "अधिकतम {{ count }}",
+    "order_price": "कीमत",
+    "order_quantity_for": "{{ variant }} के लिए मात्रा",
+    "order_items": "आइटम",
+    "order_reset": "साफ़ करें"
   },
   "collection": {
     "price_from": "से",

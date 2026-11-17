@@ -4,6 +4,7 @@
  *
  *   product metafield singi.color_siblings   list.product_reference   the whole group, this product included, same list on every member
  *   product metafield singi.color            list.color (hex)        this product's swatch: 1 to 3 colors, split on the diagonal
+ *   product metafield singi.color_name       single_line_text_field  the color's name, shown as "Color: Moss" (optional; the swatch alone has no name)
  *
  * The GraphQL below is validated against the Admin API 2026-07 schema. Used by
  * scripts/siblings.mjs and scripts/mock-content.mjs.
@@ -14,6 +15,7 @@ import { OPS } from './mock-ops.mjs';
 export const NAMESPACE = 'singi';
 export const SIBLINGS_KEY = 'color_siblings';
 export const COLOR_KEY = 'color';
+export const COLOR_NAME_KEY = 'color_name';
 
 const DEFINE =
   'mutation SingiDefineMetafield($definition: MetafieldDefinitionInput!) { metafieldDefinitionCreate(definition: $definition) { createdDefinition { id namespace key type { name } } userErrors { field message code } } }';
@@ -36,6 +38,12 @@ export const DEFINITIONS = [
     name: 'Swatch colors',
     type: 'list.color',
     description: 'The colors shown as this product\'s swatch when it is linked as a color sibling: one color, or up to three for a multi-color product (split on the diagonal).',
+  },
+  {
+    key: COLOR_NAME_KEY,
+    name: 'Color name',
+    type: 'single_line_text_field',
+    description: 'The name of this product\'s color, shown next to the Color label on the product page as "Color: Moss" when it is linked as a color sibling. Optional.',
   },
 ];
 
@@ -154,7 +162,8 @@ export const linkGroup = async (entries, { apply }) => {
       value: JSON.stringify(resolved.map((other) => other.id)),
     },
     ...(entry.color ? [{ ownerId: entry.id, namespace: NAMESPACE, key: COLOR_KEY, type: 'list.color', value: JSON.stringify([entry.color].flat()) }] : []),
+    ...(entry.name ? [{ ownerId: entry.id, namespace: NAMESPACE, key: COLOR_NAME_KEY, type: 'single_line_text_field', value: entry.name }] : []),
   ]);
   if (apply) fail(await admin(SET, { metafields }), 'link');
-  return resolved.map((entry) => ({ handle: entry.handle, siblings: resolved.length - 1, color: [entry.color].flat().join(' + ') }));
+  return resolved.map((entry) => ({ handle: entry.handle, siblings: resolved.length - 1, color: [entry.color].flat().join(' + '), name: entry.name }));
 };

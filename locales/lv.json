@@ -51,7 +51,11 @@
     "quantity_increase": "Palielināt daudzumu",
     "quantity_min": "Minimums {{ count }}",
     "quantity_multiple": "{{ count }} daudzkārši",
-    "quantity_max": "Maksimums {{ count }}"
+    "quantity_max": "Maksimums {{ count }}",
+    "order_price": "Cena",
+    "order_quantity_for": "Daudzums: {{ variant }}",
+    "order_items": "Preces",
+    "order_reset": "Notīrīt"
   },
   "collection": {
     "price_from": "No",

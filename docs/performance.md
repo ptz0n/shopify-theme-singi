@@ -10,7 +10,7 @@ Every performance technique Singi uses and where it lives, the budgets, what is 
 | First-paint resources above `content_for_header` | `layout/theme.liquid` | FCP |
 | `content_for_header` kept a plain tag in `<head>` | `layout/theme.liquid` | FCP |
 | Critical CSS inlined (`inline_asset_content`), no render-blocking stylesheet request | `layout/theme.liquid`, `assets/base.css` | FCP |
-| Component CSS in `{% stylesheet %}`, subset per page by Shopify | snippets, blocks, sections | FCP, INP |
+| Component CSS in `{% stylesheet %}` (documented to be subset per page by Shopify; not confirmed on the dev theme, see [architecture.md](architecture.md#css-strategy)) | snippets, blocks, sections | FCP, INP |
 | Design tokens inlined, no CSS file for theme settings | `snippets/tokens.liquid` | FCP |
 | Fonts only from Shopify's CDN, `font-display: swap` | `snippets/tokens.liquid` | FCP |
 | Two weights only (400, 600), both preloaded as woff2 | `layout/theme.liquid` | LCP |
@@ -34,6 +34,8 @@ Every performance technique Singi uses and where it lives, the budgets, what is 
 | One level of `render` per card (`image`, `price`) | `snippets/product-card.liquid` | TTFB |
 | Settings assigned to variables once | sections and blocks | TTFB |
 | Section Rendering API for variant, cart and facets updates | `assets/product-form.js`, `cart-items.js`, `facets.js` | INP |
+| Add to cart answers with the cart drawer's markup in the same response (one request instead of three) | `assets/product-form.js`, `assets/cart-drawer.js` | perceived speed |
+| Quick buy section fetched on pointer or focus, so the dialog opens at once | `assets/quick-buy.js` | perceived speed |
 | Moderate-eagerness prefetch via Speculation Rules (Chromium) | `layout/theme.liquid` | navigation |
 | Soft navigation: intent prefetch, in-memory cache, skeletons (opt-in) | `assets/soft-nav.js` | navigation |
 | View Transitions (opt-in) | `snippets/tokens.liquid`, `assets/soft-nav.js` | perceived speed |
@@ -44,18 +46,11 @@ Every performance technique Singi uses and where it lives, the budgets, what is 
 
 ## Budgets
 
-Budgets are enforced by `scripts/check.mjs`, which is the source of truth. Do not duplicate numbers here. Current raw sizes at the time of writing:
+Budgets are enforced by `scripts/check.mjs`, which is the source of truth: it prints every module's raw size against its cap and the total brotli size of all modules (`npm run check`). Do not copy the numbers here, they move. The rules for moving one:
 
-| File | Bytes |
-| --- | --- |
-| `assets/base.css` | about 7.2 KB |
-| `assets/soft-nav.js` | about 7.2 KB |
-| `assets/product-form.js` | about 2.7 KB |
-| `assets/facets.js` | about 2.2 KB |
-| `assets/cart-items.js` | about 1.5 KB |
-| `assets/utils.js` | about 1.1 KB |
-
-Raw JavaScript is served unminified (Shopify only minifies ES5-compatible JS); the CDN applies Brotli. CSS from `assets/` is minified by Shopify, but the inlined copy in `<head>` is the raw file contents.
+- A budget moves only by the **measured** overage plus a little slack, never in advance, and the reason goes in the decision record of the feature that needed it (see decisions 020 to 024).
+- The caps count the **source** and are an upper bound. Shopify's CDN minifies what it serves (observed 2026-11-14 for a theme pushed with the CLI: comments and whitespace stripped, JavaScript and CSS 30 to 45 percent smaller than the source), so what visitors download is smaller; `npm run perf:sizes` measures that from the CDN.
+- `assets/base.css` is inlined in `<head>` as raw source, so its cap is also a cost for every page.
 
 ## What Shopify does for us
 
@@ -65,12 +60,10 @@ Brotli and gzip, HTTP/3, TLS 1.3, global CDN with versioned asset URLs, Early Hi
 
 | Feature | Why not |
 | --- | --- |
-| Cart drawer | Adds a dialog, a render path and JS for a feature the cart page already provides. The cart page updates in place via `<cart-items>`. Revisit with a measured conversion case. |
-| Predictive search | Large JS and a request per keystroke. Search is a plain form and server-rendered results page. |
 | Sliders and carousels | The product gallery uses CSS scroll-snap. Sliders cost INP and TBT. |
-| Localization selector listing every country | Looping `localization.available_countries` (hundreds of entries) on every page is Liquid cost on every request. Add it lazily if needed (render on demand via the Section Rendering API). |
+| A country selector that loops every country on every request | Looping `localization.available_countries` (hundreds of entries) on every page is Liquid cost on every request. The footer selector (`snippets/localization-selector.liquid`) renders the full list only for a store with 12 countries or fewer and fetches it on first open otherwise. |
 | Third-party scripts in the theme | Each one costs main-thread time. See [extending.md](extending.md#add-a-third-party-integration) for the rules when one is unavoidable. |
-| Quick add, recently viewed, comparison, hotspots | Not needed for the baseline. Each adds DOM and JS. |
+| Comparison, hotspots | Not needed for the baseline. Each adds DOM and JS. (Quick add, quick buy and recently viewed exist now, each behind a setting or a block.) |
 | Google Fonts or any remote font | Extra connection and mismatch with checkout. |
 
 ## Measuring
@@ -96,7 +89,7 @@ The four checks asked of every finished feature: **reuse** (is there one impleme
 | Related products block | `product-card`, `placeholder`, `.product-grid` | `products.related` in 62 locales, [decision 008](decisions/008-related-products-render-on-the-server.md) | block 21 ms down to 6 ms after fetching only the products that show; 0 JS, cached with the page | `test:related`, 20 checks |
 | Newsletter signup | one snippet for the footer and the block, unique ids | `newsletter.*` strings in 62 locales, logical properties | 0.48 ms (snippet), 0.95 ms with its block; 0 JS | `test:newsletter`, 28 checks |
 | Quote block | any content section | figure, blockquote, figcaption | 0.38 ms; 0 JS | `test:blocks`, 24 checks (caught the missing caption whitespace) |
-| Product grid block | `snippets/product-grid` shared with Featured collection | same cards, loading and tracking | home featured collection 32.1 ms before, 32.7 ms after the refactor | `test:blocks` |
+| Product grid block | `snippets/product-grid.liquid` shared with Featured collection | same cards, loading and tracking | home featured collection 32.1 ms before, 32.7 ms after the refactor | `test:blocks` |
 | Hide .00 on whole prices | one setting for 7 places, table in [design-system.md](design-system.md#price-formatting) | `check.mjs` rule fails any unguarded `\| money` | product page 32.5 ms against 35.3 ms before; 0 JS | `test:price-format`, both modes |
 | Popover guards (menu, search) | one attribute, `data-overlay`, any panel that dims the page | [decision 009](decisions/009-popovers-swallow-the-dismissing-click.md), WCAG 2.4.3, 2.4.11, 2.5.2, 3.2.1 | 1 microsecond per focus change; search module 1,913 B delivered | `test:popovers`, 39 checks |
 | Split hero layout | one section, one setting; overlay colors scoped to `.hero--overlay` | text on page colors, 18:1 or better in light and dark | +78 B delivered CSS; 0 JS | `test:hero`, 66 checks |
@@ -112,6 +105,10 @@ The four checks asked of every finished feature: **reuse** (is there one impleme
 | Quantity limits (the variant's rule, a hint, a silent stock cap) | one quantity snippet for the product page, the cart and the component library; the rule is data, not a setting | [decision 015](decisions/015-quantity-limits-follow-the-rule-and-never-name-the-stock.md), `products.quantity_min`, `quantity_multiple`, `quantity_max` in 62 locales, WCAG 3.3.2 | no hint and no change for variants without a rule; `quantity-input.js` and `product-form.js` +250 B as source together (budgets raised on purpose); the stock cap is seen working on `mock-limited-stock` (max 3, no stock number shown) | `test:quantity`, all parts run |
 | Contextual product links (off by default) | one `within` call in the shared product card, on collection pages only | [decision 016](decisions/016-contextual-product-links-keep-the-canonical.md), canonical stays plain, no `nofollow` | no cost: collection render 35.7 to 39.5 ms on against 38.6 to 40.1 ms off; 0 JS, 0 CSS | `test:contextual`, 13 checks on and 2 off |
 | Video preview on cards (off by default) | one element per card that has a hosted video, one set of delegated handlers | [decision 017](decisions/017-card-video-previews-play-on-hover-or-focus-only.md), WCAG 2.2.2 and 2.3.3 (reduced motion, stops on leaving) | `card-video.js` 388 B delivered, only with the setting on; CSS +45 B; no video bytes before the first hover; collection render 41.0 to 43.0 ms on against 37.7 to 41.2 ms off | `test:card-video`, 19 checks on and 1 off |
+| Cart drawer (on by default, setting) | the cart page's `<cart-items>`, one native dialog, the Section Rendering API | [decision 020](decisions/020-cart-drawer-reuses-cart-items.md), `prefers-reduced-motion`, 44px targets | `cart-drawer.js` 571 B brotli source; add to drawer 1184 ms to 616 ms after [decision 023](decisions/023-add-to-cart-answers-with-the-drawer-and-quick-buy-warms-on-intent.md) (dev store lab, 7 runs) | `test:cart-drawer`, 16 checks |
+| Sticky add to cart bar (on by default, block setting) | submits the buy box's own form, `data-swap` region | [decision 021](decisions/021-sticky-add-to-cart-submits-the-product-form.md) | `sticky-buy.js` 238 B brotli source, no layout shift (page height checked) | `test:sticky-buy`, 12 checks |
+| Quick buy on cards (off by default) | the product page's price, picker and buy blocks through one section | [decision 022](decisions/022-quick-buy-is-the-product-form-in-a-dialog.md), `wishlist.choose_options` reused | `quick-buy.js` 612 B brotli source; dialog open about 15 ms after the pointer arrived first (lab) | `test:quick-buy`, 17 checks |
+| Zoom placeholder | the gallery image already loaded | [decision 014](decisions/014-product-image-zoom-is-a-native-dialog.md) addendum | +~110 B brotli in `zoom.js`, no extra request | `test:zoom`, 152 checks |
 | App blocks (`@app`) in content and product sections | one schema entry per section | accepted by `shopify theme check` and the theme push | 0 | not testable here: needs an app on the store |
 
 Delivered totals after all of the above (CDN, brotli): CSS 7.4 KB; JavaScript 5.5 KB (home), 6.6 KB (collection), 9.8 KB (product). Not yet measured: Lighthouse Performance, Best practices and LCP, which need a run against the real storefront ([testing.md](testing.md#results)).

@@ -1,0 +1,45 @@
+{% comment %}
+  The content of the quick buy dialog on product cards. Never placed on a page: assets/quick-buy.js fetches it
+  from /products/<handle>?section_id=quick-buy (Section Rendering API) and puts it in one native dialog, so the
+  product is the page's product here. It is the product page's own price, variant picker and buy buttons blocks
+  (static, private blocks) inside a <product-form>, so choosing options and adding work as on the product page,
+  and a variant change re-fetches this same section. blocks/_buy-buttons.liquid leaves out the sticky bar and the
+  dynamic checkout buttons when it renders here. Decision record: docs/decisions/022-quick-buy-is-the-product-form-in-a-dialog.md.
+{% endcomment %}
+
+{%- assign variant = product.selected_or_first_available_variant -%}
+{%- if settings.tracking_enabled -%}
+  {%- capture tracking_item -%}{%- render 'tracking-item', product: product, variant: variant -%}{%- endcapture -%}
+{%- endif -%}
+
+<div data-quick-buy-panel data-title="{{ product.title | escape }}">
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-inline-end: -0.75rem">
+    <h2 class="h3"><a href="{{ product.url }}">{{ product.title }}</a></h2>
+    <button class="icon-button" type="button" data-close aria-label="{{ 'general.close' | t }}">{%- render 'icon', name: 'close' -%}</button>
+  </div>
+
+  <product-form
+    class="stack"
+    data-handle="{{ product.handle }}"
+    data-section-id="{{ section.id }}"
+    data-cart-url="{{ routes.cart_url }}"
+    data-added="{{ 'products.added' | t }}"
+    data-label-add="{{ 'products.add_to_cart' | t }}"
+    data-label-sold-out="{{ 'products.sold_out' | t }}"
+    data-error="{{ 'products.add_error' | t }}"
+    {% if settings.tracking_enabled %}
+      data-item="{{ tracking_item | strip | escape }}"
+    {% endif %}
+  >
+    {% content_for 'block', type: '_product-price', id: 'price' %}
+    {% content_for 'block', type: '_variant-picker', id: 'picker' %}
+    {% content_for 'block', type: '_buy-buttons', id: 'buy' %}
+  </product-form>
+</div>
+
+{% schema %}
+{
+  "name": "Quick buy",
+  "settings": []
+}
+{% endschema %}

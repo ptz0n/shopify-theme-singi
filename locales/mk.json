@@ -51,7 +51,11 @@
     "quantity_increase": "Зголеми количина",
     "quantity_min": "Минимум {{ count }}",
     "quantity_multiple": "Повеќекратници на {{ count }}",
-    "quantity_max": "Максимум {{ count }}"
+    "quantity_max": "Максимум {{ count }}",
+    "order_price": "Цена",
+    "order_quantity_for": "Количина за {{ variant }}",
+    "order_items": "Артикли",
+    "order_reset": "Исчисти"
   },
   "collection": {
     "price_from": "Од",

@@ -51,7 +51,11 @@
     "quantity_increase": "Mennyiség növelése",
     "quantity_min": "Minimum: {{ count }}",
     "quantity_multiple": "{{ count }} többszörösei",
-    "quantity_max": "Maximum: {{ count }}"
+    "quantity_max": "Maximum: {{ count }}",
+    "order_price": "Ár",
+    "order_quantity_for": "Mennyiség: {{ variant }}",
+    "order_items": "Tételek",
+    "order_reset": "Törlés"
   },
   "collection": {
     "price_from": "Ettől",

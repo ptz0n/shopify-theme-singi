@@ -51,7 +51,11 @@
     "quantity_increase": "Ավելացնել քանակը",
     "quantity_min": "Նվազագույնը՝ {{ count }}",
     "quantity_multiple": "{{ count }}-ի բազմապատիկներ",
-    "quantity_max": "Առավելագույնը՝ {{ count }}"
+    "quantity_max": "Առավելագույնը՝ {{ count }}",
+    "order_price": "Գին",
+    "order_quantity_for": "{{ variant }}-ի քանակ",
+    "order_items": "Ապրանքներ",
+    "order_reset": "Մաքրել"
   },
   "collection": {
     "price_from": "Սկսած",

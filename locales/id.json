@@ -51,7 +51,11 @@
     "quantity_increase": "Tambah jumlah",
     "quantity_min": "Minimum {{ count }}",
     "quantity_multiple": "Kelipatan {{ count }}",
-    "quantity_max": "Maksimum {{ count }}"
+    "quantity_max": "Maksimum {{ count }}",
+    "order_price": "Harga",
+    "order_quantity_for": "Jumlah untuk {{ variant }}",
+    "order_items": "Item",
+    "order_reset": "Hapus"
   },
   "collection": {
     "price_from": "Dari",

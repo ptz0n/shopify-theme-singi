@@ -86,7 +86,7 @@ Every integration costs main-thread time, network and often layout shift. Defaul
 
 ## Planned
 
-Nothing in this section exists yet. These are intended designs, in rough priority order.
+Nothing in this section exists yet. These are intended designs, in rough priority order. (Things that were planned here and are built now: the footer country and language selector, product video, the cart drawer, quick buy, the sticky add to cart bar, the USP list and the feature list.)
 
 ### Native Klaviyo signup
 
@@ -111,4 +111,4 @@ Cheap, CSS-first details that never touch the LCP element:
 
 ### Other candidates
 
-A lazily rendered language and country selector, product recommendations fetched lazily from `/recommendations/products`, video and 3D media in the gallery, and an automated scheduled Lighthouse run.
+Product recommendations fetched lazily from `/recommendations/products`, 3D media in the gallery, and an automated scheduled Lighthouse run. The prioritized roadmap, with what is done and what was verified, is `todo.md` in the repository root.

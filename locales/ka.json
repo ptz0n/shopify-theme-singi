@@ -51,7 +51,11 @@
     "quantity_increase": "რაოდენობის გაზრდა",
     "quantity_min": "მინიმუმ {{ count }}",
     "quantity_multiple": "{{ count }}-ის ჯერადი",
-    "quantity_max": "მაქსიმუმ {{ count }}"
+    "quantity_max": "მაქსიმუმ {{ count }}",
+    "order_price": "ფასი",
+    "order_quantity_for": "რაოდენობა: {{ variant }}",
+    "order_items": "ნივთები",
+    "order_reset": "გასუფთავება"
   },
   "collection": {
     "price_from": "დან",

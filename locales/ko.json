@@ -51,7 +51,11 @@
     "quantity_increase": "수량 늘리기",
     "quantity_min": "최소 {{ count }}",
     "quantity_multiple": "{{ count }}의 배수",
-    "quantity_max": "최대 {{ count }}"
+    "quantity_max": "최대 {{ count }}",
+    "order_price": "가격",
+    "order_quantity_for": "{{ variant }} 수량",
+    "order_items": "상품",
+    "order_reset": "지우기"
   },
   "collection": {
     "price_from": "최소",

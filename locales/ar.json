@@ -51,7 +51,11 @@
     "quantity_increase": "زيادة الكمية",
     "quantity_min": "الحد الأدنى {{ count }}",
     "quantity_multiple": "من مضاعفات {{ count }}",
-    "quantity_max": "الحد الأقصى {{ count }}"
+    "quantity_max": "الحد الأقصى {{ count }}",
+    "order_price": "السعر",
+    "order_quantity_for": "الكمية لـ {{ variant }}",
+    "order_items": "العناصر",
+    "order_reset": "مسح"
   },
   "collection": {
     "price_from": "من",

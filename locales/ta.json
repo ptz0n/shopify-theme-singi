@@ -51,7 +51,11 @@
     "quantity_increase": "அளவை அதிகரி",
     "quantity_min": "குறைந்தபட்சம் {{ count }}",
     "quantity_multiple": "{{ count }} இன் மடங்குகள்",
-    "quantity_max": "அதிகபட்சம் {{ count }}"
+    "quantity_max": "அதிகபட்சம் {{ count }}",
+    "order_price": "விலை",
+    "order_quantity_for": "{{ variant }} அளவு",
+    "order_items": "பொருட்கள்",
+    "order_reset": "அழி"
   },
   "collection": {
     "price_from": "குறைந்தபட்சம்",

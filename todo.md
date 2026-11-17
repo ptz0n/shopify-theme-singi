@@ -1,0 +1,217 @@
+# TODO: Prioritized roadmap for Singi
+
+> **Priority:** UX first for shoppers and merchants. A build step is acceptable if it delivers **measured** performance or user-experience gains. Keep Singi’s web-native, progressive-enhancement approach (no-JS fallbacks, no heavy/remote runtime dependencies).
+
+## Current goal
+
+**Work through this list in priority order (P0, then P1, then P2), one item at a time, until every unchecked item is done or blocked.**
+
+For each item:
+1. Read the decision records and code it touches, and look at any reference material the item names before choosing a design.
+2. Build the smallest version that meets the item's scope, with a no-JS fallback, logical properties, tokens, `t` keys in all locales and LiquidDoc.
+3. Add a browser test (`scripts/test-<name>.mjs` and an `npm run test:<name>` script) and run it against the dev store.
+4. Write or update a decision record, and run `npm run docs` and `npm run check`. Budgets only move by the measured overage plus a little slack, with the reason in the record.
+5. Tick the item in this file with a one-line status that says what was verified and what was not. Nothing counts as measured on a live store without a recorded result.
+
+Rules for the loop:
+- **Taste comes first.** However many features are added, Singi stays consistent, opinionated, simple and in good taste. Reuse the pattern that exists (native dialog, `data-swap`, a public list block with private item blocks, `.chip`, `.card-add`, tokens, the icon snippet) so a new feature looks like it was always there. Prefer one good default over another setting. Keep markup, CSS and JavaScript small and plain. Before ticking an item, ask whether it looks and behaves like the rest of the theme, and fix the difference instead of documenting it.
+- Do not stop to ask unless genuinely blocked (needs an account, a secret, a purchase, or a decision only the owner can make). Pick the conventional default, record it, and go on.
+- Do not commit, push, publish a theme or touch a store other than the dev store unless asked.
+- Items that need research first (bundles, multi-store selector, cookie consent) start with a short written finding from the repos they name.
+- Next up: **variant-aware quick buy**, then **product image zoom placeholder**, then the perceived-performance exploration, then the P1 list top to bottom.
+
+## Personas (who we optimize for)
+
+| Persona | Goals | Friction to remove | Primary surfaces |
+| --- | --- | --- | --- |
+| **P1 Mobile impulse / single-item shopper** | Buy quickly with confidence on a phone | Extra taps, context loss, hidden costs/availability, slow feedback | Collection cards, PDP buy box, cart/checkout handoff |
+| **P2 Considered shopper** | Understand product, compare options/variants, trust quality and policies | Missing details, unclear variants/stock, poor media/zoom, weak trust signals | PDP media/details, variant selection, policies, reviews/UGC areas |
+| **P3 Discovery/browser** | Explore catalog/content and find relevant products/promos | Weak navigation, poor merchandising cues, hard-to-scan content | Home/landing, nav/search, collections, editorial/story blocks |
+| **P4 Returning/reorder shopper** | Repeat purchase fast, resume context | Re-finding items, rebuilding intent, slow paths to checkout | Search/recent, cart, quick-buy patterns |
+| **P5 Merchant/store owner** | Configure a credible, converting storefront without custom dev/app sprawl | Missing common theme features, brittle settings, poor defaults | Theme editor settings/sections/blocks, promos, trust/content modules |
+| **P6 Developer/contributor** | Ship safe changes quickly with confidence | Regressions in interactive JS, unclear tooling/contracts, slow feedback loops | Tooling, type checks, linting, tests/docs |
+
+## Research basis (why this order)
+
+- **Baymard Institute (checkout/cart & product UX benchmarks):** cart/checkout and product-page friction remain major abandonment drivers (e.g. ~70% average cart abandonment benchmark; extra/unclear costs and flow friction are recurring causes; many sites rate mediocre-or-worse on checkout/product UX). Implication: prioritize **low-friction purchase flows, clear feedback, and cost/availability clarity**.
+  - https://baymard.com/research/checkout-usability
+  - https://baymard.com/blog/current-state-of-checkout-ux
+  - https://baymard.com/research-articles/current-state-ecommerce-product-page-ux
+- **Nielsen Norman Group (ecommerce/product page guidance):** product pages must make options, availability, and add-to-cart feedback unambiguous; supporting content (imagery/zoom, details, trust) reduces uncertainty. Implication: prioritize **PDP clarity, media quality, and confidence-building content**.
+  - https://www.nngroup.com/articles/ecommerce-product-pages/
+  - https://www.nngroup.com/reports/ecommerce-user-experience/
+- **Shopify Theme Store norms (Horizon/Dawn-era + premium leaders like Impact/Prestige/Impulse/Stiletto):** common high-expectation features include cart drawer/slide-out cart, quick buy/add, sticky add-to-cart, promo/announcement bars, rich media/zoom, swatches/filters/mega menus, and trust/USP merchandising. Implication: close **table-stakes conversion gaps** where they fit Singi’s minimal/perf model.
+  - https://themes.shopify.com/
+- **Practical conversion patterns (industry case/teardown syntheses):** cart drawers and fast-buy paths can reduce steps for high-intent shoppers, but must not harm AOV or accessibility; results vary and should be validated per store. Implication: ship as **progressive, measurable, opt-in enhancements** with strong no-JS/a11y behavior.
+
+## P0 — Critical UX (highest shopper + merchant impact)
+
+- [x] **Cart drawer / slide-out cart (progressive enhancement)** — *P1,P2,P4,P5*  
+  - *Status:* core scope built (decision 020, `npm run test:cart-drawer`, 16 checks pass on the dev store; not measured on a live store). The follow-ons below are still open.  
+  - *Why:* Removes context switching between browsing/PDP and cart (major Theme Store norm; aligns with Baymard friction-reduction). Keep `/cart` as no-JS/fallback destination.  
+  - *Scope:* open from add-to-cart/header, line edit/quantity/remove, subtotal/checkout CTA, clear errors/success feedback, focus trap + return focus, reduced-motion-safe transitions, Section Rendering API/cart update reuse.
+  - *Follow-ons (later):* free-shipping progress, cart note, recommendations/upsells (validate AOV impact).
+
+- [x] **Sticky add-to-cart / mobile purchase bar** — *P1,P2,P4,P5*  
+  - *Status:* built (decision 021, `npm run test:sticky-buy`, 12 checks pass on the dev store; not measured on a live store). Shown on single-column layouts only: on a wide screen the details column is sticky, so the buy box stays in view.  
+  - *Why:* Keeps primary action available on long PDPs (common conversion pattern, especially mobile).  
+  - *Scope:* appears when buy box is out of view; reflects selected variant/price/availability; non-obstructive (safe areas), keyboard/focus-safe, no-JS harmless.
+
+- [x] **Variant-aware quick buy / quick view path** — *P1,P3,P4,P5*  
+  - *Status:* built (decision 022, `npm run test:quick-buy`, 17 checks pass on the dev store with the setting on; not measured on a live store). Open question recorded there: whether a live store subsets the compiled CSS per page, which would affect the dialog.  
+  - *Why:* Extends Singi’s current simple quick-add to multi-variant products without forcing full PDP round-trips for high-intent users.  
+  - *Scope:* lightweight quick-buy UI (drawer/modal/popover) reusing `product-form` logic/validation; PDP remains canonical fallback; accessible controls and stock/option clarity.
+
+- [x] **Product image zoom: use loaded image as placeholder while high-res loads** — *P1,P2*  
+  - *Status:* built (decision 014 addendum, `npm run test:zoom`, 152 checks pass on the dev store, 12 of them new). Not done: preloading the large image on intent (hover or focus of a zoom button); the dialog still builds on first open. Not measured on a live store.  
+  - *Why:* Improves perceived performance and confidence during media inspection (NNG: quality media/zoom supports decision-making) without harming LCP strategy.  
+  - *Scope:* avoid blank/flash, preload on intent where sensible, preserve current loading priorities and `assets/zoom.js` behavior.
+
+- [x] **Explore and test perceived-performance ideas (UX-first, exploratory)** — *P1,P2,P3,P4*  
+  - *Status:* first round done and measured in the lab (decision 023, `npm run perf:interactions`): an add to cart now takes one request to show the drawer (1184 ms to 616 ms on the dev store) and quick buy loads on pointer or focus (361 ms to 16 ms when the pointer was over the link first). Not measured on a live store or on real devices. Ideas not tried yet: the same one-request add for card quick add and the order table; prefetching the cart drawer data on hover of the header link; preloading the zoom images on intent; a lighter skeleton for soft navigation. Add a follow-up here when one is picked.  
+  - *Why:* Perceived speed and responsiveness are core to UX, especially on mobile; small interaction/feedback improvements can matter as much as raw load metrics.  
+  - *Scope:* research and prototype “wild”/creative ideas that improve perceived performance (e.g. optimistic UI and instant feedback, skeletons/placeholders, intent-based preloading/prefetch/prerender where safe, smooth state transitions, progressive image/content reveal, priority hints/speculation-rules tuning) while protecting actual performance. Keep progressive enhancement, accessibility (reduced motion/focus/announcements), and no LCP/INP/CLS regressions; validate with real-user feel and **measured** outcomes before adopting. No third-party/remote runtime deps.
+
+## P1 — High-value UX & merchandising
+
+- [x] **Swatch labels show option name (e.g. "Color: Grey")** — *P1,P2*  
+  - *Status:* built (decision 024, `npm run test:option-label`, 7 checks pass on the dev store; siblings and details tests still pass). Variant picker legends read "Color: Grey" and follow a change at once; color siblings read "Color: Moss" through the optional `singi.color_name` metafield, created on the dev store. Not measured on a live store.  
+  - *Why:* Color swatches alone can be ambiguous; visible option names improve clarity and accessibility for all shoppers.  
+  - *Scope:* when swatches are used for an option, output the option and value name as part of the label/selection state (e.g. "Color: Grey"), keeping accessible naming, variant-picker state updates, and visual design consistent with Singi’s minimal style.
+
+- [ ] **Badges defined as a metaobject, mapped from product tags** — *P2,P3,P5*  
+  - *Why:* Merchants need to control which badges show on product cards and product pages (New, Bestseller, Limited, Eco, Gift idea) and how they look, without editing the theme or hardcoding tag names in Liquid. A typed definition gives the admin a form (label, colors, where it shows) instead of loose strings.  
+  - *Data model (decided):* a **metaobject definition `badge`** (type declared in the repo, created by the mock tooling like the color siblings metafields) with fields such as label (single line text, translatable), background color and text color (`color` fields), style (a choice list: filled, outline, subtle), where it shows (card, product page, or both), priority (integer, for order) and optionally an icon. The product connects to a badge by a **tag with the prefix `badge-` followed by the metaobject handle**, for example the tag `badge-new` shows the badge whose handle is `new`. Tags stay the mapping because they are the one product field every import, bulk editor, Flow rule and feed already writes.  
+  - *Scope:* render badges on product cards and on the product page (an overlay on the card image beside the existing sold out and sale badges, and a row on the product page), with a sensible order and a cap per card (priority first, then the first N), clear contrast (validate the label/background pair or derive the text color), accessible text (the label is text, not an image), translatable labels, and no layout shift. Unknown handles show nothing. Document the definition and the tag convention in `docs/metafields.md` and a decision record.  
+  - *Liquid cost (AGENTS.md rule 7):* no metafield or metaobject access inside the card loop. Read the badge list once per page (for example `shop.metaobjects.badge.values` with a limit) into a lookup assigned once, then match only the tags that start with `badge-`; measure the card snippet before and after with `npm run perf:liquid` and report it. Consider whether the badge list belongs in a section setting instead when a store has very many badges.  
+  - *Open questions to settle in the record:* how a badge that targets "card only" or "page only" is chosen when a tag matches several; whether the sale and sold out badges become built-in badges that use the same rendering; whether a collection page can show a badge filter.
+
+- [x] **USP block/list (trust/value messaging)** — *P2,P3,P5*  
+  - *Status:* built (decision 025, `npm run test:usp`, 29 checks pass on the dev store across desktop, phone and right to left). A public `usp-list` block with private `_usp-item` children, ten new icons, no JavaScript. Verified on the mock content page only: placing it in the product page's details column is supported by the section schema but was not rendered on a product. Not measured on a live store.  
+  - *Why:* Surfaces shipping/returns/quality/support promises early to reduce uncertainty (Baymard/NNG trust & cost-clarity themes).  
+  - *Scope:* reusable block/list (icon + short heading/text, configurable items), accessible semantics, lightweight/self-hosted assets.
+
+- [x] **Product feature highlights (PDP/content storytelling)** — *P2,P3,P5*  
+  - *Status:* built (decision 026, `npm run test:features`, 34 checks pass on the dev store across desktop, phone and right to left). A public `feature-list` block with private `_feature-item` children: lazy sized images in one chosen shape, or an icon, a heading and a line of text; 1 to 4 columns; no JavaScript. Verified on the mock content page only, not rendered inside a product page's details column. Not measured on a live store.  
+  - *Why:* Helps considered shoppers evaluate materials/benefits quickly (see pattern like belowten.se PDP feature callouts).  
+  - *Scope:* composable block/section with heading + body + optional icon and/or image per item; responsive, performant images, usable on PDPs and content pages.
+
+- [ ] **Announcement bar** — *P3,P5*  
+  - *Why:* High-visibility merchandising for promos/shipping/launch messages (very common Theme Store expectation).  
+  - *Scope:* single/multiple messages, optional link, dismissible option, accessible markup; rotation/marquee only as opt-in progressive enhancement with reduced-motion support and no layout shift.
+
+- [ ] **Social links** — *P2,P3,P5*  
+  - *Why:* Supports trust/brand legitimacy and off-site engagement.  
+  - *Scope:* visible configurable links (e.g. footer/header) with accessible icon+label patterns; leverage existing `settings.social_profiles`/brand data where possible; lightweight, self-hosted icons/assets.
+
+- [ ] **Newsletter signup disclaimer & consent (minimal, localized, compliant)** — *P1,P2,P5*  
+  - *Why:* Newsletter/marketing signup must set clear expectations and capture valid consent where required, without adding friction or visual clutter.  
+  - *Scope:* minimalistic, localized disclaimer/consent UI for newsletter signup (e.g. clear statement of what subscriber agrees to receive — offers/marketing emails — explicit opt-in where required, optional/required age affirmation such as 18+ if applicable to the store/market, and links to privacy policy/terms). Copy and behavior must be market-aware and legally appropriate (GDPR/ePrivacy, CAN-SPAM, CASL, CPRA etc. as applicable) while avoiding dark patterns; integrate with Shopify customer/marketing consent fields and downstream email providers/apps as needed. Keep accessible, translatable (`t` keys), and progressive-enhancement friendly; **not legal advice** — support configurable/region-specific wording.
+
+- [ ] **Cookie consent dialog/modal (Shopify consent/privacy APIs)** — *P1,P2,P3,P5*  
+  - *Why:* Required/expected privacy UX in many markets; builds trust and must integrate correctly with tracking/analytics consent. Should feel native and unobtrusive while remaining compliant and merchant-configurable.  
+  - *Scope:* theme UI (dialog/modal/banner pattern as appropriate) integrated with **Shopify’s consent/privacy system and APIs** (e.g. Customer Privacy API / `window.Shopify.customerPrivacy`, consent-tracking events/hooks) rather than third-party consent platforms; preferences/categories, accept/reject/manage flows, persistent reopen/manage entry point, accessible focus/keyboard/ARIA behavior, and progressive enhancement/no-JS-safe handling per Shopify guidance. No remote runtime deps; coordinate with analytics/app pixels so consent is respected.
+
+- [ ] **Country/market & language switcher dialog (integrated with consent/onboarding when needed)** — *P1,P3,P5*  
+  - *Why:* Multi-market stores need clear, low-friction market/currency/language selection; suggesting the right market early reduces confusion and mispriced/undeliverable orders.  
+  - *Scope:* optional dialog/surface that can be presented as part of or alongside the consent/onboarding flow when relevant (e.g. detected market differs), using **Shopify geolocation/browsing-context/IP-based suggestions** (e.g. `/browsing_context_suggestions.json`) and Shopify **Markets/localization** (`{% form 'localization' %}`, `localization` object) for country/language/market switching; remember/dismiss behavior, clear manual override, accessible modal/select UX, and no-JS fallback. Self-hosted assets only; avoid intrusive prompts.
+
+- [ ] **Opinionated metafield JSON structure for multi-store country/market selector** — *P3,P5,P6*  
+  - *Why:* Multi-store or cross-domain setups need a consistent, merchant-editable data source to map countries/regions to the correct store, domain, market, language, and redirect behavior (beyond what a single store’s localization form can express), and to drive related internationalization outputs consistently.  
+  - *Scope:* define and document an opinionated, versioned **metafield (or metaobject) JSON schema** for a multi-store country/market selector (e.g. country entries with ISO codes, labels, target store/domain/market, language/subfolder/locale mapping, primary/defaults, legacy/redirect rules, availability flags). Use as the theme/app data contract for rendering and redirect logic; **power hreflang output and multi-store syncing** from the same source of truth where applicable. Keep portable, validated, and easy to maintain. Draw on an existing multi-store setup for inspiration (geo/country selector data and cross-domain routing patterns). Align with Shopify Markets/localization where possible and avoid duplicating native data unnecessarily.
+
+- [ ] **Placeholder image fallback per product type and/or vendor** — *P2,P3,P5*  
+  - *Why:* Products without media look broken and reduce trust/scanability in grids and on PDPs; merchants need a consistent, brand-appropriate fallback without manually fixing every product.  
+  - *Scope:* configurable placeholder/fallback image selection when a product has no media (e.g. by **product type** and/or **vendor**, with a sensible global/default fallback). Apply consistently across product cards, PDP media/gallery, and other product-media surfaces; keep accessible (appropriate alt/aria handling), performant (reuse existing image/loading strategy, no LCP regressions), and easy for merchants to manage (settings/metafields or documented mapping) with clear precedence rules.
+
+- [ ] **HTML sitemap template/feature (discoverability & internal-linking fallback)** — *P2,P3,P5*  
+  - *Why:* Helps shoppers discover content/products and provides SEO/internal-linking coverage when merchants haven’t set up a mega menu or footer links optimally.  
+  - *Scope:* dedicated, easy-to-enable HTML sitemap page/template (and/or section) that lists key site destinations (e.g. collections, products, pages, blogs/articles) in a clear hierarchy with configurable/prioritized inclusion. Keep it accessible and crawlable (semantic headings/lists/links), performant for large catalogs (pagination or sensible limits/grouping, no heavy client-side rendering), no-JS friendly, and aligned with theme navigation/content structures. Distinct from XML sitemap; intended as a practical discoverability/IA fallback.
+
+- [ ] **Payment icons with monochrome option (all available types, flexible placement)** — *P2,P3,P5*  
+  - *Why:* Displaying accepted payment methods builds shopper trust and can match brand aesthetics; merchants need consistent, complete coverage across surfaces.  
+  - *Scope:* support rendering **all available/enabled payment types** (e.g. via `shop.enabled_payment_types` / Shopify payment icon support) with an option for **monochrome** styling alongside default/brand-color presentation. Make placement flexible: footer, payment information page/template, and/or expandable/disclosure patterns where appropriate. Ensure accessible labels/titles, consistent sizing/alignment, lightweight/self-hosted or platform-provided assets (no remote deps), and graceful fallback when icons/types are unavailable. Keep easy to configure and maintain as Shopify’s supported payment types evolve.
+
+- [ ] **Sliders/carousels (evaluate, constrain heavily)** — *P2,P3,P5*  
+  - *Why:* Popular for hero/promo, testimonials, galleries, and featured collections, but often harms performance/accessibility if overused.  
+  - *Scope:* prefer CSS scroll-snap/native primitives first, no heavy libraries, keyboard + screen-reader controls, no auto-advance by default, respect reduced motion, and never lazy-load or delay the LCP image. Add only where UX gain is clear.
+
+- [ ] **Benchmark & draw inspiration from apple.com (selective UX/performance patterns)** — *P1,P2,P3,P5*  
+  - *Why:* Apple’s storefront patterns are strong references for clarity, polish, and perceived speed; adapt ideas to Singi’s minimal, theme-appropriate scope (not 1:1 copying).  
+  - *Scope:* research and test selectively for **country/market selector** (clear region/language choice, low-friction entry), **mini cart / cart drawer** (fast, contextual cart review and handoff), **perceived-performance hacks** (smooth transitions, instant feedback, smart loading/priority), **mega menu/navigation** (discoverability, hierarchy, keyboard/touch ergonomics), and **landing page heroes/blocks** (high-impact storytelling, modular merchandising/content sections, strong media/typography hierarchy). Apply only where it measurably improves UX; preserve no-JS fallbacks, accessibility, self-hosted/lightweight implementation, and Singi performance/LCP/INP/CLS guardrails.
+
+- [ ] **B2B batch add to cart via file upload (Excel/CSV template)** — *P1,P4,P5*  
+  - *Why:* Speeds up repeat/bulk ordering for B2B and high-intent shoppers by letting them add many items at once instead of line-by-line.  
+  - *Scope:* provide a downloadable Excel/CSV template (e.g. SKU/handle/variant identifier + quantity) and a drag-and-drop/upload flow with parsing, validation, and a **preview/review step before “Add items”** (matched products/variants, quantities, line errors, unavailable/unknown rows). Support clear error handling and partial-success messaging, accessible controls/status updates, and integration with cart add flows (including multi-line add where feasible) with no third-party/remote runtime deps. Keep progressive enhancement/fallback guidance where practical and document any Shopify/B2B plan or data constraints.
+
+- [ ] **Bundled products (setup and UI)** — *P1,P2,P5*  
+  - *Why:* Bundles raise AOV and are common on gifting and multi-item stores, but they only work if the data model, the product page and the cart all agree on what a bundle is (price, availability, what is in the cart, what is returned).  
+  - *Scope:* support bundled products in the theme: a documented, merchant-editable **bundle setup** (which products or variants make a bundle, the bundle price or discount, and how it relates to Shopify's native bundles, if available) and the **UI** for it on the product page (what is included, per-item variant choice where needed, combined price and savings, availability when one part is sold out), in the cart and the cart drawer (bundle shown as one grouped line or as its parts, quantity and remove acting on the whole bundle), and in the order table if it applies. No-JS fallback, accessible grouping and labels, unit and quantity rules respected, tracking events for bundle adds.  
+  - *Data model (decided):* the bundle's children are declared by a proper metafield on the bundle product with a **product reference type** (a `list.product_reference`, the same approach as color siblings, [decision 003](docs/decisions/003-color-siblings-product-list.md)), not a loose list of handles. Shopify then validates the references, they follow product renames and deletions, `product.metafields.*.value` gives the product objects directly, and the merchant picks products in the admin instead of typing handles. Bundle price or discount and any per-child options go in further typed metafields, not in strings parsed by the theme. Document the definitions in `docs/metafields.md` and create them with the mock tooling.  
+  - *Research first (not yet read for this item):* an existing bundle setup and its UI, the Shopify Scripts that apply the bundle discount, and the events and backend code that handle bundles and the metadata they expect. Record what the existing setup stores (metafields, line item properties, discounts) before choosing a data model, and write the choice up as a decision record.
+
+## P2 — Enablers (DX/tooling that protects UX quality)
+
+- [ ] **Typed JS spike (high-churn interaction code first)** — *P6 (indirect P1–P4 via fewer regressions)*  
+  - *Why:* Reduce bugs in critical flows (soft-nav, product/cart/facets/search) and enable safer iteration.  
+  - *Scope:* prototype `assets/soft-nav.js`, `assets/product-form.js` as typed source (`src/js/*.js` with JSDoc+`// @ts-check` or TS), define shared DOM/Shopify/import-map globals in `.d.ts`, compare DX/bugs/output/behavior.
+
+- [ ] **Evaluate build tooling where it improves UX/performance** — *P1–P4,P6*  
+  - *Why:* Build step is acceptable if it yields measurable wins (bytes, parse/exec, reliability) beyond CDN defaults.  
+  - *Scope:* evaluate a pipeline (`src/js` + types, `tsc` typecheck, esbuild transform/minify to `assets/`, generated-asset tracking; optional CSS bundling/minification) only with documented, measured UX/perf gains (`npm run perf:sizes`, Lighthouse/recorded tests). Keep AGENTS.md perf rules intact; update docs/budgets if source-of-truth changes.
+
+- [ ] **Programmatic Theme Check API (only if a gap appears)** — *P6*  
+  - *Why:* Useful only if CLI + `scripts/check.mjs` cannot express a needed rule/integration.  
+  - *Scope:* dev/CI tooling only, with clear justification over existing checks.
+
+- [ ] **CI speed & reliability (when CI/workflows are added)** — *P6 (protects P1–P5 via fast, trustworthy feedback)*  
+  - *Why:* Fast CI shortens feedback loops for theme/DX changes without sacrificing correctness. Target (once CI exists): PR median < 2 min, p95 < 3 min. **Rules:** full suite before merge to `main` (e.g. merge queue), PR selection may narrow feedback only; never hide failures (no retries/wider timeouts/skipped tests)—fix flaky checks.  
+  - *Current state:* no GitHub Actions workflows found in this repo (`.github/` has no `workflows/`); audit last 150 runs and split jobs into waiting/setup/running (p50/p95) as first step when CI is available.  
+  - *Budgets/ideas to evaluate against this repo’s actual stack (Shopify theme: Liquid, `shopify theme check`, `scripts/check.mjs`, Node scripts/tests; no Vitest/DB/migrations/app shards today):* waiting < 10s (fast/self-hosted runners, cancel in-progress on new commit), setup < 30s with >95% PR cache hits seeded from `main` (cache deps as appropriate; prefer efficient clone), parallelize lint/typecheck/build/tests where applicable, lint/format/typecheck tooling only if adopted with **measured** wins and no missed checks, shard/split only if justified by measured durations, fail jobs that exceed budgets.  
+  - *Selection/local guardrails:* on PRs run only checks affected by the diff where feasible (and verify by hiding a real change to confirm CI fails); add a local pre-push hook (not just docs) for fast checks on changed files (e.g. format/lint/type/theme/rules equivalents as configured).  
+  - *Process:* one small PR per change, with before/after numbers from real runs. Do everything possible without requiring user action first; bring anything that needs an account, a secret, or a bigger bill as **one list with expected monthly cost** (if applicable). Do not adopt toolchain migrations (runner/provider, package manager, linter/formatter/typechecker/test runner) without side-by-side comparison and evidence they are faster here and miss nothing important. **End with total CI time and cost, before and after** (if applicable).
+
+- [ ] **Git hooks for fast local sanity checks (pre-commit/pre-push)** — *P6 (protects P1–P5 via fewer broken commits/PRs)*  
+  - *Why:* Catch obvious issues before they land in commits or CI; hooks are more reliable than “remember to run checks” guidance. “Doctor” stack for this repo: **Shopify Theme Check** (`shopify theme check`, `.theme-check.yml`) + **`scripts/check.mjs`** + editor/theme-tools diagnostics (no separate “Liquid Doctor” tool).  
+  - *Plan:*
+    - [ ] **Audit fast checks:** identify deterministic, low-latency checks suitable for hooks (likely `node scripts/check.mjs`; consider `npm run docs:check` or targeted locale/reference sanity if fast). Exclude store/browser-dependent tests (`npm run test:*` needing dev server/Chrome/mock state). Treat full `shopify theme check` as **pre-push/CI** unless measured fast and reliably available locally.
+    - [ ] **Choose hook manager:** evaluate lightweight options (**hk**, **Lefthook**, **prek**, etc.) for speed, simple setup, cross-platform support, and minimal repo overhead; pick one (default lean: Lefthook or hk) and record rationale.
+    - [ ] **Configure hooks:** **pre-commit** runs fast checks on staged/changed files where practical; **pre-push** may run a broader fast set (and optionally `shopify theme check` if available). Keep runtime low and output clear.
+    - [ ] **Wire & document:** add config + install/bootstrap instructions (e.g. `npm` script or documented setup step), define bypass guidance (`--no-verify` only when justified) and CI parity (hooks complement, not replace, CI). Avoid new toolchains (Bun formatter, Oxlint, etc.) unless adopted with measured benefit for Singi’s Liquid/JS/docs workflow and no missed checks.
+    - [ ] **Verify:** measure hook runtime on representative changes and confirm failures block as expected without false positives/flakiness. **Keep hooks fast** (target seconds, not minutes): run only necessary checks on changed/staged files, parallelize where safe, and revisit/remove anything that becomes slow.
+
+## Baseline & ongoing (keep healthy)
+
+- [ ] **Confirm current baseline (already in place)** — *P6*
+  - [ ] Verify `npm run check:theme` (`shopify theme check --fail-level error`) is the standard lint step in local/dev workflows.
+  - [ ] Keep `.theme-check.yml` as the source of Theme Check config (currently extends `theme-check:recommended`); avoid adding config exceptions—fix Liquid instead (per `AGENTS.md`).
+
+- [ ] **Editor integration (recommended, no runtime impact)** — *P6*
+  - [ ] Use the official Shopify Liquid / Theme Check editor extension (powered by theme-tools language server) for Liquid/JSON IntelliSense, diagnostics, hover docs, and navigation.
+  - [ ] Ensure contributors have the extension enabled and that editor diagnostics align with `.theme-check.yml` / `shopify theme check` output.
+  - [ ] (Optional) Add a short note to repo docs (e.g. `README` or contributor docs) recommending the extension/workspace settings only if the repo wants it checked in.
+
+- [ ] **Evaluate Liquid formatting (`@shopify/prettier-plugin-liquid`)** — *P6*
+  - [ ] Assess fit against repo style and contributor workflow (churn, diff size, `.editorconfig` alignment), treating it as dev tooling.
+  - [ ] Spike on a branch: add Prettier + `@shopify/prettier-plugin-liquid`, define/align config, and review diff quality on representative files.
+  - [ ] Decide go/no-go based on developer UX vs. churn; if adopted, plan a one-time format pass and document workflow/CI updates.
+
+## Project & repo
+
+- [ ] **GitHub social/share image**: generate a repository share (Open Graph/social preview) image matching Singi’s typography, colors, and visual style.
+
+- [ ] **Static functional theme demo (no Shopify store/Plus required)** — *P3,P5,P6*  
+  - *Why:* Enable anyone to explore Singi’s UX/features without access to a Shopify store (or Plus), improving evaluation, contributions, and showcasing.  
+  - *Scope:* build as a **separate, reusable repo/tooling** (not inside the theme repo) that generates a **static, hosting-agnostic demo** deployable to common static hosts (e.g. **GitHub Pages, S3/CloudFront, Google Cloud Storage, Cloudflare Pages**, etc.), with pre-rendered HTML for key views/templates using mocked catalog/content data, plus mocked client-side endpoints/behaviors needed for interactive features (cart add/change/update and `/cart*.js` responses, Section Rendering/AJAX endpoints, predictive search, product recommendations, quick add, facets/filters, localization/forms, and other dynamic flows where feasible). Keep behavior representative of the real theme (progressive enhancement, accessibility, performance) and document fidelity/limitations (e.g. Shopify-hosted checkout, account/auth, live inventory/pricing/apps cannot be fully replicated). Design to be reusable across themes/configurations where possible; reuse/mock data sources consistently and automate regeneration/deployment so the demo stays in sync with theme changes.
+
+## Companion app (tracked separately)
+
+- [ ] **Companion app (separate repository)**: companion app ideas and planning (shareable/anonymous wishlists via metaobjects + short links, opinionated metaobject definitions for reviews/popups/shipping, market/country-localized shipping sync, etc.) are maintained in a separate repository. Keep theme-side integration contracts in sync when implemented.
+
+## Guardrails (apply to every item)
+
+- [ ] **No runtime bloat or remote deps:** do not add theme-tools packages to storefront/runtime assets or introduce third-party/remote runtime dependencies; any build tooling must produce self-hosted theme assets.
+- [ ] **Progressive enhancement & accessibility:** every interactive feature must work (or gracefully fall back) without JS; preserve keyboard/focus behavior, ARIA/live regions where needed, 44px targets, logical properties/RTL, reduced motion, and no LCP regressions.
+- [ ] **Consistent, opinionated, simple, tasteful:** every new feature reuses an existing pattern, ships one good default instead of a new toggle where it can, and uses the same words, verbs and shapes as the rest of the theme.
+- [ ] **Measured wins only:** favor changes with proven shopper/merchant UX or performance impact; avoid complexity without benefit.
+- [ ] **Quality checks:** when making related changes, run `npm run check` (and `npm run docs` if LiquidDoc/schema changed) and report results honestly per `AGENTS.md`. If a build step is introduced, update `AGENTS.md`/docs to reflect source/build flow and budget measurement.

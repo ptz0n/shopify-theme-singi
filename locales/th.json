@@ -51,7 +51,11 @@
     "quantity_increase": "เพิ่มจำนวน",
     "quantity_min": "ขั้นต่ำ {{ count }}",
     "quantity_multiple": "ทวีคูณของ {{ count }}",
-    "quantity_max": "สูงสุด {{ count }}"
+    "quantity_max": "สูงสุด {{ count }}",
+    "order_price": "ราคา",
+    "order_quantity_for": "จำนวนสำหรับ {{ variant }}",
+    "order_items": "รายการ",
+    "order_reset": "ล้าง"
   },
   "collection": {
     "price_from": "ตั้งแต่",

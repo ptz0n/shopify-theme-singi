@@ -51,7 +51,11 @@
     "quantity_increase": "Miktarı artır",
     "quantity_min": "En az {{ count }}",
     "quantity_multiple": "{{ count }} katları",
-    "quantity_max": "En fazla {{ count }}"
+    "quantity_max": "En fazla {{ count }}",
+    "order_price": "Fiyat",
+    "order_quantity_for": "{{ variant }} adedi",
+    "order_items": "Ürünler",
+    "order_reset": "Temizle"
   },
   "collection": {
     "price_from": "En az",

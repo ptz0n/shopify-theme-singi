@@ -51,7 +51,11 @@
     "quantity_increase": "Санын көбейту",
     "quantity_min": "Ең аз {{ count }}",
     "quantity_multiple": "{{ count }} еселіктері",
-    "quantity_max": "Ең көп {{ count }}"
+    "quantity_max": "Ең көп {{ count }}",
+    "order_price": "Бағасы",
+    "order_quantity_for": "{{ variant }} саны",
+    "order_items": "Тауарлар",
+    "order_reset": "Тазалау"
   },
   "collection": {
     "price_from": "Бастап",

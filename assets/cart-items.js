@@ -38,7 +38,7 @@ class CartItems extends HTMLElement {
       if (removed) (this.querySelector('[data-remove]') ?? document.querySelector('main h1'))?.focus();
       cartChanged(cart);
       const announcer = document.getElementById('route-announcer');
-      const subtotal = this.querySelector('.cart__subtotal');
+      const subtotal = this.querySelector('[data-subtotal]');
       if (announcer && subtotal) announcer.textContent = subtotal.textContent.replace(/\s+/g, ' ').trim();
       if (before) document.dispatchEvent(new CustomEvent('singi:cart-diff', { detail: { before, after: readCart(this) } }));
     } catch (error) {

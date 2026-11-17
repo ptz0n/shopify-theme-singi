@@ -51,7 +51,11 @@
     "quantity_increase": "Rrit sasinë",
     "quantity_min": "Minimumi {{ count }}",
     "quantity_multiple": "Shumëfishat e {{ count }}",
-    "quantity_max": "Maksimumi {{ count }}"
+    "quantity_max": "Maksimumi {{ count }}",
+    "order_price": "Çmimi",
+    "order_quantity_for": "Sasia për {{ variant }}",
+    "order_items": "Artikuj",
+    "order_reset": "Pastro"
   },
   "collection": {
     "price_from": "Nga",

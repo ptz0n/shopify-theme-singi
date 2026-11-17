@@ -51,7 +51,11 @@
     "quantity_increase": "Øg antal",
     "quantity_min": "Minimum {{ count }}",
     "quantity_multiple": "Multipla af {{ count }}",
-    "quantity_max": "Maksimum {{ count }}"
+    "quantity_max": "Maksimum {{ count }}",
+    "order_price": "Pris",
+    "order_quantity_for": "Antal for {{ variant }}",
+    "order_items": "Varer",
+    "order_reset": "Ryd"
   },
   "collection": {
     "price_from": "Fra",

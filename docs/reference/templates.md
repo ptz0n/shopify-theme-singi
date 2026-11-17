@@ -13,12 +13,13 @@ JSON templates compose sections. JSON templates are eligible for Shopify's strea
 | `collection.json` | `main-collection` |  |
 | `index.json` | `hero`, `featured-collection` |  |
 | `list-collections.json` | `main-list-collections` |  |
-| `page.blocks.json` | `content`, `hero`, `hero` | `heading`, `quote`, `product-grid`, `newsletter`, `heading`, `text`, `button`, `heading`, `text`, `button` |
+| `page.blocks.json` | `content`, `hero`, `hero` | `heading`, `quote`, `usp-list`, `feature-list`, `product-grid`, `newsletter`, `heading`, `text`, `button`, `heading`, `text`, `button` |
 | `page.json` | `main-page` |  |
 | `page.styleguide.json` | `main-styleguide` | `accordion`, `accordion`, `heading`, `text`, `button` |
 | `password.json` | `main-password` |  |
 | `product.demo.json` | `main-product`, `content` | `_product-title`, `_product-price`, `_color-siblings`, `_variant-picker`, `_size-guide`, `_buy-buttons`, `_product-policies`, `_product-description`, `accordion`, `accordion`, `accordion`, `accordion`, `accordion`, `accordion`, `accordion`, `_product-specs`, `_product-meta`, `related-products`, `recently-viewed` |
 | `product.json` | `main-product`, `content` | `_product-title`, `_product-price`, `_color-siblings`, `_variant-picker`, `_size-guide`, `_buy-buttons`, `_product-policies`, `_product-description`, `_product-specs`, `_product-meta`, `related-products`, `recently-viewed` |
+| `product.order.json` | `main-product`, `content` | `_product-title`, `_product-price`, `_color-siblings`, `_variant-picker`, `_size-guide`, `_buy-buttons`, `_variants-table`, `_product-policies`, `_product-description`, `_product-specs`, `_product-meta`, `related-products`, `recently-viewed` |
 | `search.json` | `main-search` |  |
 | `gift_card.liquid` | _liquid template_ | |
 | `product.recent.liquid` | _liquid template_ | |

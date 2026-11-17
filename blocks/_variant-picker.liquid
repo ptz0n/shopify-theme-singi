@@ -5,7 +5,9 @@
   no loop ever walks the variants array. Each option also carries the price of the variant it selects (data-price) and, only when that
   variant's unit price differs from the current one, the unit price (data-unit-price,
   data-unit-label; absent means unchanged), so assets/product-form.js can show them at once
-  instead of waiting for the server. Private to product sections.
+  instead of waiting for the server. Each legend names the chosen value ("Color: Grey", the span
+  `data-selected`), which assets/product-form.js updates at once when another value is picked.
+  Private to product sections.
 {% enddoc %}
 
 {%- unless product.has_only_default_variant -%}
@@ -14,7 +16,7 @@
     {%- for option in product.options_with_values -%}
       {%- assign option_index = forloop.index -%}
       <fieldset class="variant-option">
-        <legend>{{ option.name }}</legend>
+        <legend>{{ option.name }}: <span data-selected>{{ option.selected_value }}</span></legend>
         <div class="variant-option__values">
           {%- for value in option.values -%}
             {%- assign input_id = 'option-' | append: section.id | append: '-' | append: option_index | append: '-' | append: forloop.index -%}
@@ -54,6 +56,7 @@
 {% stylesheet %}
   .variant-option { min-width: 0; padding: 0; border: 0; }
   .variant-option legend { padding: 0; }
+  .variant-option legend [data-selected] { font-weight: var(--font-weight-body); }
   .variant-option__values { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 {% endstylesheet %}
 

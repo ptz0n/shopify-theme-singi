@@ -41,9 +41,13 @@ A token increments on each navigation. Responses and skeleton timers from supers
 
 | Event | Target | Detail | When |
 | --- | --- | --- | --- |
-| `singi:navigate` | `document` | `{ url }` | After a soft navigation swap. Hook analytics here. |
-| `singi:cart` | `document` | the cart JSON | After add to cart or cart change (`cartChanged` in `assets/utils.js`). Clears the soft-nav cache. |
-| `singi:facets` | `document` | `{ url }` | After the collection filter update (`assets/facets.js`). |
+| `singi:navigate` | `document` | `{ url }` | After a soft navigation swap. Hook analytics here. The cart drawer, the quick buy dialog and the search panel close on it. |
+| `singi:cart` | `document` | the cart JSON, or from an add that answered with the drawer's markup a cart-like object with at least `item_count` and `items[].variant_id` | After add to cart or cart change (`cartChanged` in `assets/utils.js`). Clears the soft-nav cache and the quick buy cache. |
+| `singi:cart-add` | `document` | `{ element, quantity }` | After something was added (product form, quick add). Opens the cart drawer; tracking reads it for `add_to_cart`. |
+| `singi:cart-diff` | `document` | `{ before, after }` | After a line in the cart page or drawer changed (`assets/cart-items.js`, `assets/wishlist.js`). Tracking turns it into add and remove events. |
+| `singi:variant` | `document` | none | After a variant was picked on the product page (`assets/product-form.js`). The favorites hearts follow it. |
+| `singi:facets` | `document` | `{ url }` | After the collection filter update (`assets/facets.js`, `assets/show-more.js`, `assets/recently-viewed.js`). |
+| `singi:wishlist` | `document` | `{ handle, variant, added, button }` | After a favorite was added or removed (`assets/wishlist.js`). |
 
 Example listener:
 

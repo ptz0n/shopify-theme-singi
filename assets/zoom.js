@@ -31,7 +31,11 @@ const build = (buttons) => {
     figure.className = 'zoom__item';
     const frame = document.createElement('div');
     frame.className = 'zoom__frame';
-    frame.append(Object.assign(new Image(), { src: url.href, alt: small.alt, loading: 'lazy', decoding: 'async' }));
+    const large = Object.assign(new Image(), { src: url.href, alt: small.alt, loading: 'lazy', decoding: 'async' });
+    large.addEventListener('load', () => large.setAttribute('data-loaded', ''));
+    const placeholder = Object.assign(new Image(), { src: small.currentSrc || small.src, alt: '' });
+    placeholder.setAttribute('aria-hidden', 'true');
+    frame.append(large, placeholder); /* the cached page image shows until the large one loads */
     if (AI.test(small.alt)) add(frame, 'span', 'AI', 'ai-label', true);
     if (buttons.length > 1) add(frame, 'span', `${i + 1} / ${buttons.length}`, 'zoom__count', true);
     const caption = document.createElement('figcaption');

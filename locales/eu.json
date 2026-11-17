@@ -51,7 +51,11 @@
     "quantity_increase": "Handitu kopurua",
     "quantity_min": "Gutxienez {{ count }}",
     "quantity_multiple": "{{ count }}ren multiploak",
-    "quantity_max": "Gehienez {{ count }}"
+    "quantity_max": "Gehienez {{ count }}",
+    "order_price": "Prezioa",
+    "order_quantity_for": "{{ variant }}(r)en kopurua",
+    "order_items": "Elementuak",
+    "order_reset": "Garbitu"
   },
   "collection": {
     "price_from": "Noiztik",

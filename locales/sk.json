@@ -51,7 +51,11 @@
     "quantity_increase": "Zvýšiť množstvo",
     "quantity_min": "Minimum {{ count }}",
     "quantity_multiple": "Násobky {{ count }}",
-    "quantity_max": "Maximum {{ count }}"
+    "quantity_max": "Maximum {{ count }}",
+    "order_price": "Cena",
+    "order_quantity_for": "Množstvo pre {{ variant }}",
+    "order_items": "Položky",
+    "order_reset": "Vymazať"
   },
   "collection": {
     "price_from": "Od",

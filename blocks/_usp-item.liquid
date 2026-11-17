@@ -1,0 +1,59 @@
+{% doc %}
+  One promise in a USP list: an optional icon, a heading and a line of text. A block with neither heading nor
+  text renders nothing, so its text can be connected to a metafield (a dynamic source) and the item disappears
+  for products without that data. Private to the USP list block.
+
+  @example
+  {% content_for 'block', type: '_usp-item', id: 'returns' %}
+{% enddoc %}
+
+{%- assign s = block.settings -%}
+
+{%- if s.heading != blank or s.text != blank -%}
+  <div class="usp-item" role="listitem" {{ block.shopify_attributes }}>
+    {%- if s.icon != 'none' -%}{%- render 'icon', name: s.icon, class: 'usp-item__icon' -%}{%- endif -%}
+    <div class="usp-item__body">
+      {%- if s.heading != blank -%}<p class="usp-item__heading">{{ s.heading }}</p>{%- endif -%}
+      {%- if s.text != blank -%}<p class="usp-item__text muted">{{ s.text }}</p>{%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .usp-item { display: flex; gap: 0.75rem; align-items: flex-start; }
+  .usp-item__icon { flex: none; width: 1.5rem; height: 1.5rem; margin-block-start: 0.125rem; }
+  .usp-item__body { min-width: 0; }
+  .usp-item__heading { margin: 0; font-weight: var(--font-weight-strong); }
+  .usp-item__text { margin: 0; font-size: 0.9375rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "USP item",
+  "settings": [
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Icon",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "truck", "label": "Delivery truck" },
+        { "value": "return", "label": "Return arrow" },
+        { "value": "shield", "label": "Shield with check" },
+        { "value": "leaf", "label": "Leaf" },
+        { "value": "star", "label": "Star" },
+        { "value": "gift", "label": "Gift" },
+        { "value": "support", "label": "Headset" },
+        { "value": "lock", "label": "Lock" },
+        { "value": "clock", "label": "Clock" },
+        { "value": "package", "label": "Package" },
+        { "value": "check", "label": "Check mark" },
+        { "value": "heart", "label": "Heart" }
+      ],
+      "default": "check"
+    },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "inline_richtext", "id": "text", "label": "Text" }
+  ]
+}
+{% endschema %}

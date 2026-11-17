@@ -51,7 +51,11 @@
     "quantity_increase": "数量を増やす",
     "quantity_min": "最小 {{ count }}",
     "quantity_multiple": "{{ count }} の倍数",
-    "quantity_max": "最大 {{ count }}"
+    "quantity_max": "最大 {{ count }}",
+    "order_price": "価格",
+    "order_quantity_for": "{{ variant }} の数量",
+    "order_items": "商品",
+    "order_reset": "クリア"
   },
   "collection": {
     "price_from": "最小",

@@ -37,8 +37,12 @@
   .zoom__stage { height: 100%; overflow-y: auto; overscroll-behavior: contain; scroll-snap-type: y mandatory; touch-action: pan-y pinch-zoom; }
   .zoom__stage:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -4px; }
   .zoom__item { display: grid; grid-template-rows: minmax(0, 1fr) auto; height: 100%; margin: 0; scroll-snap-align: start; scroll-snap-stop: always; }
-  .zoom__frame { position: relative; min-height: 0; }
+  .zoom__frame { position: relative; min-height: 0; isolation: isolate; }
   .zoom__frame img { display: block; width: 100%; height: 100%; border-radius: 0; object-fit: contain; }
+  .zoom__frame img:first-child { opacity: 0; transition: opacity 0.2s; }
+  .zoom__frame img:first-child[data-loaded] { opacity: 1; }
+  .zoom__frame img:nth-child(2) { position: absolute; inset: 0; z-index: -1; }
+  @media (prefers-reduced-motion: reduce) { .zoom__frame img:first-child { transition: none; } }
   .zoom__item figcaption { display: grid; gap: 0.125rem; max-height: 7rem; padding: 0.5rem 4rem; overflow-y: auto; text-align: center; font-size: 0.8125rem; line-height: 1.35; color: var(--color-muted); }
   .zoom__count { position: absolute; inset-block-start: 0.75rem; inset-inline-start: 0.75rem; padding: 0.25rem 0.5rem; border-radius: var(--radius); background: var(--color-bg); color: var(--color-fg); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: var(--tracking-wide); opacity: 0.85; }
   .zoom__item figcaption span:last-child { color: var(--color-fg); }

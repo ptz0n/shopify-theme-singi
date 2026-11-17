@@ -51,7 +51,11 @@
     "quantity_increase": "Verhoog hoeveelheid",
     "quantity_min": "Minimum {{ count }}",
     "quantity_multiple": "Veelvoude van {{ count }}",
-    "quantity_max": "Maksimum {{ count }}"
+    "quantity_max": "Maksimum {{ count }}",
+    "order_price": "Prys",
+    "order_quantity_for": "Hoeveelheid vir {{ variant }}",
+    "order_items": "Items",
+    "order_reset": "Maak skoon"
   },
   "collection": {
     "price_from": "Vanaf",

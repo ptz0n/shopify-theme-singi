@@ -29,7 +29,7 @@ The script is one delegated click handler in `assets/quick-add.js`, loaded only 
 | A variant picker or popover on the card | A second picker to keep in sync with the product page, and a lot of markup per card. |
 | Quick add the first available variant of every product | Sells a size or color the shopper never chose. |
 | A full width "Add to cart" button under each card | Visually heavy, changes the height of some cards and not others. |
-| A cart drawer after adding | Not built (`docs/performance.md`): the count and the live region confirm, and the cart is one tap away. |
+| A cart drawer after adding | Not built when this was written. Superseded in part by [decision 020](020-cart-drawer-reuses-cart-items.md): with the drawer on (the default) the add also fires `singi:cart-add`, which opens the drawer; the count, check mark and live region still happen. |
 
 ## Edge cases and dead ends
 
@@ -53,4 +53,4 @@ The button sits where the AI label would be at the end of the image, so it takes
 
 ## Revisit when
 
-A variant picker becomes worth its cost (an option popover), or the cart gains a drawer.
+A variant picker becomes worth its cost: it did, as quick buy ([decision 022](022-quick-buy-is-the-product-form-in-a-dialog.md)). The cart gained a drawer ([decision 020](020-cart-drawer-reuses-cart-items.md)). Still to decide: whether quick add should also answer with the drawer's markup in one request (see [decision 023](023-add-to-cart-answers-with-the-drawer-and-quick-buy-warms-on-intent.md)).

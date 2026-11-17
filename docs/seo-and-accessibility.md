@@ -86,4 +86,4 @@ Tokens `--color-fg`, `--color-muted` and `--color-accent` are chosen to meet WCA
 
 ## Not built
 
-Comments on articles (spam risk, needs moderation and a form), video and 3D product media, and a country selector are not included.
+Comments on articles (spam risk, needs moderation and a form) and 3D product models are not included. Product video is supported (see [media.md](media.md)); a country and language selector is in the footer.

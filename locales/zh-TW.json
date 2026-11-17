@@ -51,7 +51,11 @@
     "quantity_increase": "增加數量",
     "quantity_min": "最少 {{ count }}",
     "quantity_multiple": "{{ count }} 的倍數",
-    "quantity_max": "最多 {{ count }}"
+    "quantity_max": "最多 {{ count }}",
+    "order_price": "價格",
+    "order_quantity_for": "{{ variant }} 的數量",
+    "order_items": "商品",
+    "order_reset": "清除"
   },
   "collection": {
     "price_from": "最低價",

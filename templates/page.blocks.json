@@ -16,7 +16,7 @@
           "settings": {
             "quote": "Arrived in two days and fits better than anything I have owned.\nWorth every krona.",
             "author": "A customer",
-            "source": "Umeå"
+            "source": "Ume\u00e5"
           }
         },
         "grid": {
@@ -31,11 +31,106 @@
           "settings": {
             "text": "One email a month. No noise."
           }
+        },
+        "usp": {
+          "type": "usp-list",
+          "settings": {
+            "layout": "row"
+          },
+          "blocks": {
+            "a": {
+              "type": "_usp-item",
+              "settings": {
+                "icon": "truck",
+                "heading": "Fast delivery",
+                "text": "Ships within one to two business days."
+              }
+            },
+            "b": {
+              "type": "_usp-item",
+              "settings": {
+                "icon": "return",
+                "heading": "Free returns",
+                "text": "Thirty days to change your mind."
+              }
+            },
+            "c": {
+              "type": "_usp-item",
+              "settings": {
+                "icon": "shield",
+                "heading": "Secure payment",
+                "text": "Pay the way you prefer, safely."
+              }
+            },
+            "d": {
+              "type": "_usp-item",
+              "settings": {
+                "icon": "none",
+                "heading": "",
+                "text": ""
+              }
+            }
+          },
+          "block_order": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
+        },
+        "features": {
+          "type": "feature-list",
+          "settings": {
+            "columns": "3",
+            "ratio": "portrait"
+          },
+          "blocks": {
+            "a": {
+              "type": "_feature-item",
+              "settings": {
+                "image": "shopify://shop_images/hoodie-1.png",
+                "heading": "Heavyweight cotton",
+                "text": "Brushed fleece inside, 420 gsm."
+              }
+            },
+            "b": {
+              "type": "_feature-item",
+              "settings": {
+                "image": "shopify://shop_images/hoodie-1.png",
+                "heading": "Cut to last",
+                "text": "Reinforced seams at every stress point."
+              }
+            },
+            "c": {
+              "type": "_feature-item",
+              "settings": {
+                "icon": "leaf",
+                "heading": "Made responsibly",
+                "text": "Organic cotton, certified mills."
+              }
+            },
+            "d": {
+              "type": "_feature-item",
+              "settings": {
+                "icon": "none",
+                "heading": "",
+                "text": ""
+              }
+            }
+          },
+          "block_order": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
         }
       },
       "block_order": [
         "intro",
         "quote",
+        "usp",
+        "features",
         "grid",
         "signup"
       ],

@@ -51,7 +51,11 @@
     "quantity_increase": "જથ્થો વધારો",
     "quantity_min": "ન્યૂનતમ {{ count }}",
     "quantity_multiple": "{{ count }}ના ગુણાંક",
-    "quantity_max": "મહત્તમ {{ count }}"
+    "quantity_max": "મહત્તમ {{ count }}",
+    "order_price": "કિંમત",
+    "order_quantity_for": "{{ variant }} માટે જથ્થો",
+    "order_items": "વસ્તુઓ",
+    "order_reset": "સાફ કરો"
   },
   "collection": {
     "price_from": "થી",

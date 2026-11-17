@@ -11,11 +11,13 @@ File: `blocks/_buy-buttons.liquid` · Editor name: **Buy buttons** · private
 Quantity, add to cart with the wishlist toggle beside it (an icon button, named
 for screen readers with aria-label and aria-pressed), and dynamic checkout buttons. Works with no JavaScript
 (a normal form post); assets/product-form.js upgrades it to add without a
-page load. Private to product sections.
+page load. Private to product sections. In the quick buy dialog (section id "quick-buy", decision 022) it
+leaves out the sticky bar and the dynamic checkout buttons.
 
 | Setting | Type | Label | Default |
 | --- | --- | --- | --- |
 | `show_quantity` | checkbox | Show quantity selector | `true` |
+| `show_sticky_bar` | checkbox | Show a sticky add to cart bar | `true` |
 | `show_dynamic_checkout` | checkbox | Show dynamic checkout buttons | `true` |
 
 ## _color-siblings
@@ -31,7 +33,8 @@ this product included, the same list on every member) and each member's singi.co
 diagonal, see snippets/swatch-background.liquid). Renders nothing for a product with no group. The list order is the swatch order,
 so it is the same on every page of the group; a list that omits this product shows it
 first. A member without a color shows its title as a text chip instead. A visible
-"Color" label sits above, styled like the other option labels, and names the navigation.
+"Color" label sits above, styled like the other option labels, and names the navigation. When the
+product has the metafield singi.color_name the label reads "Color: Moss" (the swatches have no text).
 Square 44px chips, corner radius and selected state shared with .chip in assets/base.css.
 
 Why a product list, and the one metafield read per member inside the loop (a bounded
@@ -39,6 +42,22 @@ exception to the Liquid cost rule): docs/decisions/003-color-siblings-product-li
 Data upkeep: npm run siblings.
 
 _No settings._
+
+## _feature-item
+
+File: `blocks/_feature-item.liquid` · Editor name: **Feature item** · private
+
+One feature in a feature list: an optional image (or, without one, an optional icon), a heading and a line of
+text. A block with neither heading nor text renders nothing, so its text can be connected to a metafield (a
+dynamic source) and the item disappears for products without that data. The image is always lazy loaded. Private
+to the feature list block.
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `image` | image_picker | Image |  |
+| `icon` | select | Icon (used when there is no image) | `"none"` |
+| `heading` | text | Heading |  |
+| `text` | inline_richtext | Text |  |
 
 ## _product-description
 
@@ -140,6 +159,20 @@ chart. Renders nothing when the content is empty. Private to product sections.
 | --- | --- | --- | --- |
 | `content` | richtext | Content |  |
 
+## _usp-item
+
+File: `blocks/_usp-item.liquid` · Editor name: **USP item** · private
+
+One promise in a USP list: an optional icon, a heading and a line of text. A block with neither heading nor
+text renders nothing, so its text can be connected to a metafield (a dynamic source) and the item disappears
+for products without that data. Private to the USP list block.
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `icon` | select | Icon | `"check"` |
+| `heading` | text | Heading |  |
+| `text` | inline_richtext | Text |  |
+
 ## _variant-picker
 
 File: `blocks/_variant-picker.liquid` · Editor name: **Variant picker** · private
@@ -150,7 +183,29 @@ Rendering API. Options and values come from product.options_with_values, so
 no loop ever walks the variants array. Each option also carries the price of the variant it selects (data-price) and, only when that
 variant's unit price differs from the current one, the unit price (data-unit-price,
 data-unit-label; absent means unchanged), so assets/product-form.js can show them at once
-instead of waiting for the server. Private to product sections.
+instead of waiting for the server. Each legend names the chosen value ("Color: Grey", the span
+`data-selected`), which assets/product-form.js updates at once when another value is picked.
+Private to product sections.
+
+_No settings._
+
+## _variants-table
+
+File: `blocks/_variants-table.liquid` · Editor name: **Order table** · private
+
+Order table: one row per variant of the product, each with its own quantity, and one Add to cart for
+all of them. For products bought in several sizes or colors at once (a repeat buyer, a team order).
+A native table: a visually hidden caption (the product), column headers (one per option, SKU, price,
+quantity) and a labelled quantity control per row. Decision record: docs/decisions/019-order-table-is-a-product-block.md.
+
+Each row's quantity follows the variant's quantity rule and, when stock is tracked and overselling is
+denied, the stock (the same limits as the buy block, decision 015); 0 means "none of this variant". A
+sold out variant shows "Sold out" and no control. The footer counts the items, clears the quantities and adds
+every row above 0 in one request, so the cart either takes all of them or none and says why. On a phone each
+row becomes a small card. It lists up to 100 variants.
+
+Needs JavaScript (assets/order-table.js); without it the table shows but the footer button does nothing, and
+the buy block above still adds one variant. Private to product sections.
 
 _No settings._
 
@@ -181,6 +236,26 @@ Link styled as a button. Renders nothing without a label and a link.
 | `label` | text | Label |  |
 | `link` | url | Link |  |
 | `style` | select | Style | `"primary"` |
+
+## feature-list
+
+File: `blocks/feature-list.liquid` · Editor name: **Feature list** · public · has preset
+
+Product feature highlights: a row or grid of short features, each with an optional image or icon, a heading and
+a line of text (materials, fit, care, what is in the box). A public block that holds private `_feature-item`
+blocks. Use it in any content section and in the product page's details column. A list with no visible item
+renders a hint in the theme editor and nothing on the storefront; a new list has three empty items (a preset
+ships no copy). Decision record: docs/decisions/026-feature-list-is-a-list-of-item-blocks.md.
+
+The markup is a plain list (role list, one list item per feature). Images are lazy loaded with their size
+attributes (no layout shift) and cropped to one aspect ratio chosen here. No JavaScript.
+
+Accepts child blocks: `_feature-item`
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `columns` | select | Columns on a wide screen | `"3"` |
+| `ratio` | select | Image shape | `"portrait"` |
 
 ## group
 
@@ -324,4 +399,24 @@ Rich text paragraph block.
 | `text` | richtext | Text |  |
 | `size` | select | Size | `"normal"` |
 | `muted` | checkbox | Muted color | `false` |
+
+## usp-list
+
+File: `blocks/usp-list.liquid` · Editor name: **USP list** · public · has preset
+
+A list of short promises (unique selling points): free returns, fast delivery, secure payment. A public block
+that holds private `_usp-item` blocks (an icon, a heading and a line of text each). Use it in any content
+section and in the product page's details column, near the buy buttons. A new list has three items with icons and
+no words (a preset ships no copy): the merchant writes them. A list with no visible item renders a hint in the
+theme editor and nothing on the storefront. Decision record:
+docs/decisions/025-usp-list-is-a-list-of-item-blocks.md.
+
+The markup is a plain list (role list, one list item per promise); the icons are decoration and hidden from
+screen readers, the words carry the meaning. No JavaScript.
+
+Accepts child blocks: `_usp-item`
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `layout` | select | Layout | `"row"` |
 

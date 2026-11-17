@@ -22,6 +22,8 @@ Pressing it opens one native modal `<dialog>`, full screen (`100dvh`), a column 
 - **Keys** (focus starts on the scrolling area): ArrowDown, ArrowRight (ArrowLeft in right to left) and Space go to the next image; ArrowUp, the other horizontal arrow and Shift+Space to the previous one; Home and End jump to the ends. A single step glides (instant under reduced motion); Home and End are instant. The image is announced in a polite live region ("3 / 12: ..."). Space on the focused Close button closes the viewer, as a button should; Escape closes and focus returns to the button that opened it.
 - Pinch zoom works natively (`touch-action: pan-y pinch-zoom`).
 
+- **The page image is the placeholder (added 2026-11-17).** Each screen has two images: the large one (lazy, 2400 wide, the one with the alt text) and, behind it, the gallery image already on the page (cached, `aria-hidden`, empty alt, absolutely positioned at `z-index: -1` inside the frame). The large image starts at `opacity: 0` and gets `data-loaded` on its `load` event, which fades it in over the placeholder (`opacity` only, none under reduced motion). The shopper never sees a blank screen; if the large image fails, the placeholder stays.
+
 ## Why
 
 - **A native dialog** makes the page behind inert, keeps Tab inside, closes on Escape and returns focus, with no script for any of it.

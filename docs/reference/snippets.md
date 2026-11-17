@@ -96,7 +96,7 @@ aria-label on the parent control.
 
 | Param | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | `string` | yes | sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, check, chevron-down, grid, list |
+| `name` | `string` | yes | sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, check, chevron-down, grid, list, truck, return, shield, leaf, star, gift, support, lock, clock, package |
 | `class` | `string` | no | Extra class on the svg The menu icon is two separate paths on purpose: the header turns them into an X with CSS while the menu is open (base.css, .nav-toggle path). |
 
 ```liquid
@@ -487,6 +487,31 @@ real page so the swap does not shift layout.
 
 ```liquid
 {% render 'skeletons' %}
+```
+
+## sticky-buy
+
+File: `snippets/sticky-buy.liquid`
+
+The sticky add to cart bar of the product page: the product title, the chosen options, the price and an
+Add to cart button, fixed to the bottom edge of the screen once the buy box has scrolled out of view above and
+hidden again when the footer is reached. It is outside the page flow, so nothing moves when it appears.
+Decision record: docs/decisions/021-sticky-add-to-cart-submits-the-product-form.md.
+
+The button is not a second form: it submits the product form by its `form` attribute, so the quantity that is
+chosen, the add request, the cart drawer, the tracking event and the error message are the ones of the buy box.
+The inside of the bar is a `data-swap` region, so assets/product-form.js replaces it from the server's response
+when the variant changes (price, options, sold out). Without JavaScript the bar is never shown.
+
+Rendered by blocks/_buy-buttons.liquid when "Show a sticky add to cart bar" is on.
+
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `variant` | `variant` | yes | the selected or first available variant |
+| `form_id` | `string` | yes | id of the product form the button submits |
+
+```liquid
+{% render 'sticky-buy', variant: variant, form_id: form_id %}
 ```
 
 ## swatch-background

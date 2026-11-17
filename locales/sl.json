@@ -51,7 +51,11 @@
     "quantity_increase": "Povečaj količino",
     "quantity_min": "Najmanj {{ count }}",
     "quantity_multiple": "Večkratniki števila {{ count }}",
-    "quantity_max": "Največ {{ count }}"
+    "quantity_max": "Največ {{ count }}",
+    "order_price": "Cena",
+    "order_quantity_for": "Količina za {{ variant }}",
+    "order_items": "Izdelki",
+    "order_reset": "Počisti"
   },
   "collection": {
     "price_from": "Od",

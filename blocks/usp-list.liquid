@@ -1,0 +1,61 @@
+{% doc %}
+  A list of short promises (unique selling points): free returns, fast delivery, secure payment. A public block
+  that holds private `_usp-item` blocks (an icon, a heading and a line of text each). Use it in any content
+  section and in the product page's details column, near the buy buttons. A new list has three items with icons and
+  no words (a preset ships no copy): the merchant writes them. A list with no visible item renders a hint in the
+  theme editor and nothing on the storefront. Decision record:
+  docs/decisions/025-usp-list-is-a-list-of-item-blocks.md.
+
+  The markup is a plain list (role list, one list item per promise); the icons are decoration and hidden from
+  screen readers, the words carry the meaning. No JavaScript.
+
+  @example
+  {% content_for 'block', type: 'usp-list', id: 'promises' %}
+{% enddoc %}
+
+{%- assign s = block.settings -%}
+
+{%- capture items_html -%}{% content_for 'blocks' %}{%- endcapture -%}
+{%- assign items_text = items_html | strip -%}
+
+{%- if items_text != blank -%}
+  <div class="usp-list usp-list--{{ s.layout }}" role="list" {{ block.shopify_attributes }}>
+    {{ items_html }}
+  </div>
+{%- elsif request.design_mode -%}
+  {%- render 'placeholder', label: 'USP list: add items' -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .usp-list { display: grid; gap: 1rem; }
+  .usp-list--row { grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "USP list",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "row", "label": "Side by side, wrapping" },
+        { "value": "column", "label": "One under the other" }
+      ],
+      "default": "row"
+    }
+  ],
+  "blocks": [{ "type": "_usp-item" }],
+  "presets": [
+    {
+      "name": "USP list",
+      "blocks": [
+        { "type": "_usp-item", "settings": { "icon": "truck" } },
+        { "type": "_usp-item", "settings": { "icon": "return" } },
+        { "type": "_usp-item", "settings": { "icon": "shield" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
