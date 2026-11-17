@@ -133,6 +133,39 @@ export const PRODUCTS = [
     collections: ['mock-edge-cases'],
   },
   {
+    handle: 'mock-no-image-other',
+    title: 'No Image, Other Vendor',
+    type: 'Edge cases',
+    vendor: 'Acme',
+    price: '15.00',
+    description: '<p>No media, the same type as the product without an image but another vendor: the placeholder chosen by type only.</p>',
+    options: [],
+    images: [],
+    collections: ['mock-edge-cases'],
+  },
+  {
+    handle: 'mock-no-image-vendor',
+    title: 'No Image, Other Type',
+    type: 'Gadgets',
+    vendor: 'Singi',
+    price: '15.00',
+    description: '<p>No media, another type but the same vendor: the placeholder chosen by vendor only.</p>',
+    options: [],
+    images: [],
+    collections: ['mock-edge-cases'],
+  },
+  {
+    handle: 'mock-no-image-none',
+    title: 'No Image, No Match',
+    type: 'Misc',
+    vendor: 'Nobody',
+    price: '15.00',
+    description: '<p>No media, and no placeholder entry matches: the theme setting, or nothing.</p>',
+    options: [],
+    images: [],
+    collections: ['mock-edge-cases'],
+  },
+  {
     handle: 'mock-no-image',
     title: 'Product Without an Image',
     type: 'Edge cases',
@@ -790,3 +823,10 @@ COLLECTIONS.push(
   { handle: 'mock-outdoor', title: 'Outdoor', description: '<p>Tents and shell layers, with weights and waterproof ratings you can compare.</p>' },
   { handle: 'mock-made-to-order', title: 'Made to order', description: '<p>Personalized prints and engraved pieces, made in a few working days.</p>' },
 );
+
+/* Placeholder entries for the products without media (scripts/placeholders.mjs mock): both fields, type only, vendor only. */
+export const PLACEHOLDERS = [
+  { handle: 'mock-both', productType: 'Edge cases', vendor: 'Singi' },
+  { handle: 'mock-type', productType: 'Edge cases' },
+  { handle: 'mock-vendor', vendor: 'Singi' },
+];

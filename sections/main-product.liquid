@@ -65,10 +65,14 @@
           {%- endcase -%}
         </div>
       {%- else -%}
-        {%- if settings.placeholder_image -%}
+        {%- capture pick -%}{%- render 'placeholder-pick', product: product -%}{%- endcapture -%}
+        {%- assign placeholder = settings.placeholder_image -%}
+        {%- assign pick = pick | strip -%}
+        {%- if pick != blank -%}{%- assign placeholder = shop.metaobjects.singi_placeholder[pick].image.value -%}{%- endif -%}
+        {%- if placeholder -%}
           <div class="product__media">
             {%- render 'image',
-              image: settings.placeholder_image,
+              image: placeholder,
               priority: true,
               sizes: '(min-width: 56em) 55vw, 100vw',
               widths: '480, 720, 960, 1200, 1600',

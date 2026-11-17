@@ -268,6 +268,29 @@ single brand color: Shopify's images are full color cards, so grayscale is the h
 {% render 'payment-icons', mono: true %}
 ```
 
+## placeholder-pick
+
+File: `snippets/placeholder-pick.liquid`
+
+Picks the placeholder image entry for a product that has no image: prints the handle of the best matching entry of
+the metaobject type singi_placeholder, or nothing when no entry matches. The caller reads that entry's image with
+`shop.metaobjects.singi_placeholder[handle].image.value` (see snippets/product-card.liquid; a list cannot be indexed
+by position in Liquid, a lookup by handle works) and falls back to the theme setting "Product placeholder image". Decision record: docs/decisions/038-placeholder-images-by-type-and-vendor.md.
+
+An entry has an optional product type and an optional vendor (empty means any). It matches when each field it
+sets equals the product's (ignoring case). The most specific match wins: type and vendor, then type only, then
+vendor only; the first entry wins a tie. An entry that sets neither is never picked (the theme setting is the
+default). At most 24 entries are read. A leaf snippet on purpose: it renders nothing, so no render is nested
+deeper than the card's own image (AGENTS.md rule 7).
+
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `product` | `product` | yes | The product with no image |
+
+```liquid
+{%- capture pick -%}{%- render 'placeholder-pick', product: product -%}{%- endcapture -%}
+```
+
 ## placeholder
 
 File: `snippets/placeholder.liquid`
@@ -324,7 +347,8 @@ node here is multiplied by the page size. The li is the card, the image is a
 direct child (no media wrapper), the title link stretches over the card with
 ::after, and the badge is positioned against the li.
 
-A product with no image shows settings.placeholder_image when the merchant set one,
+A product with no image shows the placeholder chosen by its type and vendor (the metaobject singi_placeholder,
+decision 038), else settings.placeholder_image when the merchant set one,
 otherwise an empty neutral block of the same shape, so the grid never shifts.
 
 Why one stretched link and not a wrapper link: docs/decisions/001-stretched-card-link.md.

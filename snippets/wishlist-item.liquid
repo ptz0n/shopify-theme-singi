@@ -57,8 +57,12 @@
     <a class="wishlist-item__image" href="{{ chosen.url | default: product.url }}" tabindex="-1" aria-hidden="true">
       {%- if row_image -%}
         {%- render 'image', image: row_image, sizes: '96px', widths: '96, 192, 288', width: 288, alt: product.title -%}
-      {%- elsif settings.placeholder_image -%}
-        {%- render 'image', image: settings.placeholder_image, sizes: '96px', widths: '96, 192, 288', width: 288, alt: product.title -%}
+      {%- else -%}
+        {%- capture pick -%}{%- render 'placeholder-pick', product: product -%}{%- endcapture -%}
+        {%- assign placeholder = settings.placeholder_image -%}
+        {%- assign pick = pick | strip -%}
+        {%- if pick != blank -%}{%- assign placeholder = shop.metaobjects.singi_placeholder[pick].image.value -%}{%- endif -%}
+        {%- if placeholder -%}{%- render 'image', image: placeholder, sizes: '96px', widths: '96, 192, 288', width: 288, alt: product.title -%}{%- endif -%}
       {%- endif -%}
     </a>
     <div class="wishlist-item__info">

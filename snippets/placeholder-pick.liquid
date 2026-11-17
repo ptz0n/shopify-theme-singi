@@ -1,0 +1,46 @@
+{% doc %}
+  Picks the placeholder image entry for a product that has no image: prints the handle of the best matching entry of
+  the metaobject type singi_placeholder, or nothing when no entry matches. The caller reads that entry's image with
+  `shop.metaobjects.singi_placeholder[handle].image.value` (see snippets/product-card.liquid; a list cannot be indexed
+  by position in Liquid, a lookup by handle works) and falls back to the theme setting "Product placeholder image". Decision record: docs/decisions/038-placeholder-images-by-type-and-vendor.md.
+
+  An entry has an optional product type and an optional vendor (empty means any). It matches when each field it
+  sets equals the product's (ignoring case). The most specific match wins: type and vendor, then type only, then
+  vendor only; the first entry wins a tie. An entry that sets neither is never picked (the theme setting is the
+  default). At most 24 entries are read. A leaf snippet on purpose: it renders nothing, so no render is nested
+  deeper than the card's own image (AGENTS.md rule 7).
+
+  @param {product} product - The product with no image
+
+  @example
+  {%- capture pick -%}{%- render 'placeholder-pick', product: product -%}{%- endcapture -%}
+{% enddoc %}
+
+{%- liquid
+  assign product_type = product.type | downcase | strip
+  assign product_vendor = product.vendor | downcase | strip
+  assign best = ''
+  assign best_score = 0
+  for entry in shop.metaobjects.singi_placeholder.values limit: 24
+    assign entry_type = entry.product_type.value | downcase | strip
+    assign entry_vendor = entry.vendor.value | downcase | strip
+    if entry_type != blank and entry_type != product_type
+      continue
+    endif
+    if entry_vendor != blank and entry_vendor != product_vendor
+      continue
+    endif
+    assign score = 0
+    if entry_type != blank
+      assign score = score | plus: 2
+    endif
+    if entry_vendor != blank
+      assign score = score | plus: 1
+    endif
+    if score > best_score
+      assign best_score = score
+      assign best = entry.system.handle
+    endif
+  endfor
+  echo best
+-%}

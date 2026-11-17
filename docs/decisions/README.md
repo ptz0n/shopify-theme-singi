@@ -60,3 +60,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [035](035-a-picked-size-is-remembered-for-the-visit-per-product-type.md) | A picked size is remembered for the visit, per product type, and preselected on the next product | product page, conversion, privacy |
 | [036](036-announcement-content-lives-in-the-section-not-the-theme-settings.md) | The announcement bar's message lives in the section's own settings, where it can take a market override and a metaobject | header, content storage, internationalization |
 | [037](037-no-slider-component-one-scrolling-row-for-product-lists.md) | No slider component: one scrolling row layout for product lists, with CSS scroll snap only | product list, performance, accessibility |
+| [038](038-placeholder-images-by-type-and-vendor.md) | A product with no image gets a placeholder chosen by its type and vendor, from a typed metaobject | product media, catalog, content storage |

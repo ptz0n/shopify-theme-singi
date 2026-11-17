@@ -97,6 +97,7 @@ const settle = () => new Promise((resolve) => setTimeout(resolve, 9000));
 
 const started = Date.now();
 const results = [];
+if (!noSetup && all.some((t) => t.name === 'placeholders' && wanted(t))) await node('placeholders.mjs', ['mock', '--apply']).catch((e) => console.log(`  could not ensure the mock placeholders: ${e.message}`));
 console.log(`Phase 1: ${phase1.length} tests, ${jobs} at a time`);
 results.push(...(await pool(phase1)));
 

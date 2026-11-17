@@ -12,7 +12,7 @@
     "settings": [
       { "type": "image_picker", "id": "logo", "label": "Logo" },
       { "type": "range", "id": "logo_width", "label": "Logo width", "min": 40, "max": 240, "step": 4, "unit": "px", "default": 96 },
-      { "type": "image_picker", "id": "placeholder_image", "label": "Product placeholder image", "info": "Shown wherever a product has no image: cards, product page, cart and favorites. Leave empty for a plain neutral block. Use the same shape as your product images (4:5 works best)." },
+      { "type": "image_picker", "id": "placeholder_image", "label": "Product placeholder image", "info": "The default for a product with no image: cards, product page, cart and favorites. A \"Product placeholder\" entry in Content > Metaobjects can choose another image by product type and vendor. Leave empty for a plain neutral block. Use the same shape as your product images (4:5 works best)." },
       { "type": "image_picker", "id": "favicon", "label": "Favicon", "info": "Square PNG, at least 48x48px." },
       { "type": "textarea", "id": "social_profiles", "label": "Social profile URLs", "info": "One full URL per line (Instagram, Facebook, YouTube and so on). Shown as links in the footer, named after the network, and published as schema.org sameAs on the home page." }
     ]

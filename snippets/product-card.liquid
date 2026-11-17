@@ -5,7 +5,8 @@
   direct child (no media wrapper), the title link stretches over the card with
   ::after, and the badge is positioned against the li.
 
-  A product with no image shows settings.placeholder_image when the merchant set one,
+  A product with no image shows the placeholder chosen by its type and vendor (the metaobject singi_placeholder,
+  decision 038), else settings.placeholder_image when the merchant set one,
   otherwise an empty neutral block of the same shape, so the grid never shifts.
 
   Why one stretched link and not a wrapper link: docs/decisions/001-stretched-card-link.md.
@@ -52,17 +53,23 @@
       alt: card_alt,
       crossorigin: card_crossorigin
     -%}
-  {%- elsif settings.placeholder_image -%}
-    {%- render 'image',
-      image: settings.placeholder_image,
-      sizes: card_sizes,
-      widths: '240, 360, 480, 640, 800',
-      width: 800,
-      eager: eager,
-      alt: product.title
-    -%}
   {%- else -%}
-    <div class="product-card__media"></div>
+    {%- capture pick -%}{%- render 'placeholder-pick', product: product -%}{%- endcapture -%}
+    {%- assign placeholder = settings.placeholder_image -%}
+    {%- assign pick = pick | strip -%}
+    {%- if pick != blank -%}{%- assign placeholder = shop.metaobjects.singi_placeholder[pick].image.value -%}{%- endif -%}
+    {%- if placeholder -%}
+      {%- render 'image',
+        image: placeholder,
+        sizes: card_sizes,
+        widths: '240, 360, 480, 640, 800',
+        width: 800,
+        eager: eager,
+        alt: product.title
+      -%}
+    {%- else -%}
+      <div class="product-card__media"></div>
+    {%- endif -%}
   {%- endif -%}
   {%- if settings.card_video -%}
     {%- assign preview = product.media | where: 'media_type', 'video' | first -%}

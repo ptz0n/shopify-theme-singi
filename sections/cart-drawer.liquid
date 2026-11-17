@@ -42,8 +42,12 @@
                     <a class="cart-drawer__image" href="{{ item.url }}" tabindex="-1" aria-hidden="true">
                       {%- if item.image -%}
                         {%- render 'image', image: item.image, sizes: '64px', widths: '64, 128, 192', width: 192, alt: item.product.title -%}
-                      {%- elsif settings.placeholder_image -%}
-                        {%- render 'image', image: settings.placeholder_image, sizes: '64px', widths: '64, 128, 192', width: 192, alt: item.product.title -%}
+                      {%- else -%}
+                        {%- capture pick -%}{%- render 'placeholder-pick', product: item.product -%}{%- endcapture -%}
+                        {%- assign placeholder = settings.placeholder_image -%}
+                        {%- assign pick = pick | strip -%}
+                        {%- if pick != blank -%}{%- assign placeholder = shop.metaobjects.singi_placeholder[pick].image.value -%}{%- endif -%}
+                        {%- if placeholder -%}{%- render 'image', image: placeholder, sizes: '64px', widths: '64, 128, 192', width: 192, alt: item.product.title -%}{%- endif -%}
                       {%- endif -%}
                     </a>
                     <div class="cart-drawer__info stack" style="--stack: 0.25rem">
