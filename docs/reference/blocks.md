@@ -183,7 +183,9 @@ Rendering API. Options and values come from product.options_with_values, so
 no loop ever walks the variants array. Each option also carries the price of the variant it selects (data-price) and, only when that
 variant's unit price differs from the current one, the unit price (data-unit-price,
 data-unit-label; absent means unchanged), so assets/product-form.js can show them at once
-instead of waiting for the server. Each legend names the chosen value ("Color: Grey", the span
+instead of waiting for the server. A fieldset carries its option name (`data-option`) and, unless it is a color, `data-remember`:
+assets/product-form.js remembers the value picked there for the visit and preselects it on another product of the same type
+(decision 035). Each legend names the chosen value ("Color: Grey", the span
 `data-selected`), which assets/product-form.js updates at once when another value is picked.
 Private to product sections.
 

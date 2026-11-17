@@ -21,6 +21,7 @@
   <product-form
     class="stack"
     data-handle="{{ product.handle }}"
+    data-type="{{ product.type | escape }}"
     data-section-id="{{ section.id }}"
     data-cart-url="{{ routes.cart_url }}"
     data-added="{{ 'products.added' | t }}"

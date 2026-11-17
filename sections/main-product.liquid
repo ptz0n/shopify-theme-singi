@@ -85,6 +85,7 @@
 
     <product-form
       data-handle="{{ product.handle }}"
+      data-type="{{ product.type | escape }}"
       class="product__details stack"
       data-section-id="{{ section.id }}"
       data-cart-url="{{ routes.cart_url }}"

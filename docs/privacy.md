@@ -21,6 +21,7 @@ No cookies. Only `localStorage` and `sessionStorage` on the store's own origin, 
 | `singi-recent` | local | up to 12 product handles | The Recently viewed block and the empty search panel | until cleared |
 | `singi-wishlist` | local | up to 50 `{ product handle, variant id }` | Favorites, when the setting is on | until cleared |
 | `singi-dismissed` | local | ids (hashes) of notices the visitor closed | A closed announcement stays closed | until cleared |
+| `singi-options` | session | `{ "type|option": "value" }`, for example the last size picked per product type | Preselects the same size on the next product of that type ([decision 035](decisions/035-a-picked-size-is-remembered-for-the-visit-per-product-type.md)) | the tab |
 | `singi-ps-v8` | session | recent search result markup (10 minutes, at most 10 queries) | Instant results when a query is repeated | the tab |
 | `singi-ph` | session | one product card image URL and path (30 seconds) | The product page shows the card's image while its own loads | the tab |
 

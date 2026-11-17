@@ -1,6 +1,17 @@
 import { cartChanged, fetchDocument } from '@singi/utils';
 
 const RECENT = 'singi-recent'; /* read by assets/recently-viewed.js */
+const OPTIONS = 'singi-options'; /* { "type|option": "value" }, this visit */
+
+const saved = (patch) => {
+  try {
+    const all = JSON.parse(sessionStorage.getItem(OPTIONS)) ?? {};
+    if (patch) sessionStorage.setItem(OPTIONS, JSON.stringify({ ...all, ...patch }));
+    return all;
+  } catch {
+    return {};
+  }
+};
 
 class ProductForm extends HTMLElement {
   #controller;
@@ -22,8 +33,25 @@ class ProductForm extends HTMLElement {
       this.#add(event.target);
     });
     this.addEventListener('change', (event) => {
-      if (event.target.matches('[data-option-url]')) this.#changeVariant(event.target);
+      if (!event.target.matches('[data-option-url]')) return;
+      const key = this.#key(event.target);
+      if (key) saved({ [key]: event.target.value });
+      this.#changeVariant(event.target);
     });
+    this.#restoreOption();
+  }
+
+  /* Decision 035: a picked size is remembered for the visit, per product type and option. */
+  #key(input) {
+    const set = input.closest('fieldset[data-remember]');
+    return set && this.dataset.type ? `${this.dataset.type}|${set.dataset.option}`.toLowerCase() : null;
+  }
+
+  /* One option only: each option's address assumes the others as rendered. */
+  #restoreOption() {
+    if (location.search.includes('variant=')) return;
+    const all = saved();
+    [...this.querySelectorAll('input[data-option-url]:not(:checked)')].find((i) => all[this.#key(i)] === i.value && i.dataset.available !== 'false' && !i.disabled)?.click();
   }
 
   /* What the chosen option already tells us, applied at once. The buy box is never disabled
