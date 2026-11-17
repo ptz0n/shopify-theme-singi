@@ -2,7 +2,7 @@
 /**
  * Tests the quick add button on product cards (decision 012) in headless Chrome:
  *   - default (SINGI_QUICK unset): no card has a button.
- *   - SINGI_QUICK=1: only in-stock products with one variant have one (mock-high-price and
+ *   - SINGI_QUICK=1: only in-stock products with one variant have one (mock-card-video, mock-high-price and
  *     mock-single-bottle yes; a shirt with sizes and the sold out shirt no); it is at least 44px,
  *     named with the product title, at the image's bottom start corner clear of the heart, the badge
  *     and the AI label, in the grid and the list view, left to right and right to left; pressing it
@@ -103,7 +103,7 @@ try {
       ok(buttons.length === 0, `${label}: ${buttons.length} quick add buttons with the setting off`);
     } else {
       const handles = buttons.map((c) => c.handle).sort();
-      ok(JSON.stringify(handles) === JSON.stringify(['mock-high-price', 'mock-single-bottle']), `${label}: buttons on ${JSON.stringify(handles)}, expected the two single variant products`);
+      ok(JSON.stringify(handles) === JSON.stringify(['mock-card-video', 'mock-high-price', 'mock-single-bottle']), `${label}: buttons on ${JSON.stringify(handles)}, expected the three single variant products`);
       ok(!cards.find((c) => c.handle === 'mock-shirt-harbor').button, `${label}: a product with size options has a button`);
       ok(!cards.find((c) => c.sold).button, `${label}: the sold out product has a button`);
       for (const c of buttons) {
@@ -111,10 +111,13 @@ try {
         ok(c.name && c.name.includes(c.title), `${label} ${c.handle}: the name is "${c.name}", expected it to contain "${c.title}"`);
         ok(c.atStart && c.atBottom, `${label} ${c.handle}: the button is not at the image's bottom start corner`);
         ok(c.clear, `${label} ${c.handle}: the button overlaps the heart, the badge or the AI label`);
+        const icon = await page.evaluate(() => getComputedStyle(document.querySelector('.card-add[data-quick-add]'), '::before').maskImage);
+        ok(icon.includes('circle'), `${label}: the quick add icon is not the shopping cart (${icon.slice(0, 80)})`);
       }
       if (label === 'desktop') {
         /* press it: success */
-        await page.click('.card-add[data-quick-add]');
+        await page.evaluate(() => { for (const b of document.querySelectorAll('.card-add[data-test]')) b.removeAttribute('data-test'); document.querySelector('a[href$="/products/mock-high-price"]').closest('.product-card, li, article, div').querySelector('.card-add[data-quick-add]').setAttribute('data-test', ''); });
+        await page.click('.card-add[data-test]');
         await sleep(300);
         const done = await page.evaluate(() => ({
           calls: window.__calls,
@@ -127,13 +130,14 @@ try {
         ok(done.calls.length === 1 && JSON.parse(done.calls[0].body).quantity === 1 && Number(JSON.parse(done.calls[0].body).id) > 0, `${label}: the add request was ${JSON.stringify(done.calls)}`);
         ok(done.count === '7', `${label}: the header cart count is "${done.count}", expected 7`);
         ok(done.added && !done.busy, `${label}: expected the check mark and no busy state (added ${done.added}, busy ${done.busy})`);
-        ok(/: Added to cart\.?$/.test(done.announced), `${label}: the live region says "${done.announced}"`);
+        ok(/: Added to cart\.?$/.test(done.announced), `${label}: the live region says ${JSON.stringify(done.announced)}`);
         ok(done.events === 1, `${label}: the tracking event fired ${done.events} times`);
         await sleep(2200);
         ok(!(await page.evaluate(() => document.querySelector('.card-add[data-quick-add][data-added]') !== null)), `${label}: the check mark stayed on`);
         /* press it: the store refuses */
         await page.evaluate(() => { window.__fail = true; document.querySelector('[data-cart-count]').textContent = '3'; });
-        await page.click('.card-add[data-quick-add]');
+        await page.evaluate(() => { for (const b of document.querySelectorAll('.card-add[data-test]')) b.removeAttribute('data-test'); document.querySelector('a[href$="/products/mock-high-price"]').closest('.product-card, li, article, div').querySelector('.card-add[data-quick-add]').setAttribute('data-test', ''); });
+        await page.$eval('.card-add[data-test]', (b) => b.click());
         await sleep(300);
         const failed = await page.evaluate(() => ({ count: document.querySelector('[data-cart-count]')?.textContent.trim(), announced: document.getElementById('route-announcer').textContent, added: document.querySelector('.card-add[data-quick-add][data-added]') !== null, busy: document.querySelector('.card-add[data-quick-add][aria-busy]') !== null }));
         ok(failed.count === '3' && !failed.added && !failed.busy, `${label}: after a refused add: count ${failed.count}, added ${failed.added}, busy ${failed.busy}`);
