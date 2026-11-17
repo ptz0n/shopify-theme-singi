@@ -53,3 +53,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [028](028-social-links-are-text-links-from-the-profile-list.md) | Social links are plain text links, from the same list that feeds the structured data | footer, trust, accessibility |
 | [029](029-newsletter-consent-is-merchant-written-and-ships-no-legal-copy.md) | Newsletter consent is merchant-written: the theme ships no legal wording, and offers one optional checkbox | newsletter, privacy, accessibility |
 | [030](030-cookie-consent-is-shopifys-banner-and-the-theme-respects-it.md) | Cookie consent is Shopify's own banner; the theme builds none and respects the answer | privacy, tracking, consent |
+| [031](031-no-location-prompt-yet-shopify-resolves-the-buyers-country.md) | No location prompt yet: Shopify already resolves the buyer's country, and the footer selector stays | internationalization, markets, SEO |
