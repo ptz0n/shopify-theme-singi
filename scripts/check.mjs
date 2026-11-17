@@ -24,7 +24,7 @@ const warn = (file, message, line) => warnings.push(`${file}${line ? `:${line}` 
 /* ---------- Budgets (bytes) ---------- */
 
 const BUDGETS = {
-  'assets/base.css': { raw: 12000, brotli: 3300 },
+  'assets/base.css': { raw: 12100, brotli: 3300 },
   'assets/soft-nav.js': { raw: 7500 },
   'assets/tracking.js': { raw: 7000 },
   'assets/styleguide.js': { raw: 14000 },

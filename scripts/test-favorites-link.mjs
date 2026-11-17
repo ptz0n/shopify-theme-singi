@@ -59,6 +59,7 @@ const desktopLink = () => {
 try {
   /* desktop */
   const page = await browser.newPage();
+  const heartOpacity = () => page.evaluate(() => getComputedStyle(document.querySelector('.header__actions a[href$="/cart#favorites"] .icon')).opacity);
   await page.setViewport({ width: 1200, height: 900 });
   await page.goto(`${base}/collections/mock-new-arrivals`, { waitUntil: 'load', timeout: 60000 });
   await page.evaluate((key) => localStorage.removeItem(key), KEY);
@@ -70,6 +71,7 @@ try {
     ok(link.href.endsWith('/cart#favorites'), `desktop: the link goes to ${link.href}`);
     ok(link.visible && link.width >= 44 && link.height >= 44, `desktop: the link is ${link.width}x${link.height}px`);
     ok(!link.badgeShown, 'desktop: the badge is shown with no favorites');
+    ok(Number(await heartOpacity()) < 1, 'desktop: the heart is not dimmed with no favorites');
     ok(/^Favorites$/.test(link.text.replace(/\s*0$/, '')), `desktop: the link text is "${link.text}"`);
   }
   await page.evaluate((key, value) => { localStorage.setItem(key, value); }, KEY, entries(2));
@@ -77,6 +79,7 @@ try {
   await sleep(300);
   link = await page.evaluate(desktopLink);
   ok(link?.badgeShown && link.badgeText === '2', `desktop: after two saved favorites the badge is "${link?.badgeText}", shown ${link?.badgeShown}`);
+  ok(Number(await heartOpacity()) === 1, 'desktop: the heart is still dimmed with favorites saved');
   ok(/Favorites\s*2/.test(link?.text ?? ''), `desktop: the accessible name is "${link?.text}", expected it to contain the count`);
 
   /* a heart on a card updates the badge */
