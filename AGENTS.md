@@ -9,6 +9,7 @@ Run these before you say a task is done, and report the output honestly:
 ```bash
 npm run check    # shopify theme check + scripts/check.mjs repo rules
 npm run docs     # regenerate docs/reference/*.md when you changed LiquidDoc or schema
+npm run test:all # every browser test in parallel against npm run dev (about two minutes); or npm run test:<name> for one
 ```
 
 If you changed a user-visible string, also confirm the key exists in `locales/en.default.json`. If you could not run something (no store access, no network), say so. Nothing in this repo has been measured on a live store unless [docs/testing.md](docs/testing.md) has a recorded result.

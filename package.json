@@ -39,6 +39,7 @@
     "perf:lighthouse": "node scripts/lighthouse.mjs",
     "perf:liquid": "node scripts/profile.mjs",
     "perf:sizes": "node scripts/cdn-sizes.mjs",
+    "test:all": "node scripts/test-all.mjs",
     "test:media": "node scripts/test-media.mjs",
     "test:siblings": "node scripts/test-siblings.mjs",
     "test:unit-price": "node scripts/test-unit-price.mjs",
