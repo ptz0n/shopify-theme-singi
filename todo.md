@@ -183,7 +183,8 @@ Rules for the loop:
 ## P2 — Enablers (DX/tooling that protects UX quality)
 
 - [x] **Typed JS spike (high-churn interaction code first)** — *P6 (indirect P1–P4 via fewer regressions)*    
-  - *Status:* evaluated, **not adopted** (decision 039): `tsc --checkJs` over all 24 modules gives 188 / 371 / 517 errors at three strictness levels (`soft-nav.js` 11 / 16 / 30, `product-form.js` 21 / 51 / 62) and no real bug once the `EventTarget` typing and script-scope collisions with `lib.dom` are set aside; a clean run needs about 190 annotations that count toward the source-size budgets.
+  - *Status:* **adopted, incrementally** ([decision 041](docs/decisions/041-typed-javascript-with-jsdoc-and-no-build-step.md)): JSDoc types, `tsc` under `strict`, no build step; `utils.js` and `soft-nav.js` typed and clean, `npm run typecheck` is part of `npm run check`, budgets ignore JSDoc. Spike counts were 188 / 371 / 517 errors across all modules.
+  - [ ] Type `assets/product-form.js` (62 errors under `strict`), then `cart-items.js`, `cart-drawer.js` and the remaining modules, adding each to `tsconfig.json` `include`; finish with `include: ["assets/*.js"]`.
   - *Why:* Reduce bugs in critical flows (soft-nav, product/cart/facets/search) and enable safer iteration.  
   - *Scope:* prototype `assets/soft-nav.js`, `assets/product-form.js` as typed source (`src/js/*.js` with JSDoc+`// @ts-check` or TS), define shared DOM/Shopify/import-map globals in `.d.ts`, compare DX/bugs/output/behavior.
 

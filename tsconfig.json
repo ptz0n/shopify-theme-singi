@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "lib": ["es2023", "dom", "dom.iterable"],
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "paths": { "@singi/utils": ["./assets/utils.js"] }
+  },
+  "include": ["types/*.d.ts", "assets/utils.js", "assets/soft-nav.js"]
+}

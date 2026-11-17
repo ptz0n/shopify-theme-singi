@@ -41,7 +41,8 @@ let totalJs = 0;
 let totalJsBrotli = 0;
 const budgetRows = [];
 for (const file of assets) {
-  const raw = readFileSync(join(root, file));
+  // JSDoc type comments (/** ... */) are not counted: they are for `npm run typecheck` and cost visitors nothing once the CDN minifies.
+  const raw = file.endsWith('.js') ? Buffer.from(readFileSync(join(root, file), 'utf8').replace(/[ \t]*\/\*\*[\s\S]*?\*\/[ \t]*\n?/g, '')) : readFileSync(join(root, file));
   const budget = BUDGETS[file] ?? (file.endsWith('.js') ? { raw: DEFAULT_JS_BUDGET } : null);
   if (file.endsWith('.js') && file !== 'assets/styleguide.js') totalJs += raw.length;
   if (!budget) continue;

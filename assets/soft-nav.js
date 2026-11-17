@@ -4,6 +4,7 @@ const SKELETON_DELAY = 90;
 const HOVER_INTENT = 65;
 
 const root = document.documentElement;
+/** @type {Map<string, { time: number, promise: Promise<{ html: string, url: string } | null> }>} */
 const cache = new Map();
 const skipPaths = (root.dataset.softNavSkip || '').split(/\s+/).filter(Boolean);
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -11,16 +12,22 @@ const announcer = document.getElementById('route-announcer');
 
 let current = location.pathname + location.search;
 let token = 0;
+/** @type {ReturnType<typeof setTimeout> | undefined} */
 let hoverTimer;
 
 history.scrollRestoration = 'manual';
 
-const main = () => document.getElementById('main');
+/** @returns {HTMLElement} */
+const main = () => /** @type {HTMLElement} */ (document.getElementById('main'));
+/** @param {string | URL} url */
 const hardNavigate = (url) => location.assign(url);
 
+/** The URL a click or hover should soft-navigate to, or undefined when the browser should handle it.
+ * @param {Pick<MouseEvent, 'button'> & Partial<MouseEvent>} event
+ * @returns {URL | undefined} */
 const eligible = (event) => {
   if (event.defaultPrevented || event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-  const link = event.target.closest?.('a[href]');
+  const link = /** @type {HTMLAnchorElement | null | undefined} */ (/** @type {Element | null} */ (event.target)?.closest?.('a[href]'));
   if (!link || (link.target && link.target !== '_self') || link.hasAttribute('download')) return;
   if (link.hasAttribute('data-no-soft-nav') || link.rel.includes('external')) return;
   const url = new URL(link.href, location.href);
@@ -30,6 +37,7 @@ const eligible = (event) => {
   return url;
 };
 
+/** @param {URL} url */
 const load = (url) => {
   const key = url.pathname + url.search;
   const hit = cache.get(key);
@@ -43,11 +51,12 @@ const load = (url) => {
     .catch(() => null);
 
   cache.set(key, { time: Date.now(), promise });
-  if (cache.size > MAX_ENTRIES) cache.delete(cache.keys().next().value);
+  if (cache.size > MAX_ENTRIES) cache.delete(/** @type {string} */ (cache.keys().next().value));
   promise.then((value) => value || cache.delete(key));
   return promise;
 };
 
+/** @param {URL} url */
 const skeletonFor = (url) => {
   const { pathname } = url;
   const id = pathname.includes('/products/')
@@ -55,7 +64,7 @@ const skeletonFor = (url) => {
     : /\/collections\/.+|\/search/.test(pathname)
       ? 'collection'
       : 'page';
-  return document.getElementById(`skeleton-${id}`);
+  return /** @type {HTMLTemplateElement | null} */ (document.getElementById(`skeleton-${id}`));
 };
 
 const MANAGED_HEAD = [
@@ -68,16 +77,18 @@ const MANAGED_HEAD = [
   'script[type="application/ld+json"]',
 ];
 
+/** @param {Document} doc */
 const syncHead = async (doc) => {
   document.title = doc.title;
   const selector = MANAGED_HEAD.join(',');
   for (const el of document.head.querySelectorAll(selector)) el.remove();
   for (const el of doc.head.querySelectorAll(selector)) document.head.append(document.importNode(el, true));
 
+  /** @type {Promise<unknown>[]} */
   const pending = [];
   for (const link of doc.head.querySelectorAll('link[rel="stylesheet"]')) {
     if (document.head.querySelector(`link[rel="stylesheet"][href="${link.getAttribute('href')}"]`)) continue;
-    const clone = document.importNode(link, true);
+    const clone = /** @type {HTMLLinkElement} */ (document.importNode(link, true));
     pending.push(
       new Promise((resolve) => {
         clone.onload = clone.onerror = resolve;
@@ -89,6 +100,7 @@ const syncHead = async (doc) => {
   await Promise.all(pending);
 };
 
+/** @param {ParentNode & Node} scope */
 const revive = (scope) => {
   for (const old of scope.querySelectorAll('script:not([type="application/ld+json"])')) {
     const src = old.getAttribute('src');
@@ -105,7 +117,7 @@ const revive = (scope) => {
 
 const updateNavState = () => {
   for (const link of document.querySelectorAll('.header a[href]')) {
-    const same = new URL(link.href, location.href).pathname === location.pathname;
+    const same = new URL(/** @type {HTMLAnchorElement} */ (link).href, location.href).pathname === location.pathname;
     link.toggleAttribute('aria-current', same);
     if (same) link.setAttribute('aria-current', 'page');
   }
@@ -114,8 +126,9 @@ const updateNavState = () => {
   } catch (e) {}
 };
 
+/** @param {Document} doc @param {number | undefined} scrollY @param {string} hash */
 const swap = (doc, scrollY, hash) => {
-  const next = doc.getElementById('main');
+  const next = /** @type {HTMLElement} */ (doc.getElementById('main'));
   const target = main();
   const run = () => {
     target.replaceChildren(...next.childNodes);
@@ -137,6 +150,7 @@ const swap = (doc, scrollY, hash) => {
   }
 };
 
+/** @param {URL} url @param {{ push?: boolean, scrollY?: number }} [options] */
 const go = async (url, { push, scrollY } = {}) => {
   const mine = ++token;
   const timer = setTimeout(() => {
@@ -158,7 +172,7 @@ const go = async (url, { push, scrollY } = {}) => {
     return hardNavigate(url);
   }
 
-  const finalUrl = new URL(result.url);
+  const finalUrl = new URL(/** @type {{ url: string }} */ (result).url);
   if (push) {
     history.replaceState({ ...history.state, y: scrollY0 }, '');
     history.pushState({}, '', finalUrl.pathname + finalUrl.search + url.hash);
@@ -180,10 +194,11 @@ document.addEventListener('click', (event) => {
   go(url, { push: true, scrollY: 0 });
 });
 
+/** @param {Event} event */
 const prefetch = (event) => {
   clearTimeout(hoverTimer);
   if (navigator.connection?.saveData) return;
-  const link = event.target.closest?.('a[href]');
+  const link = /** @type {Element | null} */ (event.target)?.closest?.('a[href]');
   if (!link) return;
   const url = eligible({ target: link, button: 0 });
   if (!url) return;

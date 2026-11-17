@@ -23,10 +23,10 @@ Size in bytes (before Shopify's CDN compression) and where each asset is referen
 | `assets/quick-buy.js` | 1642 | `layout/theme.liquid` |
 | `assets/recently-viewed.js` | 2233 | `sections/header.liquid`, `blocks/recently-viewed.liquid` |
 | `assets/show-more.js` | 3120 | `snippets/pagination.liquid` |
-| `assets/soft-nav.js` | 7266 | `layout/theme.liquid` |
+| `assets/soft-nav.js` | 8383 | `layout/theme.liquid` |
 | `assets/sticky-buy.js` | 561 | `snippets/sticky-buy.liquid` |
 | `assets/styleguide.js` | 12560 | `sections/main-styleguide.liquid` |
 | `assets/tracking.js` | 6431 | `layout/theme.liquid` |
-| `assets/utils.js` | 1135 | `layout/theme.liquid` |
+| `assets/utils.js` | 1985 | `layout/theme.liquid` |
 | `assets/wishlist.js` | 7541 | `layout/theme.liquid` |
 | `assets/zoom.js` | 4611 | `snippets/product-zoom.liquid` |
