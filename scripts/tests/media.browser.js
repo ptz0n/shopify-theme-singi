@@ -30,6 +30,22 @@
     ok(slider.scrollLeft === 0 || slider.scrollLeft < 2, `the gallery row starts scrolled by ${slider.scrollLeft}px`);
     const first = slides[0].getBoundingClientRect();
     ok(first.left >= 12, `the first gallery slide starts ${Math.round(first.left)}px from the screen edge, expected the page gutter`);
+    /* the gap between slides equals the edge gutter, so on a middle slide only the next one peeks in (on the right), never the previous one */
+    if (slides.length > 2) {
+      const gap = slides[1].getBoundingClientRect().left - first.right;
+      const gutter = first.left;
+      ok(Math.abs(gap - gutter) <= 1, `the gap between slides is ${Math.round(gap)}px and the edge gutter ${Math.round(gutter)}px, expected the same`);
+      slider.scrollTo({ left: slides[1].offsetLeft - slider.getBoundingClientRect().left - gutter + slider.scrollLeft, behavior: 'instant' });
+      await wait(600);
+      const before = slides[0].getBoundingClientRect();
+      const current = slides[1].getBoundingClientRect();
+      const after = slides[2].getBoundingClientRect();
+      ok(Math.abs(current.left - gutter) <= 2, `the second slide is at ${Math.round(current.left)}px, expected the gutter (${Math.round(gutter)}px)`);
+      ok(before.right <= 1, `the previous slide still shows ${Math.round(before.right)}px at the left edge: only the next one should peek in`);
+      ok(after.left < innerWidth && after.left > innerWidth * 0.8, `the next slide peeks in from the right at ${Math.round(after.left)}px of ${innerWidth}px`);
+      slider.scrollTo({ left: 0, behavior: 'instant' });
+      await wait(300);
+    }
     slider.scrollTo({ left: slider.scrollWidth, behavior: 'instant' });
     await wait(500);
     const last = slides[slides.length - 1].getBoundingClientRect();
