@@ -339,6 +339,7 @@ follow a heading of the wrong level.
 | `heading` | text | Heading |  |
 | `collection` | collection | Collection |  |
 | `limit` | range | Products to show | `4` |
+| `layout` | select | Layout | `"grid"` |
 
 ## quote
 

@@ -62,7 +62,7 @@ The theme's CSS is 7.4 KB (delivered, brotli) in one stylesheet plus `base.css`,
 - **Web-native.** Modern CSS (`light-dark()`, logical properties, popover, `<details name>`, scroll snap), custom elements and native forms. No framework, no polyfills.
 - **Server-rendered.** Shopify renders the HTML with Liquid. JavaScript only upgrades what already works without it.
 - **Fast by construction.** Critical CSS inlined, first-paint resources above `content_for_header`, one LCP image per page, no global JS bundle, no render-blocking third parties. See [performance](docs/performance.md).
-- **Minimal.** A feature earns its place by being worth its bytes: each module has a size budget, and a budget moves only by the measured overage. No slider or carousel unless measured to be worth it. The cart drawer, quick buy and the sticky add to cart bar are settings or blocks, each with a record in [docs/decisions](docs/decisions/README.md).
+- **Minimal.** A feature earns its place by being worth its bytes: each module has a size budget, and a budget moves only by the measured overage. No slider or carousel component: a product list can scroll sideways with CSS scroll snap, nothing more. The cart drawer, quick buy and the sticky add to cart bar are settings or blocks, each with a record in [docs/decisions](docs/decisions/README.md).
 - **Robust.** Every interactive feature has a no-JavaScript path. RTL and dark mode are first-class. Failures fall back to normal navigation.
 - **A bit magical.** Small, cheap, CSS-first details (view transitions, skeletons, scroll-driven polish) that never touch the LCP element. See [extending](docs/extending.md#planned).
 

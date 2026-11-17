@@ -8,12 +8,18 @@
   @param {boolean} [eager] - Load the first row of images eagerly (only when the grid is near the top of the page)
   @param {string} [list_name] - Name for the tracking event. Default: the collection title
   @param {string} [heading] - Heading element of each card title: h2 under a page h1, h3 under an h2 section. Default: h3
+  @param {string} [layout] - "grid" (default) or "row": one scrolling row with scroll snap, a peek of the next card, no script and
+    no auto-advance (decision 037). The row is a focusable group named by `label`.
+  @param {string} [label] - Accessible name of the scrolling row (the section's heading). Default: the collection title
 
   @example
   {% render 'product-grid', collection: collection, limit: 8, eager: true %}
 {% enddoc %}
 
-<ul class="product-grid" role="list">
+{%- if layout == 'row' -%}
+  <div class="product-row" role="group" aria-label="{{ label | default: collection.title | escape }}" tabindex="0">
+{%- endif -%}
+<ul class="product-grid{% if layout == 'row' %} product-grid--row{% endif %}" role="list">
   {%- for product in collection.products limit: limit -%}
     {%- liquid
       assign card_eager = false
@@ -24,7 +30,20 @@
     {% render 'product-card', product: product, eager: card_eager, heading: heading %}
   {%- endfor -%}
 </ul>
+{%- if layout == 'row' -%}
+  </div>
+{%- endif -%}
 {%- if settings.tracking_enabled -%}
   {%- assign tracked_name = list_name | default: collection.title -%}
   {%- render 'tracking-list', products: collection.products, limit: limit, list_id: collection.handle, list_name: tracked_name -%}
 {%- endif -%}
+
+{% stylesheet %}
+  /* A scrolling row: native scroll and scroll snap, no script. The card width leaves a peek of the next one. */
+  .product-row { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: thin; padding-block-end: 0.75rem; }
+  .product-row:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .product-grid--row { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 72%; }
+  .product-grid--row > li { scroll-snap-align: start; }
+  @media (min-width: 40em) { .product-grid--row { grid-auto-columns: calc(33.333% - 0.75rem); } }
+  @media (min-width: 56em) { .product-grid--row { grid-auto-columns: calc(25% - 1rem); } }
+{% endstylesheet %}

@@ -60,7 +60,7 @@ Brotli and gzip, HTTP/3, TLS 1.3, global CDN with versioned asset URLs, Early Hi
 
 | Feature | Why not |
 | --- | --- |
-| Sliders and carousels | The product gallery uses CSS scroll-snap. Sliders cost INP and TBT. |
+| Sliders and carousels | No slider component or library: the product gallery and the "Scrolling row" layout of product lists are CSS scroll snap only, with no auto-advance ([decision 037](decisions/037-no-slider-component-one-scrolling-row-for-product-lists.md)). Sliders cost INP and TBT. |
 | A country selector that loops every country on every request | Looping `localization.available_countries` (hundreds of entries) on every page is Liquid cost on every request. The footer selector (`snippets/localization-selector.liquid`) renders the full list only for a store with 12 countries or fewer and fetches it on first open otherwise. |
 | Third-party scripts in the theme | Each one costs main-thread time. See [extending.md](extending.md#add-a-third-party-integration) for the rules when one is unavoidable. |
 | Comparison, hotspots | Not needed for the baseline. Each adds DOM and JS. (Quick add, quick buy and recently viewed exist now, each behind a setting or a block.) |

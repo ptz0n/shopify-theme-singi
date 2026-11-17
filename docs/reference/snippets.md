@@ -361,6 +361,8 @@ looks and measures the same wherever it appears.
 | `eager` | `boolean` | no | Load the first row of images eagerly (only when the grid is near the top of the page) |
 | `list_name` | `string` | no | Name for the tracking event. Default: the collection title |
 | `heading` | `string` | no | Heading element of each card title: h2 under a page h1, h3 under an h2 section. Default: h3 |
+| `layout` | `string` | no | "grid" (default) or "row": one scrolling row with scroll snap, a peek of the next card, no script and no auto-advance (decision 037). The row is a focusable group named by `label`. |
+| `label` | `string` | no | Accessible name of the scrolling row (the section's heading). Default: the collection title |
 
 ```liquid
 {% render 'product-grid', collection: collection, limit: 8, eager: true %}

@@ -160,7 +160,8 @@ Rules for the loop:
   - *Why:* Displaying accepted payment methods builds shopper trust and can match brand aesthetics; merchants need consistent, complete coverage across surfaces.  
   - *Scope:* support rendering **all available/enabled payment types** (e.g. via `shop.enabled_payment_types` / Shopify payment icon support) with an option for **monochrome** styling alongside default/brand-color presentation. Make placement flexible: footer, payment information page/template, and/or expandable/disclosure patterns where appropriate. Ensure accessible labels/titles, consistent sizing/alignment, lightweight/self-hosted or platform-provided assets (no remote deps), and graceful fallback when icons/types are unavailable. Keep easy to configure and maintain as Shopify’s supported payment types evolve.
 
-- [ ] **Sliders/carousels (evaluate, constrain heavily)** — *P2,P3,P5*  
+- [x] **Sliders/carousels (evaluate, constrain heavily)** — *P2,P3,P5*  
+  - *Status:* evaluated and mostly **not built** (decision 037, `npm run test:product-row`, 28 checks pass on the dev store). No slider component or library, no hero or testimonial carousel, no auto-advance; the gallery was already CSS scroll snap. **One thing built:** a "Scrolling row" layout choice (default Grid) on the Featured collection section and the Product grid block: CSS scroll snap, a peek of the next card, a focusable group named by the heading, right to left, no script. Not measured on a live store.  
   - *Why:* Popular for hero/promo, testimonials, galleries, and featured collections, but often harms performance/accessibility if overused.  
   - *Scope:* prefer CSS scroll-snap/native primitives first, no heavy libraries, keyboard + screen-reader controls, no auto-advance by default, respect reduced motion, and never lazy-load or delay the LCP image. Add only where UX gain is clear.
 

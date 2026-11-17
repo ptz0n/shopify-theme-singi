@@ -136,6 +136,15 @@
           "settings": {
             "mono": true
           }
+        },
+        "row": {
+          "type": "product-grid",
+          "settings": {
+            "collection": "mock-new-arrivals",
+            "limit": 12,
+            "layout": "row",
+            "heading": "Scrolling row"
+          }
         }
       },
       "block_order": [
@@ -146,6 +155,7 @@
         "pay_color",
         "pay_mono",
         "grid",
+        "row",
         "signup"
       ],
       "settings": {

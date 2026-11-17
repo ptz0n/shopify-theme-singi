@@ -20,7 +20,7 @@
       <a class="mono" href="{{ collection.url }}">{{ 'sections.featured.view_all' | t }}</a>
     </div>
     {%- assign list_name = s.heading | default: collection.title -%}
-    {%- render 'product-grid', collection: collection, limit: s.limit, list_name: list_name -%}
+    {%- render 'product-grid', collection: collection, limit: s.limit, list_name: list_name, layout: s.layout, label: list_name -%}
   </div>
 {%- else -%}
   {%- render 'placeholder', label: 'Product grid: choose a collection' -%}
@@ -37,7 +37,18 @@
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "info": "Leave empty to use the collection title." },
     { "type": "collection", "id": "collection", "label": "Collection" },
-    { "type": "range", "id": "limit", "label": "Products to show", "min": 2, "max": 12, "step": 2, "default": 4 }
+    { "type": "range", "id": "limit", "label": "Products to show", "min": 2, "max": 12, "step": 2, "default": 4 },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "grid", "label": "Grid" },
+        { "value": "row", "label": "Scrolling row" }
+      ],
+      "default": "grid",
+      "info": "A scrolling row suits a long list on a phone: swipe or scroll sideways, no auto-advance."
+    }
   ],
   "presets": [{ "name": "Product grid" }]
 }

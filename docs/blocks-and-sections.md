@@ -26,7 +26,7 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 | `spacer` | Vertical whitespace. | height |
 | `accordion` | Native `<details name="accordion">` disclosure. | title, content, open |
 | `quote` | A pull quote or testimonial as a figure with a blockquote and a caption (who said it, role or source). Nothing renders without the quote text. | quote, who said it, role or source |
-| `product-grid` | A heading, a "view all" link and a grid of products from one collection. Put it in a full-width Custom content section. Same cards, image loading and tracking as the Featured collection section, through `snippets/product-grid.liquid`. | heading, collection, products to show (2 to 12) |
+| `product-grid` | A heading, a "view all" link and a grid, or a scrolling row ([decision 037](decisions/037-no-slider-component-one-scrolling-row-for-product-lists.md)), of products from one collection. Put it in a full-width Custom content section. Same cards, image loading and tracking as the Featured collection section, through `snippets/product-grid.liquid`. | heading, collection, products to show (2 to 12) |
 | `newsletter` | Signup form with the email input and Subscribe button joined as one control (a Shopify customer form that tags the subscriber `newsletter`; no JavaScript). The footer uses the same `newsletter` snippet. | label, supporting text |
 | `payment-icons` | The accepted payment methods as small icons (Shopify's own set, one per enabled type), in color or grayscale. The footer uses the same snippet. [Decision 034](decisions/034-payment-icons-are-one-snippet-with-a-one-color-option.md). | grayscale |
 | `usp-list` | A list of short promises (free returns, fast delivery) as role list items, each with an icon, a heading and a line of text. Holds private `_usp-item` blocks; a preset ships icons and no copy; an item with no words renders nothing. No JavaScript. [Decision 025](decisions/025-usp-list-is-a-list-of-item-blocks.md). | layout (side by side or stacked) |
@@ -61,7 +61,7 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 | `quick-buy` | The content of the quick buy dialog: the product page's price, option picker and buy buttons for one product. Never placed on a page; fetched from `/products/<handle>?section_id=quick-buy`. [Decision 022](decisions/022-quick-buy-is-the-product-form-in-a-dialog.md). | no |
 | `footer` | Tagline, menu, newsletter form, payment icons. | no |
 | `hero` | Full-width hero with blocks, in two layouts: text over the image (default) or the image beside the text (two columns from 48em, the image first on a phone, mirrored in right to left; the text uses the page colors, so its contrast never depends on the picture). The image is the LCP candidate when the hero is first. Addable. | `@theme`; layout, height, alignment, overlay, image |
-| `featured-collection` | Heading and a grid of products from a collection. Addable. | no |
+| `featured-collection` | Heading and a grid (or a scrolling row) of products from a collection. Addable. | no |
 | `content` | Generic composition container. Addable. | `@theme` |
 | `main-product` | Gallery plus `<product-form>` details column. | private product blocks and `@theme` |
 | `main-collection` | Filters, sorting (`facets` snippet), grid, pagination inside `<facets-form>`. | no |

@@ -72,6 +72,7 @@ Performance notes:
 | `heading` | text | Heading |  |
 | `collection` | collection | Collection |  |
 | `limit` | range | Products to show | `8` |
+| `layout` | select | Layout | `"grid"` |
 
 ## footer
 

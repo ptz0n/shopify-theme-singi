@@ -63,6 +63,7 @@
     "test:sitemap": "node scripts/test-sitemap.mjs",
     "test:size-memory": "node scripts/test-size-memory.mjs",
     "test:payment-icons": "node scripts/test-payment-icons.mjs",
+    "test:product-row": "node scripts/test-product-row.mjs",
     "perf:interactions": "node scripts/perf-interactions.mjs",
     "test:zoom": "node scripts/test-zoom.mjs",
     "test:search": "node scripts/test-search.mjs",
