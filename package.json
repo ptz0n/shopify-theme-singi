@@ -56,6 +56,7 @@
     "test:option-label": "node scripts/test-option-label.mjs",
     "test:usp": "node scripts/test-usp.mjs",
     "test:features": "node scripts/test-features.mjs",
+    "test:announcement": "node scripts/test-announcement.mjs",
     "perf:interactions": "node scripts/perf-interactions.mjs",
     "test:zoom": "node scripts/test-zoom.mjs",
     "test:search": "node scripts/test-search.mjs",

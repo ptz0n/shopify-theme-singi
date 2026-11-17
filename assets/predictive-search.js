@@ -129,8 +129,8 @@ class PredictiveSearch extends HTMLElement {
 
   async #search() {
     const terms = this.input.value.trim();
-    if (!terms) return this.#close(true);
     this.#controller?.abort();
+    if (!terms) return this.#close(true);
     const controller = (this.#controller = new AbortController());
     this.setAttribute('aria-busy', 'true');
     try {

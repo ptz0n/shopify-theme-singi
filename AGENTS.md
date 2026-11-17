@@ -88,6 +88,7 @@ Detailed recipes are in [docs/extending.md](docs/extending.md). Short forms:
 | Color siblings (separate products linked as colors) | `blocks/_color-siblings.liquid`, `scripts/lib/siblings.mjs`, [decision 003](docs/decisions/003-color-siblings-product-list.md) |
 | Variant switching and add to cart | `assets/product-form.js`, `blocks/_variant-picker.liquid`, `blocks/_buy-buttons.liquid` |
 | Cart updates | `assets/cart-items.js`, `sections/main-cart.liquid` |
+| Announcement bar | `sections/announcement-bar.liquid`, `assets/announcement-bar.js`, `snippets/theme-init.liquid` (`data-dismissed`), [decision 027](docs/decisions/027-announcement-bar-is-one-message-from-the-theme-settings.md) |
 | Cart drawer | `sections/cart-drawer.liquid`, `assets/cart-drawer.js`, [decision 020](docs/decisions/020-cart-drawer-reuses-cart-items.md) |
 | Sticky add to cart bar | `snippets/sticky-buy.liquid`, `assets/sticky-buy.js`, `blocks/_buy-buttons.liquid`, [decision 021](docs/decisions/021-sticky-add-to-cart-submits-the-product-form.md) |
 | Quick add and quick buy on cards | `snippets/product-card.liquid`, `assets/quick-add.js`, `assets/quick-buy.js`, `sections/quick-buy.liquid`, decisions [012](docs/decisions/012-quick-add-for-single-variant-products.md), [022](docs/decisions/022-quick-buy-is-the-product-form-in-a-dialog.md), [023](docs/decisions/023-add-to-cart-answers-with-the-drawer-and-quick-buy-warms-on-intent.md) |

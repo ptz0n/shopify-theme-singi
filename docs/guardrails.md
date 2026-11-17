@@ -33,6 +33,8 @@ The hint text is English only and editor-facing. It is not in `locales/` and nev
 | `hero` section | Renders nothing (no image and no visible blocks) | Tall hint |
 | `content` section | Renders nothing (no visible blocks, so no empty padding) | Tall hint |
 | `featured-collection` section | Renders nothing without a collection | Tall hint |
+| `announcement-bar` section | Renders nothing while the theme setting "Message" is empty | Nothing (set the message in Theme settings > Announcement bar) |
+| `usp-list`, `feature-list` blocks | A list with no visible item renders nothing; an item with no words renders nothing | Dashed hint "add items" for an empty list |
 
 The sections decide emptiness by capturing the rendered blocks and checking for any output, so a block that is present but blank counts as empty.
 

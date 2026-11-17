@@ -20,7 +20,11 @@
      jumps to the list. The radios of snippets/view-toggle.liquid follow it after load and after
      a soft navigation, and a change saves the new choice. Decision 010.
 
-  4. Search focus. When the header's search panel (a popover) opens, focus moves to its
+  4. Dismissed notices. The ids of the notices this visitor dismissed (localStorage singi-dismissed,
+     space separated) go on <html> as data-dismissed before first paint, so a section can hide itself
+     with one CSS rule and never flash. The announcement bar uses it (decision 027).
+
+  5. Search focus. When the header's search panel (a popover) opens, focus moves to its
      input. The HTML autofocus attribute is not used: it would fire on page load instead.
      (assets/predictive-search.js also focuses it inside the tap, which iOS needs for the
      keyboard; this handler covers the moment before that module has loaded.)
@@ -36,6 +40,9 @@
   try {
     const saved = localStorage.getItem(key);
     if (saved) root.dataset.theme = saved;
+  } catch (e) {}
+  try {
+    root.dataset.dismissed = localStorage.getItem('singi-dismissed') || '';
   } catch (e) {}
   const view = 'singi-view';
   try {

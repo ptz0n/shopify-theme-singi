@@ -155,6 +155,14 @@
     ]
   },
   {
+    "name": "Announcement bar",
+    "settings": [
+      { "type": "text", "id": "announcement_text", "label": "Message", "info": "One short sentence above the header, for shipping, a sale or a launch. Leave empty to show no bar." },
+      { "type": "url", "id": "announcement_link", "label": "Link (optional)", "info": "Makes the whole message a link." },
+      { "type": "checkbox", "id": "announcement_dismissible", "label": "Let visitors dismiss it", "default": false, "info": "A close button. A dismissed message stays hidden for that visitor until its text or link changes. Loads one small script." }
+    ]
+  },
+  {
     "name": "Favorites",
     "settings": [
       { "type": "checkbox", "id": "wishlist_enabled", "label": "Enable favorites", "default": true, "info": "Saved per device in the browser (localStorage) and shown on the cart page. No account needed." },

@@ -79,7 +79,8 @@ try {
     await page.goto(`${base}/products/mock-gallery-24`, { waitUntil: 'load', timeout: 60000 });
     await page.evaluate((value) => { document.documentElement.dir = value; }, dir);
     await page.click('.search-toggle');
-    await page.waitForFunction(() => document.querySelectorAll('#site-search .search__recent .product-card').length > 0, { timeout: 20000 }).catch(() => {});
+    /* the cards arrive one by one from the server: wait for all four, not the first */
+    await page.waitForFunction(() => document.querySelectorAll('#site-search .search__recent .product-card').length >= 4, { timeout: 20000 }).catch(() => {});
     await sleep(500);
     s = await page.evaluate(state);
     ok(s.shown && s.heading === 'Recently viewed', `${label}: the suggestions are ${JSON.stringify({ shown: s.shown, heading: s.heading })}`);

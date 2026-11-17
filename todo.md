@@ -96,7 +96,8 @@ Rules for the loop:
   - *Why:* Helps considered shoppers evaluate materials/benefits quickly (see pattern like belowten.se PDP feature callouts).  
   - *Scope:* composable block/section with heading + body + optional icon and/or image per item; responsive, performant images, usable on PDPs and content pages.
 
-- [ ] **Announcement bar** — *P3,P5*  
+- [x] **Announcement bar** — *P3,P5*  
+  - *Status:* built as one message from the theme settings (decision 027, `npm run test:announcement`, 21 checks pass on the dev store): optional link, optional dismiss that stays hidden before first paint through `data-dismissed` on `<html>`, 44px, inverted page colors, scrolls away while the header stays stuck. **Scope decision:** no multiple messages, rotation or marquee (taste, and WCAG 2.2.2 would need a pause control); recorded as revisit-when. Not measured on a live store.  
   - *Why:* High-visibility merchandising for promos/shipping/launch messages (very common Theme Store expectation).  
   - *Scope:* single/multiple messages, optional link, dismissible option, accessible markup; rotation/marquee only as opt-in progressive enhancement with reduced-motion support and no layout shift.
 

@@ -49,3 +49,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [024](024-option-labels-name-the-chosen-value.md) | Option labels name the chosen value ("Color: Grey"), and color siblings get an optional color name | product page, accessibility, data model |
 | [025](025-usp-list-is-a-list-of-item-blocks.md) | A USP list is one public block holding private item blocks, with plain list semantics and no script | content blocks, product page, accessibility |
 | [026](026-feature-list-is-a-list-of-item-blocks.md) | Feature highlights are one public block holding private item blocks, with lazy images cropped to one ratio | content blocks, product page, performance |
+| [027](027-announcement-bar-is-one-message-from-the-theme-settings.md) | The announcement bar is one message from the theme settings, dismissed through a list on the root element | header, merchandising, accessibility |

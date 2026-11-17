@@ -4,6 +4,20 @@
 
 Files in `sections/`. Sections are thin: markup for the page region plus a slot for blocks.
 
+## announcement-bar
+
+File: `sections/announcement-bar.liquid` · Editor name: **Announcement bar** · template-bound
+
+The announcement bar: one short message above the header, from the theme settings "Announcement bar" (message,
+optional link, optional dismiss button). Renders nothing while the message is empty, so a new store shows no bar.
+One message, one look (the page colors inverted): no rotation, no marquee, no second message (decision 027).
+
+A dismissed message stays hidden for that visitor until its text or link changes: the section's id is a hash of
+both, the inline theme script puts the saved list on <html data-dismissed> before first paint, and the CSS
+below hides the bar when its hash is in it, so a dismissed bar never flashes and nothing shifts.
+
+_No settings._
+
 ## cart-drawer
 
 File: `sections/cart-drawer.liquid` · Editor name: **Cart drawer** · template-bound
@@ -270,5 +284,5 @@ _No settings._
 ## Section groups
 
 - `sections/footer-group.json`: Footer (`footer`)
-- `sections/header-group.json`: Header (`header`, `cart-drawer`)
+- `sections/header-group.json`: Header (`announcement-bar`, `header`, `cart-drawer`)
 

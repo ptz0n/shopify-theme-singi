@@ -1,0 +1,53 @@
+{% comment %}
+  The announcement bar: one short message above the header, from the theme settings "Announcement bar" (message,
+  optional link, optional dismiss button). Renders nothing while the message is empty, so a new store shows no bar.
+  One message, one look (the page colors inverted): no rotation, no marquee, no second message (decision 027).
+
+  A dismissed message stays hidden for that visitor until its text or link changes: the section's id is a hash of
+  both, the inline theme script puts the saved list on <html data-dismissed> before first paint, and the CSS
+  below hides the bar when its hash is in it, so a dismissed bar never flashes and nothing shifts.
+{% endcomment %}
+
+{%- if settings.announcement_text != blank -%}
+  {%- assign link = settings.announcement_link -%}
+  {%- assign bar_id = settings.announcement_text | append: link | md5 | slice: 0, 8 -%}
+
+  <announcement-bar class="announcement" data-id="{{ bar_id }}">
+    <div class="announcement__inner container">
+      {%- if link != blank -%}
+        <a class="announcement__text" href="{{ link }}">{{ settings.announcement_text }}</a>
+      {%- else -%}
+        <p class="announcement__text">{{ settings.announcement_text }}</p>
+      {%- endif -%}
+      {%- if settings.announcement_dismissible -%}
+        <button class="icon-button announcement__close" type="button" data-dismiss aria-label="{{ 'general.close' | t }}">{%- render 'icon', name: 'close' -%}</button>
+      {%- endif -%}
+    </div>
+  </announcement-bar>
+
+  {% style %}
+    html[data-dismissed~='{{ bar_id }}'] .announcement { display: none; }
+  {% endstyle %}
+
+  {%- if settings.announcement_dismissible -%}
+    <script src="{{ 'announcement-bar.js' | asset_url }}" type="module"></script>
+  {%- endif -%}
+{%- endif -%}
+
+{% stylesheet %}
+  /* Every header group section is sticky (base.css); the bar scrolls away and leaves the header stuck. */
+  .shopify-section-group-header-group:has(> .announcement) { position: static; }
+  /* A custom element is inline by default: its background would not paint a band. */
+  .announcement { display: block; background: var(--color-fg); color: var(--color-bg); }
+  .announcement__inner { position: relative; display: flex; align-items: center; justify-content: center; min-height: 2.75rem; padding-block: 0.25rem; }
+  .announcement__text { margin: 0; padding-inline: 2.75rem; font-size: 0.875rem; text-align: center; text-wrap: balance; }
+  a.announcement__text { color: inherit; text-decoration: underline; text-underline-offset: 0.2em; }
+  .announcement__close { position: absolute; inset-inline-end: 0; color: inherit; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": []
+}
+{% endschema %}

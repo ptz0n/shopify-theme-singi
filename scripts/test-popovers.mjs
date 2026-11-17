@@ -41,7 +41,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const CASES = [
   ['phone menu', { width: 390, height: 844, isMobile: true, hasTouch: true }, '.nav-toggle', '#site-nav'],
-  ['desktop search', { width: 1200, height: 800 }, '.search-toggle', '#site-search'],
+  ['desktop search', { width: 1200, height: 900 }, '.search-toggle', '#site-search'],
   ['phone search', { width: 390, height: 844, isMobile: true, hasTouch: true }, '.search-toggle', '#site-search'],
 ];
 

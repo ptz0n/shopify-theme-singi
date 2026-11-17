@@ -54,6 +54,7 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 
 | Section | Purpose | Accepts blocks |
 | --- | --- | --- |
+| `announcement-bar` | One message above the header from the theme settings (message, optional link, optional dismiss button); nothing while the message is empty. [Decision 027](decisions/027-announcement-bar-is-one-message-from-the-theme-settings.md). | no |
 | `header` | Logo, popover navigation, search, theme toggle, account, favorites, cart count. Only the search loads a module. | no |
 | `cart-drawer` | One native dialog on every page (in `header-group.json`), opened by the header cart link and after an add to cart; its lines are a `<cart-items>`. Renders nothing when the setting is off. [Decision 020](decisions/020-cart-drawer-reuses-cart-items.md). | no |
 | `quick-buy` | The content of the quick buy dialog: the product page's price, option picker and buy buttons for one product. Never placed on a page; fetched from `/products/<handle>?section_id=quick-buy`. [Decision 022](decisions/022-quick-buy-is-the-product-form-in-a-dialog.md). | no |

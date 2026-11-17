@@ -6,7 +6,7 @@ How a storefront request becomes a page in Singi: the layer model, what is in `<
 
 ```
 layout/theme.liquid
-  header-group.json  -> sections/header.liquid, sections/cart-drawer.liquid
+  header-group.json  -> sections/announcement-bar.liquid, sections/header.liquid, sections/cart-drawer.liquid
   <main id="main">   -> templates/<page>.json -> sections/main-<page>.liquid -> blocks/*
   footer-group.json  -> sections/footer.liquid
 ```
@@ -28,7 +28,7 @@ The order in `layout/theme.liquid` is deliberate. Everything above `content_for_
 | # | Item | Why here |
 | --- | --- | --- |
 | 1 | `snippets/meta-tags.liquid` | `<meta charset>` must be within the first 1024 bytes. Also viewport, title, description, canonical, robots, hreflang, OG, Twitter, theme-color, favicon, JSON-LD. |
-| 2 | Inline theme script | Sets `data-theme` from `localStorage` before first paint to avoid a flash, and handles clicks on `[data-theme-toggle]`. Tiny, runs once. |
+| 2 | Inline theme script | Sets `data-theme`, `data-view` and `data-dismissed` (the ids of dismissed notices, decision 027) from `localStorage` before first paint to avoid a flash, and handles clicks on `[data-theme-toggle]`. Tiny, runs once. |
 | 3 | `snippets/tokens.liquid` | `@font-face` rules and CSS custom properties from settings (inline `<style>`). |
 | 4 | `assets/base.css` inlined | `{{ 'base.css' \| inline_asset_content }}` in a `<style>` tag. No extra request on the critical path. A `<noscript><style>` follows it, only when quick add or quick buy is on, hiding the card plus buttons that need JavaScript. |
 | 5 | Two font preloads | Body font 400 and 600 as woff2, via `font_url \| preload_tag`. Skipped for system fonts. |
@@ -69,6 +69,7 @@ Rules that follow from this:
 | `assets/utils.js` | `fetchDocument`, `postJSON`, `setCartCount`, `cartChanged`, `restoreFocus` | the import map (`@singi/utils`) |
 | `assets/product-form.js` | `<product-form>`: variant switching, add to cart (decisions 005, 023, 024) | `main-product`; also every page with cards when quick buy is on |
 | `assets/cart-items.js` | `<cart-items>`: quantity, remove, errors | `main-cart` and `cart-drawer` |
+| `assets/announcement-bar.js` | `<announcement-bar>`: the dismiss button (decision 027) | `sections/announcement-bar.liquid`, only when dismissal is on |
 | `assets/cart-drawer.js` | `<cart-drawer>`: opens the drawer, refreshes it (decision 020) | `cart-drawer` section, every page when on |
 | `assets/sticky-buy.js` | `<sticky-buy>`: shows the sticky add to cart bar (decision 021) | `snippets/sticky-buy.liquid` |
 | `assets/quick-buy.js` | Delegated quick buy handler and its dialog (decisions 022, 023) | `layout/theme.liquid`, when on |
