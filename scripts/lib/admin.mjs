@@ -21,6 +21,9 @@ if (existsSync(envFile)) {
   }
 }
 
+/** The environment with .env filled in (process.env wins), for scripts that read settings other than the token. */
+export const env_ = env;
+
 export const token = env.APP_TOKEN || env.SHOPIFY_ADMIN_TOKEN;
 const handle = (env.SINGI_STORE || env.STORE || '').replace(/^https?:\/\//, '').replace(/\/.*$/, '');
 export const domain = handle.includes('.') ? handle : `${handle}.myshopify.com`;

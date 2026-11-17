@@ -3,15 +3,17 @@
  * Puts a hero on the dev theme's home page for the screenshots, or takes it away again. The home template in the
  * repository has no image and no blocks (a merchant fills the hero in the theme editor), so without this the front page
  * screenshots show the hero's empty state. Nothing is written to the repository and only the unpublished theme
- * "singi-dev" is changed (override with SINGI_DEV_THEME=<id>); a MAIN theme is refused.
+ * "singi-dev" is changed (override with SINGI_DEV_THEME=<id>); a MAIN theme is refused unless you pass --live
+ * and the store is listed in SINGI_LIVE_STORES (the same guard as scripts/shopify.mjs).
  *
  *   npm run mock:hero -- on     an image (a gradient uploaded to Files once), a heading, a text and a button
  *   npm run mock:hero -- off    puts the repository's templates/index.json back
+ *   npm run mock:hero -- on --live    the same on the store's published theme (shopify.theme.toml, environment DEV)
  *
  * The copy follows the voice for mock content (docs/mock-catalog.md): Kungsleden and ultralight hiking.
  */
 import { readFileSync } from 'node:fs';
-import { admin } from './lib/admin.mjs';
+import { admin, domain, env_ as env } from './lib/admin.mjs';
 import { devThemeId } from './lib/dev-theme.mjs';
 import { THEME_OPS } from './lib/theme-ops.mjs';
 import { uploadImage } from './lib/placeholders.mjs';
@@ -23,7 +25,15 @@ if (!['on', 'off'].includes(mode)) {
   process.exit(2);
 }
 
-const themeGid = async () => `gid://shopify/OnlineStoreTheme/${await devThemeId()}`;
+const live = process.argv.includes('--live');
+const themeGid = async () => {
+  if (!live) return `gid://shopify/OnlineStoreTheme/${await devThemeId()}`;
+  const allowed = (env.SINGI_LIVE_STORES || '').split(',').map((v) => v.trim()).filter(Boolean);
+  if (!allowed.some((v) => domain === v || domain === `${v}.myshopify.com`)) throw new Error(`${domain} is not listed in SINGI_LIVE_STORES: refusing to change its published theme.`);
+  const id = /^\s*theme\s*=\s*"?(\d+)"?/m.exec(readFileSync(`${root}shopify.theme.toml`, 'utf8'))?.[1];
+  if (!id) throw new Error('No theme id in shopify.theme.toml (environment DEV).');
+  return `gid://shopify/OnlineStoreTheme/${id}`;
+};
 
 try {
   const local = readFileSync(`${root}templates/index.json`, 'utf8');
