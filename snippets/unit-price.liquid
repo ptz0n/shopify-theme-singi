@@ -9,9 +9,7 @@
   "$78.00 per 100 ml"), so each language keeps its own word order.
 
   @param {variant} variant - The variant
-  @param {string} [part] - 'visible' for the text shown, 'label' for the screen reader sentence.
-    Both are plain text with ordinary spaces (assets/product-form.js reads them from data
-    attributes). Default: the finished <p> with both.
+  @param {string} [part] - 'visible' for the text shown, 'label' for the screen reader sentence. Both are plain text with ordinary spaces (assets/product-form.js reads them from data attributes). Default: the finished <p> with both.
 
   @example
   {% render 'unit-price', variant: product.selected_or_first_available_variant %}
@@ -51,9 +49,13 @@
 
 {%- if measurement -%}
   {%- case part -%}
-    {%- when 'visible' -%}{{ visible }}
-    {%- when 'label' -%}{{ label }}
+    {%- when 'visible' -%}
+      {{ visible }}
+    {%- when 'label' -%}
+      {{ label }}
     {%- else -%}
-      <p class="muted mono product-price__unit"><span aria-hidden="true">{{ visible | replace: ' ', '&nbsp;' }}</span><span class="visually-hidden">{{ label }}</span></p>
+      <p class="muted mono product-price__unit">
+        <span aria-hidden="true">{{ visible | replace: ' ', '&nbsp;' }}</span><span class="visually-hidden">{{ label }}</span>
+      </p>
   {%- endcase -%}
 {%- endif -%}

@@ -25,7 +25,9 @@
         <p class="announcement__text">{{ message }}</p>
       {%- endif -%}
       {%- if section.settings.dismissible -%}
-        <button class="icon-button announcement__close" type="button" data-dismiss aria-label="{{ 'general.close' | t }}">{%- render 'icon', name: 'close' -%}</button>
+        <button class="icon-button announcement__close" type="button" data-dismiss aria-label="{{ 'general.close' | t }}">
+          {%- render 'icon', name: 'close' -%}
+        </button>
       {%- endif -%}
     </div>
   </announcement-bar>

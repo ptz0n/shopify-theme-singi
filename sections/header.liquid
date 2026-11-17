@@ -38,11 +38,27 @@
       <ul role="list">
         {%- for link in menu.links -%}
           <li>
-            <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+            <a
+              href="{{ link.url }}"
+              {% if link.current %}
+                aria-current="page"
+              {% endif %}
+            >
+              {{- link.title -}}
+            </a>
             {%- if link.links != blank -%}
               <ul role="list">
                 {%- for child in link.links -%}
-                  <li><a href="{{ child.url }}"{% if child.current %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
+                  <li>
+                    <a
+                      href="{{ child.url }}"
+                      {% if child.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{- child.title -}}
+                    </a>
+                  </li>
                 {%- endfor -%}
               </ul>
             {%- endif -%}
@@ -58,21 +74,49 @@
       {%- if settings.wishlist_enabled -%}
         <a class="nav__mobile" href="{{ routes.cart_url }}#favorites">
           {%- render 'icon', name: 'heart' -%}
-          {{ 'wishlist.title' | t }} <span class="nav__count" data-wishlist-count data-count="0"></span>
+          {{ 'wishlist.title' | t }}
+          <span class="nav__count" data-wishlist-count data-count="0"></span>
         </a>
       {%- endif -%}
       {%- if settings.show_theme_toggle -%}
         <button class="theme-toggle nav__mobile" type="button" data-theme-toggle>
-          <span class="i-moon">{% render 'icon', name: 'moon' %}{{ 'general.dark_mode' | t }}</span>
-          <span class="i-sun">{% render 'icon', name: 'sun' %}{{ 'general.light_mode' | t }}</span>
+          <span class="i-moon">
+            {%- render 'icon', name: 'moon' -%}
+            {{- 'general.dark_mode' | t -}}
+          </span>
+          <span class="i-sun">
+            {%- render 'icon', name: 'sun' -%}
+            {{- 'general.light_mode' | t -}}
+          </span>
         </button>
       {%- endif -%}
     </nav>
 
-    <predictive-search class="search" id="site-search" popover data-overlay data-url="{{ routes.predictive_search_url }}" data-recent="{{ 'recently-viewed.js' | asset_url }}">
+    <predictive-search
+      class="search"
+      id="site-search"
+      popover
+      data-overlay
+      data-url="{{ routes.predictive_search_url }}"
+      data-recent="{{ 'recently-viewed.js' | asset_url }}"
+    >
       <form class="search__form" action="{{ routes.search_url }}" method="get" role="search">
         <label class="visually-hidden" for="header-search">{{ 'search.label' | t }}</label>
-        <input id="header-search" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}" role="combobox" aria-expanded="false" aria-controls="search-listbox" aria-autocomplete="list" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">
+        <input
+          id="header-search"
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="{{ 'search.placeholder' | t }}"
+          role="combobox"
+          aria-expanded="false"
+          aria-controls="search-listbox"
+          aria-autocomplete="list"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          enterkeyhint="search"
+        >
         <input type="hidden" name="options[prefix]" value="last">
         <button class="search__submit" type="submit" tabindex="-1" aria-label="{{ 'search.submit' | t }}">
           {%- render 'icon', name: 'search' -%}
@@ -80,7 +124,13 @@
       </form>
       <div class="search__results" data-results hidden></div>
       {%- render 'search-results' -%}
-      <recently-viewed class="search__recent" data-current="{{ product.handle }}" data-limit="4" data-url="{{ routes.root_url }}products/" hidden>
+      <recently-viewed
+        class="search__recent"
+        data-current="{{ product.handle }}"
+        data-limit="4"
+        data-url="{{ routes.root_url }}products/"
+        hidden
+      >
         <h2>{{ 'products.recently_viewed' | t }}</h2>
         <ul class="product-grid" role="list"></ul>
       </recently-viewed>
@@ -114,12 +164,17 @@
         </a>
       {%- endif -%}
 
-      <a class="icon-button" href="{{ routes.cart_url }}"{% if settings.cart_drawer %} data-cart-link{% endif %}>
+      <a
+        class="icon-button"
+        href="{{ routes.cart_url }}"
+        {% if settings.cart_drawer %}
+          data-cart-link
+        {% endif %}
+      >
         {%- render 'icon', name: 'cart' -%}
         <span class="visually-hidden">{{ 'general.cart' | t }}</span>
         <span class="cart-count" data-cart-count data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
       </a>
-
     </div>
   </div>
 </header>

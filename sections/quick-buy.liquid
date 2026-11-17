@@ -14,8 +14,12 @@
 
 <div data-quick-buy-panel data-title="{{ product.title | escape }}">
   <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-inline-end: -0.75rem">
-    <h2 class="h3"><a href="{{ product.url }}">{{ product.title }}</a></h2>
-    <button class="icon-button" type="button" data-close aria-label="{{ 'general.close' | t }}">{%- render 'icon', name: 'close' -%}</button>
+    <h2 class="h3">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h2>
+    <button class="icon-button" type="button" data-close aria-label="{{ 'general.close' | t }}">
+      {%- render 'icon', name: 'close' -%}
+    </button>
   </div>
 
   <product-form

@@ -34,12 +34,26 @@
       <div data-swap="quantity">
         {%- assign quantity_id = 'quantity-' | append: section.id -%}
         <label for="{{ quantity_id }}">{{ 'products.quantity' | t }}</label>
-        {%- render 'quantity-input', id: quantity_id, name: 'quantity', value: rule.min, min: rule.min, max: qty_max, increment: rule.increment, hint_max: rule.max -%}
+        {%- render 'quantity-input',
+          id: quantity_id,
+          name: 'quantity',
+          value: rule.min,
+          min: rule.min,
+          max: qty_max,
+          increment: rule.increment,
+          hint_max: rule.max
+        -%}
       </div>
     {%- endif -%}
 
     <div class="buy__actions">
-      <button class="button" type="submit"{% unless variant.available %} disabled{% endunless %}>
+      <button
+        class="button"
+        type="submit"
+        {% unless variant.available %}
+          disabled
+        {% endunless %}
+      >
         {%- render 'icon', name: 'cart' -%}
         <span>
           {%- if variant.available -%}
@@ -50,14 +64,28 @@
         </span>
       </button>
       {%- if settings.wishlist_enabled -%}
-        <button class="button button--secondary buy__wishlist" type="button" data-wishlist="{{ product.handle }}" data-variant="{{ variant.id }}" aria-pressed="false" aria-label="{{ 'wishlist.toggle' | t: title: product.title }}">
+        <button
+          class="button button--secondary buy__wishlist"
+          type="button"
+          data-wishlist="{{ product.handle }}"
+          data-variant="{{ variant.id }}"
+          aria-pressed="false"
+          aria-label="{{ 'wishlist.toggle' | t: title: product.title }}"
+        >
           {%- render 'icon', name: 'heart' -%}
         </button>
       {%- endif -%}
     </div>
 
     {%- if block.settings.show_dynamic_checkout and in_dialog == false -%}
-      <div data-payment{% unless variant.available %} hidden{% endunless %}>{{ form | payment_button }}</div>
+      <div
+        data-payment
+        {% unless variant.available %}
+          hidden
+        {% endunless %}
+      >
+        {{ form | payment_button }}
+      </div>
     {%- endif -%}
   {%- endform -%}
 

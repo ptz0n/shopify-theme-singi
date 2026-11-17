@@ -14,14 +14,23 @@
   <div class="feature-item" role="listitem" {{ block.shopify_attributes }}>
     {%- if s.image != blank -%}
       <div class="feature-item__media">
-        {%- render 'image', image: s.image, sizes: '(min-width: 56em) 25vw, (min-width: 40em) 33vw, 100vw', widths: '320, 480, 640, 800, 1000', width: 1000 -%}
+        {%- render 'image',
+          image: s.image,
+          sizes: '(min-width: 56em) 25vw, (min-width: 40em) 33vw, 100vw',
+          widths: '320, 480, 640, 800, 1000',
+          width: 1000
+        -%}
         {%- render 'ai-label', alt: s.image.alt -%}
       </div>
     {%- elsif s.icon != 'none' -%}
       {%- render 'icon', name: s.icon, class: 'feature-item__icon' -%}
     {%- endif -%}
-    {%- if s.heading != blank -%}<p class="feature-item__heading">{{ s.heading }}</p>{%- endif -%}
-    {%- if s.text != blank -%}<p class="feature-item__text muted">{{ s.text }}</p>{%- endif -%}
+    {%- if s.heading != blank -%}
+      <p class="feature-item__heading">{{ s.heading }}</p>
+    {%- endif -%}
+    {%- if s.text != blank -%}
+      <p class="feature-item__text muted">{{ s.text }}</p>
+    {%- endif -%}
   </div>
 {%- endif -%}
 

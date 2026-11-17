@@ -26,7 +26,9 @@
       <nav class="footer__nav" aria-label="{{ 'general.footer_menu' | t }}">
         <ul role="list">
           {%- for link in menu.links -%}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
           {%- endfor -%}
         </ul>
       </nav>

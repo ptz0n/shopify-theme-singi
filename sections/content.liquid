@@ -17,14 +17,14 @@
 {%- assign blocks_text = blocks_html | strip -%}
 
 {%- if blocks_text != blank -%}
-<section
-  class="container section content content--{{ section.settings.width }}"
-  style="--content-align: {{ content_align }}; padding-block: {{ section.settings.padding }}px"
->
-  <div class="stack">
-    {{ blocks_html }}
-  </div>
-</section>
+  <section
+    class="container section content content--{{ section.settings.width }}"
+    style="--content-align: {{ content_align }}; padding-block: {{ section.settings.padding }}px"
+  >
+    <div class="stack">
+      {{ blocks_html }}
+    </div>
+  </section>
 {%- else -%}
   {%- render 'placeholder', label: 'Custom content: add blocks', wide: true -%}
 {%- endif -%}

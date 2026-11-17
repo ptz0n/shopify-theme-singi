@@ -15,7 +15,14 @@
 
   {%- if article.image -%}
     <div class="article__image">
-      {%- render 'image', image: article.image, priority: true, sizes: '(min-width: 56em) 48rem, 100vw', widths: '480, 720, 960, 1200, 1600', width: 1600, alt: article.title -%}
+      {%- render 'image',
+        image: article.image,
+        priority: true,
+        sizes: '(min-width: 56em) 48rem, 100vw',
+        widths: '480, 720, 960, 1200, 1600',
+        width: 1600,
+        alt: article.title
+      -%}
     </div>
   {%- endif -%}
 

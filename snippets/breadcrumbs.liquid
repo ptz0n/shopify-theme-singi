@@ -179,7 +179,9 @@
     <ol role="list">
       {%- for title in title_list -%}
         {%- if title != blank -%}
-          <li><a href="{{ url_list[forloop.index0] }}">{{ title | escape }}</a></li>
+          <li>
+            <a href="{{ url_list[forloop.index0] }}">{{ title | escape }}</a>
+          </li>
         {%- endif -%}
       {%- endfor -%}
     </ol>

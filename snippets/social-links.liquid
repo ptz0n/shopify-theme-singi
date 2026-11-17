@@ -48,7 +48,9 @@
     {%- endfor -%}
   {%- endcapture -%}
   {%- if links_html contains '<li>' -%}
-    <ul class="social-links" role="list">{{ links_html }}</ul>
+    <ul class="social-links" role="list">
+      {{ links_html }}
+    </ul>
   {%- endif -%}
 {%- endif -%}
 

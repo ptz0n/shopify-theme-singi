@@ -18,8 +18,8 @@
   @param {number} [hint_max] - the rule's own maximum, named in the hint. Stock is never named (decision 015)
   @param {number} [line] - cart line number: adds data-quantity and data-line for cart-items.js
 
-  A hint under the control names the non-default limits ("Minimum 6 · Multiples of 6 · Maximum 24") and is
-  the input's description. With no rule there is no hint. Decision record: docs/decisions/015-quantity-limits-follow-the-rule-and-never-name-the-stock.md.
+  A hint under the control names the non-default limits ("Minimum 6 · Multiples of 6 · Maximum 24") and is the input's description. With no
+  rule there is no hint. Decision record: docs/decisions/015-quantity-limits-follow-the-rule-and-never-name-the-stock.md.
 
   @example
   {% render 'quantity-input', id: 'quantity-main', name: 'quantity', value: 1 %}
@@ -33,7 +33,15 @@
   {%- if hint_max != blank -%}{{ 'products.quantity_max' | t: count: hint_max }}||{%- endif -%}
 {%- endcapture -%}
 {%- assign hint = hint_parts | strip | split: '||' | join: ' · ' -%}
-<quantity-input class="qty" data-min="{{ min_value }}" data-increment="{{ step_value }}"{% if zero %} data-zero{% endif %} data-rules="{{ min_value }}|{{ max }}|{{ step_value }}">
+<quantity-input
+  class="qty"
+  data-min="{{ min_value }}"
+  data-increment="{{ step_value }}"
+  {% if zero %}
+    data-zero
+  {% endif %}
+  data-rules="{{ min_value }}|{{ max }}|{{ step_value }}"
+>
   <button class="qty__button" type="button" data-step="-1" aria-controls="{{ id }}" aria-label="{{ 'products.quantity_decrease' | t }}">
     {%- render 'icon', name: 'minus' -%}
   </button>
@@ -44,19 +52,29 @@
     type="number"
     value="{{ value }}"
     min="{% if zero %}0{% else %}{{ min_value }}{% endif %}"
-    {% if max != blank %}max="{{ max }}"{% endif %}
-    {% if step_value > 1 %}step="{{ step_value }}"{% endif %}
-    {% if hint != blank %}aria-describedby="{{ id }}-hint"{% endif %}
+    {% if max != blank %}
+      max="{{ max }}"
+    {% endif %}
+    {% if step_value > 1 %}
+      step="{{ step_value }}"
+    {% endif %}
+    {% if hint != blank %}
+      aria-describedby="{{ id }}-hint"
+    {% endif %}
     inputmode="numeric"
     autocomplete="off"
-    {% if line %}data-quantity data-line="{{ line }}"{% endif %}
+    {% if line %}
+      data-quantity data-line="{{ line }}"
+    {% endif %}
   >
   <button class="qty__button" type="button" data-step="1" aria-controls="{{ id }}" aria-label="{{ 'products.quantity_increase' | t }}">
     {%- render 'icon', name: 'plus' -%}
   </button>
   <span class="visually-hidden" role="status" data-qty-live></span>
 </quantity-input>
-{%- if hint != blank -%}<p class="qty-hint mono" id="{{ id }}-hint">{{ hint }}</p>{%- endif -%}
+{%- if hint != blank -%}
+  <p class="qty-hint mono" id="{{ id }}-hint">{{ hint }}</p>
+{%- endif -%}
 
 <script src="{{ 'quantity-input.js' | asset_url }}" type="module"></script>
 

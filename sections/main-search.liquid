@@ -6,52 +6,76 @@
 {% endcomment %}
 
 <div class="container section">
-  <h1 class="search__page-title">{% if search.performed and search.terms != blank %}{{ 'search.heading' | t: terms: search.terms }}{% else %}{{ 'search.title' | t }}{% endif %}</h1>
+  <h1 class="search__page-title">
+    {% if search.performed and search.terms != blank -%}
+      {{- 'search.heading' | t: terms: search.terms -}}
+    {%- else -%}
+      {{- 'search.title' | t -}}
+    {%- endif %}
+  </h1>
 
   {%- if search.performed -%}
     {%- if search.types.size == 1 -%}{%- assign current_type = search.types.first -%}{%- endif -%}
     {%- capture search_clear -%}{{ routes.search_url }}?q={{ search.terms | url_encode }}{%- endcapture -%}
     {%- paginate search.results by 24 -%}
       <div class="view-wrap">
-      {%- if search.results_count > 0 -%}{%- render 'view-toggle' -%}{%- endif -%}
-      <facets-form class="collection" data-section-id="{{ section.id }}">
-      {%- capture count_text -%}{{ 'search.results_count' | t: count: search.results_count, terms: search.terms }}{%- endcapture -%}
-      {%- render 'facets', source: search, action: routes.search_url, clear_url: search_clear, q: search.terms, type_filter: true, current_type: current_type, count: count_text -%}
-      {%- if settings.tracking_enabled -%}
-        <script type="application/json" data-track="view_search_results">
-          { "search_term": {{ search.terms | json }}, "results_count": {{ search.results_count }} }
-        </script>
-      {%- endif -%}
+        {%- if search.results_count > 0 -%}{%- render 'view-toggle' -%}{%- endif -%}
+        <facets-form class="collection" data-section-id="{{ section.id }}">
+          {%- capture count_text -%}{{ 'search.results_count' | t: count: search.results_count, terms: search.terms }}{%- endcapture -%}
+          {%- render 'facets',
+            source: search,
+            action: routes.search_url,
+            clear_url: search_clear,
+            q: search.terms,
+            type_filter: true,
+            current_type: current_type,
+            count: count_text
+          -%}
+          {%- if settings.tracking_enabled -%}
+            <script type="application/json" data-track="view_search_results">
+              { "search_term": {{ search.terms | json }}, "results_count": {{ search.results_count }} }
+            </script>
+          {%- endif -%}
 
-      {%- if search.results_count == 0 -%}
-        <p>{{ 'search.no_results' | t }}</p>
-      {%- else -%}
-        <ul class="product-grid" role="list" data-show-more-list>
-          {%- for result in search.results -%}
-            {%- if result.object_type == 'product' -%}
-              {% render 'product-card', product: result, eager: forloop.first, heading: 'h2' %}
-            {%- else -%}
-              <li class="search__row">
-                {%- if result.object_type == 'article' and result.published_at -%}
-                  <p class="eyebrow">{{ result.published_at | time_tag: format: 'date' }}</p>
-                {%- endif -%}
-                <h2 class="search__heading"><a href="{{ result.url }}">{{ result.title }}</a></h2>
-                {%- if result.object_type == 'article' -%}
-                  {%- assign excerpt = result.excerpt_or_content | strip_html | strip_newlines | strip | truncate: 320 -%}
+          {%- if search.results_count == 0 -%}
+            <p>{{ 'search.no_results' | t }}</p>
+          {%- else -%}
+            <ul class="product-grid" role="list" data-show-more-list>
+              {%- for result in search.results -%}
+                {%- if result.object_type == 'product' -%}
+                  {% render 'product-card', product: result, eager: forloop.first, heading: 'h2' %}
                 {%- else -%}
-                  {%- assign excerpt = result.content | strip_html | strip_newlines | strip | truncate: 320 -%}
+                  <li class="search__row">
+                    {%- if result.object_type == 'article' and result.published_at -%}
+                      <p class="eyebrow">{{ result.published_at | time_tag: format: 'date' }}</p>
+                    {%- endif -%}
+                    <h2 class="search__heading">
+                      <a href="{{ result.url }}">{{ result.title }}</a>
+                    </h2>
+                    {%- if result.object_type == 'article' -%}
+                      {%- assign excerpt = result.excerpt_or_content | strip_html | strip_newlines | strip | truncate: 320 -%}
+                    {%- else -%}
+                      {%- assign excerpt = result.content | strip_html | strip_newlines | strip | truncate: 320 -%}
+                    {%- endif -%}
+                    {%- if excerpt != blank -%}
+                      <p class="search__excerpt muted">{{ excerpt | escape_once }}</p>
+                    {%- endif -%}
+                  </li>
                 {%- endif -%}
-                {%- if excerpt != blank -%}<p class="search__excerpt muted">{{ excerpt | escape_once }}</p>{%- endif -%}
-              </li>
+              {%- endfor -%}
+            </ul>
+            {%- if settings.tracking_enabled -%}
+              {%- render 'tracking-list', products: search.results, list_id: 'search', list_name: 'Search results', only_products: true -%}
             {%- endif -%}
-          {%- endfor -%}
-        </ul>
-        {%- if settings.tracking_enabled -%}
-          {%- render 'tracking-list', products: search.results, list_id: 'search', list_name: 'Search results', only_products: true -%}
-        {%- endif -%}
-        {%- render 'pagination', paginate: paginate, type: 'show_more', page_items: search.results.size, total: search.results_count, section_id: section.id -%}
-      {%- endif -%}
-      </facets-form>
+            {%- render 'pagination',
+              paginate: paginate,
+              type: 'show_more',
+              page_items: search.results.size,
+              total: search.results_count,
+              section_id: section.id
+            -%}
+          {%- endif -%}
+        </facets-form>
       </div>
     {%- endpaginate -%}
   {%- endif -%}

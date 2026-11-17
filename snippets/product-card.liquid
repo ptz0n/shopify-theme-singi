@@ -42,7 +42,12 @@
   endif
 -%}
 
-<li class="product-card"{% if settings.tracking_enabled %} data-product-id="{{ product.id }}"{% endif %}>
+<li
+  class="product-card"
+  {% if settings.tracking_enabled %}
+    data-product-id="{{ product.id }}"
+  {% endif %}
+>
   {%- if product.featured_image -%}
     {%- render 'image',
       image: product.featured_image,
@@ -75,28 +80,63 @@
     {%- assign preview = product.media | where: 'media_type', 'video' | first -%}
     {%- if preview -%}
       {%- assign preview_file = preview.sources | where: 'format', 'mp4' | sort: 'width' | first -%}
-      <video class="card-video" data-card-video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" poster="{{ preview.preview_image | image_url: width: 480 }}"><source src="{{ preview_file.url }}" type="video/mp4"></video>
+      <video
+        class="card-video"
+        data-card-video
+        muted
+        loop
+        playsinline
+        preload="none"
+        aria-hidden="true"
+        tabindex="-1"
+        poster="{{ preview.preview_image | image_url: width: 480 }}"
+      >
+        <source src="{{ preview_file.url }}" type="video/mp4">
+      </video>
     {%- endif -%}
   {%- endif -%}
   {%- render 'ai-label', alt: product.featured_image.alt -%}
   {%- if settings.wishlist_enabled and settings.wishlist_cards -%}
-    <button class="wishlist-heart" type="button" data-wishlist="{{ product.handle }}" aria-pressed="false" aria-label="{{ 'wishlist.toggle' | t: title: product.title }}"></button>
+    <button
+      class="wishlist-heart"
+      type="button"
+      data-wishlist="{{ product.handle }}"
+      aria-pressed="false"
+      aria-label="{{ 'wishlist.toggle' | t: title: product.title }}"
+    ></button>
   {%- endif -%}
   {%- if settings.card_quick_add and product.available and product.variants.size == 1 and product.requires_selling_plan == false -%}
     {%- assign quick_variant = product.variants.first -%}
     {%- if quick_variant.quantity_rule.min <= 1 -%}
-      <button class="card-add" type="button" data-quick-add="{{ quick_variant.id }}" aria-label="{{ 'products.quick_add' | t: title: product.title }}"
-        {%- if settings.tracking_enabled %} data-item="{%- capture quick_item -%}{%- render 'tracking-item', product: product, variant: quick_variant -%}{%- endcapture -%}{{ quick_item | strip_newlines | escape }}"{% endif %}></button>
+      <button
+        class="card-add"
+        type="button"
+        data-quick-add="{{ quick_variant.id }}"
+        aria-label="{{ 'products.quick_add' | t: title: product.title }}"
+        {%- if settings.tracking_enabled %}
+          data-item="{%- capture quick_item -%}{%- render 'tracking-item', product: product, variant: quick_variant -%}{%- endcapture -%}{{ quick_item | strip_newlines | escape }}"
+        {% endif %}
+      ></button>
     {%- endif -%}
   {%- endif -%}
   {%- if settings.card_quick_buy and product.available and product.variants.size > 1 and product.requires_selling_plan == false -%}
-    <button class="card-add" type="button" data-quick-buy="{{ product.url }}" aria-haspopup="dialog" aria-label="{{ 'wishlist.choose_options' | t: title: product.title }}"></button>
+    <button
+      class="card-add"
+      type="button"
+      data-quick-buy="{{ product.url }}"
+      aria-haspopup="dialog"
+      aria-label="{{ 'wishlist.choose_options' | t: title: product.title }}"
+    ></button>
   {%- endif -%}
   {%- unless product.available -%}
     <span class="product-card__badge mono">{{ 'products.sold_out' | t }}</span>
   {%- endunless -%}
-  {%- if settings.card_show_type and product.type != blank -%}<p class="eyebrow product-card__type">{{ product.type }}</p>{%- endif -%}
-  <{{ card_heading }} class="product-card__title"><a class="product-card__link" href="{{ card_url }}">{{ product.title }}</a></{{ card_heading }}>
+  {%- if settings.card_show_type and product.type != blank -%}
+    <p class="eyebrow product-card__type">{{ product.type }}</p>
+  {%- endif -%}
+  <{{ card_heading }} class="product-card__title"
+    ><a class="product-card__link" href="{{ card_url }}">{{ product.title }}</a></{{ card_heading }}
+  >
   {%- render 'price', price: product.price, compare_at_price: product.compare_at_price -%}
 </li>
 

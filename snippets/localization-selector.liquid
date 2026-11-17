@@ -33,7 +33,11 @@
 -%}
 
 {%- if show -%}
-  <localization-selector class="loc" data-url="{{ routes.root_url }}?section_id={{ section.id }}" data-error="{{ 'localization.error' | t }}">
+  <localization-selector
+    class="loc"
+    data-url="{{ routes.root_url }}?section_id={{ section.id }}"
+    data-error="{{ 'localization.error' | t }}"
+  >
     <details class="loc__details">
       <summary class="loc__summary">
         <span class="visually-hidden">{{ 'localization.label' | t }}:</span>
@@ -53,7 +57,16 @@
                 <ul role="list">
                   {%- for language in languages -%}
                     <li>
-                      <button class="loc__option" type="submit" name="language_code" value="{{ language.iso_code }}" lang="{{ language.iso_code }}"{% if language.iso_code == localization.language.iso_code %} aria-current="true"{% endif %}>
+                      <button
+                        class="loc__option"
+                        type="submit"
+                        name="language_code"
+                        value="{{ language.iso_code }}"
+                        lang="{{ language.iso_code }}"
+                        {% if language.iso_code == localization.language.iso_code %}
+                          aria-current="true"
+                        {% endif %}
+                      >
                         {{ language.endonym_name }}
                       </button>
                     </li>
@@ -68,7 +81,15 @@
                 <ul role="list">
                   {%- for country in countries -%}
                     <li>
-                      <button class="loc__option" type="submit" name="country_code" value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %}>
+                      <button
+                        class="loc__option"
+                        type="submit"
+                        name="country_code"
+                        value="{{ country.iso_code }}"
+                        {% if country.iso_code == localization.country.iso_code %}
+                          aria-current="true"
+                        {% endif %}
+                      >
                         <span>{{ country.name }}</span>
                         <span class="mono muted">{{ country.currency.iso_code }}</span>
                       </button>

@@ -11,11 +11,20 @@
       {%- for collection in collections -%}
         <li class="product-card">
           {%- if collection.featured_image -%}
-            {%- render 'image', image: collection.featured_image, sizes: '(min-width: 56em) 25vw, 50vw', widths: '240, 360, 480, 640, 800', width: 800, eager: forloop.first, alt: collection.title -%}
+            {%- render 'image',
+              image: collection.featured_image,
+              sizes: '(min-width: 56em) 25vw, 50vw',
+              widths: '240, 360, 480, 640, 800',
+              width: 800,
+              eager: forloop.first,
+              alt: collection.title
+            -%}
           {%- else -%}
             <div class="product-card__media"></div>
           {%- endif -%}
-          <h2 class="product-card__title"><a class="product-card__link" href="{{ collection.url }}">{{ collection.title }}</a></h2>
+          <h2 class="product-card__title">
+            <a class="product-card__link" href="{{ collection.url }}">{{ collection.title }}</a>
+          </h2>
           <p class="mono muted collections-grid__count">{{ 'collection.product_count' | t: count: collection.products_count }}</p>
         </li>
       {%- endfor -%}

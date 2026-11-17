@@ -14,7 +14,7 @@
 {%- liquid
   assign s = block.settings
   assign heading = s.heading | default: 'products.related' | t
-  assign picks = product.metafields.shopify--discovery--product_recommendation.related_products.value
+  assign picks = product.metafields['shopify--discovery--product_recommendation'].related_products.value
   assign count = 0
   assign shown = ''
   comment
@@ -47,10 +47,14 @@
 {%- if count > 0 -%}
   <div class="related" {{ block.shopify_attributes }}>
     <h2>{{ heading }}</h2>
-    <ul class="product-grid" role="list">{{ cards }}</ul>
+    <ul class="product-grid" role="list">
+      {{ cards }}
+    </ul>
   </div>
 {%- else -%}
-  {%- render 'placeholder', label: 'Related products: shows the related products set in Search and Discovery, or others from the same collection. Empty when there are neither.' -%}
+  {%- render 'placeholder',
+    label: 'Related products: shows the related products set in Search and Discovery, or others from the same collection. Empty when there are neither.'
+  -%}
 {%- endif -%}
 
 {% stylesheet %}

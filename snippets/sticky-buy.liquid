@@ -29,7 +29,14 @@
         {%- render 'price', price: variant.price, compare_at_price: variant.compare_at_price -%}
       </div>
     </div>
-    <button class="button sticky-buy__button" type="submit" form="{{ form_id }}"{% unless variant.available %} disabled{% endunless %}>
+    <button
+      class="button sticky-buy__button"
+      type="submit"
+      form="{{ form_id }}"
+      {% unless variant.available %}
+        disabled
+      {% endunless %}
+    >
       {%- if variant.available -%}
         {{ 'products.add_to_cart' | t }}
       {%- else -%}

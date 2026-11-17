@@ -11,10 +11,19 @@
       {%- for article in blog.articles -%}
         <li class="product-card">
           {%- if article.image -%}
-            {%- render 'image', image: article.image, sizes: '(min-width: 56em) 33vw, 100vw', widths: '360, 540, 720, 960', width: 960, eager: forloop.first, alt: article.title -%}
+            {%- render 'image',
+              image: article.image,
+              sizes: '(min-width: 56em) 33vw, 100vw',
+              widths: '360, 540, 720, 960',
+              width: 960,
+              eager: forloop.first,
+              alt: article.title
+            -%}
           {%- endif -%}
           <p class="eyebrow">{{ article.published_at | time_tag: format: 'date' }}</p>
-          <h2 class="product-card__title"><a class="product-card__link" href="{{ article.url }}">{{ article.title }}</a></h2>
+          <h2 class="product-card__title">
+            <a class="product-card__link" href="{{ article.url }}">{{ article.title }}</a>
+          </h2>
           {%- if article.excerpt_or_content != blank -%}
             <p class="muted">{{ article.excerpt_or_content | strip_html | truncatewords: 24 }}</p>
           {%- endif -%}

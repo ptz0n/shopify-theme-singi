@@ -24,3 +24,9 @@ CHANGELOG.md
 .gitattributes
 .editorconfig
 .TODO.local.md
+types/
+tsconfig.json
+.githooks/
+.vscode/
+.prettierrc.json
+.prettierignore

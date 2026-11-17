@@ -24,7 +24,14 @@
     </div>
 
     {%- assign list_name = section.settings.heading | default: collection.title -%}
-    {%- render 'product-grid', collection: collection, limit: section.settings.limit, eager: eager_cards, list_name: list_name, layout: section.settings.layout, label: list_name -%}
+    {%- render 'product-grid',
+      collection: collection,
+      limit: section.settings.limit,
+      eager: eager_cards,
+      list_name: list_name,
+      layout: section.settings.layout,
+      label: list_name
+    -%}
   </section>
 {%- else -%}
   {%- render 'placeholder', label: 'Featured collection: choose a collection', wide: true -%}

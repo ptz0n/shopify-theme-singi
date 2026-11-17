@@ -1,10 +1,11 @@
 {% doc %}
-  Design tokens. Emits @font-face rules and CSS custom properties from theme
-  settings as one inline <style>. Rendered once in layout/theme.liquid, above
-  content_for_header, so it ships in the first streamed chunk.
+  Design tokens. Emits
 
-  Fonts come only from Shopify's font library (font_picker settings). Never add
-  a literal font-family or @font-face with a remote URL anywhere else; run
+  @font-face rules and CSS custom properties from theme
+  settings as one inline <style>. Rendered once in layout/theme.liquid, above content_for_header, so it ships in the first streamed chunk.
+
+  Fonts come only from Shopify's font library (font_picker settings). Never add a literal font-family or
+  @font-face with a remote URL anywhere else; run
   `npm run check` to enforce this.
 
   @example

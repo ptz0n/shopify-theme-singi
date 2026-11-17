@@ -28,14 +28,25 @@
     assign total = found.queries.size | plus: found.collections.size | plus: shown_products | plus: found.pages.size | plus: found.articles.size
     assign encoded_terms = results.terms | url_encode
   -%}
-  <div id="search-listbox" role="listbox" aria-label="{{ 'search.label' | t }}" data-status="{% if total == 0 %}{{ 'search.no_results' | t | escape }}{% else %}{{ 'search.results_status' | t: count: total | escape }}{% endif %}">
+  <div
+    id="search-listbox"
+    role="listbox"
+    aria-label="{{ 'search.label' | t }}"
+    data-status="{% if total == 0 %}{{ 'search.no_results' | t | escape }}{% else %}{{ 'search.results_status' | t: count: total | escape }}{% endif %}"
+  >
     {%- if found.queries.size > 0 or found.collections.size > 0 -%}
       <ul class="search__suggestions" role="group" aria-label="{{ 'search.suggestions' | t }}">
         {%- for query in found.queries -%}
-          <li role="presentation"><a id="search-option-query-{{ forloop.index }}" role="option" href="{{ query.url }}"><span>{{ query.styled_text }}</span></a></li>
+          <li role="presentation">
+            <a id="search-option-query-{{ forloop.index }}" role="option" href="{{ query.url }}"
+              ><span>{{ query.styled_text }}</span></a
+            >
+          </li>
         {%- endfor -%}
         {%- for collection in found.collections -%}
-          <li role="presentation"><a id="search-option-collection-{{ forloop.index }}" role="option" href="{{ collection.url }}">{{ collection.title }}</a></li>
+          <li role="presentation">
+            <a id="search-option-collection-{{ forloop.index }}" role="option" href="{{ collection.url }}">{{ collection.title }}</a>
+          </li>
         {%- endfor -%}
       </ul>
     {%- endif -%}
@@ -64,16 +75,33 @@
       {%- if found.pages.size > 0 or found.articles.size > 0 -%}
         <ul role="group" aria-label="{{ 'search.pages' | t }}">
           {%- for page in found.pages -%}
-            <li role="presentation"><a id="search-option-page-{{ forloop.index }}" role="option" href="{{ page.url }}"><span class="search__line">{{ page.title }}</span></a></li>
+            <li role="presentation">
+              <a id="search-option-page-{{ forloop.index }}" role="option" href="{{ page.url }}"
+                ><span class="search__line">{{ page.title }}</span></a
+              >
+            </li>
           {%- endfor -%}
           {%- for article in found.articles -%}
-            <li role="presentation"><a id="search-option-article-{{ forloop.index }}" role="option" href="{{ article.url }}"><span class="search__line">{{ article.title }}</span></a></li>
+            <li role="presentation">
+              <a id="search-option-article-{{ forloop.index }}" role="option" href="{{ article.url }}"
+                ><span class="search__line">{{ article.title }}</span></a
+              >
+            </li>
           {%- endfor -%}
         </ul>
       {%- endif -%}
 
       <ul class="search__more" role="group">
-        <li role="presentation"><a id="search-option-all" class="button button--block" role="option" href="{{ routes.search_url }}?q={{ encoded_terms }}&amp;options%5Bprefix%5D=last">{{ 'search.show_all' | t: terms: results.terms }}</a></li>
+        <li role="presentation">
+          <a
+            id="search-option-all"
+            class="button button--block"
+            role="option"
+            href="{{ routes.search_url }}?q={{ encoded_terms }}&amp;options%5Bprefix%5D=last"
+          >
+            {{- 'search.show_all' | t: terms: results.terms -}}
+          </a>
+        </li>
       </ul>
     </div>
   </div>

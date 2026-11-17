@@ -62,7 +62,9 @@
         {%- assign placeholder = settings.placeholder_image -%}
         {%- assign pick = pick | strip -%}
         {%- if pick != blank -%}{%- assign placeholder = shop.metaobjects.singi_placeholder[pick].image.value -%}{%- endif -%}
-        {%- if placeholder -%}{%- render 'image', image: placeholder, sizes: '96px', widths: '96, 192, 288', width: 288, alt: product.title -%}{%- endif -%}
+        {%- if placeholder -%}
+          {%- render 'image', image: placeholder, sizes: '96px', widths: '96, 192, 288', width: 288, alt: product.title -%}
+        {%- endif -%}
       {%- endif -%}
     </a>
     <div class="wishlist-item__info">
@@ -77,16 +79,32 @@
     </div>
     {%- if quick -%}
       {%- assign add_label = 'wishlist.add_to_cart' | t: title: label_title -%}
-      <button class="button wishlist-item__add" type="button" data-wishlist-add="{{ shown.id }}" data-label-add="{{ add_label | escape }}" data-label-added="{{ 'wishlist.added_to_cart' | t: title: label_title | escape }}" aria-label="{{ add_label }}">
+      <button
+        class="button wishlist-item__add"
+        type="button"
+        data-wishlist-add="{{ shown.id }}"
+        data-label-add="{{ add_label | escape }}"
+        data-label-added="{{ 'wishlist.added_to_cart' | t: title: label_title | escape }}"
+        aria-label="{{ add_label }}"
+      >
         {%- render 'icon', name: 'cart' -%}
         {%- render 'icon', name: 'check' -%}
       </button>
     {%- else -%}
-      <a class="button button--secondary wishlist-item__add" href="{{ chosen.url | default: product.url }}" aria-label="{% if unavailable %}{{ 'wishlist.go_to_product' | t: title: label_title }}{% else %}{{ 'wishlist.choose_options' | t: title: label_title }}{% endif %}">
+      <a
+        class="button button--secondary wishlist-item__add"
+        href="{{ chosen.url | default: product.url }}"
+        aria-label="{% if unavailable %}{{ 'wishlist.go_to_product' | t: title: label_title }}{% else %}{{ 'wishlist.choose_options' | t: title: label_title }}{% endif %}"
+      >
         {%- render 'icon', name: 'arrow-right' -%}
       </a>
     {%- endif -%}
-    <button class="icon-button wishlist-item__remove" type="button" data-wishlist-remove="{{ product.handle }}" aria-label="{{ 'wishlist.remove' | t: title: label_title }}">
+    <button
+      class="icon-button wishlist-item__remove"
+      type="button"
+      data-wishlist-remove="{{ product.handle }}"
+      aria-label="{{ 'wishlist.remove' | t: title: label_title }}"
+    >
       {%- render 'icon', name: 'close' -%}
     </button>
   </li>

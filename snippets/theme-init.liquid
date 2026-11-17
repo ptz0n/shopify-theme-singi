@@ -34,70 +34,70 @@
 {% enddoc %}
 
 <script>
-(() => {
-  const root = document.documentElement;
-  const key = 'singi-theme';
-  try {
-    const saved = localStorage.getItem(key);
-    if (saved) root.dataset.theme = saved;
-  } catch (e) {}
-  try {
-    root.dataset.dismissed = localStorage.getItem('singi-dismissed') || '';
-  } catch (e) {}
-  const view = 'singi-view';
-  try {
-    if (localStorage.getItem(view) === 'list') root.dataset.view = 'list';
-  } catch (e) {}
-  const syncView = () => {
-    const radio = document.getElementById('view-' + (root.dataset.view || 'grid'));
-    if (radio) radio.checked = true;
-  };
-  addEventListener('DOMContentLoaded', syncView);
-  document.addEventListener('singi:navigate', syncView);
-  addEventListener('change', (event) => {
-    if (!event.target.closest('.view-toggle')) return;
-    if (event.target.value === 'list') root.dataset.view = 'list';
-    else delete root.dataset.view;
+  (() => {
+    const root = document.documentElement;
+    const key = 'singi-theme';
     try {
-      localStorage.setItem(view, event.target.value);
+      const saved = localStorage.getItem(key);
+      if (saved) root.dataset.theme = saved;
     } catch (e) {}
-  });
-  addEventListener('toggle', (event) => {
-    if (event.newState === 'open' && event.target.id === 'site-search') event.target.querySelector('input').focus();
-  }, true);
-  addEventListener('click', (event) => {
-    const button = event.target.closest('[data-theme-toggle]');
-    if (!button) return;
-    const dark = root.dataset.theme
-      ? root.dataset.theme === 'dark'
-      : matchMedia('(prefers-color-scheme: dark)').matches;
-    const next = dark ? 'light' : 'dark';
-    root.dataset.theme = next;
-    button.setAttribute('aria-pressed', String(next === 'dark'));
     try {
-      localStorage.setItem(key, next);
+      root.dataset.dismissed = localStorage.getItem('singi-dismissed') || '';
     } catch (e) {}
-  });
+    const view = 'singi-view';
+    try {
+      if (localStorage.getItem(view) === 'list') root.dataset.view = 'list';
+    } catch (e) {}
+    const syncView = () => {
+      const radio = document.getElementById('view-' + (root.dataset.view || 'grid'));
+      if (radio) radio.checked = true;
+    };
+    addEventListener('DOMContentLoaded', syncView);
+    document.addEventListener('singi:navigate', syncView);
+    addEventListener('change', (event) => {
+      if (!event.target.closest('.view-toggle')) return;
+      if (event.target.value === 'list') root.dataset.view = 'list';
+      else delete root.dataset.view;
+      try {
+        localStorage.setItem(view, event.target.value);
+      } catch (e) {}
+    });
+    addEventListener('toggle', (event) => {
+      if (event.newState === 'open' && event.target.id === 'site-search') event.target.querySelector('input').focus();
+    }, true);
+    addEventListener('click', (event) => {
+      const button = event.target.closest('[data-theme-toggle]');
+      if (!button) return;
+      const dark = root.dataset.theme
+        ? root.dataset.theme === 'dark'
+        : matchMedia('(prefers-color-scheme: dark)').matches;
+      const next = dark ? 'light' : 'dark';
+      root.dataset.theme = next;
+      button.setAttribute('aria-pressed', String(next === 'dark'));
+      try {
+        localStorage.setItem(key, next);
+      } catch (e) {}
+    });
 
-  const PH = 'singi-ph';
-  const placeholder = () => {
-    let src;
-    try {
-      const saved = JSON.parse(sessionStorage.getItem(PH));
-      if (saved && saved.p === location.pathname && Date.now() - saved.t < 3e4) src = saved.s;
-    } catch (e) {}
-    if (src) root.style.setProperty('--placeholder', 'url("' + src.replace(/"/g, '%22').replace(/\)/g, '%29').replace(/\\/g, '%5C') + '")');
-    else root.style.removeProperty('--placeholder');
-  };
-  window.singiPlaceholder = placeholder;
-  placeholder();
-  addEventListener('click', (event) => {
-    const link = event.target.closest('a[href*="/products/"]');
-    const img = link && (link.querySelector('img') || link.closest('li, article')?.querySelector('img'));
-    if (!img || !img.currentSrc) return;
-    try {
-      sessionStorage.setItem(PH, JSON.stringify({ p: new URL(link.href).pathname, s: img.currentSrc, t: Date.now() }));
-    } catch (e) {}
-  });
-})();
+    const PH = 'singi-ph';
+    const placeholder = () => {
+      let src;
+      try {
+        const saved = JSON.parse(sessionStorage.getItem(PH));
+        if (saved && saved.p === location.pathname && Date.now() - saved.t < 3e4) src = saved.s;
+      } catch (e) {}
+      if (src) root.style.setProperty('--placeholder', 'url("' + src.replace(/"/g, '%22').replace(/\)/g, '%29').replace(/\\/g, '%5C') + '")');
+      else root.style.removeProperty('--placeholder');
+    };
+    window.singiPlaceholder = placeholder;
+    placeholder();
+    addEventListener('click', (event) => {
+      const link = event.target.closest('a[href*="/products/"]');
+      const img = link && (link.querySelector('img') || link.closest('li, article')?.querySelector('img'));
+      if (!img || !img.currentSrc) return;
+      try {
+        sessionStorage.setItem(PH, JSON.stringify({ p: new URL(link.href).pathname, s: img.currentSrc, t: Date.now() }));
+      } catch (e) {}
+    });
+  })();
 </script>

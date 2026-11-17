@@ -27,7 +27,11 @@
 
     {%- comment -%}The card plus buttons (quick add, quick buy) need JavaScript; without it they would do nothing, so they are not shown.{%- endcomment -%}
     {%- if settings.card_quick_add or settings.card_quick_buy -%}
-      <noscript><style>[data-quick-add],[data-quick-buy]{display:none!important}</style></noscript>
+      <noscript>
+        <style>
+          [data-quick-add],[data-quick-buy]{display:none!important}
+        </style>
+      </noscript>
     {%- endif -%}
 
     {%- unless settings.font_body.system? -%}
@@ -74,7 +78,19 @@
 
     {% sections 'footer-group' %}
 
-    <p id="route-announcer" class="visually-hidden" role="status" aria-live="polite"{% if settings.wishlist_enabled %} data-wishlist-saved="{{ 'wishlist.saved' | t }}" data-wishlist-removed="{{ 'wishlist.removed' | t }}"{% endif %}{% if settings.card_quick_add %} data-add-url="{{ routes.cart_add_url }}.js" data-cart-url="{{ routes.cart_url }}" data-added="{{ 'products.added' | t }}" data-error="{{ 'products.add_error' | t }}"{% endif %}></p>
+    <p
+      id="route-announcer"
+      class="visually-hidden"
+      role="status"
+      aria-live="polite"
+      {% if settings.wishlist_enabled %}
+        data-wishlist-saved="{{ 'wishlist.saved' | t }}" data-wishlist-removed="{{ 'wishlist.removed' | t }}"
+      {% endif -%}
+      {% if settings.card_quick_add %}
+        data-add-url="{{ routes.cart_add_url }}.js" data-cart-url="{{ routes.cart_url }}" data-added="{{ 'products.added' | t }}"
+        data-error="{{ 'products.add_error' | t }}"
+      {% endif %}
+    ></p>
 
     {%- if settings.wishlist_enabled -%}
       <script src="{{ 'wishlist.js' | asset_url }}" type="module"></script>

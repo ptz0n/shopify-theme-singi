@@ -13,8 +13,12 @@
   <div class="usp-item" role="listitem" {{ block.shopify_attributes }}>
     {%- if s.icon != 'none' -%}{%- render 'icon', name: s.icon, class: 'usp-item__icon' -%}{%- endif -%}
     <div class="usp-item__body">
-      {%- if s.heading != blank -%}<p class="usp-item__heading">{{ s.heading }}</p>{%- endif -%}
-      {%- if s.text != blank -%}<p class="usp-item__text muted">{{ s.text }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}
+        <p class="usp-item__heading">{{ s.heading }}</p>
+      {%- endif -%}
+      {%- if s.text != blank -%}
+        <p class="usp-item__text muted">{{ s.text }}</p>
+      {%- endif -%}
     </div>
   </div>
 {%- endif -%}

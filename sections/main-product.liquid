@@ -17,7 +17,12 @@
   {%- render 'breadcrumbs', kind: 'product' -%}
 
   <div class="product__layout">
-    <div class="product__gallery"{% if product.media.size > 1 %} role="group" aria-label="{{ product.title | escape }}" tabindex="0"{% endif %}>
+    <div
+      class="product__gallery"
+      {% if product.media.size > 1 %}
+        role="group" aria-label="{{ product.title | escape }}" tabindex="0"
+      {% endif %}
+    >
       {%- assign first_image = true -%}
       {%- if settings.product_zoom -%}
         {%- assign zoom_total = product.media | where: 'media_type', 'image' | size | at_most: 30 -%}
@@ -42,18 +47,40 @@
                 {%- assign zoom_position = zoom_position | plus: 1 -%}
                 {%- capture zoom_variants -%}{%- if product.variants.size > 1 -%}{%- for v in product.variants -%}{%- if v.featured_media.id == media.id -%}{{ v.title }}||{%- endif -%}{%- endfor -%}{%- endif -%}{%- endcapture -%}
                 {%- assign zoom_variants = zoom_variants | split: '||' | join: ', ' -%}
-                <button class="product__zoom" type="button" data-zoom aria-label="{{ 'products.zoom_open' | t: position: zoom_position, total: zoom_total }}"
-                  {%- if zoom_variants != blank %} data-zoom-shown="{{ 'products.zoom_shown_for' | t: variants: zoom_variants | escape }}"{% endif %}></button>
+                <button
+                  class="product__zoom"
+                  type="button"
+                  data-zoom
+                  aria-label="{{ 'products.zoom_open' | t: position: zoom_position, total: zoom_total }}"
+                  {%- if zoom_variants != blank %}
+                    data-zoom-shown="{{ 'products.zoom_shown_for' | t: variants: zoom_variants | escape }}"
+                  {% endif %}
+                ></button>
               {%- endif -%}
               {%- assign first_image = false -%}
             {%- when 'video' -%}
-              {{- media | video_tag: image_size: '1200x', controls: true, muted: true, preload: 'none', playsinline: true, aria-label: media.alt -}}
+              {{-
+                media
+                | video_tag: image_size: '1200x', controls: true, muted: true, preload: 'none', playsinline: true, aria-label: media.alt
+              -}}
             {%- when 'external_video' -%}
               {%- comment -%}Video always starts muted (the viewer can unmute it): the parameter is called mute for YouTube and muted for Vimeo.{%- endcomment -%}
               {%- if media.host == 'youtube' -%}
                 {%- comment -%}YouTube is shown as its poster with a play button and loads nothing until pressed (decision 018): none of its title, share and "Watch on YouTube" overlay shows before play. Without JavaScript the poster is a link to the video.{%- endcomment -%}
-                <a class="embed" href="https://www.youtube.com/watch?v={{ media.external_id }}" data-embed="https://www.youtube-nocookie.com/embed/{{ media.external_id }}?autoplay=1&mute=1&playsinline=1&rel=0&iv_load_policy=3&color=white" data-title="{{ media.alt | escape }}" aria-label="{{ 'products.video_play' | t: title: media.alt }}">
-                  {%- render 'image', image: media.preview_image, sizes: '(min-width: 56em) 55vw, 100vw', widths: '480, 720, 960, 1200, 1600', width: 1600, alt: '' -%}
+                <a
+                  class="embed"
+                  href="https://www.youtube.com/watch?v={{ media.external_id }}"
+                  data-embed="https://www.youtube-nocookie.com/embed/{{ media.external_id }}?autoplay=1&mute=1&playsinline=1&rel=0&iv_load_policy=3&color=white"
+                  data-title="{{ media.alt | escape }}"
+                  aria-label="{{ 'products.video_play' | t: title: media.alt }}"
+                >
+                  {%- render 'image',
+                    image: media.preview_image,
+                    sizes: '(min-width: 56em) 55vw, 100vw',
+                    widths: '480, 720, 960, 1200, 1600',
+                    width: 1600,
+                    alt: ''
+                  -%}
                   <span class="embed__play" aria-hidden="true"></span>
                 </a>
                 {%- assign has_embed = true -%}

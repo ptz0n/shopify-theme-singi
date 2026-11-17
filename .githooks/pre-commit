@@ -4,3 +4,8 @@
 fail() { printf '%s\n\n%s\n' "$1" "pre-commit: $2 (bypass only when justified: git commit --no-verify)"; exit 1; }
 out=$(node scripts/check.mjs 2>&1) || fail "$(printf '%s' "$out" | sed -n '/error(s)/,$p')" "the repo rules failed: npm run check:rules"
 out=$(npm run -s docs:check 2>&1) || fail "$out" "docs/reference is out of date: run npm run docs and add the result"
+staged=$(git diff --cached --name-only --diff-filter=ACM -- '*.liquid')
+if [ -n "$staged" ]; then
+  # shellcheck disable=SC2086
+  out=$(node_modules/.bin/prettier --check $staged 2>&1) || fail "$out" "Liquid is not formatted: run npm run format and add the result"
+fi

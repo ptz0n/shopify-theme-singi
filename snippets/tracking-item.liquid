@@ -18,17 +18,12 @@
   assign item_variant = variant | default: product.selected_or_first_available_variant
   assign item_discount = item_variant.compare_at_price | minus: item_variant.price | at_least: 0
 -%}
-{
-  "item_id": {{ product.id | append: '' | json }},
-  "item_name": {{ product.title | json }},
-  "item_brand": {{ product.vendor | json }},
-  "item_category": {{ product.type | json }},
-  {%- unless product.has_only_default_variant %}
+{ "item_id": {{ product.id | append: '' | json }}, "item_name": {{ product.title | json }}, "item_brand": {{ product.vendor | json }},
+"item_category": {{ product.type | json }},
+{%- unless product.has_only_default_variant %}
   "item_variant": {{ item_variant.title | json }},
-  {%- endunless %}
-  "price": {{ item_variant.compare_at_price | at_least: item_variant.price | divided_by: 100.0 }},
-  "discount": {{ item_discount | divided_by: 100.0 }},
-  "quantity": {{ quantity | default: 1 }},
-  "variant_id": {{ item_variant.id | append: '' | json }},
-  "sku": {{ item_variant.sku | json }}
+{%- endunless %}
+"price": {{ item_variant.compare_at_price | at_least: item_variant.price | divided_by: 100.0 }}, "discount":
+{{ item_discount | divided_by: 100.0 }}, "quantity": {{ quantity | default: 1 }}, "variant_id": {{ item_variant.id | append: '' | json }},
+"sku": {{ item_variant.sku | json }}
 }

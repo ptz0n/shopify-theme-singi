@@ -229,7 +229,7 @@ Rules for the loop:
   - [ ] (Optional) Add a short note to repo docs (e.g. `README` or contributor docs) recommending the extension/workspace settings only if the repo wants it checked in.
 
 - [x] **Evaluate Liquid formatting (`@shopify/prettier-plugin-liquid`)** — *P6*  
-  - *Status:* evaluated, **no-go** (decision 039): Prettier with the Shopify Liquid plugin changes 82 of 86 files (+4,574 / -1,538 lines) and adds a trailing newline to `snippets/icon.liquid`, which must not have one.
+  - *Status:* **adopted** ([decision 040](docs/decisions/040-liquid-is-formatted-by-prettier.md)): Prettier with the Shopify Liquid plugin, `icon.liquid` ignored, rendered HTML of 30 pages identical before and after the pass, `format:check` in check, pre-commit and CI.
   - [ ] Assess fit against repo style and contributor workflow (churn, diff size, `.editorconfig` alignment), treating it as dev tooling.
   - [ ] Spike on a branch: add Prettier + `@shopify/prettier-plugin-liquid`, define/align config, and review diff quality on representative files.
   - [ ] Decide go/no-go based on developer UX vs. churn; if adopted, plan a one-time format pass and document workflow/CI updates.

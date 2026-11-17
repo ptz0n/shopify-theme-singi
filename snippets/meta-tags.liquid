@@ -65,7 +65,7 @@
   default), so the theme adds none of those. Printed as given: a full https address and an x-default or language code, at most 50.
 {%- endcomment -%}
 {%- liquid
-  assign alternates = nil
+  assign alternates = null
   case request.page_type
     when 'product'
       assign alternates = product.metafields.singi.alternates.value
@@ -104,9 +104,14 @@
 <meta name="twitter:description" content="{{ meta_description | strip_html | strip_newlines | truncate: 200 | escape }}">
 
 {%- if request.page_type == 'product' %}
-  <meta property="product:price:amount" content="{{ product.selected_or_first_available_variant.price | money_without_currency | strip_html }}">
+  <meta
+    property="product:price:amount"
+    content="{{ product.selected_or_first_available_variant.price | money_without_currency | strip_html }}"
+  >
   <meta property="product:price:currency" content="{{ cart.currency.iso_code }}">
-  <script type="application/ld+json">{{ product | structured_data }}</script>
+  <script type="application/ld+json">
+    {{ product | structured_data }}
+  </script>
 {%- elsif request.page_type == 'index' %}
   {%- render 'schema-site' -%}
 {%- elsif request.page_type == 'article' %}

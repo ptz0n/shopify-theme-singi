@@ -40,13 +40,26 @@
   assign decoding = 'async'
   if priority
     assign loading = 'eager'
-    assign decoding = nil
+    assign decoding = null
     assign fetchpriority = 'high'
     assign preload = true
   elsif eager
     assign loading = 'eager'
-    assign decoding = nil
+    assign decoding = null
   endif
 -%}
 
-{{- image | image_url: width: max_width | image_tag: widths: srcset_widths, sizes: image_sizes, alt: image_alt, class: class, crossorigin: crossorigin, loading: loading, fetchpriority: fetchpriority, decoding: decoding, preload: preload -}}
+{{-
+  image
+  | image_url: width: max_width
+  | image_tag:
+    widths: srcset_widths,
+    sizes: image_sizes,
+    alt: image_alt,
+    class: class,
+    crossorigin: crossorigin,
+    loading: loading,
+    fetchpriority: fetchpriority,
+    decoding: decoding,
+    preload: preload
+-}}

@@ -14,13 +14,20 @@
 {%- if s.title == blank -%}
   {%- render 'placeholder', label: 'Accordion: add a title, then add content or connect it to a metafield' -%}
 {%- elsif s.content != blank -%}
-<details class="accordion" name="accordion"{% if s.open %} open{% endif %} {{ block.shopify_attributes }}>
-  <summary>
-    <span>{{ s.title }}</span>
-    {%- render 'icon', name: 'chevron-down' -%}
-  </summary>
-  <div class="accordion__body prose">{{ s.content }}</div>
-</details>
+  <details
+    class="accordion"
+    name="accordion"
+    {% if s.open %}
+      open
+    {% endif %}
+    {{ block.shopify_attributes }}
+  >
+    <summary>
+      <span>{{ s.title }}</span>
+      {%- render 'icon', name: 'chevron-down' -%}
+    </summary>
+    <div class="accordion__body prose">{{ s.content }}</div>
+  </details>
 {%- endif -%}
 
 {% stylesheet %}

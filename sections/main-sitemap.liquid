@@ -14,7 +14,9 @@
   <article class="container section sitemap">
     {%- render 'breadcrumbs', kind: 'page' -%}
     <h1 class="sitemap__title">{{ page.title }}</h1>
-    {%- if page.content != blank -%}<div class="prose sitemap__intro">{{ page.content }}</div>{%- endif -%}
+    {%- if page.content != blank -%}
+      <div class="prose sitemap__intro">{{ page.content }}</div>
+    {%- endif -%}
 
     <div class="sitemap__groups">
       {%- if collections.size > 0 -%}
@@ -23,7 +25,9 @@
           <ul role="list">
             {%- for collection in collections -%}
               {%- if collection.products_count > 0 -%}
-                <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+                <li>
+                  <a href="{{ collection.url }}">{{ collection.title }}</a>
+                </li>
               {%- endif -%}
             {%- endfor -%}
           </ul>
@@ -40,7 +44,9 @@
       {%- if pages_html contains '<li>' -%}
         <section class="sitemap__group">
           <h2>{{ 'search.type_page' | t }}</h2>
-          <ul role="list">{{ pages_html }}</ul>
+          <ul role="list">
+            {{ pages_html }}
+          </ul>
         </section>
       {%- endif -%}
 
@@ -48,10 +54,14 @@
         {%- assign blog = block.settings.blog -%}
         {%- if blog != blank and blog.articles.size > 0 -%}
           <section class="sitemap__group" {{ block.shopify_attributes }}>
-            <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
+            <h2>
+              <a href="{{ blog.url }}">{{ blog.title }}</a>
+            </h2>
             <ul role="list">
               {%- for article in blog.articles limit: 20 -%}
-                <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+                <li>
+                  <a href="{{ article.url }}">{{ article.title }}</a>
+                </li>
               {%- endfor -%}
             </ul>
           </section>

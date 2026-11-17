@@ -22,30 +22,63 @@
   {%- assign lists_itself = group | where: 'id', product.id | size -%}
   <nav class="color-siblings" aria-labelledby="color-siblings-{{ block.id }}" data-color-siblings {{ block.shopify_attributes }}>
     {%- assign color_name = product.metafields.singi.color_name.value -%}
-    <p class="label" id="color-siblings-{{ block.id }}">{{ 'products.color' | t }}{% if color_name != blank %}: <span class="color-siblings__name">{{ color_name }}</span>{% endif %}</p>
+    <p class="label" id="color-siblings-{{ block.id }}">
+      {{ 'products.color' | t -}}
+      {%- if color_name != blank -%}
+        : <span class="color-siblings__name">{{ color_name }}</span>
+      {%- endif %}
+    </p>
     <ul role="list">
       {%- if lists_itself == 0 -%}
         {%- assign colors = product.metafields.singi.color.value -%}
         {%- assign color = colors[0] -%}
-        {%- if colors.size > 1 -%}{%- capture color -%}{%- render 'swatch-background', colors: colors -%}{%- endcapture -%}{%- endif -%}
+        {%- if colors.size > 1 -%}
+          {%- capture color -%}{%- render 'swatch-background', colors: colors -%}{%- endcapture -%}
+        {%- endif -%}
         <li>
-          <a class="chip color-swatch{% unless color %} color-swatch--text{% endunless %}" href="{{ product.url }}" aria-current="true"{% if color %} style="--swatch: {{ color | escape }}"{% endif %}>
-            <span{% if color %} class="visually-hidden"{% endif %}>{{ product.title }}</span>
+          <a
+            class="chip color-swatch{% unless color %} color-swatch--text{% endunless %}"
+            href="{{ product.url }}"
+            aria-current="true"
+            {% if color %}
+              style="--swatch: {{ color | escape }}"
+            {% endif %}
+          >
+            <span
+              {% if color %}
+                class="visually-hidden"
+              {% endif %}
+            >
+              {{- product.title -}}
+            </span>
           </a>
         </li>
       {%- endif -%}
       {%- for member in group limit: 12 -%}
         {%- assign colors = member.metafields.singi.color.value -%}
         {%- assign color = colors[0] -%}
-        {%- if colors.size > 1 -%}{%- capture color -%}{%- render 'swatch-background', colors: colors -%}{%- endcapture -%}{%- endif -%}
+        {%- if colors.size > 1 -%}
+          {%- capture color -%}{%- render 'swatch-background', colors: colors -%}{%- endcapture -%}
+        {%- endif -%}
         <li>
           <a
             class="chip color-swatch{% unless member.available %} chip--unavailable{% endunless %}{% unless color %} color-swatch--text{% endunless %}"
             href="{{ member.url }}"
-            {% if member.id == product.id %}aria-current="true"{% endif %}
-            {% if color %}style="--swatch: {{ color | escape }}"{% endif %}
+            {% if member.id == product.id %}
+              aria-current="true"
+            {% endif %}
+            {% if color %}
+              style="--swatch: {{ color | escape }}"
+            {% endif %}
           >
-            <span{% if color %} class="visually-hidden"{% endif %}>{{ member.title }}{% unless member.available %}, {{ 'products.sold_out' | t }}{% endunless %}</span>
+            <span
+              {% if color %}
+                class="visually-hidden"
+              {% endif %}
+            >
+              {{- member.title -}}
+              {%- unless member.available %}, {{ 'products.sold_out' | t }}{% endunless -%}
+            </span>
           </a>
         </li>
       {%- endfor -%}

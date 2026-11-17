@@ -19,11 +19,25 @@
     {%- for option in product.options_with_values -%}
       {%- assign option_index = forloop.index -%}
       {%- assign option_lower = option.name | downcase -%}
-      <fieldset class="variant-option" data-option="{{ option.name | escape }}"{% unless option_lower == color_word or option_lower contains 'color' or option_lower contains 'colour' %} data-remember{% endunless %}>
-        <legend>{{ option.name }}: <span data-selected>{{ option.selected_value }}</span></legend>
+      <fieldset
+        class="variant-option"
+        data-option="{{ option.name | escape }}"
+        {% unless option_lower == color_word or option_lower contains 'color' or option_lower contains 'colour' %}
+          data-remember
+        {% endunless %}
+      >
+        <legend>
+          {{ option.name }}: <span data-selected>{{ option.selected_value }}</span>
+        </legend>
         <div class="variant-option__values">
           {%- for value in option.values -%}
-            {%- assign input_id = 'option-' | append: section.id | append: '-' | append: option_index | append: '-' | append: forloop.index -%}
+            {%- assign input_id = 'option-'
+              | append: section.id
+              | append: '-'
+              | append: option_index
+              | append: '-'
+              | append: forloop.index
+            -%}
             {%- assign target = value.variant.url | default: product.url -%}
             <input
               class="chip-input visually-hidden"
@@ -41,8 +55,12 @@
                 data-unit-price="{{ unit_visible | strip | escape }}"
                 data-unit-label="{{ unit_label | strip | escape }}"
               {%- endif %}
-              {% if value.selected %}checked{% endif %}
-              {% unless value.variant %}disabled{% endunless %}
+              {% if value.selected %}
+                checked
+              {% endif %}
+              {% unless value.variant %}
+                disabled
+              {% endunless %}
             >
             <label class="chip{% unless value.available %} chip--unavailable{% endunless %}" for="{{ input_id }}">
               {%- if value.swatch.color -%}

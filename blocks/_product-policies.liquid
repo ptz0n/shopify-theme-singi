@@ -27,8 +27,16 @@
     {%- endif -%}
     {%- if show_refund or show_shipping -%}
       <ul class="policies__links" role="list">
-        {%- if show_refund -%}<li><a href="{{ refund.url }}">{{ refund.title }}</a></li>{%- endif -%}
-        {%- if show_shipping -%}<li><a href="{{ shipping.url }}">{{ shipping.title }}</a></li>{%- endif -%}
+        {%- if show_refund -%}
+          <li>
+            <a href="{{ refund.url }}">{{ refund.title }}</a>
+          </li>
+        {%- endif -%}
+        {%- if show_shipping -%}
+          <li>
+            <a href="{{ shipping.url }}">{{ shipping.title }}</a>
+          </li>
+        {%- endif -%}
       </ul>
     {%- endif -%}
   </div>

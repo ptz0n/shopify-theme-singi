@@ -7,7 +7,7 @@ Operating manual for coding agents (Claude Code, Codex) working in this repo. Re
 Run these before you say a task is done, and report the output honestly:
 
 ```bash
-npm run check    # shopify theme check + scripts/check.mjs repo rules
+npm run check    # shopify theme check + scripts/check.mjs repo rules + Prettier format check (npm run format fixes it)
 npm run docs     # regenerate docs/reference/*.md when you changed LiquidDoc or schema
 npm run test:all # every browser test in parallel against npm run dev (about two minutes); or npm run test:<name> for one
 ```

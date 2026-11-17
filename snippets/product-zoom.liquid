@@ -24,7 +24,9 @@
 
 <dialog class="zoom" aria-label="{{ product.title | escape }}">
   <div class="zoom__stage" tabindex="0" autofocus></div>
-  <button class="icon-button zoom__close" type="button" data-zoom-close aria-label="{{ 'general.close' | t }}">{%- render 'icon', name: 'close' -%}</button>
+  <button class="icon-button zoom__close" type="button" data-zoom-close aria-label="{{ 'general.close' | t }}">
+    {%- render 'icon', name: 'close' -%}
+  </button>
   <p class="visually-hidden" role="status" data-zoom-live></p>
 </dialog>
 

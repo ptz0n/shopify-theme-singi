@@ -22,7 +22,9 @@
     <header class="sg__head stack">
       <p class="eyebrow">Developer tool</p>
       <h1>Component library</h1>
-      <p class="muted">Every component, an accessibility self-audit and live measurements. Resize, switch color mode, flip direction and zoom to test.</p>
+      <p class="muted">
+        Every component, an accessibility self-audit and live measurements. Resize, switch color mode, flip direction and zoom to test.
+      </p>
 
       <div class="sg__controls" role="group" aria-label="Preview controls">
         <button class="button button--secondary" type="button" data-sg-dir aria-pressed="false">Direction: LTR</button>
@@ -48,17 +50,29 @@
 
     <section class="sg__section" id="audit" aria-labelledby="audit-title">
       <h2 id="audit-title">Accessibility audit</h2>
-      <p class="muted">Checks this page's DOM against common WCAG 2.2 failures. It complements, not replaces, an axe run and manual testing with a keyboard and a screen reader.</p>
+      <p class="muted">
+        Checks this page's DOM against common WCAG 2.2 failures. It complements, not replaces, an axe run and manual testing with a keyboard
+        and a screen reader.
+      </p>
       <p class="sg__summary mono" data-sg-summary role="status">Running…</p>
       <ul class="sg__audit" role="list" data-sg-audit></ul>
     </section>
 
     <section class="sg__section" id="measure" aria-labelledby="measure-title">
       <h2 id="measure-title">Measurements</h2>
-      <p class="muted">Live values for this page load. Interact with the page, then re-run. Transfer sizes are 0 for cross-origin resources.</p>
+      <p class="muted">
+        Live values for this page load. Interact with the page, then re-run. Transfer sizes are 0 for cross-origin resources.
+      </p>
       <div class="sg__table-wrap" tabindex="0" role="region" aria-label="Measurement values">
         <table class="sg__table">
-          <thead><tr><th scope="col">Metric</th><th scope="col">Value</th><th scope="col">Target</th><th scope="col">Status</th></tr></thead>
+          <thead>
+            <tr>
+              <th scope="col">Metric</th>
+              <th scope="col">Value</th>
+              <th scope="col">Target</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
           <tbody data-sg-vitals></tbody>
         </table>
       </div>
@@ -77,7 +91,11 @@
         </div>
         <div class="stack prose">
           <p class="eyebrow">Body</p>
-          <p>The quick brown fox jumps over the lazy dog. Body text is Inter at the regular weight with a 1.5 line height, <strong>strong text uses the 600 weight</strong>, and <a href="#typography">links are underlined</a> so color is never the only cue.</p>
+          <p>
+            The quick brown fox jumps over the lazy dog. Body text is Inter at the regular weight with a 1.5 line height,
+            <strong>strong text uses the 600 weight</strong>, and <a href="#typography">links are underlined</a> so color is never the only
+            cue.
+          </p>
           <p class="muted">Muted text carries secondary information and still meets 4.5:1 contrast.</p>
           <p class="mono">Monospace for prices, SKUs and metadata: 1,299.00 / SKU-0042</p>
           <p class="eyebrow">Eyebrow label</p>
@@ -96,7 +114,10 @@
       </div>
       <div class="stack">
         <p class="eyebrow">Wrapping stress tests</p>
-        <p>Donaudampfschifffahrtsgesellschaftskapitänsmützenhersteller and https://example.com/a/very/long/path/that/has/no/natural/break/points/to/test/overflow-wrap</p>
+        <p>
+          Donaudampfschifffahrtsgesellschaftskapitänsmützenhersteller and
+          https://example.com/a/very/long/path/that/has/no/natural/break/points/to/test/overflow-wrap
+        </p>
         <p lang="ar" dir="rtl">نص عربي للتحقق من الاتجاه من اليمين إلى اليسار وتباعد الأحرف والخط الاحتياطي.</p>
         <p lang="ja">日本語の文章で、行の折り返しと禁則処理、フォントの代替を確認します。</p>
       </div>
@@ -115,8 +136,17 @@
       </ul>
       <div class="sg__table-wrap" tabindex="0" role="region" aria-label="Contrast ratios">
         <table class="sg__table">
-          <caption class="visually-hidden">Contrast ratios for the current color mode</caption>
-          <thead><tr><th scope="col">Pair</th><th scope="col">Ratio</th><th scope="col">Needs</th><th scope="col">Result</th></tr></thead>
+          <caption class="visually-hidden">
+            Contrast ratios for the current color mode
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Pair</th>
+              <th scope="col">Ratio</th>
+              <th scope="col">Needs</th>
+              <th scope="col">Result</th>
+            </tr>
+          </thead>
           <tbody data-sg-contrast></tbody>
         </table>
       </div>
@@ -127,7 +157,10 @@
       <h2 id="buttons-title">Buttons</h2>
       <div class="sg__row">
         <button class="button" type="button">Primary</button>
-        <button class="button" type="button">{%- render 'icon', name: 'cart' -%}<span>Add to cart</span></button>
+        <button class="button" type="button">
+          {%- render 'icon', name: 'cart' -%}
+          <span>Add to cart</span>
+        </button>
         <button class="button button--secondary" type="button">Secondary</button>
         <a class="button" href="#buttons">Link as button</a>
         <button class="button" type="button" disabled>Disabled</button>
@@ -211,7 +244,18 @@
           <div class="sg__row">
             {%- assign sizes = 'S,M,L,XL' | split: ',' -%}
             {%- for size in sizes -%}
-              <input class="chip-input visually-hidden" type="radio" name="sg-size" id="sg-size-{{ forloop.index }}"{% if forloop.first %} checked{% endif %}{% if size == 'XL' %} disabled{% endif %}>
+              <input
+                class="chip-input visually-hidden"
+                type="radio"
+                name="sg-size"
+                id="sg-size-{{ forloop.index }}"
+                {% if forloop.first %}
+                  checked
+                {% endif -%}
+                {% if size == 'XL' %}
+                  disabled
+                {% endif %}
+              >
               <label class="chip" for="sg-size-{{ forloop.index }}">{{ size }}</label>
             {%- endfor -%}
           </div>
@@ -260,7 +304,9 @@
           <p class="eyebrow">Product card</p>
           {%- assign sample = collections.all.products.first -%}
           {%- if sample -%}
-            <ul class="sg__card" role="list">{% render 'product-card', product: sample, eager: false, heading: 'h3' %}</ul>
+            <ul class="sg__card" role="list">
+              {% render 'product-card', product: sample, eager: false, heading: 'h3' %}
+            </ul>
           {%- else -%}
             {%- render 'placeholder', label: 'Add a product to see the product card' -%}
           {%- endif -%}
@@ -273,7 +319,10 @@
       <ul class="sg__icons" role="list">
         {%- assign icon_names = 'sun,moon,cart,search,account,menu,close,plus,minus,arrow-right,chevron-down' | split: ',' -%}
         {%- for name in icon_names -%}
-          <li>{%- render 'icon', name: name -%}<span class="mono">{{ name }}</span></li>
+          <li>
+            {%- render 'icon', name: name -%}
+            <span class="mono">{{ name }}</span>
+          </li>
         {%- endfor -%}
       </ul>
       <div class="sg__grid">

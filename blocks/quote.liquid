@@ -11,11 +11,15 @@
 
 {%- if s.quote != blank -%}
   <figure class="quote" {{ block.shopify_attributes }}>
-    <blockquote><p>{{ s.quote | escape | newline_to_br }}</p></blockquote>
+    <blockquote>
+      <p>{{ s.quote | escape | newline_to_br }}</p>
+    </blockquote>
     {%- if s.author != blank -%}
       <figcaption>
         <span>{{ s.author }}</span>
-        {% if s.source != blank %}<span class="muted">{{ s.source }}</span>{% endif %}
+        {% if s.source != blank -%}
+          <span class="muted">{{ s.source }}</span>
+        {%- endif %}
       </figcaption>
     {%- endif -%}
   </figure>

@@ -28,7 +28,13 @@
 
 {%- if type == 'show_more' -%}
   {%- assign shown = paginate.current_offset | plus: page_items -%}
-  <show-more class="show-more" data-section-id="{{ section_id }}"{% if paginate.next %} data-url="{{ paginate.next.url }}"{% endif %}>
+  <show-more
+    class="show-more"
+    data-section-id="{{ section_id }}"
+    {% if paginate.next %}
+      data-url="{{ paginate.next.url }}"
+    {% endif %}
+  >
     <p class="show-more__status mono muted">{{ 'collection.showing' | t: shown: shown, total: total }}</p>
     {%- if paginate.next -%}
       <a class="button button--secondary" href="{{ paginate.next.url }}" rel="next">{{ 'collection.show_more' | t }}</a>

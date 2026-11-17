@@ -12,17 +12,26 @@
 
 <dl class="meta mono" data-swap="meta" {{ block.shopify_attributes }}>
   {%- if variant.sku != blank -%}
-    <div><dt>{{ 'products.sku' | t }}</dt><dd>{{ variant.sku }}</dd></div>
+    <div>
+      <dt>{{ 'products.sku' | t }}</dt>
+      <dd>{{ variant.sku }}</dd>
+    </div>
   {%- endif -%}
   {%- if product.type != blank -%}
-    <div><dt>{{ 'products.type' | t }}</dt><dd><a href="{{ product.type | url_for_type }}">{{ product.type }}</a></dd></div>
+    <div>
+      <dt>{{ 'products.type' | t }}</dt>
+      <dd>
+        <a href="{{ product.type | url_for_type }}">{{ product.type }}</a>
+      </dd>
+    </div>
   {%- endif -%}
   <div>
     <dt>{{ 'products.availability' | t }}</dt>
-    <dd>{% if variant.available %}{{ 'products.in_stock' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}</dd>
+    <dd>
+      {% if variant.available %}{{ 'products.in_stock' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}
+    </dd>
   </div>
 </dl>
-
 
 {% schema %}
 {

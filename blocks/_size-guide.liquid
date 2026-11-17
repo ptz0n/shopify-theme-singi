@@ -12,7 +12,14 @@
     <div class="size-guide__panel" id="{{ panel_id }}" popover role="dialog" aria-labelledby="{{ panel_id }}-title">
       <div class="size-guide__head">
         <h2 id="{{ panel_id }}-title">{{ 'products.size_guide' | t }}</h2>
-        <button class="icon-button" type="button" popovertarget="{{ panel_id }}" popovertargetaction="hide" aria-label="{{ 'general.close' | t }}" autofocus>
+        <button
+          class="icon-button"
+          type="button"
+          popovertarget="{{ panel_id }}"
+          popovertargetaction="hide"
+          aria-label="{{ 'general.close' | t }}"
+          autofocus
+        >
           {%- render 'icon', name: 'close' -%}
         </button>
       </div>

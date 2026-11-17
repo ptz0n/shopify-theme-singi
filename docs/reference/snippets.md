@@ -472,7 +472,9 @@ Items carry position, url and name only: Google's guidance for list pages is
 summary entries that link to the product page, where the full Product markup
 lives. Positions are collection-absolute across pagination.
 
-Links to the breadcrumb and website by @id, so it must be rendered with the
+Links to the breadcrumb and website by
+
+@id, so it must be rendered with the
 `breadcrumbs` snippet on the same page. Render inside {% paginate %}.
 
 | Param | Type | Required | Description |
@@ -489,13 +491,12 @@ Links to the breadcrumb and website by @id, so it must be rendered with the
 File: `snippets/schema-site.liquid`
 
 Organization and WebSite structured data for the home page, as one linked
+
 @graph. The @id values are reused by other schema snippets so the pieces
 connect: `/#organization` and `/#website`.
 
-- Organization: name, url, logo (ImageObject), sameAs from the Social profile
-  URLs theme setting. Extend with contactPoint, address or
-  hasMerchantReturnPolicy for a specific brand here, not elsewhere.
-- WebSite: SearchAction pointing at the store search.
+- Organization: name, url, logo (ImageObject), sameAs from the Social profile URLs theme setting. Extend with contactPoint, address or
+hasMerchantReturnPolicy for a specific brand here, not elsewhere. - WebSite: SearchAction pointing at the store search.
 
 Render only on the home page. Every string goes through `json`.
 
@@ -643,12 +644,13 @@ happen before first paint, plus one tiny handler that is not about paint:
 
 File: `snippets/tokens.liquid`
 
-Design tokens. Emits @font-face rules and CSS custom properties from theme
-settings as one inline <style>. Rendered once in layout/theme.liquid, above
-content_for_header, so it ships in the first streamed chunk.
+Design tokens. Emits
 
-Fonts come only from Shopify's font library (font_picker settings). Never add
-a literal font-family or @font-face with a remote URL anywhere else; run
+@font-face rules and CSS custom properties from theme
+settings as one inline <style>. Rendered once in layout/theme.liquid, above content_for_header, so it ships in the first streamed chunk.
+
+Fonts come only from Shopify's font library (font_picker settings). Never add a literal font-family or
+@font-face with a remote URL anywhere else; run
 `npm run check` to enforce this.
 
 ```liquid

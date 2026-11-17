@@ -20,32 +20,43 @@
     </header>
 
     <div class="view-wrap">
-    {%- if collection.products_count > 0 -%}{%- render 'view-toggle' -%}{%- endif -%}
-    <facets-form class="collection" data-section-id="{{ section.id }}">
-      {%- capture count_text -%}{{ 'collection.product_count' | t: count: collection.products_count }}{%- endcapture -%}
-      {%- render 'facets', source: collection, action: collection.url, clear_url: collection.url, count: count_text -%}
+      {%- if collection.products_count > 0 -%}{%- render 'view-toggle' -%}{%- endif -%}
+      <facets-form class="collection" data-section-id="{{ section.id }}">
+        {%- capture count_text -%}{{ 'collection.product_count' | t: count: collection.products_count }}{%- endcapture -%}
+        {%- render 'facets', source: collection, action: collection.url, clear_url: collection.url, count: count_text -%}
 
-      {%- if collection.products.size > 0 -%}
-        <ul class="product-grid" role="list" data-show-more-list>
-          {%- for product in collection.products -%}
-            {%- liquid
-              assign card_eager = false
-              if forloop.index <= 4
-                assign card_eager = true
-              endif
+        {%- if collection.products.size > 0 -%}
+          <ul class="product-grid" role="list" data-show-more-list>
+            {%- for product in collection.products -%}
+              {%- liquid
+                assign card_eager = false
+                if forloop.index <= 4
+                  assign card_eager = true
+                endif
+              -%}
+              {% render 'product-card', product: product, eager: card_eager, heading: 'h2' %}
+            {%- endfor -%}
+          </ul>
+          {%- if settings.tracking_enabled -%}
+            {%- render 'tracking-list',
+              products: collection.products,
+              list_id: collection.handle,
+              list_name: collection.title,
+              offset: paginate.current_offset
             -%}
-            {% render 'product-card', product: product, eager: card_eager, heading: 'h2' %}
-          {%- endfor -%}
-        </ul>
-        {%- if settings.tracking_enabled -%}
-          {%- render 'tracking-list', products: collection.products, list_id: collection.handle, list_name: collection.title, offset: paginate.current_offset -%}
+          {%- endif -%}
+          {%- render 'schema-collection', products: collection.products, offset: paginate.current_offset -%}
+          {%- render 'pagination',
+            paginate: paginate,
+            type: section.settings.pagination,
+            page_items: collection.products.size,
+            total: collection.products_count,
+            section_id: section.id
+          -%}
+        {%- else -%}
+          <p>{{ 'collection.empty' | t }}</p>
         {%- endif -%}
-        {%- render 'schema-collection', products: collection.products, offset: paginate.current_offset -%}
-        {%- render 'pagination', paginate: paginate, type: section.settings.pagination, page_items: collection.products.size, total: collection.products_count, section_id: section.id -%}
-      {%- else -%}
-        <p>{{ 'collection.empty' | t }}</p>
-      {%- endif -%}
-    </facets-form>
+      </facets-form>
     </div>
   </div>
 {%- endpaginate -%}

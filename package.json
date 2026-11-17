@@ -33,9 +33,11 @@
     "theme:list": "node scripts/shopify.mjs theme list -e DEV",
     "prepare": "node scripts/install-hooks.mjs",
     "hooks": "node scripts/install-hooks.mjs --verbose",
-    "check": "npm run check:theme && npm run check:rules",
+    "check": "npm run check:theme && npm run check:rules && npm run format:check",
     "check:theme": "shopify theme check --fail-level error",
     "check:rules": "node scripts/check.mjs",
+    "format": "prettier --write blocks sections snippets layout 'templates/*.liquid'",
+    "format:check": "prettier --check blocks sections snippets layout 'templates/*.liquid'",
     "docs": "node scripts/gen-reference.mjs",
     "docs:check": "node scripts/gen-reference.mjs --check",
     "perf:lighthouse": "node scripts/lighthouse.mjs",
@@ -100,5 +102,11 @@
     "section:set": "node scripts/section-settings.mjs",
     "dev:setup": "node scripts/shopify.mjs theme push --unpublished --theme singi-dev --ignore config/settings_data.json",
     "dev:push": "node scripts/shopify.mjs theme push --dev-theme --ignore config/settings_data.json"
+  },
+  "devDependencies": {
+    "@shopify/prettier-plugin-liquid": "1.11.6",
+    "prettier": "3.10.1",
+    "puppeteer-core": "25.18.1",
+    "typescript": "5.9.3"
   }
 }

@@ -35,7 +35,9 @@
   {%- form 'customer', id: id -%}
     <input type="hidden" name="contact[tags]" value="newsletter">
     <label for="{{ id }}-email">{{ newsletter_label }}</label>
-    {%- if text != blank -%}<p class="newsletter__text" id="{{ id }}-text">{{ text }}</p>{%- endif -%}
+    {%- if text != blank -%}
+      <p class="newsletter__text" id="{{ id }}-text">{{ text }}</p>
+    {%- endif -%}
     <div class="newsletter__row">
       <input
         id="{{ id }}-email"
@@ -45,7 +47,9 @@
         required
         placeholder="{{ 'newsletter.placeholder' | t }}"
         value="{{ form.email }}"
-        {% if described_by != blank %}aria-describedby="{{ described_by }}"{% endif %}
+        {% if described_by != blank %}
+          aria-describedby="{{ described_by }}"
+        {% endif %}
       >
       <button class="button" type="submit">{{ 'newsletter.submit' | t }}</button>
     </div>
@@ -60,9 +64,17 @@
       {%- endif -%}
     {%- endif -%}
     {%- if form.posted_successfully? -%}
-      <p role="status">{%- if settings.newsletter_confirmation != blank -%}{{ settings.newsletter_confirmation }}{%- else -%}{{ 'newsletter.success' | t }}{%- endif -%}</p>
+      <p role="status">
+        {%- if settings.newsletter_confirmation != blank -%}
+          {{ settings.newsletter_confirmation }}
+        {%- else -%}
+          {{ 'newsletter.success' | t }}
+        {%- endif -%}
+      </p>
       {%- if settings.tracking_enabled -%}
-        <script type="application/json" data-track="generate_lead">{ "lead_source": "{{ source | default: id | escape }}" }</script>
+        <script type="application/json" data-track="generate_lead">
+          { "lead_source": "{{ source | default: id | escape }}" }
+        </script>
       {%- endif -%}
     {%- endif -%}
     {%- if form.errors -%}

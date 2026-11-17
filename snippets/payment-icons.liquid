@@ -17,7 +17,17 @@
 {%- if shop.enabled_payment_types.size > 0 -%}
   <ul class="payment-icons{% if mono %} payment-icons--mono{% endif %} {{ class }}" role="list">
     {%- for type in shop.enabled_payment_types -%}
-      <li><img class="payment-icons__icon" src="{{ type | payment_type_img_url }}" alt="{{ type | replace: '_', ' ' | capitalize }}" width="38" height="24" loading="lazy" decoding="async"></li>
+      <li>
+        <img
+          class="payment-icons__icon"
+          src="{{ type | payment_type_img_url }}"
+          alt="{{ type | replace: '_', ' ' | capitalize }}"
+          width="38"
+          height="24"
+          loading="lazy"
+          decoding="async"
+        >
+      </li>
     {%- endfor -%}
   </ul>
 {%- endif -%}

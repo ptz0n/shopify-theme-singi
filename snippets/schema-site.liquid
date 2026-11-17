@@ -1,12 +1,11 @@
 {% doc %}
   Organization and WebSite structured data for the home page, as one linked
+
   @graph. The @id values are reused by other schema snippets so the pieces
   connect: `/#organization` and `/#website`.
 
-  - Organization: name, url, logo (ImageObject), sameAs from the Social profile
-    URLs theme setting. Extend with contactPoint, address or
-    hasMerchantReturnPolicy for a specific brand here, not elsewhere.
-  - WebSite: SearchAction pointing at the store search.
+  - Organization: name, url, logo (ImageObject), sameAs from the Social profile URLs theme setting. Extend with contactPoint, address or
+  hasMerchantReturnPolicy for a specific brand here, not elsewhere. - WebSite: SearchAction pointing at the store search.
 
   Render only on the home page. Every string goes through `json`.
 
