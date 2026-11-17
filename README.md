@@ -54,12 +54,13 @@ Measured on 2026-11-17 (version 0.1.0) on a development store with mock content,
 | Lighthouse accessibility | 100 | 100 | 100 |
 | Lighthouse SEO | 100 | 100 | 100 |
 | Cumulative Layout Shift | 0 | 0 | 0 |
-| Total Blocking Time (upper bound) | 19 ms | 12 ms | 10 ms |
-| DOM nodes | 231 | 328 | 331 |
+| Total Blocking Time (upper bound) | 26 ms | 23 ms | 9 ms |
+| DOM nodes | 232 | 329 | 330 |
 | Theme JavaScript (delivered, brotli) | 7.4 KB | 8.5 KB | 11.6 KB |
-| Theme CSS (delivered, brotli) | 8.5 KB | 8.5 KB | 8.5 KB |
+| Theme CSS (delivered, brotli) | 8.7 KB | 8.7 KB | 8.7 KB |
+| Server render time (Liquid) | 54 ms | 45 ms | 48 ms |
 
-JavaScript and CSS sizes are what Shopify's CDN delivers, from `npm run perf:sizes`. Server render time (Liquid) and the HTML size split were not re-measured on this date; the last figures (2026-11-14) are in [testing](docs/testing.md#results).
+JavaScript and CSS sizes are what Shopify's CDN delivers, from `npm run perf:sizes`; the server render time is from `npm run perf:liquid` (median of 7). The split of the home page's HTML between the theme and Shopify's own scripts was not re-measured; the last figures (2026-11-14) are in [testing](docs/testing.md#results).
 
 **Not published yet: Lighthouse Performance, Best practices, LCP.** The numbers from a development server describe the server (plain `http`, hot reload, platform scripts), not the theme, so they are not shown. They need a run against the real storefront: `npm run perf:lighthouse` ([tooling](docs/tooling.md#perf-lighthouse)). Until then, read the performance claims here as design intent.
 

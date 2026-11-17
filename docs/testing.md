@@ -117,6 +117,26 @@ Notes (LCP element, largest scripts, regressions, fixes):
 
 ## Results
 
+### 2026-11-17 (later), version 0.1.0, commit ba05860: through the dev server
+
+```
+Date: 2026-11-17
+Commit: ba05860
+Store / theme id: a Plus dev store, theme singi-dev, mock content (npm run mock:apply)
+Published or preview: development theme served by `npm run dev` at http://127.0.0.1:9292
+Settings: soft navigation off (default), dynamic checkout on, the product image format at its default (square), the Sale badge on, quick add and quick buy off (their defaults), no apps installed
+Device profile / throttling: Lighthouse 12.6.1, mobile, simulated throttling (default), headless Chrome
+Runs per page / aggregation: 3 runs, median (Liquid time: 7 runs, median)
+
+| Page | A11y | SEO | CLS | TBT (upper bound) | DOM nodes | Theme JS (delivered) | Theme CSS (delivered) | Liquid render |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Home | 100 | 100 | 0.000 | 26 ms (30, 26, 24.5) | 232 | 7.4 KB | 8.7 KB | 54.3 ms |
+| Collection | 100 | 100 | 0.000 | 22.5 ms (22.5, 7.5, 27.5) | 329 | 8.5 KB | 8.7 KB | 45.2 ms |
+| Product | 100 | 100 | 0.000 | 9 ms (9, 9.5, 0) | 330 | 11.6 KB | 8.7 KB | 47.8 ms |
+```
+
+All three runs of every page scored 100 for accessibility and SEO. Theme JS and CSS are from `npm run perf:sizes` (7,607 / 8,657 / 11,920 bytes of JavaScript and 8,869 bytes of CSS, brotli as the CDN serves them). The Liquid render is `npm run perf:liquid` (`shopify theme profile`, median of 7). Compared with the first run on 2026-11-14 the Liquid render grew by 8 ms (home), 7 ms (collection) and 13 ms (product), alongside the cart drawer, sticky add to cart, quick buy, the announcement bar, the Sale badge and the product image format; the largest single costs are now `sections/featured-collection` / `snippets/product-grid` on the home page (39 ms, eight cards), `sections/main-collection` on the collection page (33 ms) and `sections/main-product` on the product page (19 ms). The dev theme and the Shopify platform scripts differ between runs, so differences of a few milliseconds are noise. The HTML split under the 2026-11-14 run was not re-measured. **Not recorded: Performance, Best practices, LCP, FCP**, for the dev-server reasons given under the 2026-11-14 run (observed Performance 65 to 81 and Best practices 57 describe that setup, not the theme).
+
 ### 2026-11-17, version 0.1.0, commit 8fc0f36: through the dev server
 
 ```
