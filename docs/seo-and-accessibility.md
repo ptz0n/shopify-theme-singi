@@ -15,7 +15,7 @@ All head metadata comes from `snippets/meta-tags.liquid`, rendered first in `lay
 | `<link rel="canonical">` | `canonical_url`, falling back to the origin. Password page uses the origin. |
 | `robots` | `noindex, follow` on search results. Everything else is indexable. |
 | Favicon | `settings.favicon` as a 48px PNG. |
-| `hreflang` | One alternate per available language when more than one exists. See [i18n.md](i18n.md#hreflang-and-locale-metadata). |
+| `hreflang` | Only the explicit alternates of the page's `singi.alternates` metafield; Shopify prints its own for one store's languages and markets. See [i18n.md](i18n.md#hreflang-and-locale-metadata) and [multi-store.md](multi-store.md). |
 | Open Graph | site name, url, title, type (`website`, `product`, `article`), description, locale, and image (https, 1200px wide, alt) when `page_image` exists. |
 | Twitter | `summary_large_image` with an image, otherwise `summary`; title and description. |
 | Product price meta | `product:price:amount` and `product:price:currency` on product pages. |

@@ -39,6 +39,7 @@ The roadmap asked for an optional dialog that suggests the right country, market
 
 ## Edge cases and dead ends
 
+- **Superseded in part by [decision 032](032-hreflang-comes-from-explicit-alternates-per-resource.md):** the theme no longer prints language-only hreflang, so the duplicate described next is gone; the paragraph is kept for the reasoning.
 - **hreflang is emitted twice if both the theme and Shopify do it.** `snippets/meta-tags.liquid` writes one `hreflang` alternate per available language, and Shopify's help says automatic hreflang is **on by default** and a theme that adds its own must turn that off (Online Store > Preferences) to avoid duplicates. The theme's tags are language-only and not market-aware, so on a store with several markets per language they can be wrong; until the multi-store contract can generate correct ones, a merchant should decide which to keep. Recorded in `docs/i18n.md`.
 - **EU country-code domains need their own approach** (Shopify says to use a third-party app for recommendations there); the theme offers nothing for them.
 - **`country_code` and `language_code` are known from the theme snippets,** not from the form tag's reference page, which lists only that the form holds a country or a language selector.

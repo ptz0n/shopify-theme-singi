@@ -60,3 +60,4 @@ Unlike the suggested `custom.*` keys above, these are part of the theme's contra
 | `singi.color_siblings` | `list.product_reference` | `_color-siblings`: the whole color group, this product included, the same list on every member, in swatch order. |
 | `singi.color` | `list.color` | The swatch of this product: one to three hex colors (several split the swatch on the diagonal). |
 | `singi.color_name` | `single_line_text_field` | Optional. The color's name, so the label reads "Color: Moss". |
+| `singi.alternates` | `json` | Product, collection, page, article or shop. The hreflang alternates of this page on other stores or domains (`[{ "hreflang": "sv-SE", "url": "https://..." }]`). See [multi-store.md](multi-store.md). |

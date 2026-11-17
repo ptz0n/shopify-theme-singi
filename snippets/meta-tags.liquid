@@ -59,11 +59,32 @@
   <link rel="icon" href="data:,">
 {%- endif %}
 
-{%- if localization.available_languages.size > 1 %}
-  {%- for language in localization.available_languages %}
-    <link rel="alternate" hreflang="{{ language.iso_code }}" href="{{ language.root_url | remove_first: '/' | prepend: request.origin | append: request.path | replace: '//', '/' | replace: ':/', '://' }}">
-  {%- endfor %}
-{%- endif %}
+{%- comment -%}
+  hreflang comes only from explicit alternates (decision 032): the metafield singi.alternates of the product, collection, page or
+  article, or of the shop on the home page. Shopify prints its own hreflang for the languages and markets of one store (on by
+  default), so the theme adds none of those. Printed as given: a full https address and an x-default or language code, at most 50.
+{%- endcomment -%}
+{%- liquid
+  assign alternates = nil
+  case request.page_type
+    when 'product'
+      assign alternates = product.metafields.singi.alternates.value
+    when 'collection'
+      assign alternates = collection.metafields.singi.alternates.value
+    when 'page'
+      assign alternates = page.metafields.singi.alternates.value
+    when 'article'
+      assign alternates = article.metafields.singi.alternates.value
+    when 'index'
+      assign alternates = shop.metafields.singi.alternates.value
+  endcase
+-%}
+{%- for alternate in alternates limit: 50 %}
+  {%- assign alternate_url = alternate.url | strip -%}
+  {%- if alternate.hreflang != blank and alternate_url contains 'https://' and alternate_url.size > 8 %}
+    <link rel="alternate" hreflang="{{ alternate.hreflang | strip | escape }}" href="{{ alternate_url | escape }}">
+  {%- endif %}
+{%- endfor %}
 
 <meta property="og:site_name" content="{{ shop.name | escape }}">
 <meta property="og:url" content="{{ meta_url }}">

@@ -99,6 +99,7 @@ Detailed recipes are in [docs/extending.md](docs/extending.md). Short forms:
 | Strings | `locales/en.default.json` |
 | Repo rules and budgets | `scripts/check.mjs` |
 | Consent and what the theme stores in the browser | `assets/tracking.js`, [docs/privacy.md](docs/privacy.md), [decision 030](docs/decisions/030-cookie-consent-is-shopifys-banner-and-the-theme-respects-it.md) |
+| hreflang and multi-store alternates | `snippets/meta-tags.liquid`, `scripts/alternates.mjs`, [docs/multi-store.md](docs/multi-store.md), [decision 032](docs/decisions/032-hreflang-comes-from-explicit-alternates-per-resource.md) |
 | Roadmap and its status | `todo.md` |
 | Why something is built the way it is | [docs/decisions/](docs/decisions/README.md) |
 | Preview every component (light, dark, RTL, a11y audit) | `sections/main-styleguide.liquid`, [docs/component-library.md](docs/component-library.md) |
