@@ -45,7 +45,8 @@
   .zoom__frame img:first-child[data-loaded] { opacity: 1; }
   .zoom__frame img:nth-child(2) { position: absolute; inset: 0; z-index: -1; }
   @media (prefers-reduced-motion: reduce) { .zoom__frame img:first-child { transition: none; } }
-  .zoom__item figcaption { display: grid; gap: 0.125rem; max-height: 7rem; padding: 0.5rem 4rem; overflow-y: auto; text-align: center; font-size: 0.8125rem; line-height: 1.35; color: var(--color-muted); }
+  /* Room around the caption: 1rem above, 1.5rem below (plus a phone's home bar), and a reading width of 40rem centered on a wide screen, never closer than 4rem to the sides, which also clears the close button. */
+  .zoom__item figcaption { display: grid; gap: 0.25rem; max-height: 9rem; padding: 1rem max(4rem, calc((100% - 40rem) / 2)) calc(1.5rem + env(safe-area-inset-bottom)); overflow-y: auto; text-align: center; font-size: 0.875rem; line-height: 1.5; color: var(--color-muted); }
   .zoom__count { position: absolute; inset-block-start: 0.75rem; inset-inline-start: 0.75rem; padding: 0.25rem 0.5rem; border-radius: var(--radius); background: var(--color-bg); color: var(--color-fg); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: var(--tracking-wide); opacity: 0.85; }
   .zoom__item figcaption span:last-child { color: var(--color-fg); }
   .zoom__close { position: absolute; z-index: 1; inset-block-start: 0.75rem; inset-inline-end: 0.75rem; background: var(--color-bg); border: 1px solid var(--color-control); }

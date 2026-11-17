@@ -94,6 +94,7 @@ const view = () => {
     badge: figures.map((f) => !!f.querySelector('.zoom__frame .ai-label')),
     countBox: figures.map((f) => { const count = rect(f.querySelector('.zoom__count')); const fig = rect(f); const rtl = getComputedStyle(dialog).direction === 'rtl'; return count && { fromTop: Math.round(count.top - fig.top), fromStart: Math.round(rtl ? fig.right - count.right : count.left - fig.left) }; }),
     fits: figures.map((f) => { const frame = rect(f.querySelector('.zoom__frame')); const caption = rect(f.querySelector('figcaption')); const fig = rect(f); return { frameH: Math.round(frame.height), captionTop: Math.round(caption.top - fig.top), captionBottom: Math.round(caption.bottom - fig.top), figH: Math.round(fig.height), frameBottom: Math.round(frame.bottom - fig.top) }; }),
+    captionRoom: figures.map((f) => { const c = f.querySelector('figcaption'); const cs = getComputedStyle(c); const text = document.createRange(); text.selectNodeContents(c); return { top: parseFloat(cs.paddingTop), bottom: parseFloat(cs.paddingBottom), side: Math.min(parseFloat(cs.paddingLeft), parseFloat(cs.paddingRight)), textWidth: Math.round(Math.min(text.getBoundingClientRect().width, c.clientWidth)) }; }),
     altHidden: figures.every((f) => [...f.querySelectorAll('figcaption span')].filter((s) => !/^Shown for/.test(s.textContent)).every((s) => s.getAttribute('aria-hidden') === 'true')),
     live: dialog.querySelector('[data-zoom-live]').textContent,
     focusOnStage: document.activeElement === stage,
@@ -154,6 +155,8 @@ try {
       ok(fit.captionBottom <= fit.figH + 1 && fit.captionTop >= fit.frameBottom - 1, `${label}: with a long description the caption is at ${fit.captionTop}..${fit.captionBottom} of ${fit.figH}px and the image ends at ${fit.frameBottom}`);
       ok(fit.frameH >= fit.figH * 0.4, `${label}: a long description leaves the image only ${fit.frameH}px of ${fit.figH}px`);
       ok(v.fits.every((f) => f.captionBottom <= f.figH + 1 && f.frameH > 0), `${label}: a caption sticks out of its screen`);
+      ok(v.captionRoom.every((c) => c.top >= 16 && c.bottom >= 24 && c.side >= 64), `${label}: the caption has room around it (at least 16px above, 24px below, 64px at the sides): ${JSON.stringify(v.captionRoom[0])}`);
+      ok(label === 'phone' || v.captionRoom.every((c) => c.textWidth <= 640), `${label}: the caption text is at most 40rem wide (${v.captionRoom.map((c) => c.textWidth).join(', ')})`);
       ok(v.pageOverflow <= 0 && v.stageOverflowX <= 0, `${label}: scrolls horizontally (page ${v.pageOverflow}px, viewer ${v.stageOverflowX}px)`);
       await page.waitForFunction(() => /width=2400/.test(document.querySelectorAll('dialog.zoom .zoom__item img')[4]?.currentSrc || ''), { timeout: 8000 }).catch(() => {});
       v = await page.evaluate(view);
