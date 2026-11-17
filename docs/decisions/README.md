@@ -52,3 +52,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [027](027-announcement-bar-is-one-message-from-the-theme-settings.md) | The announcement bar is one message from the theme settings, dismissed through a list on the root element | header, merchandising, accessibility |
 | [028](028-social-links-are-text-links-from-the-profile-list.md) | Social links are plain text links, from the same list that feeds the structured data | footer, trust, accessibility |
 | [029](029-newsletter-consent-is-merchant-written-and-ships-no-legal-copy.md) | Newsletter consent is merchant-written: the theme ships no legal wording, and offers one optional checkbox | newsletter, privacy, accessibility |
+| [030](030-cookie-consent-is-shopifys-banner-and-the-theme-respects-it.md) | Cookie consent is Shopify's own banner; the theme builds none and respects the answer | privacy, tracking, consent |

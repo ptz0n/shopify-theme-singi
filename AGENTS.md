@@ -98,6 +98,7 @@ Detailed recipes are in [docs/extending.md](docs/extending.md). Short forms:
 | Settings | `config/settings_schema.json` |
 | Strings | `locales/en.default.json` |
 | Repo rules and budgets | `scripts/check.mjs` |
+| Consent and what the theme stores in the browser | `assets/tracking.js`, [docs/privacy.md](docs/privacy.md), [decision 030](docs/decisions/030-cookie-consent-is-shopifys-banner-and-the-theme-respects-it.md) |
 | Roadmap and its status | `todo.md` |
 | Why something is built the way it is | [docs/decisions/](docs/decisions/README.md) |
 | Preview every component (light, dark, RTL, a11y audit) | `sections/main-styleguide.liquid`, [docs/component-library.md](docs/component-library.md) |

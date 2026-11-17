@@ -64,9 +64,9 @@ IDs are validated against `GTM-[A-Z0-9]+` and `G-[A-Z0-9]+` before they go into 
 
 With `tracking_consent: shopify`, the module sets Consent Mode defaults to denied (`wait_for_update` 1500 ms), then updates them from Shopify's Customer Privacy API: `analyticsProcessingAllowed()` maps to `analytics_storage`; `marketingAllowed()` maps to `ad_storage`, `ad_user_data` and `ad_personalization`. It re-syncs on the `visitorConsentCollected` and `shopifyCustomerPrivacyApiLoaded` events and asks Shopify to load the consent API if it is not present.
 
-The consent banner itself is configured in Shopify admin (Customer privacy). The Customer Events pixel is gated by the permissions set on the pixel itself.
+The consent banner itself is Shopify's own, configured in the admin (Settings > Customer privacy > Cookie banner); the theme builds none ([decision 030](decisions/030-cookie-consent-is-shopifys-banner-and-the-theme-respects-it.md), [privacy.md](privacy.md)). The consent API feature is requested as `consent-tracking-api` version 1.0, as Shopify's documentation now shows (an older theme used 0.1). The Customer Events pixel is gated by the permissions set on the pixel itself.
 
-Not verified yet: the exact timing of the Customer Privacy API on this store, and behaviour in regions that require consent. Test both before relying on it.
+Shopify's banner covers Shopify's tools only: a tag or pixel added by hand or by an app needs its own gating. Not verified yet: the exact timing of the Customer Privacy API on this store, and behaviour in regions that require consent. Test both before relying on it.
 
 ## Customer Events pixel (checkout)
 

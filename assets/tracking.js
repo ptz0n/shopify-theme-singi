@@ -151,7 +151,7 @@ const load = () => {
   if (loaded) return;
   loaded = true;
   if (cfg.consent === 'shopify' && !privacy()) {
-    window.Shopify?.loadFeatures?.([{ name: 'consent-tracking-api', version: '0.1' }], (error) => {
+    window.Shopify?.loadFeatures?.([{ name: 'consent-tracking-api', version: '1.0' }], (error) => {
       if (!error) syncConsent();
     });
   } else {
