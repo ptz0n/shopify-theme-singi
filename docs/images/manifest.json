@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "commit": "8fc0f36",
+  "commit": "f750f45",
   "generated": "2026-11-17",
   "images": [
     {
@@ -10,7 +10,7 @@
       "scheme": "light"
     },
     {
-      "file": "collection-dark.webp",
+      "file": "collection.webp",
       "path": "/collections/mock-new-arrivals",
       "viewport": "desktop",
       "scheme": "dark"
@@ -19,12 +19,6 @@
       "file": "product.webp",
       "path": "/products/mock-everyday-hoodie",
       "viewport": "desktop",
-      "scheme": "dark"
-    },
-    {
-      "file": "product-mobile.webp",
-      "path": "/products/mock-everyday-hoodie",
-      "viewport": "mobile",
       "scheme": "dark"
     },
     {
@@ -40,12 +34,6 @@
       "scheme": "dark"
     },
     {
-      "file": "sticky-buy-mobile.webp",
-      "path": "/products/mock-everyday-hoodie",
-      "viewport": "mobile",
-      "scheme": "dark"
-    },
-    {
       "file": "content-blocks.webp",
       "path": "/pages/mock-blocks",
       "viewport": "desktop",
@@ -55,6 +43,48 @@
       "file": "component-library.webp",
       "path": "/pages/mock-styleguide",
       "viewport": "desktop",
+      "scheme": "dark"
+    },
+    {
+      "file": "collection-mobile.webp",
+      "path": "/collections/mock-new-arrivals",
+      "viewport": "mobile",
+      "scheme": "dark"
+    },
+    {
+      "file": "product-mobile.webp",
+      "path": "/products/mock-everyday-hoodie",
+      "viewport": "mobile",
+      "scheme": "dark"
+    },
+    {
+      "file": "cart-drawer-mobile.webp",
+      "path": "/products/mock-everyday-hoodie",
+      "viewport": "mobile",
+      "scheme": "dark"
+    },
+    {
+      "file": "quick-buy-mobile.webp",
+      "path": "/collections/mock-new-arrivals",
+      "viewport": "mobile",
+      "scheme": "dark"
+    },
+    {
+      "file": "content-blocks-mobile.webp",
+      "path": "/pages/mock-blocks",
+      "viewport": "mobile",
+      "scheme": "dark"
+    },
+    {
+      "file": "component-library-mobile.webp",
+      "path": "/pages/mock-styleguide",
+      "viewport": "mobile",
+      "scheme": "dark"
+    },
+    {
+      "file": "sticky-buy-mobile.webp",
+      "path": "/products/mock-everyday-hoodie",
+      "viewport": "mobile",
       "scheme": "dark"
     }
   ]

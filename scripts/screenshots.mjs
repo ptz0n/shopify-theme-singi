@@ -50,19 +50,18 @@ const VIEWPORTS = {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-/* The README shows dark mode only; the collection pair stays light and dark for docs/design-system.md.
+/* The README shows dark mode only; the collection also exists in light for docs/design-system.md.
    name, path, viewport, color scheme, selector that proves the page rendered what it should,
    and optionally { ready: wait until true in the page, scrollTo: selector to frame, clipTop: px to cut off the top,
    after: async (page) => {} to act on the page before the picture (open the drawer, scroll) } */
-const SHOTS = [
-  ['collection-light', '/collections/mock-new-arrivals', 'desktop', 'light', '.product-card'],
-  ['collection-dark', '/collections/mock-new-arrivals', 'desktop', 'dark', '.product-card'],
-  ['product', '/products/mock-everyday-hoodie', 'desktop', 'dark', 'product-form'],
-  ['product-mobile', '/products/mock-everyday-hoodie', 'mobile', 'dark', 'product-form'],
+/* The same six features on desktop and on a phone, then the sticky bar (phone only: decision 021 shows it). */
+const feature = (viewport, suffix) => [
+  [`collection${suffix}`, '/collections/mock-new-arrivals', viewport, 'dark', '.product-card'],
+  [`product${suffix}`, '/products/mock-everyday-hoodie', viewport, 'dark', 'product-form'],
   [
-    'cart-drawer',
+    `cart-drawer${suffix}`,
     '/products/mock-everyday-hoodie',
-    'desktop',
+    viewport,
     'dark',
     'product-form',
     {
@@ -75,9 +74,9 @@ const SHOTS = [
     },
   ],
   [
-    'quick-buy',
+    `quick-buy${suffix}`,
     '/collections/mock-new-arrivals',
-    'desktop',
+    viewport,
     'dark',
     '[data-quick-buy]',
     {
@@ -88,6 +87,27 @@ const SHOTS = [
       },
     },
   ],
+  [`content-blocks${suffix}`, '/pages/mock-blocks', viewport, 'dark', '.usp-list'],
+  [
+    `component-library${suffix}`,
+    '/pages/mock-styleguide',
+    viewport,
+    'dark',
+    '[data-styleguide]',
+    {
+      /* the page audits itself on load; capture only after it finished */
+      ready: () => document.querySelector('[data-sg-summary]')?.textContent.trim() !== 'Running…' && document.querySelectorAll('[data-sg-vitals] tr').length > 0,
+      scrollTo: '#color',
+      /* the sticky header shows the page's sticky tabs through it; start the image below it */
+      clipTop: 100,
+    },
+  ],
+];
+
+const SHOTS = [
+  ['collection-light', '/collections/mock-new-arrivals', 'desktop', 'light', '.product-card'],
+  ...feature('desktop', ''),
+  ...feature('mobile', '-mobile'),
   [
     'sticky-buy-mobile',
     '/products/mock-everyday-hoodie',
@@ -100,21 +120,6 @@ const SHOTS = [
         await page.waitForFunction(() => document.querySelector('sticky-buy')?.hasAttribute('data-show'), { timeout: 10000 });
         await sleep(500);
       },
-    },
-  ],
-  ['content-blocks', '/pages/mock-blocks', 'desktop', 'dark', '.usp-list'],
-  [
-    'component-library',
-    '/pages/mock-styleguide',
-    'desktop',
-    'dark',
-    '[data-styleguide]',
-    {
-      /* the page audits itself on load; capture only after it finished */
-      ready: () => document.querySelector('[data-sg-summary]')?.textContent.trim() !== 'Running…' && document.querySelectorAll('[data-sg-vitals] tr').length > 0,
-      scrollTo: '#color',
-      /* the sticky header shows the page's sticky tabs through it; start the image below it */
-      clipTop: 100,
     },
   ],
 ];
