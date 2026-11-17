@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Tests the announcement bar (decision 027) in headless Chrome against the dev server. Needs the settings on for the
- * dev theme (never the MAIN theme):
- *   npm run theme:set -- 'announcement_text=Free shipping on orders over 500 kr' announcement_link=/collections/mock-new-arrivals announcement_dismissible=true --theme <singi-dev id> --apply
+ * Tests the announcement bar (decisions 027 and 036) in headless Chrome against the dev server. Needs the section's
+ * settings on for the dev theme (never the MAIN theme):
+ *   npm run section:set -- sections/header-group.json announcement-bar 'text=Free shipping on orders over 500 kr' link=/collections/mock-new-arrivals dismissible=true --theme <singi-dev id> --apply
  *
  *  - the bar is above the header, the message is a link (the whole message), at least 44px tall, with the page
  *    colors inverted (a block, so the band paints; text contrast at least 7:1) and a Close button of at least 44px;
@@ -83,7 +83,7 @@ try {
     await page.setViewport({ width: 1200, height: 700 });
     await page.goto(`${base}/`, { waitUntil: 'load', timeout: 60000 });
     let s = await page.evaluate(read);
-    ok(s.present && s.shown, 'the bar is shown (are the announcement settings on for the dev theme?)');
+    ok(s.present && s.shown, 'the bar is shown (are the announcement bar section settings set on the dev theme?)');
     ok(s.tag === 'A' && /collections/.test(s.href ?? ''), `the whole message is a link (${s.tag} ${s.href})`);
     ok(s.height >= 44, `the bar is ${s.height}px tall, at least 44`);
     ok(s.barTop === 0 && s.headerTop >= s.height - 1, `the bar is above the header (bar top ${s.barTop}, header top ${s.headerTop}, bar height ${s.height})`);

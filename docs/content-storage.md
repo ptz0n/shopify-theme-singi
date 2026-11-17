@@ -32,7 +32,12 @@ Rules of thumb, in order:
 
 ## What this changes
 
-The announcement bar currently keeps its message in theme settings ([decision 027](decisions/027-announcement-bar-is-one-message-from-the-theme-settings.md)). Under these rules it belongs in the section's own settings in the header group: found where merchants look, able to take a per market override file, and connectable to a metaobject. It is a to-do in `todo.md`.
+The announcement bar followed these rules: its message, link and dismiss setting moved from theme settings into the section's own settings in the header group ([decision 036](decisions/036-announcement-content-lives-in-the-section-not-the-theme-settings.md)), so it is found where merchants look, can take a per market override, and can be connected to a metaobject.
+
+### A market override, and a metaobject connection
+
+- **Per market:** in the theme editor, adapt the header group for a market (Shopify's section group contexts). The editor writes a file `sections/header-group.context.<market handle>.json`, a small file that names its context and its parent (`header-group.json`) and holds only the settings that differ, for example the announcement `text`. Let the editor write it rather than writing it by hand.
+- **A metaobject:** create a metaobject definition in the admin (for example "Announcement" with a single line text field and a url field), add an entry, then in the section click the dynamic source button next to Message and Link and pick the fields. The message then belongs to the store, survives a theme switch and is translated through the store's own translation tooling. The theme ships no definition and needs none. Not tried here: see Not verified.
 
 ## Not verified
 

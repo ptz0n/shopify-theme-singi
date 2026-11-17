@@ -155,14 +155,6 @@
     ]
   },
   {
-    "name": "Announcement bar",
-    "settings": [
-      { "type": "text", "id": "announcement_text", "label": "Message", "info": "One short sentence above the header, for shipping, a sale or a launch. Leave empty to show no bar." },
-      { "type": "url", "id": "announcement_link", "label": "Link (optional)", "info": "Makes the whole message a link." },
-      { "type": "checkbox", "id": "announcement_dismissible", "label": "Let visitors dismiss it", "default": false, "info": "A close button. A dismissed message stays hidden for that visitor until its text or link changes. Loads one small script." }
-    ]
-  },
-  {
     "name": "Newsletter",
     "settings": [
       { "type": "inline_richtext", "id": "newsletter_note", "label": "Consent note", "info": "Shown under every signup form: say what the subscriber agrees to and link your privacy policy. What you must say depends on your markets, and this is not legal advice. Leave empty to show nothing." },

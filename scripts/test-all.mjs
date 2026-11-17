@@ -12,7 +12,7 @@
  *
  * Phases:
  *   1  default settings: every test that needs nothing set up
- *   2  settings on (quick buy, announcement bar, social links, newsletter note) and hreflang alternates set:
+ *   2  settings on (quick buy, social links, newsletter note), the announcement bar's section settings and hreflang alternates set:
  *      test:quick-buy, test:announcement, test:social-links, test:newsletter-consent, test:hreflang
  *   3  the newsletter checkbox on: test:newsletter-consent in checkbox mode
  *   then the defaults are restored (the settings emptied, the alternates cleared).
@@ -92,6 +92,7 @@ const node = (file, fileArgs) => new Promise((resolve, reject) => {
   child.on('close', (code) => (code === 0 ? resolve(out) : reject(new Error(`${file} ${fileArgs.join(' ').slice(0, 80)}: ${out.trim().split('\n').pop()}`))));
 });
 const setSettings = (id, pairs) => node('theme-settings.mjs', [...pairs, '--theme', id, '--apply']);
+const setSection = (id, pairs) => node('section-settings.mjs', ['sections/header-group.json', 'announcement-bar', ...pairs, '--theme', id, '--apply']);
 const settle = () => new Promise((resolve) => setTimeout(resolve, 9000));
 
 const started = Date.now();
@@ -118,14 +119,14 @@ if (!noSetup && phase2.length) {
   const note = 'By subscribing you agree to receive marketing emails. Read our <a href="/policies/privacy-policy">privacy policy</a>.';
   const on = [
     'card_quick_buy=true',
-    'announcement_text=Free shipping on orders over 500 kr', 'announcement_link=/collections/mock-new-arrivals', 'announcement_dismissible=true',
     `social_profiles=https://www.instagram.com/singi\nhttps://www.facebook.com/singi\nhttps://x.com/singi\nhttps://www.youtube.com/@singi\nhttps://mastodon.social/@singi\nnot an address`,
     `newsletter_note=${note}`, 'newsletter_checkbox=false', 'newsletter_confirmation=Check your email to confirm.',
   ];
-  const off = ['card_quick_buy=false', 'announcement_text=', 'announcement_link=', 'announcement_dismissible=false', 'social_profiles=', 'newsletter_note=', 'newsletter_checkbox=false', 'newsletter_confirmation='];
+  const off = ['card_quick_buy=false', 'social_profiles=', 'newsletter_note=', 'newsletter_checkbox=false', 'newsletter_confirmation='];
   try {
     console.log(`\nPhase 2: settings on for the dev theme #${id}, alternates set`);
     await setSettings(id, on);
+    await setSection(id, ['text=Free shipping on orders over 500 kr', 'link=/collections/mock-new-arrivals', 'dismissible=true']);
     await node('alternates.mjs', ['set', 'product', 'mock-classic-tee', productAlt, '--apply']);
     await node('alternates.mjs', ['set', 'shop', homeAlt, '--apply']);
     await settle();
@@ -141,6 +142,7 @@ if (!noSetup && phase2.length) {
     if (!flag('keep')) {
       console.log('\nRestoring the defaults');
       await setSettings(id, off).catch((e) => console.log(`  could not restore settings: ${e.message}`));
+      await setSection(id, ['text=', 'link=', 'dismissible=false']).catch((e) => console.log(`  could not restore the announcement bar: ${e.message}`));
       await node('alternates.mjs', ['clear', 'product', 'mock-classic-tee', '--apply']).catch((e) => console.log(`  ${e.message}`));
       await node('alternates.mjs', ['clear', 'shop', '--apply']).catch((e) => console.log(`  ${e.message}`));
     }

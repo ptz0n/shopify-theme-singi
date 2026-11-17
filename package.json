@@ -92,6 +92,7 @@
     "siblings": "node scripts/siblings.mjs",
     "theme:duplicate": "node scripts/shopify.mjs theme duplicate -e DEV",
     "theme:set": "node scripts/theme-settings.mjs",
+    "section:set": "node scripts/section-settings.mjs",
     "dev:setup": "node scripts/shopify.mjs theme push --unpublished --theme singi-dev --ignore config/settings_data.json",
     "dev:push": "node scripts/shopify.mjs theme push --dev-theme --ignore config/settings_data.json"
   }

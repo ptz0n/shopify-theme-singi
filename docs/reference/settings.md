@@ -90,14 +90,6 @@ Defined in `config/settings_schema.json`, read in Liquid as `settings.<id>`.
 | `tracking_consent` | select | Consent | `"shopify"` |
 | `tracking_debug` | checkbox | Log events to the browser console | `false` |
 
-## Announcement bar
-
-| Setting | Type | Label | Default |
-| --- | --- | --- | --- |
-| `announcement_text` | text | Message |  |
-| `announcement_link` | url | Link (optional) |  |
-| `announcement_dismissible` | checkbox | Let visitors dismiss it | `false` |
-
 ## Newsletter
 
 | Setting | Type | Label | Default |

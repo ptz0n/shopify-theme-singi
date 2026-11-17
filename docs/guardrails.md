@@ -35,7 +35,7 @@ The hint text is English only and editor-facing. It is not in `locales/` and nev
 | `featured-collection` section | Renders nothing without a collection | Tall hint |
 | Newsletter consent note, checkbox, confirmation message | Nothing: the settings ship empty, no legal copy | The same |
 | `main-sitemap` section | Only the page title and content: a group appears only when it has links; a Blog block with no blog or no articles renders nothing | The same |
-| `announcement-bar` section | Renders nothing while the theme setting "Message" is empty | Nothing (set the message in Theme settings > Announcement bar) |
+| `announcement-bar` section | Renders nothing while its own setting "Message" is empty | Nothing (set the message in the header group of the theme editor) |
 | `usp-list`, `feature-list` blocks | A list with no visible item renders nothing; an item with no words renders nothing | Dashed hint "add items" for an empty list |
 
 The sections decide emptiness by capturing the rendered blocks and checking for any output, so a block that is present but blank counts as empty.

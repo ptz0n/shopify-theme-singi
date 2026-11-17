@@ -1,25 +1,30 @@
 {% comment %}
-  The announcement bar: one short message above the header, from the theme settings "Announcement bar" (message,
-  optional link, optional dismiss button). Renders nothing while the message is empty, so a new store shows no bar.
+  The announcement bar: one short message above the header, from this section's own settings in the header group
+  (message, optional link, optional dismiss button). Renders nothing while the message is empty, so a new store shows no bar.
   One message, one look (the page colors inverted): no rotation, no marquee, no second message (decision 027).
+
+  The settings live in the section, where merchants look for them, so a market can override them with a contextual file
+  (sections/header-group.context.<market>.json) and the message and link can be connected to a metaobject field or a
+  metafield (the dynamic source button next to each setting) to outlive a theme switch: decision 036 and docs/content-storage.md.
 
   A dismissed message stays hidden for that visitor until its text or link changes: the section's id is a hash of
   both, the inline theme script puts the saved list on <html data-dismissed> before first paint, and the CSS
   below hides the bar when its hash is in it, so a dismissed bar never flashes and nothing shifts.
 {% endcomment %}
 
-{%- if settings.announcement_text != blank -%}
-  {%- assign link = settings.announcement_link -%}
-  {%- assign bar_id = settings.announcement_text | append: link | md5 | slice: 0, 8 -%}
+{%- assign message = section.settings.text -%}
+{%- if message != blank -%}
+  {%- assign link = section.settings.link -%}
+  {%- assign bar_id = message | append: link | md5 | slice: 0, 8 -%}
 
   <announcement-bar class="announcement" data-id="{{ bar_id }}">
     <div class="announcement__inner container">
       {%- if link != blank -%}
-        <a class="announcement__text" href="{{ link }}">{{ settings.announcement_text }}</a>
+        <a class="announcement__text" href="{{ link }}">{{ message }}</a>
       {%- else -%}
-        <p class="announcement__text">{{ settings.announcement_text }}</p>
+        <p class="announcement__text">{{ message }}</p>
       {%- endif -%}
-      {%- if settings.announcement_dismissible -%}
+      {%- if section.settings.dismissible -%}
         <button class="icon-button announcement__close" type="button" data-dismiss aria-label="{{ 'general.close' | t }}">{%- render 'icon', name: 'close' -%}</button>
       {%- endif -%}
     </div>
@@ -29,7 +34,7 @@
     html[data-dismissed~='{{ bar_id }}'] .announcement { display: none; }
   {% endstyle %}
 
-  {%- if settings.announcement_dismissible -%}
+  {%- if section.settings.dismissible -%}
     <script src="{{ 'announcement-bar.js' | asset_url }}" type="module"></script>
   {%- endif -%}
 {%- endif -%}
@@ -48,6 +53,10 @@
 {% schema %}
 {
   "name": "Announcement bar",
-  "settings": []
+  "settings": [
+    { "type": "text", "id": "text", "label": "Message", "info": "One short sentence above the header, for shipping, a sale or a launch. Leave empty to show no bar. Can be connected to a metaobject field or a metafield." },
+    { "type": "url", "id": "link", "label": "Link (optional)", "info": "Makes the whole message a link." },
+    { "type": "checkbox", "id": "dismissible", "label": "Let visitors dismiss it", "default": false, "info": "A close button. A dismissed message stays hidden for that visitor until its text or link changes. Loads one small script." }
+  ]
 }
 {% endschema %}

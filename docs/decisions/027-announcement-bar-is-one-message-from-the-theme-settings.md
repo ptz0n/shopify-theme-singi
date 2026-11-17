@@ -1,6 +1,6 @@
 # 027. The announcement bar is one message from the theme settings, dismissed through a list on the root element
 
-Status: accepted
+Status: accepted (the content storage is superseded by [decision 036](036-announcement-content-lives-in-the-section-not-the-theme-settings.md): the message, link and dismiss setting now live in the section's own settings; everything else here stands)
 Area: header | merchandising | accessibility | performance
 Code: `sections/announcement-bar.liquid`, `assets/announcement-bar.js`, `snippets/theme-init.liquid` (`data-dismissed`), `sections/header-group.json`, settings `announcement_text`, `announcement_link`, `announcement_dismissible`
 
@@ -51,7 +51,7 @@ Merchants need one visible place for a shipping threshold, a sale or a launch. T
 
 ## Revisit when
 
-**Under review (2026-11-17):** the research in [content-storage.md](../content-storage.md) finds that section settings in the header group are the common practice, take per market override files and can be connected to metaobjects; the to-do "Announcement bar content moves to the section's own settings" in `todo.md` would supersede the where-it-is-stored part of this record (not the one message, one look, dismissal or no rotation decisions).
+**Done (2026-11-17):** decision 036 moved the content to the section's own settings, per the research in [content-storage.md](../content-storage.md).
 
 
 A real store needs two messages (then a second setting pair, not a carousel), or timed campaigns.

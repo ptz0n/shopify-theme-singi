@@ -8,15 +8,23 @@ Files in `sections/`. Sections are thin: markup for the page region plus a slot 
 
 File: `sections/announcement-bar.liquid` · Editor name: **Announcement bar** · template-bound
 
-The announcement bar: one short message above the header, from the theme settings "Announcement bar" (message,
-optional link, optional dismiss button). Renders nothing while the message is empty, so a new store shows no bar.
+The announcement bar: one short message above the header, from this section's own settings in the header group
+(message, optional link, optional dismiss button). Renders nothing while the message is empty, so a new store shows no bar.
 One message, one look (the page colors inverted): no rotation, no marquee, no second message (decision 027).
+
+The settings live in the section, where merchants look for them, so a market can override them with a contextual file
+(sections/header-group.context.<market>.json) and the message and link can be connected to a metaobject field or a
+metafield (the dynamic source button next to each setting) to outlive a theme switch: decision 036 and docs/content-storage.md.
 
 A dismissed message stays hidden for that visitor until its text or link changes: the section's id is a hash of
 both, the inline theme script puts the saved list on <html data-dismissed> before first paint, and the CSS
 below hides the bar when its hash is in it, so a dismissed bar never flashes and nothing shifts.
 
-_No settings._
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `text` | text | Message |  |
+| `link` | url | Link (optional) |  |
+| `dismissible` | checkbox | Let visitors dismiss it | `false` |
 
 ## cart-drawer
 

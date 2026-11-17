@@ -58,3 +58,4 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [033](033-html-sitemap-is-collections-pages-and-blogs.md) | The HTML sitemap is collections, pages and chosen blogs, with no products and no settings | navigation, SEO, accessibility |
 | [034](034-payment-icons-are-one-snippet-with-a-one-color-option.md) | Payment icons are one snippet, used by the footer and a block, with a grayscale option | trust, footer, accessibility |
 | [035](035-a-picked-size-is-remembered-for-the-visit-per-product-type.md) | A picked size is remembered for the visit, per product type, and preselected on the next product | product page, conversion, privacy |
+| [036](036-announcement-content-lives-in-the-section-not-the-theme-settings.md) | The announcement bar's message lives in the section's own settings, where it can take a market override and a metaobject | header, content storage, internationalization |
