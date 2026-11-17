@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "完売",
+    "sale": "セール",
     "size_guide": "サイズガイド",
     "unit_price_per": "{{ reference }}あたり{{ price }}",
     "color": "カラー",

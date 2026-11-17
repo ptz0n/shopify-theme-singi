@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Slutsåld",
+    "sale": "Rea",
     "size_guide": "Storleksguide",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Färg",

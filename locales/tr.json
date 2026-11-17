@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Tükendi",
+    "sale": "İndirim",
     "size_guide": "Beden tablosu",
     "unit_price_per": "{{ reference }} başına {{ price }}",
     "color": "Renk",

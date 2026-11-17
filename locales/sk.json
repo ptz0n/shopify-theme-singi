@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Vypredané",
+    "sale": "Zľava",
     "size_guide": "Tabuľka veľkostí",
     "unit_price_per": "{{ price }} za {{ reference }}",
     "color": "Farba",

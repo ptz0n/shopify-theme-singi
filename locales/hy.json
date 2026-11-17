@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Սպառված է",
+    "sale": "Զեղչ",
     "size_guide": "Չափսերի ուղեցույց",
     "unit_price_per": "{{ reference }}-ի համար {{ price }}",
     "color": "Գույն",

@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Hết hàng",
+    "sale": "Giảm giá",
     "size_guide": "Hướng dẫn chọn size",
     "unit_price_per": "{{ price }} mỗi {{ reference }}",
     "color": "Màu sắc",

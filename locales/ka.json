@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "გაყიდულია",
+    "sale": "ფასდაკლება",
     "size_guide": "ზომების გზამკვლევი",
     "unit_price_per": "{{ price }} {{ reference }}-ზე",
     "color": "ფერი",

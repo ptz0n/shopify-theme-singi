@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "สินค้าหมด",
+    "sale": "ลดราคา",
     "size_guide": "ตารางไซส์",
     "unit_price_per": "{{ price }} ต่อ {{ reference }}",
     "color": "สี",

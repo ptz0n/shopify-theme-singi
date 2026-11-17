@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Uitverkocht",
+    "sale": "Sale",
     "size_guide": "Maattabel",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Kleur",

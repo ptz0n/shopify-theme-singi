@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "품절",
+    "sale": "세일",
     "size_guide": "사이즈 가이드",
     "unit_price_per": "{{ reference }}당 {{ price }}",
     "color": "색상",

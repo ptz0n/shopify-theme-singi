@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Сатылып кетті",
+    "sale": "Жеңілдік",
     "size_guide": "Өлшем кестесі",
     "unit_price_per": "{{ reference }} үшін {{ price }}",
     "color": "Түс",

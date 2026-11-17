@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Uitverkoop",
+    "sale": "Uitverkoping",
     "size_guide": "Grootgids",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Kleur",

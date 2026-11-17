@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "అమ్ముడైపోయింది",
+    "sale": "తగ్గింపు",
     "size_guide": "సైజ్ గైడ్",
     "unit_price_per": "{{ reference }}కి {{ price }}",
     "color": "రంగు",

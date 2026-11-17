@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Loppuunmyyty",
+    "sale": "Ale",
     "size_guide": "Kokotaulukko",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Väri",

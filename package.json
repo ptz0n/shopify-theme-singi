@@ -61,6 +61,7 @@
     "test:quick-buy": "node scripts/test-quick-buy.mjs",
     "test:option-label": "node scripts/test-option-label.mjs",
     "test:image-ratio": "node scripts/test-image-ratio.mjs",
+    "test:sale-badge": "node scripts/test-sale-badge.mjs",
     "test:usp": "node scripts/test-usp.mjs",
     "test:features": "node scripts/test-features.mjs",
     "test:announcement": "node scripts/test-announcement.mjs",

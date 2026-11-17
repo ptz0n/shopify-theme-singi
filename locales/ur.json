@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "فروخت ہو چکا",
+    "sale": "سیل",
     "size_guide": "سائز گائیڈ",
     "unit_price_per": "{{ price }} فی {{ reference }}",
     "color": "رنگ",

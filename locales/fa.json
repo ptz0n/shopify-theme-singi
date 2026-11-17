@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "ناموجود",
+    "sale": "حراج",
     "size_guide": "راهنمای سایز",
     "unit_price_per": "{{ price }} به ازای هر {{ reference }}",
     "color": "رنگ",

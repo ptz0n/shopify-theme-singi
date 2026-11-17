@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "विकले गेले",
+    "sale": "सेल",
     "size_guide": "साईज गाइड",
     "unit_price_per": "प्रति {{ reference }} {{ price }}",
     "color": "रंग",

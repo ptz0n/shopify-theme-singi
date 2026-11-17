@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Uppselt",
+    "sale": "Útsala",
     "size_guide": "Stærðartafla",
     "unit_price_per": "{{ price }} á {{ reference }}",
     "color": "Litur",

@@ -19,6 +19,7 @@ Settings in `config/settings_schema.json` become CSS custom properties in `snipp
 | `--logo-width` | `settings.logo_width` | Logo width in px. |
 | `--color-bg`, `--color-surface`, `--color-fg`, `--color-muted`, `--color-border`, `--color-accent` | light and dark color settings | Resolved with `light-dark()`. |
 | `--color-scrim` | the dimmed page behind a dialog, drawer or popover | `rgb(0 0 0 / 0.6)` in both schemes, deliberately not `light-dark()`: the foreground is light in dark mode, and a scrim made from it turns the page pale. Use it for every `::backdrop` that dims the page. |
+| `--color-sale` | the Sale badge on a product image | `#b91c1c` with white text (6.5:1) in both schemes, deliberately not `light-dark()`: `--color-danger` is a pale pink in dark mode, which white text cannot sit on |
 | `--ratio-product`, `--ratio-h` | the product image format (the theme setting "Product image format": square by default, portrait, tall, landscape): the `aspect-ratio` of every product image and its height as a number | `1 / 1` and `1` by default; [decision 043](decisions/043-one-product-image-format-from-a-theme-setting-square-by-default.md) |
 | `--gutter` | `base.css` | `clamp(1rem, 4vw, 2rem)` page side padding. |
 | `--header-h` | `base.css` | 4rem sticky header height. |

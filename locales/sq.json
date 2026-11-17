@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Shitur",
+    "sale": "Ulje",
     "size_guide": "Udhëzuesi i masave",
     "unit_price_per": "{{ price }} për {{ reference }}",
     "color": "Ngjyra",

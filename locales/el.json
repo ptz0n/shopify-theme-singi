@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Εξαντλήθηκε",
+    "sale": "Προσφορά",
     "size_guide": "Οδηγός μεγεθών",
     "unit_price_per": "{{ price }} ανά {{ reference }}",
     "color": "Χρώμα",

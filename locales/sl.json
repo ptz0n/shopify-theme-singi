@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Razprodano",
+    "sale": "Popust",
     "size_guide": "Tabela velikosti",
     "unit_price_per": "{{ price }} za {{ reference }}",
     "color": "Barva",

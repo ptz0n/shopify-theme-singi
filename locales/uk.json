@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Немає в наявності",
+    "sale": "Знижка",
     "size_guide": "Таблиця розмірів",
     "unit_price_per": "{{ price }} за {{ reference }}",
     "color": "Колір",

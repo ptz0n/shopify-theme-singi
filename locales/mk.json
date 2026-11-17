@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Распродадено",
+    "sale": "Попуст",
     "size_guide": "Водич за големини",
     "unit_price_per": "{{ price }} за {{ reference }}",
     "color": "Боја",

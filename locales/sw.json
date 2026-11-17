@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Imeisha",
+    "sale": "Punguzo",
     "size_guide": "Mwongozo wa saizi",
     "unit_price_per": "{{ price }} kwa {{ reference }}",
     "color": "Rangi",

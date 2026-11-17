@@ -12,8 +12,8 @@
  *
  * Phases:
  *   1  default settings: every test that needs nothing set up
- *   2  settings on (quick buy, the portrait image format, social links, newsletter note), the announcement bar's section settings and hreflang alternates set:
- *      test:quick-buy, test:image-ratio (portrait), test:announcement, test:social-links, test:newsletter-consent, test:hreflang
+ *   2  settings on (quick buy, the portrait image format, the Sale badge off, social links, newsletter note), the announcement bar's section settings and hreflang alternates set:
+ *      test:quick-buy, test:image-ratio (portrait), test:sale-badge (off), test:announcement, test:social-links, test:newsletter-consent, test:hreflang
  *   3  the newsletter checkbox on: test:newsletter-consent in checkbox mode
  *   then the defaults are restored (the settings emptied, the alternates cleared).
  *
@@ -51,6 +51,7 @@ const weight = (t) => (SLOW.includes(t.name) ? SLOW.length - SLOW.indexOf(t.name
 const phase1 = all.filter((t) => !PHASE_2.includes(t.name) && wanted(t)).sort((a, b) => weight(b) - weight(a));
 const phase2 = all.filter((t) => PHASE_2.includes(t.name) && wanted(t));
 phase2.push(...all.filter((t) => t.name === 'image-ratio' && wanted(t)).map((t) => ({ ...t, label: 'image-ratio (portrait)', env: { SINGI_RATIO: 'portrait' } })));
+phase2.push(...all.filter((t) => t.name === 'sale-badge' && wanted(t)).map((t) => ({ ...t, label: 'sale-badge (off)', env: { SINGI_SALE: 'off' } })));
 const phase3 = phase2.filter((t) => t.name === 'newsletter-consent').map((t) => ({ ...t, label: 'newsletter-consent (checkbox)', env: { SINGI_CHECKBOX: '1' } }));
 
 const run = (test) => new Promise((resolve) => {
@@ -120,11 +121,11 @@ if (!noSetup && phase2.length) {
   ]));
   const note = 'By subscribing you agree to receive marketing emails. Read our <a href="/policies/privacy-policy">privacy policy</a>.';
   const on = [
-    'card_quick_buy=true', 'product_image_ratio=portrait',
+    'card_quick_buy=true', 'product_image_ratio=portrait', 'show_sale_badge=false',
     `social_profiles=https://www.instagram.com/singi\nhttps://www.facebook.com/singi\nhttps://x.com/singi\nhttps://www.youtube.com/@singi\nhttps://mastodon.social/@singi\nnot an address`,
     `newsletter_note=${note}`, 'newsletter_checkbox=false', 'newsletter_confirmation=Check your email to confirm.',
   ];
-  const off = ['card_quick_buy=false', 'product_image_ratio=square', 'social_profiles=', 'newsletter_note=', 'newsletter_checkbox=false', 'newsletter_confirmation='];
+  const off = ['card_quick_buy=false', 'product_image_ratio=square', 'show_sale_badge=true', 'social_profiles=', 'newsletter_note=', 'newsletter_checkbox=false', 'newsletter_confirmation='];
   try {
     console.log(`\nPhase 2: settings on for the dev theme #${id}, alternates set`);
     await setSettings(id, on);

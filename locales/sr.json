@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Rasprodato",
+    "sale": "Akcija",
     "size_guide": "Vodič za veličine",
     "unit_price_per": "{{ price }} po {{ reference }}",
     "color": "Boja",

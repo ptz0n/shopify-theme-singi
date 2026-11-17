@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Izpārdots",
+    "sale": "Izpārdošana",
     "size_guide": "Izmēru tabula",
     "unit_price_per": "{{ price }} par {{ reference }}",
     "color": "Krāsa",

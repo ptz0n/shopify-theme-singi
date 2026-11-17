@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Agortuta",
+    "sale": "Eskaintza",
     "size_guide": "Neurri gida",
     "unit_price_per": "{{ price }} {{ reference }} bakoitzeko",
     "color": "Kolorea",

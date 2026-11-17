@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "स्टॉक में नहीं है",
+    "sale": "सेल",
     "size_guide": "साइज़ गाइड",
     "unit_price_per": "प्रति {{ reference }} {{ price }}",
     "color": "रंग",

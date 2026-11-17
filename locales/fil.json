@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Sold out",
+    "sale": "Sale",
     "size_guide": "Gabay sa laki",
     "unit_price_per": "{{ price }} bawat {{ reference }}",
     "color": "Kulay",

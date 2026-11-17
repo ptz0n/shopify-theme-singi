@@ -26,6 +26,7 @@
   },
   "products": {
     "sold_out": "Распродано",
+    "sale": "Скидка",
     "size_guide": "Таблица размеров",
     "unit_price_per": "{{ price }} за {{ reference }}",
     "color": "Цвет",
