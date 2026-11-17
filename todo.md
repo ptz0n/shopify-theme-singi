@@ -75,7 +75,7 @@ Rules for the loop:
 ## P1 — High-value UX & merchandising
 
 - [x] **Swatch labels show option name (e.g. "Color: Grey")** — *P1,P2*  
-  - *Status:* built (decision 024, `npm run test:option-label`, 7 checks pass on the dev store; siblings and details tests still pass). Variant picker legends read "Color: Grey" and follow a change at once; color siblings read "Color: Moss" through the optional `singi.color_name` metafield, created on the dev store. Not measured on a live store.  
+  - *Status:* built (decision 024, `npm run test:option-label`, 7 checks pass on the dev store; siblings and details tests still pass). Variant picker legends read "Color: Grey" (since decision 042 only for swatch options; "Size" stays plain) and follow a change at once; color siblings read "Color: Moss" through the optional `singi.color_name` metafield, created on the dev store. Not measured on a live store.  
   - *Why:* Color swatches alone can be ambiguous; visible option names improve clarity and accessibility for all shoppers.  
   - *Scope:* when swatches are used for an option, output the option and value name as part of the label/selection state (e.g. "Color: Grey"), keeping accessible naming, variant-picker state updates, and visual design consistent with Singi’s minimal style.
 

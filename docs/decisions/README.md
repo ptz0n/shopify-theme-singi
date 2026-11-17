@@ -63,4 +63,5 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [038](038-placeholder-images-by-type-and-vendor.md) | A product with no image gets a placeholder chosen by its type and vendor, from a typed metaobject | product media, catalog, content storage |
 | [039](039-dev-tooling-stays-dependency-free.md) | Developer tooling stays dependency-free: native git hooks, a small CI, and no typechecker, build step or Liquid formatter | developer experience, CI, performance |
 | [040](040-liquid-is-formatted-by-prettier.md) | Liquid is formatted by Prettier, the first devDependency family | developer experience, CI |
+| [042](042-an-option-legend-names-its-value-only-when-the-chips-do-not.md) | An option legend names the chosen value only when the chips do not say it in words | product page, accessibility |
 | [041](041-typed-javascript-with-jsdoc-and-no-build-step.md) | JavaScript is typed with JSDoc and checked by `tsc`, with no build step | developer experience, JavaScript |

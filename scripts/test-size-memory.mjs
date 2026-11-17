@@ -41,7 +41,7 @@ const ok = (condition, message) => {
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const state = () => ({
   type: document.querySelector('product-form')?.dataset.type,
-  legends: [...document.querySelectorAll('product-form fieldset.variant-option')].map((f) => f.dataset.option + ': ' + f.querySelector('[data-selected]').textContent.trim()),
+  legends: [...document.querySelectorAll('product-form fieldset.variant-option')].map((f) => f.dataset.option + ': ' + f.querySelector('input:checked').value),
   remember: [...document.querySelectorAll('product-form fieldset.variant-option')].map((f) => f.hasAttribute('data-remember')),
   id: document.querySelector('product-form form [name=id]')?.value,
   checked: [...document.querySelectorAll('product-form input[data-option-url]:checked')].map((i) => i.value),

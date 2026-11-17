@@ -1,6 +1,6 @@
 # 024. Option labels name the chosen value ("Color: Grey"), and color siblings get an optional color name
 
-Status: accepted
+Status: accepted, superseded in part by [decision 042](042-an-option-legend-names-its-value-only-when-the-chips-do-not.md) (the value is named only for swatch options)
 Area: product page | accessibility | data model
 Code: `blocks/_variant-picker.liquid` (`data-selected`), `assets/product-form.js` (`#optimistic`), `blocks/_color-siblings.liquid`, `scripts/lib/siblings.mjs` (`singi.color_name`), `scripts/test-option-label.mjs`
 

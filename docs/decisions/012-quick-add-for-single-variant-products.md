@@ -10,7 +10,7 @@ A shopper who already knows what they want should not have to open a product pag
 
 ## Decision
 
-With the setting "Show a quick add button on product cards" on (off by default), a card shows a 44px plus button at the bottom start corner of its image when, and only when, the product is in stock, has exactly one variant, does not require a selling plan, and has a minimum quantity of 1. Every other card has no button and links to the product page as before.
+With the setting "Show a quick add button on product cards" on (off by default), a card shows a 44px shopping cart button at the bottom start corner of its image when, and only when, the product is in stock, has exactly one variant, does not require a selling plan, and has a minimum quantity of 1. Every other card has no button and links to the product page as before.
 
 Pressing it posts that variant with quantity 1 to the cart, refreshes the header cart count with the same helper the product page uses, shows a check mark on the button for two seconds, and tells the live region "<product title>: Added to cart." A refused add (for example a quantity limit) announces the store's own message and changes nothing. The click also fires `singi:cart-add`, with the button carrying the same GA4 item data as the product page, so tracking sees the add.
 

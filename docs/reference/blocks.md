@@ -185,8 +185,9 @@ variant's unit price differs from the current one, the unit price (data-unit-pri
 data-unit-label; absent means unchanged), so assets/product-form.js can show them at once
 instead of waiting for the server. A fieldset carries its option name (`data-option`) and, unless it is a color, `data-remember`:
 assets/product-form.js remembers the value picked there for the visit and preselects it on another product of the same type
-(decision 035). Each legend names the chosen value ("Color: Grey", the span
-`data-selected`), which assets/product-form.js updates at once when another value is picked.
+(decision 035). The legend names the chosen value ("Color: Grey", the span `data-selected`, which
+assets/product-form.js updates at once when another value is picked) only for an option that uses swatches, where the
+chip alone does not say it in words; "Size" above chips that read S, M and L needs no "S" (decision 042).
 Private to product sections.
 
 _No settings._

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * Tests that option labels name the chosen value (decision 003 addendum, decision 024) in headless Chrome:
- *  - each option group's legend reads "Color: Black" (option name, then the selected value);
- *  - picking another value changes that legend at once (before the server answers) and keeps it after the
- *    server's response, and leaves the other options' legends alone;
+ * Tests option labels (decision 024, superseded in part by decision 042) in headless Chrome:
+ *  - an option whose chips read as text (Size: S, M, L) has a legend with just the option name (decision 042);
+ *    picking another value leaves it alone. A swatch option names the value in its legend ("Color: Black") and
+ *    follows a change at once; the mock catalog has no swatch option, so that path is not covered here;
  *  - color siblings: the "Color" label reads "Color: Moss" when the product has singi.color_name, and just
  *    "Color" when it has none (mock-shirt-harbor), and the navigation is named by the same label.
  *
@@ -45,22 +45,13 @@ try {
     await page.setViewport({ width: 1200, height: 900 });
     await page.goto(`${base}/products/mock-classic-tee`, { waitUntil: 'load', timeout: 60000 });
     const before = await page.evaluate(legends);
-    ok(before.length >= 1 && before.every((l) => /^[^:]+: \S/.test(l)), `every legend names its chosen value: ${JSON.stringify(before)}`);
-    const picked = await page.evaluate(() => {
-      const input = [...document.querySelectorAll('product-form input[data-option-url]')].find((i) => !i.checked && i.dataset.available !== 'false');
-      const fieldset = input.closest('fieldset');
-      const index = [...document.querySelectorAll('product-form fieldset.variant-option')].indexOf(fieldset);
-      input.click();
-      /* read in the same task as the click: the server has not answered */
-      return { value: input.value, index, legend: fieldset.querySelector('legend').textContent.replace(/\s+/g, ' ').trim() };
-    });
-    ok(picked.legend.endsWith(`: ${picked.value}`), `the legend changed at once to "${picked.legend}" (picked ${picked.value})`);
+    ok(before.length >= 1 && before.every((l) => !l.includes(':')), `an option whose chips read as text has a plain legend, no repeated value: ${JSON.stringify(before)}`);
+    await page.evaluate(() => [...document.querySelectorAll('product-form input[data-option-url]')].find((i) => !i.checked && i.dataset.available !== 'false')?.click());
     await sleep(1800);
     const after = await page.evaluate(legends);
-    ok(after[picked.index].endsWith(`: ${picked.value}`), `the legend still says ${picked.value} after the server answered: ${JSON.stringify(after)}`);
-    ok(after.every((l, i) => i === picked.index || l === before[i]), 'the other options keep their legends');
+    ok(JSON.stringify(after) === JSON.stringify(before), `picking another value leaves the legends alone: ${JSON.stringify(after)}`);
     await page.close();
-    console.log('  option legends name the chosen value and follow a change');
+    console.log('  plain option legends carry no value');
   }
 
   {

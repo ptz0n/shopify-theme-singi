@@ -4,7 +4,7 @@
  * The setting "Let shoppers choose options from product cards" must be on for the dev theme:
  *   npm run theme:set -- card_quick_buy=true --theme <singi-dev id> --apply
  *
- *  - cards of in-stock products with options have a plus button named "Choose options for <title>", at least
+ *  - cards of in-stock products with options have a cart button named "Choose options for <title>", at least
  *    44px, and the card still has exactly one link (decision 001); without JavaScript the button is hidden;
  *  - pressing it opens one native dialog labelled with the product, holding the price, the option picker and an
  *    Add to cart button, and no dynamic checkout button and no sticky bar; the address bar does not change;
@@ -56,6 +56,11 @@ const dialogState = () => {
     payment: d.querySelectorAll('[data-payment], .shopify-payment-button').length,
     sticky: d.querySelectorAll('sticky-buy').length,
     variantId: d.querySelector('form [name=id]')?.value,
+    imageHref: d.querySelector('[data-swap="image"] a')?.getAttribute('href'),
+    image: (() => { const i = d.querySelector('[data-swap="image"] img'); const r = i?.getBoundingClientRect(); return i && { top: Math.round(r.top), loaded: i.complete && i.naturalWidth > 0, w: Math.round(r.width), h: Math.round(r.height), left: Math.round(r.left), right: Math.round(r.right), bottom: Math.round(r.bottom), alt: i.getAttribute('alt') }; })(),
+    closeBox: (() => { const r = d.querySelector('[data-close]')?.getBoundingClientRect(); return r && { top: Math.round(r.top), right: Math.round(r.right), w: Math.round(r.width) }; })(),
+    dialogTop: Math.round(box.top),
+    titleBox: (() => { const r = d.querySelector('h2')?.getBoundingClientRect(); return r && { left: Math.round(r.left), top: Math.round(r.top) }; })(),
     selected: [...d.querySelectorAll('input[data-option-url]:checked')].map((i) => i.value).join(' / '),
     left: Math.round(box.left),
     right: Math.round(box.right),
@@ -88,10 +93,22 @@ try {
     const before = await page.evaluate(() => location.href);
     await page.click('[data-quick-buy]');
     await waitOpen(page);
+    await page.waitForFunction(() => { const i = document.querySelector('dialog.quick-buy [data-swap="image"] img'); return i?.complete && i.naturalWidth > 0; }, { timeout: 15000 }).catch(() => {});
     await sleep(300);
     let s = await page.evaluate(dialogState);
     ok(s && s.open, 'pressing the link opens the dialog');
     ok(s.label && s.label === (await page.evaluate(() => document.querySelector('dialog.quick-buy h2')?.textContent.trim())), `the dialog is labelled with the product title (${s.label})`);
+    ok(s.image?.loaded && s.image.w >= 240 && s.image.h >= 150, `the dialog shows the featured image (${JSON.stringify(s.image)})`);
+    const cardImage = await page.evaluate(() => document.querySelector('.product-card img')?.getBoundingClientRect().width ?? 0);
+    ok(s.image && s.image.w > cardImage, `the dialog image (${s.image?.w}px wide) is larger than the card image (${Math.round(cardImage)}px)`);
+    ok(s.closeBox && s.closeBox.w >= 44 && s.closeBox.top - s.dialogTop < 24 && s.right - s.closeBox.right < 24, `the close button is at the dialog's top right (${JSON.stringify(s.closeBox)}, dialog top ${s.dialogTop}, right ${s.right})`);
+    ok(s.image && s.image.w >= s.width - 2, `the image uses the dialog's full width (${s.image?.w}px of ${s.width}px)`);
+    const gapBelow = await page.evaluate(() => { const d = document.querySelector('dialog.quick-buy').getBoundingClientRect(); const b = document.querySelector('dialog.quick-buy .buy__actions').getBoundingClientRect(); return Math.round(d.bottom - b.bottom); });
+    ok(gapBelow <= 24, `the space under the buttons is ${gapBelow}px: the hidden status line adds none`);
+    ok(s.image && s.image.top - s.dialogTop <= 2, `the image touches the top edge of the dialog (${s.image?.top} against ${s.dialogTop})`);
+    ok(/^\/products\//.test(s.imageHref ?? ''), `the image links to the product page (${s.imageHref})`);
+    ok(s.image?.alt === '', 'the image is decorative: the title is right beside it');
+    ok(s.image && s.titleBox && s.image.bottom <= s.titleBox.top, `the image sits above the title (image ${s.image?.left}-${s.image?.right}, title at ${s.titleBox?.left},${s.titleBox?.top})`);
     ok(s.fieldsets >= 1 && /\d/.test(s.price ?? '') && /Add to cart|Sold out/.test(s.add ?? ''), `it has options (${s.fieldsets}), a price (${s.price}) and an add button (${s.add})`);
     const stepper = await page.evaluate(() => { const b = document.querySelector('dialog.quick-buy .qty__button'); const r = b?.getBoundingClientRect(); return { defined: Boolean(customElements.get('quantity-input')), shown: Boolean(r && r.width > 0 && getComputedStyle(b).visibility !== 'hidden') }; });
     ok(stepper.defined && stepper.shown, `the quantity stepper works in the dialog (defined ${stepper.defined}, buttons shown ${stepper.shown})`);
@@ -100,7 +117,7 @@ try {
     ok(sr + sg + sb <= 60 && sa >= 0.5, `the dimmed page behind the dialog is dark (${scrim})`);
     ok(s.payment === 0 && s.sticky === 0, `no dynamic checkout button (${s.payment}) and no sticky bar (${s.sticky})`);
     ok(s.href === before, 'the address bar did not change');
-    ok(s.width <= 448 && s.left > 0 && s.right < s.vw, `a centered dialog (left ${s.left}, right ${s.right} of ${s.vw})`);
+    ok(s.width <= 640 && s.left > 0 && s.right < s.vw, `a centered dialog (left ${s.left}, right ${s.right} of ${s.vw})`);
     await page.keyboard.press('Escape');
     await sleep(200);
     s = await page.evaluate(dialogState);
@@ -119,6 +136,21 @@ try {
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 800 });
     await page.goto(COLLECTION, { waitUntil: 'load', timeout: 60000 });
+    await page.click('[data-quick-buy]');
+    await waitOpen(page);
+    await page.waitForFunction(() => document.querySelector('dialog.quick-buy [data-swap="image"] img')?.complete, { timeout: 15000 }).catch(() => {});
+    await sleep(300);
+    await page.click('dialog.quick-buy [data-swap="image"] img');
+    await page.waitForFunction(() => location.pathname.startsWith('/products/'), { timeout: 15000 }).catch(() => {});
+    ok(await page.evaluate(() => location.pathname.startsWith('/products/')), `clicking the image goes to the product page (${await page.evaluate(() => location.pathname)})`);
+    await page.close();
+    console.log('  image link');
+  }
+
+  {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1200, height: 800 });
+    await page.goto(COLLECTION, { waitUntil: 'load', timeout: 60000 });
     const before = await page.evaluate(() => location.href);
     await page.click('[data-quick-buy]');
     await waitOpen(page);
@@ -131,6 +163,7 @@ try {
     });
     await sleep(1500);
     const next = await page.evaluate(dialogState);
+    ok(next.image?.loaded, 'after choosing another option the dialog still shows an image');
     ok(changed && next.open && next.selected !== first.selected && next.variantId !== first.variantId, `choosing another option changes the selected variant (${first.selected} -> ${next.selected}, id ${first.variantId} -> ${next.variantId})`);
     ok(next.href === before, 'the address bar still did not change');
     await page.click('dialog.quick-buy form[data-add-to-cart] [type=submit]');

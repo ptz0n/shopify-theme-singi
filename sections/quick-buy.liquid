@@ -12,18 +12,15 @@
   {%- capture tracking_item -%}{%- render 'tracking-item', product: product, variant: variant -%}{%- endcapture -%}
 {%- endif -%}
 
+{%- assign image = variant.featured_image | default: product.featured_image -%}
+
 <div data-quick-buy-panel data-title="{{ product.title | escape }}">
-  <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-inline-end: -0.75rem">
-    <h2 class="h3">
-      <a href="{{ product.url }}">{{ product.title }}</a>
-    </h2>
+  <div data-close-row>
     <button class="icon-button" type="button" data-close aria-label="{{ 'general.close' | t }}">
       {%- render 'icon', name: 'close' -%}
     </button>
   </div>
-
   <product-form
-    class="stack"
     data-handle="{{ product.handle }}"
     data-type="{{ product.type | escape }}"
     data-section-id="{{ section.id }}"
@@ -36,9 +33,30 @@
       data-item="{{ tracking_item | strip | escape }}"
     {% endif %}
   >
-    {% content_for 'block', type: '_product-price', id: 'price' %}
-    {% content_for 'block', type: '_variant-picker', id: 'picker' %}
-    {% content_for 'block', type: '_buy-buttons', id: 'buy' %}
+    {%- comment -%}The featured image is a swap region like the price: choosing a variant with its own image changes it.{%- endcomment -%}
+    <div data-swap="image">
+      {%- if image != blank -%}
+        {%- comment -%}A second way to the product page, for the pointer only: the title link is the one a keyboard and a screen reader get.{%- endcomment -%}
+        <a href="{{ variant.url | default: product.url }}" tabindex="-1" aria-hidden="true">
+          {%- render 'image',
+            image: image,
+            decorative: true,
+            eager: true,
+            sizes: '(min-width: 40em) 32rem, 100vw',
+            widths: '480, 640, 800, 1000',
+            width: 1000
+          -%}
+        </a>
+      {%- endif -%}
+    </div>
+    <div class="stack">
+      <h2 class="h3">
+        <a href="{{ product.url }}">{{ product.title }}</a>
+      </h2>
+      {% content_for 'block', type: '_product-price', id: 'price' %}
+      {% content_for 'block', type: '_variant-picker', id: 'picker' %}
+      {% content_for 'block', type: '_buy-buttons', id: 'buy' %}
+    </div>
   </product-form>
 </div>
 

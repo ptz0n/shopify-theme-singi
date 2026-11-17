@@ -64,7 +64,8 @@ class ProductForm extends HTMLElement {
       if (heart) heart.dataset.variant = input.dataset.variantId;
       document.dispatchEvent(new CustomEvent('singi:variant'));
     }
-    input.closest('fieldset').querySelector('[data-selected]').textContent = input.value;
+    const selected = input.closest('fieldset').querySelector('[data-selected]');
+    if (selected) selected.textContent = input.value;
     const available = input.dataset.available !== 'false';
     const button = form.querySelector('[type="submit"]');
     button.disabled = !available;
