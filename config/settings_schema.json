@@ -163,6 +163,14 @@
     ]
   },
   {
+    "name": "Newsletter",
+    "settings": [
+      { "type": "inline_richtext", "id": "newsletter_note", "label": "Consent note", "info": "Shown under every signup form: say what the subscriber agrees to and link your privacy policy. What you must say depends on your markets, and this is not legal advice. Leave empty to show nothing." },
+      { "type": "checkbox", "id": "newsletter_checkbox", "label": "Ask visitors to tick a box", "default": false, "info": "Turns the consent note into an unticked checkbox that must be ticked before the form can be sent, for markets that need an explicit opt-in. Needs a consent note." },
+      { "type": "text", "id": "newsletter_confirmation", "label": "Confirmation message", "info": "Shown after signing up. Change it if you turned on double opt-in (Settings > Notifications in the Shopify admin), for example to ask visitors to check their email. Leave empty for the standard message." }
+    ]
+  },
+  {
     "name": "Favorites",
     "settings": [
       { "type": "checkbox", "id": "wishlist_enabled", "label": "Enable favorites", "default": true, "info": "Saved per device in the browser (localStorage) and shown on the cart page. No account needed." },

@@ -98,6 +98,14 @@ Defined in `config/settings_schema.json`, read in Liquid as `settings.<id>`.
 | `announcement_link` | url | Link (optional) |  |
 | `announcement_dismissible` | checkbox | Let visitors dismiss it | `false` |
 
+## Newsletter
+
+| Setting | Type | Label | Default |
+| --- | --- | --- | --- |
+| `newsletter_note` | inline_richtext | Consent note |  |
+| `newsletter_checkbox` | checkbox | Ask visitors to tick a box | `false` |
+| `newsletter_confirmation` | text | Confirmation message |  |
+
 ## Favorites
 
 | Setting | Type | Label | Default |

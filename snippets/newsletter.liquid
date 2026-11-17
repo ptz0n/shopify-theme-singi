@@ -6,6 +6,14 @@
   Used by the footer and by blocks/newsletter.liquid. Each use needs its own `id`, so the label
   and input stay paired when the form appears twice on a page.
 
+  Consent. Submitting the form is what subscribes the visitor: Shopify records the signup as accepting marketing.
+  The theme ships no legal wording. A merchant writes the theme setting "Consent note" (what the subscriber
+  agrees to, with a link to the privacy policy), shown under the form and tied to the email input as its
+  description. With the setting "Ask visitors to tick a box" the note becomes the label of an unticked checkbox
+  that is required before the form can be sent; the checkbox is a gate in the page, not a second field sent to
+  Shopify. Double opt-in is a Shopify admin setting; the setting "Confirmation message" lets the form say so.
+  Not legal advice. Decision record: docs/decisions/029-newsletter-consent-is-merchant-written-and-ships-no-legal-copy.md.
+
   @param {string} id - Unique per form on the page, for example footer-newsletter
   @param {string} [source] - Lead source sent with the generate_lead tracking event. Default: the id
   @param {string} [label] - Visible label. Default: the translated "Join the list"
@@ -16,6 +24,12 @@
 {% enddoc %}
 
 {%- assign newsletter_label = label | default: 'newsletter.label' | t -%}
+{%- assign consent_note = settings.newsletter_note -%}
+{%- assign described_by = '' -%}
+{%- if text != blank -%}{%- assign described_by = id | append: '-text' -%}{%- endif -%}
+{%- if consent_note != blank and settings.newsletter_checkbox == false -%}
+  {%- assign described_by = described_by | append: ' ' | append: id | append: '-note' | strip -%}
+{%- endif -%}
 
 <div class="newsletter">
   {%- form 'customer', id: id -%}
@@ -31,12 +45,22 @@
         required
         placeholder="{{ 'newsletter.placeholder' | t }}"
         value="{{ form.email }}"
-        {% if text != blank %}aria-describedby="{{ id }}-text"{% endif %}
+        {% if described_by != blank %}aria-describedby="{{ described_by }}"{% endif %}
       >
       <button class="button" type="submit">{{ 'newsletter.submit' | t }}</button>
     </div>
+    {%- if consent_note != blank -%}
+      {%- if settings.newsletter_checkbox -%}
+        <label class="newsletter__consent" for="{{ id }}-consent">
+          <input id="{{ id }}-consent" type="checkbox" required>
+          <span>{{ consent_note }}</span>
+        </label>
+      {%- else -%}
+        <p class="newsletter__note" id="{{ id }}-note">{{ consent_note }}</p>
+      {%- endif -%}
+    {%- endif -%}
     {%- if form.posted_successfully? -%}
-      <p role="status">{{ 'newsletter.success' | t }}</p>
+      <p role="status">{%- if settings.newsletter_confirmation != blank -%}{{ settings.newsletter_confirmation }}{%- else -%}{{ 'newsletter.success' | t }}{%- endif -%}</p>
       {%- if settings.tracking_enabled -%}
         <script type="application/json" data-track="generate_lead">{ "lead_source": "{{ source | default: id | escape }}" }</script>
       {%- endif -%}
@@ -54,4 +78,9 @@
   .newsletter__row input { flex: 1; min-width: 0; border-start-end-radius: 0; border-end-end-radius: 0; }
   .newsletter__row .button { flex: none; margin-inline-start: -1px; border-start-start-radius: 0; border-end-start-radius: 0; }
   .newsletter [role='status'] { margin-block-start: 0.75rem; }
+  .newsletter__note { margin-block: 0.5rem 0; font-size: 0.8125rem; color: var(--color-muted); }
+  .newsletter__note a { color: inherit; }
+  .newsletter .newsletter__consent { display: flex; gap: 0.75rem; align-items: flex-start; min-height: 2.75rem; margin-block-start: 0.5rem; font-size: 0.8125rem; font-weight: var(--font-weight-body); color: var(--color-muted); }
+  .newsletter__consent input { margin-block-start: 0.125rem; }
+  .newsletter__consent a { color: inherit; }
 {% endstylesheet %}

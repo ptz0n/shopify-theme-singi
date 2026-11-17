@@ -195,6 +195,14 @@ border, radius and height, and the button's side follows the reading direction (
 Used by the footer and by blocks/newsletter.liquid. Each use needs its own `id`, so the label
 and input stay paired when the form appears twice on a page.
 
+Consent. Submitting the form is what subscribes the visitor: Shopify records the signup as accepting marketing.
+The theme ships no legal wording. A merchant writes the theme setting "Consent note" (what the subscriber
+agrees to, with a link to the privacy policy), shown under the form and tied to the email input as its
+description. With the setting "Ask visitors to tick a box" the note becomes the label of an unticked checkbox
+that is required before the form can be sent; the checkbox is a gate in the page, not a second field sent to
+Shopify. Double opt-in is a Shopify admin setting; the setting "Confirmation message" lets the form say so.
+Not legal advice. Decision record: docs/decisions/029-newsletter-consent-is-merchant-written-and-ships-no-legal-copy.md.
+
 | Param | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `string` | yes | Unique per form on the page, for example footer-newsletter |

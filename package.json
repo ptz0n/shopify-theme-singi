@@ -65,6 +65,7 @@
     "test:recent": "node scripts/test-recent.mjs",
     "test:related": "node scripts/test-related.mjs",
     "test:newsletter": "node scripts/test-newsletter.mjs",
+    "test:newsletter-consent": "node scripts/test-newsletter-consent.mjs",
     "test:blocks": "node scripts/test-blocks.mjs",
     "test:hero": "node scripts/test-hero.mjs",
     "test:facets": "node scripts/test-facets.mjs",
