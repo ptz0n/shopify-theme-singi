@@ -12,6 +12,7 @@
  */
 import { readFileSync } from 'node:fs';
 import { admin } from './lib/admin.mjs';
+import { devThemeId } from './lib/dev-theme.mjs';
 import { THEME_OPS } from './lib/theme-ops.mjs';
 import { uploadImage } from './lib/placeholders.mjs';
 
@@ -22,14 +23,7 @@ if (!['on', 'off'].includes(mode)) {
   process.exit(2);
 }
 
-const themeGid = async () => {
-  if (process.env.SINGI_DEV_THEME) return `gid://shopify/OnlineStoreTheme/${process.env.SINGI_DEV_THEME}`;
-  const { themes } = await admin('{ themes(first: 50) { nodes { id name role } } }');
-  const theme = themes.nodes.find((t) => t.name === 'singi-dev');
-  if (!theme) throw new Error('No theme named singi-dev. Set SINGI_DEV_THEME=<id>.');
-  if (theme.role === 'MAIN') throw new Error('singi-dev is the live theme: refusing to change it.');
-  return theme.id;
-};
+const themeGid = async () => `gid://shopify/OnlineStoreTheme/${await devThemeId()}`;
 
 try {
   const local = readFileSync(`${root}templates/index.json`, 'utf8');

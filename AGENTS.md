@@ -10,6 +10,7 @@ Run these before you say a task is done, and report the output honestly:
 npm run check    # shopify theme check + scripts/check.mjs repo rules + Prettier format check (npm run format fixes it)
 npm run docs     # regenerate docs/reference/*.md when you changed LiquidDoc or schema
 npm run test:all # every browser test in parallel against npm run dev (about two minutes); or npm run test:<name> for one
+npm run screenshots # after any change to what the theme looks like: it retakes ALL the images in docs/images/ (never a few) and sets up the dev theme itself; npm run check warns while they are stale
 ```
 
 If you changed a user-visible string, also confirm the key exists in `locales/en.default.json`. If you could not run something (no store access, no network), say so. Nothing in this repo has been measured on a live store unless [docs/testing.md](docs/testing.md) has a recorded result.

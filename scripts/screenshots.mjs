@@ -2,11 +2,12 @@
 /**
  * Captures the screenshots used in README.md and docs/ from a running storefront, in
  * headless Chrome, and writes them to docs/images/ with a manifest.json that records
- * which version they show. Run it for every release; `npm run check` warns when the
- * manifest is older than the version in package.json.
+ * which version they show. Always regenerate all of them together after a change to what the theme looks like, and for every release;
+ * `npm run check` warns when the manifest is older than the version in package.json or the theme files changed since.
  *
  *   npm run dev           (in one terminal)
- *   npm run screenshots   (in another)
+ *   npm run screenshots   (in another; it takes all the images every time, after setting up the dev theme itself)
+ *   npm run screenshots -- --no-setup   (skip the setup: you have prepared the store)
  *   SINGI_URL=https://your-store.myshopify.com SINGI_PASSWORD=... npm run screenshots
  *
  * Env: SINGI_URL (default http://127.0.0.1:9292, the `npm run dev` server, which signs in
@@ -15,10 +16,11 @@
  * Chrome; default: the macOS app). Needs puppeteer-core, which is not a dependency of the theme:
  *   npm install --no-save puppeteer-core
  *
- * Pages come from `npm run mock:apply`. The quick buy image needs the setting "Let shoppers choose options from
- * product cards" on for the theme being shown (npm run theme:set -- card_quick_buy=true --theme <singi-dev id> --apply),
- * and the front page images need a hero with an image and blocks on the theme being shown, otherwise they show the hero's empty state
- * (npm run mock:hero -- on before, npm run mock:hero -- off after), and the content blocks image needs the mock page /pages/mock-blocks (it carries the USP and feature lists).
+ * Pages come from `npm run mock:apply`. Against the dev server the run sets up the dev theme itself (quick buy on, the square image
+ * format, the Sale badge on, a hero on the home page: npm run mock:hero) and restores the defaults; against a storefront the quick buy
+ * image needs the setting "Let shoppers choose options from product cards" on and the front page images need a hero with an image and
+ * blocks, otherwise they show the hero's empty state. The content blocks image needs the mock page /pages/mock-blocks (it carries the USP and feature lists).
+ * The manifest records a fingerprint of the theme files (scripts/lib/visual-hash.mjs): `npm run check` warns when they changed since.
  * Every image is taken in a fresh browser context, so the cart is empty unless the shot adds something. The component library page needs the setting
  * "Enable the component library page" (see docs/component-library.md). The shop name in
  * the header is replaced by "Singi" in the capture, so images never show a dev store's
@@ -27,9 +29,11 @@
  * The run fails (and writes no manifest) if a page is a password page, is missing the
  * content it should show, or scrolls horizontally.
  */
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { signed } from './lib/crawl-sign.mjs';
+import { devThemeId } from './lib/dev-theme.mjs';
+import { visualHash } from './lib/visual-hash.mjs';
 
 const root = new URL('..', import.meta.url).pathname;
 const outDir = `${root}docs/images`;
@@ -42,6 +46,32 @@ try {
 } catch {
   console.error('puppeteer-core is missing. Run: npm install --no-save puppeteer-core');
   process.exit(2);
+}
+
+/* Setup: every run takes all the images, from the same state. Against the dev server this puts the settings the images need on
+   the dev theme (quick buy on, the default square image format, the Sale badge on) and a hero on the home page, and puts the
+   defaults back when it ends. Against a storefront (SINGI_URL=https://...) or with --no-setup, prepare the store yourself. */
+const isDevServer = !process.env.SINGI_URL || /^http:\/\/(127\.0\.0\.1|localhost)/.test(process.env.SINGI_URL);
+const setup = isDevServer && !process.argv.includes('--no-setup');
+const node = (file, args) => spawnSync('node', [`${root}scripts/${file}`, ...args], { cwd: root, encoding: 'utf8' });
+let themeId;
+const restore = () => {
+  if (!setup || !themeId) return;
+  node('mock-hero.mjs', ['off']);
+  node('theme-settings.mjs', ['card_quick_buy=false', '--theme', themeId, '--apply']);
+  themeId = undefined;
+};
+if (setup) {
+  themeId = await devThemeId();
+  process.on('exit', restore);
+  for (const [file, args] of [['theme-settings.mjs', ['card_quick_buy=true', 'card_quick_add=false', 'product_image_ratio=square', 'show_sale_badge=true', '--theme', themeId, '--apply']], ['mock-hero.mjs', ['on']]]) {
+    const result = node(file, args);
+    if (result.status !== 0) {
+      console.error(`Setup failed (${file}): ${(result.stderr || result.stdout).trim().split('\n').pop()}`);
+      process.exit(1);
+    }
+  }
+  await new Promise((resolve) => setTimeout(resolve, 18000));
 }
 
 const VIEWPORTS = {
@@ -209,6 +239,6 @@ let commit = 'unknown';
 try {
   commit = execFileSync('git', ['rev-parse', '--short', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
 } catch {}
-const manifest = { version, commit, generated: new Date().toISOString().slice(0, 10), images: written };
+const manifest = { version, commit, sourceHash: visualHash(root), generated: new Date().toISOString().slice(0, 10), images: written };
 writeFileSync(`${outDir}/manifest.json`, `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(`\n${written.length} screenshots for version ${version} (${commit}) written to docs/images/.`);

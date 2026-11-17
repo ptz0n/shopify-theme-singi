@@ -6,14 +6,14 @@ How to cut a release so the version, the changelog and the screenshots all agree
 
 1. Pick the version (semantic versioning; see [CHANGELOG.md](../CHANGELOG.md)) and set it in `package.json` and in `config/settings_schema.json` (`theme_version`).
 2. Move the "Unreleased" entries in `CHANGELOG.md` under the new version and date.
-3. Start `npm run dev` against a store with the mock content (`npm run mock:apply`), the component library setting on (see [component-library.md](component-library.md)), the setting "Let shoppers choose options from product cards" on and a hero on the home page (`npm run mock:hero -- on`; `-- off` afterwards).
+3. Start `npm run dev` against a store with the mock content (`npm run mock:apply`) and the component library setting on (see [component-library.md](component-library.md)). `npm run screenshots` sets up the rest on the dev theme itself (quick buy on, a hero on the home page) and puts the defaults back.
 4. `npm run screenshots` captures the images used in the README and docs into `docs/images/` and writes `docs/images/manifest.json` with the version, commit and date. Look at them before committing: they are what visitors see first.
 5. `npm run check` and `npm run docs:check` must pass. `npm run check` warns when the screenshots belong to an older version than `package.json`; treat that warning as a release blocker.
 6. Commit, tag (`git tag v0.2.0`), push the tag, and create the GitHub release from the changelog entry.
 
 ## Screenshots
 
-`scripts/screenshots.mjs` is the single source of the images. Do not edit or replace them by hand; change the script (the page list, viewports, color schemes) and run it again, so the next release produces the same set.
+**Always all of them, every time a change touches what the theme looks like** (not only at a release): the images show one coherent state, and `npm run check` warns when a fingerprint of the theme files (recorded in the manifest) no longer matches. `scripts/screenshots.mjs` is the single source of the images. Do not edit or replace them by hand; change the script (the page list, viewports, color schemes) and run it again, so the next release produces the same set.
 
 - It captures the same six features on desktop (square) and on a phone, plus the sticky bar on a phone, in dark mode (the README shows dark only; the collection page is also captured in light for [design-system.md](design-system.md)), from the pages the mock content creates.
 - It replaces the shop name in the header with "Singi" so images never show a development store's name.

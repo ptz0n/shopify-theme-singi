@@ -7,6 +7,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { brotliCompressSync } from 'node:zlib';
+import { visualHash } from './lib/visual-hash.mjs';
 
 const root = new URL('..', import.meta.url).pathname;
 const errors = [];
@@ -295,6 +296,7 @@ try {
   const shots = JSON.parse(read('docs/images/manifest.json'));
   const current = JSON.parse(read('package.json')).version;
   if (shots.version !== current) warn('docs/images/manifest.json', `screenshots are for ${shots.version}, the version is ${current}: run npm run screenshots (see docs/releasing.md)`);
+  else if (shots.sourceHash !== visualHash(root)) warn('docs/images/manifest.json', 'the theme files changed since the screenshots were taken: run npm run screenshots (all images, every time; see docs/releasing.md)');
 } catch {
   warn('docs/images/manifest.json', 'no screenshots yet: run npm run screenshots (see docs/releasing.md)');
 }
