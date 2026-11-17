@@ -66,6 +66,7 @@ Catalogue of every block, section and snippet in Singi, how pages are composed i
 | `main-collection` | Filters, sorting (`facets` snippet), grid, pagination inside `<facets-form>`. | no |
 | `main-list-collections` | Paginated grid of collections. | no |
 | `main-cart` | Cart lines and summary inside `<cart-items>`, then favorites. Blocks fill an empty cart. | `@theme` |
+| `main-sitemap` | The HTML sitemap page (template `page.sitemap`): collections, pages and each chosen blog with its latest articles as plain lists; no products, no settings. Add one Blog block per blog. [Decision 033](decisions/033-html-sitemap-is-collections-pages-and-blogs.md). | `Blog` (section blocks) |
 | `main-search` | Search results (products as cards, other types as rows); no form, the header search is the one place to search. | no |
 | `main-page` | Page title, breadcrumbs, content. | no |
 | `main-blog` | Paginated article list. | no |

@@ -15,6 +15,7 @@ JSON templates compose sections. JSON templates are eligible for Shopify's strea
 | `list-collections.json` | `main-list-collections` |  |
 | `page.blocks.json` | `content`, `hero`, `hero` | `heading`, `quote`, `usp-list`, `feature-list`, `product-grid`, `newsletter`, `heading`, `text`, `button`, `heading`, `text`, `button` |
 | `page.json` | `main-page` |  |
+| `page.sitemap.json` | `main-sitemap` | `blog` |
 | `page.styleguide.json` | `main-styleguide` | `accordion`, `accordion`, `heading`, `text`, `button` |
 | `password.json` | `main-password` |  |
 | `product.demo.json` | `main-product`, `content` | `_product-title`, `_product-price`, `_color-siblings`, `_variant-picker`, `_size-guide`, `_buy-buttons`, `_product-policies`, `_product-description`, `accordion`, `accordion`, `accordion`, `accordion`, `accordion`, `accordion`, `accordion`, `_product-specs`, `_product-meta`, `related-products`, `recently-viewed` |

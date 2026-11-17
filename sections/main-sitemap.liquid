@@ -1,0 +1,90 @@
+{% comment %}
+  The HTML sitemap: a plain page of links for people and for crawlers, for stores whose menus do not reach everything.
+  Collections, pages, and each blog the merchant adds as a Blog block with its latest articles, in that order, as lists under headings
+  (Liquid cannot list a store's blogs, so each blog is chosen). Products are left
+  out on purpose: they are reached through their collections, and the XML sitemap Shopify generates already lists
+  them. No settings, no JavaScript. Create a page, give it the template "sitemap", and link it from the footer menu.
+  Decision record: docs/decisions/033-html-sitemap-is-collections-pages-and-blogs.md.
+
+  Limits: collections are paginated by 250 (links appear if there are more); the pages list is the platform's own
+  default size (up to 50), and each blog shows its latest 20 articles.
+{% endcomment %}
+
+{%- paginate collections by 250 -%}
+  <article class="container section sitemap">
+    {%- render 'breadcrumbs', kind: 'page' -%}
+    <h1 class="sitemap__title">{{ page.title }}</h1>
+    {%- if page.content != blank -%}<div class="prose sitemap__intro">{{ page.content }}</div>{%- endif -%}
+
+    <div class="sitemap__groups">
+      {%- if collections.size > 0 -%}
+        <section class="sitemap__group">
+          <h2>{{ 'collections.title' | t }}</h2>
+          <ul role="list">
+            {%- for collection in collections -%}
+              {%- if collection.products_count > 0 -%}
+                <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </section>
+      {%- endif -%}
+
+      {%- capture pages_html -%}
+        {%- for listed_page in pages -%}
+          {%- if listed_page.handle != page.handle and listed_page.template_suffix != 'styleguide' -%}
+            <li><a href="{{ listed_page.url }}">{{ listed_page.title }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- if pages_html contains '<li>' -%}
+        <section class="sitemap__group">
+          <h2>{{ 'search.type_page' | t }}</h2>
+          <ul role="list">{{ pages_html }}</ul>
+        </section>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- assign blog = block.settings.blog -%}
+        {%- if blog != blank and blog.articles.size > 0 -%}
+          <section class="sitemap__group" {{ block.shopify_attributes }}>
+            <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
+            <ul role="list">
+              {%- for article in blog.articles limit: 20 -%}
+                <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </section>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- render 'pagination', paginate: paginate -%}
+  </article>
+{%- endpaginate -%}
+
+{% stylesheet %}
+  .sitemap__title { margin-block: 1rem 2rem; max-width: 48rem; }
+  .sitemap__intro { max-width: 48rem; margin-block-end: 2rem; }
+  .sitemap__groups { display: grid; gap: 2.5rem 3rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); align-items: start; }
+  .sitemap__group h2 { margin-block-end: 0.5rem; font-size: 1.25rem; }
+  .sitemap__group h2 a { text-decoration: none; }
+  .sitemap__group ul { margin: 0; padding: 0; }
+  .sitemap__group li a { display: inline-flex; align-items: center; min-height: 2.75rem; text-decoration: none; }
+  .sitemap__group a:hover { text-decoration: underline; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sitemap",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "blog",
+      "name": "Blog",
+      "limit": 6,
+      "settings": [{ "type": "blog", "id": "blog", "label": "Blog" }]
+    }
+  ]
+}
+{% endschema %}

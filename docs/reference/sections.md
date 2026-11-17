@@ -235,6 +235,24 @@ pages render as text rows. Noindexed in meta-tags.
 
 _No settings._
 
+## main-sitemap
+
+File: `sections/main-sitemap.liquid` · Editor name: **Sitemap** · template-bound
+
+The HTML sitemap: a plain page of links for people and for crawlers, for stores whose menus do not reach everything.
+Collections, pages, and each blog the merchant adds as a Blog block with its latest articles, in that order, as lists under headings
+(Liquid cannot list a store's blogs, so each blog is chosen). Products are left
+out on purpose: they are reached through their collections, and the XML sitemap Shopify generates already lists
+them. No settings, no JavaScript. Create a page, give it the template "sitemap", and link it from the footer menu.
+Decision record: docs/decisions/033-html-sitemap-is-collections-pages-and-blogs.md.
+
+Limits: collections are paginated by 250 (links appear if there are more); the pages list is the platform's own
+default size (up to 50), and each blog shows its latest 20 articles.
+
+Accepts blocks: `blog`
+
+_No settings._
+
 ## main-styleguide
 
 File: `sections/main-styleguide.liquid` · Editor name: **Component library** · template-bound

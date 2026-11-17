@@ -84,6 +84,10 @@ Tokens `--color-fg`, `--color-muted` and `--color-accent` are chosen to meet WCA
 - Sale prices have visually hidden labels (`products.sale_price`, `products.regular_price`).
 - Color is never the only indicator: unavailable variants are struck through, sold-out items have text badges.
 
+## HTML sitemap
+
+A page with the template `sitemap` lists collections, pages and the blogs the merchant adds, as plain links: an internal-linking and discovery aid next to Shopify's XML sitemap ([decision 033](decisions/033-html-sitemap-is-collections-pages-and-blogs.md)). Create the page, give it the template, link it from the footer menu.
+
 ## Not built
 
 Comments on articles (spam risk, needs moderation and a form) and 3D product models are not included. Product video is supported (see [media.md](media.md)); a country and language selector is in the footer.

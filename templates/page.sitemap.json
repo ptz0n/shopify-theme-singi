@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-sitemap",
+      "blocks": { "journal": { "type": "blog", "settings": { "blog": "mock-journal" } } },
+      "block_order": ["journal"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

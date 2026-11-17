@@ -370,6 +370,13 @@ PAGES.push({
 });
 
 PAGES.push({
+  handle: 'mock-sitemap',
+  title: 'Sitemap',
+  template: 'sitemap',
+  body: '',
+});
+
+PAGES.push({
   handle: 'mock-blocks',
   title: 'Content blocks',
   template: 'blocks',
