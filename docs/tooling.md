@@ -2,6 +2,12 @@
 
 All npm scripts, what they do, the environment variables they read, and the dev-store workflow including Theme Access password setup. Read it when you need to run, check, measure or deploy. `package.json` and the scripts in `scripts/` are the source of truth if this file disagrees. There is no CI configuration in this repo by design: run `npm run check` and `npm run docs:check` locally before every push.
 
+## Git hooks and CI
+
+- **Hooks** ([decision 039](decisions/039-dev-tooling-stays-dependency-free.md)): two committed shell scripts in `.githooks/`, switched on by `npm install` (the `prepare` script) or `npm run hooks`, with no hook manager. **Pre-commit** (about 0.2 s) runs the repo rules and budgets and the generated-docs check. **Pre-push** (about 1.1 s) runs everything `npm run check` runs plus the docs check; without the Shopify CLI it warns and runs the rules only. Bypass only when justified: `git commit --no-verify`, `git push --no-verify`. Switch them off in a clone with `git config --unset core.hooksPath`.
+- **CI** (`.github/workflows/check.yml`): on pull requests and pushes to `main`, `npm run check` and `npm run docs:check` on one Ubuntu job with a 5 minute timeout, read-only permissions and cancellation of superseded runs. The browser tests are not in CI: they need a development store and its credentials (`npm run test:all` locally). No run has happened yet, so its duration is unmeasured; the target is a pull request median under two minutes.
+- **Not adopted, with numbers** (decision 039): a typechecker (`tsc --checkJs`: 188 / 371 / 517 errors at three strictness levels, none a real bug), a build step (esbuild saves 27% brotli, which the CDN already does), a Liquid formatter (82 of 86 files change and `icon.liquid`'s required missing trailing newline is rewritten), and the programmatic Theme Check API (no gap).
+
 ## npm scripts
 
 | Script | What it does |
@@ -59,6 +65,7 @@ All npm scripts, what they do, the environment variables they read, and the dev-
 | `npm run test:features` | The feature list on `/pages/mock-blocks` ([decision 026](decisions/026-feature-list-is-a-list-of-item-blocks.md)): list roles, lazy sized images in 4:5 boxes, the icon item, three columns or one, right to left, no script. |
 | `npm run perf:interactions` | Lab timings from the click to what the shopper sees, in a fresh browser context per run, median of `SINGI_RUNS` (default 7): add to cart until the drawer shows the line, quick buy until the dialog is open, and the same with the pointer over the button first ([decision 023](decisions/023-add-to-cart-answers-with-the-drawer-and-quick-buy-warms-on-intent.md)). Dev server timings through a local proxy: compare a change with the code before it on the same day and machine. |
 | Dev app scopes | The custom app on the dev store needs `read_products`, `write_products`, `read_content`, `write_content`, theme scopes and, for metaobjects (placeholder images by type, the proposed `singi_store`), `read_metaobject_definitions`, `write_metaobject_definitions`, `read_metaobjects` and `write_metaobjects`. Entries scopes alone are not enough to create a definition: without the definition scopes, reading works and creating one fails with `NOT_AUTHORIZED` (worded "reserved for another application"). `npm run admin -- scopes` lists what the token has. |
+| `npm run hooks` | Points git at `.githooks/` (also done by `npm install`). See Git hooks and CI above. |
 | `npm run admin` | A generic Admin GraphQL runner for the dev store (`scopes`, `query`, `file`); mutations are refused without `--allow-mutations`, and only stores in `SINGI_ALLOWED_STORES` are accepted. |
 | `npm run theme:duplicate` | `shopify theme duplicate` for the `DEV` environment. |
 | `npm run dev:setup` | Pushes an unpublished `singi-dev` theme (without `config/settings_data.json`), the theme `npm run dev` previews. |

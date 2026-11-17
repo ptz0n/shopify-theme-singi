@@ -182,26 +182,31 @@ Rules for the loop:
 
 ## P2 — Enablers (DX/tooling that protects UX quality)
 
-- [ ] **Typed JS spike (high-churn interaction code first)** — *P6 (indirect P1–P4 via fewer regressions)*  
+- [x] **Typed JS spike (high-churn interaction code first)** — *P6 (indirect P1–P4 via fewer regressions)*    
+  - *Status:* evaluated, **not adopted** (decision 039): `tsc --checkJs` over all 24 modules gives 188 / 371 / 517 errors at three strictness levels (`soft-nav.js` 11 / 16 / 30, `product-form.js` 21 / 51 / 62) and no real bug once the `EventTarget` typing and script-scope collisions with `lib.dom` are set aside; a clean run needs about 190 annotations that count toward the source-size budgets.
   - *Why:* Reduce bugs in critical flows (soft-nav, product/cart/facets/search) and enable safer iteration.  
   - *Scope:* prototype `assets/soft-nav.js`, `assets/product-form.js` as typed source (`src/js/*.js` with JSDoc+`// @ts-check` or TS), define shared DOM/Shopify/import-map globals in `.d.ts`, compare DX/bugs/output/behavior.
 
-- [ ] **Evaluate build tooling where it improves UX/performance** — *P1–P4,P6*  
+- [x] **Evaluate build tooling where it improves UX/performance** — *P1–P4,P6*    
+  - *Status:* evaluated, **no build step** (decision 039): esbuild minification saves 39% raw and 27% brotli (27,466 to 20,046 bytes), which Shopify's CDN already does (30 to 45% observed), so visitors gain nothing and the budgets stay a safe upper bound on source.
   - *Why:* Build step is acceptable if it yields measurable wins (bytes, parse/exec, reliability) beyond CDN defaults.  
   - *Scope:* evaluate a pipeline (`src/js` + types, `tsc` typecheck, esbuild transform/minify to `assets/`, generated-asset tracking; optional CSS bundling/minification) only with documented, measured UX/perf gains (`npm run perf:sizes`, Lighthouse/recorded tests). Keep AGENTS.md perf rules intact; update docs/budgets if source-of-truth changes.
 
-- [ ] **Programmatic Theme Check API (only if a gap appears)** — *P6*  
+- [x] **Programmatic Theme Check API (only if a gap appears)** — *P6*    
+  - *Status:* **not needed** (decision 039): no rule needs it; `scripts/check.mjs` and the CLI cover them.
   - *Why:* Useful only if CLI + `scripts/check.mjs` cannot express a needed rule/integration.  
   - *Scope:* dev/CI tooling only, with clear justification over existing checks.
 
-- [ ] **CI speed & reliability (when CI/workflows are added)** — *P6 (protects P1–P5 via fast, trustworthy feedback)*  
+- [x] **CI speed & reliability (when CI/workflows are added)** — *P6 (protects P1–P5 via fast, trustworthy feedback)*    
+  - *Status:* **built, small** (decision 039): `.github/workflows/check.yml` runs `npm run check` and `npm run docs:check` on pull requests and `main` (concurrency cancel, read-only permissions, 5 minute timeout); browser tests stay local. Not measured: no run has happened yet, so the audit of real runs and the p50 / p95 targets wait for the first runs on GitHub; the lint itself is 1.2 s.
   - *Why:* Fast CI shortens feedback loops for theme/DX changes without sacrificing correctness. Target (once CI exists): PR median < 2 min, p95 < 3 min. **Rules:** full suite before merge to `main` (e.g. merge queue), PR selection may narrow feedback only; never hide failures (no retries/wider timeouts/skipped tests)—fix flaky checks.  
   - *Current state:* no GitHub Actions workflows found in this repo (`.github/` has no `workflows/`); audit last 150 runs and split jobs into waiting/setup/running (p50/p95) as first step when CI is available.  
   - *Budgets/ideas to evaluate against this repo’s actual stack (Shopify theme: Liquid, `shopify theme check`, `scripts/check.mjs`, Node scripts/tests; no Vitest/DB/migrations/app shards today):* waiting < 10s (fast/self-hosted runners, cancel in-progress on new commit), setup < 30s with >95% PR cache hits seeded from `main` (cache deps as appropriate; prefer efficient clone), parallelize lint/typecheck/build/tests where applicable, lint/format/typecheck tooling only if adopted with **measured** wins and no missed checks, shard/split only if justified by measured durations, fail jobs that exceed budgets.  
   - *Selection/local guardrails:* on PRs run only checks affected by the diff where feasible (and verify by hiding a real change to confirm CI fails); add a local pre-push hook (not just docs) for fast checks on changed files (e.g. format/lint/type/theme/rules equivalents as configured).  
   - *Process:* one small PR per change, with before/after numbers from real runs. Do everything possible without requiring user action first; bring anything that needs an account, a secret, or a bigger bill as **one list with expected monthly cost** (if applicable). Do not adopt toolchain migrations (runner/provider, package manager, linter/formatter/typechecker/test runner) without side-by-side comparison and evidence they are faster here and miss nothing important. **End with total CI time and cost, before and after** (if applicable).
 
-- [ ] **Git hooks for fast local sanity checks (pre-commit/pre-push)** — *P6 (protects P1–P5 via fewer broken commits/PRs)*  
+- [x] **Git hooks for fast local sanity checks (pre-commit/pre-push)** — *P6 (protects P1–P5 via fewer broken commits/PRs)*    
+  - *Status:* **built, with no hook manager** (decision 039): committed `.githooks/` (pre-commit 0.2 s: repo rules and generated docs; pre-push 1.1 s: the full `npm run check`), switched on by `npm install` or `npm run hooks`; shown to block a real violation.
   - *Why:* Catch obvious issues before they land in commits or CI; hooks are more reliable than “remember to run checks” guidance. “Doctor” stack for this repo: **Shopify Theme Check** (`shopify theme check`, `.theme-check.yml`) + **`scripts/check.mjs`** + editor/theme-tools diagnostics (no separate “Liquid Doctor” tool).  
   - *Plan:*
     - [ ] **Audit fast checks:** identify deterministic, low-latency checks suitable for hooks (likely `node scripts/check.mjs`; consider `npm run docs:check` or targeted locale/reference sanity if fast). Exclude store/browser-dependent tests (`npm run test:*` needing dev server/Chrome/mock state). Treat full `shopify theme check` as **pre-push/CI** unless measured fast and reliably available locally.
@@ -212,16 +217,19 @@ Rules for the loop:
 
 ## Baseline & ongoing (keep healthy)
 
-- [ ] **Confirm current baseline (already in place)** — *P6*
+- [x] **Confirm current baseline (already in place)** — *P6*  
+  - *Status:* confirmed: `npm run check:theme` (`shopify theme check --fail-level error`) is the standard lint step in the hooks and CI; `.theme-check.yml` is `extends: theme-check:recommended` with no exceptions.
   - [ ] Verify `npm run check:theme` (`shopify theme check --fail-level error`) is the standard lint step in local/dev workflows.
   - [ ] Keep `.theme-check.yml` as the source of Theme Check config (currently extends `theme-check:recommended`); avoid adding config exceptions—fix Liquid instead (per `AGENTS.md`).
 
-- [ ] **Editor integration (recommended, no runtime impact)** — *P6*
+- [x] **Editor integration (recommended, no runtime impact)** — *P6*  
+  - *Status:* `.vscode/extensions.json` recommends the Shopify Liquid and Theme Check extension and EditorConfig (decision 039); recommended, not required.
   - [ ] Use the official Shopify Liquid / Theme Check editor extension (powered by theme-tools language server) for Liquid/JSON IntelliSense, diagnostics, hover docs, and navigation.
   - [ ] Ensure contributors have the extension enabled and that editor diagnostics align with `.theme-check.yml` / `shopify theme check` output.
   - [ ] (Optional) Add a short note to repo docs (e.g. `README` or contributor docs) recommending the extension/workspace settings only if the repo wants it checked in.
 
-- [ ] **Evaluate Liquid formatting (`@shopify/prettier-plugin-liquid`)** — *P6*
+- [x] **Evaluate Liquid formatting (`@shopify/prettier-plugin-liquid`)** — *P6*  
+  - *Status:* evaluated, **no-go** (decision 039): Prettier with the Shopify Liquid plugin changes 82 of 86 files (+4,574 / -1,538 lines) and adds a trailing newline to `snippets/icon.liquid`, which must not have one.
   - [ ] Assess fit against repo style and contributor workflow (churn, diff size, `.editorconfig` alignment), treating it as dev tooling.
   - [ ] Spike on a branch: add Prettier + `@shopify/prettier-plugin-liquid`, define/align config, and review diff quality on representative files.
   - [ ] Decide go/no-go based on developer UX vs. churn; if adopted, plan a one-time format pass and document workflow/CI updates.

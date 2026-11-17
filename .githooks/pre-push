@@ -1,0 +1,10 @@
+#!/bin/sh
+# Everything npm run check does, before a push: Shopify Theme Check, the repo rules and budgets (about 1.5 s), and the
+# generated reference docs. CI runs the same. Bypass only when justified: git push --no-verify. See docs/tooling.md.
+if ! command -v shopify >/dev/null 2>&1; then
+  echo "pre-push: Shopify CLI not found, skipping Theme Check (CI runs it). Install it to check locally: npm install --global @shopify/cli"
+  node scripts/check.mjs >/dev/null && npm run -s docs:check >/dev/null && exit 0
+  echo "pre-push: the repo rules or the generated docs failed: run npm run check"; exit 1
+fi
+out=$(npm run -s check 2>&1) || { printf '%s\n\n%s\n' "$(printf '%s' "$out" | grep -v -E "^  (assets|[a-z]+\.css)|^Budgets|raw +[0-9]" | tail -40)" "pre-push: npm run check failed (bypass only when justified: git push --no-verify)"; exit 1; }
+out=$(npm run -s docs:check 2>&1) || { printf '%s\n\n%s\n' "$out" "pre-push: docs/reference is out of date: run npm run docs"; exit 1; }

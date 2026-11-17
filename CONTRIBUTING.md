@@ -29,7 +29,7 @@ Never commit `.env` or `shopify.theme.toml`. See [docs/tooling.md](docs/tooling.
 
 1. Fork, branch from `main`, keep the pull request to one concern.
 2. Follow the recipes in [docs/extending.md](docs/extending.md) and the rules in [AGENTS.md](AGENTS.md): tokens for colors and fonts, logical CSS properties, `{{ 'key' | t }}` for strings, LiquidDoc on snippets and blocks, no third-party scripts.
-3. Run before you push:
+3. The git hooks (switched on by `npm install`, or `npm run hooks`) run the fast checks for you on commit and push. Run before you push:
 
 ```bash
 npm run check   # shopify theme check + repo rules and budgets

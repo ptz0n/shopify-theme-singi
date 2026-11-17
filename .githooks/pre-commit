@@ -1,0 +1,6 @@
+#!/bin/sh
+# Fast checks before every commit: the repo rules and budgets, and the generated reference docs (together about 0.3 s).
+# The slower Theme Check runs before a push. Bypass only when justified: git commit --no-verify. See docs/tooling.md.
+fail() { printf '%s\n\n%s\n' "$1" "pre-commit: $2 (bypass only when justified: git commit --no-verify)"; exit 1; }
+out=$(node scripts/check.mjs 2>&1) || fail "$(printf '%s' "$out" | sed -n '/error(s)/,$p')" "the repo rules failed: npm run check:rules"
+out=$(npm run -s docs:check 2>&1) || fail "$out" "docs/reference is out of date: run npm run docs and add the result"

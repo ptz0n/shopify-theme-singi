@@ -31,6 +31,8 @@
     "ship": "node scripts/ship.mjs",
     "push": "node scripts/shopify.mjs theme push -e DEV --allow-live --ignore config/settings_data.json",
     "theme:list": "node scripts/shopify.mjs theme list -e DEV",
+    "prepare": "node scripts/install-hooks.mjs",
+    "hooks": "node scripts/install-hooks.mjs --verbose",
     "check": "npm run check:theme && npm run check:rules",
     "check:theme": "shopify theme check --fail-level error",
     "check:rules": "node scripts/check.mjs",

@@ -1,0 +1,31 @@
+name: check
+
+# The fast, deterministic checks: Shopify Theme Check, the repo rules and budgets, and the generated docs. The browser tests
+# need a Shopify development store and its credentials, so they run locally (npm run test:all), not here.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Shopify CLI
+        run: npm install --global @shopify/cli@3
+      - name: Theme Check and repo rules
+        run: npm run check
+      - name: Generated docs are up to date
+        run: npm run docs:check
