@@ -17,8 +17,8 @@
  *
  * Pages come from `npm run mock:apply`. The quick buy image needs the setting "Let shoppers choose options from
  * product cards" on for the theme being shown (npm run theme:set -- card_quick_buy=true --theme <singi-dev id> --apply),
- * and the front page images need a hero with an image and blocks on the theme being shown (otherwise they show the hero's empty state; the README
- * images were taken with a gradient image, a heading, a text and a button block set on the dev theme only), and the content blocks image needs the mock page /pages/mock-blocks (it carries the USP and feature lists).
+ * and the front page images need a hero with an image and blocks on the theme being shown, otherwise they show the hero's empty state
+ * (npm run mock:hero -- on before, npm run mock:hero -- off after), and the content blocks image needs the mock page /pages/mock-blocks (it carries the USP and feature lists).
  * Every image is taken in a fresh browser context, so the cart is empty unless the shot adds something. The component library page needs the setting
  * "Enable the component library page" (see docs/component-library.md). The shop name in
  * the header is replaced by "Singi" in the capture, so images never show a dev store's

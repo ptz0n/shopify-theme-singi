@@ -6,7 +6,7 @@ How to cut a release so the version, the changelog and the screenshots all agree
 
 1. Pick the version (semantic versioning; see [CHANGELOG.md](../CHANGELOG.md)) and set it in `package.json` and in `config/settings_schema.json` (`theme_version`).
 2. Move the "Unreleased" entries in `CHANGELOG.md` under the new version and date.
-3. Start `npm run dev` against a store with the mock content (`npm run mock:apply`) and the component library setting on (see [component-library.md](component-library.md)).
+3. Start `npm run dev` against a store with the mock content (`npm run mock:apply`), the component library setting on (see [component-library.md](component-library.md)), the setting "Let shoppers choose options from product cards" on and a hero on the home page (`npm run mock:hero -- on`; `-- off` afterwards).
 4. `npm run screenshots` captures the images used in the README and docs into `docs/images/` and writes `docs/images/manifest.json` with the version, commit and date. Look at them before committing: they are what visitors see first.
 5. `npm run check` and `npm run docs:check` must pass. `npm run check` warns when the screenshots belong to an older version than `package.json`; treat that warning as a release blocker.
 6. Commit, tag (`git tag v0.2.0`), push the tag, and create the GitHub release from the changelog entry.

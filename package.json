@@ -90,6 +90,7 @@
     "test:popovers": "node scripts/test-popovers.mjs",
     "test:price-format": "node scripts/test-price-format.mjs",
     "screenshots": "node scripts/screenshots.mjs",
+    "mock:hero": "node scripts/mock-hero.mjs",
     "audit": "node scripts/audit.mjs",
     "checkout:plan": "node scripts/checkout-branding.mjs",
     "checkout:apply": "node scripts/checkout-branding.mjs --apply",

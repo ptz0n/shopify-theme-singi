@@ -4,6 +4,8 @@ Sample products for developing and testing the theme against realistic stores. `
 
 The first group of products exercises edge cases of the theme itself (long titles, no image, many options, media, bulk pagination). The **niche catalog** below is two products per merchant niche, written like a real store, with the data each shopper persona needs. The personas and the research behind them are summarized in the project notes; the rule they led to is: render from data when it exists, and add a setting only when the data cannot decide.
 
+**Voice for new mock content:** new products, collections, pages and screenshot copy are written about Kungsleden hiking and trekking gear, the nerdier the better: ultralight shelters and quilts, gas burners and their boil times, trail running shoes, Gore-Tex shells, water filters, base weights in grams. Singi is named after a hut on that trail. Existing products keep their names until they are replaced.
+
 ## Products for the card and quantity features
 
 - `mock-card-video`: a hosted two second video, for the preview on cards ([decision 017](decisions/017-card-video-previews-play-on-hover-or-focus-only.md)). The clip is made with ffmpeg when the mock content is applied; without ffmpeg the product is created with no video and says so.
