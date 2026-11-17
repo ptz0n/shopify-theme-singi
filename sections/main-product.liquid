@@ -158,8 +158,9 @@
   .embed__play::after { content: ''; position: absolute; inset: 50% auto auto 50%; translate: -35% -50%; width: 1.5rem; height: 1.5rem; background: var(--color-fg); clip-path: polygon(0 0, 100% 50%, 0 100%); }
   .embed:hover .embed__play { opacity: 1; }
   .embed:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -4px; }
-  .product__zoom { position: absolute; inset: 0; z-index: 1; padding: 0; border: 0; background: none; cursor: zoom-in; }
-  .product__zoom:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -4px; }
+  .product__zoom { position: absolute; inset: 0; z-index: 1; padding: 0; border: 0; background: none; cursor: zoom-in; -webkit-tap-highlight-color: transparent; }
+  /* The focus ring is for a mouse-and-keyboard device. On a touch screen the browser focuses this button after the viewer closes (and the viewer's scroll area when it opens), and a ring there is a stray blue border around the picture. */
+  @media (hover: hover) and (pointer: fine) { .product__zoom:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -4px; } }
   .product__media :is(img, video) { display: block; width: 100%; height: auto; }
   /* The product image format setting (decision 043): every image is cropped to it, as on the cards. Video keeps its own shape. */
   .product__media img { aspect-ratio: var(--ratio-product); object-fit: cover; }

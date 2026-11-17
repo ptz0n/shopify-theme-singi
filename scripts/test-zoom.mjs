@@ -98,6 +98,21 @@ const view = () => {
     altHidden: figures.every((f) => [...f.querySelectorAll('figcaption span')].filter((s) => !/^Shown for/.test(s.textContent)).every((s) => s.getAttribute('aria-hidden') === 'true')),
     live: dialog.querySelector('[data-zoom-live]').textContent,
     focusOnStage: document.activeElement === stage,
+    /* headless Chrome cannot emulate a touch pointer, so check the rules: the ring is only inside the mouse-and-keyboard media query */
+    ringRules: (() => {
+      const count = (needle) => {
+        const found = { top: 0, media: 0 };
+        const walk = (rules, inMedia) => {
+          for (const rule of rules) {
+            if (rule.cssRules && rule.conditionText !== undefined) walk(rule.cssRules, inMedia || (/hover: hover/.test(rule.conditionText) && /pointer: fine/.test(rule.conditionText)));
+            else if (rule.selectorText?.includes(needle) && /outline/.test(rule.style.cssText)) found[inMedia ? 'media' : 'top'] += 1;
+          }
+        };
+        for (const sheet of document.styleSheets) { try { walk(sheet.cssRules, false); } catch {} }
+        return found;
+      };
+      return { stage: count('.zoom__stage:focus-visible'), opener: count('.product__zoom:focus-visible') };
+    })(),
     htmlOverflow: getComputedStyle(document.documentElement).overflow,
     pageOverflow: document.documentElement.scrollWidth - innerWidth,
     stageOverflowX: stage.scrollWidth - stage.clientWidth,
@@ -146,15 +161,18 @@ try {
       ok(v.lazy, `${label}: not every viewer image is lazy`);
       ok(!v.loaded[11], `${label}: the last image loaded before it was near`);
       ok(v.focusOnStage, `${label}: focus did not start on the scrolling area`);
+      /* a keyboard ring only on a mouse-and-keyboard device, none on a touch screen (a stray blue border) */
+      ok(v.ringRules.stage.top === 0 && v.ringRules.stage.media >= 1 && v.ringRules.opener.top === 0 && v.ringRules.opener.media >= 1, `${label}: the focus rings of the viewer and its opener are only in the mouse-and-keyboard media query ${JSON.stringify(v.ringRules)}`);
       ok(v.htmlOverflow === 'hidden', `${label}: the page behind can still scroll (${v.htmlOverflow})`);
       ok(v.radius.every((r) => r === '0px'), `${label}: the images have rounded corners (${[...new Set(v.radius)]})`);
       ok(v.counts[4] === '5 / 12' && v.counts[0] === '1 / 12', `${label}: counts are ${JSON.stringify(v.counts.slice(0, 5))}`);
       ok(v.countBox.every((c) => c && c.fromTop >= 0 && c.fromTop <= 24 && c.fromStart >= 0 && c.fromStart <= 24), `${label}: the count is not in the top start corner of each screen (${JSON.stringify(v.countBox.slice(0, 2))})`);
       ok(v.altHidden, `${label}: the visible alt text should be hidden from screen readers (the image announces it)`);
       const fit = v.fits[4];
-      ok(fit.captionBottom <= fit.figH + 1 && fit.captionTop >= fit.frameBottom - 1, `${label}: with a long description the caption is at ${fit.captionTop}..${fit.captionBottom} of ${fit.figH}px and the image ends at ${fit.frameBottom}`);
-      ok(fit.frameH >= fit.figH * 0.4, `${label}: a long description leaves the image only ${fit.frameH}px of ${fit.figH}px`);
+      ok(fit.captionBottom <= fit.figH + 1 && fit.captionBottom - fit.captionTop <= 6.5 * 16 + 1, `${label}: with a long description the caption bar is at ${fit.captionTop}..${fit.captionBottom} of ${fit.figH}px and at most 6.5rem tall`);
+      ok(v.fits.every((f) => f.frameH >= f.figH - 1), `${label}: the picture uses the whole screen whatever the caption is (heights ${v.fits.map((f) => f.frameH).join(', ')} of ${v.fits[0].figH}px)`);
       ok(v.fits.every((f) => f.captionBottom <= f.figH + 1 && f.frameH > 0), `${label}: a caption sticks out of its screen`);
+      ok(v.fits.every((f) => Math.abs(f.frameBottom - f.frameH / 2 - f.figH / 2) <= 2), `${label}: the picture is centered on the screen whatever the caption is (centers ${v.fits.map((f) => Math.round(f.frameBottom - f.frameH / 2)).join(', ')} of ${v.fits[0].figH}px)`);
       ok(v.captionRoom.every((c) => c.top >= 16 && c.bottom >= 24 && c.side >= 64), `${label}: the caption has room around it (at least 16px above, 24px below, 64px at the sides): ${JSON.stringify(v.captionRoom[0])}`);
       ok(label === 'phone' || v.captionRoom.every((c) => c.textWidth <= 640), `${label}: the caption text is at most 40rem wide (${v.captionRoom.map((c) => c.textWidth).join(', ')})`);
       ok(v.pageOverflow <= 0 && v.stageOverflowX <= 0, `${label}: scrolls horizontally (page ${v.pageOverflow}px, viewer ${v.stageOverflowX}px)`);

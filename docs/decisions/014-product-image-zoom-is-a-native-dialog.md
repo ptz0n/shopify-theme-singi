@@ -45,6 +45,10 @@ Pressing it opens one native modal `<dialog>`, full screen (`100dvh`), a column 
 
 ## Edge cases and dead ends
 
+- **The picture gets the whole screen and is centered on it,** not on what is left above the caption (that looked off center) and not shrunk by reserved room (that left empty bands beside it). The count and the close button sit over its top corners and the caption is a translucent bar (the page color at 88%) over its bottom edge, capped at 6.5rem and then scrolling, so a long caption never moves or shrinks the picture. The cost: on a picture as tall as the screen the bar covers its bottom edge. `test:zoom` checks the frame's height and center against the screen's.
+
+- **The focus ring is only for a mouse-and-keyboard device** (`@media (hover: hover) and (pointer: fine)`), on the viewer's scroll area and on the gallery's zoom button. On a phone the dialog focuses the scroll area itself and the browser returns focus to the zoom button on close, and the accent colored ring (blue by default) showed as a stray border around the whole screen or the picture. Tap highlight is off on both. The cost: a phone with an external keyboard shows no ring. `test:zoom` checks that the rings only exist inside the media query (headless Chrome cannot emulate a touch pointer, so the rule structure is what is tested).
+
 If a key does nothing, focus is on a button (Close): a button keeps its own keys. Focus the picture area again with Tab.
 
 If the large version looks no sharper, the upload is smaller than the screen: it cannot be bigger than the file.
