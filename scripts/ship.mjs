@@ -4,6 +4,7 @@
  * theme pushes at the same time. Stops before pushing if anything fails.
  *
  *   npm run ship
+ *   node scripts/ship.mjs --skip-checks     only the two pushes (the pre-push hook has just run the checks)
  *
  * Steps: shopify theme check (errors fail), repo rules (scripts/check.mjs), regenerate
  * docs/reference, then `npm run push` (the live singi theme on the dev store) and
@@ -45,9 +46,10 @@ const push = (label, script) =>
   });
 
 const passed =
-  step('theme check', 'shopify', ['theme', 'check', '--fail-level', 'error']) &&
-  step('repo rules', 'node', ['scripts/check.mjs']) &&
-  step('reference docs', 'node', ['scripts/gen-reference.mjs']);
+  process.argv.includes('--skip-checks') ||
+  (step('theme check', 'shopify', ['theme', 'check', '--fail-level', 'error']) &&
+    step('repo rules', 'node', ['scripts/check.mjs']) &&
+    step('reference docs', 'node', ['scripts/gen-reference.mjs']));
 if (!passed) process.exit(1);
 
 const results = await Promise.all([push('push singi (live)', 'push'), push('push singi-dev', 'dev:push')]);

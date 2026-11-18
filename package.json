@@ -29,7 +29,6 @@
   "scripts": {
     "dev": "node scripts/shopify.mjs theme dev --live-reload hot-reload --ignore config/settings_data.json",
     "ship": "node scripts/ship.mjs",
-    "dev:live": "node scripts/shopify.mjs theme dev -e DEV --allow-live --port 9293 --live-reload hot-reload --ignore config/settings_data.json --ignore templates/index.json",
     "push": "node scripts/shopify.mjs theme push -e DEV --allow-live --ignore config/settings_data.json --ignore templates/index.json",
     "theme:list": "node scripts/shopify.mjs theme list -e DEV",
     "prepare": "node scripts/install-hooks.mjs",

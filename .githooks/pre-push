@@ -1,6 +1,10 @@
 #!/bin/sh
+# The refs being pushed arrive on stdin: "<local ref> <local sha> <remote ref> <remote sha>" per line.
+refs=$(cat)
 # Everything npm run check does, before a push: Shopify Theme Check, the repo rules and budgets (about 1.5 s), and the
-# generated reference docs. CI runs the same. Bypass only when justified: git push --no-verify. See docs/tooling.md.
+# generated reference docs. CI runs the same. Then, on the maintainer's machine only (shopify.theme.toml and .env present), a push
+# to main also updates the live theme and singi-dev on the dev store (npm run ship without its checks). Bypass only when
+# justified: git push --no-verify. See docs/tooling.md.
 if ! command -v shopify >/dev/null 2>&1; then
   echo "pre-push: Shopify CLI not found, skipping Theme Check (CI runs it). Install it to check locally: npm install --global @shopify/cli"
   node scripts/check.mjs >/dev/null && npm run -s docs:check >/dev/null && exit 0
@@ -8,3 +12,18 @@ if ! command -v shopify >/dev/null 2>&1; then
 fi
 out=$(npm run -s check 2>&1) || { printf '%s\n\n%s\n' "$(printf '%s' "$out" | grep -v -E "^  (assets|[a-z]+\.css)|^Budgets|raw +[0-9]" | tail -40)" "pre-push: npm run check failed (bypass only when justified: git push --no-verify)"; exit 1; }
 out=$(npm run -s docs:check 2>&1) || { printf '%s\n\n%s\n' "$out" "pre-push: docs/reference is out of date: run npm run docs"; exit 1; }
+
+# Maintainer only: a push to main also updates the dev store's live theme, so what is on GitHub is what the store shows.
+# It ships the committed files only (it stops when theme files have uncommitted changes) and never blocks the push.
+case "$refs" in
+  *" refs/heads/main "*)
+    if [ -f shopify.theme.toml ] && [ -f .env ]; then
+      if [ -n "$(git status --porcelain -- assets blocks config layout locales sections snippets templates ':!config/settings_data.json' ':!templates/index.json')" ]; then
+        echo "pre-push: theme files have uncommitted changes, so the dev store was not updated (commit them, or run npm run ship)."
+      else
+        node scripts/ship.mjs --skip-checks || echo "pre-push: updating the dev store failed; the push goes on. Run npm run ship."
+      fi
+    fi
+    ;;
+esac
+exit 0
