@@ -6,7 +6,7 @@
  * script. SINGI_CONSENT=on (npm run test:all sets the setting for this run):
  *   - a visitor the API says must be asked and who has not answered gets a modal dialog (the page behind is inert and does not
  *     scroll, focus starts on the title and stays inside, Escape does not dismiss it) and no consent is recorded before a click; Accept all and Reject all are the same size and look, 44px tall or more; contrast is at least 4.5:1;
- *   - Accept all, Reject all and Customize then Save record exactly the right choices (sale_of_data follows marketing);
+ *   - Accept all, Reject all and Preferences then Save record exactly the right choices (sale_of_data follows marketing);
  *   - nothing shows when the API says not to ask, or when the visitor already answered;
  *   - the footer Cookie settings button appears once the API is ready, reopens the dialog with the current choices, and Escape
  *     closes it without recording anything;
@@ -157,18 +157,18 @@ try {
     ok(JSON.stringify(await calls(page)) === JSON.stringify([all(false)]), `Reject all records every category as false (${JSON.stringify(await calls(page))})`);
     await page.close();
 
-    /* 4. Customize and save. A click that is not on a choice (opening Customize, the text, the card) records nothing. */
+    /* 4. Preferences and save. A click that is not on a choice (opening Preferences, the text, the card) records nothing. */
     page = await open();
     await shown(page);
     await page.click('.consent__body');
     await page.click('.consent__more summary');
-    ok((await calls(page)).length === 0 && (await page.evaluate(() => document.querySelector('dialog.consent').open)), 'a click that is not on a choice (the text, Customize) records nothing and keeps the dialog open');
+    ok((await calls(page)).length === 0 && (await page.evaluate(() => document.querySelector('dialog.consent').open)), 'a click that is not on a choice (the text, Preferences) records nothing and keeps the dialog open');
     await page.click('.consent__more summary');
-    ok(await page.evaluate(() => !document.querySelector('.consent__more').open), 'the choices are folded away until Customize is pressed');
+    ok(await page.evaluate(() => !document.querySelector('.consent__more').open), 'the choices are folded away until Preferences is pressed');
     await page.click('.consent__more summary');
     const boxes = await page.evaluate(() => [...document.querySelectorAll('.consent__choices input')].map((i) => ({ name: i.name, checked: i.checked, disabled: i.disabled })));
     ok(boxes.length === 4 && boxes[0].disabled && boxes[0].checked && boxes.slice(1).every((b) => !b.checked && !b.disabled), `Essential is on and locked, the other three start off (${JSON.stringify(boxes)})`);
-    ok(await page.evaluate(() => { const style = (q) => getComputedStyle(document.querySelector(q)).backgroundColor; return style('.consent__save') !== style('[data-consent="accept"]'); }), 'Save choices is a secondary button, not styled like the two primary answers');
+    ok(await page.evaluate(() => { const style = (q) => getComputedStyle(document.querySelector(q)).backgroundColor; return style('.consent__save') === style('[data-consent="accept"]') && getComputedStyle(document.querySelector('.consent__actions')).display === 'none'; }), 'with Preferences open Save choices is the one primary button: Accept all and Reject all are hidden');
     await page.click('input[name="analytics"]');
     await page.click('.consent__save');
     ok(JSON.stringify(await calls(page)) === JSON.stringify([{ analytics: true, marketing: false, preferences: false, sale_of_data: false }]), `Save records only what was ticked (${JSON.stringify(await calls(page))})`);
@@ -231,9 +231,9 @@ try {
       const block = document.querySelector('[data-consent-region]');
       const country = block?.querySelector('select[name="country_code"]');
       const language = block?.querySelector('select[name="language_code"]');
-      return { block: !!block, summary: block?.querySelector('summary')?.textContent.replace(/\s+/g, ' ').trim(), folded: block ? !block.querySelector('details').open : null, countries: country ? [...country.options].map((o) => [o.value, o.selected]) : null, languages: language ? [...language.options].map((o) => [o.value, o.selected]) : null, linked: [country, language].filter(Boolean).every((s) => s.form?.id === 'consent-localization' && s.form.getAttribute('action')?.endsWith('/localization')) };
+      return { block: !!block, labels: block ? [...block.querySelectorAll('label')].map((l) => l.firstChild.textContent.trim()) : [], visible: !!country && country.getBoundingClientRect().height > 0, countries: country ? [...country.options].map((o) => [o.value, o.selected]) : null, languages: language ? [...language.options].map((o) => [o.value, o.selected]) : null, linked: [country, language].filter(Boolean).every((s) => s.form?.id === 'consent-localization' && s.form.getAttribute('action')?.endsWith('/localization')) };
     });
-    ok(region.block && region.folded && /\(\w{3}\)/.test(region.summary ?? ''), `the first ask shows the current country with its currency, folded (${region.summary})`);
+    ok(region.block && region.visible && region.labels[0] === 'Country/region', `the first ask shows a labelled country select, not folded away (${JSON.stringify(region.labels)})`);
     ok(region.countries?.length >= 2 && region.countries.filter(([, selected]) => selected).length === 1 && region.linked, `the country select lists the countries with the current one chosen and posts to /localization (${JSON.stringify(region.countries)})`);
     /* unchanged: Accept all records consent and posts nothing to /localization */
     let posted = [];
@@ -247,7 +247,6 @@ try {
     for (const [kind, expected] of [['accept', all(true)], ['reject', all(false)]]) {
       page = await open();
       await shown(page);
-      await page.click('.consent__where summary');
       const other = await page.evaluate(() => [...document.querySelector('select[name="country_code"]').options].find((o) => !o.selected).value);
       await page.select('select[name="country_code"]', other);
       posted = [];
@@ -261,7 +260,6 @@ try {
     page = await open();
     await shown(page);
     if (await page.evaluate(() => { const select = document.querySelector('select[name="language_code"]'); return !!select && !select.disabled; })) {
-      await page.click('.consent__where summary');
       const otherLanguage = await page.evaluate(() => [...document.querySelector('select[name="language_code"]').options].find((o) => !o.selected).value);
       await page.select('select[name="language_code"]', otherLanguage);
       posted = [];
@@ -284,22 +282,21 @@ try {
     /* 8b. Shopify's suggestion, copy and the language select (stubbed: the dev server cannot make these calls, a real store host does) */
     page = await open({ fake: FAKE });
     ok(await shown(page), 'with the suggestion and copy available the dialog still shows');
-    let seen = await page.evaluate(() => ({ calls: window.__calls, country: document.querySelector('select[name="country_code"]').value, language: document.querySelector('select[name="language_code"]').value, labelHidden: document.querySelector('[data-consent-language]').hidden, disabled: document.querySelector('select[name="language_code"]').disabled, options: [...document.querySelector('select[name="language_code"]').options].map((o) => o.value), title: document.getElementById('consent-title').textContent, accept: document.querySelector('[data-consent="accept"]').textContent.trim(), where: document.querySelector('[data-where="country"]').textContent.trim(), spoken: document.querySelector('[data-where="language"]').textContent.trim(), lang: document.querySelector('dialog.consent').lang, label: document.querySelector('[data-consent-language]').textContent.replace(/\s+/g, ' ').trim() }));
+    let seen = await page.evaluate(() => ({ calls: window.__calls, country: document.querySelector('select[name="country_code"]').value, language: document.querySelector('select[name="language_code"]').value, labelHidden: document.querySelector('[data-consent-language]').hidden, disabled: document.querySelector('select[name="language_code"]').disabled, options: [...document.querySelector('select[name="language_code"]').options].map((o) => o.value), title: document.getElementById('consent-title').textContent, accept: document.querySelector('[data-consent="accept"]').textContent.trim(), lang: document.querySelector('dialog.consent').lang, label: document.querySelector('[data-consent-language]').textContent.replace(/\s+/g, ' ').trim() }));
     ok(seen.calls[0] === 'suggestion' && seen.country === 'SE', `the country is preselected from Shopify's suggestion (${seen.country}, ${JSON.stringify(seen.calls)})`);
     ok(!seen.labelHidden && !seen.disabled && JSON.stringify(seen.options) === JSON.stringify(['sv', 'en']) && /Language/.test(seen.label), `a country with two languages lists a secondary select labeled Language (${JSON.stringify(seen.options)}, "${seen.label.slice(0, 30)}")`);
     ok(seen.language === 'en', `with no language suggested the browser's language is preselected (${seen.language})`);
     ok(seen.title === 'Cookie consent' && seen.accept === 'Accept all', `the words are Shopify's cookie copy (${seen.title} / ${seen.accept})`);
-    ok(/Sweden/.test(seen.where) && /English/.test(seen.spoken), `the folded row says what is chosen (${seen.where} ${seen.spoken})`);
+    ok(await page.evaluate(() => !document.querySelector('.consent__region details, .consent__region summary') && [...document.querySelectorAll('.consent__region label')].every((l) => l.hidden || l.getBoundingClientRect().height > 0)), 'the country and language selects are always visible, with no expandable row or heading');
     /* the visitor picks Swedish: the dialog speaks it */
-    await page.click('.consent__where summary');
     await page.select('select[name="language_code"]', 'sv');
     await wait(500);
     seen = await page.evaluate(() => ({ title: document.getElementById('consent-title').textContent, accept: document.querySelector('[data-consent="accept"]').textContent.trim(), lang: document.querySelector('dialog.consent').lang, calls: window.__calls }));
     ok(seen.title === 'Cookie-samtycke' && seen.accept === 'Godkänn alla' && seen.lang === 'sv', `picking Swedish makes the dialog speak Swedish (${seen.title} / ${seen.accept} / ${seen.lang}, ${JSON.stringify(seen.calls.slice(-1))})`);
     /* a country with one language hides the select and posts no language */
     await page.select('select[name="country_code"]', 'US');
-    seen = await page.evaluate(() => ({ hidden: document.querySelector('[data-consent-language]').hidden, disabled: document.querySelector('select[name="language_code"]').disabled, spoken: document.querySelector('[data-where="language"]').hidden }));
-    ok(seen.hidden && seen.disabled && seen.spoken, 'a country with one language hides the language select (and it is not posted)');
+    seen = await page.evaluate(() => ({ hidden: document.querySelector('[data-consent-language]').hidden, disabled: document.querySelector('select[name="language_code"]').disabled  }));
+    ok(seen.hidden && seen.disabled, 'a country with one language hides the language select (and it is not posted)');
     await page.select('select[name="country_code"]', 'CA');
     seen = await page.evaluate(() => [...document.querySelector('select[name="language_code"]').options].map((o) => o.value));
     ok(JSON.stringify(seen) === JSON.stringify(['en', 'fr']), `Canada lists English and French (${JSON.stringify(seen)})`);

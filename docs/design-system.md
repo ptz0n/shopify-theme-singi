@@ -119,7 +119,7 @@ The heading block (`blocks/heading.liquid`) offers `sm`, `md`, `lg`, `xl` sizes 
 | Component | Where | Notes |
 | --- | --- | --- |
 | Button | `.button`, `.button--secondary`, `.button--block` in `base.css` | Primary is inverted foreground on background. |
-| Inputs | `input`, `select`, `textarea` in `base.css` | 3rem tall, radius token. |
+| Inputs | `input`, `select`, `textarea` in `base.css` | 3rem tall, radius token. A select sits in `<span class="select">` with the `chevron-down` icon after it, the same chevron as the accordion, facets and footer selector. |
 | Chip (variant option) | `blocks/_variant-picker.liquid` | Real radios, visually hidden, styled labels. |
 | Product card | `snippets/product-card.liquid` | 4:5 media, stretched link, sold-out badge. |
 | Badge | `snippets/badge.liquid`, `.badge-label` in `base.css` | One filled pill, 24px tall, upper-case monospace, on a photo (card) or in a row (product page). Same metrics as the Sold out badge and the AI label. Sale is an entry like any other, with no color of its own. [Decision 045](decisions/045-badges-are-a-metaobject-mapped-from-tags.md). |

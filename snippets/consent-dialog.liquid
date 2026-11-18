@@ -2,7 +2,7 @@
   The cookie dialog: one native, modal <dialog> over a scrim (a decision is needed before the page is used), shown by assets/consent.js only to a visitor
   Shopify's region rules say must be asked and who has not answered yet (`shouldShowBanner()` and `currentVisitorConsent()`
   of the Customer Privacy API). The answer is recorded with `setTrackingConsent()`, only after a click, never automatically.
-  Accept all and Reject all are the same size and weight (both primary buttons; Save choices is the secondary one); Customize opens Essential (always on), Analytics, Marketing and
+  Accept all and Reject all are the same size and weight (both primary buttons; Save choices replaces them once Preferences is open); Preferences opens Essential (always on), Analytics, Marketing and
   Preferences. A footer button (`data-consent-open`, sections/footer.liquid) reopens it with the current choices.
   On a store with more than one country or language the first ask also shows the visitor's country and language (the market
   Shopify resolved, with the currency) and lets them change either, so one click on Accept all or Reject all confirms the
@@ -55,29 +55,11 @@
 
       {%- if show_region -%}
         <div class="consent__region" data-consent-region>
-          <p class="eyebrow">{{ 'localization.label' | t }}</p>
-          <details class="consent__where">
-            <summary>
-              <span>
-                <span class="mono" data-where="country">
-                  {{- localization.country.name }} ({{ localization.country.currency.iso_code }})</span
-                >
-                <span
-                  data-where="language"
-                  lang="{{ localization.language.iso_code }}"
-                  {% if languages.size < 2 %}
-                    hidden
-                  {% endif %}
-                >
-                  · {{ localization.language.endonym_name }}
-                </span>
-              </span>
-              {%- render 'icon', name: 'chevron-down' -%}
-            </summary>
-            <div class="consent__fields">
-              {%- if countries.size > 1 -%}
-                <label>
-                  {{ 'localization.country' | t }}
+          <div class="consent__fields">
+            {%- if countries.size > 1 -%}
+              <label>
+                {{ 'localization.country' | t }}
+                <span class="select">
                   <select
                     name="country_code"
                     form="consent-localization"
@@ -100,16 +82,19 @@
                       {%- endfor -%}
                     {%- endif -%}
                   </select>
-                </label>
-              {%- endif -%}
-              {%- comment -%}The language select is there for every store: it shows (and posts) only when the chosen country has more than one language. For the current market the options are rendered here; for another country assets/consent.js reads them from the Storefront API.{%- endcomment -%}
-              <label
-                data-consent-language
-                {% if languages.size < 2 %}
-                  hidden
-                {% endif %}
-              >
-                {{ 'localization.language' | t }}
+                  {%- render 'icon', name: 'chevron-down' -%}
+                </span>
+              </label>
+            {%- endif -%}
+            {%- comment -%}The language select is there for every store: it shows (and posts) only when the chosen country has more than one language. For the current market the options are rendered here; for another country assets/consent.js reads them from the Storefront API.{%- endcomment -%}
+            <label
+              data-consent-language
+              {% if languages.size < 2 %}
+                hidden
+              {% endif %}
+            >
+              {{ 'localization.language' | t }}
+              <span class="select">
                 <select
                   name="language_code"
                   form="consent-localization"
@@ -129,14 +114,18 @@
                     </option>
                   {%- endfor -%}
                 </select>
-              </label>
-            </div>
-          </details>
+                {%- render 'icon', name: 'chevron-down' -%}
+              </span>
+            </label>
+          </div>
         </div>
       {%- endif -%}
 
       <details class="consent__more">
-        <summary data-copy="prefs">{{ 'consent.customize' | t }}</summary>
+        <summary>
+          <span>{{ 'consent.customize' | t }}</span>
+          {%- render 'icon', name: 'chevron-down' -%}
+        </summary>
         <fieldset class="consent__choices">
           <legend class="visually-hidden">{{ 'consent.customize' | t }}</legend>
           <label class="consent__row">
@@ -168,7 +157,7 @@
             </span>
           </label>
         </fieldset>
-        <button class="button button--secondary consent__save" type="submit" data-consent="custom" data-copy="save">
+        <button class="button consent__save" type="submit" data-consent="custom" data-copy="save">
           {{ 'consent.save' | t }}
         </button>
       </details>
@@ -202,19 +191,20 @@
   .consent__title:focus-visible { outline: none; }
   .consent__body { font-size: 0.875rem; color: var(--color-muted); }
   .consent__body a { color: var(--color-fg); }
-  .consent__region { display: grid; gap: 0.125rem; }
-  .consent__where summary { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; min-height: 2.75rem; cursor: pointer; font-size: 0.875rem; list-style: none; }
-  .consent__where summary::-webkit-details-marker { display: none; }
-  .consent__where[open] summary svg { rotate: 180deg; }
-  .consent__fields { display: grid; gap: 0.75rem; padding-block: 0.25rem 0.5rem; font-size: 0.875rem; }
+    .consent__fields { display: grid; gap: 0.75rem; font-size: 0.875rem; }
   .consent__fields label { display: grid; gap: 0.25rem; }
   .consent__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-  .consent__more summary { display: inline-flex; align-items: center; min-height: 2.75rem; cursor: pointer; font-size: 0.875rem; text-decoration: underline; }
+  /* The same disclosure as the product page accordion (blocks/accordion.liquid): bold title and a chevron at the end (no rule below: the card already frames it). Keep the two in step. */
+  .consent__more summary { display: flex; align-items: center; justify-content: space-between; min-height: 3.5rem; font-weight: var(--font-weight-strong); cursor: pointer; list-style: none; }
+  .consent__more summary::-webkit-details-marker { display: none; }
+  .consent__more[open] summary .icon { transform: rotate(180deg); }
   .consent__choices { display: grid; gap: 0.25rem; margin: 0 0 0.75rem; padding: 0; border: 0; }
   .consent__row { display: flex; align-items: flex-start; gap: 0.75rem; min-height: 2.75rem; padding-block: 0.375rem; font-size: 0.875rem; }
   .consent__row input { flex: none; width: 1.25rem; height: 1.25rem; margin-block-start: 0.125rem; accent-color: var(--color-fg); }
   .consent__row small { display: block; color: var(--color-muted); font-size: 0.8125rem; }
-  .consent__save { width: 100%; }
+  .consent__save { width: 100%; margin-block-end: 1rem; }
+  /* With Preferences open, Save is the one primary button in view: Accept all and Reject all step aside. */
+  .consent form:has(.consent__more[open]) .consent__actions { display: none; }
   @keyframes consent-in { from { opacity: 0; transform: translateY(0.5rem); } }
   @media (prefers-reduced-motion: reduce) { .consent[open] { animation: none; } }
 {% endstylesheet %}

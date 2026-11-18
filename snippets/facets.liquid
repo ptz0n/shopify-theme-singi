@@ -129,18 +129,21 @@
     {%- if source.sort_options.size > 1 -%}
       <div class="facets__sort">
         <label for="sort-by">{{ 'collection.sort_by' | t }}</label>
-        <select id="sort-by" name="sort_by">
-          {%- for option in source.sort_options -%}
-            <option
-              value="{{ option.value }}"
-              {% if option.value == source.sort_by %}
-                selected
-              {% endif %}
-            >
-              {{ option.name }}
-            </option>
-          {%- endfor -%}
-        </select>
+        <span class="select">
+          <select id="sort-by" name="sort_by">
+            {%- for option in source.sort_options -%}
+              <option
+                value="{{ option.value }}"
+                {% if option.value == source.sort_by %}
+                  selected
+                {% endif %}
+              >
+                {{ option.name }}
+              </option>
+            {%- endfor -%}
+          </select>
+          {%- render 'icon', name: 'chevron-down' -%}
+        </span>
       </div>
     {%- endif -%}
 
@@ -196,7 +199,7 @@
   .facet__price { display: grid; gap: 0.5rem; }
   .facets__sort { display: flex; align-items: center; gap: 0.75rem; }
   .facets__sort label { flex: none; margin: 0; font-weight: var(--font-weight-body); color: var(--color-muted); white-space: nowrap; }
-  .facets__sort select { flex: 1; min-width: 10rem; }
+  .facets__sort .select { flex: 1; min-width: 10rem; }
   .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin-block-end: 1rem; }
   .chips .chip { min-height: 2.25rem; padding-block: 0.25rem; text-decoration: none; }
   .collection__count { margin-block-end: 1rem; font-size: 0.8125rem; }

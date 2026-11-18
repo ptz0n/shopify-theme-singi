@@ -33,7 +33,7 @@ const code = (value) => {
 };
 const QUERY = `query consent($language: LanguageCode!, $country: CountryCode!) @inContext(language: $language, country: $country) {
   localization { availableCountries { isoCode availableLanguages { isoCode endonymName } } }
-  consentManagement { banner { title text policyLinkText policyLinkUrl buttonPrefsOpenText
+  consentManagement { banner { title text policyLinkText policyLinkUrl
     preferences { buttonAcceptText buttonDeclineText buttonSaveText buttonCloseText
       purposes { essentialName essentialDesc performanceName performanceDesc preferencesName preferencesDesc marketingName marketingDesc } } } }
 }`;
@@ -105,10 +105,7 @@ class ConsentDialog extends HTMLElement {
       this.#syncLanguage();
       this.#retranslate();
     });
-    this.language?.addEventListener('change', () => {
-      this.#summarize();
-      this.#retranslate();
-    });
+    this.language?.addEventListener('change', () => this.#retranslate());
     const start = () => withApi(() => this.ready());
     if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 2000 });
     else setTimeout(start, 500);
@@ -166,20 +163,6 @@ class ConsentDialog extends HTMLElement {
       );
       this.language.value = pick;
     }
-    this.#summarize();
-  }
-
-  #summarize() {
-    if (!this.region) return;
-    const where = this.region.querySelector('[data-where="country"]');
-    if (where && this.country) where.textContent = this.country.selectedOptions[0].textContent.trim();
-    const spoken = this.region.querySelector('[data-where="language"]');
-    const show = !!this.language && !this.language.disabled;
-    spoken.hidden = !show;
-    if (show) {
-      spoken.textContent = `· ${this.language.selectedOptions[0].textContent.trim()}`;
-      spoken.lang = this.language.value;
-    }
   }
 
   /* Shopify's banner copy: translated, and edited by the merchant in Settings > Customer privacy. Anything it does not return keeps the theme's text. */
@@ -189,7 +172,7 @@ class ConsentDialog extends HTMLElement {
     const { preferences: p, preferences: { purposes: u } } = banner;
     const link = this.querySelector('[data-copy="policy"]');
     const copy = {
-      title: banner.title, text: link ? banner.text : '', policy: banner.policyLinkText, prefs: banner.buttonPrefsOpenText,
+      title: banner.title, text: link ? banner.text : '', policy: banner.policyLinkText,
       accept: p.buttonAcceptText, reject: p.buttonDeclineText, save: p.buttonSaveText, close: p.buttonCloseText,
       essential: u.essentialName, essential_note: u.essentialDesc, analytics: u.performanceName, analytics_note: u.performanceDesc,
       marketing: u.marketingName, marketing_note: u.marketingDesc, preferences: u.preferencesName, preferences_note: u.preferencesDesc,

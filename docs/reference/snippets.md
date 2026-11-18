@@ -126,7 +126,7 @@ File: `snippets/consent-dialog.liquid`
 The cookie dialog: one native, modal <dialog> over a scrim (a decision is needed before the page is used), shown by assets/consent.js only to a visitor
 Shopify's region rules say must be asked and who has not answered yet (`shouldShowBanner()` and `currentVisitorConsent()`
 of the Customer Privacy API). The answer is recorded with `setTrackingConsent()`, only after a click, never automatically.
-Accept all and Reject all are the same size and weight (both primary buttons; Save choices is the secondary one); Customize opens Essential (always on), Analytics, Marketing and
+Accept all and Reject all are the same size and weight (both primary buttons; Save choices replaces them once Preferences is open); Preferences opens Essential (always on), Analytics, Marketing and
 Preferences. A footer button (`data-consent-open`, sections/footer.liquid) reopens it with the current choices.
 On a store with more than one country or language the first ask also shows the visitor's country and language (the market
 Shopify resolved, with the currency) and lets them change either, so one click on Accept all or Reject all confirms the

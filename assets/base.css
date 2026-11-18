@@ -126,8 +126,10 @@ input:disabled,select:disabled,textarea:disabled{opacity:.6;cursor:not-allowed}
 .chip-input:focus-visible+.chip{outline:2px solid var(--color-accent);outline-offset:2px}
 .chip-input:disabled+.chip,.chip--unavailable{color:var(--color-muted);text-decoration:line-through}
 .chip__swatch{width:1rem;height:1rem;border-radius:var(--radius);border:1px solid var(--color-control);background:var(--swatch)}
-select{appearance:none;padding-inline-end:2.75rem;background-image:linear-gradient(45deg,transparent 50%,currentcolor 50%),linear-gradient(135deg,currentcolor 50%,transparent 50%);background-position:calc(100% - 1.5rem) 50%,calc(100% - 1.125rem) 50%;background-size:.375rem .375rem;background-repeat:no-repeat}
-[dir=rtl] select{background-position:.75rem 50%,1.125rem 50%}
+select{appearance:none;padding-inline-end:2.75rem}
+.select{position:relative;display:block}
+.select .icon{position:absolute;inset-inline-end:1rem;top:50%;translate:0 -50%;pointer-events:none}
+.select:has(select:disabled) .icon{opacity:.6}
 select:focus-visible{outline-offset:2px}
 .product-card>img{display:block;width:100%;height:auto;aspect-ratio:var(--ratio-product);object-fit:cover;border-radius:var(--radius);background:var(--color-surface)}
 .price{display:flex;flex-wrap:wrap;gap:.5rem;align-items:baseline;font-size:.9375rem}

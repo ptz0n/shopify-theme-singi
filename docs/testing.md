@@ -88,11 +88,11 @@ Only when `settings.soft_navigation` is on:
 
 - With a clean browser the dialog shows once, without taking focus; Tab from the top of the page reaches it first.
 - No analytics tag fires before a choice. Accept all: the tags run and `dataLayer` carries `consent update` with everything granted. Reject all: they do not.
-- Customize, tick Analytics only, Save: analytics is granted and marketing is not.
+- Preferences, tick Analytics only, Save: analytics is granted and marketing is not.
 - Reload: the dialog stays away. Footer > Cookie settings reopens it with the current choices.
 - A visitor outside the consent regions is not asked, and Cookie settings still works.
 - **Shopify's copy, the suggestion and the language select** only run on a real store host, not on the dev server (the Storefront call breaks the dev server's session): open `https://<store>.myshopify.com/?preview_theme_id=<id>&consent_preview=1`. The dialog shows Shopify's own banner words (edit them in Settings > Customer privacy > Cookie banner), the country Shopify detects for you is preselected, and a country with two languages shows a "Language" select. **Not done with a second language**: the dev store's countries list only English, so add Swedish and French to the Sweden and Canada markets and look again.
-- On a store with more than one country or language: the first ask shows the resolved country (with its currency) and language in a folded row. Change the country, Accept all: the page reloads in the new market and the consent is recorded. Reject all does the same with everything declined. Leave the region as it is: no reload. Reopen from the footer: no region row. With more than 12 countries (a Rest of world market), the country select fills from the footer list when first used. **Not done**: the dev store has two countries and one language.
+- On a store with more than one country or language: the first ask shows the resolved country (with its currency) and language in two selects, Country/region and Language, always visible. Change the country, Accept all: the page reloads in the new market and the consent is recorded. Reject all does the same with everything declined. Leave the region as it is: no reload. Reopen from the footer: no region row. With more than 12 countries (a Rest of world market), the country select fills from the footer list when first used. **Not done**: the dev store has two countries and one language.
 - Cross-check in the checkout that the choice is carried over (Shopify's documentation does not describe this for an Online Store theme).
 
 ## Performance

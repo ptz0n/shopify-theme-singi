@@ -209,11 +209,14 @@
         <div class="stack">
           <div class="field">
             <label for="sg-select">Select</label>
-            <select id="sg-select">
-              <option>Option one</option>
-              <option>Option two</option>
-              <option>Option three</option>
-            </select>
+            <span class="select">
+              <select id="sg-select">
+                <option>Option one</option>
+                <option>Option two</option>
+                <option>Option three</option>
+              </select>
+              {%- render 'icon', name: 'chevron-down' -%}
+            </span>
           </div>
           <div class="field">
             <label for="sg-textarea">Textarea</label>
