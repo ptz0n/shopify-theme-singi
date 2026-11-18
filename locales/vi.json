@@ -148,5 +148,23 @@
     "go_to_product": "Đi tới {{ title }}",
     "choose_options": "Chọn tùy chọn cho {{ title }}",
     "remove": "Xóa {{ title }} khỏi yêu thích"
+  },
+  "consent": {
+    "title": "Cookie",
+    "body": "Chúng tôi dùng cookie để xem cửa hàng được sử dụng như thế nào và hiển thị ưu đãi phù hợp với bạn. Bạn quyết định dùng loại nào.",
+    "accept": "Chấp nhận tất cả",
+    "reject": "Từ chối tất cả",
+    "customize": "Tùy chỉnh",
+    "save": "Lưu lựa chọn",
+    "essential": "Thiết yếu",
+    "essential_note": "Giúp giỏ hàng và thanh toán hoạt động. Luôn bật.",
+    "analytics": "Phân tích",
+    "analytics_note": "Đếm lượt truy cập để cửa hàng có thể cải thiện.",
+    "marketing": "Tiếp thị",
+    "marketing_note": "Giúp quảng cáo và ưu đãi phù hợp với những gì bạn đã xem.",
+    "preferences": "Tùy chọn",
+    "preferences_note": "Ghi nhớ các lựa chọn như ngôn ngữ và khu vực.",
+    "privacy": "Chính sách quyền riêng tư",
+    "settings": "Cài đặt cookie"
   }
 }

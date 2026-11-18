@@ -11,6 +11,7 @@ Size in bytes (before Shopify's CDN compression) and where each asset is referen
 | `assets/card-video.js` | 1425 | `layout/theme.liquid` |
 | `assets/cart-drawer.js` | 1689 | `sections/cart-drawer.liquid` |
 | `assets/cart-items.js` | 2181 | `sections/cart-drawer.liquid`, `sections/main-cart.liquid` |
+| `assets/consent.js` | 14505 | `layout/theme.liquid` |
 | `assets/embed.js` | 948 | `sections/main-product.liquid` |
 | `assets/facets.js` | 3353 | `sections/main-collection.liquid`, `sections/main-search.liquid` |
 | `assets/image-tone.js` | 3297 | `layout/theme.liquid` |

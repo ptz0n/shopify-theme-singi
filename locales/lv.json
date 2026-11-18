@@ -152,5 +152,23 @@
     "go_to_product": "Doties uz {{ title }}",
     "choose_options": "Izvēlēties {{ title }} opcijas",
     "remove": "Noņemt {{ title }} no izlases"
+  },
+  "consent": {
+    "title": "Sīkdatnes",
+    "body": "Mēs izmantojam sīkdatnes, lai redzētu, kā tiek izmantots veikals, un rādītu jums atbilstošus piedāvājumus. Jūs izvēlaties, kuras.",
+    "accept": "Pieņemt visas",
+    "reject": "Noraidīt visas",
+    "customize": "Pielāgot",
+    "save": "Saglabāt izvēli",
+    "essential": "Obligātās",
+    "essential_note": "Nodrošina groza un norēķinu darbību. Vienmēr ieslēgtas.",
+    "analytics": "Analītika",
+    "analytics_note": "Skaita apmeklējumus, lai veikals varētu uzlaboties.",
+    "marketing": "Mārketings",
+    "marketing_note": "Ļauj reklāmas un piedāvājumus saskaņot ar jūsu skatīto.",
+    "preferences": "Preferences",
+    "preferences_note": "Atceras izvēles, piemēram, valodu un reģionu.",
+    "privacy": "Privātuma politika",
+    "settings": "Sīkdatņu iestatījumi"
   }
 }

@@ -150,5 +150,23 @@
     "go_to_product": "Ga naar {{ title }}",
     "choose_options": "Opties kiezen voor {{ title }}",
     "remove": "{{ title }} verwijderen uit favorieten"
+  },
+  "consent": {
+    "title": "Cookies",
+    "body": "We gebruiken cookies om te zien hoe de winkel wordt gebruikt en om je relevante aanbiedingen te tonen. Jij kiest welke.",
+    "accept": "Alles accepteren",
+    "reject": "Alles weigeren",
+    "customize": "Aanpassen",
+    "save": "Keuzes opslaan",
+    "essential": "Essentieel",
+    "essential_note": "Zorgt dat winkelwagen en afrekenen werken. Altijd aan.",
+    "analytics": "Analyse",
+    "analytics_note": "Telt bezoeken zodat de winkel beter kan worden.",
+    "marketing": "Marketing",
+    "marketing_note": "Laat advertenties en aanbiedingen aansluiten op wat je hebt bekeken.",
+    "preferences": "Voorkeuren",
+    "preferences_note": "Onthoudt keuzes zoals taal en regio.",
+    "privacy": "Privacybeleid",
+    "settings": "Cookie-instellingen"
   }
 }

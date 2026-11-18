@@ -150,5 +150,23 @@
     "go_to_product": "Mine tootele {{ title }}",
     "choose_options": "Vali {{ title }} valikud",
     "remove": "Eemalda {{ title }} lemmikutest"
+  },
+  "consent": {
+    "title": "Küpsised",
+    "body": "Kasutame küpsiseid, et näha, kuidas poodi kasutatakse, ja näidata sulle asjakohaseid pakkumisi. Sina valid, milliseid.",
+    "accept": "Nõustu kõigiga",
+    "reject": "Keeldu kõigist",
+    "customize": "Kohanda",
+    "save": "Salvesta valikud",
+    "essential": "Vajalikud",
+    "essential_note": "Hoiavad ostukorvi ja kassa töös. Alati sees.",
+    "analytics": "Analüütika",
+    "analytics_note": "Loevad külastusi, et pood saaks paremaks muutuda.",
+    "marketing": "Turundus",
+    "marketing_note": "Aitavad reklaame ja pakkumisi sobitada sellega, mida vaatasid.",
+    "preferences": "Eelistused",
+    "preferences_note": "Jätavad meelde valikud, nagu keel ja piirkond.",
+    "privacy": "Privaatsuspoliitika",
+    "settings": "Küpsiste seaded"
   }
 }

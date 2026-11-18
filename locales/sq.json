@@ -150,5 +150,23 @@
     "go_to_product": "Shko te {{ title }}",
     "choose_options": "Zgjidh opsionet për {{ title }}",
     "remove": "Hiq {{ title }} nga të preferuarat"
+  },
+  "consent": {
+    "title": "Cookie",
+    "body": "Përdorim cookie për të parë se si përdoret dyqani dhe për t'ju shfaqur oferta përkatëse. Ju zgjidhni cilat.",
+    "accept": "Prano të gjitha",
+    "reject": "Refuzo të gjitha",
+    "customize": "Personalizo",
+    "save": "Ruaj zgjedhjet",
+    "essential": "Thelbësore",
+    "essential_note": "Mbajnë shportën dhe pagesën në punë. Gjithmonë aktive.",
+    "analytics": "Analitika",
+    "analytics_note": "Numërojnë vizitat që dyqani të përmirësohet.",
+    "marketing": "Marketing",
+    "marketing_note": "Lejojnë që reklamat dhe ofertat të përputhen me atë që keni parë.",
+    "preferences": "Preferencat",
+    "preferences_note": "Mbajnë mend zgjedhje si gjuha dhe rajoni.",
+    "privacy": "Politika e privatësisë",
+    "settings": "Cilësimet e cookie"
   }
 }

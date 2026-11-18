@@ -164,6 +164,13 @@
         ],
         "default": "shopify"
       },
+      {
+        "type": "checkbox",
+        "id": "consent_dialog",
+        "label": "Show the theme's cookie dialog",
+        "info": "A cookie dialog in the theme's own look, using Shopify's customer privacy settings and Customer Privacy API: it asks only visitors in the regions you set in Settings > Customer privacy, and records the answer there. Turn Shopify's own cookie banner off first (remove it under Settings > Customer privacy > Cookie banner, where available), or visitors see two. Adds a Cookie settings link to the footer. Needs JavaScript. To review it, add ?consent_preview to any page address: it shows the dialog and records nothing.",
+        "default": false
+      },
       { "type": "checkbox", "id": "tracking_debug", "label": "Log events to the browser console", "default": false }
     ]
   },

@@ -148,5 +148,23 @@
     "go_to_product": "前往{{ title }}",
     "choose_options": "选择{{ title }}的选项",
     "remove": "将{{ title }}从收藏中移除"
+  },
+  "consent": {
+    "title": "Cookie",
+    "body": "我们使用 Cookie 来了解商店的使用情况，并向您展示相关优惠。使用哪些 Cookie 由您决定。",
+    "accept": "全部接受",
+    "reject": "全部拒绝",
+    "customize": "自定义",
+    "save": "保存选择",
+    "essential": "必要",
+    "essential_note": "确保购物车和结账正常运行。始终开启。",
+    "analytics": "分析",
+    "analytics_note": "统计访问量，帮助商店改进。",
+    "marketing": "营销",
+    "marketing_note": "让广告和优惠与您浏览过的内容相匹配。",
+    "preferences": "偏好设置",
+    "preferences_note": "记住语言和地区等选择。",
+    "privacy": "隐私政策",
+    "settings": "Cookie 设置"
   }
 }

@@ -150,5 +150,23 @@
     "go_to_product": "{{ title }} sayfasına git",
     "choose_options": "{{ title }} için seçenekleri belirle",
     "remove": "{{ title }} ürününü favorilerden kaldır"
+  },
+  "consent": {
+    "title": "Çerezler",
+    "body": "Mağazanın nasıl kullanıldığını görmek ve size uygun teklifler göstermek için çerezleri kullanıyoruz. Hangilerinin kullanılacağını siz seçersiniz.",
+    "accept": "Tümünü kabul et",
+    "reject": "Tümünü reddet",
+    "customize": "Özelleştir",
+    "save": "Seçimleri kaydet",
+    "essential": "Zorunlu",
+    "essential_note": "Sepetin ve ödemenin çalışmasını sağlar. Her zaman açık.",
+    "analytics": "Analiz",
+    "analytics_note": "Mağazanın gelişebilmesi için ziyaretleri sayar.",
+    "marketing": "Pazarlama",
+    "marketing_note": "Reklam ve tekliflerin baktığınız ürünlerle eşleşmesini sağlar.",
+    "preferences": "Tercihler",
+    "preferences_note": "Dil ve bölge gibi seçimleri hatırlar.",
+    "privacy": "Gizlilik politikası",
+    "settings": "Çerez ayarları"
   }
 }

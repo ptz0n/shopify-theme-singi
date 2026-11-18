@@ -101,10 +101,11 @@ Detailed recipes are in [docs/extending.md](docs/extending.md). Short forms:
 | Settings | `config/settings_schema.json` |
 | Strings | `locales/en.default.json` |
 | Repo rules and budgets | `scripts/check.mjs` |
-| Consent and what the theme stores in the browser | `assets/tracking.js`, [docs/privacy.md](docs/privacy.md), [decision 030](docs/decisions/030-cookie-consent-is-shopifys-banner-and-the-theme-respects-it.md) |
+| Consent and what the theme stores in the browser | `assets/tracking.js` (Consent Mode), `assets/consent.js` and `snippets/consent-dialog.liquid` (the cookie dialog), [docs/privacy.md](docs/privacy.md), decisions [030](docs/decisions/030-cookie-consent-is-shopifys-banner-and-the-theme-respects-it.md) and [046](docs/decisions/046-the-cookie-dialog-is-the-themes-and-shopifys-api-records-the-answer.md) |
 | hreflang and multi-store alternates | `snippets/meta-tags.liquid`, `scripts/alternates.mjs`, [docs/multi-store.md](docs/multi-store.md), [decision 032](docs/decisions/032-hreflang-comes-from-explicit-alternates-per-resource.md) |
 | Roadmap and its status | `todo.md` |
 | Why something is built the way it is | [docs/decisions/](docs/decisions/README.md) |
+| Design taste and references (Braun, Teenage Engineering): the checks for a new component | [docs/design-system.md](docs/design-system.md#design-references) |
 | Preview every component (light, dark, RTL, a11y audit) | `sections/main-styleguide.liquid`, [docs/component-library.md](docs/component-library.md) |
 
 ## Do not

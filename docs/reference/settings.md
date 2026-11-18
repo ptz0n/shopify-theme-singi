@@ -89,6 +89,7 @@ Defined in `config/settings_schema.json`, read in Liquid as `settings.<id>`.
 | `ga4_measurement_id` | text | GA4 measurement ID (used only without a GTM ID) |  |
 | `tracking_load` | select | Load GTM or gtag | `"idle"` |
 | `tracking_consent` | select | Consent | `"shopify"` |
+| `consent_dialog` | checkbox | Show the theme's cookie dialog | `false` |
 | `tracking_debug` | checkbox | Log events to the browser console | `false` |
 
 ## Newsletter

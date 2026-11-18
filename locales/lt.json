@@ -154,5 +154,23 @@
     "go_to_product": "Eiti į {{ title }}",
     "choose_options": "Pasirinkti {{ title }} parinktis",
     "remove": "Pašalinti {{ title }} iš mėgstamiausių"
+  },
+  "consent": {
+    "title": "Slapukai",
+    "body": "Naudojame slapukus, kad matytume, kaip naudojama parduotuvė, ir rodytume tinkamus pasiūlymus. Jūs pasirenkate, kuriuos.",
+    "accept": "Sutikti su visais",
+    "reject": "Atmesti visus",
+    "customize": "Tinkinti",
+    "save": "Išsaugoti pasirinkimus",
+    "essential": "Būtini",
+    "essential_note": "Užtikrina krepšelio ir atsiskaitymo veikimą. Visada įjungta.",
+    "analytics": "Analitika",
+    "analytics_note": "Skaičiuoja apsilankymus, kad parduotuvė taptų geresnė.",
+    "marketing": "Rinkodara",
+    "marketing_note": "Leidžia reklamas ir pasiūlymus pritaikyti prie to, ką peržiūrėjote.",
+    "preferences": "Nuostatos",
+    "preferences_note": "Įsimena pasirinkimus, pvz., kalbą ir regioną.",
+    "privacy": "Privatumo politika",
+    "settings": "Slapukų nustatymai"
   }
 }

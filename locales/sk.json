@@ -154,5 +154,23 @@
     "go_to_product": "Prejsť na {{ title }}",
     "choose_options": "Vybrať možnosti pre {{ title }}",
     "remove": "Odstrániť {{ title }} z obľúbených"
+  },
+  "consent": {
+    "title": "Cookies",
+    "body": "Používame cookies, aby sme zistili, ako sa obchod používa, a ukázali vám relevantné ponuky. Vy si vyberáte, ktoré.",
+    "accept": "Prijať všetky",
+    "reject": "Odmietnuť všetky",
+    "customize": "Prispôsobiť",
+    "save": "Uložiť výber",
+    "essential": "Nevyhnutné",
+    "essential_note": "Zabezpečujú fungovanie košíka a pokladne. Vždy zapnuté.",
+    "analytics": "Analytika",
+    "analytics_note": "Počítajú návštevy, aby sa obchod mohol zlepšovať.",
+    "marketing": "Marketing",
+    "marketing_note": "Umožňujú, aby reklamy a ponuky zodpovedali tomu, čo ste si pozreli.",
+    "preferences": "Preferencie",
+    "preferences_note": "Pamätajú si voľby, ako sú jazyk a región.",
+    "privacy": "Zásady ochrany osobných údajov",
+    "settings": "Nastavenia cookies"
   }
 }

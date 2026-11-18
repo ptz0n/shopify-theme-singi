@@ -7,7 +7,7 @@ Index of all documentation. Agents: read [../AGENTS.md](../AGENTS.md) first, the
 | [decisions/](decisions/README.md) | The decision log: why each non-obvious choice was made, alternatives rejected, edge cases and dead ends. Read before changing the code a record names. |
 | [architecture.md](architecture.md) | Request to page flow, head order, CSS and JS strategy, Section Rendering API data flows, known issues. |
 | [performance.md](performance.md) | Every performance technique and where it lives, budgets, what is deliberately not built, measuring and debugging. |
-| [design-system.md](design-system.md) | Tokens, light and dark scheme, fonts, spacing, components, how to restyle safely. |
+| [design-system.md](design-system.md) | Design references (Braun, Teenage Engineering) and what they mean here, tokens, light and dark scheme, fonts, spacing, components, how to restyle safely. |
 | [blocks-and-sections.md](blocks-and-sections.md) | Catalogue of blocks, sections and snippets, composition and conventions. |
 | [soft-navigation.md](soft-navigation.md) | How `assets/soft-nav.js` works, events, analytics caveat, skeletons, exclusions. |
 | [content-storage.md](content-storage.md) | Where merchant content lives (theme settings, section blocks, metaobjects, metafields), what each costs, and which Singi uses when. |

@@ -4,6 +4,32 @@ Tokens, color schemes, fonts, spacing and component styling in Singi, and how to
 
 Style direction: bespoke, minimal, restrained. Hairline borders, small radius, generous space, Inter for text, monospace for prices, labels and metadata.
 
+## Design references
+
+Singi's taste comes from two places: **Braun**, especially the products from the Dieter Rams era (the radios, record players, clocks and calculators of the 1950s to the 1980s), and **Teenage Engineering** (the OP-1 and the Pocket Operators). Both make objects that are robust, simple and elegant, and that are a pleasure to use because every control is where you expect it and says what it does. We take the thinking, not the look: no copied shapes, colors, names or images, and no retro pastiche.
+
+What each contributes:
+
+- **Braun / Rams.** Ten principles of good design; the ones that decide most things here are *useful* (every element has a job), *understandable* (it explains itself), *unobtrusive* (the product is the content, the interface is a tool), *honest* (it does not pretend to be more than it is), *thorough down to the last detail* (the 12px inset is 12px everywhere) and *as little design as possible* ("less, but better"). The palette is quiet and neutral, with one accent kept for the control that matters. Type is plain and legible, and the grid does the work that decoration would otherwise do.
+- **Teenage Engineering.** Technical honesty as a style: labels set like silkscreen print (here the monospace font), a strict grid of controls, one signature accent color, tactile controls that feel solid, wit that stays out of the way (here: in the mock content, not in the chrome). Dense but never cluttered, because everything sits on the grid and every control has one clear state.
+
+What that means in Singi (each line is a rule a reviewer can check):
+
+| Principle | In the theme | Where |
+| --- | --- | --- |
+| Robust | Native controls first (`<dialog>`, `<details>`, radios, forms that post); everything works with no JavaScript; no third-party code; nothing breaks in dark mode, right to left or on a phone. | [AGENTS.md](../AGENTS.md) rules 3, 4, 13, 24, 25 |
+| Simple | One good default instead of a setting; a toggle only when a merchant could reasonably need it off. Reuse an existing pattern before inventing one. | [decision 045](decisions/045-badges-are-a-metaobject-mapped-from-tags.md) (one pill, no icon or style field, Sale opt-in) |
+| Elegant | Hairline borders, a small radius, generous space, one typeface for text and one monospace for prices, labels and metadata. Color comes from tokens; the accent is rare. | [Tokens](#tokens), [Fonts](#fonts) |
+| Honest | Real data only: no fake urgency, no stock numbers, no invented discounts. A badge exists because the merchant defined it. | [decision 015](decisions/015-quantity-limits-follow-the-rule-and-never-name-the-stock.md), decisions 044 and 045 |
+| Understandable | A control looks like what it does and says it in words; the state is visible (the chosen option names its value only when the chips do not). | [decision 024](decisions/024-option-labels-name-the-chosen-value.md), [decision 042](decisions/042-an-option-legend-names-its-value-only-when-the-chips-do-not.md) |
+| Thorough | Shared insets and sizes (the 12px corner of every badge, 24px tall; 44px targets); the same words and shapes across settings, blocks and strings. | [Spacing and layout](#spacing-and-layout) |
+| Unobtrusive | The product photo leads; chrome recedes. Motion is `transform` and `opacity` only and respects reduced motion. | [AGENTS.md](../AGENTS.md) rule 9 |
+| Long-lasting | No trends, no decoration that dates, no dependency to rot. Content outlives the theme. | [content-storage.md](content-storage.md) |
+
+**Before adding or changing a component, ask:** Does it have one job? Does it look like it was always there? Could a default replace the setting? Is there an element that only decorates? Would it still look right in an old Braun brochure, which is to say: quiet, aligned and obviously usable?
+
+What this is not: skeuomorphism (no fake knobs, no textures), retro imitation, or playfulness in the interface. Wit belongs in copy and mock content, never in how a control behaves.
+
 ## Tokens
 
 Settings in `config/settings_schema.json` become CSS custom properties in `snippets/tokens.liquid` (inline `<style>` in `<head>`). `assets/base.css` defines a few static tokens.

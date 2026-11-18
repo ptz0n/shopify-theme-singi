@@ -150,5 +150,23 @@
     "go_to_product": "Fara á {{ title }}",
     "choose_options": "Velja valkosti fyrir {{ title }}",
     "remove": "Fjarlægja {{ title }} úr uppáhöldum"
+  },
+  "consent": {
+    "title": "Vefkökur",
+    "body": "Við notum vefkökur til að sjá hvernig verslunin er notuð og til að sýna þér viðeigandi tilboð. Þú velur hverjar.",
+    "accept": "Samþykkja allar",
+    "reject": "Hafna öllum",
+    "customize": "Sérsníða",
+    "save": "Vista val",
+    "essential": "Nauðsynlegar",
+    "essential_note": "Halda körfunni og greiðslu gangandi. Alltaf virkar.",
+    "analytics": "Greining",
+    "analytics_note": "Telja heimsóknir svo verslunin geti batnað.",
+    "marketing": "Markaðssetning",
+    "marketing_note": "Láta auglýsingar og tilboð passa við það sem þú skoðaðir.",
+    "preferences": "Stillingar",
+    "preferences_note": "Muna val eins og tungumál og svæði.",
+    "privacy": "Persónuverndarstefna",
+    "settings": "Vefkökustillingar"
   }
 }

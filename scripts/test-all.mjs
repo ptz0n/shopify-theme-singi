@@ -54,6 +54,8 @@ const phase1 = all.filter((t) => !PHASE_2.includes(t.name) && wanted(t)).sort((a
 const phase2 = all.filter((t) => PHASE_2.includes(t.name) && wanted(t));
 phase2.push(...all.filter((t) => t.name === 'image-ratio' && wanted(t)).map((t) => ({ ...t, label: 'image-ratio (portrait)', env: { SINGI_RATIO: 'portrait' } })));
 phase2.push(...all.filter((t) => t.name === 'sale-badge' && wanted(t)).map((t) => ({ ...t, label: 'sale-badge (no entry)', env: { SINGI_SALE: 'none' } })));
+/* The cookie dialog is on only for its own run: with a consent region covering this machine the real API asks, and the modal would block every other test. */
+const phase4 = all.filter((t) => t.name === 'consent' && wanted(t)).map((t) => ({ ...t, label: 'consent (on)', env: { SINGI_CONSENT: 'on' } }));
 const phase3 = phase2.filter((t) => t.name === 'newsletter-consent').map((t) => ({ ...t, label: 'newsletter-consent (checkbox)', env: { SINGI_CHECKBOX: '1' } }));
 
 const run = (test) => new Promise((resolve) => {
@@ -99,10 +101,16 @@ const setSettings = (id, pairs) => node('theme-settings.mjs', [...pairs, '--them
 const setSection = (id, pairs) => node('section-settings.mjs', ['sections/header-group.json', 'announcement-bar', ...pairs, '--theme', id, '--apply']);
 const settle = () => new Promise((resolve) => setTimeout(resolve, 9000));
 
+/* The settings a test run starts from and goes back to. Phase 1 tests assume them, so a setting left on by hand (the cookie dialog for a review, say) is reset first. */
+const defaults = ['card_quick_buy=false', 'product_image_ratio=square', 'consent_dialog=false', 'social_profiles=', 'newsletter_note=', 'newsletter_checkbox=false', 'newsletter_confirmation='];
 const started = Date.now();
 const results = [];
 if (!noSetup && all.some((t) => t.name === 'placeholders' && wanted(t))) await node('placeholders.mjs', ['mock', '--apply']).catch((e) => console.log(`  could not ensure the mock placeholders: ${e.message}`));
 if (!noSetup && all.some((t) => t.name === 'badges' && wanted(t))) await node('badges.mjs', ['mock', '--apply']).catch((e) => console.log(`  could not ensure the mock badges: ${e.message}`));
+if (!noSetup) {
+  await setSettings(await themeId(), defaults).catch((e) => console.log(`  could not reset the settings: ${e.message}`));
+  await settle();
+}
 console.log(`Phase 1: ${phase1.length} tests, ${jobs} at a time`);
 results.push(...(await pool(phase1)));
 
@@ -128,7 +136,8 @@ if (!noSetup && phase2.length) {
     `social_profiles=https://www.instagram.com/singi\nhttps://www.facebook.com/singi\nhttps://x.com/singi\nhttps://www.youtube.com/@singi\nhttps://mastodon.social/@singi\nnot an address`,
     `newsletter_note=${note}`, 'newsletter_checkbox=false', 'newsletter_confirmation=Check your email to confirm.',
   ];
-  const off = ['card_quick_buy=false', 'product_image_ratio=square', 'social_profiles=', 'newsletter_note=', 'newsletter_checkbox=false', 'newsletter_confirmation='];
+  /* The dev theme rests with the cookie dialog ON, so it can be reviewed with ?consent_preview; the run itself starts from the default (off). */
+  const off = defaults.map((setting) => (setting === 'consent_dialog=false' ? 'consent_dialog=true' : setting));
   try {
     console.log(`\nPhase 2: settings on for the dev theme #${id}, alternates set`);
     await setSettings(id, on);
@@ -145,6 +154,12 @@ if (!noSetup && phase2.length) {
       await setSettings(id, ['newsletter_checkbox=true']);
       await settle();
       results.push(...(await pool(phase3)));
+    }
+    if (phase4.length) {
+      console.log('\nPhase 4: the cookie dialog on');
+      await setSettings(id, ['consent_dialog=true']);
+      await settle();
+      results.push(...(await pool(phase4)));
     }
   } finally {
     if (!flag('keep')) {

@@ -70,6 +70,10 @@
   <body>
     <a class="skip-link" href="#main">{{ 'general.skip_to_content' | t }}</a>
 
+    {%- if settings.consent_dialog -%}
+      {%- render 'consent-dialog' -%}
+    {%- endif -%}
+
     {% sections 'header-group' %}
 
     <main id="main" tabindex="-1">
@@ -113,6 +117,9 @@
       <script src="{{ 'card-video.js' | asset_url }}" type="module"></script>
     {%- endif -%}
 
+    {%- if settings.consent_dialog -%}
+      <script src="{{ 'consent.js' | asset_url }}" type="module"></script>
+    {%- endif -%}
     {%- if settings.tracking_enabled -%}
       {%- render 'tracking-config' -%}
       <script src="{{ 'tracking.js' | asset_url }}" type="module"></script>

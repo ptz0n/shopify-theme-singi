@@ -80,6 +80,21 @@ Only when `settings.soft_navigation` is on:
 - **The built-in "New":** delete the entry with the handle `new` (`npm run badges -- list`, then the admin or `scripts/lib/badges.mjs`), wait a few seconds, and load a collection with `mock-3d-model` (tag `new`). It shows "New" in blue (`rgb(30, 77, 140)`) with white text, on the card and the product page. Then `npm run badges -- mock --apply` restores the entry and it turns green. Done on 2026-11-18.
 - **A translated label:** add a translation of an entry's label in Translate & Adapt and load the storefront in that language. Not done.
 
+## Cookie dialog
+
+**Preview it** (a store with no consent region never asks, so Shopify's API never shows it; the dev store now has Sweden as one, so it asks by itself for a visitor in Sweden): the dev theme keeps the setting on (`npm run test:all` starts a run with it off, to test the default, and puts it back on at the end; `npm run theme:set -- consent_dialog=true --apply` does it by hand) and add **`?consent_preview`** to any page address, for example `http://127.0.0.1:9292/?consent_preview` or `https://<store>.myshopify.com/?preview_theme_id=<theme id>&consent_preview=1`. It works in any new window with nothing to paste: the dialog shows with a stand-in API, the footer Cookie settings button appears, and every answer is logged to the console and recorded nowhere. Remove the parameter and the dialog is gone.
+
+`npm run test:consent` covers the dialog against a stub API ([decision 046](decisions/046-the-cookie-dialog-is-the-themes-and-shopifys-api-records-the-answer.md)). The real thing is checked by hand, on a store in a consent region (for example with the EU or UK in Settings > Customer privacy) with Shopify's own cookie banner removed and the setting "Show the theme's cookie dialog" on. **Not done yet.**
+
+- With a clean browser the dialog shows once, without taking focus; Tab from the top of the page reaches it first.
+- No analytics tag fires before a choice. Accept all: the tags run and `dataLayer` carries `consent update` with everything granted. Reject all: they do not.
+- Customize, tick Analytics only, Save: analytics is granted and marketing is not.
+- Reload: the dialog stays away. Footer > Cookie settings reopens it with the current choices.
+- A visitor outside the consent regions is not asked, and Cookie settings still works.
+- **Shopify's copy, the suggestion and the language select** only run on a real store host, not on the dev server (the Storefront call breaks the dev server's session): open `https://<store>.myshopify.com/?preview_theme_id=<id>&consent_preview=1`. The dialog shows Shopify's own banner words (edit them in Settings > Customer privacy > Cookie banner), the country Shopify detects for you is preselected, and a country with two languages shows a "Language" select. **Not done with a second language**: the dev store's countries list only English, so add Swedish and French to the Sweden and Canada markets and look again.
+- On a store with more than one country or language: the first ask shows the resolved country (with its currency) and language in a folded row. Change the country, Accept all: the page reloads in the new market and the consent is recorded. Reject all does the same with everything declined. Leave the region as it is: no reload. Reopen from the footer: no region row. With more than 12 countries (a Rest of world market), the country select fills from the footer list when first used. **Not done**: the dev store has two countries and one language.
+- Cross-check in the checkout that the choice is carried over (Shopify's documentation does not describe this for an Online Store theme).
+
 ## Performance
 
 - Run `npm run perf:lighthouse` ([tooling.md](tooling.md#perf-lighthouse)) on home, product and collection. Take the median of several runs.

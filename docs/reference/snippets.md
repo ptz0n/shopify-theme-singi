@@ -119,6 +119,30 @@ Rules (Google and WCAG):
 {% render 'breadcrumbs', kind: 'product' %}
 ```
 
+## consent-dialog
+
+File: `snippets/consent-dialog.liquid`
+
+The cookie dialog: one native, modal <dialog> over a scrim (a decision is needed before the page is used), shown by assets/consent.js only to a visitor
+Shopify's region rules say must be asked and who has not answered yet (`shouldShowBanner()` and `currentVisitorConsent()`
+of the Customer Privacy API). The answer is recorded with `setTrackingConsent()`, only after a click, never automatically.
+Accept all and Reject all are the same size and weight (both primary buttons; Save choices is the secondary one); Customize opens Essential (always on), Analytics, Marketing and
+Preferences. A footer button (`data-consent-open`, sections/footer.liquid) reopens it with the current choices.
+On a store with more than one country or language the first ask also shows the visitor's country and language (the market
+Shopify resolved, with the currency) and lets them change either, so one click on Accept all or Reject all confirms the
+consent and the region together; the footer's Cookie settings button reopens the consent part only, and the footer
+selector stays the way to change region later. Nothing redirects: the country and language are preselected from what Shopify's
+suggestion endpoint detects for the visitor (assets/consent.js), and apply only when the visitor answers. The words are Shopify's own
+cookie banner copy, translated and edited in the admin, fetched from the Storefront API on a real store host; the `consent` strings
+here are the fallback (and what the dev server shows, where that call cannot be made).
+Needs JavaScript: without it nothing non-essential runs and the dialog never shows. Rendered first in the body when the
+theme setting "Show the theme's cookie dialog" is on (and Shopify's own banner is off). Decision record:
+docs/decisions/046-the-cookie-dialog-is-the-themes-and-shopifys-api-records-the-answer.md.
+
+```liquid
+{% render 'consent-dialog' %}
+```
+
 ## facets
 
 File: `snippets/facets.liquid`

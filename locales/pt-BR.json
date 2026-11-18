@@ -150,5 +150,23 @@
     "go_to_product": "Ir para {{ title }}",
     "choose_options": "Escolher opções de {{ title }}",
     "remove": "Remover {{ title }} dos favoritos"
+  },
+  "consent": {
+    "title": "Cookies",
+    "body": "Usamos cookies para entender como a loja é usada e mostrar ofertas relevantes para você. Você escolhe quais.",
+    "accept": "Aceitar todos",
+    "reject": "Recusar todos",
+    "customize": "Personalizar",
+    "save": "Salvar escolhas",
+    "essential": "Essenciais",
+    "essential_note": "Mantêm o carrinho e o checkout funcionando. Sempre ativos.",
+    "analytics": "Análise",
+    "analytics_note": "Conta visitas para que a loja possa melhorar.",
+    "marketing": "Marketing",
+    "marketing_note": "Permite que anúncios e ofertas combinem com o que você viu.",
+    "preferences": "Preferências",
+    "preferences_note": "Lembram escolhas como idioma e região.",
+    "privacy": "Política de privacidade",
+    "settings": "Configurações de cookies"
   }
 }

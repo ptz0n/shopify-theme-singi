@@ -150,5 +150,23 @@
     "go_to_product": "Gå till {{ title }}",
     "choose_options": "Välj alternativ för {{ title }}",
     "remove": "Ta bort {{ title }} från favoriter"
+  },
+  "consent": {
+    "title": "Cookies",
+    "body": "Vi använder cookies för att se hur butiken används och för att visa dig relevanta erbjudanden. Du väljer själv vilka.",
+    "accept": "Godkänn alla",
+    "reject": "Avvisa alla",
+    "customize": "Anpassa",
+    "save": "Spara val",
+    "essential": "Nödvändiga",
+    "essential_note": "Håller varukorgen och kassan igång. Alltid på.",
+    "analytics": "Analys",
+    "analytics_note": "Räknar besök så att butiken kan bli bättre.",
+    "marketing": "Marknadsföring",
+    "marketing_note": "Låter annonser och erbjudanden matcha det du har tittat på.",
+    "preferences": "Preferenser",
+    "preferences_note": "Kommer ihåg val som språk och region.",
+    "privacy": "Integritetspolicy",
+    "settings": "Cookieinställningar"
   }
 }

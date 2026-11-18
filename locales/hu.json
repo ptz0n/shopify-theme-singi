@@ -150,5 +150,23 @@
     "go_to_product": "Ugrás ide: {{ title }}",
     "choose_options": "{{ title }} opcióinak kiválasztása",
     "remove": "{{ title }} eltávolítása a kedvencek közül"
+  },
+  "consent": {
+    "title": "Sütik",
+    "body": "Sütiket használunk, hogy lássuk, hogyan használják az áruházat, és releváns ajánlatokat mutassunk Önnek. Ön választja ki, melyeket.",
+    "accept": "Összes elfogadása",
+    "reject": "Összes elutasítása",
+    "customize": "Testreszabás",
+    "save": "Választások mentése",
+    "essential": "Szükséges",
+    "essential_note": "Működésben tartja a kosarat és a fizetést. Mindig be van kapcsolva.",
+    "analytics": "Analitika",
+    "analytics_note": "Számolja a látogatásokat, hogy az áruház fejlődhessen.",
+    "marketing": "Marketing",
+    "marketing_note": "Segít, hogy a hirdetések és ajánlatok illeszkedjenek ahhoz, amit megnézett.",
+    "preferences": "Beállítások",
+    "preferences_note": "Megjegyzi az olyan választásokat, mint a nyelv és a régió.",
+    "privacy": "Adatvédelmi szabályzat",
+    "settings": "Sütibeállítások"
   }
 }

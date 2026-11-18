@@ -46,6 +46,9 @@
       {%- assign year = 'now' | date: '%Y' -%}
       <span>{{ section.settings.legal_text | replace: '[year]', year }}</span>
     {%- endif -%}
+    {%- if settings.consent_dialog -%}
+      <button class="consent-open" type="button" data-consent-open>{{ 'consent.settings' | t }}</button>
+    {%- endif -%}
     {%- render 'localization-selector' -%}
     {%- if section.settings.show_payment_icons -%}
       {%- render 'payment-icons', mono: section.settings.payment_icons_mono, class: 'footer__payment' -%}
@@ -61,6 +64,9 @@
   .footer__nav ul { display: grid; gap: 0.25rem; padding: 0; }
   .footer__nav a { display: inline-flex; align-items: center; min-height: 2.75rem; text-decoration: none; }
   .footer__nav a:hover { text-decoration: underline; }
+  /* The cookie settings button shows once the Customer Privacy API is ready (assets/consent.js sets data-consent-ready on the root). */
+  .consent-open { display: none; align-items: center; min-height: 2.75rem; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; cursor: pointer; }
+  html[data-consent-ready] .consent-open { display: inline-flex; }
   .footer__legal { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin-block-start: 2.5rem; padding-block-start: 1.5rem; border-block-start: 1px solid var(--color-border); font-size: 0.75rem; color: var(--color-muted); }
   @media (min-width: 56em) {
     .footer__inner { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }

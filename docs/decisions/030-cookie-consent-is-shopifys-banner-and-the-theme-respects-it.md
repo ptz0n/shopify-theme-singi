@@ -1,6 +1,6 @@
 # 030. Cookie consent is Shopify's own banner; the theme builds none and respects the answer
 
-Status: accepted
+Status: partly superseded by [046](046-the-cookie-dialog-is-the-themes-and-shopifys-api-records-the-answer.md) (2026-11-18): the theme now ships its own cookie dialog (off by default); the Consent Mode handling, the storage notes and the rest below stand
 Area: privacy | tracking | consent
 Code: `assets/tracking.js` (consent handling), `docs/privacy.md`
 

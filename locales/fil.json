@@ -150,5 +150,23 @@
     "go_to_product": "Pumunta sa {{ title }}",
     "choose_options": "Pumili ng mga opsyon para sa {{ title }}",
     "remove": "Alisin ang {{ title }} sa mga paborito"
+  },
+  "consent": {
+    "title": "Cookies",
+    "body": "Gumagamit kami ng cookies para makita kung paano ginagamit ang tindahan at para magpakita sa iyo ng mga angkop na alok. Ikaw ang pipili kung alin.",
+    "accept": "Tanggapin lahat",
+    "reject": "Tanggihan lahat",
+    "customize": "I-customize",
+    "save": "I-save ang mga napili",
+    "essential": "Mahalaga",
+    "essential_note": "Pinapagana ang cart at checkout. Laging naka-on.",
+    "analytics": "Analytics",
+    "analytics_note": "Binibilang ang mga bisita para mapahusay ang tindahan.",
+    "marketing": "Marketing",
+    "marketing_note": "Pinatutugma ang mga ad at alok sa mga tiningnan mo.",
+    "preferences": "Mga kagustuhan",
+    "preferences_note": "Naaalala ang mga pinili tulad ng wika at rehiyon.",
+    "privacy": "Patakaran sa privacy",
+    "settings": "Mga setting ng cookie"
   }
 }

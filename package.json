@@ -73,6 +73,7 @@
     "test:product-row": "node scripts/test-product-row.mjs",
     "test:placeholders": "node scripts/test-placeholders.mjs",
     "test:badges": "node scripts/test-badges.mjs",
+    "test:consent": "node scripts/test-consent.mjs",
     "perf:interactions": "node scripts/perf-interactions.mjs",
     "test:zoom": "node scripts/test-zoom.mjs",
     "test:search": "node scripts/test-search.mjs",

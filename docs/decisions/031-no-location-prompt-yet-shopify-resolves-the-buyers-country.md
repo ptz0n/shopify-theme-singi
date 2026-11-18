@@ -1,6 +1,6 @@
 # 031. No location prompt yet: Shopify already resolves the buyer's country, and the footer selector stays
 
-Status: accepted (the cross-store suggestion is deferred to the multi-store selector item)
+Status: accepted (the cross-store suggestion is deferred to the multi-store selector item); [046](046-the-cookie-dialog-is-the-themes-and-shopifys-api-records-the-answer.md) adds a region row to the cookie dialog, for a visitor who is asked for consent: the resolved country and language, confirmed or changed with one click. The cookie dialog's region row preselects the country and language from `/browsing_context_suggestions.json` (the endpoint named below as undocumented), at the owner's request, and applies it only when the visitor answers. There is still no theme-side location guess and no redirect
 Area: internationalization | markets | SEO
 Code: `snippets/localization-selector.liquid`, `assets/localization.js`, `snippets/meta-tags.liquid` (hreflang), `docs/i18n.md`
 

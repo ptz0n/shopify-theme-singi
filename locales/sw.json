@@ -150,5 +150,23 @@
     "go_to_product": "Nenda kwa {{ title }}",
     "choose_options": "Chagua chaguo za {{ title }}",
     "remove": "Ondoa {{ title }} kwenye vipendwa"
+  },
+  "consent": {
+    "title": "Vidakuzi",
+    "body": "Tunatumia vidakuzi kuona jinsi duka linavyotumika na kukuonyesha ofa zinazokufaa. Wewe ndiye unayechagua.",
+    "accept": "Kubali zote",
+    "reject": "Kataa zote",
+    "customize": "Badilisha",
+    "save": "Hifadhi chaguo",
+    "essential": "Muhimu",
+    "essential_note": "Huweka kikapu na malipo vikifanya kazi. Huwa vimewashwa kila wakati.",
+    "analytics": "Uchanganuzi",
+    "analytics_note": "Huhesabu ziara ili duka liboreshwe.",
+    "marketing": "Uuzaji",
+    "marketing_note": "Huwezesha matangazo na ofa kulingana na ulichotazama.",
+    "preferences": "Mapendeleo",
+    "preferences_note": "Hukumbuka chaguo kama lugha na eneo.",
+    "privacy": "Sera ya faragha",
+    "settings": "Mipangilio ya vidakuzi"
   }
 }

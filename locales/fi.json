@@ -150,5 +150,23 @@
     "go_to_product": "Siirry tuotteeseen {{ title }}",
     "choose_options": "Valitse vaihtoehdot: {{ title }}",
     "remove": "Poista {{ title }} suosikeista"
+  },
+  "consent": {
+    "title": "Evästeet",
+    "body": "Käytämme evästeitä nähdäksemme, miten kauppaa käytetään, ja näyttääksemme sinulle sopivia tarjouksia. Sinä valitset, mitkä sallit.",
+    "accept": "Hyväksy kaikki",
+    "reject": "Hylkää kaikki",
+    "customize": "Mukauta",
+    "save": "Tallenna valinnat",
+    "essential": "Välttämättömät",
+    "essential_note": "Pitävät ostoskorin ja kassan toiminnassa. Aina käytössä.",
+    "analytics": "Analytiikka",
+    "analytics_note": "Laskee käyntejä, jotta kauppa voi kehittyä.",
+    "marketing": "Markkinointi",
+    "marketing_note": "Auttaa kohdistamaan mainokset ja tarjoukset katsomiisi tuotteisiin.",
+    "preferences": "Asetukset",
+    "preferences_note": "Muistaa valintoja, kuten kielen ja alueen.",
+    "privacy": "Tietosuojakäytäntö",
+    "settings": "Evästeasetukset"
   }
 }

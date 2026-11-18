@@ -44,7 +44,11 @@ const ok = (condition, message) => {
   }
 };
 const read = () => ({
-  alternates: [...document.querySelectorAll('head link[rel=alternate][hreflang]')].map((l) => [l.getAttribute('hreflang'), l.getAttribute('href')]),
+  /* Shopify prints its own hreflang for the store's markets and languages (on by default, and the dev store now has three markets): those point at
+     the store itself. Only alternates that point elsewhere are the theme's (singi.alternates), which is what this test is about. */
+  alternates: [...document.querySelectorAll('head link[rel=alternate][hreflang]')]
+    .filter((l) => !/(^|\.)myshopify\.com$|^(127\.0\.0\.1|localhost)$/.test(new URL(l.href).hostname))
+    .map((l) => [l.getAttribute('hreflang'), l.getAttribute('href')]),
   canonicals: document.querySelectorAll('head link[rel=canonical]').length,
 });
 

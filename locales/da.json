@@ -150,5 +150,23 @@
     "go_to_product": "Gå til {{ title }}",
     "choose_options": "Vælg muligheder for {{ title }}",
     "remove": "Fjern {{ title }} fra favoritter"
+  },
+  "consent": {
+    "title": "Cookies",
+    "body": "Vi bruger cookies til at se, hvordan butikken bruges, og til at vise dig relevante tilbud. Du vælger selv, hvilke.",
+    "accept": "Accepter alle",
+    "reject": "Afvis alle",
+    "customize": "Tilpas",
+    "save": "Gem valg",
+    "essential": "Nødvendige",
+    "essential_note": "Holder kurven og kassen i gang. Altid slået til.",
+    "analytics": "Statistik",
+    "analytics_note": "Tæller besøg, så butikken kan blive bedre.",
+    "marketing": "Marketing",
+    "marketing_note": "Lader annoncer og tilbud passe til det, du har kigget på.",
+    "preferences": "Præferencer",
+    "preferences_note": "Husker valg som sprog og område.",
+    "privacy": "Privatlivspolitik",
+    "settings": "Cookieindstillinger"
   }
 }

@@ -33,23 +33,28 @@ export const crawlHeaders = () => {
 };
 
 /**
- * Makes every page a puppeteer browser opens send the signature, but only to the origin being
+ * Makes every page a puppeteer browser opens send the signature (when there is one), but only to the origin being
  * tested (the dev server or the storefront): headers added to cross-origin requests (the CDN,
  * Shopify's metrics) trigger CORS preflights that block scripts and fonts.
  * The dev server (`npm run dev`) does not pass the headers on to Shopify, so a run through it can
  * still be throttled on cart and product `.js` requests; point SINGI_URL at the storefront
  * (with SINGI_PASSWORD) for those.
  */
+/* Shopify's own cookie banner script asks the Storefront API for its settings; through the dev server (`npm run dev`) that call is
+   answered with a 400 and the CLI then drops its store-password session, so every later page redirects to /password (found 2026-11-18,
+   docs/tooling.md). The tests are not about Shopify's banner, so the test browsers never load it. */
+const SHOPIFY_BANNER = /\/cdn\/shopifycloud\/privacy-banner\//;
+
 export const signed = (browser, origin) => {
   const headers = crawlHeaders();
-  if (!headers) return browser;
   const target = new URL(origin).origin;
   const newPage = browser.newPage.bind(browser);
   browser.newPage = async (...args) => {
     const page = await newPage(...args);
     await page.setRequestInterception(true);
     page.on('request', (request) => {
-      if (new URL(request.url()).origin === target) request.continue({ headers: { ...request.headers(), ...headers } });
+      if (SHOPIFY_BANNER.test(request.url())) request.abort();
+      else if (headers && new URL(request.url()).origin === target) request.continue({ headers: { ...request.headers(), ...headers } });
       else request.continue();
     });
     return page;

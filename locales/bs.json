@@ -152,5 +152,23 @@
     "go_to_product": "Idi na {{ title }}",
     "choose_options": "Odaberi opcije za {{ title }}",
     "remove": "Ukloni {{ title }} iz favorita"
+  },
+  "consent": {
+    "title": "Kolačići",
+    "body": "Koristimo kolačiće da vidimo kako se trgovina koristi i da vam prikažemo relevantne ponude. Vi birate koje.",
+    "accept": "Prihvati sve",
+    "reject": "Odbij sve",
+    "customize": "Prilagodi",
+    "save": "Sačuvaj odabir",
+    "essential": "Neophodni",
+    "essential_note": "Omogućavaju rad korpe i plaćanja. Uvijek uključeni.",
+    "analytics": "Analitika",
+    "analytics_note": "Broje posjete kako bi se trgovina mogla poboljšati.",
+    "marketing": "Marketing",
+    "marketing_note": "Omogućavaju da reklame i ponude odgovaraju onome što ste pogledali.",
+    "preferences": "Postavke",
+    "preferences_note": "Pamte izbore poput jezika i regije.",
+    "privacy": "Politika privatnosti",
+    "settings": "Postavke kolačića"
   }
 }

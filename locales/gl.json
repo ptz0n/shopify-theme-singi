@@ -150,5 +150,23 @@
     "go_to_product": "Ir a {{ title }}",
     "choose_options": "Escoller as opcións de {{ title }}",
     "remove": "Quitar {{ title }} de favoritos"
+  },
+  "consent": {
+    "title": "Cookies",
+    "body": "Usamos cookies para saber como se usa a tenda e mostrarche ofertas relevantes. Ti escolles cales.",
+    "accept": "Aceptar todas",
+    "reject": "Rexeitar todas",
+    "customize": "Personalizar",
+    "save": "Gardar escollas",
+    "essential": "Esenciais",
+    "essential_note": "Manteñen o carriño e o pagamento funcionando. Sempre activas.",
+    "analytics": "Analíticas",
+    "analytics_note": "Contan as visitas para que a tenda poida mellorar.",
+    "marketing": "Márketing",
+    "marketing_note": "Fan que os anuncios e as ofertas se axusten ao que miraches.",
+    "preferences": "Preferencias",
+    "preferences_note": "Lembran opcións como o idioma e a rexión.",
+    "privacy": "Política de privacidade",
+    "settings": "Configuración de cookies"
   }
 }

@@ -1,0 +1,220 @@
+{% doc %}
+  The cookie dialog: one native, modal <dialog> over a scrim (a decision is needed before the page is used), shown by assets/consent.js only to a visitor
+  Shopify's region rules say must be asked and who has not answered yet (`shouldShowBanner()` and `currentVisitorConsent()`
+  of the Customer Privacy API). The answer is recorded with `setTrackingConsent()`, only after a click, never automatically.
+  Accept all and Reject all are the same size and weight (both primary buttons; Save choices is the secondary one); Customize opens Essential (always on), Analytics, Marketing and
+  Preferences. A footer button (`data-consent-open`, sections/footer.liquid) reopens it with the current choices.
+  On a store with more than one country or language the first ask also shows the visitor's country and language (the market
+  Shopify resolved, with the currency) and lets them change either, so one click on Accept all or Reject all confirms the
+  consent and the region together; the footer's Cookie settings button reopens the consent part only, and the footer
+  selector stays the way to change region later. Nothing redirects: the country and language are preselected from what Shopify's
+  suggestion endpoint detects for the visitor (assets/consent.js), and apply only when the visitor answers. The words are Shopify's own
+  cookie banner copy, translated and edited in the admin, fetched from the Storefront API on a real store host; the `consent` strings
+  here are the fallback (and what the dev server shows, where that call cannot be made).
+  Needs JavaScript: without it nothing non-essential runs and the dialog never shows. Rendered first in the body when the
+  theme setting "Show the theme's cookie dialog" is on (and Shopify's own banner is off). Decision record:
+  docs/decisions/046-the-cookie-dialog-is-the-themes-and-shopifys-api-records-the-answer.md.
+
+  @example
+  {% render 'consent-dialog' %}
+{% enddoc %}
+
+{%- liquid
+  assign countries = localization.available_countries
+  assign languages = localization.available_languages
+  assign show_region = false
+  if countries.size > 1 or languages.size > 1
+    assign show_region = true
+  endif
+  comment
+    More than 12 countries are not rendered here (about 240 on a store with a Rest of world market, every page): the select holds the
+    current country and assets/consent.js fetches the list from the footer selector when it is first used.
+  endcomment
+  assign lazy_countries = false
+  if countries.size > 12
+    assign lazy_countries = true
+  endif
+-%}
+
+<consent-dialog data-country="{{ localization.country.iso_code }}" data-language="{{ localization.language.iso_code }}">
+  <dialog class="consent" aria-labelledby="consent-title">
+    <form class="consent__panel stack" method="dialog">
+      <div class="consent__head">
+        <h2 id="consent-title" class="consent__title" tabindex="-1" data-copy="title">{{ 'consent.title' | t }}</h2>
+        <button class="icon-button" type="button" data-consent-close data-copy="close" aria-label="{{ 'general.close' | t }}" hidden>
+          {%- render 'icon', name: 'close' -%}
+        </button>
+      </div>
+
+      <p class="consent__body">
+        <span data-copy="text">{{ 'consent.body' | t }}</span>
+        {%- if shop.privacy_policy != blank %}
+          <a href="{{ shop.privacy_policy.url }}" data-copy="policy">{{ 'consent.privacy' | t }}</a>
+        {%- endif -%}
+      </p>
+
+      {%- if show_region -%}
+        <div class="consent__region" data-consent-region>
+          <p class="eyebrow">{{ 'localization.label' | t }}</p>
+          <details class="consent__where">
+            <summary>
+              <span>
+                <span class="mono" data-where="country">
+                  {{- localization.country.name }} ({{ localization.country.currency.iso_code }})</span
+                >
+                <span
+                  data-where="language"
+                  lang="{{ localization.language.iso_code }}"
+                  {% if languages.size < 2 %}
+                    hidden
+                  {% endif %}
+                >
+                  · {{ localization.language.endonym_name }}
+                </span>
+              </span>
+              {%- render 'icon', name: 'chevron-down' -%}
+            </summary>
+            <div class="consent__fields">
+              {%- if countries.size > 1 -%}
+                <label>
+                  {{ 'localization.country' | t }}
+                  <select
+                    name="country_code"
+                    form="consent-localization"
+                    {% if lazy_countries %}
+                      data-lazy
+                    {% endif %}
+                  >
+                    {%- if lazy_countries -%}
+                      <option value="{{ localization.country.iso_code }}" selected>{{ localization.country.name }}</option>
+                    {%- else -%}
+                      {%- for country in countries -%}
+                        <option
+                          value="{{ country.iso_code }}"
+                          {% if country.iso_code == localization.country.iso_code %}
+                            selected
+                          {% endif %}
+                        >
+                          {{ country.name }} ({{ country.currency.iso_code }})
+                        </option>
+                      {%- endfor -%}
+                    {%- endif -%}
+                  </select>
+                </label>
+              {%- endif -%}
+              {%- comment -%}The language select is there for every store: it shows (and posts) only when the chosen country has more than one language. For the current market the options are rendered here; for another country assets/consent.js reads them from the Storefront API.{%- endcomment -%}
+              <label
+                data-consent-language
+                {% if languages.size < 2 %}
+                  hidden
+                {% endif %}
+              >
+                {{ 'localization.language' | t }}
+                <select
+                  name="language_code"
+                  form="consent-localization"
+                  {% if languages.size < 2 %}
+                    disabled
+                  {% endif %}
+                >
+                  {%- for language in languages -%}
+                    <option
+                      value="{{ language.iso_code }}"
+                      lang="{{ language.iso_code }}"
+                      {% if language.iso_code == localization.language.iso_code %}
+                        selected
+                      {% endif %}
+                    >
+                      {{ language.endonym_name }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </label>
+            </div>
+          </details>
+        </div>
+      {%- endif -%}
+
+      <details class="consent__more">
+        <summary data-copy="prefs">{{ 'consent.customize' | t }}</summary>
+        <fieldset class="consent__choices">
+          <legend class="visually-hidden">{{ 'consent.customize' | t }}</legend>
+          <label class="consent__row">
+            <input type="checkbox" checked disabled>
+            <span>
+              <strong data-copy="essential">{{ 'consent.essential' | t }}</strong>
+              <small data-copy="essential_note">{{ 'consent.essential_note' | t }}</small>
+            </span>
+          </label>
+          <label class="consent__row">
+            <input type="checkbox" name="analytics">
+            <span>
+              <strong data-copy="analytics">{{ 'consent.analytics' | t }}</strong>
+              <small data-copy="analytics_note">{{ 'consent.analytics_note' | t }}</small>
+            </span>
+          </label>
+          <label class="consent__row">
+            <input type="checkbox" name="marketing">
+            <span>
+              <strong data-copy="marketing">{{ 'consent.marketing' | t }}</strong>
+              <small data-copy="marketing_note">{{ 'consent.marketing_note' | t }}</small>
+            </span>
+          </label>
+          <label class="consent__row">
+            <input type="checkbox" name="preferences">
+            <span>
+              <strong data-copy="preferences">{{ 'consent.preferences' | t }}</strong>
+              <small data-copy="preferences_note">{{ 'consent.preferences_note' | t }}</small>
+            </span>
+          </label>
+        </fieldset>
+        <button class="button button--secondary consent__save" type="submit" data-consent="custom" data-copy="save">
+          {{ 'consent.save' | t }}
+        </button>
+      </details>
+
+      <div class="consent__actions">
+        <button class="button" type="button" data-consent="reject" data-copy="reject">{{ 'consent.reject' | t }}</button>
+        <button class="button" type="button" data-consent="accept" data-copy="accept">{{ 'consent.accept' | t }}</button>
+      </div>
+    </form>
+  </dialog>
+  {%- if show_region -%}
+    {%- form 'localization', id: 'consent-localization' -%}
+      <input type="hidden" name="return_to" value="{{ request.path | default: routes.root_url }}">
+    {%- endform -%}
+  {%- endif -%}
+</consent-dialog>
+
+{% stylesheet %}
+  /* A modal card over a scrim, centered on a wide screen and 16px from the bottom of a phone. The first ask needs a decision before the page is
+     used, and Reject all is as easy as Accept all, so this is not a cookie wall. Native modal: the page behind is inert, focus stays inside and
+     the page does not scroll. Opacity and transform only. */
+  .consent { width: min(26rem, calc(100% - 2rem)); max-width: none; max-height: calc(100dvh - 2rem); margin: auto; padding: 0; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); color: var(--color-fg); }
+  .consent::backdrop { background: var(--color-scrim); }
+  html:has(.consent:modal) { overflow: hidden; }
+  @media (max-width: 39.99em) { .consent { margin-block-end: 1rem; } }
+  .consent[open] { animation: consent-in 0.2s ease-out; }
+  .consent__panel { padding: 1.25rem; --stack: 0.875rem; }
+  .consent__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .consent [hidden] { display: none; }
+  .consent__title { margin: 0; font-size: 1rem; }
+  .consent__title:focus-visible { outline: none; }
+  .consent__body { font-size: 0.875rem; color: var(--color-muted); }
+  .consent__body a { color: var(--color-fg); }
+  .consent__region { display: grid; gap: 0.125rem; }
+  .consent__where summary { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; min-height: 2.75rem; cursor: pointer; font-size: 0.875rem; list-style: none; }
+  .consent__where summary::-webkit-details-marker { display: none; }
+  .consent__where[open] summary svg { rotate: 180deg; }
+  .consent__fields { display: grid; gap: 0.75rem; padding-block: 0.25rem 0.5rem; font-size: 0.875rem; }
+  .consent__fields label { display: grid; gap: 0.25rem; }
+  .consent__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .consent__more summary { display: inline-flex; align-items: center; min-height: 2.75rem; cursor: pointer; font-size: 0.875rem; text-decoration: underline; }
+  .consent__choices { display: grid; gap: 0.25rem; margin: 0 0 0.75rem; padding: 0; border: 0; }
+  .consent__row { display: flex; align-items: flex-start; gap: 0.75rem; min-height: 2.75rem; padding-block: 0.375rem; font-size: 0.875rem; }
+  .consent__row input { flex: none; width: 1.25rem; height: 1.25rem; margin-block-start: 0.125rem; accent-color: var(--color-fg); }
+  .consent__row small { display: block; color: var(--color-muted); font-size: 0.8125rem; }
+  .consent__save { width: 100%; }
+  @keyframes consent-in { from { opacity: 0; transform: translateY(0.5rem); } }
+  @media (prefers-reduced-motion: reduce) { .consent[open] { animation: none; } }
+{% endstylesheet %}
