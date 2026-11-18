@@ -11,7 +11,69 @@ Size in bytes (before Shopify's CDN compression) and where each asset is referen
 | `assets/card-video.js` | 1425 | `layout/theme.liquid` |
 | `assets/cart-drawer.js` | 1689 | `sections/cart-drawer.liquid` |
 | `assets/cart-items.js` | 2181 | `sections/cart-drawer.liquid`, `sections/main-cart.liquid` |
-| `assets/consent.js` | 13849 | `layout/theme.liquid` |
+| `assets/consent-strings-af.json` | 697 | _imported by other assets_ |
+| `assets/consent-strings-ar.json` | 965 | _imported by other assets_ |
+| `assets/consent-strings-az.json` | 834 | _imported by other assets_ |
+| `assets/consent-strings-be.json` | 1166 | _imported by other assets_ |
+| `assets/consent-strings-bg.json` | 1211 | _imported by other assets_ |
+| `assets/consent-strings-bn.json` | 1504 | _imported by other assets_ |
+| `assets/consent-strings-bs.json` | 723 | _imported by other assets_ |
+| `assets/consent-strings-ca.json` | 760 | _imported by other assets_ |
+| `assets/consent-strings-cs.json` | 824 | _imported by other assets_ |
+| `assets/consent-strings-da.json` | 689 | _imported by other assets_ |
+| `assets/consent-strings-de.json` | 775 | _imported by other assets_ |
+| `assets/consent-strings-el.json` | 1253 | _imported by other assets_ |
+| `assets/consent-strings-en.json` | 672 | `snippets/consent-dialog.liquid` |
+| `assets/consent-strings-es.json` | 748 | _imported by other assets_ |
+| `assets/consent-strings-et.json` | 736 | _imported by other assets_ |
+| `assets/consent-strings-eu.json` | 807 | _imported by other assets_ |
+| `assets/consent-strings-fa.json` | 1083 | _imported by other assets_ |
+| `assets/consent-strings-fi.json` | 780 | _imported by other assets_ |
+| `assets/consent-strings-fil.json` | 766 | _imported by other assets_ |
+| `assets/consent-strings-fr.json` | 810 | _imported by other assets_ |
+| `assets/consent-strings-gl.json` | 732 | _imported by other assets_ |
+| `assets/consent-strings-gu.json` | 1407 | _imported by other assets_ |
+| `assets/consent-strings-he.json` | 918 | _imported by other assets_ |
+| `assets/consent-strings-hi.json` | 1593 | _imported by other assets_ |
+| `assets/consent-strings-hr.json` | 720 | _imported by other assets_ |
+| `assets/consent-strings-hu.json` | 863 | _imported by other assets_ |
+| `assets/consent-strings-hy.json` | 1318 | _imported by other assets_ |
+| `assets/consent-strings-id.json` | 776 | _imported by other assets_ |
+| `assets/consent-strings-is.json` | 744 | _imported by other assets_ |
+| `assets/consent-strings-it.json` | 734 | _imported by other assets_ |
+| `assets/consent-strings-ja.json` | 896 | _imported by other assets_ |
+| `assets/consent-strings-ka.json` | 1585 | _imported by other assets_ |
+| `assets/consent-strings-kk.json` | 1161 | _imported by other assets_ |
+| `assets/consent-strings-ko.json` | 844 | _imported by other assets_ |
+| `assets/consent-strings-lt.json` | 782 | _imported by other assets_ |
+| `assets/consent-strings-lv.json` | 787 | _imported by other assets_ |
+| `assets/consent-strings-mk.json` | 1170 | _imported by other assets_ |
+| `assets/consent-strings-mr.json` | 1465 | _imported by other assets_ |
+| `assets/consent-strings-ms.json` | 734 | _imported by other assets_ |
+| `assets/consent-strings-nb.json` | 724 | _imported by other assets_ |
+| `assets/consent-strings-ne.json` | 1597 | _imported by other assets_ |
+| `assets/consent-strings-nl.json` | 721 | _imported by other assets_ |
+| `assets/consent-strings-pl.json` | 758 | _imported by other assets_ |
+| `assets/consent-strings-pt-BR.json` | 731 | _imported by other assets_ |
+| `assets/consent-strings-pt-PT.json` | 744 | _imported by other assets_ |
+| `assets/consent-strings-ro.json` | 803 | _imported by other assets_ |
+| `assets/consent-strings-ru.json` | 1212 | _imported by other assets_ |
+| `assets/consent-strings-sk.json` | 793 | _imported by other assets_ |
+| `assets/consent-strings-sl.json` | 740 | _imported by other assets_ |
+| `assets/consent-strings-sq.json` | 757 | _imported by other assets_ |
+| `assets/consent-strings-sr.json` | 1072 | _imported by other assets_ |
+| `assets/consent-strings-sv.json` | 724 | _imported by other assets_ |
+| `assets/consent-strings-sw.json` | 683 | _imported by other assets_ |
+| `assets/consent-strings-ta.json` | 1999 | _imported by other assets_ |
+| `assets/consent-strings-te.json` | 1722 | _imported by other assets_ |
+| `assets/consent-strings-th.json` | 1559 | _imported by other assets_ |
+| `assets/consent-strings-tr.json` | 799 | _imported by other assets_ |
+| `assets/consent-strings-uk.json` | 1244 | _imported by other assets_ |
+| `assets/consent-strings-ur.json` | 1133 | _imported by other assets_ |
+| `assets/consent-strings-vi.json` | 904 | _imported by other assets_ |
+| `assets/consent-strings-zh-CN.json` | 683 | _imported by other assets_ |
+| `assets/consent-strings-zh-TW.json` | 683 | _imported by other assets_ |
+| `assets/consent.js` | 15775 | `layout/theme.liquid` |
 | `assets/embed.js` | 948 | `sections/main-product.liquid` |
 | `assets/facets.js` | 3353 | `sections/main-collection.liquid`, `sections/main-search.liquid` |
 | `assets/image-tone.js` | 3297 | `layout/theme.liquid` |

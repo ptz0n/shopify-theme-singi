@@ -36,7 +36,12 @@
   endif
 -%}
 
-<consent-dialog data-country="{{ localization.country.iso_code }}" data-language="{{ localization.language.iso_code }}">
+{%- assign strings = 'consent-strings-en.json' | asset_url -%}
+<consent-dialog
+  data-country="{{ localization.country.iso_code }}"
+  data-language="{{ localization.language.iso_code }}"
+  data-strings="{{ strings }}"
+>
   <dialog class="consent" aria-labelledby="consent-title">
     <form class="consent__panel stack" method="dialog">
       <div class="consent__head">
@@ -58,7 +63,7 @@
           <div class="consent__fields">
             {%- if countries.size > 1 -%}
               <label>
-                {{ 'localization.country' | t }}
+                <span data-copy="country">{{ 'localization.country' | t }}</span>
                 <span class="select">
                   <select
                     name="country_code"
@@ -93,7 +98,7 @@
                 hidden
               {% endif %}
             >
-              {{ 'localization.language' | t }}
+              <span data-copy="language">{{ 'localization.language' | t }}</span>
               <span class="select">
                 <select
                   name="language_code"
@@ -123,11 +128,11 @@
 
       <details class="consent__more">
         <summary>
-          <span>{{ 'consent.customize' | t }}</span>
+          <span data-copy="customize">{{ 'consent.customize' | t }}</span>
           {%- render 'icon', name: 'chevron-down' -%}
         </summary>
         <fieldset class="consent__choices">
-          <legend class="visually-hidden">{{ 'consent.customize' | t }}</legend>
+          <legend class="visually-hidden" data-copy="customize">{{ 'consent.customize' | t }}</legend>
           <label class="consent__row">
             <input type="checkbox" checked disabled>
             <span>

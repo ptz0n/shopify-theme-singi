@@ -128,7 +128,7 @@ The heading block (`blocks/heading.liquid`) offers `sm`, `md`, `lg`, `xl` sizes 
 | Pagination | `snippets/pagination.liquid` | Plain links, `rel=prev|next`. |
 | Breadcrumbs | `snippets/breadcrumbs.liquid` | Plus JSON-LD. |
 | Skeleton | `.skeleton` in `base.css`, shapes in `snippets/skeletons.liquid` | Shimmer disabled under `prefers-reduced-motion`. |
-| Icons | `snippets/icon.liquid` | Inline SVG, stroke icons, `icon--flip` mirrors in RTL. |
+| Icons | `snippets/icon.liquid` | Inline SVG, stroke icons, `icon--flip` mirrors in RTL. One icon for one meaning: `close` only closes or dismisses (drawers, dialogs, the announcement bar); `trash` removes an item (cart page, cart drawer, favorites). |
 
 ## Price formatting
 

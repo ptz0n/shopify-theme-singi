@@ -2,7 +2,7 @@
   Inline SVG icon. Decorative by default: pair with visible text or an
   aria-label on the parent control.
 
-  @param {string} name - sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, check, chevron-down, grid, list, truck, return, shield, leaf, star, gift, support, lock, clock, package
+  @param {string} name - sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, check, chevron-down, trash, grid, list, truck, return, shield, leaf, star, gift, support, lock, clock, package
   @param {string} [class] - Extra class on the svg
 
   The menu icon is two separate paths on purpose: the header turns them into an X
@@ -40,6 +40,8 @@
       <path d="m5 12 5 5L20 7"/>
     {%- when 'chevron-down' -%}
       <path d="m6 9 6 6 6-6"/>
+    {%- when 'trash' -%}
+      <path d="M4 7h16M10 7V4.5h4V7M6 7l1 13h10l1-13M10 11v5M14 11v5"/>
     {%- when 'grid' -%}
       <rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/>
     {%- when 'truck' -%}

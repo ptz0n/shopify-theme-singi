@@ -16,6 +16,7 @@
  *   npm run test:consent             (in another)
  * Env and setup as for npm run test:media.
  */
+import { readFileSync } from 'node:fs';
 import { signed } from './lib/crawl-sign.mjs';
 const base = (process.env.SINGI_URL || 'http://127.0.0.1:9292').replace(/\/$/, '');
 const on = process.env.SINGI_CONSENT === 'on';
@@ -231,7 +232,7 @@ try {
       const block = document.querySelector('[data-consent-region]');
       const country = block?.querySelector('select[name="country_code"]');
       const language = block?.querySelector('select[name="language_code"]');
-      return { block: !!block, labels: block ? [...block.querySelectorAll('label')].map((l) => l.firstChild.textContent.trim()) : [], visible: !!country && country.getBoundingClientRect().height > 0, countries: country ? [...country.options].map((o) => [o.value, o.selected]) : null, languages: language ? [...language.options].map((o) => [o.value, o.selected]) : null, linked: [country, language].filter(Boolean).every((s) => s.form?.id === 'consent-localization' && s.form.getAttribute('action')?.endsWith('/localization')) };
+      return { block: !!block, labels: block ? [...block.querySelectorAll('label > span:first-child')].map((l) => l.textContent.trim()) : [], visible: !!country && country.getBoundingClientRect().height > 0, countries: country ? [...country.options].map((o) => [o.value, o.selected]) : null, languages: language ? [...language.options].map((o) => [o.value, o.selected]) : null, linked: [country, language].filter(Boolean).every((s) => s.form?.id === 'consent-localization' && s.form.getAttribute('action')?.endsWith('/localization')) };
     });
     ok(region.block && region.visible && region.labels[0] === 'Country/region', `the first ask shows a labelled country select, not folded away (${JSON.stringify(region.labels)})`);
     ok(region.countries?.length >= 2 && region.countries.filter(([, selected]) => selected).length === 1 && region.linked, `the country select lists the countries with the current one chosen and posts to /localization (${JSON.stringify(region.countries)})`);
@@ -293,6 +294,14 @@ try {
     await wait(500);
     seen = await page.evaluate(() => ({ title: document.getElementById('consent-title').textContent, accept: document.querySelector('[data-consent="accept"]').textContent.trim(), lang: document.querySelector('dialog.consent').lang, calls: window.__calls }));
     ok(seen.title === 'Cookie-samtycke' && seen.accept === 'Godkänn alla' && seen.lang === 'sv', `picking Swedish makes the dialog speak Swedish (${seen.title} / ${seen.accept} / ${seen.lang}, ${JSON.stringify(seen.calls.slice(-1))})`);
+    /* the labels, the Preferences row and the text are in the chosen language too, not a mix; going back restores the page's */
+    const sv = JSON.parse(readFileSync(new URL('../assets/consent-strings-sv.json', import.meta.url), 'utf8'));
+    seen = await page.evaluate(() => ({ country: document.querySelector('[data-copy="country"]').textContent, language: document.querySelector('[data-copy="language"]').textContent, prefs: document.querySelector('.consent__more summary span').textContent, dir: document.querySelector('dialog.consent').dir }));
+    ok(seen.country === sv.country && seen.language === sv.language && seen.prefs === sv.customize && seen.dir === 'ltr', `in Swedish the labels and the Preferences row are Swedish too (${JSON.stringify(seen)})`);
+    await page.select('select[name="language_code"]', 'en');
+    await wait(500);
+    seen = await page.evaluate(() => ({ country: document.querySelector('[data-copy="country"]').textContent, prefs: document.querySelector('.consent__more summary span').textContent }));
+    ok(seen.country === 'Country/region' && seen.prefs === 'Preferences', `back in English the labels are English again (${JSON.stringify(seen)})`);
     /* a country with one language hides the select and posts no language */
     await page.select('select[name="country_code"]', 'US');
     seen = await page.evaluate(() => ({ hidden: document.querySelector('[data-consent-language]').hidden, disabled: document.querySelector('select[name="language_code"]').disabled  }));

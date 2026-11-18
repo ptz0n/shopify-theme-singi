@@ -32,7 +32,7 @@ const code = (value) => {
   return [first.toLowerCase(), ...rest.map((part) => part.toUpperCase())].join('-');
 };
 const QUERY = `query consent($language: LanguageCode!, $country: CountryCode!) @inContext(language: $language, country: $country) {
-  localization { availableCountries { isoCode availableLanguages { isoCode endonymName } } }
+  localization { availableCountries { isoCode name currency { isoCode } availableLanguages { isoCode endonymName } } }
   consentManagement { banner { title text policyLinkText policyLinkUrl
     preferences { buttonAcceptText buttonDeclineText buttonSaveText buttonCloseText
       purposes { essentialName essentialDesc performanceName performanceDesc preferencesName preferencesDesc marketingName marketingDesc } } } }
@@ -134,6 +134,7 @@ class ConsentDialog extends HTMLElement {
     this.languages = new Map(data.localization.availableCountries.map((entry) => [entry.isoCode, entry.availableLanguages.map((l) => ({ code: code(l.isoCode), name: l.endonymName }))]));
     this.#syncLanguage(hint.language);
     const language = this.#chosenLanguage();
+    await this.#theme(language);
     this.#translate(language === code(this.dataset.language) ? data : await storefront(language, country));
   }
 
@@ -165,8 +166,38 @@ class ConsentDialog extends HTMLElement {
     }
   }
 
+  /* The theme's own words (the labels, and the text and buttons when Shopify's copy is not there) in the chosen language, from one small file per
+     language (assets/consent-strings-<code>.json): Liquid can only translate into the language of the request. The page's own language is what the
+     page rendered, so it is put back from there. Shopify's copy is applied over this. */
+  async #theme(language) {
+    const same = language === code(this.dataset.language);
+    this.originals ??= new Map([...this.querySelectorAll('[data-copy]')].map((element) => [element, element.dataset.copy === 'close' ? element.getAttribute('aria-label') : element.textContent]));
+    let words = null;
+    if (!same) {
+      const pick = [language, language.split('-')[0]];
+      for (const name of pick) {
+        words = await fetch(this.dataset.strings.replace('-en.json', `-${name}.json`), { signal: AbortSignal.timeout(2500) }).then((r) => (r.ok ? r.json() : null), () => null);
+        if (words) break;
+      }
+      if (!words) return;
+    }
+    const key = { text: 'body', policy: 'privacy' };
+    for (const [element, original] of this.originals) {
+      const text = same ? original : words[key[element.dataset.copy] ?? element.dataset.copy];
+      if (!text) continue;
+      if (element.dataset.copy === 'close') element.setAttribute('aria-label', text);
+      else element.textContent = text;
+    }
+    this.dialog.lang = language;
+    this.dialog.dir = ['ar', 'fa', 'he', 'ur'].includes(language.split('-')[0]) ? 'rtl' : 'ltr';
+  }
+
   /* Shopify's banner copy: translated, and edited by the merchant in Settings > Customer privacy. Anything it does not return keeps the theme's text. */
   #translate(data) {
+    for (const entry of data?.localization?.availableCountries ?? []) {
+      const option = entry.name && this.country?.querySelector(`option[value="${entry.isoCode}"]`);
+      if (option) option.textContent = `${entry.name} (${entry.currency.isoCode})`;
+    }
     const banner = data?.consentManagement?.banner;
     if (!banner?.preferences) return;
     const { preferences: p, preferences: { purposes: u } } = banner;
@@ -190,7 +221,8 @@ class ConsentDialog extends HTMLElement {
   /* The visitor picked another country or language: the dialog speaks it. */
   async #retranslate() {
     if (!this.languages) return;
-    const data = await storefront(this.#chosenLanguage(), this.country?.value || this.dataset.country);
+    const language = this.#chosenLanguage();
+    const [data] = await Promise.all([storefront(language, this.country?.value || this.dataset.country), this.#theme(language)]);
     if (data) this.#translate(data);
   }
 

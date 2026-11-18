@@ -8,6 +8,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { brotliCompressSync } from 'node:zlib';
 import { visualHash } from './lib/visual-hash.mjs';
+import { build as consentStrings } from './lib/consent-strings.mjs';
 
 const root = new URL('..', import.meta.url).pathname;
 const errors = [];
@@ -28,7 +29,7 @@ const BUDGETS = {
   'assets/base.css': { raw: 12100, brotli: 3300 },
   'assets/soft-nav.js': { raw: 7500 },
   'assets/tracking.js': { raw: 7000 },
-  'assets/consent.js': { raw: 14600 }, // the cookie dialog with Shopify's copy, the suggestion preselect and the per-country language select (14505 measured), decision 046
+  'assets/consent.js': { raw: 15800 }, // the cookie dialog with Shopify's copy, the suggestion preselect, the per-country language select and the strings in the chosen language (15775 measured), decision 046
   'assets/styleguide.js': { raw: 14000 },
   'assets/wishlist.js': { raw: 7700 },
   'assets/image-tone.js': { raw: 3500 },
@@ -36,7 +37,7 @@ const BUDGETS = {
   'assets/predictive-search.js': { raw: 9500 },
 };
 const DEFAULT_JS_BUDGET = 6000;
-const TOTAL_JS_BROTLI_BUDGET = 27750; // 23650 until the cookie dialog (assets/consent.js, 1677 bytes brotli with the region row, decision 046), then 27750 (measured 27705 + slack; consent.js 4083 bytes brotli with Shopify's copy, the suggestion preselect and the language select); sum of every module's SOURCE compressed with brotli: an upper bound, because Shopify's CDN minifies what it serves (see npm run perf:sizes for the delivered sizes); no page loads them all, each is a separate, lazily loaded file. Raw size counts the documentation comments, so it is capped per file instead.
+const TOTAL_JS_BROTLI_BUDGET = 28100; // 27750 with the language select (measured 27705), then 28100 (measured 28047) for the dialog's strings in the chosen language; 23650 until the cookie dialog (assets/consent.js, 1677 bytes brotli with the region row, decision 046), then 27750 (measured 27705 + slack; consent.js 4083 bytes brotli with Shopify's copy, the suggestion preselect and the language select); sum of every module's SOURCE compressed with brotli: an upper bound, because Shopify's CDN minifies what it serves (see npm run perf:sizes for the delivered sizes); no page loads them all, each is a separate, lazily loaded file. Raw size counts the documentation comments, so it is capped per file instead.
 
 const assets = walk('assets');
 let totalJs = 0;
@@ -306,6 +307,20 @@ try {
 
 console.log('Budgets');
 for (const row of budgetRows) console.log(`  ${row}`);
+/* ---------- The cookie dialog's strings per language are generated from the locales ---------- */
+
+const expectedStrings = consentStrings();
+for (const [name, text] of Object.entries(expectedStrings)) {
+  let actual = '';
+  try {
+    actual = read(`assets/${name}`);
+  } catch {
+    /* missing */
+  }
+  if (actual !== text) fail(`assets/${name}`, 'is missing or stale: run npm run docs (generated from locales/*.json, decision 046)');
+}
+for (const file of readdirSync(join(root, 'assets')).filter((f) => f.startsWith('consent-strings-') && !(f in expectedStrings))) fail(`assets/${file}`, 'has no locale: delete it (npm run docs regenerates the set)');
+
 console.log(`\nChecked ${liquidFiles.length} Liquid files, ${assets.length} assets, ${localeFiles.length + 1} locales.`);
 if (warnings.length) {
   console.log(`\n${warnings.length} warning(s)`);

@@ -39,7 +39,7 @@
     "typecheck": "tsc -p .",
     "format": "prettier --write blocks sections snippets layout 'templates/*.liquid'",
     "format:check": "prettier --check blocks sections snippets layout 'templates/*.liquid'",
-    "docs": "node scripts/gen-reference.mjs",
+    "docs": "node scripts/gen-reference.mjs && node scripts/gen-consent-strings.mjs",
     "docs:check": "node scripts/gen-reference.mjs --check",
     "perf:lighthouse": "node scripts/lighthouse.mjs",
     "perf:liquid": "node scripts/profile.mjs",

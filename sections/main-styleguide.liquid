@@ -320,7 +320,7 @@
     <section class="sg__section" id="icons" aria-labelledby="icons-title">
       <h2 id="icons-title">Icons and states</h2>
       <ul class="sg__icons" role="list">
-        {%- assign icon_names = 'sun,moon,cart,search,account,menu,close,plus,minus,arrow-right,chevron-down' | split: ',' -%}
+        {%- assign icon_names = 'sun,moon,cart,search,account,menu,close,trash,plus,minus,arrow-right,chevron-down' | split: ',' -%}
         {%- for name in icon_names -%}
           <li>
             {%- render 'icon', name: name -%}

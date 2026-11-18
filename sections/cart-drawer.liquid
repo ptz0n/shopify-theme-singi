@@ -93,7 +93,7 @@
                       data-line="{{ forloop.index }}"
                       aria-label="{{ 'cart.remove_item' | t: title: item.product.title }}"
                     >
-                      {%- render 'icon', name: 'close' -%}
+                      {%- render 'icon', name: 'trash' -%}
                     </a>
                     <div class="cart-drawer__qty">
                       <label class="visually-hidden" for="{{ qty_id }}">{{ 'products.quantity' | t }}</label>

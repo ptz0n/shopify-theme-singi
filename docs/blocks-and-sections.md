@@ -85,7 +85,7 @@ Header and footer content that merchants control (menus, logo, toggle) comes fro
 | `tokens` | Fonts and CSS custom properties from settings. | Rendered once in the layout head. |
 | `meta-tags` | Charset, viewport, title, description, canonical, robots, hreflang, OG, Twitter, theme-color, favicon, JSON-LD. | First in head. |
 | `image` | Responsive image with priority, eager and lazy modes. | `priority` for one LCP image per page. |
-| `icon` | Inline SVG icons: sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, check, chevron-down, grid, list, truck, return, shield, leaf, star, gift, support, lock, clock, package. | `icon--flip` for `arrow-right` in RTL. |
+| `icon` | Inline SVG icons: sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, check, chevron-down, trash, grid, list, truck, return, shield, leaf, star, gift, support, lock, clock, package. | `icon--flip` for `arrow-right` in RTL. |
 | `social-links` | The footer's social links: plain text links from the theme setting "Social profile URLs", named after the network ([decision 028](decisions/028-social-links-are-text-links-from-the-profile-list.md)). | Rendered by the footer; the same list feeds `schema-site` (sameAs). |
 | `sticky-buy` | The sticky add to cart bar. | Rendered by `_buy-buttons`; its button submits the buy box's form. |
 | `quantity-input` | Stepper with the variant's quantity rule and hint. | [Decision 015](decisions/015-quantity-limits-follow-the-rule-and-never-name-the-stock.md). |

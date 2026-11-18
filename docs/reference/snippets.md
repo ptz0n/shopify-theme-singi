@@ -170,7 +170,7 @@ aria-label on the parent control.
 
 | Param | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | `string` | yes | sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, check, chevron-down, grid, list, truck, return, shield, leaf, star, gift, support, lock, clock, package |
+| `name` | `string` | yes | sun, moon, cart, search, account, menu, close, plus, minus, heart, arrow-right, check, chevron-down, trash, grid, list, truck, return, shield, leaf, star, gift, support, lock, clock, package |
 | `class` | `string` | no | Extra class on the svg The menu icon is two separate paths on purpose: the header turns them into an X with CSS while the menu is open (base.css, .nav-toggle path). |
 
 ```liquid
