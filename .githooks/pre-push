@@ -3,7 +3,7 @@
 refs=$(cat)
 # Everything npm run check does, before a push: Shopify Theme Check, the repo rules and budgets (about 1.5 s), and the
 # generated reference docs. CI runs the same. Then, on the maintainer's machine only (shopify.theme.toml and .env present), a push
-# to main also updates the live theme and singi-dev on the dev store (npm run ship without its checks). Bypass only when
+# to main also updates the live theme on the dev store (npm run push; singi-dev is kept current by npm run dev). Bypass only when
 # justified: git push --no-verify. See docs/tooling.md.
 if ! command -v shopify >/dev/null 2>&1; then
   echo "pre-push: Shopify CLI not found, skipping Theme Check (CI runs it). Install it to check locally: npm install --global @shopify/cli"
@@ -19,9 +19,9 @@ case "$refs" in
   *" refs/heads/main "*)
     if [ -f shopify.theme.toml ] && [ -f .env ]; then
       if [ -n "$(git status --porcelain -- assets blocks config layout locales sections snippets templates ':!config/settings_data.json' ':!templates/index.json')" ]; then
-        echo "pre-push: theme files have uncommitted changes, so the dev store was not updated (commit them, or run npm run ship)."
+        echo "pre-push: theme files have uncommitted changes, so the dev store was not updated (commit them, or run npm run push)."
       else
-        node scripts/ship.mjs --skip-checks || echo "pre-push: updating the dev store failed; the push goes on. Run npm run ship."
+        npm run -s push >/dev/null 2>&1 && echo "pre-push: the live theme on the dev store is updated." || echo "pre-push: updating the live theme on the dev store failed; the push goes on. Run npm run push."
       fi
     fi
     ;;
