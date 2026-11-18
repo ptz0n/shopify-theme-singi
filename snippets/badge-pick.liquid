@@ -1,0 +1,100 @@
+{% doc %}
+  Picks the badges a product shows: prints one `handle~tag` item per badge, space separated (the badge's handle, and the
+  product's own tag that names it, handleized, for a link to the tag's collection), the
+  lowest priority number first (ties keep the tag order), and nothing when no tag matches. A tag `badge-<handle>` names
+  the metaobject entry (type badge) with that handle; a tag whose handle has no entry, or whose entry has no label or
+  color, is skipped. The tag `new` and the tag `badge-new` both name the badge `new`, which works with no entry at all
+  (a built-in "New", see the `badge` snippet); an entry with the handle `new` replaces its label and color. An entry that
+  shows only on the card or only on the product page is skipped in the other context. The same handle is listed once,
+  with the first tag that names it, except that the plain tag `new` wins over `badge-new` when a product has both (the owner's
+  rule: the merchant keeps the catalog consistent).
+  **Sale is a computed badge, and opt-in**: a product whose compare-at price is above its price counts as named by `sale`, with no tag,
+  but only when a badge entry with the handle `sale` exists (and has a label and a color). There is no built-in Sale. The entry's
+  label, color, `show_on` and priority apply like any other. It prints `sale~` with no tag, so the caller makes no link of it.
+  At most four badge tags are read, and at most two badges are printed (the two with the lowest priority numbers: a card shows the first, the product page both). A leaf snippet on purpose: it renders nothing, so no render is nested deeper than
+  the card's own image (AGENTS.md rule 7). Decision record: docs/decisions/045-badges-are-a-metaobject-mapped-from-tags.md.
+
+  @param {product} product - The product whose tags name the badges
+  @param {string} context - Where the badge will show: 'card' or 'product'
+
+  @example
+  {%- capture picks -%}{%- render 'badge-pick', product: product, context: 'card' -%}{%- endcapture -%}
+{% enddoc %}
+
+{%- liquid
+  assign found = ''
+  assign read = 0
+  comment
+    Sale is computed from the price and opt-in: it counts only when a badge entry with the handle sale exists.
+  endcomment
+  if product.compare_at_price > product.price
+    assign entry = shop.metaobjects.badge.sale
+    if entry != blank and entry.label.value != blank and entry.color.value != blank
+      assign show_on = entry.show_on.value
+      assign sale_shows = true
+      if show_on == 'card' and context == 'product'
+        assign sale_shows = false
+      endif
+      if show_on == 'product' and context == 'card'
+        assign sale_shows = false
+      endif
+      if sale_shows
+        assign priority = entry.priority.value | default: 100
+        assign padded = priority | prepend: '000000' | slice: -6, 6
+        assign found = found | append: padded | append: ':sale~,'
+      endif
+    endif
+  endif
+  for tag in product.tags limit: 100
+    assign tag_lower = tag | downcase | strip
+    assign handle = ''
+    if tag_lower == 'new'
+      assign handle = 'new'
+    elsif tag_lower contains 'badge-'
+      assign tag_prefix = tag_lower | slice: 0, 6
+      if tag_prefix == 'badge-'
+        assign handle = tag_lower | slice: 6, 80 | strip
+      endif
+    endif
+    if handle == blank
+      continue
+    endif
+    assign marker = ':' | append: handle | append: '~'
+    if found contains marker
+      if tag_lower == 'new'
+        assign found = found | replace: ':new~badge-new,', ':new~new,'
+      endif
+      continue
+    endif
+    assign read = read | plus: 1
+    if read > 4
+      break
+    endif
+    assign entry = shop.metaobjects.badge[handle]
+    assign show_on = 'both'
+    assign priority = 100
+    if entry != blank and entry.label.value != blank and entry.color.value != blank
+      assign show_on = entry.show_on.value
+      assign priority = entry.priority.value | default: 100
+    elsif handle != 'new'
+      continue
+    endif
+    if show_on == 'card' and context == 'product'
+      continue
+    endif
+    if show_on == 'product' and context == 'card'
+      continue
+    endif
+    if priority < 0
+      assign priority = 0
+    endif
+    assign padded = priority | prepend: '000000' | slice: -6, 6
+    assign link_tag = tag_lower | handleize
+    assign found = found | append: padded | append: marker | append: link_tag | append: ','
+  endfor
+  assign ordered = found | split: ',' | sort
+  for item in ordered limit: 2
+    echo item | split: ':' | last
+    echo ' '
+  endfor
+-%}

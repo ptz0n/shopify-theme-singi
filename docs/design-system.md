@@ -19,7 +19,7 @@ Settings in `config/settings_schema.json` become CSS custom properties in `snipp
 | `--logo-width` | `settings.logo_width` | Logo width in px. |
 | `--color-bg`, `--color-surface`, `--color-fg`, `--color-muted`, `--color-border`, `--color-accent` | light and dark color settings | Resolved with `light-dark()`. |
 | `--color-scrim` | the dimmed page behind a dialog, drawer or popover | `rgb(0 0 0 / 0.6)` in both schemes, deliberately not `light-dark()`: the foreground is light in dark mode, and a scrim made from it turns the page pale. Use it for every `::backdrop` that dims the page. |
-| `--color-sale` | the Sale badge on a product image | `#b91c1c` with white text (6.5:1) in both schemes, deliberately not `light-dark()`: `--color-danger` is a pale pink in dark mode, which white text cannot sit on |
+| `--color-new` | the built-in New badge (the tag `new` or `badge-new` with no `badge` entry named `new`) | `#1e4d8c` with white text (8.6:1) in both schemes, fixed because the badge sits on an arbitrary photo. A badge from a `badge` entry sets its own `--badge-bg` and `--badge-fg` inline: the entry's color, and white or black for contrast. |
 | `--ratio-product`, `--ratio-h` | the product image format (the theme setting "Product image format": square by default, portrait, tall, landscape): the `aspect-ratio` of every product image and its height as a number | `1 / 1` and `1` by default; [decision 043](decisions/043-one-product-image-format-from-a-theme-setting-square-by-default.md) |
 | `--gutter` | `base.css` | `clamp(1rem, 4vw, 2rem)` page side padding. |
 | `--header-h` | `base.css` | 4rem sticky header height. |
@@ -96,6 +96,7 @@ The heading block (`blocks/heading.liquid`) offers `sm`, `md`, `lg`, `xl` sizes 
 | Inputs | `input`, `select`, `textarea` in `base.css` | 3rem tall, radius token. |
 | Chip (variant option) | `blocks/_variant-picker.liquid` | Real radios, visually hidden, styled labels. |
 | Product card | `snippets/product-card.liquid` | 4:5 media, stretched link, sold-out badge. |
+| Badge | `snippets/badge.liquid`, `.badge-label` in `base.css` | One filled pill, 24px tall, upper-case monospace, on a photo (card) or in a row (product page). Same metrics as the Sold out badge and the AI label. Sale is an entry like any other, with no color of its own. [Decision 045](decisions/045-badges-are-a-metaobject-mapped-from-tags.md). |
 | Price | `snippets/price.liquid` | Monospace, visually hidden sale and regular labels. |
 | Accordion | `blocks/accordion.liquid` | Native `<details name="accordion">`. |
 | Pagination | `snippets/pagination.liquid` | Plain links, `rel=prev|next`. |

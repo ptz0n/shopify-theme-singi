@@ -4,7 +4,7 @@
  * token from `.env` (docs/decisions/038-placeholder-images-by-type-and-vendor.md). Needs the scopes
  * read/write_metaobject_definitions, read/write_metaobjects and write_files-style file access (write_products).
  *
- *   npm run placeholders -- define [--apply]      create the metaobject definition singi_placeholder
+ *   npm run placeholders -- define [--apply]      create the metaobject definition product_placeholder
  *   npm run placeholders -- list                  show the entries
  *   npm run placeholders -- check                 report entries that are never used or collide (exit 1 on an error)
  *   npm run placeholders -- mock --apply          create the mock entries the tests use (see scripts/mock-data.mjs)
@@ -21,7 +21,7 @@ const apply = rest.includes('--apply');
 
 try {
   if (command === 'define') {
-    console.log(`${apply ? 'Defining' : 'Plan for'} singi_placeholder on ${domain}${apply ? '' : ' (add --apply to create)'}: ${await defineDefinition({ apply })}`);
+    console.log(`${apply ? 'Defining' : 'Plan for'} product_placeholder on ${domain}${apply ? '' : ' (add --apply to create)'}: ${await defineDefinition({ apply })}`);
   } else if (command === 'list') {
     const entries = await listEntries();
     console.log(`${entries.length} entries on ${domain}:`);

@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "Stoc epuizat",
-    "sale": "Reducere",
+    "new": "Nou",
     "size_guide": "Ghid de mărimi",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Culoare",

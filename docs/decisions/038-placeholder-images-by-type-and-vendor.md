@@ -10,9 +10,9 @@ Products without media look broken in grids and on product pages, and a merchant
 
 ## Decision
 
-- **A metaobject type, `singi_placeholder`** (storefront read access), one entry per placeholder, with `product_type` (single line text), `vendor` (single line text) and `image` (an image file, required). An empty type or vendor means "any". Merchants create entries in the admin (Content > Metaobjects > Product placeholder). The definition is created by `npm run placeholders -- define --apply` (or by hand in the admin with the same keys).
+- **A metaobject type, `product_placeholder`** (storefront read access), one entry per placeholder, with `product_type` (single line text), `vendor` (single line text) and `image` (an image file, required). An empty type or vendor means "any". Merchants create entries in the admin (Content > Metaobjects > Product placeholder). The definition is created by `npm run placeholders -- define --apply` (or by hand in the admin with the same keys).
 - **Precedence, most specific first:** an entry whose type **and** vendor both match; then one that matches by type only; then one that matches by vendor only; then the theme setting "Product placeholder image"; then nothing (the product page shows no image, a card shows its neutral block). Matching ignores case and surrounding spaces. The first entry wins a tie; an entry that sets neither field is never used.
-- **One leaf snippet, `placeholder-pick`,** prints the handle of the winning entry (it renders nothing else, so no render is nested deeper than the card's own image, AGENTS.md rule 7). The five surfaces that showed `settings.placeholder_image` (product card, product page, cart page, cart drawer, favorites) call it only when a product has no image, read `shop.metaobjects.singi_placeholder[handle].image.value`, and render it through `snippets/image.liquid`. At most 24 entries are read.
+- **One leaf snippet, `placeholder-pick`,** prints the handle of the winning entry (it renders nothing else, so no render is nested deeper than the card's own image, AGENTS.md rule 7). The five surfaces that showed `settings.placeholder_image` (product card, product page, cart page, cart drawer, favorites) call it only when a product has no image, read `shop.metaobjects.product_placeholder[handle].image.value`, and render it through `snippets/image.liquid`. At most 24 entries are read.
 - **The alt text is the product title** (the image stands in for the product; an empty alt would be wrong here). Size attributes, loading and `eager` behave as for any image.
 - **Tooling:** `npm run placeholders -- define|list|check|mock|clear`; `check` reports entries that are never used or that collide.
 
@@ -34,7 +34,7 @@ Products without media look broken in grids and on product pages, and a merchant
 
 ## Edge cases and dead ends
 
-- **A list of metaobjects cannot be indexed by position in Liquid:** `values[0]` and `values.first` are empty, while `shop.metaobjects.singi_placeholder[handle]` works. That is why the leaf snippet prints a handle (`entry.system.handle`), not a position. A first version used a position and rendered nothing.
+- **A list of metaobjects cannot be indexed by position in Liquid:** `values[0]` and `values.first` are empty, while `shop.metaobjects.product_placeholder[handle]` works. That is why the leaf snippet prints a handle (`entry.system.handle`), not a position. A first version used a position and rendered nothing.
 - **A filter cannot sit inside an index** (`values[pick | plus: 0]` is a syntax error); another reason to use the handle.
 - **The definition needs storefront read access,** or the theme sees an empty list.
 - **The dev app token needs the metaobject definition and entry scopes** (`read` and `write` for both) to create them with the tooling; the admin does not need them.

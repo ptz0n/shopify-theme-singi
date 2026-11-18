@@ -1,0 +1,45 @@
+{% doc %}
+  One badge by handle: the label of the badge metaobject entry with that handle, on the entry's color, with the text
+  color chosen for contrast (white or black, whichever has the higher contrast ratio), so a merchant's color can never
+  produce unreadable text. The handle `new` with no usable entry (missing, or without a label or color) is the built-in
+  "New" (`products.new`, blue from --color-new). Any other handle without an entry prints nothing (there is no built-in Sale: it exists only as an entry). The label is text, not
+  an image. The look is the shared `.badge` recipe in assets/base.css; the caller adds the classes for where it sits and
+  for the colors (`background: var(--badge-bg); color: var(--badge-fg)`). Decision record:
+  docs/decisions/045-badges-are-a-metaobject-mapped-from-tags.md.
+
+  @param {string} handle - The badge handle, as printed by the `badge-pick` snippet
+  @param {string} [class] - Extra classes, for example the card's position class
+  @param {string} [url] - Makes the badge a link to this URL, with rel="nofollow" (a tag's collection page is a filtered duplicate, not a page to rank). Without it the badge is a plain span.
+
+  @example
+  {%- render 'badge', handle: badge_pick, class: 'product-card__badge product-card__badge--custom' -%}
+{% enddoc %}
+
+{%- liquid
+  assign entry = shop.metaobjects.badge[handle]
+  assign badge_label = entry.label.value | strip | escape
+  assign badge_bg = entry.color.value
+  if badge_label != blank and badge_bg != blank
+    assign with_white = badge_bg | color_contrast: '#ffffff'
+    assign with_black = badge_bg | color_contrast: '#000000'
+    assign badge_fg = '#000000'
+    if with_white >= with_black
+      assign badge_fg = '#ffffff'
+    endif
+  elsif handle == 'new'
+    assign badge_label = 'products.new' | t
+    assign badge_bg = 'var(--color-new)'
+    assign badge_fg = '#ffffff'
+  else
+    assign badge_label = ''
+  endif
+  if badge_label != blank
+    assign badge_style = ' style="--badge-bg: ' | append: badge_bg | append: '; --badge-fg: ' | append: badge_fg | append: '">'
+    if url != blank
+      assign badge_href = url | escape
+      echo '<a class="badge-label mono ' | append: class | append: '" href="' | append: badge_href | append: '" rel="nofollow"' | append: badge_style | append: badge_label | append: '</a>'
+    else
+      echo '<span class="badge-label mono ' | append: class | append: '"' | append: badge_style | append: badge_label | append: '</span>'
+    endif
+  endif
+-%}

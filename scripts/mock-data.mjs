@@ -18,6 +18,7 @@ const withOptions = (options) => options;
 export const PRODUCTS = [
   {
     handle: 'mock-classic-tee',
+    tags: ['badge-mock-nope'],
     title: 'Classic Tee',
     type: 'Tops',
     vendor: 'Singi',
@@ -52,6 +53,7 @@ export const PRODUCTS = [
   })),
   {
     handle: 'mock-everyday-hoodie',
+    tags: ['badge-new'],
     title: 'Everyday Hoodie',
     type: 'Tops',
     vendor: 'Singi',
@@ -75,6 +77,7 @@ export const PRODUCTS = [
   },
   {
     handle: 'mock-limited-poster',
+    tags: ['badge-new'],
     title: 'Limited Print, Sold Out',
     type: 'Prints',
     vendor: 'Singi Editions',
@@ -87,6 +90,7 @@ export const PRODUCTS = [
   },
   {
     handle: 'mock-card-video',
+    tags: ['new', 'badge-new', 'badge-mock-ultralight'],
     title: 'Video Preview, Hover Me',
     type: 'Prints',
     vendor: 'Singi Editions',
@@ -99,6 +103,7 @@ export const PRODUCTS = [
   },
   {
     handle: 'mock-3d-model',
+    tags: ['new'],
     title: '3D Model, Skipped in the Gallery',
     type: 'Prints',
     vendor: 'Singi Editions',
@@ -111,6 +116,7 @@ export const PRODUCTS = [
   },
   {
     handle: 'mock-limited-stock',
+    tags: ['badge-mock-limited', 'badge-mock-pageonly'],
     title: 'Limited Stock, Three Left',
     type: 'Prints',
     vendor: 'Singi Editions',
@@ -200,6 +206,7 @@ export const PRODUCTS = [
   },
   {
     handle: 'mock-high-price',
+    tags: ['badge-mock-pageonly', 'badge-mock-ultralight', 'new'],
     title: 'Studio Chair',
     type: 'Furniture',
     vendor: 'Singi Home',
@@ -829,4 +836,14 @@ export const PLACEHOLDERS = [
   { handle: 'mock-both', productType: 'Edge cases', vendor: 'Singi' },
   { handle: 'mock-type', productType: 'Edge cases' },
   { handle: 'mock-vendor', vendor: 'Singi' },
+];
+
+/* Badge entries (scripts/badges.mjs mock; tests: scripts/test-badges.mjs). Products opt in with the tag badge-<handle> (or the tag new, which
+   names the badge new): the entry new replaces the built-in New, a light fill to exercise the derived dark text, a card-only and a product-page-only badge, and priorities that decide the order. */
+export const BADGES = [
+  { handle: 'sale', label: 'Sale', color: '#b91c1c', priority: 1 },
+  { handle: 'new', label: 'New', color: '#2f6f4f', priority: 10 },
+  { handle: 'mock-ultralight', label: 'Under 500 g', color: '#f2c14e', priority: 5 },
+  { handle: 'mock-limited', label: 'Limited run', color: '#b5654a', showOn: 'card', priority: 20 },
+  { handle: 'mock-pageonly', label: 'Resoleable', color: '#1d3b5c', showOn: 'product', priority: 30 },
 ];

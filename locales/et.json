@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "Välja müüdud",
-    "sale": "Soodus",
+    "new": "Uus",
     "size_guide": "Suuruste tabel",
     "unit_price_per": "{{ price }} {{ reference }} kohta",
     "color": "Värv",

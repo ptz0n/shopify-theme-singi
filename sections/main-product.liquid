@@ -13,6 +13,25 @@
   {%- capture tracking_item -%}{%- render 'tracking-item', product: product, variant: variant -%}{%- endcapture -%}
 {%- endif -%}
 
+{%- comment -%}The badges the product's tags name (decision 045), rendered once over the top start corner of the first gallery item, where the card puts its badge, each a nofollow link to the products with its tag.{%- endcomment -%}
+{%- capture badge_picks -%}{%- render 'badge-pick', product: product, context: 'product' -%}{%- endcapture -%}
+{%- assign badge_handles = badge_picks | strip | split: ' ' -%}
+{%- capture product_badges -%}
+  {%- if badge_handles.size > 0 -%}
+    <ul class="product__badges" role="list">
+      {%- for badge_item in badge_handles -%}
+        {%- comment -%}Each item is handle~tag (Sale has no tag and is not a link). A tagged badge links to the products with that tag, rel=nofollow: a tag page is a filtered duplicate of the collection, not a page to rank.{%- endcomment -%}
+        {%- assign badge_parts = badge_item | split: '~' -%}
+        {%- assign badge_url = '' -%}
+        {%- if badge_parts[1] != blank -%}
+          {%- assign badge_url = routes.all_products_collection_url | append: '/' | append: badge_parts[1] -%}
+        {%- endif -%}
+        <li>{%- render 'badge', handle: badge_parts[0], url: badge_url -%}</li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+{%- endcapture -%}
+
 <div class="container section product">
   {%- render 'breadcrumbs', kind: 'product' -%}
 
@@ -90,12 +109,14 @@
                 {{- media | external_video_tag: loading: 'lazy', title: media.alt -}}
               {%- endif -%}
           {%- endcase -%}
+          {{- product_badges -}}
+          {%- assign product_badges = '' -%}
         </div>
       {%- else -%}
         {%- capture pick -%}{%- render 'placeholder-pick', product: product -%}{%- endcapture -%}
         {%- assign placeholder = settings.placeholder_image -%}
         {%- assign pick = pick | strip -%}
-        {%- if pick != blank -%}{%- assign placeholder = shop.metaobjects.singi_placeholder[pick].image.value -%}{%- endif -%}
+        {%- if pick != blank -%}{%- assign placeholder = shop.metaobjects.product_placeholder[pick].image.value -%}{%- endif -%}
         {%- if placeholder -%}
           <div class="product__media">
             {%- render 'image',
@@ -106,6 +127,8 @@
               width: 1600,
               alt: product.title
             -%}
+            {{- product_badges -}}
+            {%- assign product_badges = '' -%}
           </div>
         {%- endif -%}
       {%- endfor -%}
@@ -158,6 +181,13 @@
   .embed__play::after { content: ''; position: absolute; inset: 50% auto auto 50%; translate: -35% -50%; width: 1.5rem; height: 1.5rem; background: var(--color-fg); clip-path: polygon(0 0, 100% 50%, 0 100%); }
   .embed:hover .embed__play { opacity: 1; }
   .embed:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -4px; }
+  /* Badges sit in the first item's top start corner, 12px in like the card's, above the zoom button (which covers the item). The list lets clicks through to the zoom button; each link takes them back and has a 44px target (an invisible extension, so the badge keeps its size). */
+  .product__badges { position: absolute; inset-block-start: 0.75rem; inset-inline: 0.75rem; z-index: 2; display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; pointer-events: none; }
+  .product__badges .badge-label { background: var(--badge-bg); color: var(--badge-fg); }
+  .product__badges a.badge-label { position: relative; text-decoration: none; pointer-events: auto; }
+  .product__badges a.badge-label::after { content: ''; position: absolute; inset: -0.625rem -0.25rem; }
+  .product__badges a.badge-label:hover { opacity: 0.85; }
+  .product__badges .badge-label:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
   .product__zoom { position: absolute; inset: 0; z-index: 1; padding: 0; border: 0; background: none; cursor: zoom-in; -webkit-tap-highlight-color: transparent; }
   /* The focus ring is for a mouse-and-keyboard device. On a touch screen the browser focuses this button after the viewer closes (and the viewer's scroll area when it opens), and a ring there is a stray blue border around the picture. */
   @media (hover: hover) and (pointer: fine) { .product__zoom:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -4px; } }

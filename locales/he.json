@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "אזל במלאי",
-    "sale": "מבצע",
+    "new": "חדש",
     "size_guide": "מדריך מידות",
     "unit_price_per": "{{ price }} לכל {{ reference }}",
     "color": "צבע",

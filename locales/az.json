@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "Satılıb",
-    "sale": "Endirim",
+    "new": "Yeni",
     "size_guide": "Ölçü bələdçisi",
     "unit_price_per": "{{ reference }} üçün {{ price }}",
     "color": "Rəng",

@@ -1,7 +1,7 @@
 {% doc %}
   Picks the placeholder image entry for a product that has no image: prints the handle of the best matching entry of
-  the metaobject type singi_placeholder, or nothing when no entry matches. The caller reads that entry's image with
-  `shop.metaobjects.singi_placeholder[handle].image.value` (see snippets/product-card.liquid; a list cannot be indexed
+  the metaobject type product_placeholder, or nothing when no entry matches. The caller reads that entry's image with
+  `shop.metaobjects.product_placeholder[handle].image.value` (see snippets/product-card.liquid; a list cannot be indexed
   by position in Liquid, a lookup by handle works) and falls back to the theme setting "Product placeholder image". Decision record: docs/decisions/038-placeholder-images-by-type-and-vendor.md.
 
   An entry has an optional product type and an optional vendor (empty means any). It matches when each field it
@@ -21,7 +21,7 @@
   assign product_vendor = product.vendor | downcase | strip
   assign best = ''
   assign best_score = 0
-  for entry in shop.metaobjects.singi_placeholder.values limit: 24
+  for entry in shop.metaobjects.product_placeholder.values limit: 24
     assign entry_type = entry.product_type.value | downcase | strip
     assign entry_vendor = entry.vendor.value | downcase | strip
     if entry_type != blank and entry_type != product_type

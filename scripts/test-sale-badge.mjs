@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 /**
- * Tests the Sale badge on product cards (decision 044) in headless Chrome:
+ * Tests the Sale badge (decisions 044 and 045) in headless Chrome. Sale is opt-in: it shows only when a badge entry with the
+ * handle "sale" exists (the mock entry: label Sale, #b91c1c, priority 1, shows on both; `npm run badges -- mock --apply`):
  *   - a product with a compare-at price above its price (mock-everyday-hoodie) has a "Sale" badge on its card, in the
  *     image's top start corner, 24px tall, red with white text (contrast at least 4.5:1) in both color schemes;
  *   - a product without a discount has no badge;
  *   - a sold out product shows "Sold out" and not "Sale", and no card has two badges;
- *   - with the setting off (SINGI_SALE=off, after `npm run theme:set -- show_sale_badge=false ...`) no card has a Sale badge.
+ *   - its product page shows "Sale" first, then the product's tagged badge (two at most); a product that is not discounted has
+ *     no Sale on its page;
+ *   - with no entry "sale" (SINGI_SALE=none; npm run test:all deletes the entry for this run and restores it) no card and no
+ *     product page has a Sale badge (a tagged badge may still show).
  *
  *   npm run dev                      (in one terminal)
  *   npm run test:sale-badge          (in another)
@@ -13,7 +17,7 @@
  */
 import { signed } from './lib/crawl-sign.mjs';
 const base = (process.env.SINGI_URL || 'http://127.0.0.1:9292').replace(/\/$/, '');
-const off = process.env.SINGI_SALE === 'off';
+const none = process.env.SINGI_SALE === 'none';
 let puppeteer;
 try {
   puppeteer = (await import('puppeteer-core')).default;
@@ -37,7 +41,7 @@ const ok = (condition, message) => {
 };
 
 try {
-  for (const scheme of off ? ['light'] : ['light', 'dark']) {
+  for (const scheme of none ? ['light'] : ['light', 'dark']) {
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 900 });
     await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: scheme }]);
@@ -54,8 +58,9 @@ try {
     const hoodie = cards.find((c) => c.href?.endsWith('/mock-everyday-hoodie'));
     const plain = cards.find((c) => c.href?.endsWith('/mock-single-bottle'));
     const sold = cards.find((c) => c.badges.some((b) => b.text === 'Sold out'));
-    if (off) {
-      ok(hoodie && hoodie.badges.length === 0, `${scheme}: with the setting off the discounted card has no badge (${JSON.stringify(hoodie?.badges)})`);
+    if (none) {
+      /* the card may still show a tagged badge (decision 045): only the Sale badge goes away */
+      ok(hoodie && hoodie.badges.every((b) => b.text !== 'Sale'), `${scheme}: with no badge entry "sale" the discounted card has no Sale badge (${JSON.stringify(hoodie?.badges)})`);
     } else {
       ok(hoodie?.badges.length === 1 && hoodie.badges[0].text === 'Sale', `${scheme}: the discounted card has one "Sale" badge (${JSON.stringify(hoodie?.badges)})`);
       const b = hoodie?.badges[0];
@@ -73,8 +78,24 @@ try {
     ok(cards.every((c) => c.badges.length <= 1), `${scheme}: no card has two badges`);
     await page.close();
   }
+  /* the product page */
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1200, height: 900 });
+  const onPage = async (slug) => {
+    await page.goto(`${base}/products/${slug}`, { waitUntil: 'load', timeout: 60000 });
+    return page.evaluate(() => [...document.querySelectorAll('.product__badges .badge-label')].map((b) => ({ text: b.textContent.trim(), tag: b.tagName, bg: getComputedStyle(b).backgroundColor, color: getComputedStyle(b).color })));
+  };
+  const hoodiePage = await onPage('mock-everyday-hoodie');
+  if (none) {
+    ok(hoodiePage.every((b) => b.text !== 'Sale'), `product page: with no entry "sale" the discounted product has no Sale badge (${JSON.stringify(hoodiePage)})`);
+  } else {
+    ok(JSON.stringify(hoodiePage.map((b) => b.text)) === JSON.stringify(['Sale', 'New']), `product page: the discounted product shows Sale first, then its tagged badge (${JSON.stringify(hoodiePage.map((b) => b.text))})`);
+    ok(hoodiePage[0]?.tag === 'SPAN' && hoodiePage[0].bg === 'rgb(185, 28, 28)' && hoodiePage[0].color === 'rgb(255, 255, 255)', `product page: Sale is plain text, white on the entry's red (${JSON.stringify(hoodiePage[0])})`);
+  }
+  ok((await onPage('mock-single-bottle')).every((b) => b.text !== 'Sale'), 'product page: a product without a discount has no Sale badge');
+  await page.close();
 } finally {
   await browser.close();
 }
-console.log(failures ? `\n${failures} of ${checks} checks failed.` : `\nAll ${checks} checks passed${off ? ' (setting off)' : ''}.`);
+console.log(failures ? `\n${failures} of ${checks} checks failed.` : `\nAll ${checks} checks passed${none ? ' (no entry)' : ''}.`);
 process.exit(failures ? 1 : 0);

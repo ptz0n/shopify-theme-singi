@@ -5,7 +5,7 @@
   direct child (no media wrapper), the title link stretches over the card with
   ::after, and the badge is positioned against the li.
 
-  A product with no image shows the placeholder chosen by its type and vendor (the metaobject singi_placeholder,
+  A product with no image shows the placeholder chosen by its type and vendor (the metaobject product_placeholder,
   decision 038), else settings.placeholder_image when the merchant set one,
   otherwise an empty neutral block of the same shape, so the grid never shifts.
 
@@ -62,7 +62,7 @@
     {%- capture pick -%}{%- render 'placeholder-pick', product: product -%}{%- endcapture -%}
     {%- assign placeholder = settings.placeholder_image -%}
     {%- assign pick = pick | strip -%}
-    {%- if pick != blank -%}{%- assign placeholder = shop.metaobjects.singi_placeholder[pick].image.value -%}{%- endif -%}
+    {%- if pick != blank -%}{%- assign placeholder = shop.metaobjects.product_placeholder[pick].image.value -%}{%- endif -%}
     {%- if placeholder -%}
       {%- render 'image',
         image: placeholder,
@@ -128,11 +128,15 @@
       aria-label="{{ 'wishlist.choose_options' | t: title: product.title }}"
     ></button>
   {%- endif -%}
-  {%- comment -%}One badge at most: sold out wins over sale, because a product nobody can buy is not on offer.{%- endcomment -%}
+  {%- comment -%}One badge at most: sold out first, because a product nobody can buy is not on offer. Then the first badge the picker returns: Sale (computed from the compare-at price) or the lowest priority number among the badges the product's tags name (decision 045).{%- endcomment -%}
   {%- if product.available == false -%}
     <span class="product-card__badge mono">{{ 'products.sold_out' | t }}</span>
-  {%- elsif settings.show_sale_badge and product.compare_at_price > product.price -%}
-    <span class="product-card__badge product-card__badge--sale mono">{{ 'products.sale' | t }}</span>
+  {%- else -%}
+    {%- capture badge_picks -%}{%- render 'badge-pick', product: product, context: 'card' -%}{%- endcapture -%}
+    {%- assign badge_pick = badge_picks | strip | split: ' ' | first | split: '~' | first -%}
+    {%- if badge_pick != blank -%}
+      {%- render 'badge', handle: badge_pick, class: 'product-card__badge product-card__badge--custom' -%}
+    {%- endif -%}
   {%- endif -%}
   {%- if settings.card_show_type and product.type != blank -%}
     <p class="eyebrow product-card__type">{{ product.type }}</p>
@@ -176,7 +180,7 @@
   /* Elements in the card's top corners share one visible inset, 12px from the edges: the sold-out badge starts there (a fixed mid-grey with white text, 6.9:1 contrast, the same in both color schemes because it sits on a photo), and the
      heart's 44px tap area sits in the corner so its 20px icon lands on the same 12px. The badge is 20px tall, so its center is the icon's. */
   .product-card__badge { position: absolute; inset-block-start: 0.75rem; inset-inline-start: 0.75rem; background: #5a5a63; color: #fff; }
-  .product-card__badge--sale { background: var(--color-sale); color: #fff; }
+  .product-card__badge--custom { background: var(--badge-bg); color: var(--badge-fg); }
   /* The wishlist heart: only product cards have it, so its styles ship with the card, not in the inlined base.css. */
   .wishlist-heart{--heart:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20.5s-8-4.9-8-11A4.5 4.5 0 0 1 12 6.8 4.5 4.5 0 0 1 20 9.5c0 6.1-8 11-8 11z'/%3E%3C/svg%3E");--heart-fill:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000' stroke='%23000' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20.5s-8-4.9-8-11A4.5 4.5 0 0 1 12 6.8 4.5 4.5 0 0 1 20 9.5c0 6.1-8 11-8 11z'/%3E%3C/svg%3E");position:absolute;inset-block-start:0;inset-inline-end:0;z-index:1;display:grid;place-items:center;width:2.75rem;height:2.75rem;padding:0;border:0;background:none;color:var(--color-fg);opacity:.7;cursor:pointer;transition:opacity .15s}
   .wishlist-heart:is(:hover,:focus-visible,[aria-pressed=true]){opacity:1}

@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "Habis terjual",
-    "sale": "Diskon",
+    "new": "Baru",
     "size_guide": "Panduan ukuran",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Warna",

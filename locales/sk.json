@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "Vypredané",
-    "sale": "Zľava",
+    "new": "Novinka",
     "size_guide": "Tabuľka veľkostí",
     "unit_price_per": "{{ price }} za {{ reference }}",
     "color": "Farba",

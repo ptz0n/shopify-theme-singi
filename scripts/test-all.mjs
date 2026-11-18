@@ -25,6 +25,8 @@ import { readFileSync, writeFileSync, mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { admin } from './lib/admin.mjs';
+import { deleteEntry, listEntries, upsertEntry } from './lib/badges.mjs';
+import { BADGES } from './mock-data.mjs';
 
 const root = new URL('..', import.meta.url).pathname;
 const args = process.argv.slice(2);
@@ -51,7 +53,7 @@ const weight = (t) => (SLOW.includes(t.name) ? SLOW.length - SLOW.indexOf(t.name
 const phase1 = all.filter((t) => !PHASE_2.includes(t.name) && wanted(t)).sort((a, b) => weight(b) - weight(a));
 const phase2 = all.filter((t) => PHASE_2.includes(t.name) && wanted(t));
 phase2.push(...all.filter((t) => t.name === 'image-ratio' && wanted(t)).map((t) => ({ ...t, label: 'image-ratio (portrait)', env: { SINGI_RATIO: 'portrait' } })));
-phase2.push(...all.filter((t) => t.name === 'sale-badge' && wanted(t)).map((t) => ({ ...t, label: 'sale-badge (off)', env: { SINGI_SALE: 'off' } })));
+phase2.push(...all.filter((t) => t.name === 'sale-badge' && wanted(t)).map((t) => ({ ...t, label: 'sale-badge (no entry)', env: { SINGI_SALE: 'none' } })));
 const phase3 = phase2.filter((t) => t.name === 'newsletter-consent').map((t) => ({ ...t, label: 'newsletter-consent (checkbox)', env: { SINGI_CHECKBOX: '1' } }));
 
 const run = (test) => new Promise((resolve) => {
@@ -100,6 +102,7 @@ const settle = () => new Promise((resolve) => setTimeout(resolve, 9000));
 const started = Date.now();
 const results = [];
 if (!noSetup && all.some((t) => t.name === 'placeholders' && wanted(t))) await node('placeholders.mjs', ['mock', '--apply']).catch((e) => console.log(`  could not ensure the mock placeholders: ${e.message}`));
+if (!noSetup && all.some((t) => t.name === 'badges' && wanted(t))) await node('badges.mjs', ['mock', '--apply']).catch((e) => console.log(`  could not ensure the mock badges: ${e.message}`));
 console.log(`Phase 1: ${phase1.length} tests, ${jobs} at a time`);
 results.push(...(await pool(phase1)));
 
@@ -121,17 +124,19 @@ if (!noSetup && phase2.length) {
   ]));
   const note = 'By subscribing you agree to receive marketing emails. Read our <a href="/policies/privacy-policy">privacy policy</a>.';
   const on = [
-    'card_quick_buy=true', 'product_image_ratio=portrait', 'show_sale_badge=false',
+    'card_quick_buy=true', 'product_image_ratio=portrait',
     `social_profiles=https://www.instagram.com/singi\nhttps://www.facebook.com/singi\nhttps://x.com/singi\nhttps://www.youtube.com/@singi\nhttps://mastodon.social/@singi\nnot an address`,
     `newsletter_note=${note}`, 'newsletter_checkbox=false', 'newsletter_confirmation=Check your email to confirm.',
   ];
-  const off = ['card_quick_buy=false', 'product_image_ratio=square', 'show_sale_badge=true', 'social_profiles=', 'newsletter_note=', 'newsletter_checkbox=false', 'newsletter_confirmation='];
+  const off = ['card_quick_buy=false', 'product_image_ratio=square', 'social_profiles=', 'newsletter_note=', 'newsletter_checkbox=false', 'newsletter_confirmation='];
   try {
     console.log(`\nPhase 2: settings on for the dev theme #${id}, alternates set`);
     await setSettings(id, on);
     await setSection(id, ['text=Free shipping on orders over 500 kr', 'link=/collections/mock-new-arrivals', 'dismissible=true']);
     await node('alternates.mjs', ['set', 'product', 'mock-classic-tee', productAlt, '--apply']);
     await node('alternates.mjs', ['set', 'shop', homeAlt, '--apply']);
+    /* Sale is opt-in (decision 045): the phase 2 run "sale-badge (no entry)" needs the entry sale gone; it is restored below. */
+    if (phase2.some((t) => t.label === 'sale-badge (no entry)')) for (const e of await listEntries()) if (e.handle === 'sale') await deleteEntry(e.id);
     await settle();
     console.log(`${phase2.length} tests, ${jobs} at a time`);
     results.push(...(await pool(phase2)));
@@ -144,6 +149,7 @@ if (!noSetup && phase2.length) {
   } finally {
     if (!flag('keep')) {
       console.log('\nRestoring the defaults');
+      await upsertEntry(BADGES.find((b) => b.handle === 'sale')).catch((e) => console.log(`  could not restore the sale badge entry: ${e.message}`));
       await setSettings(id, off).catch((e) => console.log(`  could not restore settings: ${e.message}`));
       await setSection(id, ['text=', 'link=', 'dismissible=false']).catch((e) => console.log(`  could not restore the announcement bar: ${e.message}`));
       await node('alternates.mjs', ['clear', 'product', 'mock-classic-tee', '--apply']).catch((e) => console.log(`  ${e.message}`));

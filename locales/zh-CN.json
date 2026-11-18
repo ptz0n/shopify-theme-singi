@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "已售罄",
-    "sale": "促销",
+    "new": "新品",
     "size_guide": "尺码指南",
     "unit_price_per": "每{{ reference }}{{ price }}",
     "color": "颜色",

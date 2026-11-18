@@ -73,6 +73,13 @@ Only when `settings.soft_navigation` is on:
 - A forced error (offline) falls back to a normal navigation.
 - Analytics: confirm page views and consent state with your tags; this is the critical check.
 
+## Badges
+
+`npm run test:badges` covers the feature with the mock entries and tags ([decision 045](decisions/045-badges-are-a-metaobject-mapped-from-tags.md)). Two things are checked by hand because the entries change on the store:
+
+- **The built-in "New":** delete the entry with the handle `new` (`npm run badges -- list`, then the admin or `scripts/lib/badges.mjs`), wait a few seconds, and load a collection with `mock-3d-model` (tag `new`). It shows "New" in blue (`rgb(30, 77, 140)`) with white text, on the card and the product page. Then `npm run badges -- mock --apply` restores the entry and it turns green. Done on 2026-11-18.
+- **A translated label:** add a translation of an entry's label in Translate & Adapt and load the storefront in that language. Not done.
+
 ## Performance
 
 - Run `npm run perf:lighthouse` ([tooling.md](tooling.md#perf-lighthouse)) on home, product and collection. Take the median of several runs.
@@ -124,7 +131,7 @@ Date: 2026-11-17
 Commit: ba05860
 Store / theme id: a Plus dev store, theme singi-dev, mock content (npm run mock:apply)
 Published or preview: development theme served by `npm run dev` at http://127.0.0.1:9292
-Settings: soft navigation off (default), dynamic checkout on, the product image format at its default (square), the Sale badge on, quick add and quick buy off (their defaults), no apps installed
+Settings: soft navigation off (default), dynamic checkout on, the product image format at its default (square), the mock `sale` badge entry present, quick add and quick buy off (their defaults), no apps installed
 Device profile / throttling: Lighthouse 12.6.1, mobile, simulated throttling (default), headless Chrome
 Runs per page / aggregation: 3 runs, median (Liquid time: 7 runs, median)
 

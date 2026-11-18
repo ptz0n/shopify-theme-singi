@@ -46,7 +46,7 @@
                   {%- capture pick -%}{%- render 'placeholder-pick', product: item.product -%}{%- endcapture -%}
                   {%- assign placeholder = settings.placeholder_image -%}
                   {%- assign pick = pick | strip -%}
-                  {%- if pick != blank -%}{%- assign placeholder = shop.metaobjects.singi_placeholder[pick].image.value -%}{%- endif -%}
+                  {%- if pick != blank -%}{%- assign placeholder = shop.metaobjects.product_placeholder[pick].image.value -%}{%- endif -%}
                   {%- if placeholder -%}
                     {%- render 'image',
                       image: placeholder,

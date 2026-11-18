@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "Esaurito",
-    "sale": "Saldi",
+    "new": "Novità",
     "size_guide": "Guida alle taglie",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Colore",

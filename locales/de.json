@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "Ausverkauft",
-    "sale": "Sale",
+    "new": "Neu",
     "size_guide": "Größentabelle",
     "unit_price_per": "{{ price }} pro {{ reference }}",
     "color": "Farbe",

@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "விற்றுத் தீர்ந்தது",
-    "sale": "தள்ளுபடி",
+    "new": "புதியது",
     "size_guide": "அளவு வழிகாட்டி",
     "unit_price_per": "{{ reference }}க்கு {{ price }}",
     "color": "நிறம்",

@@ -92,6 +92,8 @@ Header and footer content that merchants control (menus, logo, toggle) comes fro
 | `unit-price` | The unit price of a variant. | [Decision 005](decisions/005-unit-price-format-and-instant-update.md). |
 | `price` | Price with optional compare-at price. | Monospace. |
 | `product-card` | Grid card for a product. | One level of render only. |
+| `badge-pick` | Prints the handles of the badges a product's tags name, in priority order, for `card` or `product`. | A leaf: renders nothing nested. [Decision 045](decisions/045-badges-are-a-metaobject-mapped-from-tags.md). |
+| `badge` | One badge by handle: the `badge` entry's label on its color, with a contrasting text color; the handle `new` falls back to a built-in. | The look is `.badge-label` in `base.css`, the same metrics as the Sold out and Sale badges. |
 | `pagination` | Accessible pagination from a `paginate` object. | Plain links. |
 | `breadcrumbs` | Breadcrumb trail plus BreadcrumbList JSON-LD. | The visible trail is the ancestors (metafields or the breadcrumb menu); the current page is only in the JSON-LD. |
 | `skeletons` | `<template>` placeholders for soft navigation. | Rendered only when soft navigation is on. |

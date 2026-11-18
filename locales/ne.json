@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "बिक्री भइसक्यो",
-    "sale": "सेल",
+    "new": "नयाँ",
     "size_guide": "साइज गाइड",
     "unit_price_per": "प्रति {{ reference }} {{ price }}",
     "color": "रङ",

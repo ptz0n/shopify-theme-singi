@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "Sold out",
-    "sale": "Sale",
+    "new": "New",
     "size_guide": "Size guide",
     "unit_price_per": "{{ price }} per {{ reference }}",
     "color": "Color",

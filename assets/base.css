@@ -103,7 +103,7 @@ label,legend,.label{display:block;margin-block-end:.375rem;font-size:.875rem;fon
 .product-card{position:relative;display:grid;gap:.5rem;align-content:start;container-type:inline-size}
 .product-card__media{position:relative;aspect-ratio:var(--ratio-product);overflow:hidden;border-radius:var(--radius);background:var(--color-surface)}
 .product-card__media img{width:100%;height:100%;object-fit:cover}
-.badge,.ai-label,.product-card__badge{display:inline-flex;align-items:center;min-height:1.5rem;padding:.375rem .5rem .3125rem;border-radius:var(--radius);font:600 .6875rem/1 var(--font-mono);letter-spacing:var(--tracking-wide);text-transform:uppercase}
+.badge,.badge-label,.ai-label,.product-card__badge{display:inline-flex;align-items:center;min-height:1.5rem;padding:.375rem .5rem .3125rem;border-radius:var(--radius);font:600 .6875rem/1 var(--font-mono);letter-spacing:var(--tracking-wide);text-transform:uppercase}
 .ai-label{position:absolute;inset:auto .75rem .75rem auto;z-index:1;background:#000b;color:#fff;pointer-events:none}
 .product-card>.ai-label{inset-block:calc(var(--ratio-h)*100cqw - .75rem)auto;translate:0 -100%}
 .product-card__title{font-size:1rem;font-weight:var(--font-weight-body);letter-spacing:0}

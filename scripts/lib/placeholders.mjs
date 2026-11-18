@@ -1,7 +1,7 @@
 /**
  * Product placeholder images chosen by product type and/or vendor (docs/decisions/038-placeholder-images-by-type-and-vendor.md):
  *
- *   metaobject type singi_placeholder (storefront public read)
+ *   metaobject type product_placeholder (storefront public read)
  *     product_type  single_line_text_field   empty = any type
  *     vendor        single_line_text_field   empty = any vendor
  *     image         file_reference (image)   required
@@ -14,9 +14,9 @@ import { admin, userErrors } from './admin.mjs';
 import { OPS } from './mock-ops.mjs';
 import { gradientPng } from './png.mjs';
 
-export const TYPE = 'singi_placeholder';
+export const TYPE = 'product_placeholder';
 
-const BY_TYPE = 'query SingiPlaceholderDefinition($type: String!) { metaobjectDefinitionByType(type: $type) { id type name } }';
+const BY_TYPE = 'query SingiPlaceholderDefinition($type: String!) { metaobjectDefinitionByType(type: $type) { id type name fieldDefinitions { key } } }';
 const DEFINE = `mutation SingiPlaceholderDefine($definition: MetaobjectDefinitionCreateInput!) {
   metaobjectDefinitionCreate(definition: $definition) { metaobjectDefinition { id type } userErrors { field message code } }
 }`;
@@ -35,7 +35,11 @@ const fail = (payload, label) => {
 
 export const defineDefinition = async ({ apply }) => {
   const { metaobjectDefinitionByType: existing } = await admin(BY_TYPE, { type: TYPE });
-  if (existing) return 'exists';
+  if (existing) {
+    const have = existing.fieldDefinitions.map((f) => f.key);
+    const missing = ['product_type', 'vendor', 'image'].filter((key) => !have.includes(key));
+    return missing.length ? `exists, but is not this definition (no field ${missing.join(', ')}): another app or theme owns the type ${TYPE}` : 'exists';
+  }
   if (!apply) return 'would create';
   fail(await admin(DEFINE, {
     definition: {

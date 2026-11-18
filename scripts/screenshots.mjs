@@ -63,7 +63,7 @@ const restore = () => {
 if (setup) {
   themeId = await devThemeId();
   process.on('exit', restore);
-  for (const [file, args] of [['theme-settings.mjs', ['card_quick_buy=true', 'card_quick_add=false', 'product_image_ratio=square', 'show_sale_badge=true', '--theme', themeId, '--apply']], ['mock-hero.mjs', ['on']]]) {
+  for (const [file, args] of [['theme-settings.mjs', ['card_quick_buy=true', 'card_quick_add=false', 'product_image_ratio=square', '--theme', themeId, '--apply']], ['badges.mjs', ['mock', '--apply']], ['mock-hero.mjs', ['on']]]) {
     const result = node(file, args);
     if (result.status !== 0) {
       console.error(`Setup failed (${file}): ${(result.stderr || result.stdout).trim().split('\n').pop()}`);

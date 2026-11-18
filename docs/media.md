@@ -34,7 +34,7 @@ The gallery is HTML with CSS scroll-snap on mobile and a two column grid on desk
 
 **Variant images.** Each variant can have its own image. When the visitor changes an option, `assets/product-form.js` reads the new variant's `featured_media`, scrolls the gallery to it and keeps `data-variant-media` current. A variant without an image leaves the gallery where it is; it never blanks it.
 
-**No media.** A product without media shows, in order: the **placeholder entry that matches its type and vendor** (the metaobject `singi_placeholder`, Content > Metaobjects > Product placeholder; the most specific match wins: type and vendor, then type, then vendor; [decision 038](decisions/038-placeholder-images-by-type-and-vendor.md)), then `settings.placeholder_image` when the merchant set one (Theme settings > Brand > Product placeholder image), otherwise nothing on the product page and a neutral block of the card's shape on cards. The same fallback is used in the cart, the cart drawer and favorites.
+**No media.** A product without media shows, in order: the **placeholder entry that matches its type and vendor** (the metaobject `product_placeholder`, Content > Metaobjects > Product placeholder; the most specific match wins: type and vendor, then type, then vendor; [decision 038](decisions/038-placeholder-images-by-type-and-vendor.md)), then `settings.placeholder_image` when the merchant set one (Theme settings > Brand > Product placeholder image), otherwise nothing on the product page and a neutral block of the card's shape on cards. The same fallback is used in the cart, the cart drawer and favorites.
 
 ## Zoom
 

@@ -63,6 +63,7 @@ You do not need one for routine code that follows the rules in [AGENTS.md](../..
 | [038](038-placeholder-images-by-type-and-vendor.md) | A product with no image gets a placeholder chosen by its type and vendor, from a typed metaobject | product media, catalog, content storage |
 | [039](039-dev-tooling-stays-dependency-free.md) | Developer tooling stays dependency-free: native git hooks, a small CI, and no typechecker, build step or Liquid formatter | developer experience, CI, performance |
 | [040](040-liquid-is-formatted-by-prettier.md) | Liquid is formatted by Prettier, the first devDependency family | developer experience, CI |
+| [045](045-badges-are-a-metaobject-mapped-from-tags.md) | Badges are a typed metaobject mapped from product tags (`badge-<handle>`, and `new` as a built-in), one per card and a row on the product page | product card, product page, catalog, content storage, i18n |
 | [044](044-a-sale-badge-from-the-compare-at-price.md) | A Sale badge on product cards from the compare-at price, red with white text in both schemes | product card, design tokens, i18n |
 | [043](043-one-product-image-format-from-a-theme-setting-square-by-default.md) | One product image format for every view, from a theme setting, square by default | images, catalog, design tokens |
 | [042](042-an-option-legend-names-its-value-only-when-the-chips-do-not.md) | An option legend names the chosen value only when the chips do not say it in words | product page, accessibility |

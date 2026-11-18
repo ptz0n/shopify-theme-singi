@@ -234,7 +234,7 @@ const productInput = async (p) => {
     ...(p.template ? { templateSuffix: p.template } : {}),
     vendor: p.vendor,
     productType: p.type,
-    tags: [TAG],
+    tags: [TAG, ...(p.tags ?? [])],
     status: 'ACTIVE',
     productOptions: options.map((o) => ({ name: o.name, values: o.values.map((name) => ({ name })) })),
     ...(p.metafields?.length ? { metafields: p.metafields.map((m) => ({ namespace: 'custom', ...m })) } : {}),

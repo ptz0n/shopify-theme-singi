@@ -61,3 +61,40 @@ Unlike the suggested `custom.*` keys above, these are part of the theme's contra
 | `singi.color` | `list.color` | The swatch of this product: one to three hex colors (several split the swatch on the diagonal). |
 | `singi.color_name` | `single_line_text_field` | Optional. The color's name, so the label reads "Color: Moss". |
 | `singi.alternates` | `json` | Product, collection, page, article or shop. The hreflang alternates of this page on other stores or domains (`[{ "hreflang": "sv-SE", "url": "https://..." }]`). See [multi-store.md](multi-store.md). |
+
+## Product badges (the `badge` metaobject and the badge tags)
+
+Badges are the labels on a product card and on the product page: New, Bestseller, Limited run, Eco, Gift idea. They are the one place the theme reads a **metaobject** that is part of its contract, and the way a product opts in is a **tag**. [Decision 045](decisions/045-badges-are-a-metaobject-mapped-from-tags.md) has the reasoning and the research.
+
+### What a merchant does
+
+1. **Create the badge** in the admin: Content > Metaobjects > Badge > Add entry. The entry's **handle** (shown in the entry's URL and editable under the title) is what tags refer to. The admin lists an entry by its label, so look at the handle (not the title) when you tag. A store that has no definition yet needs it created first: `npm run badges -- define --apply` does it on the dev store; on another store create a metaobject definition with the type `badge` and the four fields below, with storefront access set to "Active".
+2. **Tag the products.** A product shows the badge with the handle `bestseller` when it has the tag `badge-bestseller`. Tags are written by every import, bulk editor, Flow rule and feed, so no extra column or field is needed. Tags are matched ignoring case.
+3. **Translate the label** with Translate & Adapt like any other store content. The label is text, so screen readers read it.
+
+### The fields
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `label` | single line text, required | The text on the badge. One or two words: it sits on a photo, and it is upper-cased by the badge style. |
+| `color` | color, required | The background. The text color is chosen automatically (white or black, whichever contrasts more), so a badge is always readable, in light and dark. |
+| `show_on` | `card`, `product` or `both` (empty means both) | Where it shows. `card` is the product card only, `product` the product page only. |
+| `priority` | whole number (empty means 100) | The lowest number shows first. |
+
+### How a product picks its badges
+
+- **Tags that name a badge:** `badge-<handle>` for any handle, and the tag **`new`**. The tags `new` and `badge-new` both name the badge `new`, and the badge shows once if a product has both. Any other tag without the prefix (`summer`, `sale`) is not a badge.
+- **A built-in "New".** If there is no entry with the handle `new`, the tag still shows a blue "New" (translated in every language). Create an entry with the handle `new` to choose its label, color, placement and priority. This is the only handle with a built-in; a `badge-<handle>` with no entry shows nothing.
+- **Sale is opt-in.** A product on sale (its compare-at price above its price) shows a Sale badge only if you create an entry with the handle **`sale`**. There is no built-in Sale and no theme setting: the entry decides its label, color, where it shows (`show_on`: cards, the product page or both) and priority (an empty priority is 100, so give Sale a low number if it should win over New). The Sale badge on the product page is not a link. Without the entry, nothing shows.
+- **On a card:** one badge at most. A sold out product shows "Sold out" (built in), and any other product shows the first badge by priority among Sale (if the entry exists) and its tagged badges whose `show_on` is `card` or `both` (a tie keeps the tag order, which Shopify sorts alphabetically).
+- **On the product page:** Sale (if it shows there) and the badges whose `show_on` is `product` or `both`, lowest priority number first, **two at most**, in the top start corner of the first gallery image (the same place as on a card), whatever the stock or price. Each is a link to the products with its tag (`/collections/all/<tag>`, `rel="nofollow"`); badges on cards are not links. They are part of the gallery, not a block, so there is nothing to place in the theme editor. With no images and no placeholder image, no badge shows.
+- **Limits:** at most four `badge-` tags are read per product, and the product page shows the first two by priority. An entry with no label or no color is ignored (except `new`, which falls back to the built-in).
+- **Not shown:** in the quick buy dialog, the cart, search suggestions and structured data.
+
+### Developer commands
+
+`npm run badges -- <define|list|check|mock|clear>`, see [tooling.md](tooling.md#npm-scripts). `check` reports entries without a label or color, a `show_on` that is not one of the three values, a label over 20 characters and two entries with the same label. `npm run test:badges` checks the whole feature on the dev store.
+
+### What it costs
+
+`snippets/badge-pick.liquid` loops a product's tags (at most 100) and reads each `badge-` tag's entry by handle, at most four, and only for products that carry such a tag. It never iterates the entry list. On the dev store `/collections/mock-edge-cases` rendered in 39 ms with about 12 ms in `snippets/product-card`, four of whose cards carried a badge tag; the badge snippets were below the profile's cutoff and were not measured against a run without them ([decision 045](decisions/045-badges-are-a-metaobject-mapped-from-tags.md#how-to-verify)).

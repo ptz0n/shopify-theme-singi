@@ -88,6 +88,7 @@ Detailed recipes are in [docs/extending.md](docs/extending.md). Short forms:
 | Image loading strategy | `snippets/image.liquid` |
 | Global CSS, header CSS | `assets/base.css` |
 | Color siblings (separate products linked as colors) | `blocks/_color-siblings.liquid`, `scripts/lib/siblings.mjs`, [decision 003](docs/decisions/003-color-siblings-product-list.md) |
+| Product badges (`badge` entries chosen by the tags `badge-<handle>` and `new`) | `snippets/badge-pick.liquid`, `snippets/badge.liquid`, `sections/main-product.liquid`, `snippets/product-card.liquid`, `scripts/lib/badges.mjs`, [decision 045](docs/decisions/045-badges-are-a-metaobject-mapped-from-tags.md) |
 | Variant switching and add to cart | `assets/product-form.js`, `blocks/_variant-picker.liquid`, `blocks/_buy-buttons.liquid` |
 | Cart updates | `assets/cart-items.js`, `sections/main-cart.liquid` |
 | Announcement bar | `sections/announcement-bar.liquid`, `assets/announcement-bar.js`, `snippets/theme-init.liquid` (`data-dismissed`), [decision 027](docs/decisions/027-announcement-bar-is-one-message-from-the-theme-settings.md) |

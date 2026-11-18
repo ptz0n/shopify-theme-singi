@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "Habis dijual",
-    "sale": "Jualan",
+    "new": "Baharu",
     "size_guide": "Panduan saiz",
     "unit_price_per": "{{ price }} setiap {{ reference }}",
     "color": "Warna",

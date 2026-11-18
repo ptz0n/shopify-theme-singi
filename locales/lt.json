@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "Išparduota",
-    "sale": "Išpardavimas",
+    "new": "Nauja",
     "size_guide": "Dydžių lentelė",
     "unit_price_per": "{{ price }} už {{ reference }}",
     "color": "Spalva",

@@ -26,7 +26,7 @@
   },
   "products": {
     "sold_out": "نفدت الكمية",
-    "sale": "تخفيض",
+    "new": "جديد",
     "size_guide": "دليل المقاسات",
     "unit_price_per": "{{ price }} لكل {{ reference }}",
     "color": "اللون",

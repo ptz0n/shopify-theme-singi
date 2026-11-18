@@ -1,8 +1,10 @@
 # 044. A Sale badge on product cards from the compare-at price, red with white text in both schemes
 
-Status: accepted
+Status: partly superseded by [045](045-badges-are-a-metaobject-mapped-from-tags.md) (2026-11-18)
 Area: product card | design tokens | i18n
 Code: `snippets/product-card.liquid` (`.product-card__badge--sale`), `snippets/tokens.liquid` (`--color-sale`), `config/settings_schema.json` (`show_sale_badge`), `locales/*.json` (`products.sale`), `scripts/test-sale-badge.mjs`
+
+> **Superseded in part.** The rule stays: a product is on sale when its compare-at price is above its price, a sold out product shows Sold out instead, one badge per card. What changed in [decision 045](045-badges-are-a-metaobject-mapped-from-tags.md): **Sale is opt-in and defined as a badge entry**, not built in. There is no theme setting, no fixed red (`--color-sale`) and no `products.sale` string any more; a store shows a Sale badge only when a `badge` metaobject entry with the handle `sale` exists, and that entry sets its label, color, where it shows (cards, product page, or both) and priority. The bullets below describe the first version.
 
 ## Context
 
@@ -35,7 +37,7 @@ A discounted product showed a struck-through compare-at price and, with "Show pe
 ## Edge cases and dead ends
 
 - **A product whose first variant is not discounted** is not on sale by this rule (`product.compare_at_price` is the first variant's). The price line uses the same value, so the two agree.
-- **"New"** is not built. Common practice: a merchant-controlled tag (or metafield) is the usual source, because date-based rules (published within 14 to 30 days) mark whole imports and republished products as new. The roadmap item "Badges defined as a metaobject, mapped from product tags" is the place for it (`badge-new`).
+- **"New"** was not built here. Common practice: a merchant-controlled tag (or metafield) is the usual source, because date-based rules (published within 14 to 30 days) mark whole imports and republished products as new. The roadmap item "Badges defined as a metaobject, mapped from product tags" built it ([decision 045](045-badges-are-a-metaobject-mapped-from-tags.md)): the tags `new` and `badge-new`. Sale and Sold out stayed as they are, so one badge per card is still sold out, then sale, then the tagged badge.
 - Sold out text and Sale text sit in the same position, so list view (static position) needs no change.
 
 ## Trade-offs we accept
@@ -48,4 +50,4 @@ A fixed red that a merchant cannot recolor in the theme settings, and a "Sale" l
 
 ## Revisit when
 
-The badges metaobject item lands (Sale can become one of its badges, with its own colors), or a merchant needs to recolor it.
+A merchant needs to recolor Sale or Sold out (they could become `badge` entries, [decision 045](045-badges-are-a-metaobject-mapped-from-tags.md) did not do that).

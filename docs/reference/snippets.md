@@ -31,6 +31,56 @@ on it in both color schemes. Styles are in base.css because several pages use it
 {% render 'ai-label', alt: media.alt %}
 ```
 
+## badge-pick
+
+File: `snippets/badge-pick.liquid`
+
+Picks the badges a product shows: prints one `handle~tag` item per badge, space separated (the badge's handle, and the
+product's own tag that names it, handleized, for a link to the tag's collection), the
+lowest priority number first (ties keep the tag order), and nothing when no tag matches. A tag `badge-<handle>` names
+the metaobject entry (type badge) with that handle; a tag whose handle has no entry, or whose entry has no label or
+color, is skipped. The tag `new` and the tag `badge-new` both name the badge `new`, which works with no entry at all
+(a built-in "New", see the `badge` snippet); an entry with the handle `new` replaces its label and color. An entry that
+shows only on the card or only on the product page is skipped in the other context. The same handle is listed once,
+with the first tag that names it, except that the plain tag `new` wins over `badge-new` when a product has both (the owner's
+rule: the merchant keeps the catalog consistent).
+**Sale is a computed badge, and opt-in**: a product whose compare-at price is above its price counts as named by `sale`, with no tag,
+but only when a badge entry with the handle `sale` exists (and has a label and a color). There is no built-in Sale. The entry's
+label, color, `show_on` and priority apply like any other. It prints `sale~` with no tag, so the caller makes no link of it.
+At most four badge tags are read, and at most two badges are printed (the two with the lowest priority numbers: a card shows the first, the product page both). A leaf snippet on purpose: it renders nothing, so no render is nested deeper than
+the card's own image (AGENTS.md rule 7). Decision record: docs/decisions/045-badges-are-a-metaobject-mapped-from-tags.md.
+
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `product` | `product` | yes | The product whose tags name the badges |
+| `context` | `string` | yes | Where the badge will show: 'card' or 'product' |
+
+```liquid
+{%- capture picks -%}{%- render 'badge-pick', product: product, context: 'card' -%}{%- endcapture -%}
+```
+
+## badge
+
+File: `snippets/badge.liquid`
+
+One badge by handle: the label of the badge metaobject entry with that handle, on the entry's color, with the text
+color chosen for contrast (white or black, whichever has the higher contrast ratio), so a merchant's color can never
+produce unreadable text. The handle `new` with no usable entry (missing, or without a label or color) is the built-in
+"New" (`products.new`, blue from --color-new). Any other handle without an entry prints nothing (there is no built-in Sale: it exists only as an entry). The label is text, not
+an image. The look is the shared `.badge` recipe in assets/base.css; the caller adds the classes for where it sits and
+for the colors (`background: var(--badge-bg); color: var(--badge-fg)`). Decision record:
+docs/decisions/045-badges-are-a-metaobject-mapped-from-tags.md.
+
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `handle` | `string` | yes | The badge handle, as printed by the `badge-pick` snippet |
+| `class` | `string` | no | Extra classes, for example the card's position class |
+| `url` | `string` | no | Makes the badge a link to this URL, with rel="nofollow" (a tag's collection page is a filtered duplicate, not a page to rank). Without it the badge is a plain span. |
+
+```liquid
+{%- render 'badge', handle: badge_pick, class: 'product-card__badge product-card__badge--custom' -%}
+```
+
 ## breadcrumbs
 
 File: `snippets/breadcrumbs.liquid`
@@ -273,8 +323,8 @@ single brand color: Shopify's images are full color cards, so grayscale is the h
 File: `snippets/placeholder-pick.liquid`
 
 Picks the placeholder image entry for a product that has no image: prints the handle of the best matching entry of
-the metaobject type singi_placeholder, or nothing when no entry matches. The caller reads that entry's image with
-`shop.metaobjects.singi_placeholder[handle].image.value` (see snippets/product-card.liquid; a list cannot be indexed
+the metaobject type product_placeholder, or nothing when no entry matches. The caller reads that entry's image with
+`shop.metaobjects.product_placeholder[handle].image.value` (see snippets/product-card.liquid; a list cannot be indexed
 by position in Liquid, a lookup by handle works) and falls back to the theme setting "Product placeholder image". Decision record: docs/decisions/038-placeholder-images-by-type-and-vendor.md.
 
 An entry has an optional product type and an optional vendor (empty means any). It matches when each field it
@@ -347,7 +397,7 @@ node here is multiplied by the page size. The li is the card, the image is a
 direct child (no media wrapper), the title link stretches over the card with
 ::after, and the badge is positioned against the li.
 
-A product with no image shows the placeholder chosen by its type and vendor (the metaobject singi_placeholder,
+A product with no image shows the placeholder chosen by its type and vendor (the metaobject product_placeholder,
 decision 038), else settings.placeholder_image when the merchant set one,
 otherwise an empty neutral block of the same shape, so the grid never shifts.
 
