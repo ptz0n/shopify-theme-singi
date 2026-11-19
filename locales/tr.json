@@ -154,8 +154,8 @@
   "consent": {
     "title": "Çerezler",
     "body": "Mağazanın nasıl kullanıldığını görmek ve size uygun teklifler göstermek için çerezleri kullanıyoruz. Hangilerinin kullanılacağını siz seçersiniz.",
-    "accept": "Tümünü kabul et",
-    "reject": "Tümünü reddet",
+    "accept": "Kabul et",
+    "reject": "Reddet",
     "customize": "Özelleştir",
     "save": "Seçimleri kaydet",
     "essential": "Zorunlu",

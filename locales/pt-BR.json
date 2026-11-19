@@ -154,8 +154,8 @@
   "consent": {
     "title": "Cookies",
     "body": "Usamos cookies para entender como a loja é usada e mostrar ofertas relevantes para você. Você escolhe quais.",
-    "accept": "Aceitar todos",
-    "reject": "Recusar todos",
+    "accept": "Aceitar",
+    "reject": "Recusar",
     "customize": "Personalizar",
     "save": "Salvar escolhas",
     "essential": "Essenciais",

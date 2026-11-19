@@ -154,8 +154,8 @@
   "consent": {
     "title": "Cookies",
     "body": "Vi bruger cookies til at se, hvordan butikken bruges, og til at vise dig relevante tilbud. Du vælger selv, hvilke.",
-    "accept": "Accepter alle",
-    "reject": "Afvis alle",
+    "accept": "Accepter",
+    "reject": "Afvis",
     "customize": "Tilpas",
     "save": "Gem valg",
     "essential": "Nødvendige",

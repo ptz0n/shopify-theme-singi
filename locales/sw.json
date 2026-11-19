@@ -154,8 +154,8 @@
   "consent": {
     "title": "Vidakuzi",
     "body": "Tunatumia vidakuzi kuona jinsi duka linavyotumika na kukuonyesha ofa zinazokufaa. Wewe ndiye unayechagua.",
-    "accept": "Kubali zote",
-    "reject": "Kataa zote",
+    "accept": "Kubali",
+    "reject": "Kataa",
     "customize": "Badilisha",
     "save": "Hifadhi chaguo",
     "essential": "Muhimu",

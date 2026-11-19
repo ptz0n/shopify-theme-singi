@@ -154,8 +154,8 @@
   "consent": {
     "title": "Küpsised",
     "body": "Kasutame küpsiseid, et näha, kuidas poodi kasutatakse, ja näidata sulle asjakohaseid pakkumisi. Sina valid, milliseid.",
-    "accept": "Nõustu kõigiga",
-    "reject": "Keeldu kõigist",
+    "accept": "Nõustu",
+    "reject": "Keeldu",
     "customize": "Kohanda",
     "save": "Salvesta valikud",
     "essential": "Vajalikud",

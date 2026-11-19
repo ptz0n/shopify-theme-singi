@@ -152,8 +152,8 @@
   "consent": {
     "title": "Cookie",
     "body": "Kami menggunakan cookie untuk melihat bagaimana toko digunakan dan menampilkan penawaran yang relevan untuk Anda. Anda yang memilih cookie mana yang diizinkan.",
-    "accept": "Terima semua",
-    "reject": "Tolak semua",
+    "accept": "Terima",
+    "reject": "Tolak",
     "customize": "Sesuaikan",
     "save": "Simpan pilihan",
     "essential": "Penting",

@@ -10,7 +10,7 @@
  *   - nothing shows when the API says not to ask, or when the visitor already answered;
  *   - the footer Cookie settings button appears once the API is ready, reopens the dialog with the current choices, and Escape
  *     closes it without recording anything;
- *   - a phone (16px inset, no horizontal scroll), right to left, and dark mode.
+ *   - a phone (16px side inset, no horizontal scroll), right to left, and dark mode.
  *
  *   npm run dev                      (in one terminal)
  *   npm run test:consent             (in another)
@@ -125,7 +125,8 @@ try {
     ok(await shown(page), 'a visitor who must be asked sees the dialog');
     ok(await page.evaluate(() => document.querySelector('dialog.consent').matches(':modal') && getComputedStyle(document.documentElement).overflow === 'hidden'), 'the dialog is modal and the page behind does not scroll');
     ok(await page.evaluate(() => getComputedStyle(document.querySelector('dialog.consent'), '::backdrop').backgroundColor === 'rgba(0, 0, 0, 0.6)'), 'the page behind sits under the scrim token');
-    ok(await page.evaluate(() => document.activeElement?.id === 'consent-title'), 'focus starts on the title');
+    const active = await page.evaluate(() => { const a = document.activeElement; return `${a?.tagName}#${a?.id}.${a?.className}`; });
+    ok(active.includes('#consent-title'), `focus starts on the title (${active})`);
     for (let i = 0; i < 14; i += 1) await page.keyboard.press('Tab');
     ok(await page.evaluate(() => !!document.activeElement?.closest('dialog.consent')), 'Tab stays inside the dialog');
     await page.keyboard.press('Escape');
@@ -138,7 +139,7 @@ try {
     ok(Math.abs(accept.w - reject.w) <= 1 && Math.abs(accept.h - reject.h) <= 1 && accept.h >= 44, `Accept all and Reject all are the same size, 44px tall or more (${Math.round(accept.w)}x${Math.round(accept.h)} and ${Math.round(reject.w)}x${Math.round(reject.h)})`);
     ok(accept.bg === reject.bg && accept.color === reject.color && accept.weight === reject.weight && accept.font === reject.font, `Accept all and Reject all look the same (${accept.bg} / ${reject.bg})`);
     const card = await rect(page, 'dialog.consent');
-    ok(Math.abs(card.x - (1200 - 416) / 2) <= 1 && Math.abs(card.w - 416) <= 1 && Math.abs(card.y - card.bottom) <= 1, `desktop: a 26rem card centered (${JSON.stringify({ x: card.x, y: card.y, bottom: card.bottom, w: card.w })})`);
+    ok(Math.abs(card.x - (1200 - 416) / 2) <= 1 && Math.abs(card.w - 416) <= 1 && Math.abs(card.y - 0.12 * 800) <= 2, `desktop: a 26rem card centered across, anchored 12% from the top (${JSON.stringify({ x: card.x, y: card.y, bottom: card.bottom, w: card.w })})`);
     const body = await rect(page, '.consent__body');
     ok(contrast(card.bg, card.color) >= 4.5 && contrast(card.bg, body.color) >= 4.5, `text has contrast of at least 4.5:1 (${contrast(card.bg, body.color).toFixed(1)}:1 for the note)`);
     ok(await page.evaluate(() => { const r = document.querySelector('dialog.consent').getBoundingClientRect(); const top = document.elementFromPoint(r.left + r.width / 2, r.top + 8); return !!top?.closest('dialog.consent'); }), 'the dialog is above the page (the sticky header and bars)');
@@ -210,7 +211,7 @@ try {
     page = await open({ width: 390 });
     await shown(page);
     const phone = await rect(page, 'dialog.consent');
-    ok(Math.abs(phone.x - 16) <= 1 && Math.abs(phone.right - 16) <= 1 && Math.abs(phone.bottom - 16) <= 1, `phone: 16px from the left, right and bottom (${JSON.stringify({ x: phone.x, right: phone.right, bottom: phone.bottom })})`);
+    ok(Math.abs(phone.x - 16) <= 1 && Math.abs(phone.right - 16) <= 1 && phone.y >= 16, `phone: 16px from the left and right, below the top inset (${JSON.stringify({ x: phone.x, right: phone.right, y: phone.y })})`);
     ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'phone: no horizontal scroll');
     await page.close();
     page = await open();
@@ -287,19 +288,32 @@ try {
     ok(seen.calls[0] === 'suggestion' && seen.country === 'SE', `the country is preselected from Shopify's suggestion (${seen.country}, ${JSON.stringify(seen.calls)})`);
     ok(!seen.labelHidden && !seen.disabled && JSON.stringify(seen.options) === JSON.stringify(['sv', 'en']) && /Language/.test(seen.label), `a country with two languages lists a secondary select labeled Language (${JSON.stringify(seen.options)}, "${seen.label.slice(0, 30)}")`);
     ok(seen.language === 'en', `with no language suggested the browser's language is preselected (${seen.language})`);
-    ok(seen.title === 'Cookie consent' && seen.accept === 'Accept all', `the words are Shopify's cookie copy (${seen.title} / ${seen.accept})`);
+    ok(seen.title === 'Cookie consent' && seen.accept === 'Accept', `the title is Shopify's cookie copy and the short Accept button is the theme's (${seen.title} / ${seen.accept})`);
     ok(await page.evaluate(() => !document.querySelector('.consent__region details, .consent__region summary') && [...document.querySelectorAll('.consent__region label')].every((l) => l.hidden || l.getBoundingClientRect().height > 0)), 'the country and language selects are always visible, with no expandable row or heading');
-    /* the visitor picks Swedish: the dialog speaks it */
+    /* the visitor picks Swedish: the dialog speaks it, and the card does not move: its title stays where it was (a layout shift otherwise) */
+    const place = () => page.evaluate(() => { const rect = (q) => Math.round(document.querySelector(q).getBoundingClientRect().top * 10) / 10; return { title: rect('#consent-title'), card: rect('dialog.consent') }; });
+    const before = await place();
+    /* sample the paragraph and the card every frame while the language changes: each may change height at most once (no flash of a shorter paragraph) */
+    await page.evaluate(() => { window.__heights = new Set(); const body = document.querySelector('.consent__body'); const card = document.querySelector('dialog.consent'); const tick = () => { window.__heights.add(`${Math.round(body.getBoundingClientRect().height)}/${Math.round(card.getBoundingClientRect().height)}`); window.__raf = requestAnimationFrame(tick); }; tick(); });
     await page.select('select[name="language_code"]', 'sv');
     await wait(500);
+    const sampled = await page.evaluate(() => { cancelAnimationFrame(window.__raf); return [...window.__heights]; });
+    ok(sampled.length <= 2, `the paragraph and the card settle in one step when the language changes, with no shorter state in between (${JSON.stringify(sampled)})`);
+    const after = await place();
+    ok(before.title === after.title && before.card === after.card, `switching language does not move the card or its title (${JSON.stringify(before)} then ${JSON.stringify(after)})`);
+    /* the real Swedish and French words can be longer than these: whatever the height of the content, the top of the card stays put */
+    const grown = await page.evaluate(() => { const filler = document.createElement('p'); filler.style.height = '90px'; filler.className = 'filler'; document.querySelector('.consent__body').append(filler); const rect = (q) => Math.round(document.querySelector(q).getBoundingClientRect().top * 10) / 10; const out = { title: rect('#consent-title'), card: rect('dialog.consent') }; filler.remove(); return out; });
+    ok(grown.title === after.title && grown.card === after.card, `a taller card grows downwards: its top and title stay put (${JSON.stringify(after)} then ${JSON.stringify(grown)})`);
     seen = await page.evaluate(() => ({ title: document.getElementById('consent-title').textContent, accept: document.querySelector('[data-consent="accept"]').textContent.trim(), lang: document.querySelector('dialog.consent').lang, calls: window.__calls }));
-    ok(seen.title === 'Cookie-samtycke' && seen.accept === 'Godkänn alla' && seen.lang === 'sv', `picking Swedish makes the dialog speak Swedish (${seen.title} / ${seen.accept} / ${seen.lang}, ${JSON.stringify(seen.calls.slice(-1))})`);
+    ok(seen.title === 'Cookie-samtycke' && seen.accept === 'Godkänn' && seen.lang === 'sv', `picking Swedish makes the dialog speak Swedish (${seen.title} / ${seen.accept} / ${seen.lang}, ${JSON.stringify(seen.calls.slice(-1))})`);
     /* the labels, the Preferences row and the text are in the chosen language too, not a mix; going back restores the page's */
     const sv = JSON.parse(readFileSync(new URL('../assets/consent-strings-sv.json', import.meta.url), 'utf8'));
     seen = await page.evaluate(() => ({ country: document.querySelector('[data-copy="country"]').textContent, language: document.querySelector('[data-copy="language"]').textContent, prefs: document.querySelector('.consent__more summary span').textContent, dir: document.querySelector('dialog.consent').dir }));
     ok(seen.country === sv.country && seen.language === sv.language && seen.prefs === sv.customize && seen.dir === 'ltr', `in Swedish the labels and the Preferences row are Swedish too (${JSON.stringify(seen)})`);
+    await page.evaluate(() => { window.__titleChanges = 0; new MutationObserver((list) => { window.__titleChanges += list.length; }).observe(document.getElementById('consent-title'), { childList: true, characterData: true, subtree: true }); });
     await page.select('select[name="language_code"]', 'en');
     await wait(500);
+    ok((await page.evaluate(() => window.__titleChanges)) === 1, 'switching language changes the title once (no flash of the theme words before Shopify\'s)');
     seen = await page.evaluate(() => ({ country: document.querySelector('[data-copy="country"]').textContent, prefs: document.querySelector('.consent__more summary span').textContent }));
     ok(seen.country === 'Country/region' && seen.prefs === 'Preferences', `back in English the labels are English again (${JSON.stringify(seen)})`);
     /* a country with one language hides the select and posts no language */

@@ -158,8 +158,8 @@
   "consent": {
     "title": "Piškotki",
     "body": "Piškotke uporabljamo, da vidimo, kako se trgovina uporablja, in vam prikažemo ustrezne ponudbe. Vi izberete, katere.",
-    "accept": "Sprejmi vse",
-    "reject": "Zavrni vse",
+    "accept": "Sprejmi",
+    "reject": "Zavrni",
     "customize": "Prilagodi",
     "save": "Shrani izbiro",
     "essential": "Nujni",

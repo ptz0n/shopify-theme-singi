@@ -154,8 +154,8 @@
   "consent": {
     "title": "Kukilər",
     "body": "Mağazanın necə istifadə olunduğunu görmək və sizə uyğun təkliflər göstərmək üçün kukilərdən istifadə edirik. Hansılarını seçmək sizdən asılıdır.",
-    "accept": "Hamısını qəbul et",
-    "reject": "Hamısını rədd et",
+    "accept": "Qəbul et",
+    "reject": "Rədd et",
     "customize": "Fərdiləşdir",
     "save": "Seçimləri saxla",
     "essential": "Vacib",

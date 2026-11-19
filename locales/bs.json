@@ -156,8 +156,8 @@
   "consent": {
     "title": "Kolačići",
     "body": "Koristimo kolačiće da vidimo kako se trgovina koristi i da vam prikažemo relevantne ponude. Vi birate koje.",
-    "accept": "Prihvati sve",
-    "reject": "Odbij sve",
+    "accept": "Prihvati",
+    "reject": "Odbij",
     "customize": "Prilagodi",
     "save": "Sačuvaj odabir",
     "essential": "Neophodni",

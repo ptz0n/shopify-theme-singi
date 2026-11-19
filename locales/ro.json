@@ -156,8 +156,8 @@
   "consent": {
     "title": "Cookie-uri",
     "body": "Folosim cookie-uri pentru a vedea cum este utilizat magazinul și pentru a-ți arăta oferte relevante. Tu alegi care.",
-    "accept": "Acceptă toate",
-    "reject": "Respinge toate",
+    "accept": "Acceptă",
+    "reject": "Respinge",
     "customize": "Personalizează",
     "save": "Salvează alegerile",
     "essential": "Esențiale",

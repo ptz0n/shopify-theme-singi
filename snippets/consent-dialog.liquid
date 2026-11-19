@@ -5,12 +5,12 @@
   Accept all and Reject all are the same size and weight (both primary buttons; Save choices replaces them once Preferences is open); Preferences opens Essential (always on), Analytics, Marketing and
   Preferences. A footer button (`data-consent-open`, sections/footer.liquid) reopens it with the current choices.
   On a store with more than one country or language the first ask also shows the visitor's country and language (the market
-  Shopify resolved, with the currency) and lets them change either, so one click on Accept all or Reject all confirms the
+  Shopify resolved, with the currency) at the very top, above the title, so they can check and correct it before reading anything else, and lets them change either, so one click on Accept all or Reject all confirms the
   consent and the region together; the footer's Cookie settings button reopens the consent part only, and the footer
   selector stays the way to change region later. Nothing redirects: the country and language are preselected from what Shopify's
-  suggestion endpoint detects for the visitor (assets/consent.js), and apply only when the visitor answers. The words are Shopify's own
-  cookie banner copy, translated and edited in the admin, fetched from the Storefront API on a real store host; the `consent` strings
-  here are the fallback (and what the dev server shows, where that call cannot be made).
+  suggestion endpoint detects for the visitor (assets/consent.js), and apply only when the visitor answers. The title, buttons and categories are Shopify's own
+  cookie banner copy, translated, fetched from the Storefront API on a real store host; the paragraph and the `consent` strings
+  here are the theme's own, and the fallback (and what the dev server shows, where that call cannot be made).
   Needs JavaScript: without it nothing non-essential runs and the dialog never shows. Rendered first in the body when the
   theme setting "Show the theme's cookie dialog" is on (and Shopify's own banner is off). Decision record:
   docs/decisions/046-the-cookie-dialog-is-the-themes-and-shopifys-api-records-the-answer.md.
@@ -44,20 +44,6 @@
 >
   <dialog class="consent" aria-labelledby="consent-title">
     <form class="consent__panel stack" method="dialog">
-      <div class="consent__head">
-        <h2 id="consent-title" class="consent__title" tabindex="-1" data-copy="title">{{ 'consent.title' | t }}</h2>
-        <button class="icon-button" type="button" data-consent-close data-copy="close" aria-label="{{ 'general.close' | t }}" hidden>
-          {%- render 'icon', name: 'close' -%}
-        </button>
-      </div>
-
-      <p class="consent__body">
-        <span data-copy="text">{{ 'consent.body' | t }}</span>
-        {%- if shop.privacy_policy != blank %}
-          <a href="{{ shop.privacy_policy.url }}" data-copy="policy">{{ 'consent.privacy' | t }}</a>
-        {%- endif -%}
-      </p>
-
       {%- if show_region -%}
         <div class="consent__region" data-consent-region>
           <div class="consent__fields">
@@ -126,6 +112,27 @@
         </div>
       {%- endif -%}
 
+      <div class="consent__head">
+        <h2 id="consent-title" class="consent__title" tabindex="-1" autofocus data-copy="title">{{ 'consent.title' | t }}</h2>
+        <button
+          class="icon-button"
+          type="button"
+          data-consent-close
+          data-copy="close"
+          aria-label="{{ 'general.close' | t }}"
+          hidden
+        >
+          {%- render 'icon', name: 'close' -%}
+        </button>
+      </div>
+
+      <p class="consent__body">
+        <span data-copy="text">{{ 'consent.body' | t }}</span>
+        {%- if shop.privacy_policy != blank %}
+          <a href="{{ shop.privacy_policy.url }}" data-copy="policy">{{ 'consent.privacy' | t }}</a>
+        {%- endif -%}
+      </p>
+
       <details class="consent__more">
         <summary>
           <span data-copy="customize">{{ 'consent.customize' | t }}</span>
@@ -181,13 +188,12 @@
 </consent-dialog>
 
 {% stylesheet %}
-  /* A modal card over a scrim, centered on a wide screen and 16px from the bottom of a phone. The first ask needs a decision before the page is
+  /* A modal card over a scrim, centered across and anchored 12% from the top (never centered vertically: a card that is centered moves its title whenever its height changes, for instance with a longer translation). The first ask needs a decision before the page is
      used, and Reject all is as easy as Accept all, so this is not a cookie wall. Native modal: the page behind is inert, focus stays inside and
      the page does not scroll. Opacity and transform only. */
-  .consent { width: min(26rem, calc(100% - 2rem)); max-width: none; max-height: calc(100dvh - 2rem); margin: auto; padding: 0; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); color: var(--color-fg); }
+  .consent { width: min(26rem, calc(100% - 2rem)); max-width: none; margin: max(1rem, 12dvh) auto auto; max-height: calc(100dvh - max(1rem, 12dvh) - 1rem); padding: 0; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); color: var(--color-fg); }
   .consent::backdrop { background: var(--color-scrim); }
   html:has(.consent:modal) { overflow: hidden; }
-  @media (max-width: 39.99em) { .consent { margin-block-end: 1rem; } }
   .consent[open] { animation: consent-in 0.2s ease-out; }
   .consent__panel { padding: 1.25rem; --stack: 0.875rem; }
   .consent__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }

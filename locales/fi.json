@@ -154,8 +154,8 @@
   "consent": {
     "title": "Evästeet",
     "body": "Käytämme evästeitä nähdäksemme, miten kauppaa käytetään, ja näyttääksemme sinulle sopivia tarjouksia. Sinä valitset, mitkä sallit.",
-    "accept": "Hyväksy kaikki",
-    "reject": "Hylkää kaikki",
+    "accept": "Hyväksy",
+    "reject": "Hylkää",
     "customize": "Mukauta",
     "save": "Tallenna valinnat",
     "essential": "Välttämättömät",

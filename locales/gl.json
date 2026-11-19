@@ -154,8 +154,8 @@
   "consent": {
     "title": "Cookies",
     "body": "Usamos cookies para saber como se usa a tenda e mostrarche ofertas relevantes. Ti escolles cales.",
-    "accept": "Aceptar todas",
-    "reject": "Rexeitar todas",
+    "accept": "Aceptar",
+    "reject": "Rexeitar",
     "customize": "Personalizar",
     "save": "Gardar escollas",
     "essential": "Esenciais",

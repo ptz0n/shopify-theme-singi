@@ -29,7 +29,7 @@ const BUDGETS = {
   'assets/base.css': { raw: 12100, brotli: 3300 },
   'assets/soft-nav.js': { raw: 7500 },
   'assets/tracking.js': { raw: 7000 },
-  'assets/consent.js': { raw: 15800 }, // the cookie dialog with Shopify's copy, the suggestion preselect, the per-country language select and the strings in the chosen language (15775 measured), decision 046
+  'assets/consent.js': { raw: 16200 }, // the cookie dialog with Shopify's copy, the suggestion preselect, the per-country language select and the strings in the chosen language (16033 measured), decision 046
   'assets/styleguide.js': { raw: 14000 },
   'assets/wishlist.js': { raw: 7700 },
   'assets/image-tone.js': { raw: 3500 },

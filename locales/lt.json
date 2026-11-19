@@ -158,8 +158,8 @@
   "consent": {
     "title": "Slapukai",
     "body": "Naudojame slapukus, kad matytume, kaip naudojama parduotuvė, ir rodytume tinkamus pasiūlymus. Jūs pasirenkate, kuriuos.",
-    "accept": "Sutikti su visais",
-    "reject": "Atmesti visus",
+    "accept": "Sutikti",
+    "reject": "Atmesti",
     "customize": "Tinkinti",
     "save": "Išsaugoti pasirinkimus",
     "essential": "Būtini",

@@ -154,8 +154,8 @@
   "consent": {
     "title": "Cookies",
     "body": "We gebruiken cookies om te zien hoe de winkel wordt gebruikt en om je relevante aanbiedingen te tonen. Jij kiest welke.",
-    "accept": "Alles accepteren",
-    "reject": "Alles weigeren",
+    "accept": "Accepteren",
+    "reject": "Weigeren",
     "customize": "Aanpassen",
     "save": "Keuzes opslaan",
     "essential": "Essentieel",

@@ -154,8 +154,8 @@
   "consent": {
     "title": "Sütik",
     "body": "Sütiket használunk, hogy lássuk, hogyan használják az áruházat, és releváns ajánlatokat mutassunk Önnek. Ön választja ki, melyeket.",
-    "accept": "Összes elfogadása",
-    "reject": "Összes elutasítása",
+    "accept": "Elfogadás",
+    "reject": "Elutasítás",
     "customize": "Testreszabás",
     "save": "Választások mentése",
     "essential": "Szükséges",

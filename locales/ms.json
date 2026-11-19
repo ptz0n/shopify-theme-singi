@@ -152,8 +152,8 @@
   "consent": {
     "title": "Kuki",
     "body": "Kami menggunakan kuki untuk melihat cara kedai digunakan dan menunjukkan tawaran yang relevan kepada anda. Anda yang memilih.",
-    "accept": "Terima semua",
-    "reject": "Tolak semua",
+    "accept": "Terima",
+    "reject": "Tolak",
     "customize": "Sesuaikan",
     "save": "Simpan pilihan",
     "essential": "Penting",

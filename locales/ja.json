@@ -152,8 +152,8 @@
   "consent": {
     "title": "Cookie",
     "body": "当店では、ストアの利用状況の把握と、関連性の高いオファーの表示のために Cookie を使用しています。使用する Cookie はお客様が選択できます。",
-    "accept": "すべて同意",
-    "reject": "すべて拒否",
+    "accept": "同意する",
+    "reject": "拒否する",
     "customize": "カスタマイズ",
     "save": "選択を保存",
     "essential": "必須",

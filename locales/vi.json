@@ -152,8 +152,8 @@
   "consent": {
     "title": "Cookie",
     "body": "Chúng tôi dùng cookie để xem cửa hàng được sử dụng như thế nào và hiển thị ưu đãi phù hợp với bạn. Bạn quyết định dùng loại nào.",
-    "accept": "Chấp nhận tất cả",
-    "reject": "Từ chối tất cả",
+    "accept": "Chấp nhận",
+    "reject": "Từ chối",
     "customize": "Tùy chỉnh",
     "save": "Lưu lựa chọn",
     "essential": "Thiết yếu",

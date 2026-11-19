@@ -154,8 +154,8 @@
   "consent": {
     "title": "Cookies",
     "body": "Gumagamit kami ng cookies para makita kung paano ginagamit ang tindahan at para magpakita sa iyo ng mga angkop na alok. Ikaw ang pipili kung alin.",
-    "accept": "Tanggapin lahat",
-    "reject": "Tanggihan lahat",
+    "accept": "Tanggapin",
+    "reject": "Tanggihan",
     "customize": "I-customize",
     "save": "I-save ang mga napili",
     "essential": "Mahalaga",

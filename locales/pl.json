@@ -158,8 +158,8 @@
   "consent": {
     "title": "Pliki cookie",
     "body": "Używamy plików cookie, aby sprawdzać, jak korzysta się ze sklepu, i pokazywać Ci odpowiednie oferty. To Ty wybierasz, które.",
-    "accept": "Zaakceptuj wszystkie",
-    "reject": "Odrzuć wszystkie",
+    "accept": "Zaakceptuj",
+    "reject": "Odrzuć",
     "customize": "Dostosuj",
     "save": "Zapisz wybór",
     "essential": "Niezbędne",

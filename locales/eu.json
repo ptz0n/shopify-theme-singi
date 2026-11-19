@@ -154,8 +154,8 @@
   "consent": {
     "title": "Cookieak",
     "body": "Cookieak erabiltzen ditugu dendaren erabilera ikusteko eta eskaintza egokiak erakusteko. Zuk aukeratzen duzu zeintzuk.",
-    "accept": "Onartu guztiak",
-    "reject": "Baztertu guztiak",
+    "accept": "Onartu",
+    "reject": "Baztertu",
     "customize": "Pertsonalizatu",
     "save": "Gorde aukerak",
     "essential": "Ezinbestekoak",

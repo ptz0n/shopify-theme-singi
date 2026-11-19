@@ -154,8 +154,8 @@
   "consent": {
     "title": "Koekies",
     "body": "Ons gebruik koekies om te sien hoe die winkel gebruik word en om relevante aanbiedings te wys. Jy kies watter.",
-    "accept": "Aanvaar almal",
-    "reject": "Weier almal",
+    "accept": "Aanvaar",
+    "reject": "Weier",
     "customize": "Pasmaak",
     "save": "Stoor keuses",
     "essential": "Noodsaaklik",

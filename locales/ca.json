@@ -154,8 +154,8 @@
   "consent": {
     "title": "Galetes",
     "body": "Fem servir galetes per saber com s'utilitza la botiga i per mostrar-te ofertes rellevants. Tu tries quines.",
-    "accept": "Accepta-ho tot",
-    "reject": "Rebutja-ho tot",
+    "accept": "Accepta",
+    "reject": "Rebutja",
     "customize": "Personalitza",
     "save": "Desa les opcions",
     "essential": "Essencials",

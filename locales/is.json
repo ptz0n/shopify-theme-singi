@@ -154,8 +154,8 @@
   "consent": {
     "title": "Vefkökur",
     "body": "Við notum vefkökur til að sjá hvernig verslunin er notuð og til að sýna þér viðeigandi tilboð. Þú velur hverjar.",
-    "accept": "Samþykkja allar",
-    "reject": "Hafna öllum",
+    "accept": "Samþykkja",
+    "reject": "Hafna",
     "customize": "Sérsníða",
     "save": "Vista val",
     "essential": "Nauðsynlegar",

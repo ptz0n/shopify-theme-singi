@@ -154,8 +154,8 @@
   "consent": {
     "title": "Informasjonskapsler",
     "body": "Vi bruker informasjonskapsler for å se hvordan nettbutikken brukes og for å vise deg relevante tilbud. Du velger selv hvilke.",
-    "accept": "Godta alle",
-    "reject": "Avvis alle",
+    "accept": "Godta",
+    "reject": "Avvis",
     "customize": "Tilpass",
     "save": "Lagre valg",
     "essential": "Nødvendige",

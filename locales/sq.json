@@ -154,8 +154,8 @@
   "consent": {
     "title": "Cookie",
     "body": "Përdorim cookie për të parë se si përdoret dyqani dhe për t'ju shfaqur oferta përkatëse. Ju zgjidhni cilat.",
-    "accept": "Prano të gjitha",
-    "reject": "Refuzo të gjitha",
+    "accept": "Prano",
+    "reject": "Refuzo",
     "customize": "Personalizo",
     "save": "Ruaj zgjedhjet",
     "essential": "Thelbësore",

@@ -158,8 +158,8 @@
   "consent": {
     "title": "Cookies",
     "body": "Používame cookies, aby sme zistili, ako sa obchod používa, a ukázali vám relevantné ponuky. Vy si vyberáte, ktoré.",
-    "accept": "Prijať všetky",
-    "reject": "Odmietnuť všetky",
+    "accept": "Prijať",
+    "reject": "Odmietnuť",
     "customize": "Prispôsobiť",
     "save": "Uložiť výber",
     "essential": "Nevyhnutné",

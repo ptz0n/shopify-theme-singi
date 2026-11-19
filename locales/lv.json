@@ -156,8 +156,8 @@
   "consent": {
     "title": "Sīkdatnes",
     "body": "Mēs izmantojam sīkdatnes, lai redzētu, kā tiek izmantots veikals, un rādītu jums atbilstošus piedāvājumus. Jūs izvēlaties, kuras.",
-    "accept": "Pieņemt visas",
-    "reject": "Noraidīt visas",
+    "accept": "Pieņemt",
+    "reject": "Noraidīt",
     "customize": "Pielāgot",
     "save": "Saglabāt izvēli",
     "essential": "Obligātās",

@@ -152,8 +152,8 @@
   "consent": {
     "title": "Cookie",
     "body": "我们使用 Cookie 来了解商店的使用情况，并向您展示相关优惠。使用哪些 Cookie 由您决定。",
-    "accept": "全部接受",
-    "reject": "全部拒绝",
+    "accept": "接受",
+    "reject": "拒绝",
     "customize": "自定义",
     "save": "保存选择",
     "essential": "必要",

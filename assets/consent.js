@@ -134,8 +134,8 @@ class ConsentDialog extends HTMLElement {
     this.languages = new Map(data.localization.availableCountries.map((entry) => [entry.isoCode, entry.availableLanguages.map((l) => ({ code: code(l.isoCode), name: l.endonymName }))]));
     this.#syncLanguage(hint.language);
     const language = this.#chosenLanguage();
-    await this.#theme(language);
-    this.#translate(language === code(this.dataset.language) ? data : await storefront(language, country));
+    const [words, copy] = await Promise.all([this.#theme(language), language === code(this.dataset.language) ? data : storefront(language, country)]);
+    this.#paint(language, words, copy);
   }
 
   #chosenLanguage() {
@@ -166,64 +166,55 @@ class ConsentDialog extends HTMLElement {
     }
   }
 
-  /* The theme's own words (the labels, and the text and buttons when Shopify's copy is not there) in the chosen language, from one small file per
-     language (assets/consent-strings-<code>.json): Liquid can only translate into the language of the request. The page's own language is what the
-     page rendered, so it is put back from there. Shopify's copy is applied over this. */
+  /* The theme's own words (the labels, the text, and the buttons when Shopify's copy is not there) in the chosen language, by name, from one small file
+     per language (assets/consent-strings-<code>.json): Liquid can only translate into the language of the request. The page's own language is what
+     the page rendered, so those words are put back from there. */
   async #theme(language) {
-    const same = language === code(this.dataset.language);
     this.originals ??= new Map([...this.querySelectorAll('[data-copy]')].map((element) => [element, element.dataset.copy === 'close' ? element.getAttribute('aria-label') : element.textContent]));
-    let words = null;
-    if (!same) {
-      const pick = [language, language.split('-')[0]];
-      for (const name of pick) {
-        words = await fetch(this.dataset.strings.replace('-en.json', `-${name}.json`), { signal: AbortSignal.timeout(2500) }).then((r) => (r.ok ? r.json() : null), () => null);
-        if (words) break;
-      }
-      if (!words) return;
+    if (language === code(this.dataset.language)) return Object.fromEntries([...this.originals].map(([element, text]) => [element.dataset.copy, text]));
+    for (const name of [language, language.split('-')[0]]) {
+      const words = await fetch(this.dataset.strings.replace('-en.json', `-${name}.json`), { signal: AbortSignal.timeout(2500) }).then((r) => (r.ok ? r.json() : null), () => null);
+      if (words) return { ...words, text: words.body, policy: words.privacy };
     }
-    const key = { text: 'body', policy: 'privacy' };
-    for (const [element, original] of this.originals) {
-      const text = same ? original : words[key[element.dataset.copy] ?? element.dataset.copy];
-      if (!text) continue;
-      if (element.dataset.copy === 'close') element.setAttribute('aria-label', text);
-      else element.textContent = text;
-    }
-    this.dialog.lang = language;
-    this.dialog.dir = ['ar', 'fa', 'he', 'ur'].includes(language.split('-')[0]) ? 'rtl' : 'ltr';
+    return {};
   }
 
-  /* Shopify's banner copy: translated, and edited by the merchant in Settings > Customer privacy. Anything it does not return keeps the theme's text. */
-  #translate(data) {
+  /* Puts the words on the dialog in one pass, so the title changes once: the theme's words in the chosen language, with Shopify's copy over them
+     (translated by Shopify; the title, Save, Close and the cookie categories; the paragraph and the Accept and Decline buttons stay the theme's, short on purpose) and the country names
+     in the chosen language. */
+  #paint(language, words, data) {
     for (const entry of data?.localization?.availableCountries ?? []) {
       const option = entry.name && this.country?.querySelector(`option[value="${entry.isoCode}"]`);
       if (option) option.textContent = `${entry.name} (${entry.currency.isoCode})`;
     }
     const banner = data?.consentManagement?.banner;
-    if (!banner?.preferences) return;
-    const { preferences: p, preferences: { purposes: u } } = banner;
-    const link = this.querySelector('[data-copy="policy"]');
-    const copy = {
-      title: banner.title, text: link ? banner.text : '', policy: banner.policyLinkText,
-      accept: p.buttonAcceptText, reject: p.buttonDeclineText, save: p.buttonSaveText, close: p.buttonCloseText,
-      essential: u.essentialName, essential_note: u.essentialDesc, analytics: u.performanceName, analytics_note: u.performanceDesc,
-      marketing: u.marketingName, marketing_note: u.marketingDesc, preferences: u.preferencesName, preferences_note: u.preferencesDesc,
-    };
+    const copy = { ...words };
+    if (banner?.preferences) {
+      const { preferences: p, preferences: { purposes: u } } = banner;
+      Object.assign(copy, {
+        title: banner.title, policy: banner.policyLinkText,
+        save: p.buttonSaveText, close: p.buttonCloseText,
+        essential: u.essentialName, essential_note: u.essentialDesc, analytics: u.performanceName, analytics_note: u.performanceDesc,
+        marketing: u.marketingName, marketing_note: u.marketingDesc, preferences: u.preferencesName, preferences_note: u.preferencesDesc,
+      });
+    }
     for (const element of this.querySelectorAll('[data-copy]')) {
       const text = copy[element.dataset.copy];
       if (!text) continue;
       if (element.dataset.copy === 'close') element.setAttribute('aria-label', text);
       else element.textContent = text;
     }
-    if (link && /^https?:\/\//.test(banner.policyLinkUrl ?? '')) link.href = banner.policyLinkUrl;
-    this.dialog.lang = this.#chosenLanguage();
+    const link = this.querySelector('[data-copy="policy"]');
+    if (link && /^https?:\/\//.test(banner?.policyLinkUrl ?? '')) link.href = banner.policyLinkUrl;
+    this.dialog.lang = language;
+    this.dialog.dir = ['ar', 'fa', 'he', 'ur'].includes(language.split('-')[0]) ? 'rtl' : 'ltr';
   }
 
   /* The visitor picked another country or language: the dialog speaks it. */
   async #retranslate() {
-    if (!this.languages) return;
     const language = this.#chosenLanguage();
-    const [data] = await Promise.all([storefront(language, this.country?.value || this.dataset.country), this.#theme(language)]);
-    if (data) this.#translate(data);
+    const [data, words] = await Promise.all([live() ? storefront(language, this.country?.value || this.dataset.country) : null, this.#theme(language)]);
+    this.#paint(language, words, data);
   }
 
   /* Modal: the page behind is inert and focus stays inside until the visitor answers. Focus starts on the title, so a screen reader reads the question. */
