@@ -204,6 +204,8 @@
   .consent__body a { color: var(--color-fg); }
     .consent__fields { display: grid; gap: 0.75rem; font-size: 0.875rem; }
   .consent__fields label { display: grid; gap: 0.25rem; }
+  /* A rule under the region: where the visitor is (check it first) is set apart from what is being asked. */
+  .consent__region { padding-block-end: 1rem; border-block-end: 1px solid var(--color-border); }
   .consent__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
   /* The same disclosure as the product page accordion (blocks/accordion.liquid): bold title and a chevron at the end (no rule below: the card already frames it). Keep the two in step. */
   .consent__more summary { display: flex; align-items: center; justify-content: space-between; min-height: 3.5rem; font-weight: var(--font-weight-strong); cursor: pointer; list-style: none; }
