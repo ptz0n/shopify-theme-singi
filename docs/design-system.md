@@ -118,7 +118,7 @@ The heading block (`blocks/heading.liquid`) offers `sm`, `md`, `lg`, `xl` sizes 
 
 | Component | Where | Notes |
 | --- | --- | --- |
-| Button | `.button`, `.button--secondary`, `.button--block` in `base.css` | Primary is inverted foreground on background. |
+| Button | `.button`, `.button--secondary`, `.button--block` in `base.css` | Primary is inverted foreground on background. Buttons, `.button` and every `<summary>` (the accordion, facets, the cookie dialog's Preferences) do not select their text and do not wait for a double-tap zoom (`user-select: none; touch-action: manipulation` in `base.css`): a double tap on an expandable used to select its label. |
 | Inputs | `input`, `select`, `textarea` in `base.css` | 3rem tall, radius token. A select sits in `<span class="select">` with the `chevron-down` icon after it, the same chevron as the accordion, facets and footer selector. |
 | Chip (variant option) | `blocks/_variant-picker.liquid` | Real radios, visually hidden, styled labels. |
 | Product card | `snippets/product-card.liquid` | 4:5 media, stretched link, sold-out badge. |
