@@ -217,6 +217,7 @@ try {
     page = await open({ width: 390 });
     await shown(page);
     await page.click('.consent__more summary');
+    ok(await page.evaluate(() => { const q = (s) => document.querySelector(s).getBoundingClientRect(); const above = q('.consent__region').bottom - 1 - q('.consent__region .consent__fields').bottom; const below = q('.consent__head').top - q('.consent__region').bottom; const rem = parseFloat(getComputedStyle(document.documentElement).fontSize); return Math.abs(above - below) <= 1 && Math.abs(below - rem) <= 1 && Math.abs(q('.consent__body').top - q('.consent__head').bottom - rem) <= 1; }), 'phone: the same 1rem above and below the rule and between the title and the text');
     ok(await page.evaluate(() => [...document.querySelectorAll('.consent__row')].every((row) => { const r = row.getBoundingClientRect(); const d = row.querySelector('small').getBoundingClientRect(); const box = row.querySelector('input').getBoundingClientRect(); return Math.abs(d.left - r.left) <= 1 && d.top >= box.bottom - 1; })), 'phone: each description runs from the row\'s edge, under the checkbox and the name');
     await page.click('.consent__more summary');
     const phone = await rect(page, 'dialog.consent');
@@ -375,6 +376,17 @@ try {
       return { api: !!api, ask: !!api?.shouldShowBanner?.() && !answered, open: !!document.querySelector('dialog.consent')?.open };
     });
     ok(live.open === live.ask, `without ?consent_preview the dialog shows by itself exactly when Shopify's real API says to ask (API ${live.api}, ask ${live.ask}, open ${live.open})`);
+    await page.close();
+
+    /* 9a. when what Shopify detected is the market the page already is, there is nothing to check */
+    page = await open({ fake: { ...FAKE, suggestion: { detected_values: { country: { handle: 'US' } }, suggestions: [{ parts: { country: { handle: 'US' }, language: { handle: 'EN' } } }] } } });
+    ok(await shown(page), 'with a suggestion that matches the market the dialog shows');
+    ok(await page.evaluate(() => getComputedStyle(document.querySelector('[data-consent-region]')).display === 'none'), 'the detected country and language are the current market: the country and language are not shown');
+    ok(await page.evaluate(() => { const card = document.querySelector('.consent').getBoundingClientRect(); const title = document.querySelector('.consent__head').getBoundingClientRect(); const pad = parseFloat(getComputedStyle(document.querySelector('.consent__panel')).paddingTop); return Math.abs(title.top - card.top - 1 - pad) <= 1 && ![...document.querySelectorAll('.consent *')].some((el) => el.offsetParent && getComputedStyle(el).borderBlockEndWidth === '1px' && el.closest('.consent__panel') && el.matches('.consent__region')); }), 'and with them goes the rule: the title starts at the card\'s padding');
+    await page.close();
+    page = await open({ fake: FAKE });
+    await shown(page);
+    ok(await page.evaluate(() => getComputedStyle(document.querySelector('[data-consent-region]')).display !== 'none'), 'when the detection differs from the market they are shown');
     await page.close();
 
     /* 9b. the page the dialog links to stays readable */

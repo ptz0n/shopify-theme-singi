@@ -138,6 +138,8 @@ class ConsentDialog extends HTMLElement {
     if (!data) return;
     this.languages = new Map(data.localization.availableCountries.map((entry) => [entry.isoCode, entry.availableLanguages.map((l) => ({ code: code(l.isoCode), name: l.endonymName }))]));
     this.#syncLanguage(hint.language);
+    /* Nothing to check when what Shopify detected is the market the page already is: the country and language show only when they differ (or nothing was detected). */
+    if (hint.country && country === this.dataset.country && this.#chosenLanguage() === code(this.dataset.language) && this.region) this.region.hidden = true;
     const language = this.#chosenLanguage();
     const [words, copy] = await Promise.all([this.#theme(language), language === code(this.dataset.language) ? data : storefront(language, country)]);
     this.#paint(language, words, copy);

@@ -195,7 +195,8 @@
   .consent::backdrop { background: var(--color-scrim); }
   html:has(.consent:modal) { overflow: hidden; }
   .consent[open] { animation: consent-in 0.2s ease-out; }
-  .consent__panel { padding: 1.25rem; --stack: 0.875rem; }
+  /* One vertical unit, 1rem (--stack), between every block of the card: above and below the rule, between the title, text, Preferences and buttons, and from one choice to the next (the rows' own padding and gap add up to it). The edge of the card is 1.25rem. */
+  .consent__panel { padding: 1.25rem; --stack: 1rem; }
   .consent__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
   .consent [hidden] { display: none; }
   .consent__title { margin: 0; font-size: 1rem; }
@@ -206,12 +207,14 @@
   .consent__fields label { display: grid; gap: 0.25rem; }
   /* A rule under the region: where the visitor is (check it first) is set apart from what is being asked. The space above the rule equals the stack gap below it, so the rule sits centered between the two. */
   .consent__region { padding-block-end: var(--stack); border-block-end: 1px solid var(--color-border); }
+  /* A hidden region (nothing to check) is still the title's previous sibling, so the stack's top margin would leave a gap above the title. */
+  .consent__region[hidden] + .consent__head { margin-block-start: 0; }
   .consent__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
   /* The same disclosure as the product page accordion (blocks/accordion.liquid): bold title and a chevron at the end (no rule below: the card already frames it). Keep the two in step. */
   .consent__more summary { display: flex; align-items: center; justify-content: space-between; min-height: 3.5rem; font-weight: var(--font-weight-strong); cursor: pointer; list-style: none; }
   .consent__more summary::-webkit-details-marker { display: none; }
   .consent__more[open] summary .icon { transform: rotate(180deg); }
-  .consent__choices { display: grid; gap: 0.25rem; margin: 0 0 0.75rem; padding: 0; border: 0; }
+  .consent__choices { display: grid; gap: 0.25rem; margin: 0 0 0.625rem; padding: 0; border: 0; }
   /* The checkbox and the name share the first line; the description runs the full width beneath both, so it does not leave the space under the checkbox empty (it matters on a phone). Half a rem between the name and its description, one rem between one choice and the next: a choice reads as one group. */
   .consent__row { display: grid; grid-template-columns: auto 1fr; align-items: center; column-gap: 0.75rem; row-gap: 0.5rem; min-height: 2.75rem; padding-block: 0.375rem; margin: 0; font-size: 0.875rem; font-weight: var(--font-weight-body); }
   .consent__row > span { display: contents; }
