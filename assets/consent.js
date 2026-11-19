@@ -33,7 +33,7 @@ const code = (value) => {
 };
 const QUERY = `query consent($language: LanguageCode!, $country: CountryCode!) @inContext(language: $language, country: $country) {
   localization { availableCountries { isoCode name currency { isoCode } availableLanguages { isoCode endonymName } } }
-  consentManagement { banner { title text policyLinkText policyLinkUrl
+  consentManagement { banner { title text policyLinkText
     preferences { buttonAcceptText buttonDeclineText buttonSaveText buttonCloseText
       purposes { essentialName essentialDesc performanceName performanceDesc preferencesName preferencesDesc marketingName marketingDesc } } } }
 }`;
@@ -82,9 +82,13 @@ class ConsentDialog extends HTMLElement {
       const data = new FormData(this.form);
       this.choose({ analytics: data.has('analytics'), marketing: data.has('marketing'), preferences: data.has('preferences'), sale_of_data: data.has('marketing') });
     });
-    /* The first ask needs an answer, so Escape does not dismiss it; a reopened dialog closes with Escape or the close button. */
+    /* The first ask needs an answer, so neither Escape (however often it is pressed) nor anything else dismisses it; a reopened dialog closes with Escape or the close button. */
     this.dialog.addEventListener('cancel', (event) => {
       if (!this.reopened) event.preventDefault();
+    });
+    /* Chrome closes a modal on a second Escape when the first one was cancelled and nothing was clicked in between, so the key itself is stopped too. */
+    this.dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !this.reopened) event.preventDefault();
     });
     this.dialog.addEventListener('close', () => this.#reset());
     document.addEventListener('click', (event) => {
@@ -111,11 +115,12 @@ class ConsentDialog extends HTMLElement {
     else setTimeout(start, 500);
   }
 
-  /* Ask only a visitor Shopify's region rules say must be asked and who has not answered yet. */
+  /* Ask only a visitor Shopify's region rules say must be asked and who has not answered yet, and never on a policy page (the dialog links there; the footer button still opens it). */
   ready() {
     document.documentElement.dataset.consentReady = '';
     const consent = api().currentVisitorConsent();
     const answered = ['analytics', 'marketing', 'preferences'].some((key) => consent[key] === 'yes' || consent[key] === 'no');
+    if (/\/policies\//.test(location.pathname)) return;
     if (api().shouldShowBanner() && !answered) this.#ask();
   }
 
@@ -204,8 +209,6 @@ class ConsentDialog extends HTMLElement {
       if (element.dataset.copy === 'close') element.setAttribute('aria-label', text);
       else element.textContent = text;
     }
-    const link = this.querySelector('[data-copy="policy"]');
-    if (link && /^https?:\/\//.test(banner?.policyLinkUrl ?? '')) link.href = banner.policyLinkUrl;
     this.dialog.lang = language;
     this.dialog.dir = ['ar', 'fa', 'he', 'ur'].includes(language.split('-')[0]) ? 'rtl' : 'ltr';
   }

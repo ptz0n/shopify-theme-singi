@@ -24,6 +24,12 @@
     <style>
       {{- 'base.css' | inline_asset_content -}}
     </style>
+    {%- comment -%}Shopify's policy pages (/policies/...) are its own markup: their reading layout is inlined on those pages only.{%- endcomment -%}
+    {%- if request.page_type == 'policy' -%}
+      <style>
+        {{- 'policy.css' | inline_asset_content -}}
+      </style>
+    {%- endif -%}
 
     {%- comment -%}The card plus buttons (quick add, quick buy) need JavaScript; without it they would do nothing, so they are not shown.{%- endcomment -%}
     {%- if settings.card_quick_add or settings.card_quick_buy -%}

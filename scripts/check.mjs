@@ -37,7 +37,7 @@ const BUDGETS = {
   'assets/predictive-search.js': { raw: 9500 },
 };
 const DEFAULT_JS_BUDGET = 6000;
-const TOTAL_JS_BROTLI_BUDGET = 28100; // 27750 with the language select (measured 27705), then 28100 (measured 28047) for the dialog's strings in the chosen language; 23650 until the cookie dialog (assets/consent.js, 1677 bytes brotli with the region row, decision 046), then 27750 (measured 27705 + slack; consent.js 4083 bytes brotli with Shopify's copy, the suggestion preselect and the language select); sum of every module's SOURCE compressed with brotli: an upper bound, because Shopify's CDN minifies what it serves (see npm run perf:sizes for the delivered sizes); no page loads them all, each is a separate, lazily loaded file. Raw size counts the documentation comments, so it is capped per file instead.
+const TOTAL_JS_BROTLI_BUDGET = 28200; // 28100 (measured 28047), then 28200 (measured 28120) for not asking on policy pages; 27750 with the language select (measured 27705), then 28100 (measured 28047) for the dialog's strings in the chosen language; 23650 until the cookie dialog (assets/consent.js, 1677 bytes brotli with the region row, decision 046), then 27750 (measured 27705 + slack; consent.js 4083 bytes brotli with Shopify's copy, the suggestion preselect and the language select); sum of every module's SOURCE compressed with brotli: an upper bound, because Shopify's CDN minifies what it serves (see npm run perf:sizes for the delivered sizes); no page loads them all, each is a separate, lazily loaded file. Raw size counts the documentation comments, so it is capped per file instead.
 
 const assets = walk('assets');
 let totalJs = 0;

@@ -73,12 +73,13 @@ Size in bytes (before Shopify's CDN compression) and where each asset is referen
 | `assets/consent-strings-vi.json` | 882 | _imported by other assets_ |
 | `assets/consent-strings-zh-CN.json` | 671 | _imported by other assets_ |
 | `assets/consent-strings-zh-TW.json` | 671 | _imported by other assets_ |
-| `assets/consent.js` | 15646 | `layout/theme.liquid` |
+| `assets/consent.js` | 15958 | `layout/theme.liquid` |
 | `assets/embed.js` | 948 | `sections/main-product.liquid` |
 | `assets/facets.js` | 3353 | `sections/main-collection.liquid`, `sections/main-search.liquid` |
 | `assets/image-tone.js` | 3297 | `layout/theme.liquid` |
 | `assets/localization.js` | 1114 | `snippets/localization-selector.liquid` |
 | `assets/order-table.js` | 2820 | `blocks/_variants-table.liquid` |
+| `assets/policy.css` | 948 | `layout/theme.liquid` |
 | `assets/predictive-search.js` | 9366 | `sections/header.liquid` |
 | `assets/product-form.js` | 8190 | `layout/theme.liquid`, `sections/main-product.liquid` |
 | `assets/quantity-input.js` | 1772 | `layout/theme.liquid`, `sections/cart-drawer.liquid`, `snippets/quantity-input.liquid` |

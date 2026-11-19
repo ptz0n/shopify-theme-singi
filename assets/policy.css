@@ -1,0 +1,10 @@
+/* Shopify's policy pages (/policies/...): its own markup, no section of ours, so the reading layout lives here (under `main` to win over the policy stylesheet Shopify loads after ours). A measure of about 65 characters, headings sized for a document (not the page headings), the .prose rhythm. */
+main .shopify-policy__container{width:min(100% - 2*var(--gutter),42rem);margin:3rem auto 4rem;line-height:1.65}
+main .shopify-policy__title{text-align:start}
+main .shopify-policy__title h1{margin:0 0 2rem;font-size:clamp(1.75rem,1.4rem + 1.6vw,2.5rem)}
+.shopify-policy__body .rte>div>*+*{margin-block-start:1em}
+.shopify-policy__body :is(h2,h3,h4){margin-block:2em 0;font-size:1.25rem;line-height:1.3}
+.shopify-policy__body :is(h2,h3,h4)+*{margin-block-start:.5em!important}
+.shopify-policy__body :is(ul,ol){padding-inline-start:1.25em}
+.shopify-policy__body li+li{margin-block-start:.5em}
+.shopify-policy__body a{text-decoration-color:currentcolor}

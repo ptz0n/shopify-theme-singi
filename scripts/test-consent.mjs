@@ -84,7 +84,7 @@ const open = async ({ fake = null, banner = true, consent = { analytics: '', mar
   await page.goto(`${base}/`, { waitUntil: 'load', timeout: 60000 });
   return page;
 };
-const banner = (title, accept) => ({ title, text: `${title}: we use cookies. Learn more in our `, policyLinkText: 'Policy', policyLinkUrl: 'https://example.com/policy', buttonPrefsOpenText: 'Prefs', preferences: { buttonAcceptText: accept, buttonDeclineText: `No ${accept}`, buttonSaveText: 'Save it', buttonCloseText: 'Shut', purposes: { essentialName: 'Must', essentialDesc: 'Must desc', performanceName: 'Stats', performanceDesc: 'Stats desc', preferencesName: 'Prefs name', preferencesDesc: 'Prefs desc', marketingName: 'Ads', marketingDesc: 'Ads desc' } } });
+const banner = (title, accept) => ({ title, text: `${title}: we use cookies. Learn more in our `, policyLinkText: 'Policy', buttonPrefsOpenText: 'Prefs', preferences: { buttonAcceptText: accept, buttonDeclineText: `No ${accept}`, buttonSaveText: 'Save it', buttonCloseText: 'Shut', purposes: { essentialName: 'Must', essentialDesc: 'Must desc', performanceName: 'Stats', performanceDesc: 'Stats desc', preferencesName: 'Prefs name', preferencesDesc: 'Prefs desc', marketingName: 'Ads', marketingDesc: 'Ads desc' } } });
 const FAKE = {
   suggestion: { detected_values: { country: { handle: 'SE' } }, suggestions: [{ parts: { country: { handle: 'SE', options: { CA: 'Canada', SE: 'Sweden', US: 'United States' } } } }] },
   storefront: true,
@@ -129,8 +129,12 @@ try {
     ok(active.includes('#consent-title'), `focus starts on the title (${active})`);
     for (let i = 0; i < 14; i += 1) await page.keyboard.press('Tab');
     ok(await page.evaluate(() => !!document.activeElement?.closest('dialog.consent')), 'Tab stays inside the dialog');
-    await page.keyboard.press('Escape');
-    ok(await page.evaluate(() => document.querySelector('dialog.consent').open) && (await calls(page)).length === 0, 'Escape does not dismiss the first ask and records nothing');
+    ok(await page.evaluate(() => { const weight = (q) => getComputedStyle(document.querySelector(q)).fontWeight; return weight('.consent__row small') === getComputedStyle(document.body).fontWeight && Number(weight('.consent__row strong')) > Number(weight('.consent__row small')); }), 'in Preferences the name is bold and the description regular');
+    for (let press = 0; press < 3; press++) await page.keyboard.press('Escape');
+    ok(await page.evaluate(() => document.querySelector('dialog.consent').open) && (await calls(page)).length === 0, 'Escape, pressed three times, does not dismiss the first ask and records nothing');
+    ok(await page.evaluate(() => { const card = document.querySelector('.consent').getBoundingClientRect(); const x = card.left - 10; const y = card.top + 20; document.elementFromPoint(x, y)?.click(); return document.querySelector('dialog.consent').open; }), 'a click on the scrim does not dismiss it either');
+    ok(await page.evaluate(() => { const link = document.querySelector('[data-copy="policy"]'); return !link || new URL(link.href).origin === location.origin; }), 'the privacy link stays on this store, at the page\'s own address (Shopify\'s link for a language is not always a valid path of the market)');
+    ok(await page.evaluate(() => getComputedStyle(document.querySelector('[data-consent-close]')).display === 'none' || document.querySelector('[data-consent-close]').hidden), 'the first ask has no close button');
     ok((await calls(page)).length === 0, 'nothing is recorded before a click');
     ok(await page.evaluate(() => { const d = document.querySelector('dialog.consent'); return d.getAttribute('aria-labelledby') === 'consent-title' && !!document.getElementById('consent-title')?.textContent.trim(); }), 'the dialog is named by its title');
     ok(await page.evaluate(() => getComputedStyle(document.querySelector('[data-consent-close]')).display === 'none'), 'on the first ask there is no close button (the visitor answers, or nothing is recorded)');
@@ -172,6 +176,8 @@ try {
     ok(boxes.length === 4 && boxes[0].disabled && boxes[0].checked && boxes.slice(1).every((b) => !b.checked && !b.disabled), `Essential is on and locked, the other three start off (${JSON.stringify(boxes)})`);
     ok(await page.evaluate(() => { const style = (q) => getComputedStyle(document.querySelector(q)).backgroundColor; return style('.consent__save') === style('[data-consent="accept"]') && getComputedStyle(document.querySelector('.consent__actions')).display === 'none'; }), 'with Preferences open Save choices is the one primary button: Accept all and Reject all are hidden');
     await page.click('input[name="analytics"]');
+    /* the same edge as everywhere else in the card: the last button sits one panel padding above the card's edge, with Preferences open or closed */
+    ok(await page.evaluate(() => { const card = document.querySelector('.consent').getBoundingClientRect(); const save = document.querySelector('.consent__save').getBoundingClientRect(); const pad = parseFloat(getComputedStyle(document.querySelector('.consent__panel')).paddingBottom); return Math.abs(card.bottom - 1 - save.bottom - pad) <= 1; }), 'below Save choices the space is the panel padding, like below the other buttons');
     await page.click('.consent__save');
     ok(JSON.stringify(await calls(page)) === JSON.stringify([{ analytics: true, marketing: false, preferences: false, sale_of_data: false }]), `Save records only what was ticked (${JSON.stringify(await calls(page))})`);
     await page.close();
@@ -210,6 +216,9 @@ try {
     /* 7. phone, right to left, dark */
     page = await open({ width: 390 });
     await shown(page);
+    await page.click('.consent__more summary');
+    ok(await page.evaluate(() => [...document.querySelectorAll('.consent__row')].every((row) => { const r = row.getBoundingClientRect(); const d = row.querySelector('small').getBoundingClientRect(); const box = row.querySelector('input').getBoundingClientRect(); return Math.abs(d.left - r.left) <= 1 && d.top >= box.bottom - 1; })), 'phone: each description runs from the row\'s edge, under the checkbox and the name');
+    await page.click('.consent__more summary');
     const phone = await rect(page, 'dialog.consent');
     ok(Math.abs(phone.x - 16) <= 1 && Math.abs(phone.right - 16) <= 1 && phone.y >= 16, `phone: 16px from the left and right, below the top inset (${JSON.stringify({ x: phone.x, right: phone.right, y: phone.y })})`);
     ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'phone: no horizontal scroll');
@@ -366,6 +375,14 @@ try {
       return { api: !!api, ask: !!api?.shouldShowBanner?.() && !answered, open: !!document.querySelector('dialog.consent')?.open };
     });
     ok(live.open === live.ask, `without ?consent_preview the dialog shows by itself exactly when Shopify's real API says to ask (API ${live.api}, ask ${live.ask}, open ${live.open})`);
+    await page.close();
+
+    /* 9b. the page the dialog links to stays readable */
+    page = await open();
+    ok(await shown(page), 'a normal page asks');
+    await page.goto(`${base}/policies/privacy-policy`, { waitUntil: 'load', timeout: 60000 });
+    await wait(3500);
+    ok(await page.evaluate(() => !document.querySelector('dialog.consent').open && 'consentReady' in document.documentElement.dataset), 'on a policy page the dialog does not open, so the policy can be read');
     await page.close();
 
     /* 10. no API at all */
